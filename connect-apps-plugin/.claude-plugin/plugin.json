@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "connect-apps-plugin",
+  "displayName": "Connect Apps Plugin",
+  "description": "Connects Claude Code to popular productivity and development apps via MCP: GitHub, Gmail, Google Calendar, Google Drive, Jotform, and Miro.",
+  "version": "1.0.0",
+  "author": {
+    "name": "brajanniedz21"
+  },
+  "license": "MIT",
+  "keywords": ["github", "gmail", "google", "jotform", "miro", "mcp", "integrations"],
+  "defaultEnabled": true
+}
