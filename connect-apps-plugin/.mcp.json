@@ -1,52 +1,46 @@
 {
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
-      }
-    },
-    "gmail": {
-      "command": "npx",
-      "args": ["-y", "@gptscript-ai/gmail-mcp"],
-      "env": {
-        "GMAIL_CLIENT_ID": "${GMAIL_CLIENT_ID}",
-        "GMAIL_CLIENT_SECRET": "${GMAIL_CLIENT_SECRET}",
-        "GMAIL_REFRESH_TOKEN": "${GMAIL_REFRESH_TOKEN}"
-      }
-    },
-    "google-calendar": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-google-calendar"],
-      "env": {
-        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
-        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
-        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
-      }
-    },
-    "google-drive": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-gdrive"],
-      "env": {
-        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
-        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
-        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
-      }
-    },
-    "jotform": {
-      "command": "npx",
-      "args": ["-y", "@jotform/mcp-server"],
-      "env": {
-        "JOTFORM_API_KEY": "${JOTFORM_API_KEY}"
-      }
-    },
-    "miro": {
-      "command": "npx",
-      "args": ["-y", "@mirohq/mcp-server"],
-      "env": {
-        "MIRO_ACCESS_TOKEN": "${MIRO_ACCESS_TOKEN}"
-      }
+  "github": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-github"],
+    "env": {
+      "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+    }
+  },
+  "gmail": {
+    "command": "npx",
+    "args": ["-y", "@gptscript-ai/gmail-mcp-server"],
+    "env": {
+      "GMAIL_CREDENTIALS_FILE": "${GMAIL_CREDENTIALS_FILE}",
+      "GMAIL_TOKEN_FILE": "${GMAIL_TOKEN_FILE}"
+    }
+  },
+  "google-calendar": {
+    "command": "npx",
+    "args": ["-y", "@gptscript-ai/google-calendar-mcp-server"],
+    "env": {
+      "GOOGLE_CREDENTIALS_FILE": "${GOOGLE_CREDENTIALS_FILE}",
+      "GOOGLE_TOKEN_FILE": "${GOOGLE_TOKEN_FILE}"
+    }
+  },
+  "google-drive": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-gdrive"],
+    "env": {
+      "GDRIVE_CREDENTIALS_FILE": "${GDRIVE_CREDENTIALS_FILE}"
+    }
+  },
+  "jotform": {
+    "command": "npx",
+    "args": ["-y", "@jotform/mcp-server"],
+    "env": {
+      "JOTFORM_API_KEY": "${JOTFORM_API_KEY}"
+    }
+  },
+  "miro": {
+    "command": "npx",
+    "args": ["-y", "@mirohq/mcp-server"],
+    "env": {
+      "MIRO_ACCESS_TOKEN": "${MIRO_ACCESS_TOKEN}"
     }
   }
 }
