@@ -5,5 +5,8 @@
   "description": "A stock exchange where the listed companies are people.",
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1"
   }
 }
