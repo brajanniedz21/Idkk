@@ -250,6 +250,19 @@ body.closed .tape-track{animation-play-state:paused}
 
 [hidden]{display:none !important}
 
+/* ---------- search, favourites, member markets ---------- */
+.lbar{display:flex;gap:6px;padding:6px 8px;border-bottom:1px solid var(--line);align-items:center}
+.lbar input{flex:1;font-size:11.5px;padding:3px 7px;min-width:0}
+.star-btn{border:1px solid var(--line);padding:3px 9px;color:var(--faint)}
+.star-btn[aria-pressed="true"]{color:var(--amber);border-color:var(--amber)}
+.fav{color:var(--amber)}
+.follow-btn[aria-pressed="true"]{color:var(--amber);border-color:var(--amber)}
+.mk-form{display:flex;gap:6px;padding:10px;flex-wrap:wrap;align-items:center}
+.mk-form input[type=text]{flex:1;min-width:200px;font-family:var(--sans)}
+.vis-tag{font-size:10.5px;color:var(--faint);border:1px solid var(--line);padding:1px 6px;border-radius:2px;letter-spacing:.05em}
+.ordinfo{width:100%;font-size:11.5px;color:var(--muted)}
+.btn-void{color:var(--halt);border-color:var(--line);padding:3px 10px}
+
 </style>
 </head>
 <body>
@@ -332,6 +345,7 @@ body.closed .tape-track{animation-play-state:paused}
     <div class="grid-mkt">
       <div class="panel">
         <h2>ALL LISTINGS <span class="r" id="mkt-count"></span></h2>
+        <div class="lbar"><input id="lsearch" placeholder="Search ticker, name, company" aria-label="Search listings"><button id="lfav" class="star-btn" aria-pressed="false" title="Show favourites only">★</button></div>
         <div style="overflow-x:auto"><table id="movers">
           <thead><tr><th>TICKER</th><th>LAST</th><th>CHG%</th><th>VOL</th><th>MCAP</th><th>1M</th></tr></thead>
           <tbody></tbody>
@@ -360,7 +374,18 @@ body.closed .tape-track{animation-play-state:paused}
   <!-- PREDICTIONS -->
   <section class="view" id="view-pred">
     <div class="grid-pred">
-      <div class="panel"><h2>OPEN MARKETS <span class="r">CORRECT CALLS PAY THE QUOTED ODDS</span></h2><div id="pmarkets"></div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+        <div class="panel"><h2>ISSUE A MARKET <span class="r">YOU ARE THE ORACLE · SETTLE IT HONESTLY</span></h2>
+          <div class="mk-form">
+            <input type="text" id="mk-q" maxlength="140" placeholder="I will hit an 80 kg bench by Sunday.">
+            <select id="mk-when" aria-label="Settlement"><option value="tonight">settles tonight 23:59</option><option value="friday">settles Friday 23:59</option><option value="sunday">settles Sunday 23:59</option></select>
+            <select id="mk-vis" aria-label="Audience"><option value="public">everyone</option><option value="friends">favourites only</option></select>
+            <button id="mk-open">Open market</button>
+          </div>
+          <div class="ordmsg" id="mk-msg" style="padding:0 10px 8px"></div>
+        </div>
+        <div class="panel"><h2>OPEN MARKETS <span class="r">CORRECT CALLS PAY THE QUOTED ODDS</span></h2><div id="pmarkets"></div></div>
+      </div>
       <div style="display:flex;flex-direction:column;gap:12px">
         <div class="panel"><h2>YOUR POSITIONS</h2><div id="ppos"></div></div>
         <div class="panel"><h2>SETTLEMENTS</h2><div id="psettled"></div></div>
@@ -433,6 +458,22 @@ const DB_KEY='mx-local-v2';
 let DB={v:2,users:{},players:{},session:null,markets:[],nextMid:1};
 try{const d=JSON.parse(localStorage.getItem(DB_KEY));if(d&&d.v===2)DB=d}catch(e){}
 function save(){syncHumans();try{localStorage.setItem(DB_KEY,JSON.stringify(DB))}catch(e){}}
+// migrate older saves: ensure new fields; retire old-format house markets with a refund
+(function migrate(){
+  Object.values(DB.players).forEach(pl=>{pl.favs=pl.favs||[];pl.acts=pl.acts||{}});
+  const dead=DB.markets.filter(m=>!m.status&&!m.linked&&!m.custom&&!m.type);
+  if(dead.length){
+    const ids=new Set(dead.map(m=>m.id));
+    Object.values(DB.players).forEach(pl=>{
+      pl.preds=pl.preds.filter(x=>{
+        if(!ids.has(x.mid))return true;
+        pl.cash=Math.round((pl.cash+x.amt)*100)/100;
+        return false;
+      });
+    });
+    DB.markets=DB.markets.filter(m=>!ids.has(m.id));
+  }
+})();
 
 /* ================= password hashing (salted PBKDF2) ================= */
 const bufToHex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
@@ -528,10 +569,11 @@ function genIntraHuman(u){
 const conf=pl=>Math.round(clamp(38+pl.streak*2.2+pl.beats*6-pl.misses*9-pl.quietDays*2,5,98));
 function rollPlayer(pl){
   const today=dayKey();let guard=0;
+  const listingDay=dayKey(new Date(pl.listedAt||Date.now()));
   while(pl.lastRoll!==today&&guard++<90){
     pl.days.push({o:pl.dayOpen,h:pl.dayHigh,l:pl.dayLow,c:pl.price,v:pl.dayVol});
     if(pl.days.length>130)pl.days.shift();
-    if(pl.lastActionDay!==pl.lastRoll){
+    if(pl.lastActionDay!==pl.lastRoll&&pl.lastRoll!==listingDay){
       pl.quietDays++;pl.streak=0;
       pl.price=Math.max(0.5,r2(pl.price*(1-(0.012+Math.min(0.03,pl.quietDays*0.006)))));
     }else pl.quietDays=0;
@@ -697,8 +739,9 @@ function tick(){
       const ret=(u.c-0.5)*0.00003+u.vol*0.09*gauss(Math.random);
       pushPrice(u,Math.max(0.5,u.last*(1+ret)),Math.round(u.shares*0.0006*Math.random()));
     }else{
-      const bias=(conf(u.pl)-50)/50*0.0004;
-      pushPrice(u,Math.max(0.5,u.last*(1+bias+0.001*gauss(Math.random))),Math.round(u.shares*0.0002*Math.random()));
+      // member listings carry no passive drift: prices move on actions,
+      // trades, guidance, and quiet-day rolls, plus a whisper of noise
+      pushPrice(u,Math.max(0.5,u.last*(1+0.0005*gauss(Math.random))),Math.round(u.shares*0.0002*Math.random()));
     }
   });
   if(Math.random()<0.16)fireEvent();
@@ -707,24 +750,66 @@ function tick(){
 }
 
 /* ================= predictions (persisted) ================= */
-const PRED_TPL=[
- u=>'Will '+u.firstName+' hit the gym 5 times this week?',
- u=>'Will '+u.firstName+' finish the side project by Friday?',
- u=>'Will '+u.firstName+' log 20 study hours this week?',
- u=>'Will '+u.firstName+' post every day for the next 7 days?',
- u=>'Will '+u.firstName+' keep the streak alive through Sunday?',
-];
+/* House markets are short-horizon and say so: the question names the same
+   time the market settles at. Price markets settle against the actual tape. */
+const hhmm=t=>{const d=new Date(t);return pad(d.getHours())+':'+pad(d.getMinutes())};
 function makeBotMarket(){
   const bots=U.filter(u=>u.bot);
   for(let i=0;i<15;i++){
     const u=bots[Math.floor(Math.random()*bots.length)];
     if(DB.markets.some(m=>!m.status&&m.tick===u.tick))continue;
+    const resolveAt=Date.now()+(4+Math.random()*12)*6e4;
+    if(Math.random()<0.55){
+      const up=Math.random()<0.5;
+      const target=r2(u.last*(1+(up?1:-1)*(0.002+Math.random()*0.006)));
+      const pYes=clamp(up?0.44:0.56,0.1,0.9);
+      return{id:DB.nextMid++,tick:u.tick,type:'price',target,
+        q:'Will '+u.tick+' trade above '+fmtP(target)+' at '+hhmm(resolveAt)+'?',
+        yes:r2(0.95/pYes),no:r2(0.95/(1-pYes)),resolveAt,pool:Math.round(40+Math.random()*400)};
+    }
     const p=clamp(u.c+(Math.random()*0.2-0.1),0.08,0.92);
-    return{id:DB.nextMid++,tick:u.tick,q:PRED_TPL[Math.floor(Math.random()*PRED_TPL.length)](u),
-      pTrue:u.c,yes:r2(0.95/p),no:r2(0.95/(1-p)),
-      resolveAt:Date.now()+(3+Math.random()*7)*6e4,pool:Math.round(40+Math.random()*400)};
+    const QS=[
+      'Will '+u.firstName+' get the scheduled session logged before '+hhmm(resolveAt)+'?',
+      'Will '+u.firstName+' clear the current work block by '+hhmm(resolveAt)+'?',
+      'Will '+u.firstName+' print good news before '+hhmm(resolveAt)+'?',
+    ];
+    return{id:DB.nextMid++,tick:u.tick,type:'habit',pTrue:u.c,
+      q:QS[Math.floor(Math.random()*QS.length)],
+      yes:r2(0.95/p),no:r2(0.95/(1-p)),resolveAt,pool:Math.round(40+Math.random()*400)};
   }
   return null;
+}
+function deadlineFor(k){
+  const d=new Date();
+  if(k==='tonight'){d.setHours(23,59,0,0);return d.getTime()}
+  if(k==='friday'){d.setDate(d.getDate()+((5-d.getDay()+7)%7));d.setHours(23,59,0,0);return d.getTime()}
+  return endOfWeek();
+}
+function openCustomMarket(q,when,vis){
+  q=String(q||'').trim().slice(0,140);
+  if(q.length<8)return'Write the market first (at least 8 characters).';
+  if(DB.markets.filter(m=>!m.status&&m.custom&&m.creator===DB.session).length>=3)return'Three open personal markets is plenty. Settle one first.';
+  DB.markets.push({id:DB.nextMid++,tick:ME,custom:true,creator:DB.session,vis:vis==='friends'?'friends':'public',
+    q,yes:1.9,no:1.9,resolveAt:deadlineFor(when),pool:0});
+  if(vis!=='friends')feed(byT[ME],ME+' opens a market: “'+q+'”',null);
+  save();return null;
+}
+function settleCustom(mid,outcome,force){
+  const m=DB.markets.find(x=>x.id===mid);
+  if(!m||m.status||(!force&&m.creator!==DB.session))return;
+  if(outcome==='VOID'){
+    m.status='void';m.outcome='VOID';m.settledAt=Date.now();
+    Object.values(DB.players).forEach(pl=>{
+      pl.preds=pl.preds.filter(x=>{
+        if(x.mid!==m.id)return true;
+        pl.cash=r2(pl.cash+x.amt);
+        pl.settled.unshift({q:m.q,side:x.side,amt:x.amt,ret:x.amt,out:'VOID',t:Date.now()});
+        return false;
+      });
+    });
+    save();return;
+  }
+  settleMarket(m,outcome);
 }
 function makeGuidanceMarket(pl){
   const c=conf(pl)/100,p=clamp(c,0.1,0.9);
@@ -759,14 +844,24 @@ function settleMarket(m,outcome){
 function resolveDue(){
   let changed=false;
   DB.markets.forEach(m=>{
-    if(m.status||m.linked||m.resolveAt>Date.now())return;
-    settleMarket(m,Math.random()<m.pTrue?'YES':'NO');changed=true;
+    if(m.status||m.linked)return;
+    if(m.custom){
+      // creator is the oracle; a market abandoned 3 days past its deadline voids and refunds
+      if(Date.now()>m.resolveAt+3*864e5){settleCustom(m.id,'VOID',true);changed=true}
+      return;
+    }
+    if(m.resolveAt>Date.now())return;
+    const u=byT[m.tick];
+    const outcome=m.type==='price'?((u&&u.last>m.target)?'YES':'NO'):(Math.random()<(m.pTrue??0.5)?'YES':'NO');
+    settleMarket(m,outcome);changed=true;
   });
   if(changed){ensureMarkets();if(state.view==='pred')renderPred()}
 }
 function stake(mid,side,amt){
   const m=DB.markets.find(x=>x.id===mid);
   if(!m||m.status)return'Market settled.';
+  if(m.custom&&Date.now()>m.resolveAt)return'Staking closed; awaiting settlement by the issuer.';
+  if(m.custom&&m.creator===DB.session)return'You cannot stake a market you settle.';
   if(m.tick===ME)return'You cannot bet on your own guidance.';
   if(!(amt>=1&&amt<=1000))return'Stake must be £1 to £1,000.';
   if(amt>P.cash)return'Insufficient cash.';
@@ -870,6 +965,7 @@ function issueGuidance(n){
 
 /* ================= trading ================= */
 function order(tickr,side,qty){
+  if(tickr===ME)return{err:'Insiders cannot trade their own listing. Your price is earned on the floor.'};
   qty=Math.floor(qty);
   if(!(qty>0&&qty<=10000))return{err:'Quantity must be between 1 and 10,000.'};
   const u=byT[tickr];if(!u)return{err:'Unknown ticker.'};
@@ -889,7 +985,10 @@ function order(tickr,side,qty){
   P.trades.unshift({t:Date.now(),tick:tickr,side,qty,px});
   P.trades=P.trades.slice(0,40);
   save();
-  return{msg:'Filled: '+(side==='buy'?'bought':'sold')+' '+qty+' '+tickr+' @ '+fmtP(px)+'.'};
+  const pos=P.hold[tickr];
+  return{msg:'Filled: '+(side==='buy'?'bought':'sold')+' '+qty+' '+tickr+' @ '+fmtP(px)+
+    ' · '+(side==='buy'?'cost':'proceeds')+' '+fmtP(cost)+' · cash '+fmtP(P.cash)+
+    (pos?' · position '+pos.sh+' sh @ avg '+fmtP(pos.cost/pos.sh):' · position closed')+'.'};
 }
 
 /* ================= earnings ================= */
@@ -1028,7 +1127,7 @@ function sparkline(cv,pts){
 const sparkPts=u=>u.days.slice(-22).map(d=>d.c).concat([u.last]);
 
 /* ================= renderers ================= */
-const state={view:'auth',sel:null};
+const state={view:'auth',sel:null,q:'',favOnly:false};
 
 function renderClock(){
   $('#clock').textContent=ts();
@@ -1065,15 +1164,19 @@ function updateTape(){
 }
 function buildMovers(){
   const tb=$('#movers tbody');
-  const list=U.slice().sort((a,b)=>mcap(b)-mcap(a));
-  tb.innerHTML=list.map(u=>
+  let list=U.slice().sort((a,b)=>mcap(b)-mcap(a));
+  if(state.q)list=list.filter(u=>(u.tick+' '+u.name+' '+u.co).toLowerCase().includes(state.q));
+  if(state.favOnly)list=list.filter(u=>u.me||(P&&P.favs.includes(u.tick)));
+  tb.innerHTML=list.length?list.map(u=>
     '<tr data-go="'+u.tick+'" data-t="'+u.tick+'"'+(u.tick===state.sel?' class="sel"':'')+'>'+
-    '<td><span class="tk">'+esc(u.tick)+'</span>'+(u.human?' <span class="dim" title="Member listing">●</span>':'')+
+    '<td><span class="tk">'+esc(u.tick)+'</span>'+
+    (P&&P.favs.includes(u.tick)?' <span class="fav">★</span>':(u.human?' <span class="dim" title="Member listing">●</span>':''))+
     '<br><span class="co-name">'+esc(u.co)+'</span></td>'+
     '<td class="c-last"></td><td class="c-chg"></td><td class="c-vol"></td><td class="c-mc"></td>'+
-    '<td><canvas class="spark" width="64" height="18"></canvas></td></tr>').join('');
-  tb.querySelectorAll('tr').forEach(tr=>sparkline(tr.querySelector('canvas'),sparkPts(byT[tr.dataset.t])));
-  $('#mkt-count').textContent=U.length+' LISTED';
+    '<td><canvas class="spark" width="64" height="18"></canvas></td></tr>').join('')
+    :'<tr><td colspan="6"><div class="empty">No matches on the board.</div></td></tr>';
+  tb.querySelectorAll('tr[data-t]').forEach(tr=>sparkline(tr.querySelector('canvas'),sparkPts(byT[tr.dataset.t])));
+  $('#mkt-count').textContent=(state.q||state.favOnly?list.length+' OF ':'')+U.length+' LISTED';
   updateMovers();
 }
 function updateMovers(){
@@ -1149,23 +1252,41 @@ function renderLb(){
 }
 function renderPred(){
   ensureMarkets();
-  const open=DB.markets.filter(m=>!m.status);
   const now=Date.now();
+  const open=DB.markets.filter(m=>!m.status).filter(m=>{
+    if(!m.custom)return true;
+    if(m.creator===DB.session||m.vis==='public')return true;
+    const cp=Object.values(DB.players).find(p=>p.owner===m.creator);
+    return !!(cp&&cp.favs&&cp.favs.includes(ME));
+  }).sort((a,b)=>(b.custom?1:0)-(a.custom?1:0)||a.resolveAt-b.resolveAt);
   $('#pmarkets').innerHTML=open.length?open.map(m=>{
     const mine=P.preds.find(x=>x.mid===m.id);
     const left=Math.max(0,m.resolveAt-now);
-    const when=m.linked?new Date(m.resolveAt).toLocaleDateString('en-GB',{weekday:'short'}):Math.floor(left/6e4)+':'+pad(Math.floor(left%6e4/1e3));
+    const long=left>36e5;
+    const when=long?new Date(m.resolveAt).toLocaleDateString('en-GB',{weekday:'short'})+' '+hhmm(m.resolveAt):Math.floor(left/6e4)+':'+pad(Math.floor(left%6e4/1e3));
+    const tag=m.custom?' <span class="vis-tag">'+(m.vis==='friends'?'FAVOURITES ONLY':'MEMBER MARKET')+'</span>':'';
     let controls;
-    if(m.tick===ME)controls='<span class="own">Your guidance. You cannot bet on yourself.</span>';
+    if(m.custom&&m.creator===DB.session){
+      controls='<span class="own">Your market; you are the oracle.</span> '+
+        '<button class="btn-yes" data-settle="YES">Settle YES</button>'+
+        '<button class="btn-no" data-settle="NO">Settle NO</button>'+
+        (now>m.resolveAt?'<button class="btn-void" data-settle="VOID">Void</button>':'');
+    }
+    else if(m.tick===ME)controls='<span class="own">Your guidance. You cannot bet on yourself.</span>';
     else if(mine)controls='<span class="dim">Your position: '+mine.side+' '+fmtP(mine.amt)+'</span>';
+    else if(m.custom&&now>m.resolveAt)controls='<span class="own">Staking closed; awaiting settlement.</span>';
     else controls='<input class="stake" type="number" min="1" max="1000" value="25" aria-label="Stake">'+
       '<button class="btn-yes" data-side="YES">YES '+m.yes.toFixed(2)+'</button>'+
       '<button class="btn-no" data-side="NO">NO '+m.no.toFixed(2)+'</button>';
-    return'<div class="pm" data-mid="'+m.id+'"><div class="q"><span class="tk dim" data-go="'+esc(m.tick)+'">'+esc(m.tick)+'</span>  '+esc(m.q)+'</div>'+
+    return'<div class="pm" data-mid="'+m.id+'"><div class="q"><span class="tk dim" data-go="'+esc(m.tick)+'">'+esc(m.tick)+'</span>  '+esc(m.q)+tag+'</div>'+
      '<div class="row">'+controls+
      '<span class="meta">pool '+fmtK(m.pool)+' · settles '+when+'</span></div>'+
      '<div class="ordmsg"></div></div>';
-  }).join(''):'<div class="empty">No open markets.</div>';
+  }).join(''):'<div class="empty">No open markets. Issue one above, or wait for the floor.</div>';
+  $('#pmarkets').querySelectorAll('.pm button[data-settle]').forEach(b=>b.addEventListener('click',()=>{
+    settleCustom(+b.closest('.pm').dataset.mid,b.dataset.settle);
+    renderClock();renderPred();
+  }));
   $('#pmarkets').querySelectorAll('.pm button[data-side]').forEach(b=>b.addEventListener('click',()=>{
     const box=b.closest('.pm'),amt=+box.querySelector('.stake').value,mid=+box.dataset.mid;
     const err=stake(mid,b.dataset.side,amt);
@@ -1186,7 +1307,7 @@ function updatePredClocks(){
   if(state.view!=='pred')return;
   const now=Date.now();
   document.querySelectorAll('#pmarkets .pm[data-mid]').forEach(box=>{
-    const m=DB.markets.find(x=>x.id===+box.dataset.mid);if(!m||m.status||m.linked)return;
+    const m=DB.markets.find(x=>x.id===+box.dataset.mid);if(!m||m.status||m.linked||m.custom)return;
     const left=Math.max(0,m.resolveAt-now);
     const el=box.querySelector('.meta');
     if(el)el.textContent='pool '+fmtK(m.pool)+' · settles '+Math.floor(left/6e4)+':'+pad(Math.floor(left%6e4/1e3));
@@ -1261,7 +1382,9 @@ function renderCo(tickr,mount){
   mount.innerHTML=
   '<div class="co-head"><h1>'+esc(u.co)+'</h1>'+
    '<span class="sub">'+esc(u.tick)+' · '+SECTORS[u.sector]+' · CEO: '+esc(u.name)+(u.bot?' · house listing':'')+'</span>'+
-   '<span class="pill rating">'+rating+' · CONFIDENCE '+cf+'/100</span></div>'+
+   '<span class="pill rating">'+rating+' · CONFIDENCE '+cf+'/100</span>'+
+   (!isMe?'<button class="follow-btn" id="fav-btn" aria-pressed="'+P.favs.includes(u.tick)+'">'+(P.favs.includes(u.tick)?'Favourited ★':'Favourite ☆')+'</button>':'')+
+   '</div>'+
   '<div class="quote"><span class="px c-px">'+fmtP(u.last)+'</span><span class="chg c-chg">'+chipPct(dayChg(u))+'</span>'+
    '<span class="kv">OPEN<b>'+fmtP(u.dayOpen)+'</b></span><span class="kv">HIGH<b>'+fmtP(u.dayHi)+'</b></span>'+
    '<span class="kv">LOW<b>'+fmtP(u.dayLo)+'</b></span><span class="kv">PREV<b>'+fmtP(u.prevClose)+'</b></span>'+
@@ -1282,13 +1405,16 @@ function renderCo(tickr,mount){
       '<span class="dim">Active guidance:</span> <b>'+g.done+' of '+g.n+' sessions</b> <span class="dim">by Sunday close</span>':
       '<span class="dim">Issue guidance:</span> <input type="number" id="g-n" min="1" max="14" value="5"> <span class="dim">gym sessions by Sunday</span> <button id="g-issue">Publish guidance</button>')+
     '</div><div class="ordmsg" id="act-msg" style="padding:0 10px 8px"></div></div>':'')+
+   (isMe?
+   '<div class="panel"><h2>ORDER TICKET</h2><div class="empty">Insiders cannot trade their own listing. Your price moves when you show up; the register moves when others believe you.</div></div>':
    '<div class="panel"><h2>ORDER TICKET</h2><div class="order">'+
      '<input type="number" class="o-qty" min="1" max="10000" value="10" aria-label="Quantity">'+
      '<button class="btn-buy" data-side="buy">Buy '+esc(u.tick)+'</button>'+
      '<button class="btn-sell" data-side="sell">Sell</button>'+
      '<span class="dim">@ market · <span class="c-px2">'+fmtP(u.last)+'</span></span>'+
      '<span class="dim" style="margin-left:auto">'+(myPos?'You hold '+myPos.sh+' sh @ avg '+fmtP(myPos.cost/myPos.sh):'No position')+'</span>'+
-     '<div class="ordmsg"></div></div></div>'+
+     '<div class="ordinfo"></div>'+
+     '<div class="ordmsg"></div></div></div>')+
    '<div class="panel"><h2>EARNINGS REPORT <span class="r">LAST 30 DAYS · AUTO-FILED</span></h2>'+
     '<table class="report"><tbody>'+
      '<tr><td>Gym sessions completed</td><td>'+rep.sessions+'</td></tr>'+
@@ -1334,12 +1460,28 @@ function renderCo(tickr,mount){
     coChart.draw();
   }));
   coChart.draw();
+  const qtyInput=mount.querySelector('.o-qty');
+  const ordInfo=mount.querySelector('.ordinfo');
+  function updateOrdInfo(){
+    if(!ordInfo||!qtyInput)return;
+    const q=Math.max(0,Math.floor(+qtyInput.value||0));
+    const val=q*byT[tickr].last;
+    ordInfo.textContent='Order value '+fmtP(val)+' · cash available '+fmtP(P.cash)+
+      (val>P.cash?' · exceeds cash for a buy':' · cash after buy '+fmtP(P.cash-val));
+  }
+  if(qtyInput){qtyInput.addEventListener('input',updateOrdInfo);updateOrdInfo()}
   mount.querySelectorAll('.order button[data-side]').forEach(b=>b.addEventListener('click',()=>{
     const res=order(tickr,b.dataset.side,+mount.querySelector('.o-qty').value);
     if(res.err){mount.querySelector('.order .ordmsg').textContent=res.err}
     else{renderCo(tickr,mount);const el=mount.querySelector('.order .ordmsg');if(el)el.textContent=res.msg}
     renderClock();
   }));
+  const favBtn=mount.querySelector('#fav-btn');
+  if(favBtn)favBtn.addEventListener('click',()=>{
+    const i=P.favs.indexOf(u.tick);
+    if(i>=0)P.favs.splice(i,1);else P.favs.push(u.tick);
+    save();renderCo(tickr,mount);
+  });
   mount.querySelectorAll('[data-react]').forEach(b=>b.addEventListener('click',()=>{
     P.reacts[tickr]=P.reacts[tickr]===b.dataset.react?null:b.dataset.react;
     save();renderCo(tickr,mount);
@@ -1413,6 +1555,13 @@ $('#nav').addEventListener('click',e=>{
   const b=e.target.closest('button[data-view]');
   if(b)showView(b.dataset.view);
 });
+$('#lsearch').addEventListener('input',e=>{state.q=e.target.value.trim().toLowerCase();buildMovers()});
+$('#lfav').addEventListener('click',()=>{state.favOnly=!state.favOnly;$('#lfav').setAttribute('aria-pressed',state.favOnly);buildMovers()});
+$('#mk-open').addEventListener('click',()=>{
+  const err=openCustomMarket($('#mk-q').value,$('#mk-when').value,$('#mk-vis').value);
+  $('#mk-msg').textContent=err||'Market open. It settles when you say it settles; settle it honestly.';
+  if(!err){$('#mk-q').value='';renderPred()}
+});
 
 /* ================= auth flow ================= */
 function showAuth(){
@@ -1464,7 +1613,7 @@ $('#ipo-form').addEventListener('submit',e=>{
     shares:2500,listedAt:Date.now(),
     days:[],lastRoll:today,price:10,prevClose:10,dayOpen:10,dayHigh:10,dayLow:10,dayVol:0,ath:10,
     streak:0,misses:0,beats:0,quietDays:0,goalsHit:0,
-    cash:500,hold:{},trades:[],divs:[],preds:[],settled:[],reacts:{},acts:{},
+    cash:500,hold:{},trades:[],divs:[],preds:[],settled:[],reacts:{},acts:{},favs:[],
     sessions:{},study:{},guidance:null,guideHist:[],lastActionDay:null,comments:[]};
   DB.users[uname].ticker=tick;
   save();
@@ -1501,6 +1650,7 @@ function route(justListed){
   ME=myTick;
   buildU();
   P=DB.players[ME];
+  P.favs=P.favs||[];P.acts=P.acts||{};
   $('#nav').hidden=false;$('#tape').hidden=false;$('#signout').hidden=false;
   $('#nav-me').textContent=ME;
   ensureMarkets();
