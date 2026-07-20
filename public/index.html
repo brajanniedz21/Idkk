@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MERIT EXCHANGE</title>
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23111'/%3E%3Cpath d='M2 11l3-4 3 2 4-6 2 3' stroke='%23e5b53f' fill='none' stroke-width='1.6'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header>
+  <div class="mast">
+    <div class="logo"><b>MERIT</b><span>EXCHANGE</span></div>
+    <div class="idx" id="idx-q"></div>
+    <div class="clock">
+      <span id="clock" class="dim"></span>
+      <span id="mkt-pill" class="pill"></span>
+      <span class="cash" id="cash"></span>
+      <button id="signout" hidden>Sign out</button>
+    </div>
+  </div>
+  <nav id="nav" aria-label="Sections" hidden>
+    <button data-view="mkt" aria-current="true">MARKETS</button>
+    <button data-view="lb">LEADERBOARDS</button>
+    <button data-view="pred">PREDICTIONS</button>
+    <button data-view="ipo">NEW LISTINGS</button>
+    <button data-view="pf">PORTFOLIO</button>
+    <button data-view="me" id="nav-me">MY DESK</button>
+  </nav>
+</header>
+
+<div class="tape" id="tape" aria-hidden="true" hidden><div class="tape-track" id="tape-track"></div></div>
+<div id="bell" role="status"></div>
+
+<main>
+  <!-- AUTH -->
+  <section class="view gate" id="view-auth">
+    <div class="panel">
+      <h2>MEMBER ACCESS <span class="r">MERIT EXCHANGE</span></h2>
+      <form id="auth-form">
+        <div><label for="auth-email">EMAIL</label><input id="auth-email" type="email" autocomplete="email" required></div>
+        <div><label for="auth-pass">PASSWORD</label><input id="auth-pass" type="password" autocomplete="current-password" minlength="8" required></div>
+        <div class="msg" id="auth-msg"></div>
+        <div class="btns">
+          <button type="submit" class="primary" id="btn-signin">Sign in</button>
+          <button type="button" id="btn-signup">Create account</button>
+        </div>
+      </form>
+      <div class="note">Accounts are free. New members list on the exchange by IPO: pick a ticker, publish a prospectus, and your consistency becomes your share price. Passwords need at least 8 characters.</div>
+    </div>
+  </section>
+
+  <!-- ONBOARDING / IPO -->
+  <section class="view gate onboard" id="view-onboard">
+    <div class="panel">
+      <h2>INITIAL PUBLIC OFFERING <span class="r">LIST YOURSELF</span></h2>
+      <form id="ipo-form">
+        <div class="row2">
+          <div><label for="ipo-name">YOUR NAME</label><input id="ipo-name" maxlength="40" required></div>
+          <div><label for="ipo-ticker">TICKER · 2-5 LETTERS</label><input id="ipo-ticker" maxlength="5" pattern="[A-Za-z]{2,5}" style="text-transform:uppercase" required></div>
+        </div>
+        <div class="row2">
+          <div><label for="ipo-company">COMPANY NAME</label><input id="ipo-company" maxlength="60" placeholder="e.g. Brajan Industries" required></div>
+          <div><label for="ipo-sector">SECTOR</label>
+            <select id="ipo-sector" required>
+              <option value="FIT">Fitness</option><option value="BIZ">Business</option>
+              <option value="COD">Coding</option><option value="ART">Art</option>
+              <option value="EDU">Education</option><option value="CRE">Content Creation</option>
+            </select></div>
+        </div>
+        <div><label for="ipo-pitch">PROFILE PITCH</label><textarea id="ipo-pitch" maxlength="400" placeholder="What are you building, and why should anyone hold your stock?"></textarea></div>
+        <div><label for="ipo-outlook">OUTLOOK</label><input id="ipo-outlook" maxlength="120" placeholder="Aggressive growth."></div>
+        <div class="row2">
+          <div><label for="ipo-risk1">RISK FACTOR 1</label><input id="ipo-risk1" maxlength="120" placeholder="Inconsistent sleep schedule"></div>
+          <div><label for="ipo-risk2">RISK FACTOR 2</label><input id="ipo-risk2" maxlength="120"></div>
+        </div>
+        <div class="msg" id="ipo-msg"></div>
+        <div class="btns"><button type="submit" class="primary">List at £10.00</button></div>
+      </form>
+      <div class="note">Every listing opens at £10.00 with 2,500 shares outstanding and £500 starting cash. From here your price is earned: log real sessions, publish guidance, and let the market judge.</div>
+    </div>
+  </section>
+
+  <!-- MARKETS -->
+  <section class="view" id="view-mkt">
+    <div class="grid-mkt">
+      <div class="panel">
+        <h2>ALL LISTINGS <span class="r" id="mkt-count"></span></h2>
+        <div style="overflow-x:auto"><table id="movers">
+          <thead><tr><th>TICKER</th><th>LAST</th><th>CHG%</th><th>VOL</th><th>MCAP</th><th>1M</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+        <div class="panel chartbox" id="mini-co"></div>
+        <div class="panel">
+          <h2>SECTOR INDICES <span class="r">WEEK</span></h2>
+          <table id="sectors"><thead><tr><th>SECTOR</th><th>MCAP</th><th>DAY%</th><th>WEEK%</th><th>TREND</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+      <div class="panel" id="p-feed">
+        <h2>TRADING FLOOR <span class="r" id="feed-state"></span></h2>
+        <div id="feed" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANY -->
+  <section class="view" id="view-co"></section>
+
+  <!-- LEADERBOARDS -->
+  <section class="view" id="view-lb"><div class="grid-lb" id="lb"></div></section>
+
+  <!-- PREDICTIONS -->
+  <section class="view" id="view-pred">
+    <div class="grid-pred">
+      <div class="panel"><h2>OPEN MARKETS <span class="r">PARIMUTUEL · WINNERS SPLIT THE LOSING POOL</span></h2><div id="pmarkets"></div></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel"><h2>YOUR POSITIONS</h2><div id="ppos"></div></div>
+        <div class="panel"><h2>SETTLEMENTS</h2><div id="psettled"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW LISTINGS -->
+  <section class="view" id="view-ipo"><div class="grid-ipo" id="ipos"></div></section>
+
+  <!-- PORTFOLIO -->
+  <section class="view" id="view-pf">
+    <div class="grid-pf">
+      <div class="panel">
+        <div class="pf-head" id="pf-head"></div>
+        <div style="overflow-x:auto"><table id="pf-hold">
+          <thead><tr><th>TICKER</th><th>SHARES</th><th>AVG COST</th><th>LAST</th><th>MKT VAL</th><th>P&amp;L</th><th>P&amp;L%</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+        <div class="empty" id="pf-empty" hidden>No positions. Cash is earned by showing up; it is meant to be invested in people you believe in. Open any listing and place an order.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel"><h2>DIVIDENDS RECEIVED</h2><div id="pf-div"></div></div>
+        <div class="panel"><h2>TRADE HISTORY</h2><div id="pf-hist"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY DESK -->
+  <section class="view" id="view-me"></section>
+</main>
+
+<footer>
+  <span>MERIT EXCHANGE</span>
+  <span>Opening bell 08:00 · Closing bell 00:00 (London)</span>
+  <span id="foot-range"></span>
+  <span><a href="/demo.html" style="color:inherit">offline demo</a></span>
+</footer>
+
+<script src="/config.js"></script>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

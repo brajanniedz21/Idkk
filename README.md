@@ -2,7 +2,17 @@
 
 A stock exchange where the listed companies are people. Consistency is the fundamentals: hit your goals and your share price climbs; miss them and the market sells you off.
 
-This is a working single-file prototype: open `index.html` in a browser. No build step, no dependencies, no network calls. Player state (cash, holdings, streaks, guidance, predictions) persists in localStorage.
+This is the real, deployable app: accounts, a shared live market, trading between members, and server-authoritative prices. **Deployment guide: [SETUP.md](SETUP.md)** (Netlify + Supabase, free tiers, ~20 minutes).
+
+```
+public/               static frontend (terminal UI, charts, auth, onboarding)
+netlify/functions/    game logic: IPO, actions, guidance, trading, predictions,
+                      comments, reactions + two scheduled jobs (market tick, maintenance)
+db/schema.sql         Postgres schema, Row Level Security, atomic trade fn, seed data
+netlify.toml          build, redirects, security headers
+```
+
+A fully offline single-file demo of the concept lives at `public/demo.html` — open it in any browser, no accounts needed.
 
 ## What's in the prototype
 

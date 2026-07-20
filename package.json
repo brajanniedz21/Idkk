@@ -1,0 +1,9 @@
+{
+  "name": "merit-exchange",
+  "private": true,
+  "type": "module",
+  "description": "A stock exchange where the listed companies are people.",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}
