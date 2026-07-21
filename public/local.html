@@ -262,6 +262,12 @@ body.closed .tape-track{animation-play-state:paused}
 .vis-tag{font-size:10.5px;color:var(--faint);border:1px solid var(--line);padding:1px 6px;border-radius:2px;letter-spacing:.05em}
 .ordinfo{width:100%;font-size:11.5px;color:var(--muted)}
 .btn-void{color:var(--halt);border-color:var(--line);padding:3px 10px}
+.gate.on{display:flex;flex-direction:column;gap:12px}
+.acct-list{max-height:220px;overflow-y:auto}
+.acct{display:block;width:100%;text-align:left;border:none;border-bottom:1px solid oklch(0.22 0 0);border-radius:0;padding:8px 12px}
+.acct:hover{background:var(--panel-2)}
+.acct.sel{background:var(--amber-dim)}
+.acct .co-name{margin-left:6px}
 
 </style>
 </head>
@@ -294,18 +300,25 @@ body.closed .tape-track{animation-play-state:paused}
 <main>
   <!-- AUTH -->
   <section class="view gate" id="view-auth">
-    <div class="panel">
-      <h2>MEMBER ACCESS <span class="r">MERIT EXCHANGE</span></h2>
-      <form id="auth-form">
-        <div><label for="auth-user">USERNAME</label><input id="auth-user" autocomplete="username" maxlength="20" required></div>
-        <div><label for="auth-pass">PASSWORD</label><input id="auth-pass" type="password" autocomplete="current-password" minlength="8" required></div>
-        <div class="msg" id="auth-msg"></div>
-        <div class="btns">
-          <button type="submit" class="primary" id="btn-signin">Sign in</button>
-          <button type="button" id="btn-signup">Create account</button>
-        </div>
+    <div class="panel" id="signin-panel" hidden>
+      <h2>SIGN IN <span class="r">PICK YOUR LISTING</span></h2>
+      <div class="lbar"><input id="acct-search" placeholder="Search your ticker, company, or name" aria-label="Search listings on this device"></div>
+      <div id="acct-list" class="acct-list"></div>
+      <form id="signin-form">
+        <div><label for="si-pass">PASSWORD FOR <span id="si-who" class="fav">—</span></label><input id="si-pass" type="password" autocomplete="current-password" required></div>
+        <div class="msg" id="si-msg"></div>
+        <div class="btns"><button type="submit" class="primary" id="si-btn" disabled>Sign in</button></div>
       </form>
-      <div class="note">New members list on the exchange by IPO: pick a ticker, publish a prospectus, and your consistency becomes your share price. Accounts live in this browser only; there is no password reset, so write it down. Everyone who signs up on this browser trades on the same floor.</div>
+    </div>
+    <div class="panel">
+      <h2>NEW MEMBER <span class="r">MERIT EXCHANGE</span></h2>
+      <form id="signup-form">
+        <div><label for="auth-user">USERNAME</label><input id="auth-user" autocomplete="username" maxlength="20" required></div>
+        <div><label for="auth-pass">PASSWORD · 8+ CHARACTERS</label><input id="auth-pass" type="password" autocomplete="new-password" minlength="8" required></div>
+        <div class="msg" id="auth-msg"></div>
+        <div class="btns"><button type="submit" class="primary" id="btn-signup">Create account and go to IPO</button></div>
+      </form>
+      <div class="note">New members list on the exchange by IPO: pick a ticker, publish a prospectus, and your consistency becomes your share price. Accounts live in this browser: on a different phone or laptop this list starts empty. There is no password reset, so write it down.</div>
     </div>
   </section>
 
@@ -1035,11 +1048,16 @@ const C_UP='#3fce7c',C_DOWN='#e5484d',C_MUTED=CSSC.getPropertyValue('--muted').t
       C_FAINT=CSSC.getPropertyValue('--faint').trim(),C_LINE=CSSC.getPropertyValue('--line').trim(),
       C_AMBER=CSSC.getPropertyValue('--amber').trim();
 function chartBars(u,range){
-  if(range==='1D')return u.intra.length?u.intra:u.days.slice(-1);
-  const todayBar=u.intra.length?{o:u.intra[0].o,h:u.dayHi,l:u.dayLo,c:u.last,v:u.dayVol}:null;
+  const flat=[{o:u.last,h:u.last,l:u.last,c:u.last,v:0}];
+  if(range==='1D'){
+    if(u.intra&&u.intra.length)return u.intra;
+    return u.days.length?u.days.slice(-1):flat;
+  }
+  const todayBar=u.intra&&u.intra.length?{o:u.intra[0].o,h:u.dayHi,l:u.dayLo,c:u.last,v:u.dayVol}:null;
   const n=range==='1M'?22:range==='3M'?65:u.days.length+1;
   const d=u.days.slice(-(n-1));
-  return todayBar?d.concat([todayBar]):(d.length?d:[{o:u.last,h:u.last,l:u.last,c:u.last,v:0}]);
+  const out=todayBar?d.concat([todayBar]):d;
+  return out.length?out:flat;
 }
 function barLabel(u,range,i,n){
   if(range==='1D'&&u.intra[i]){const d=new Date(u.intra[i].t);return pad(d.getHours())+':'+pad(d.getMinutes())}
@@ -1056,6 +1074,7 @@ function chartify(canvas,ohlcEl,getUser){
     if(canvas.width!==W*dpr){canvas.width=W*dpr;canvas.height=H*dpr}
     const x=canvas.getContext('2d');x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);
     const bars=chartBars(u,st.range),n=bars.length;
+    if(!n)return;
     const padL=6,padR=58,padT=8,xH=16,volH=Math.round(H*0.16),gap=6;
     const priceH=H-padT-xH-volH-gap,plotW=W-padL-padR;
     let hi=-1e9,lo=1e9,vMax=1;
@@ -1564,38 +1583,77 @@ $('#mk-open').addEventListener('click',()=>{
 });
 
 /* ================= auth flow ================= */
+let siPick=null; // username selected in the sign-in list
+function accountList(){
+  // every account on this device that has completed its IPO, plus a fallback
+  // for accounts still mid-onboarding (no listing yet), keyed by username
+  return Object.entries(DB.users).map(([uname,rec])=>{
+    const pl=rec.ticker?DB.players[rec.ticker]:null;
+    return{uname,ticker:rec.ticker,
+      name:pl?pl.name:uname,co:pl?pl.co:'Account pending IPO',
+      search:((rec.ticker||'')+' '+(pl?pl.name+' '+pl.co:uname)+' '+uname).toLowerCase()};
+  }).sort((a,b)=>(a.ticker||'zz').localeCompare(b.ticker||'zz'));
+}
+function renderAccountList(q){
+  const box=$('#acct-list');
+  let list=accountList();
+  if(q)list=list.filter(a=>a.search.includes(q));
+  if(!Object.keys(DB.users).length){
+    box.innerHTML='<div class="empty">No accounts on this device yet. Create one below.</div>';return;
+  }
+  box.innerHTML=list.length?list.map(a=>
+    '<button type="button" class="acct'+(a.uname===siPick?' sel':'')+'" data-u="'+esc(a.uname)+'">'+
+    '<span class="tk">'+esc(a.ticker||'—')+'</span>'+
+    '<span class="co-name">'+esc(a.co)+(a.ticker?' · '+esc(a.name):'')+'</span></button>').join('')
+    :'<div class="empty">No match on this device.</div>';
+  box.querySelectorAll('.acct').forEach(b=>b.addEventListener('click',()=>{
+    siPick=b.dataset.u;
+    renderAccountList($('#acct-search').value.trim().toLowerCase());
+    const a=accountList().find(x=>x.uname===siPick);
+    $('#si-who').textContent=a?(a.ticker||a.uname):'—';
+    $('#si-btn').disabled=false;
+    $('#si-msg').textContent='';
+    $('#si-pass').focus();
+  }));
+}
 function showAuth(){
   $('#nav').hidden=true;$('#tape').hidden=true;$('#signout').hidden=true;
   $('#cash').textContent='';
+  siPick=null;
+  $('#signin-panel').hidden=Object.keys(DB.users).length===0;
+  $('#acct-search').value='';$('#si-pass').value='';$('#si-who').textContent='—';
+  $('#si-btn').disabled=true;$('#si-msg').textContent='';
+  renderAccountList('');
   showOnly('auth');
 }
 async function signup(){
   const uname=$('#auth-user').value.trim().toLowerCase(),pass=$('#auth-pass').value;
   if(!/^[a-z0-9_]{3,20}$/.test(uname)){$('#auth-msg').textContent='Username: 3 to 20 letters, numbers, or underscores.';return}
   if(pass.length<8){$('#auth-msg').textContent='Password needs at least 8 characters.';return}
-  if(DB.users[uname]){$('#auth-msg').textContent='That username is taken on this browser. Sign in instead.';return}
+  if(DB.users[uname]){$('#auth-msg').textContent='That username is taken on this device. Sign in above instead.';return}
   $('#auth-msg').textContent='Creating account…';
   const salt=newSalt();
   const h=await hashPass(pass,salt);
   DB.users[uname]={salt,hash:h,ticker:null};
   DB.session=uname;
   save();
-  $('#auth-msg').textContent='';
+  $('#auth-msg').textContent='';$('#auth-user').value='';$('#auth-pass').value='';
   route();
 }
 async function signin(){
-  const uname=$('#auth-user').value.trim().toLowerCase(),pass=$('#auth-pass').value;
-  const rec=DB.users[uname];
-  if(!rec){$('#auth-msg').textContent='No such account on this browser. Create one.';return}
-  $('#auth-msg').textContent='Checking…';
+  if(!siPick){$('#si-msg').textContent='Pick your listing from the list first.';return}
+  const rec=DB.users[siPick],pass=$('#si-pass').value;
+  if(!rec){$('#si-msg').textContent='That account is gone. Pick another.';return}
+  $('#si-msg').textContent='Checking…';
   const h=await hashPass(pass,rec.salt);
-  if(h!==rec.hash){$('#auth-msg').textContent='Wrong password.';return}
-  DB.session=uname;save();
-  $('#auth-msg').textContent='';
+  if(h!==rec.hash){$('#si-msg').textContent='Wrong password.';return}
+  DB.session=siPick;save();
+  $('#si-msg').textContent='';$('#si-pass').value='';
   route();
 }
-$('#auth-form').addEventListener('submit',e=>{e.preventDefault();signin()});
-$('#btn-signup').addEventListener('click',signup);
+$('#signin-form').addEventListener('submit',e=>{e.preventDefault();signin()});
+$('#acct-search').addEventListener('input',e=>renderAccountList(e.target.value.trim().toLowerCase()));
+$('#signup-form').addEventListener('submit',e=>{e.preventDefault();signup()});
 $('#signout').addEventListener('click',()=>{DB.session=null;save();location.hash='';ME=null;P=null;showAuth()});
 $('#ipo-form').addEventListener('submit',e=>{
   e.preventDefault();
