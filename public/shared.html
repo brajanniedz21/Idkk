@@ -447,6 +447,17 @@ let bellT=null;
 function bell(msg){const b=$('#bell');b.textContent=msg;b.classList.add('show');clearTimeout(bellT);bellT=setTimeout(()=>b.classList.remove('show'),6000)}
 
 /* ================= boot ================= */
+function cfgError(html){
+  const wrap=$('.auth-wrap');
+  let b=$('#cfg-banner');
+  if(!b){b=document.createElement('div');b.id='cfg-banner';
+    b.style.cssText='background:#ff453a;color:#fff;border-radius:16px;padding:16px 18px;margin:0 0 18px;font-size:15px;line-height:1.5';
+    wrap.insertBefore(b, wrap.firstChild.nextSibling);}
+  b.innerHTML=html;
+  $('#cfg-note').textContent='';
+  $('#signin-card').hidden=true;$('#signup-card').hidden=false;
+  $$('#signup-card input,#signup-card select,#signup-card textarea,#signup-card button').forEach(el=>{el.disabled=true;el.style.opacity='.5'});
+}
 function boot(){
   if(!CFG.SUPABASE_URL||CFG.SUPABASE_URL.startsWith('PASTE')){
     const wrap=$('.auth-wrap');
@@ -462,7 +473,11 @@ function boot(){
     $$('#signup-card input,#signup-card select,#signup-card textarea,#signup-card button').forEach(el=>{el.disabled=true;el.style.opacity='.5'});
     return;
   }
-  sb=supabaseLib.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_ANON_KEY);
+  // be forgiving about how the URL was pasted: bare ref, missing https, trailing slash
+  let url=String(CFG.SUPABASE_URL||'').trim().replace(/\s+/g,'').replace(/\/+$/,'');
+  if(url&&!/^https?:\/\//i.test(url)) url=/^[a-z0-9]{16,}$/i.test(url)?('https://'+url+'.supabase.co'):('https://'+url);
+  try{ sb=supabaseLib.createClient(url,String(CFG.SUPABASE_ANON_KEY||'').trim()); }
+  catch(e){ return cfgError('Your Supabase URL looks wrong. It must be your Project URL, like <b>https://abcd1234.supabase.co</b> — not the dashboard link and not just the project ID. Fix the SUPABASE_URL line and reload.'); }
   $('#cfg-note').textContent='Accounts and stocks are shared: everyone who opens this site is on the same exchange. There is no password reset, so keep yours safe.';
   sb.auth.getSession().then(({data})=>{ session=data.session; if(session) enterApp(); else showAuth(); });
   sb.auth.onAuthStateChange((_e,s)=>{session=s});
