@@ -415,7 +415,7 @@ ${b}`}var R=class extends Error{constructor({message:e,code:r,cause:s,name:n}){v
 /* ================= MERIT EXCHANGE · shared client ================= */
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const CFG=window.MX_CONFIG||{};
-const DOMAIN='@meritx.app';
+const DOMAIN='@example.com'; // internal only; Supabase accepts this reserved domain. Users log in by ticker, never see this.
 const SECTORS={FIT:'Fitness',BIZ:'Business',COD:'Coding',ART:'Art',EDU:'Education',CRE:'Content'};
 
 const N=x=>Number(x)||0;

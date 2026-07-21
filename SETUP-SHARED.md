@@ -69,6 +69,12 @@ nudges the market every 30 seconds). To keep bots trading even when nobody is on
 
 ---
 
+## Note on the internal login domain
+
+Accounts are created under internal addresses like `yourticker@example.com` (a reserved,
+non-deliverable domain Supabase accepts). You never see or type this — you log in with
+your ticker. No real email is involved.
+
 ## How sign-in works
 
 - **New member:** tap "Create your listing", pick a ticker (e.g. `BRAJ`), a password,
