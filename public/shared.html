@@ -449,9 +449,17 @@ function bell(msg){const b=$('#bell');b.textContent=msg;b.classList.add('show');
 /* ================= boot ================= */
 function boot(){
   if(!CFG.SUPABASE_URL||CFG.SUPABASE_URL.startsWith('PASTE')){
-    $('#cfg-note').innerHTML='⚠ Not configured yet. Open this file and paste your Supabase URL and anon key into MX_CONFIG at the bottom. See SETUP-SHARED.md.';
+    const wrap=$('.auth-wrap');
+    const b=document.createElement('div');
+    b.style.cssText='background:#ff453a;color:#fff;border-radius:16px;padding:16px 18px;margin:0 0 18px;font-size:15px;line-height:1.5';
+    b.innerHTML='<b style="font-size:16px">Almost ready — one setup step left.</b><br>'+
+      'Sign-up is locked until this file is connected to your free Supabase database. '+
+      'Open <b>SETUP-SHARED.md</b>, create the project, and paste your two keys into this file. '+
+      'Then reload and the boxes below will work.';
+    wrap.insertBefore(b, wrap.firstChild.nextSibling);
+    $('#cfg-note').textContent='';
     $('#signin-card').hidden=true;$('#signup-card').hidden=false;
-    $$('#signup-card input,#signup-card select,#signup-card textarea,#signup-card button').forEach(el=>el.disabled=true);
+    $$('#signup-card input,#signup-card select,#signup-card textarea,#signup-card button').forEach(el=>{el.disabled=true;el.style.opacity='.5'});
     return;
   }
   sb=supabaseLib.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_ANON_KEY);
