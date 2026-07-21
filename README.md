@@ -2,7 +2,11 @@
 
 A stock exchange where the listed companies are people. Consistency is the fundamentals: hit your goals and your share price climbs; miss them and the market sells you off.
 
-This is the real, deployable app: accounts, a shared live market, trading between members, and server-authoritative prices. **Deployment guide: [SETUP.md](SETUP.md)** (Netlify + Supabase, free tiers, ~20 minutes).
+## Which version to deploy
+
+- **Shared, Apple-Stocks style (recommended)** — one HTML file (`public/shared.html`) plus a free Supabase database. Everyone who opens the site is on the **same** exchange: every member sees every stock and can invest in their friends from any device. Ticker-is-your-login sign-in, phone-first, calm iOS-style UI. **Guide: [SETUP-SHARED.md](SETUP-SHARED.md)** (~15 min). The database lives in [`db/schema.sql`](db/schema.sql) — all game logic runs there as security-definer functions, so the browser can't cheat.
+- **Single-file, offline** — `public/local.html` (also given as `meritexchange.html`). No backend, no setup; data lives in each browser only, so it can't be shared across devices. Good for a quick demo on one machine.
+- **Netlify Functions build** — the earlier server-rendered variant (`public/index.html` + `netlify/functions/`, guide in [SETUP.md](SETUP.md)). Superseded by the shared client-direct version above for simplicity.
 
 ```
 public/               static frontend (terminal UI, charts, auth, onboarding)
