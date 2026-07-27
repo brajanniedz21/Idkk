@@ -30,8 +30,9 @@
       "drive_folder_id": "1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g",
       "drive_file_id": "1LfLP5qOhDdkcpHki-2U6YCBgEuxudXVI",
       "original_filename": "download (21).jpg",
-      "provenance_note": "Not yet downloaded/inspected by any agent. Assigned to lf_004 by Agent 1.2 this cycle based on folder-level theme (luxury car/mansion night scenes); Agent 2.2 must download and inspect before use, per the same scrutiny applied to lf_002's image (checking for scam/ad text, watermarks, brand logos).",
-      "consumed": false
+      "image_path": "assets/long-form/images/source_pool/lf_004_source.jpg",
+      "provenance_note": "Downloaded and inspected by Agent 2.2 this cycle: actual content is NOT a car/mansion driveway scene as the prior placeholder note assumed — it is a Dubai Marina night skyline shot (736x414 source) from a lower, closer angle than lf_003's, with a row of moored white motor yachts filling the left/center foreground on dark reflective water and warm-lit high-rise towers behind. No scam/ad text, no stock-photo watermark (checked top/bottom edge crops at 2x zoom, both clean). Same 'EMAAR' illuminated architectural signage present on background towers as lf_003 — naturally-occurring, not a deliberate logo/watermark overlay; disclosed here for the record per the same scrutiny applied to lf_002/lf_003. visual_theme in long_form_queue.json corrected to match actual content.",
+      "consumed": true
     },
     {
       "candidate_id": "lf_005",
