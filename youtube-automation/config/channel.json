@@ -58,6 +58,19 @@
   "publishing_mode": "public",
   "human_approval": "disabled",
   "human_approval_note": "No manual approval step exists in this pipeline. Automatic gates (config/gates.json) replace human review. Gates are never weakened to hit the publishing schedule; failing items are quarantined and the next candidate is selected instead.",
+  "short_form_style_guidance": {
+    "pacing": "Fast cuts only. 'Visual velocity' rule: something must change on screen (cut, punch-in zoom, new text beat, sound hit) every 1.5-3 seconds — never one long static/slowed single shot for the full duration. Hook (visual or on-screen text) must land in the first 2 seconds or the video is a rewrite.",
+    "energy": "High-energy, upbeat, aggressive. Sound must be fast-tempo (phonk, hardtekk, aggressive trap/drill, uptempo gym mixes) — this is what's actually trending for gym/discipline/motivation shorts per real competitor research (2026), not a stylistic guess. NEVER use slow ambient/piano/meditation/rain tracks for short-form — those belong to long-form only. If a candidate's angle is genuinely 'quiet/silent' in theme, the visual pacing and text-beat cadence must still stay fast (quick cuts, quick text pops) even if the music is sparse — 'quiet' is a lyrical/thematic concept, not permission to slow the edit down.",
+    "visual_grade": "Dark, moody, low-exposure color grade ('gymcore' aesthetic) — reduced brightness/exposure, boosted contrast, slightly desaturated or cool-toned. This is a real, currently-trending look for this niche, not just a preference.",
+    "text_rules": "Keep on-screen text lines short — max ~20-22 characters per line, wrapped with explicit line breaks if longer, at a font size that visibly fits within the frame width with margin (never assume a fixed font size is safe for every line length; check it fits). Dynamic text overlays with frequent changes outperform static text.",
+    "researched_at": "2026-07-27",
+    "sources_note": "Based on live web research into trending gym/motivation/phonk shorts content and general 2026 YouTube Shorts editing/retention best practices — see state/performance_notes.json for the full findings and sources."
+  },
+  "long_form_style_guidance": {
+    "pacing": "Slow, calm, minimal/no cuts — a single looping ambient scene, not edited for pace at all.",
+    "energy": "Calm, ambient, meditative. Slow piano/pad/rain/nature tracks belong here, never in short-form.",
+    "visual_grade": "Warm or cool moody ambient tones per the scene (rain-on-window, fireplace, etc.), not the dark low-exposure short-form grade — long-form should read as a calm background, not an energetic edit."
+  },
   "reference_examples": {
     "long_form": [
       "https://youtu.be/dntQdztmSdk",

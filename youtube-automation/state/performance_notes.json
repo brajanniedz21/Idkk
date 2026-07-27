@@ -11,5 +11,27 @@
       "findings": null,
       "scouting_guidance": "None yet — first published items are needed before format/topic/style performance can be compared. Re-run this cycle after the shorts/long-form cycles have actually published something."
     }
-  ]
+  ],
+  "competitor_trend_research": {
+    "researched_at": "2026-07-27T14:10:00Z",
+    "method": "Live web search (not YouTube Analytics — this is competitive/trend research, not this channel's own performance data) into what's currently working for other channels in the gym/discipline/motivation shorts niche, prompted by direct owner feedback that the pipeline's first two shorts were too slow-paced and used the wrong (calm ambient) audio for short-form.",
+    "findings": [
+      "Aggressive phonk/hardtekk is the dominant trending audio style for gym/discipline/motivation shorts right now — not calm ambient. Specific trending flavors: 'Discipline Hardtekk' (hardtekk + phonk fusion), slowed/heavy-kick hardtekk mixes, aggressive phonk gym mixes. This matches the already-verified 'Phonk ish' (HoliznaCC0, CC0 1.0) track in state/cc0_audio_library.json — that track is correctly short-form-flavored and should be preferred for gym/discipline angles over the calm ambient tracks.",
+      "'Visual velocity' is the core editing principle for retention: something (a cut, punch-in zoom, new caption, sound hit) must change on screen every 1.5-3 seconds. Videos with dynamic text overlays and frequent cuts see meaningfully higher retention than static/single-shot content.",
+      "The hook must land in the first 2 seconds — most viewer drop-off happens immediately if the opening beat doesn't stop the scroll.",
+      "Captions/on-screen text carry the story for most viewers (a large majority watch with sound on but attention divided) — text must be legible and correctly sized, not an afterthought.",
+      "The 'dark gymcore' aesthetic — moody, low-exposure, high-contrast color grading — is a real, currently-trending visual style for gym/motivation content on TikTok/Shorts, not just a preference call. Baked into config/channel.json.short_form_style_guidance and scripts/short_form_transform.sh's default grade as of this research.",
+      "Format consistency matters for scaling: channels that keep a stable short-form structure (hook -> fast beats -> payoff) can iterate on hooks/topics without rebuilding editing workflow each time."
+    ],
+    "sources": [
+      "https://www.tiktok.com/discover/motivational-phonk-songs",
+      "https://www.tiktok.com/discover/discipline-sounds",
+      "https://www.tiktok.com/discover/trending-gym-sounds",
+      "https://vortexxcel.com/youtube-shorts-editing-guide/",
+      "https://conthunt.app/blog/how-to-edit-youtube-shorts",
+      "https://www.tiktok.com/discover/dark-gym"
+    ],
+    "action_taken": "Updated config/channel.json (new short_form_style_guidance / long_form_style_guidance blocks), scripts/short_form_transform.sh (rewritten for multi-clip fast cuts, dark/low-exposure grade, safe auto-sized text), and agents/short_form/2.1_scriptwriter.md + 3.1_producer.md (fast-beat scripting, upbeat-audio-only rule, updated transform usage) to bake these findings into the pipeline going forward, not just this one fix.",
+    "not_yet_done": "Did not go back and re-produce/replace the already-published sf_001 (quarantined) or sf_002 (live) videos with the new fast-cut/upbeat-audio treatment — that's a call for the channel owner (replacing a live video is a real decision, not an automatic pipeline action)."
+  }
 }
