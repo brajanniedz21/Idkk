@@ -1250,16 +1250,16 @@
     },
     {
       "id": "sf_016",
-      "status": "scouted",
+      "status": "published",
       "scouted_at": "2026-07-27T22:45:00Z",
-      "angle": "Curated-environment narrative: reframes the luxury visuals (skyline penthouse, private jet cabin, yacht deck, tailored/car interior) not as possessions or proof of work but as a deliberately chosen environment — the argument is that who/what surrounds you sets your ceiling, and the footage is the evidence of an environment engineered on purpose rather than arrived at by accident. Distinct from sf_006 (car-as-proof-of-invisible-work — that angle is about the object as a receipt for past effort) and from sf_011 (autonomy/time-freedom — that angle is about not answering to anyone, not about curating surroundings). This is the first angle in the queue built around environment-as-cause rather than effort or time as cause.",
+      "angle": "Curated-environment narrative: reframes the luxury visuals (skyline penthouse, private jet cabin, yacht deck, tailored/car interior) not as possessions or proof of work but as a deliberately chosen environment \u2014 the argument is that who/what surrounds you sets your ceiling, and the footage is the evidence of an environment engineered on purpose rather than arrived at by accident. Distinct from sf_006 (car-as-proof-of-invisible-work \u2014 that angle is about the object as a receipt for past effort) and from sf_011 (autonomy/time-freedom \u2014 that angle is about not answering to anyone, not about curating surroundings). This is the first angle in the queue built around environment-as-cause rather than effort or time as cause.",
       "title_pattern": "You Become The Room You're In.",
       "caption_hooks": [
         "I didn't change. I changed what was around me.",
         "Your ceiling is whoever's closest to you.",
         "This room was chosen. Nothing here is an accident."
       ],
-      "trending_sound_style": "Mid-tempo, confident and controlled rather than aggressive (roughly 85-95 BPM) — a steady, deliberate low-end pulse with headroom for the visual to breathe between cuts, closer to the reggaeton/Latin 'confident flex' register already validated for sf_009 than to the harder phonk/montagem tracks, but not a repeat of the exact same track — Agent 2.1/3.1 should look at underused options in state/trending_audio_library.json (e.g. 'Danza Kuduro 2025' at ~83 BPM, or one of the mid-tempo unidentified owner-provided tracks such as owner_provided_181608 at ~94 BPM) rather than defaulting again to VEKI VEKI/Montagem/Gata Only NJ, which have already anchored most of sf_008-sf_015.",
+      "trending_sound_style": "Mid-tempo, confident and controlled rather than aggressive (roughly 85-95 BPM) \u2014 a steady, deliberate low-end pulse with headroom for the visual to breathe between cuts, closer to the reggaeton/Latin 'confident flex' register already validated for sf_009 than to the harder phonk/montagem tracks, but not a repeat of the exact same track \u2014 Agent 2.1/3.1 should look at underused options in state/trending_audio_library.json (e.g. 'Danza Kuduro 2025' at ~83 BPM, or one of the mid-tempo unidentified owner-provided tracks such as owner_provided_181608 at ~94 BPM) rather than defaulting again to VEKI VEKI/Montagem/Gata Only NJ, which have already anchored most of sf_008-sf_015.",
       "hashtags": [
         "#environment",
         "#surroundyourself",
@@ -1267,49 +1267,163 @@
         "#millionairemindset",
         "#standardsnotluck"
       ],
-      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): a fresh 120-video TikTok pull plus every prior scan's logged titles (14 scans deep) were checked for 'environment'/'surround'/'who you're around' framing — none found anywhere in this channel's history, a confirmed real gap. A supplementary web check (ytsearch15) found only generic long-form motivational-speech content, no genuine short-form luxury example of this specific framing — disclosed honestly as thin/inconclusive supplementary evidence, with the core case resting on the confirmed direct-competitor gap. Fully representable by the existing luxury-lifestyle-only footage pool (penthouse/skyline, private jet cabin, yacht deck, car interior all already in assets/short-form-clips/raw) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope."
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): a fresh 120-video TikTok pull plus every prior scan's logged titles (14 scans deep) were checked for 'environment'/'surround'/'who you're around' framing \u2014 none found anywhere in this channel's history, a confirmed real gap. A supplementary web check (ytsearch15) found only generic long-form motivational-speech content, no genuine short-form luxury example of this specific framing \u2014 disclosed honestly as thin/inconclusive supplementary evidence, with the core case resting on the confirmed direct-competitor gap. Fully representable by the existing luxury-lifestyle-only footage pool (penthouse/skyline, private jet cabin, yacht deck, car interior all already in assets/short-form-clips/raw) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope.",
+      "title": "You Become The Room You're In.",
+      "seo_description": "I didn't change. I changed what was around me. Your ceiling is whoever's closest to you \u2014 this room, this circle, this life was chosen on purpose, nothing here is an accident. Made for anyone deciding what environment they're going to build next.",
+      "tags": [
+        "your environment matters",
+        "surround yourself",
+        "luxury lifestyle motivation",
+        "millionaire mindset",
+        "curate your circle",
+        "standards not luck",
+        "manifestation shorts",
+        "wealth mindset shorts",
+        "luxury aesthetic",
+        "self improvement shorts",
+        "discipline motivation",
+        "success environment",
+        "who you surround yourself with",
+        "quiet standards",
+        "intentional living"
+      ],
+      "sound_direction": "Real trending track: \"gata only remix\" (\u2c7cu\u2099y edit), state/trending_audio_library.json \u2014 genuinely identified, ~99 BPM (measured via librosa), fast confident reggaeton-remix energy. Checked posted_history.json/short_form_queue.json: not used in any prior candidate \u2014 the scouting brief suggested Danza Kuduro 2025, but that track was just used one slot earlier for sf_015, so this swaps to the other still-unused real trending track instead to keep rotation healthy. Fast enough to drive genuinely tight beat-locked cuts; controlled-confident register fits 'deliberately chosen environment' better than an aggressive grind track.",
+      "visual_direction": "'Curated environment / engineered surroundings' framing \u2014 interiors and considered spaces over raw speed: penthouse/skyline view, private jet cabin interior, yacht deck, tailored car interior. Reuse confirmed-good clips: 14.mp4 (Dubai skyline), 18.mp4 (yacht at marina), 21.mp4 (Rolls-Royce interior), 13.mp4 (supercar showroom \u2014 reads as 'curated collection' well for this angle). Agent 3.1 to confirm actual content before finalizing.",
+      "factual_controversy_screen_note": "Checked against config/gates.json shared_gates.factual_controversy_screen: no political content, no fabricated claims/quotes, no controversial topics. Passes.",
+      "scripted_at": "2026-07-27T23:05:00Z",
+      "produced_at": "2026-07-27T23:15:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_016.mp4",
+      "transform_log": [
+        "1. Select: 14.mp4 (Dubai skyline), 18.mp4 (yacht at marina), 21.mp4 (Rolls-Royce interior cash count), 13.mp4 (supercar showroom) \u2014 visually confirmed matching content",
+        "2. Reframe/crop: default center-crop to 1080x1920 applied \u2014 watermark exclusion confirmed by visual frame inspection.",
+        "3. Color grade: dark/low-exposure grade applied \u2014 confirmed by visual inspection.",
+        "4. No on-screen text/captions.",
+        "5. Audio replaced entirely with 'gata only remix', state/trending_audio_library.json.",
+        "Script stdout: 'Transformed (beat-synced cuts, <=1.5s cap): 8 shots from 4 distinct clips, avg ~1.25s/shot (range 1.08s-1.42s, intro skipped: 2.62s, cut points from real beat detection on assets/audio/trending/gata_only_remix.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_016.mp4'",
+        "Independent verification (Agent 0/producer role): ffprobe confirmed 1080x1920, 10.00s duration, h264/aac for all three. Full decode pass (ffmpeg -f null -) clean for all three. Visually inspected a frame from each output (t=3s) \u2014 watermark correctly excluded by the crop, dark grade visibly applied, content matches each brief."
+      ],
+      "published_video_id": "-61RQDvyQtM",
+      "published_url": "https://youtu.be/-61RQDvyQtM",
+      "scheduled_publish_at": "2026-07-29T08:00:00Z",
+      "publish_note": "Uploaded now, scheduled via YouTube publishAt per the weekly batch cycle."
     },
     {
       "id": "sf_017",
-      "status": "scouted",
+      "status": "published",
       "scouted_at": "2026-07-27T22:47:00Z",
-      "angle": "Patience/compounding narrative: directly counters the 'overnight success' read of luxury visuals by naming the actual time cost — years, not weeks or months — behind what's on screen, framing patience itself as the discipline being displayed, not the cars/travel/skyline shots themselves. Distinct from sf_014 (own-timeline/anti-comparison, which addresses comparing your pace to other people) and from sf_008 (grind/no-days-off, which is about relentless daily effort/endurance, not the multi-year time horizon). This angle's emotional register is calm certainty about a long game already being won, not present-tense struggle.",
+      "angle": "Patience/compounding narrative: directly counters the 'overnight success' read of luxury visuals by naming the actual time cost \u2014 years, not weeks or months \u2014 behind what's on screen, framing patience itself as the discipline being displayed, not the cars/travel/skyline shots themselves. Distinct from sf_014 (own-timeline/anti-comparison, which addresses comparing your pace to other people) and from sf_008 (grind/no-days-off, which is about relentless daily effort/endurance, not the multi-year time horizon). This angle's emotional register is calm certainty about a long game already being won, not present-tense struggle.",
       "title_pattern": "This Took Years. It Looks Like Luck.",
       "caption_hooks": [
         "You saw one day. This was a thousand of them.",
         "Nothing here happened this year.",
         "Patience isn't passive. It's the whole strategy."
       ],
-      "trending_sound_style": "Slow-building mid-tempo (roughly 75-85 BPM) with a patient, unhurried groove that resolves into a fuller low end partway through rather than hitting hard from the first beat — mirrors the 'building over time' theme in the audio's own structure. Style description only; Agent 2.1/3.1 to pick the actual track, with a preference for an underused option (e.g. one of the slower unidentified owner-provided tracks in state/trending_audio_library.json, such as owner_provided_181653 at ~67 BPM, or 'Tourner Dans Le Vide' which has only been used once to date) rather than re-reaching for VEKI VEKI or Gata Only NJ again.",
+      "trending_sound_style": "Slow-building mid-tempo (roughly 75-85 BPM) with a patient, unhurried groove that resolves into a fuller low end partway through rather than hitting hard from the first beat \u2014 mirrors the 'building over time' theme in the audio's own structure. Style description only; Agent 2.1/3.1 to pick the actual track, with a preference for an underused option (e.g. one of the slower unidentified owner-provided tracks in state/trending_audio_library.json, such as owner_provided_181653 at ~67 BPM, or 'Tourner Dans Le Vide' which has only been used once to date) rather than re-reaching for VEKI VEKI or Gata Only NJ again.",
       "hashtags": [
-        "#thelonggame",
-        "#compoundeffect",
-        "#patiencepaysoff",
-        "#luxurylifestyle",
-        "#millionairemindset"
+        "#ittookyears",
+        "#notluck",
+        "#patiencemindset",
+        "#millionairemindset",
+        "#luxurylifestyle"
       ],
-      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): the fresh 120-video pull plus all 14 prior scans' logged titles were checked for 'patience'/'compound'/'takes years'/'overnight' framing — none found anywhere in this channel's history, a confirmed real gap, the same category of underserved-framing finding that validated sf_007/sf_011/sf_012/sf_013/sf_014/sf_015/sf_016. Fully representable by the existing luxury-lifestyle-only footage pool (the visuals stand in as the 'proof' of years of accumulation, reusing the same supercar/skyline/private-jet shot categories already validated for sf_006/sf_012/sf_015's proof-style framing) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope."
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): the fresh 120-video pull plus all 14 prior scans' logged titles were checked for 'patience'/'compound'/'takes years'/'overnight' framing \u2014 none found anywhere in this channel's history, a confirmed real gap, the same category of underserved-framing finding that validated sf_007/sf_011/sf_012/sf_013/sf_014/sf_015/sf_016. Fully representable by the existing luxury-lifestyle-only footage pool (the visuals stand in as the 'proof' of years of accumulation, reusing the same supercar/skyline/private-jet shot categories already validated for sf_006/sf_012/sf_015's proof-style framing) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope.",
+      "title": "This Took Years. It Looks Like Luck.",
+      "seo_description": "Nobody sees the years. They see the car, the house, the life \u2014 and call it luck. Patience is the actual discipline behind everything on screen, not the visuals themselves. Made for anyone playing a longer game than the people around them realize.",
+      "tags": [
+        "it took years",
+        "not luck",
+        "patience is discipline",
+        "long game mindset",
+        "luxury lifestyle motivation",
+        "millionaire mindset",
+        "compounding effort",
+        "wealth mindset shorts",
+        "manifestation shorts",
+        "discipline motivation",
+        "luxury aesthetic",
+        "self improvement shorts",
+        "years not months",
+        "quiet patience",
+        "success takes time"
+      ],
+      "sound_direction": "Real trending track: owner_provided_181608 (unidentified, extracted from owner-supplied screen recordings), state/trending_audio_library.json unidentified_owner_provided_tracks \u2014 ~93.8 BPM (measured via librosa), steady mid-tempo pulse with room to breathe, matching the 'slow-building, patience' brief better than the library's more aggressive identified tracks. Checked posted_history/short_form_queue.json: not used before. Note per the library's own honesty flag: title/artist are genuinely unknown for this track (extracted from a screen-recording B-roll app, no on-screen sound credit) \u2014 carries the same or greater Content-ID risk as the named trending tracks, already covered by the owner's existing risk acceptance in config/gates.json short_form_gates.audio_license_gate.",
+      "visual_direction": "'Years behind the scenes' framing \u2014 footage should read as accumulated/established rather than a single flashy moment: supercar showroom (collection, not one car), skyline at night (a city built over time), yacht at marina. Reuse: 13.mp4, 14.mp4, 18.mp4, plus 17.mp4 (night-city supercar) for a moving/active closing beat. Agent 3.1 to confirm actual content before finalizing.",
+      "factual_controversy_screen_note": "Checked against config/gates.json shared_gates.factual_controversy_screen: no political content, no fabricated claims/quotes, no controversial topics. Passes.",
+      "scripted_at": "2026-07-27T23:05:00Z",
+      "produced_at": "2026-07-27T23:15:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_017.mp4",
+      "transform_log": [
+        "1. Select: 13.mp4 (supercar showroom), 14.mp4 (Dubai skyline), 18.mp4 (yacht at marina), 17.mp4 (night-city supercar) \u2014 visually confirmed matching content",
+        "2. Reframe/crop: default center-crop to 1080x1920 applied \u2014 watermark exclusion confirmed by visual frame inspection.",
+        "3. Color grade: dark/low-exposure grade applied \u2014 confirmed by visual inspection.",
+        "4. No on-screen text/captions.",
+        "5. Audio replaced entirely with 'owner_provided_181608 (unidentified, owner-supplied)', state/trending_audio_library.json.",
+        "Script stdout: 'Transformed (beat-synced cuts, <=1.5s cap): 8 shots from 4 distinct clips, avg ~1.25s/shot (range 1.01s-1.32s, intro skipped: 0.47s, cut points from real beat detection on assets/audio/trending/owner_provided_181608.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_017.mp4'",
+        "Independent verification (Agent 0/producer role): ffprobe confirmed 1080x1920, 10.00s duration, h264/aac for all three. Full decode pass (ffmpeg -f null -) clean for all three. Visually inspected a frame from each output (t=3s) \u2014 watermark correctly excluded by the crop, dark grade visibly applied, content matches each brief."
+      ],
+      "published_video_id": "Ia2jWCbXAIs",
+      "published_url": "https://youtu.be/Ia2jWCbXAIs",
+      "scheduled_publish_at": "2026-07-29T13:00:00Z",
+      "publish_note": "Uploaded now, scheduled via YouTube publishAt per the weekly batch cycle."
     },
     {
       "id": "sf_018",
-      "status": "scouted",
+      "status": "published",
       "scouted_at": "2026-07-27T22:49:00Z",
-      "angle": "Retrospective self-comparison narrative: looks backward at a specific past version of self (a year or more ago) and holds it up against the current luxury visuals as an unrecognizable-gap comparison — explicitly the mirror image of sf_007's future-self visualization (which looks forward and tells the viewer to rehearse a future they haven't reached yet). This angle instead validates progress already made, addressing the psychographic of feeling isolated/uncertain about the past while now having tangible proof it worked out. Distinct from sf_012 (vindication, which is about answering other people's doubt) and sf_013 (generational-legacy, which is about family/bloodline framing, not a personal before/after).",
+      "angle": "Retrospective self-comparison narrative: looks backward at a specific past version of self (a year or more ago) and holds it up against the current luxury visuals as an unrecognizable-gap comparison \u2014 explicitly the mirror image of sf_007's future-self visualization (which looks forward and tells the viewer to rehearse a future they haven't reached yet). This angle instead validates progress already made, addressing the psychographic of feeling isolated/uncertain about the past while now having tangible proof it worked out. Distinct from sf_012 (vindication, which is about answering other people's doubt) and sf_013 (generational-legacy, which is about family/bloodline framing, not a personal before/after).",
       "title_pattern": "The Old Me Wouldn't Recognize This.",
       "caption_hooks": [
         "A year ago I couldn't picture this. Now I live in it.",
         "He wouldn't believe you if you told him.",
         "This isn't a glow-up. It's a different person."
       ],
-      "trending_sound_style": "Emotional, cinematic build (roughly 100-120 BPM) with a swelling, slightly dramatic quality rather than pure aggression — closer to the emotional/cinematic register already validated for 'Tourner Dans Le Vide' (~120 BPM) than to the flatter aggressive-phonk tracks, since the beat itself needs to carry a sense of arrival/realization. Style description only; Agent 2.1/3.1 to pick the actual track — consider an underused option (e.g. owner_provided_181336 at ~131 BPM or owner_provided_181830 at ~122 BPM) instead of defaulting to the same 2-3 tracks used across most of sf_008-sf_015.",
+      "trending_sound_style": "Emotional, cinematic build (roughly 100-120 BPM) with a swelling, slightly dramatic quality rather than pure aggression \u2014 closer to the emotional/cinematic register already validated for 'Tourner Dans Le Vide' (~120 BPM) than to the flatter aggressive-phonk tracks, since the beat itself needs to carry a sense of arrival/realization. Style description only; Agent 2.1/3.1 to pick the actual track \u2014 consider an underused option (e.g. owner_provided_181336 at ~131 BPM or owner_provided_181830 at ~122 BPM) instead of defaulting to the same 2-3 tracks used across most of sf_008-sf_015.",
       "hashtags": [
-        "#glowup",
-        "#unrecognizable",
-        "#growth",
-        "#luxurylifestyle",
-        "#millionairemindset"
+        "#oldmenewme",
+        "#transformation",
+        "#growthmindset",
+        "#millionairemindset",
+        "#luxurylifestyle"
       ],
-      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): the fresh 120-video pull plus all 14 prior scans' logged titles were checked for backward-looking 'old me'/'used to be'/'wouldn't recognize' framing (as distinct from sf_007's already-scouted forward-looking future-self angle) — none found anywhere in this channel's history, a confirmed real gap. Fully representable by the existing luxury-lifestyle-only footage pool (present-day supercar/skyline/private-jet/yacht shots stand in as the 'after', with the 'before' conveyed purely through voiceover/caption contrast rather than requiring any non-luxury footage) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope."
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): the fresh 120-video pull plus all 14 prior scans' logged titles were checked for backward-looking 'old me'/'used to be'/'wouldn't recognize' framing (as distinct from sf_007's already-scouted forward-looking future-self angle) \u2014 none found anywhere in this channel's history, a confirmed real gap. Fully representable by the existing luxury-lifestyle-only footage pool (present-day supercar/skyline/private-jet/yacht shots stand in as the 'after', with the 'before' conveyed purely through voiceover/caption contrast rather than requiring any non-luxury footage) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope.",
+      "title": "The Old Me Wouldn't Recognize This.",
+      "seo_description": "A year ago this would've looked impossible. The old me wouldn't recognize this life, this mindset, this version of me \u2014 and that gap is the whole point. Made for anyone who's changed more than they give themselves credit for.",
+      "tags": [
+        "old me new me",
+        "growth glow up",
+        "wouldn't recognize me",
+        "personal transformation",
+        "luxury lifestyle motivation",
+        "millionaire mindset",
+        "manifestation shorts",
+        "self improvement shorts",
+        "wealth mindset shorts",
+        "luxury aesthetic",
+        "discipline motivation",
+        "then vs now",
+        "quiet transformation",
+        "growth mindset shorts",
+        "success story"
+      ],
+      "sound_direction": "Real trending track: owner_provided_181830 (unidentified, extracted from owner-supplied screen recordings), state/trending_audio_library.json unidentified_owner_provided_tracks \u2014 ~122.3 BPM (measured via librosa), emotional/cinematic-leaning fast tempo, closely matching the brief's suggested 100-120 BPM range. Checked posted_history/short_form_queue.json: not used before. Same honesty note as sf_017's track applies \u2014 genuinely unidentified title/artist, same accepted risk basis.",
+      "visual_direction": "'Then vs now' retrospective framing \u2014 footage should read as arrival/transformation: night-city supercar in motion (17.mp4), Dubai skyline (14.mp4), luxury hotel arrival at night (15.mp4), Cappadocia sunrise balloon (41.mp4) as a symbolic 'new chapter' closing beat. Agent 3.1 to confirm actual content before finalizing.",
+      "factual_controversy_screen_note": "Checked against config/gates.json shared_gates.factual_controversy_screen: no political content, no fabricated claims/quotes, no controversial topics. Passes.",
+      "scripted_at": "2026-07-27T23:05:00Z",
+      "produced_at": "2026-07-27T23:15:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_018.mp4",
+      "transform_log": [
+        "1. Select: 17.mp4 (night-city supercar), 14.mp4 (Dubai skyline), 15.mp4 (luxury hotel arrival at night), 41.mp4 (Cappadocia sunrise balloon) \u2014 visually confirmed matching content",
+        "2. Reframe/crop: default center-crop to 1080x1920 applied \u2014 watermark exclusion confirmed by visual frame inspection.",
+        "3. Color grade: dark/low-exposure grade applied \u2014 confirmed by visual inspection.",
+        "4. No on-screen text/captions.",
+        "5. Audio replaced entirely with 'owner_provided_181830 (unidentified, owner-supplied)', state/trending_audio_library.json.",
+        "Script stdout: 'Transformed (beat-synced cuts, <=1.5s cap): 10 shots from 4 distinct clips, avg ~1.00s/shot (range 0.98s-1.08s, intro skipped: 0.45s, cut points from real beat detection on assets/audio/trending/owner_provided_181830.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_018.mp4'",
+        "Independent verification (Agent 0/producer role): ffprobe confirmed 1080x1920, 10.00s duration, h264/aac for all three. Full decode pass (ffmpeg -f null -) clean for all three. Visually inspected a frame from each output (t=3s) \u2014 watermark correctly excluded by the crop, dark grade visibly applied, content matches each brief."
+      ],
+      "published_video_id": "tvr7Pe99b2o",
+      "published_url": "https://youtu.be/tvr7Pe99b2o",
+      "scheduled_publish_at": "2026-07-29T18:00:00Z",
+      "publish_note": "Uploaded now, scheduled via YouTube publishAt per the weekly batch cycle."
     }
   ]
 }
