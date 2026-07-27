@@ -304,7 +304,7 @@
     },
     {
       "id": "sf_003",
-      "status": "scouted",
+      "status": "quarantined",
       "scouted_at": "2026-07-27T00:00:00Z",
       "angle": "Dark-academia stoic philosophy quote-over-visual: single Marcus Aurelius-style line read over rain-streaked window / candlelit desk / turning pages, aimed at the isolated-but-ambitious student psychographic",
       "title_pattern": "The Man Who Reads Alone Wins Alone",
@@ -313,16 +313,78 @@
         "Wisdom is the only luxury that compounds.",
         "This is why you feel different from everyone around you."
       ],
-      "trending_sound_style": "spoken-word voiceover over a slow piano/string instrumental bed, minimal percussion, cinematic swell only under the final line",
+      "trending_sound_style": "spoken-word voiceover over a slow piano/string instrumental bed, minimal percussion, cinematic swell only under the final line -- SUPERSEDED, see sound_direction: this old scouted-stage suggestion predates the owner's pacing/audio fixes and is long-form-flavored; not used.",
       "hashtags": [
         "#stoicism",
         "#darkacademia",
         "#philosophy",
-        "#deepthoughts",
-        "#selfimprovement",
-        "#mindsetmatters"
+        "#selfimprovement"
       ],
-      "source_notes": "Modeled on dark-academia aesthetic trend (deep tones, library/candle imagery, Marcus Aurelius/Seneca-style quote content) crossing into stoic-quote Shorts, matching reference channel style (@SilentUntilSeen-type cinematic edits) and adjacent creators like Jordan Peterson."
+      "source_notes": "Modeled on dark-academia aesthetic trend (deep tones, library/candle imagery, Marcus Aurelius/Seneca-style quote content) crossing into stoic-quote Shorts, matching reference channel style (@SilentUntilSeen-type cinematic edits) and adjacent creators like Jordan Peterson.",
+      "format_note": "Non-narrated, on-screen-text-driven short by design, same pattern as sf_002/sf_002_v2 (2.1_scriptwriter.md allows on_screen_text-only; no TTS engine exists in this environment). No voiceover_script field is written; on_screen_text alone carries the line content. Style-wise this suits the angle well: single striking stoic-quote lines read better as burned-in text pops than as narration.",
+      "scripted_at": "2026-07-27T15:05:00Z",
+      "title": "The Man Who Reads Alone Wins Alone",
+      "on_screen_text": [
+        {
+          "time": "0:00-0:05",
+          "text": "WHILE THEY SCROLLED,\nYOU READ."
+        },
+        {
+          "time": "0:05-0:10",
+          "text": "SOLITUDE ISN'T\nPUNISHMENT."
+        },
+        {
+          "time": "0:10-0:16",
+          "text": "IT'S WHERE THE MIND\nSHARPENS ITSELF."
+        },
+        {
+          "time": "0:16-0:21",
+          "text": "WISDOM IS THE ONLY\nLUXURY THAT COMPOUNDS."
+        },
+        {
+          "time": "0:21-0:26",
+          "text": "READ ALONE.\nWIN ALONE."
+        }
+      ],
+      "seo_description": "No audience for the pages you're turning at 1am -- just you, the book, and the version of yourself no one else can see yet. A fast-cut, text-driven short on solitude, reading, and quiet stoic discipline, for anyone who'd rather build a mind than perform one.",
+      "tags": [
+        "stoicism",
+        "stoic mindset",
+        "dark academia",
+        "dark academia aesthetic",
+        "philosophy motivation",
+        "read more books",
+        "self improvement",
+        "solitude quotes",
+        "mindset shorts",
+        "cinematic motivation",
+        "discipline",
+        "wisdom quotes",
+        "study motivation",
+        "quiet luxury",
+        "gymcore"
+      ],
+      "sound_direction": "Upbeat/fast-tempo phonk instrumental -- 'Phonk ish' by HoliznaCC0 (CC0 1.0, verified in state/cc0_audio_library.json, assets/audio/holiznacc0_phonk_ish.mp3), reused from sf_001/sf_002_v2. The candidate's own trending_sound_style ('spoken-word over slow piano/string bed') is explicitly NOT used -- that is a long-form-flavored, calm/slow direction and is disallowed for short-form per config/channel.json.short_form_style_guidance and the owner's direct feedback on sf_001/sf_002. Judged a reasonable fit despite the quiet/introspective theme: per short_form_style_guidance, 'quiet' is a lyrical/thematic concept only, never permission to slow the edit or use ambient audio; the theme stays restrained in wording and visual mood, but cut pace and audio energy must stay fast. No lyrics, no recognizable sample, CC0 source only.",
+      "visual_direction": "Mood/type needed (raw clips in assets/short-form-clips/raw/ not yet tagged by description; Agent 3.1 to select and note its own heuristic since this stage cannot watch footage): dark-academia interiors -- private library or study, rain streaking down a windowpane, candlelit desk, hands turning pages of a book, warm lamp light against cool blue window light, solitary figure reading/writing alone, no other people in frame. Since fast cuts (<=2.0s per shot, hard cap) are mandatory, suggest a wide pool of 6-10 distinct clips (not 1-3) for real cut variety across ~13 shots at ~26s: candidates are clip numbers 28, 35, 27, 45, 16, 19, 47, 2 (untagged raw pool, selection is a file-size-based guess per Agent 3.1's heuristic below, not a confirmed visual match), chosen to avoid re-using sf_001 (56,50,39), sf_002 (20,32,60), and sf_002_v2 (38,9,37,53,8) picks for visual variety across the channel. Agent 3.1 should apply the mandatory dark/low-exposure grade on top of whichever clips it actually selects at production time, and should feel free to substitute from the wider pool if it judges differently -- this list is a starting suggestion only.",
+      "factual_controversy_self_check": {
+        "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
+        "no_political_figures_parties_elections_policy": "pass - none referenced; the angle's internal 'Marcus Aurelius-style' note is a stylistic/tonal reference only -- no line in the actual script names Marcus Aurelius, Seneca, or any real named individual, and no quote is attributed to one, avoiding any fabricated-quote risk",
+        "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - all on-screen lines are original generic second-person stoic-style framing, no named individuals, no statistics or studies cited, no quote attributed to any real person living or historical",
+        "no_controversial_social_topics_per_channel_exclusions": "pass - topic is reading/solitude/self-improvement only, no politics or controversial topics per channel.json content_exclusions",
+        "result": "cleared, no rewrite needed"
+      },
+      "produced_at": "2026-07-27T14:47:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_003.mp4",
+      "transform_log": [
+        "1. Select: heuristically picked 8 distinct raw clips (28.mp4, 35.mp4, 27.mp4, 45.mp4, 16.mp4, 19.mp4, 47.mp4, 2.mp4) out of the untagged 49-clip available raw pool by largest file size (descending), on the same theory used for sf_001/sf_002/sf_002_v2 (larger files at similar resolution likely carry more visual/textural detail -- bookshelves, rain droplets, page texture, fabric -- more consistent with a dark-academia library/rain-window/candlelit mood than flatter, lower-detail footage). This is NOT a real content review -- there is no video-viewing capability available in this pipeline step, so visual match to 'library, rain-streaked window, candlelit desk, turning pages' is unverified and approximate, not confirmed; treat as an honest heuristic guess. Clips were deliberately chosen to exclude every clip already used by sf_001 (56,50,39), sf_002 (20,32,60), and sf_002_v2 (38,9,37,53,8) for visual variety across the channel -- the 8 next-largest-by-filesize clips after those 11 exclusions were 28,35,27,45,16,19,47,2 (in descending size order), all confirmed unused by prior candidates. Source durations checked via ffprobe before selection (28.mp4=9.55s, 35.mp4=8.99s, 27.mp4=13.91s, 45.mp4=8.29s, 16.mp4=10.38s, 19.mp4=10.47s, 47.mp4=9.41s, 2.mp4=10.40s), all comfortably long enough to support multiple rotating 2.0s shot extractions each without needing to loop past their own length.",
+        "2. Reframe/crop: scripts/short_form_transform.py applied crop='min(iw,ih*9/16)':'min(ih,iw*16/9)' then scale=1080:1920 to every shot (source clips are 1920x1080 landscape), the same centered crop the raw-clips README confirms excludes the baked-in left-side 'download link in description' watermark by construction.",
+        "3. Color grade: the script's fixed dark/low-exposure 'gymcore' grade was applied to every one of the 13 shots -- eq=contrast=1.20:saturation=0.88:brightness=-0.09:gamma=0.92 plus vignette=PI/4 -- matching the now-mandatory look from config/channel.json.short_form_style_guidance (same grade used for sf_002_v2).",
+        "4. Fast cuts (hard cap verified): total duration 26s was split by the script into 13 shots of exactly 2.00s each (26 / 13 = 2.00s, right at the 2.0s ceiling, not over it) drawn from the 8 distinct clips with rotating start-offsets for clips reused more than once across the 13 shots. This is the key metric this cycle: 13 distinct cuts across 26s, confirmed directly from the script's own stdout on success: 'Transformed (fast-cut, <=2s shots): 13 shots from 8 distinct clips x ~2.00s -> vertical, dark/low-exposure grade, per-beat text, audio-replaced -> assets/short-form-clips/processed/sf_003.mp4'. No shot exceeds 2.0s; this meets the owner's explicit 2.0s-max-per-shot requirement confirmed against @Millionaire_Mentality_7.",
+        "5. Burn in on-screen text: the script's textfile-based drawtext was applied per-shot (not per-beat) -- each of the 13 shots gets whichever of the 5 script beats its shot-center time falls into, so beats persist across multiple fast cuts underneath them rather than flashing new text every single 2.0s cut (per 3.1_producer.md step 5). All 5 beats stayed at or under the 22-char/line target (longest line 'LUXURY THAT COMPOUNDS.' = 22 chars) so the script's default 52pt size applied throughout with no auto-shrink needed; the script's auto-shrink safeguard (down to a 34pt floor) remained available if any line had exceeded the limit.",
+        "6. Replace audio: original clip audio was never mapped/included in the output (filter graph only maps [vout] and the new [a] audio stream from a separate input) -- full audio replaced with the verified CC0 track 'Phonk ish' by HoliznaCC0 (state/cc0_audio_library.json, verified=true, assets/audio/holiznacc0_phonk_ish.mp3), trimmed to the first 26s of the track. This is the upbeat/fast-tempo track required by sound_direction, reused as-is from sf_001/sf_002_v2 -- judged a good fit for this candidate too despite the quieter theme, since energy/pacing must stay fast per the channel's short-form rules regardless of thematic tone; no separate track was sourced.",
+        "7. Voiceover: N/A -- script is text-only by design (on_screen_text only, no voiceover_script field, no TTS engine available in this environment), same non-narrated format decision as sf_002/sf_002_v2; no spoken-line content to synthesize or omit.",
+        "8. Duration/export + QA verification: exported at exactly 26.000000s (within the 15-30s basic_qa target range and the requested ~25-28s window). Verified via ffprobe: video stream h264 1080x1920 @ 30fps, audio stream aac present, container format duration=26.000000s, file size 17,658,919 bytes (non-zero, non-corrupt), both video and audio streams read back cleanly with no ffprobe errors."
+      ]
     },
     {
       "id": "sf_004",
