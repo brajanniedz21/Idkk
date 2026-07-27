@@ -32,11 +32,10 @@
   "short_form_gates": {
     "copyright_gate": {
       "status": "intentionally not automated for short-form source clips",
-      "rationale": "Channel owner explicitly accepted the risk of reusing third-party sourced clips (see assets/short-form-clips/raw/README.md), on condition that Agent 3.1 transforms every clip (reframe/crop, speed or color change, original text overlay, swapped-in audio) before publish. This is a documented decision, not a silent skip.",
+      "rationale": "Channel owner explicitly accepted the risk of reusing third-party sourced clips (see assets/short-form-clips/raw/README.md), on condition that Agent 3.1 transforms every clip (reframe/crop, speed or color change, swapped-in audio) before publish. This is a documented decision, not a silent skip. Note: the caption/text-overlay requirement below was REMOVED 2026-07-27 per owner direction — captions are dropped entirely now, see agents/short_form/3.1_producer.md.",
       "mitigation_required_before_publish": [
         "reframed/cropped to vertical from source",
         "at least one of: speed change, color grade change",
-        "original text overlay/caption burned in",
         "original audio replaced with a track from state/cc0_audio_library.json OR state/trending_audio_library.json"
       ],
       "backstop": "YouTube Content ID is the real enforcement mechanism; expect possible revenue-share claims. Channel owner has accepted this."
