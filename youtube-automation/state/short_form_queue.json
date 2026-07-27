@@ -667,6 +667,37 @@
       "status": "published",
       "published_video_id": "p3cLXwMS-d4",
       "published_url": "https://youtu.be/p3cLXwMS-d4"
+    },
+    {
+      "id": "sf_008",
+      "scouted_at": "2026-07-27T17:40:00Z",
+      "angle": "Relentless grind/no-days-off hustle-mindset narrative: fast, aggressive quick-cut car and luxury-travel footage framed as the visible result of a mindset that never lets up — no rest, no excuses, no pause for feelings — matched to the aggressive Brazilian phonk/montagem energy of the two newly-sourced real tracks (VEKI VEKI (Slowed), Montagem Celestial Esperanza), both used repeatedly by @millionaire_mentality_7 on TikTok. Distinct from every prior queued/published angle: not quiet/restrained old-money framing (sf_002/sf_002_v2), not isolation-to-purpose (sf_005), not car-as-proof-of-past-work (sf_006, backward-looking/steady), not future-self visualization (sf_007, aspirational/calm mindset framing). This is the loud, high-intensity register the phonk/montagem sound actually calls for — aggressive grind-mindset, not a restrained or reflective tone — using the same permitted luxury-lifestyle footage categories (cars/yachts/jets/travel/skylines) so it carries zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope.",
+      "title_pattern": "No Days Off. No Excuses.",
+      "caption_hooks": [
+        "Rest is earned. You haven't earned it yet.",
+        "While they sleep on it, you're still moving.",
+        "The grind doesn't pause for how you feel today."
+      ],
+      "trending_sound_style": "Aggressive Brazilian phonk/'montagem' energy — heavy distorted sub-bass kicks, rapid-fire drum stabs, pitch-riser/siren-style builds into hard drops, tempo that feels relentless and forward-driving rather than smooth or restrained. Noticeably more aggressive/intense than a standard slowed-phonk or ambient-trap vibe — this should read as loud, high-intensity, adrenaline-forward, not a quiet/moody undertone. Describing the style only, per this agent's brief, since the specific real tracks (VEKI VEKI (Slowed), Montagem Celestial Esperanza) are already sourced with documented provenance in state/trending_audio_library.json for Agent 3.1 to pull directly given the owner's explicit lift of the CC0-only requirement.",
+      "hashtags": [
+        "#nodaysoff",
+        "#grindmode",
+        "#hustlemindset",
+        "#discipline",
+        "#millionairemindset",
+        "#luxurymotivation",
+        "#phonk"
+      ],
+      "source_notes": "Modeled on this cycle's fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt5, 2026-07-27): direct yt-dlp pulls of the two exact TikTok videos already cited as the source of VEKI VEKI (Slowed) and Montagem Celestial Esperanza in state/trending_audio_library.json, plus a fresh 40-video pull of @millionaire_mentality_7's feed confirming VEKI VEKI (Slowed) is in genuine repeated rotation (5+ of 40 videos, up to 220,600 views on one posting) and that fast car footage (BMW/Dodge Charger edits, some over 500K views) is the channel's strongest recurring visual anchor. Honesty note carried over from the scan: the channel's own captions on these specific videos are still its generic '[Rich/Luxury/Millionaire] Life/Lifestyle 💰' template, not aggressive 'grind' language — this candidate's more intense caption/title register is a deliberate extension to match the audio's own aggressive energy and the owner's brief instruction that the angle should be 'louder/more intense... relentless hustle, no days off, aggressive grind-mindset,' not a claim that this exact caption wording was observed on the competitor channel.",
+      "factual_controversy_screen": {
+        "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
+        "no_political_figures_parties_elections_policy": "pass - none referenced",
+        "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - all caption/title lines are generic second-person grind-mindset framing only; no named individuals, no statistics, studies, or quotes attributed to any real person; no financial or outcome guarantees implied",
+        "no_controversial_social_topics_per_channel_exclusions": "pass - topic is self-improvement/hustle-mindset motivation only, no politics or controversial topics per channel.json content_exclusions",
+        "no_dangerous_act_or_self_harm_framing": "pass - 'no rest'/'no days off' is presented as a motivational mindset framing consistent with the existing niche (matches config/channel.json target_audience psychographics), not literal advice against sleep/rest as a health matter",
+        "result": "cleared, no rewrite needed"
+      },
+      "status": "scouted"
     }
   ]
 }
