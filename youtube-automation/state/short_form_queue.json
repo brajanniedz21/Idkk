@@ -572,10 +572,10 @@
     },
     {
       "id": "sf_007",
-      "status": "scouted",
       "scouted_at": "2026-07-27T16:45:00Z",
       "angle": "Future-self visualization / manifestation narrative: the viewer is told to look at the cars, skylines, and travel on screen not as someone else's life but as a rehearsal of their own future — a direct 'see it, feel it, become it' visualization exercise, tying the channel's manifestation/visualization niche (per config/channel.json niche field and handle @makeitmanifest) to the luxury-lifestyle footage pool. Distinct from every already-produced/queued angle: not 'quiet/old-money restraint' (sf_002/sf_002_v2), not 'isolation-to-purpose' (sf_005), not 'the car as proof of past work already done' (sf_006), not a gym/rep-grinding scene (sf_004, footage-incompatible). Here the luxury footage is framed forward-looking (a visualization/rehearsal of a future not yet built) rather than backward-looking (proof of work already put in) — a genuinely different narrative direction using the same permitted footage categories (cars/yachts/jets/cash/travel/skylines), so it carries zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope, unlike sf_001/sf_003 (quarantined) and unlike sf_004 (still unproduced for the same reason, not selected here either).",
       "title_pattern": "This Is Your Future. Rehearse It.",
+      "title": "This Is Your Future. Rehearse It.",
       "caption_hooks": [
         "You're not watching someone else's life. You're previewing yours.",
         "Whatever you keep picturing, you keep becoming.",
@@ -596,7 +596,63 @@
         "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - script framing is generic second-person manifestation/visualization messaging only, no named individuals, no statistics, studies, or quotes attributed to any real person; no medical, legal, or financial guarantees implied (does not claim visualization causes wealth as fact, framed as a mindset/motivation exercise)",
         "no_controversial_social_topics_per_channel_exclusions": "pass - topic is self-improvement/manifestation mindset only, no politics or controversial topics per channel.json content_exclusions",
         "result": "cleared, no rewrite needed"
-      }
+      },
+      "format_note": "Non-narrated, on-screen-text-driven short by design (no TTS engine available in this environment; 2.1_scriptwriter.md explicitly allows on_screen_text-only). No voiceover_script field is written; on_screen_text alone carries the line content, split into 6 short beats (~2.5-5s each at the ~27s target) per the mandatory fast-pacing rule in config/channel.json.short_form_style_guidance — the visualization/manifestation theme is a mindset frame, not permission to slow the cadence.",
+      "on_screen_text": [
+        {
+          "time": "beat_1",
+          "text": "THIS ISN'T\nSOMEONE ELSE'S LIFE."
+        },
+        {
+          "time": "beat_2",
+          "text": "YOU'RE PREVIEWING\nYOUR OWN."
+        },
+        {
+          "time": "beat_3",
+          "text": "WHATEVER YOU KEEP\nPICTURING,"
+        },
+        {
+          "time": "beat_4",
+          "text": "YOU KEEP\nBECOMING."
+        },
+        {
+          "time": "beat_5",
+          "text": "FEEL IT NOW,"
+        },
+        {
+          "time": "beat_6",
+          "text": "SO IT RECOGNIZES\nYOU LATER."
+        }
+      ],
+      "seo_description": "You're not watching someone else's life scroll by — you're previewing yours. A fast-cut, text-driven short reframing the cars, skylines, and travel on screen as a mental rehearsal of a future self, for anyone using visualization and mindset work to picture who they're becoming.",
+      "tags": [
+        "manifestation",
+        "future self",
+        "visualization",
+        "law of attraction",
+        "mindset shorts",
+        "self improvement",
+        "luxury mindset",
+        "become who you want",
+        "rich mindset",
+        "personal development",
+        "cinematic motivation",
+        "vision board",
+        "manifest your future",
+        "abundance mindset"
+      ],
+      "sound_direction": "Upbeat/fast-tempo — using 'Phonk Remix' by HoliznaCC0 (assets/audio/holiznacc0_phonk_remix.mp3, CC0 1.0, verified in state/cc0_audio_library.json, ~92 BPM confirmed via librosa beat detection). Chosen over the library's other newly-verified rotation option, 'ONLY HUMAN' (~85 BPM), specifically because it is the faster/more energetic of the two: per config/channel.json.short_form_style_guidance a faster track produces closer-together beats and therefore quicker cuts, which fits this angle's forward-momentum 'rehearse your future now' framing better than the slightly calmer 85 BPM track. Mandatory rotation this cycle: the last three published shorts (sf_002_v2, sf_005, sf_006) all used 'Phonk ish' by HoliznaCC0, so that track is deliberately not reused here — 'Phonk Remix' is a distinct, independently-verified CC0 track from the same aggressive-phonk family, keeping the required upbeat/fast-tempo energy while giving the channel real audio variety.",
+      "visual_direction": "Agent 0 has already visually reviewed the raw clip pool and pre-selected 6 clips for this 'rehearse your future/visualize it' arc, in this exact order (do not re-pick via heuristic): 25.mp4 (person on rooftop/balcony watching hot air balloons at dawn, dreaming/visualizing pose — opening beat), 14.mp4 (night cityscape with lit tower/fountain show, iconic aspirational skyline), 36.mp4 (sunset over a palm tree with a red car, dreamy golden-hour horizon), 43.mp4 (skydiving above the clouds, soaring/becoming energy), 26.mp4 (luxury beach tent set up at night, aspirational dream scene), 18.mp4 (yacht at sea, freedom/future — closing beat). Agent 3.1 should use exactly these 6 clips in this order as the candidate pool for the fast-cut edit.",
+      "factual_controversy_screen": {
+        "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
+        "no_political_figures_parties_elections_policy": "pass - none referenced",
+        "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - all 6 on-screen lines are generic second-person mindset/visualization framing only; no named individuals, no statistics or studies cited, no quotes attributed to any real person",
+        "no_causal_guarantee_about_outcomes": "pass - script deliberately avoids claiming visualization causes wealth/success as a factual guarantee (no 'this WILL make you rich' phrasing); framed throughout as a mindset/motivation/rehearsal exercise ('rehearse it', 'you keep becoming', 'feel it now') rather than an assertion of causal law, consistent with the channel's manifestation-as-mindset framing rather than a factual claim",
+        "no_controversial_social_topics_per_channel_exclusions": "pass - topic is self-improvement/manifestation mindset only, no politics or controversial topics per channel.json content_exclusions",
+        "result": "cleared, no rewrite needed"
+      },
+      "scripted_at": "2026-07-27T17:05:00Z",
+      "status": "scripted"
     }
   ]
 }
