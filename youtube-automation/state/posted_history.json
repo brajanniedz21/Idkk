@@ -64,7 +64,24 @@
       "title": "Nobody Clocks Me In Anymore.",
       "published_at": "2026-07-27T17:06:31Z",
       "format": "short"
+    },
+    {
+      "video_id": "UXnA8OJeZjI",
+      "url": "https://youtu.be/UXnA8OJeZjI",
+      "title": "They Said I Wouldn't Make It. I Did.",
+      "published_at": "2026-07-27T20:50:00Z",
+      "format": "short"
     }
   ],
-  "long_form": []
+  "long_form": [
+    {
+      "video_id": "o1FUnaP8gWE",
+      "url": "https://youtu.be/o1FUnaP8gWE",
+      "title": "1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus & Manifestation",
+      "published_at": "2026-07-27T20:20:00Z",
+      "format": "long",
+      "duration_minutes": 60,
+      "note": "lf_002 \u2014 first long-form video published. Background image is owner-supplied (image_copyright_gate path B, unverified provenance, explicit owner risk acceptance: 'just try to make one video, if it gets copyrighted ill change the plan'). Audio is verified CC0 (Rain _ Sleep _ Meditation, HoliznaCC0). If a Content ID claim or strike lands on this video, stop using new images from the owner's Drive folder and revisit per the owner's own stated condition."
+    }
+  ]
 }
