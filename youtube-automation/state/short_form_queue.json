@@ -410,7 +410,7 @@
     },
     {
       "id": "sf_005",
-      "status": "scouted",
+      "status": "published",
       "scouted_at": "2026-07-27T00:00:00Z",
       "angle": "Untapped-potential / isolation-to-purpose narrative: young person alone at night questioning their path, voiceover (Huberman/Chris-Williamson-adjacent tone) reframing isolation as the cost of growth, ending on a forward-looking image (sunrise, city skyline)",
       "title_pattern": "You're Not Behind. You're Becoming.",
@@ -423,12 +423,81 @@
       "hashtags": [
         "#selfimprovement",
         "#mindset",
-        "#personaldevelopment",
         "#growth",
         "#youarenotalone",
         "#stoic"
       ],
-      "source_notes": "Modeled on the core-audience psychographic in channel.json (feels isolated/uncertain, wants to feel understood) and the 'share trigger' phrasing ('This is exactly how I feel'), combined with the quiet-discipline/introspective voiceover format trending alongside Huberman/Chris Williamson-adjacent content."
+      "source_notes": "Modeled on the core-audience psychographic in channel.json (feels isolated/uncertain, wants to feel understood) and the 'share trigger' phrasing ('This is exactly how I feel'), combined with the quiet-discipline/introspective voiceover format trending alongside Huberman/Chris Williamson-adjacent content.",
+      "on_screen_text": [
+        "You feel alone\nright now.",
+        "That's exactly how\nit felt for me too.",
+        "The loneliness is\ntemporary.",
+        "It's building someone\nyou haven't met yet.",
+        "You weren't made to\nstay who you are.",
+        "You're not behind.\nYou're becoming."
+      ],
+      "narration_note": "Non-narrated, on-screen-text-only short \u2014 no TTS engine available in this environment; do not treat this as a voiceover script.",
+      "title": "You're Not Behind. You're Becoming.",
+      "seo_description": "Feeling alone at night and questioning your path? You're not behind, you're becoming. A short reminder that isolation is often the cost of growth, not proof you've failed, for anyone chasing self-improvement, discipline, and their untapped potential.",
+      "tags": [
+        "self improvement",
+        "mindset",
+        "motivation",
+        "personal development",
+        "growth mindset",
+        "discipline",
+        "mental health awareness",
+        "loneliness",
+        "purpose",
+        "becoming",
+        "self growth",
+        "motivational shorts",
+        "huberman",
+        "chris williamson",
+        "stoicism"
+      ],
+      "sound_direction": "Upbeat/fast-tempo per short_form_style_guidance (overrides the earlier scouted-stage 'slowed ambient/lofi' direction, which is a long-form-only treatment). Use verified CC0 track 'Phonk ish' by HoliznaCC0 (assets/audio/holiznacc0_phonk_ish.mp3) \u2014 bass-driven electronic instrumental, no lyrics, matches the phonk/hardtekk-adjacent direction required for short-form.",
+      "visual_direction": "Agent 0 pre-vetted 6 clips from assets/short-form-clips/raw/ that match the isolation->hope arc (raw pool is luxury-lifestyle only, no literal library/gym footage, per README.md Content scope): 29.mp4 (solitary figure on rooftop/balcony at dusk), 50.mp4 (Eiffel Tower at dusk, quiet/moody), 24.mp4 (night cityscape, lit tower/fountain), 57.mp4 (poolside overlooking mountains at dusk, calm) for the isolation/night beats; 21.mp4 (hot air balloons at dawn) and 1.mp4 (sunset/sunrise over a field) for the forward-looking/becoming payoff beats. Use in that order for the fast-cut edit; do not re-pick via file-size heuristic.",
+      "factual_controversy_screen_self_check": {
+        "no_political_or_controversial_topics": "pass - script is generic motivational/self-improvement framing only, no political figures/parties/elections/policy",
+        "no_fabricated_claims_or_quotes": "pass - no statistics, studies, or quotes attributed to any real named individual (Huberman/Chris Williamson are referenced only as an adjacent tonal/audience descriptor in the angle metadata, not quoted or named in the actual on-screen script)",
+        "no_controversial_social_topics": "pass - purely generic isolation-to-growth self-improvement framing, no exclusion-listed topics",
+        "result": "clear, no rewrite needed"
+      },
+      "scripted_at": "2026-07-27T00:00:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_005.mp4",
+      "transform_log": {
+        "clips_used_in_order": [
+          "29.mp4",
+          "50.mp4",
+          "24.mp4",
+          "57.mp4",
+          "21.mp4",
+          "1.mp4"
+        ],
+        "clip_source": "Agent 0's pre-vetted picks (visually reviewed against the isolation->hope arc), not re-selected via file-size heuristic",
+        "steps_applied": [
+          "1. Selected the 6 pre-vetted raw clips (within the 6-15 recommended range for ~27s target) matching visual_direction",
+          "2. Reframed/cropped every shot to vertical 1080x1920 via the script's default center-crop (crop=min(iw,ih*9/16):min(ih,iw*16/9),scale=1080:1920) \u2014 excludes the baked-in left-side watermark per raw/README.md",
+          "3. Applied the dark/low-exposure 'gymcore' grade to every shot: eq=contrast=1.20:saturation=0.88:brightness=-0.09:gamma=0.92, vignette=PI/4",
+          "4. Fast cuts capped at 2.0s: 14 shots x ~1.93s each across 6 distinct clips (reused with rotating start-offsets), confirmed by script stdout",
+          "5. Burned in on-screen text per beat (6 script beats mapped across the 14 shots by time window), font auto-sized/wrapped to fit the vertical frame width",
+          "6. Replaced audio entirely with verified CC0 track 'Phonk ish' by HoliznaCC0 (assets/audio/holiznacc0_phonk_ish.mp3) \u2014 upbeat/fast-tempo, no original clip audio retained",
+          "7. No voiceover/TTS added \u2014 script was written text-only from the start per 2.1_scriptwriter.md, no TTS engine available in this environment",
+          "8. Exported at 27s target duration (within 15-30s short-form spec)"
+        ],
+        "script_stdout_confirmation": "Transformed (fast-cut, <=2s shots): 14 shots from 6 distinct clips x ~1.93s -> vertical, dark/low-exposure grade, per-beat text, audio-replaced -> assets/short-form-clips/processed/sf_005.mp4",
+        "ffprobe_verification": {
+          "resolution": "1080x1920 (matches 1080x1920 shorts target)",
+          "duration_seconds": 27.0,
+          "video_stream": "h264 present",
+          "audio_stream": "aac present",
+          "file_integrity": "non-corrupt, non-zero size (12,091,222 bytes)"
+        }
+      },
+      "produced_at": "2026-07-27T00:00:00Z",
+      "published_video_id": "Y120Tlxpu9U",
+      "published_url": "https://youtu.be/Y120Tlxpu9U"
     }
   ]
 }
