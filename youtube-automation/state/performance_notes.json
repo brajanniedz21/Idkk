@@ -1,0 +1,15 @@
+{
+  "_comment": "Findings from the weekly analytics cycle, written by the routine described in agents/0_orchestrator.md's 'Weekly analytics cycle' section. Read by Agent 1.1/1.2 to weight future scouting toward what's working. Never used to adjust config/gates.json.",
+  "cycles": [
+    {
+      "run_at": "2026-07-27T02:00:00Z",
+      "lookback_days": 7,
+      "posted_history_short_form_count": 0,
+      "posted_history_long_form_count": 0,
+      "analytics_pulled": false,
+      "reason": "state/posted_history.json is empty for both short_form and long_form — nothing has published yet, so there is no YouTube Data/Analytics API data to pull or summarize. This is expected on an early run: the short-form queue currently holds 5 scouted candidates (1 scripted: sf_001) from manual dry-run testing, none produced/gated/published; the long-form queue is empty.",
+      "findings": null,
+      "scouting_guidance": "None yet — first published items are needed before format/topic/style performance can be compared. Re-run this cycle after the shorts/long-form cycles have actually published something."
+    }
+  ]
+}
