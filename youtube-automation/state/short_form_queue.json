@@ -652,7 +652,21 @@
         "result": "cleared, no rewrite needed"
       },
       "scripted_at": "2026-07-27T17:05:00Z",
-      "status": "scripted"
+      "produced_at": "2026-07-27T17:20:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_007.mp4",
+      "transform_log": [
+        "1. Select: used the 6 clips pre-vetted by Agent 0's visual review of the raw pool for this 'rehearse your future/visualize it' arc, IN THE GIVEN ORDER (not re-picked by heuristic): 25.mp4 (rooftop/balcony watching hot air balloons at dawn, dreaming/visualizing pose), 14.mp4 (night cityscape, lit tower/fountain show, aspirational skyline), 36.mp4 (sunset over palm tree with red car, dreamy golden-hour horizon), 43.mp4 (skydiving above the clouds, soaring/becoming energy), 26.mp4 (luxury beach tent at night, aspirational dream scene), 18.mp4 (yacht at sea, freedom/future).",
+        "2. Reframe/crop: scripts/short_form_transform.py applied its standard center-crop (crop=min(iw,ih*9/16):min(ih,iw*16/9)) + scale to 1080x1920 vertical on every shot, excluding the baked-in left-side watermark by construction per assets/short-form-clips/raw/README.md.",
+        "3. Color grade: dark/low-exposure 'gymcore' grade applied by the script (reduced brightness/exposure, boosted contrast, slight desaturation, mild vignette) to every shot.",
+        "4. Cuts locked to real detected beat of assets/audio/holiznacc0_phonk_remix.mp3 (librosa beat detection), capped at 2.0s/shot. Script stdout confirmation: 'Transformed (beat-synced cuts, <=2.0s cap): 18 shots from 6 distinct clips, avg ~1.50s/shot (range 1.09s-1.96s, cut points from real beat detection on assets/audio/holiznacc0_phonk_remix.mp3) -> vertical, dark/low-exposure grade, per-beat text, audio-replaced -> assets/short-form-clips/processed/sf_007.mp4'. 18 shots across the 6 distinct source clips (each reused across multiple shots with rotating start-offsets since only 6 clips were supplied for 18 beat-locked cuts), all within the 2.0s hard cap and matching the ~12-15+ cuts/27s guidance (faster ~92 BPM track produced closer-together beats as expected).",
+        "5. Burn in on-screen text: the 6 script beats (\"THIS ISN'T / SOMEONE ELSE'S LIFE.\", \"YOU'RE PREVIEWING / YOUR OWN.\", \"WHATEVER YOU KEEP / PICTURING,\", \"YOU KEEP / BECOMING.\", \"FEEL IT NOW,\", \"SO IT RECOGNIZES / YOU LATER.\") were passed via --texts and mapped by the script to whichever shot's time window each beat falls in, each beat spanning multiple of the 18 faster cuts underneath it rather than flashing per-cut; hook beat \"THIS ISN'T / SOMEONE ELSE'S LIFE.\" lands in the first ~2s per the mandatory hook-timing rule. All lines at/under the ~20-22 char/line target so the script's default text size applied with no forced auto-shrink needed.",
+        "6. Replace audio: original clip audio was never included; full audio replaced with the newly-verified CC0 track 'Phonk Remix' by HoliznaCC0 (state/cc0_audio_library.json, verified=true, assets/audio/holiznacc0_phonk_remix.mp3, ~92 BPM). This is the mandatory rotation pick for this cycle: the last three published shorts (sf_002_v2, sf_005, sf_006) all used 'Phonk ish', so that track was deliberately not reused; 'Phonk Remix' was chosen over the other newly-verified option 'ONLY HUMAN' (~85 BPM) for its faster tempo (more/faster beat-locked cuts) while still being genuinely upbeat CC0 phonk.",
+        "7. Voiceover: N/A — sf_007 was scripted text-only by design (no TTS engine available in this environment per 2.1_scriptwriter.md), no voiceover_script field exists, on-screen text alone carries the line content.",
+        "8. Export + QA verification: 27.0s duration, within the 15-30s short-form target range (~25-28s target hit exactly at 27s). ffprobe verification: video stream h264 1080x1920, audio stream aac, format duration=27.000000s, file size 12,755,320 bytes (non-zero, non-corrupt, both streams present and read back cleanly)."
+      ],
+      "status": "published",
+      "published_video_id": "p3cLXwMS-d4",
+      "published_url": "https://youtu.be/p3cLXwMS-d4"
     }
   ]
 }
