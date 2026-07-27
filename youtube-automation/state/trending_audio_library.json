@@ -5,6 +5,12 @@
     "decided_by": "channel owner, explicit choice after being presented three options (use real songs / stay CC0 / CC0-styled middle ground)",
     "risk_disclosed": "Content ID near-certain match on these (unlike the obscure/unidentifiable video clips), possible mute/claim, and repeated copyright strikes can lead to channel termination (YouTube's 3-strike policy)."
   },
+  "owner_provided_sounds_drive_folder": {
+    "url": "https://drive.google.com/drive/folders/1zmIRCIK9s_8886iRwhTBOabGDtS7CwIK?usp=drive_link",
+    "folder_id": "1zmIRCIK9s_8886iRwhTBOabGDtS7CwIK",
+    "note_added_at": "2026-07-27T17:25:00Z",
+    "purpose": "Channel owner's shared Drive folder for dropping in audio files they find themselves, for Agent 3.1/4.2 to pull into this library. Check this folder each cycle (or when the owner mentions adding something) for new files: search Drive with `parentId = '1zmIRCIK9s_8886iRwhTBOabGDtS7CwIK'`. As of the note above, the folder only contained unrelated screen-recording .mp4 files ('Recording <timestamp>.mp4'), no audio yet — re-check for actual audio files before assuming there's nothing new. When a real audio file does show up, verify it the same way as any other track here (confirm it's a real playable audio file via ffprobe, get whatever title/artist info the owner provides or is embedded in the file's metadata, download it into assets/audio/trending/ or assets/audio/ as appropriate, and add a proper entry to this file or state/cc0_audio_library.json depending on its license)."
+  },
   "tracks": [
     {
       "title": "VEKI VEKI (Slowed)",
