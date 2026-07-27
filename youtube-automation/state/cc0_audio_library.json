@@ -44,6 +44,17 @@
       "verification_note": "Checked directly on the track's own FMA page via raw HTML fetch: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement. File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 235.03s duration, non-corrupt, 9,402,403 bytes. Real tempo check via librosa beat detection: ~85 BPM detected over a 30s sample (37 beats) — genuinely upbeat. Fourth track, sourced alongside Phonk Remix specifically for short-form audio variety.",
       "added_at": "2026-07-27T16:20:00Z",
       "local_path": "assets/audio/holiznacc0_only_human.mp3"
+    },
+    {
+      "title": "Fire Place",
+      "artist": "HoliznaCC0",
+      "album": "Winter Lofi",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/winter-lofi/fire-place/",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Checked directly on the track's own FMA page via raw curl HTML fetch (not WebFetch summary, not a third-party aggregator claim): rel=\"license\" anchor appears twice, both pointing to https://creativecommons.org/publicdomain/zero/1.0/. Title confirmed as 'Fire Place', artist HoliznaCC0 (same self-releasing-CC0 netlabel artist already verified for three other tracks in this library), album 'Winter Lofi'. File fetched from the page's own embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG ADTS layer III audio, 320kbps, 48kHz stereo, 170.28s duration, non-corrupt, 6,812,365 bytes. Sourced specifically during the Agent 1.2 lf_003-lf_008 scouting cycle to stop forcing every long-form calm-ambient candidate onto the single 'Rain _ Sleep _ Meditation' track — it was the only verified calm/ambient (non-phonk) long-form track in the library before this addition. Mellow instrumental lofi with a warm, slow, cozy character per title/album/genre context; not literally listened to end-to-end in this environment (same limitation noted on the Rain/Sleep/Meditation entry), tempo/mood inferred from title, album ('Winter Lofi'), and the artist's established ambient/lofi catalog.",
+      "added_at": "2026-07-27T21:45:00Z",
+      "local_path": "assets/audio/holiznacc0_fire_place.mp3"
     }
   ]
 }

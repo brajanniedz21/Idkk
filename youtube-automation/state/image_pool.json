@@ -11,14 +11,60 @@
       "provenance_note": "Generic filename does not indicate scam/ad content directly (unlike the sibling file in the same folder titled with a Russian Bitcoin-wallet ad), but is a low-resolution (736x412 source) web-sourced image of unknown rights-holder. Used per owner's explicit instruction: 'just try to make one video, if it gets copyrighted ill change the plan'.",
       "added_at": "2026-07-27T18:05:00Z",
       "consumed": true
+    },
+    {
+      "candidate_id": "lf_003",
+      "assigned_at": "2026-07-27T21:50:00Z",
+      "source": "owner_provided_unverified",
+      "drive_folder_id": "1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g",
+      "drive_file_id": "13QRZQiB2BcrDqF5PyKXcmXlg5nTMoTsw",
+      "original_filename": "643100021828012323.jpg",
+      "provenance_note": "Previously downloaded/inspected per prior note ('similar low-res car/mansion scene, not yet used'); assigned to lf_003 by Agent 1.2 this cycle. Not yet downloaded/re-inspected by Agent 2.2 for this specific assignment. Also reused (distinct crop/mood/treatment) for lf_008 — see that candidate's brief in state/long_form_queue.json for why the same file is assigned twice.",
+      "also_assigned_to": ["lf_008"],
+      "consumed": false
+    },
+    {
+      "candidate_id": "lf_004",
+      "assigned_at": "2026-07-27T21:50:00Z",
+      "source": "owner_provided_unverified",
+      "drive_folder_id": "1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g",
+      "drive_file_id": "1LfLP5qOhDdkcpHki-2U6YCBgEuxudXVI",
+      "original_filename": "download (21).jpg",
+      "provenance_note": "Not yet downloaded/inspected by any agent. Assigned to lf_004 by Agent 1.2 this cycle based on folder-level theme (luxury car/mansion night scenes); Agent 2.2 must download and inspect before use, per the same scrutiny applied to lf_002's image (checking for scam/ad text, watermarks, brand logos).",
+      "consumed": false
+    },
+    {
+      "candidate_id": "lf_005",
+      "assigned_at": "2026-07-27T21:50:00Z",
+      "source": "owner_provided_unverified",
+      "drive_folder_id": "1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g",
+      "drive_file_id": "1Ghxx0Yvt_OjzJW_M9Dc4EuaJ3xgjAtVJ",
+      "original_filename": "download (11).jpg",
+      "provenance_note": "Not yet downloaded/inspected by any agent. Assigned to lf_005 by Agent 1.2 this cycle based on folder-level theme; Agent 2.2 must download and inspect before use.",
+      "consumed": false
+    },
+    {
+      "candidate_id": "lf_006",
+      "assigned_at": "2026-07-27T21:50:00Z",
+      "source": "owner_provided_unverified",
+      "drive_folder_id": "1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g",
+      "drive_file_id": "1W0N23txWk6VX7KhU5vTfafT38P_GEux2",
+      "original_filename": "download (2).jpg",
+      "provenance_note": "Not yet downloaded/inspected by any agent. Assigned to lf_006 by Agent 1.2 this cycle based on folder-level theme; Agent 2.2 must download and inspect before use.",
+      "consumed": false
+    },
+    {
+      "candidate_id": "lf_007",
+      "assigned_at": "2026-07-27T21:50:00Z",
+      "source": "owner_provided_unverified",
+      "drive_folder_id": "1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g",
+      "drive_file_id": "1qAcAoDcjthtR_2TYdQmlfQiicVgkvuYs",
+      "original_filename": "download (1).jpg",
+      "provenance_note": "Not yet downloaded/inspected by any agent. Assigned to lf_007 by Agent 1.2 this cycle based on folder-level theme; Agent 2.2 must download and inspect before use.",
+      "consumed": false
     }
   ],
   "unused_owner_provided_pool": [
-    {"drive_file_id": "13QRZQiB2BcrDqF5PyKXcmXlg5nTMoTsw", "original_filename": "643100021828012323.jpg", "note": "downloaded and inspected, similar low-res car/mansion scene, not yet used"},
-    {"drive_file_id": "1LfLP5qOhDdkcpHki-2U6YCBgEuxudXVI", "original_filename": "download (21).jpg", "note": "not yet downloaded/inspected"},
-    {"drive_file_id": "1Ghxx0Yvt_OjzJW_M9Dc4EuaJ3xgjAtVJ", "original_filename": "download (11).jpg", "note": "not yet downloaded/inspected"},
-    {"drive_file_id": "1W0N23txWk6VX7KhU5vTfafT38P_GEux2", "original_filename": "download (2).jpg", "note": "not yet downloaded/inspected"},
-    {"drive_file_id": "1qAcAoDcjthtR_2TYdQmlfQiicVgkvuYs", "original_filename": "download (1).jpg", "note": "not yet downloaded/inspected"},
-    {"drive_file_id": "12alwP21aUL1j6E8_ATTt_TD0qPQNY7KR", "original_filename": "Создай биткоин-кошелек в Telegram за 1 клик — быстро и бесплатно!.jpg", "note": "DO NOT USE — filename indicates this image originated from a Bitcoin-wallet scam ad page. Content itself (black Lamborghini at a villa) shows no visible scam text, but the sourcing is the worst-signal file in the batch; deliberately skipped per agents/long_form/2.2_image_sourcer.md Path B guidance to minimize exposure within the accepted risk."}
+    {"drive_file_id": "12alwP21aUL1j6E8_ATTt_TD0qPQNY7KR", "original_filename": "Создай биткоин-кошелек в Telegram за 1 клик — быстро и бесплатно!.jpg", "note": "DO NOT USE — filename indicates this image originated from a Bitcoin-wallet scam ad page. Content itself (black Lamborghini at a villa) shows no visible scam text, but the sourcing is the worst-signal file in the batch; deliberately skipped per agents/long_form/2.2_image_sourcer.md Path B guidance to minimize exposure within the accepted risk. All 5 other previously-unused files in this folder were assigned to lf_003 through lf_007 (with lf_003's file also reused for lf_008) by Agent 1.2 on 2026-07-27; this scam-flagged file remains permanently excluded, not just temporarily skipped."}
   ]
 }
