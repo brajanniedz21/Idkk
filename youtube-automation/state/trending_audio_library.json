@@ -1,0 +1,34 @@
+{
+  "_comment": "Real trending/commercial songs for short-form use, per the channel owner's explicit 2026-07-27 decision to lift the CC0-only audio requirement for short-form (see config/gates.json short_form_gates.audio_license_gate for the full rationale/risk acceptance). These are NOT copyright-free — Content ID will likely mute/claim revenue on these, and repeated strikes risk channel termination. This file exists so every track used has documented provenance (source video, real identification) rather than an unverified guess. Agent 3.1 pulls from here or state/cc0_audio_library.json.",
+  "risk_acceptance": {
+    "decided_at": "2026-07-27T16:30:00Z",
+    "decided_by": "channel owner, explicit choice after being presented three options (use real songs / stay CC0 / CC0-styled middle ground)",
+    "risk_disclosed": "Content ID near-certain match on these (unlike the obscure/unidentifiable video clips), possible mute/claim, and repeated copyright strikes can lead to channel termination (YouTube's 3-strike policy)."
+  },
+  "tracks": [
+    {
+      "title": "VEKI VEKI (Slowed)",
+      "credited_artists": ["DJZRX", "motty", "rodricci", "launch13"],
+      "genre": "Brazilian phonk/slowed funk",
+      "source": "Pulled from @millionaire_mentality_7's TikTok — this exact sound is used on their video https://www.tiktok.com/@millionaire_mentality_7/video/7666965376726502663 (confirmed via yt-dlp's `track`/`artists` metadata fields, not guessed)",
+      "identification_confidence": "Genuinely identified — named track/artists, not a generic 'original sound' repost label",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above (TikTok media download works from this environment; YouTube's is blocked)",
+      "native_duration_seconds": 17.48,
+      "note": "Only ~17.5s available (this is just the video's excerpt length, not the full song) — scripts/short_form_transform.py loops this via -stream_loop and tiles the detected beat pattern to fill a full short's duration.",
+      "local_path": "assets/audio/trending/veki_veki_slowed.mp3",
+      "added_at": "2026-07-27T16:00:00Z"
+    },
+    {
+      "title": "Montagem Celestial Esperanza",
+      "credited_artists": ["DJZRX", "motty", "rodricci", "MC Novin"],
+      "genre": "Brazilian funk/phonk 'montagem'",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7650372144983051527 (confirmed via yt-dlp track/artists metadata)",
+      "identification_confidence": "Genuinely identified — named track/artists",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 20.09,
+      "note": "Same production circle (DJZRX/motty/rodricci) as VEKI VEKI (Slowed) — this niche appears to favor this specific Brazilian phonk/montagem production style. Also short (~20s), same looping approach applies.",
+      "local_path": "assets/audio/trending/montagem_celestial_esperanza.mp3",
+      "added_at": "2026-07-27T16:00:00Z"
+    }
+  ]
+}

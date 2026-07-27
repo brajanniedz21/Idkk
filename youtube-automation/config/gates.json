@@ -32,14 +32,24 @@
   "short_form_gates": {
     "copyright_gate": {
       "status": "intentionally not automated for short-form source clips",
-      "rationale": "Channel owner explicitly accepted the risk of reusing third-party sourced clips (see assets/short-form-clips/raw/README.md), on condition that Agent 3.1 transforms every clip (reframe/crop, speed or color change, original text overlay, swapped-in CC0 audio) before publish. This is a documented decision, not a silent skip.",
+      "rationale": "Channel owner explicitly accepted the risk of reusing third-party sourced clips (see assets/short-form-clips/raw/README.md), on condition that Agent 3.1 transforms every clip (reframe/crop, speed or color change, original text overlay, swapped-in audio) before publish. This is a documented decision, not a silent skip.",
       "mitigation_required_before_publish": [
         "reframed/cropped to vertical from source",
         "at least one of: speed change, color grade change",
         "original text overlay/caption burned in",
-        "original audio replaced with a verified CC0 track from state/cc0_audio_library.json"
+        "original audio replaced with a track from state/cc0_audio_library.json OR state/trending_audio_library.json"
       ],
       "backstop": "YouTube Content ID is the real enforcement mechanism; expect possible revenue-share claims. Channel owner has accepted this."
+    },
+    "audio_license_gate": {
+      "status": "CC0-only requirement explicitly LIFTED for short-form audio as of 2026-07-27, channel owner's direct decision — real trending/copyrighted commercial songs are now permitted, sourced via state/trending_audio_library.json.",
+      "rationale": "Owner was told plainly that this is a materially different risk than the video-clip reuse decision above: these are named, signed-artist commercial songs (CKay, Indila, Ice Spice, FloyyMenor, Brazilian phonk/montagem producers, etc.), not obscure unidentifiable reposts — Content ID match is near-certain, not just possible. Presented three options (use real songs / stay CC0-only / CC0-styled middle ground); owner chose to use the real songs anyway, explicitly accepting the risk. This is a deliberate, informed decision, not an oversight or a silent policy drift.",
+      "checks": [
+        "Track is either in state/cc0_audio_library.json (verified CC0) OR in state/trending_audio_library.json (real song, sourced with documented provenance)",
+        "If from trending_audio_library.json: source URL/video the audio was pulled from is recorded, and the track is genuinely identified (a real song/artist name, not a generic 'original sound' repost label) — see state/performance_notes.json's TikTok scan honesty notes for what counts as genuinely identified"
+      ],
+      "on_fail": "quarantine; log which check failed",
+      "backstop": "Content ID will likely mute/claim revenue on these tracks, and repeated copyright strikes risk channel termination under YouTube's 3-strike policy. Channel owner has explicitly accepted this, understanding it is a materially higher risk than the video-clip mitigation above. Monitor state/quarantine.json and actual channel strikes/claims — if real strikes start accumulating, revisit this decision with the owner rather than continuing by default."
     }
   },
   "long_form_gates": {

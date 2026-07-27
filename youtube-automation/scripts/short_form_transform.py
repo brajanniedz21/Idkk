@@ -61,7 +61,13 @@ def beat_cut_points(audio_path, duration):
     """
     try:
         import librosa
-        y, sr = librosa.load(audio_path, sr=None, duration=duration)
+        # Load the audio's own natural length (not capped to `duration`)
+        # so we detect its real beat pattern, then tile that pattern to
+        # cover the full target duration — matters when the source file is
+        # shorter than the requested short (e.g. a ~15-20s trending-audio
+        # excerpt looped via -stream_loop in the ffmpeg command below).
+        y, sr = librosa.load(audio_path, sr=None)
+        native_dur = len(y) / sr
         _, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
         beats = sorted(set(round(t, 3) for t in librosa.frames_to_time(beat_frames, sr=sr)))
         # Cutting on every single detected beat is often too fast to read
@@ -73,6 +79,13 @@ def beat_cut_points(audio_path, duration):
             target_shot = 1.5
             stride = max(1, round(target_shot / avg_interval))
             beats = beats[::stride]
+        if native_dur < duration and beats:
+            tiled = []
+            offset = 0.0
+            while offset < duration:
+                tiled.extend(b + offset for b in beats)
+                offset += native_dur
+            beats = tiled
     except Exception as e:
         print(f"Beat detection failed ({e}), falling back to a fixed 2.0s grid.", file=sys.stderr)
         beats = []
@@ -144,7 +157,11 @@ def main():
         input_args = []
         for clip in shot_input_idx:
             input_args += ["-i", clip]
-        input_args += ["-i", args.audio]
+        # -stream_loop -1 loops the audio input indefinitely so short
+        # source clips (e.g. a ~15-20s TikTok excerpt of a song) still
+        # fill the full target duration via the atrim below, instead of
+        # leaving the tail silent.
+        input_args += ["-stream_loop", "-1", "-i", args.audio]
         audio_idx = len(shot_input_idx)
 
         filter_parts = []

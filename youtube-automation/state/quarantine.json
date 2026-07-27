@@ -17,6 +17,13 @@
       "root_cause": "Agent 0 then reviewed a contact sheet of all 49 available raw clips directly: the entire raw clip pool (assets/short-form-clips/raw/, sourced from a 'luxury lifestyle' Pinterest collection per its README) contains ZERO literal library/book/candlelight/academic footage — only supercars, yachts, jetskis, money, hot air balloons, and travel/skyline shots. This isn't a clip-selection bug to fix with a better heuristic; the source material genuinely cannot represent this angle's visual concept. File-size (or any other blind heuristic over this pool) will keep picking mismatched luxury/car content for any non-luxury-lifestyle angle.",
       "recommendation": "Two options: (1) source new raw footage that actually matches 'dark academia' visual angles (library interiors, candlelight, rain-on-window, turning book pages) before scripting this angle again, or (2) have Agent 1.1 (Trend Scout) weight future short-form angles toward concepts the existing luxury-lifestyle clip pool can actually support (wealth/cars/travel/luxury-adjacent mindset angles), reserving 'reading/library/academic' angles until matching footage exists. Did not delete or force-publish sf_003 — kept produced file and full script/transform_log in state/short_form_queue.json for reuse if footage is sourced later.",
       "cc0_track_used": "Phonk ish by HoliznaCC0 (CC0 1.0, verified, reused correctly) — audio sourcing/pacing/text-sizing all worked correctly this cycle; only the visual content selection failed."
+    },
+    {
+      "id": "sf_004",
+      "quarantined_at": "2026-07-27T16:35:00Z",
+      "gate": "short_form_gates.copyright_gate visual-match spirit (same root cause as sf_001/sf_003, pre-emptive quarantine before production)",
+      "reason": "Angle is 'Built different' gym-mindset progress narrative — quick-cut visual of grinding through a hard set. Per assets/short-form-clips/raw/README.md's Content scope note, the raw clip pool is 100% luxury-lifestyle (cars, yachts, jets, cash, travel, skylines) with zero gym/workout footage, the same root cause that got sf_001 quarantined. Quarantining pre-emptively rather than repeating the sf_001/sf_003 pattern of producing first and discovering the mismatch after.",
+      "recommendation": "Same as sf_003: either source real gym/workout footage before scripting this angle again, or let it stay quarantined until Agent 1.1 scouts a fitting replacement (as it did for sf_003 -> sf_005, sf_006, sf_007)."
     }
   ],
   "long_form": [
