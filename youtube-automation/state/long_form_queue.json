@@ -66,7 +66,7 @@
     },
     {
       "id": "lf_003",
-      "status": "image_sourced",
+      "status": "sound_sourced",
       "visual_theme": "CORRECTED by Agent 2.2 after inspecting the actual downloaded file (Drive file 13QRZQiB2BcrDqF5PyKXcmXlg5nTMoTsw, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename '643100021828012323.jpg') \u2014 this is NOT a car/mansion scene, it is a Dubai Marina night skyline: dense high-rise towers with warm interior window lights, a blue-lit waterfront promenade curving along both banks of the marina channel, moored yachts/boats in the foreground water, dark reflective water surface, cinematic wide shot. No people/faces readable. Several towers carry legible 'EMAAR' illuminated building signage (see state/image_pool.json provenance_note for full disclosure) \u2014 naturally-occurring architectural signage in the original photo, not a deliberate logo/watermark overlay.",
       "image_path": "assets/long-form/images/source_pool/lf_003_source.jpg",
       "animated_loop_path": "assets/long-form/output/lf_003_loop_segment.mp4",
@@ -78,7 +78,8 @@
       "target_length_minutes": 90,
       "target_length_note": "Mid-low end of [60,600]; first of six candidates in this batch, deliberately varied lengths across the set per publishing_schedule.weekly_batch_mode rather than repeating 60 for every video.",
       "image_source": "owner_provided_unverified (image_copyright_gate path B) \u2014 Drive file 13QRZQiB2BcrDqF5PyKXcmXlg5nTMoTsw from folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g; see config/gates.json long_form_gates.image_copyright_gate.rationale_path_b for the disclosed-risk note and owner's explicit go-ahead.",
-      "audio_track_id_provisional": "Fire Place (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0) \u2014 newly verified this cycle specifically to add variety beyond the single Rain/Sleep/Meditation track already used on lf_002.",
+      "audio_track_id": "Fire Place (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0)",
+      "audio_track_confirmation_note": "Confirmed verified:true entry in state/cc0_audio_library.json (source_url https://freemusicarchive.org/music/holiznacc0/winter-lofi/fire-place/, license CC0 1.0 Universal, verified_by_human_readable_source via direct FMA page rel=\"license\" check). Local file assets/audio/holiznacc0_fire_place.mp3 re-checked this cycle: `file` reports valid MPEG ADTS layer III, 320kbps, 48kHz stereo; `ffprobe` confirms 170.28s duration, non-corrupt. Checked posted_history.json for rotation fatigue: only lf_002 has published so far and it used the Rain/Sleep/Meditation track, not Fire Place, so no repetition concern.",
       "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags. Passes shared_gates.factual_controversy_screen and platform_policy_check on inspection: no misleading title/thumbnail mismatch, no hate speech/violence/self-harm content, purely generic luxury-ambience motivational framing with no fabricated claims or named-individual quotes.",
       "banana_status_note": "Confirmed still blocked this cycle: validate_setup.py now passes all 9 checks (key IS configured), but a direct curl generateContent test against generativelanguage.googleapis.com returned 429 RESOURCE_EXHAUSTED with 'generate_content_free_tier_requests, limit: 0' for gemini-2.0-flash \u2014 same zero-quota project-level issue as lf_001, not a code/config problem. Path B (owner-supplied images) used instead.",
       "scouted_at": "2026-07-27T21:50:00Z"
