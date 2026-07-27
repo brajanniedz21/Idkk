@@ -33,5 +33,18 @@
     ],
     "action_taken": "Updated config/channel.json (new short_form_style_guidance / long_form_style_guidance blocks), scripts/short_form_transform.sh (rewritten for multi-clip fast cuts, dark/low-exposure grade, safe auto-sized text), and agents/short_form/2.1_scriptwriter.md + 3.1_producer.md (fast-beat scripting, upbeat-audio-only rule, updated transform usage) to bake these findings into the pipeline going forward, not just this one fix.",
     "not_yet_done": "Did not go back and re-produce/replace the already-published sf_001 (quarantined) or sf_002 (live) videos with the new fast-cut/upbeat-audio treatment — that's a call for the channel owner (replacing a live video is a real decision, not an automatic pipeline action)."
+  },
+  "direct_competitor_scan_2026_07_27": {
+    "channel": "@Millionaire_Mentality_7",
+    "requested_by": "channel owner, direct instruction to scan this specific channel's shorts",
+    "method": "YouTube channel pages are JS-rendered SPAs that don't come through static fetching, so used the channel's public RSS feed (youtube.com/feeds/videos.xml?channel_id=...) for real video listings, yt-dlp for per-video metadata (title/duration), and attempted yt-dlp media download for audio-track tempo analysis.",
+    "findings": [
+      "Channel: 111K subscribers, ~2.2K videos, luxury lifestyle/supercars/motivation niche — very close analog to this channel's own niche and audience.",
+      "Several of this channel's own shorts (te1htnG3iI0, Jn8nw6bI2J0, 0k4KFkoEh4c, lCHBLevZK1c) are already saved in config/channel.json.reference_examples.short_form — this channel was already treated as a style reference before this scan.",
+      "Real duration data pulled via yt-dlp across 7 recent shorts: 24s, 17s, 14s, 10s, 24s, 12s, 9s — mostly well under 20s total, several near-minimum length, consistent with a very fast-cut editing style packing many short shots into a brief runtime.",
+      "Titles follow a simple repeating template: '[Rich/Luxury] [Life/Lifestyle/Vibes] 💰 #luxury #rich #money #motivation #millionaire #success #shorts #viral #lifestyle' — short, emoji-led, hashtag-heavy, not narrative titles."
+    ],
+    "limitations_disclosed": "Could NOT identify the exact song/artist used on their audio tracks — YouTube does not expose Content ID music attribution through public scraping (oEmbed, RSS, or yt-dlp metadata all came back empty for track/artist/album fields), and direct media download for tempo/waveform analysis was blocked with HTTP 403 (bot detection at YouTube's CDN, not a permissions issue we can fix). So the specific sound identity is unconfirmed — only structural findings (duration, cut-implied pacing, title pattern) are backed by real data pulled from the channel.",
+    "action_taken": "Owner separately specified clips should be capped at 2 seconds maximum per shot (their own direct observation, not derived from this scan's data, since exact cut timings weren't extractable either). Implemented as a hard requirement: rewrote scripts/short_form_transform.sh as scripts/short_form_transform.py, which now splits every short into <=2.0s shots (reusing clips with rotating offsets when there aren't enough distinct ones) regardless of how few/many clips are supplied. Updated config/channel.json.short_form_style_guidance and agents/short_form/3.1_producer.md to state the 2s cap explicitly as a hard ceiling, not just the general 1.5-3s visual-velocity range."
   }
 }
