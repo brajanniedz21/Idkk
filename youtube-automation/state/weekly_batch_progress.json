@@ -1,5 +1,262 @@
 {
   "_comment": "Tracks progress through a single Monday weekly-batch cycle (21 shorts + 7 long-form). Written/read by whichever session is running the batch so an interrupted run (session limit, crash, etc.) can resume from the last incomplete item instead of restarting from scratch or double-producing already-published items. Reset to a fresh empty 'current_batch' at the start of each new Monday firing, but keep prior batches in 'history' for audit.",
-  "current_batch": null,
+  "current_batch": {
+    "batch_started_at": "2026-07-27T20:43:00Z",
+    "week_range_note": "First real batch run fired mid-Monday-evening (20:43 UTC) as a manual test of the trigger \u2014 all of Monday 2026-07-27's own slots had already passed by the time this ran, so the entire 7-day/28-item schedule was shifted to start Tuesday 2026-07-28 through Monday 2026-08-03 instead, to avoid scheduling any publishAt in the past (YouTube rejects that outright). Future automatic Monday-06:00-UTC firings won't have this problem since they start at the beginning of the day.",
+    "items": [
+      {
+        "index": 1,
+        "format": "short",
+        "day": "2026-07-28",
+        "local_slot": "09:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-28T08:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 2,
+        "format": "short",
+        "day": "2026-07-28",
+        "local_slot": "14:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-28T13:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 3,
+        "format": "short",
+        "day": "2026-07-28",
+        "local_slot": "19:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-28T18:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 4,
+        "format": "long",
+        "day": "2026-07-28",
+        "local_slot": "20:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-28T19:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 5,
+        "format": "short",
+        "day": "2026-07-29",
+        "local_slot": "09:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-29T08:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 6,
+        "format": "short",
+        "day": "2026-07-29",
+        "local_slot": "14:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-29T13:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 7,
+        "format": "short",
+        "day": "2026-07-29",
+        "local_slot": "19:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-29T18:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 8,
+        "format": "long",
+        "day": "2026-07-29",
+        "local_slot": "20:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-29T19:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 9,
+        "format": "short",
+        "day": "2026-07-30",
+        "local_slot": "09:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-30T08:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 10,
+        "format": "short",
+        "day": "2026-07-30",
+        "local_slot": "14:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-30T13:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 11,
+        "format": "short",
+        "day": "2026-07-30",
+        "local_slot": "19:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-30T18:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 12,
+        "format": "long",
+        "day": "2026-07-30",
+        "local_slot": "20:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-30T19:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 13,
+        "format": "short",
+        "day": "2026-07-31",
+        "local_slot": "09:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-31T08:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 14,
+        "format": "short",
+        "day": "2026-07-31",
+        "local_slot": "14:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-31T13:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 15,
+        "format": "short",
+        "day": "2026-07-31",
+        "local_slot": "19:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-31T18:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 16,
+        "format": "long",
+        "day": "2026-07-31",
+        "local_slot": "20:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-07-31T19:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 17,
+        "format": "short",
+        "day": "2026-08-01",
+        "local_slot": "09:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-01T08:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 18,
+        "format": "short",
+        "day": "2026-08-01",
+        "local_slot": "14:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-01T13:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 19,
+        "format": "short",
+        "day": "2026-08-01",
+        "local_slot": "19:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-01T18:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 20,
+        "format": "long",
+        "day": "2026-08-01",
+        "local_slot": "20:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-01T19:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 21,
+        "format": "short",
+        "day": "2026-08-02",
+        "local_slot": "09:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-02T08:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 22,
+        "format": "short",
+        "day": "2026-08-02",
+        "local_slot": "14:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-02T13:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 23,
+        "format": "short",
+        "day": "2026-08-02",
+        "local_slot": "19:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-02T18:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 24,
+        "format": "long",
+        "day": "2026-08-02",
+        "local_slot": "20:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-02T19:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 25,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "09:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-03T08:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 26,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "14:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-03T13:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 27,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "19:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-03T18:00:00Z",
+        "candidate_id": null
+      },
+      {
+        "index": 28,
+        "format": "long",
+        "day": "2026-08-03",
+        "local_slot": "20:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-03T19:00:00Z",
+        "candidate_id": null
+      }
+    ]
+  },
   "history": []
 }
