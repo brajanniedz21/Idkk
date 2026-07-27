@@ -1,4 +1,130 @@
 {
   "_comment": "Candidates produced by Agent 1.1, consumed in order by Agent 0. Each item moves through statuses: scouted -> scripted -> produced -> gated -> published | quarantined.",
-  "queue": []
+  "queue": [
+    {
+      "id": "sf_001",
+      "status": "scripted",
+      "scouted_at": "2026-07-27T00:00:00Z",
+      "scripted_at": "2026-07-27T00:00:00Z",
+      "angle": "3am gym discipline monologue: 'Discipline over motivation' — silent alarm, empty gym, cold open on tying laces in the dark, voiceover on why willpower fails and systems don't",
+      "title_pattern": "Don't Be Motivated. Be Disciplined.",
+      "caption_hooks": [
+        "Nobody is coming to save you. Get up.",
+        "Motivation is a feeling. Discipline is a decision.",
+        "3am. No one's watching. That's the point."
+      ],
+      "trending_sound_style": "slowed hardtekk/phonk, heavy sub-kick building under a single spoken-word line, then dropping to near-silence for the payoff sentence",
+      "hashtags": ["#discipline", "#disciplineovermotivation", "#mindset", "#gymmotivation", "#stoic", "#selfimprovement"],
+      "source_notes": "Modeled on the widely-circulating 'Don't Be Motivated. Be Disciplined.' phrase and the aggressive slowed-phonk gym-mindset wave currently trending on TikTok/Shorts (per TikTok Discover: 'Motivational Phonk Music', 'Discipline Sounds', 'Motivation Phonk Edits')."
+      ,
+      "title": "Don't Be Motivated. Be Disciplined.",
+      "voiceover_script": {
+        "full_text": "3am. No alarm going off. No one clapping. No one watching. Motivation left the moment it got hard — it always does. It's a feeling, and feelings don't show up on schedule. Discipline isn't loud. It isn't a mood. It's the decision you already made, so you don't have to make it again tonight. You're not here because you feel like it. You're here because you built a system that doesn't ask how you feel. Nobody's coming to save you. Get up. Again.",
+        "beats": [
+          {"time": "0:00-0:03", "type": "silent_visual", "line": null, "direction": "No VO. Hand silences alarm before it rings. Laces tied in near-dark."},
+          {"time": "0:03-0:07", "type": "vo", "line": "3am. No alarm going off. No one clapping. No one watching."},
+          {"time": "0:07-0:12", "type": "vo", "line": "Motivation left the moment it got hard — it always does. It's a feeling, and feelings don't show up on schedule."},
+          {"time": "0:12-0:18", "type": "vo", "line": "Discipline isn't loud. It isn't a mood. It's the decision you already made, so you don't have to make it again tonight."},
+          {"time": "0:18-0:24", "type": "vo", "line": "You're not here because you feel like it. You're here because you built a system that doesn't ask how you feel."},
+          {"time": "0:24-0:30", "type": "vo_whisper_payoff", "line": "Nobody's coming to save you. Get up. Again.", "direction": "Sub-kick drops to near-silence under this line; hard cut to black or single still frame on final word."}
+        ]
+      },
+      "on_screen_text": [
+        {"time": "0:00-0:03", "text": ""},
+        {"time": "0:03-0:07", "text": "3AM.\nNO ONE'S WATCHING."},
+        {"time": "0:07-0:12", "text": "MOTIVATION IS A FEELING.\nFEELINGS DON'T SHOW UP ON SCHEDULE."},
+        {"time": "0:12-0:18", "text": "DISCIPLINE ISN'T A MOOD.\nIT'S A DECISION YOU ALREADY MADE."},
+        {"time": "0:18-0:24", "text": "YOU BUILT A SYSTEM\nTHAT DOESN'T ASK HOW YOU FEEL."},
+        {"time": "0:24-0:30", "text": "NOBODY'S COMING TO SAVE YOU.\nGET UP. AGAIN."}
+      ],
+      "seo_description": "3am, no motivation, no audience — just the decision to move anyway. A short cinematic monologue on why discipline beats motivation every time you don't feel like showing up. For anyone building the version of themselves nobody sees yet.",
+      "tags": [
+        "discipline over motivation",
+        "3am workout",
+        "gym motivation",
+        "self discipline",
+        "mindset shorts",
+        "silent discipline",
+        "stoic motivation",
+        "gym mindset",
+        "self improvement",
+        "become disciplined",
+        "no excuses mindset",
+        "cinematic motivation",
+        "gym motivation shorts",
+        "build discipline",
+        "mental toughness"
+      ],
+      "hashtags": ["#discipline", "#disciplineovermotivation", "#mindset", "#gymmotivation", "#stoic"],
+      "sound_direction": "Slowed hardtekk/phonk instrumental, minimal melodic content — heavy sub-kick and distorted bass building steadily under the spoken lines from 0:03 to 0:18, tension increasing but never overpowering the voiceover. Sound thins out through the 0:18-0:24 beat, then drops to near-silence (kick removed entirely, faint low drone only) under the final whispered payoff line at 0:24-0:30 so the line lands in near-quiet. No lyrics, no recognizable sample, CC0/library source only — matched by Agent 4.2.",
+      "visual_direction": "Mood/type needed (raw clips 1.mp4-60.mp4 not yet tagged by description; Agent 3.1 to match): dim, near-dark gym interior, pre-dawn/blue-hour lighting, single practical light source (phone flashlight, single overhead bulb, or window streetlight). Cold open: close-up on a hand silencing a phone alarm before it sounds, then hands tying shoelaces in low light. Follow with solitary-figure shots — empty weight room, one person alone on a bench or rack, no other people in frame, condensation/breath visible if available. Close on face or hands for the final payoff line (still or near-still frame, high contrast, desaturated/cool color grade). Avoid any clip with visible gym branding, other identifiable people, or bright/crowded settings — tone must stay isolated, cinematic, and low-key throughout.",
+      "factual_controversy_self_check": {
+        "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
+        "no_political_figures_parties_elections_policy": "pass - none referenced",
+        "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - script is generic second-person motivational framing only, no named individuals, no statistics or studies cited",
+        "no_controversial_social_topics_per_channel_exclusions": "pass - topic is gym/discipline self-improvement only, no politics or controversial topics per channel.json content_exclusions",
+        "result": "cleared, no rewrite needed"
+      }
+    },
+    {
+      "id": "sf_002",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T00:00:00Z",
+      "angle": "Quiet/silent discipline luxury narrative: rebuilding yourself with no audience — old-money interior visuals (library, rain on window, tailored coat) intercut with solitary self-work, framed as 'stealth wealth of the mind'",
+      "title_pattern": "Rebuild Yourself In Silence",
+      "caption_hooks": [
+        "The quiet ones are the dangerous ones.",
+        "Let them wonder what changed.",
+        "Real growth doesn't announce itself."
+      ],
+      "trending_sound_style": "slowed ambient piano/pad with a soft vinyl-crackle texture, near-silent verses building to a brief cinematic swell under the closing line",
+      "hashtags": ["#quietluxury", "#silentdiscipline", "#oldmoney", "#stealthwealth", "#selfmastery", "#mindset"],
+      "source_notes": "Modeled on the trending 'Rebuild Yourself In Silence / Quiet Discipline' motivational-speech format and the 2026 'quiet luxury'/stealth-wealth aesthetic wave crossing over into self-improvement content."
+    },
+    {
+      "id": "sf_003",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T00:00:00Z",
+      "angle": "Dark-academia stoic philosophy quote-over-visual: single Marcus Aurelius-style line read over rain-streaked window / candlelit desk / turning pages, aimed at the isolated-but-ambitious student psychographic",
+      "title_pattern": "The Man Who Reads Alone Wins Alone",
+      "caption_hooks": [
+        "While they scrolled, you read.",
+        "Wisdom is the only luxury that compounds.",
+        "This is why you feel different from everyone around you."
+      ],
+      "trending_sound_style": "spoken-word voiceover over a slow piano/string instrumental bed, minimal percussion, cinematic swell only under the final line",
+      "hashtags": ["#stoicism", "#darkacademia", "#philosophy", "#deepthoughts", "#selfimprovement", "#mindsetmatters"],
+      "source_notes": "Modeled on dark-academia aesthetic trend (deep tones, library/candle imagery, Marcus Aurelius/Seneca-style quote content) crossing into stoic-quote Shorts, matching reference channel style (@SilentUntilSeen-type cinematic edits) and adjacent creators like Jordan Peterson."
+    },
+    {
+      "id": "sf_004",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T00:00:00Z",
+      "angle": "'Built different' gym-mindset progress narrative: quick-cut visual of grinding through a hard set while voiceover reframes pain as identity-construction, ending on a stillness beat",
+      "title_pattern": "Built, Not Bought",
+      "caption_hooks": [
+        "Nobody gave me this. I built it.",
+        "Every rep is a vote for who you're becoming.",
+        "This is what quiet obsession looks like."
+      ],
+      "trending_sound_style": "aggressive slowed phonk/hardtekk with a heavy kick pattern, matching the 2026 gym-workout phonk-mix wave, cutting to silence on the final voiceover line",
+      "hashtags": ["#builtdifferent", "#gymmotivation", "#disciplineovermotivation", "#mindset", "#selfimprovement", "#gymrat"],
+      "source_notes": "Modeled on 'Built, not bought' / 'built different' caption trend and the aggressive slowed-phonk gym-motivation mix wave currently circulating on TikTok Discover ('Gym Motivation Songs', 'Motivational Phonk Songs')."
+    },
+    {
+      "id": "sf_005",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T00:00:00Z",
+      "angle": "Untapped-potential / isolation-to-purpose narrative: young person alone at night questioning their path, voiceover (Huberman/Chris-Williamson-adjacent tone) reframing isolation as the cost of growth, ending on a forward-looking image (sunrise, city skyline)",
+      "title_pattern": "You're Not Behind. You're Becoming.",
+      "caption_hooks": [
+        "The loneliness is temporary. The version of you it's building isn't.",
+        "This is exactly how I felt before everything changed.",
+        "You weren't made to stay who you are right now."
+      ],
+      "trending_sound_style": "slowed ambient/lofi pad with a soft rising synth, spoken-word voiceover carrying the piece, no percussion until the last 2 seconds",
+      "hashtags": ["#selfimprovement", "#mindset", "#personaldevelopment", "#growth", "#youarenotalone", "#stoic"],
+      "source_notes": "Modeled on the core-audience psychographic in channel.json (feels isolated/uncertain, wants to feel understood) and the 'share trigger' phrasing ('This is exactly how I feel'), combined with the quiet-discipline/introspective voiceover format trending alongside Huberman/Chris Williamson-adjacent content."
+    }
+  ]
 }
