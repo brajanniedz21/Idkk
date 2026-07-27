@@ -19,9 +19,21 @@ from googleapiclient.http import MediaFileUpload
 from youtube_auth import load_credentials
 
 
-def upload(file_path, title, description, tags, category_id, privacy):
+def upload(file_path, title, description, tags, category_id, privacy, publish_at=None):
     creds = load_credentials()
     youtube = build("youtube", "v3", credentials=creds)
+
+    status = {
+        "privacyStatus": privacy,
+        "selfDeclaredMadeForKids": False,
+    }
+    if publish_at:
+        # Scheduled publish: YouTube requires privacyStatus=private with a
+        # future publishAt (RFC3339 UTC); it flips to public automatically
+        # at that timestamp. Using this lets a batch cycle upload everything
+        # up front while spreading the actual go-live times across the week.
+        status["privacyStatus"] = "private"
+        status["publishAt"] = publish_at
 
     body = {
         "snippet": {
@@ -30,10 +42,7 @@ def upload(file_path, title, description, tags, category_id, privacy):
             "tags": tags,
             "categoryId": category_id,
         },
-        "status": {
-            "privacyStatus": privacy,
-            "selfDeclaredMadeForKids": False,
-        },
+        "status": status,
     }
 
     media = MediaFileUpload(file_path, chunksize=-1, resumable=True, mimetype="video/mp4")
@@ -42,9 +51,23 @@ def upload(file_path, title, description, tags, category_id, privacy):
 
     response = None
     while response is None:
-        status, response = request.next_chunk()
-        if status:
-            print(f"Upload progress: {int(status.progress() * 100)}%")
+        upload_status, response = request.next_chunk()
+        if upload_status:
+            print(f"Upload progress: {int(upload_status.progress() * 100)}%")
+
+    # A real failure mode already hit once: the API can return a 200 with a
+    # video ID even when YouTube silently rejects the video for a policy
+    # reason (e.g. an unverified account's >15min length cap) — the video
+    # never actually appears on the channel despite the "successful" response.
+    # Always re-check with videos.list before trusting the upload happened.
+    video_id = response["id"]
+    check = youtube.videos().list(part="status", id=video_id).execute()
+    if not check.get("items"):
+        raise RuntimeError(
+            f"Upload returned video_id={video_id} but videos.list finds no such video — "
+            f"the upload was likely silently rejected (e.g. account verification/length limits, "
+            f"policy strike). Do not treat this as a successful publish."
+        )
 
     return response
 
@@ -57,6 +80,10 @@ if __name__ == "__main__":
     parser.add_argument("--tags", default="", help="comma-separated")
     parser.add_argument("--category", default="22", help="YouTube category ID")
     parser.add_argument("--privacy", default="public", choices=["public", "unlisted", "private"])
+    parser.add_argument("--publish-at", default=None,
+                         help="RFC3339 UTC timestamp (e.g. 2026-08-03T15:00:00Z) for scheduled publish. "
+                              "Forces privacyStatus=private on upload; YouTube auto-publishes at this time. "
+                              "Must be in the future or the API will reject it.")
     args = parser.parse_args()
 
     try:
@@ -67,9 +94,11 @@ if __name__ == "__main__":
             tags=[t.strip() for t in args.tags.split(",") if t.strip()],
             category_id=args.category,
             privacy=args.privacy,
+            publish_at=args.publish_at,
         )
         video_id = result["id"]
-        print(f"PUBLISHED video_id={video_id} url=https://youtu.be/{video_id}")
+        scheduled_note = f" (scheduled for {args.publish_at})" if args.publish_at else ""
+        print(f"PUBLISHED video_id={video_id} url=https://youtu.be/{video_id}{scheduled_note}")
     except Exception as e:
         print(f"UPLOAD FAILED: {e}", file=sys.stderr)
         sys.exit(1)

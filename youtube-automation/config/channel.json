@@ -52,7 +52,15 @@
     "shorts_per_day": 3,
     "long_form_per_week": 7,
     "long_form_per_day": 1,
-    "long_form_length_minutes": [60, 600]
+    "long_form_length_minutes": [60, 600],
+    "weekly_batch_mode": {
+      "added_at": "2026-07-27T21:30:00Z",
+      "description": "As of 2026-07-27, the owner requested a fully autonomous weekly batch: every Monday, script/produce/gate all 21 shorts and 7 long-form videos for that week in one cycle, then upload all of them immediately but with YouTube's scheduled-publish feature (privacyStatus=private + publishAt) so they actually go live spread across the week at the slot times below, rather than all going public on Monday. See agents/0_orchestrator.md 'Weekly batch cycle' for the full operating logic.",
+      "shorts_daily_publish_times_local": ["09:00", "14:00", "19:00"],
+      "long_form_daily_publish_time_local": "20:00",
+      "slot_time_note": "Local times in the timezone above (Europe/London); convert to UTC accounting for BST/GMT when computing each video's publishAt timestamp. Long-form is scheduled after the day's 3rd short so a viewer's day has short-form energy first, calm ambient content in the evening.",
+      "batch_scale_warning": "28 full pipeline cycles (scout->script->produce->gate->publish) in a single run is a large amount of work — real risk of hitting session/token/time limits mid-batch (this has already happened once in a much smaller single-day session). The weekly trigger fires into a FRESH session each time specifically to maximize available budget, and state/weekly_batch_progress.json tracks completion per-item so an interrupted run can be resumed from where it left off rather than restarting the whole batch."
+    }
   },
   "operating_budget": "Claude Pro subscription usage only; no paid third-party APIs",
   "publishing_mode": "public",

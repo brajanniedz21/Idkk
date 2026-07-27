@@ -1,0 +1,5 @@
+{
+  "_comment": "Tracks progress through a single Monday weekly-batch cycle (21 shorts + 7 long-form). Written/read by whichever session is running the batch so an interrupted run (session limit, crash, etc.) can resume from the last incomplete item instead of restarting from scratch or double-producing already-published items. Reset to a fresh empty 'current_batch' at the start of each new Monday firing, but keep prior batches in 'history' for audit.",
+  "current_batch": null,
+  "history": []
+}
