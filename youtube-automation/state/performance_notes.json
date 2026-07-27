@@ -46,5 +46,46 @@
     ],
     "limitations_disclosed": "Could NOT identify the exact song/artist used on their audio tracks — YouTube does not expose Content ID music attribution through public scraping (oEmbed, RSS, or yt-dlp metadata all came back empty for track/artist/album fields), and direct media download for tempo/waveform analysis was blocked with HTTP 403 (bot detection at YouTube's CDN, not a permissions issue we can fix). So the specific sound identity is unconfirmed — only structural findings (duration, cut-implied pacing, title pattern) are backed by real data pulled from the channel.",
     "action_taken": "Owner separately specified clips should be capped at 2 seconds maximum per shot (their own direct observation, not derived from this scan's data, since exact cut timings weren't extractable either). Implemented as a hard requirement: rewrote scripts/short_form_transform.sh as scripts/short_form_transform.py, which now splits every short into <=2.0s shots (reusing clips with rotating offsets when there aren't enough distinct ones) regardless of how few/many clips are supplied. Updated config/channel.json.short_form_style_guidance and agents/short_form/3.1_producer.md to state the 2s cap explicitly as a hard ceiling, not just the general 1.5-3s visual-velocity range."
+  },
+  "direct_competitor_scan_2026_07_27_pt2": {
+    "channel": "@Millionaire_Mentality_7",
+    "requested_by": "channel owner, follow-up instruction: 'deeply analyse' this channel and build a list of 25 sounds it uses, since YouTube blocked exact sound extraction in the first scan.",
+    "method": "YouTube's own audio blocking held: retried yt-dlp with web/tv/ios player clients specifically to work around the earlier android_vr 403 — web client returned 'Requested format is not available' (needs a PO token this environment can't generate), tv client falsely reported 'DRM protected' (a known yt-dlp/YouTube quirk for some Shorts, not a real DRM restriction), ios client hit 'Sign in to confirm you're not a bot'. Also parsed the Short's raw ytInitialData JSON directly (not just WebFetch's markdown conversion) looking for musicVideoType/trackTitle/artistNames/audioTrack fields — none present for Shorts via the web renderer. Concluded YouTube's Content-ID audio attribution is genuinely inaccessible from this environment via any available method, and stopped retrying rather than risk further bot-detection escalation.",
+    "pivot": "This channel is also on TikTok as @millionaire_mentality_7 (found via the first scan's web search). TikTok's yt-dlp extractor DOES return real `track`/`artists` fields per video via `yt-dlp --dump-json --skip-download --flat-playlist --playlist-end N \"https://www.tiktok.com/@millionaire_mentality_7\"` — confirmed working, pulled 400 videos' worth of metadata.",
+    "sound_list_25": {
+      "honesty_note": "Of 33 distinct `track` values found across 400 videos, the large majority are TikTok's own generic per-repost label (e.g. 'original sound', 'orijinal ses', 'suara asli', 'som original', 'suono originale' — these are the same generic label in different languages, crediting whichever account's upload/duet chain the sound is attributed to, NOT a real song title). These are real data pulled from the channel, but do not identify an actual song — only that some sound exists and which account TikTok currently credits it to. Marked below as [generic]. Only entries marked [identified] are genuine song/artist names.",
+      "list": [
+        "1. [generic] original sound — Gmftbl¹",
+        "2. [identified] VEKI VEKI (Slowed) — DJZRX, motty, rodricci, launch13 (Brazilian phonk/slowed-funk style, matches the niche's aggressive-phonk trend)",
+        "3. [generic] original sound — zaki_ilkacase",
+        "4. [ambiguous] \"fancy\" — artist shown only as a symbol; likely references a known 'Fancy' track (Iggy Azalea or similar) but could not be confirmed, not counted as identified",
+        "5. [generic] sonido original — AuraFinds",
+        "6. [generic] Originalton — Motivation",
+        "7. [generic] som original — eaices",
+        "8. [generic] suara asli — Moinn.",
+        "9. [identified] \"ion care cuz he did it first\" — Ice Spice (real, named song/sound)",
+        "10. [generic] slicx7 - orijinal ses — user98160094000",
+        "11. [identified] Love Nwantiti (Acoustic Ver.) — CKay (well-known real song, acoustic edit)",
+        "12. [generic] оригинальный звук (Russian: 'original sound') — Ravulus",
+        "13. [generic] som original - DM Songs — DM",
+        "14. [generic] الصوت الأصلي (Arabic: 'original sound') — ALNGK MUSIC",
+        "15. [generic] orijinal ses (Turkish: 'original sound') — tr",
+        "16. [generic] suara asli — Galuh",
+        "17. [generic] suara asli — 303 Noa./Veloura",
+        "18. [identified] Montagem Celestial Esperanza — DJZRX, motty, rodricci, MC Novin (Brazilian funk/phonk 'montagem' style, same production circle as #2)",
+        "19. [generic] suara asli — 2lis4",
+        "20. [identified] Tourner Dans Le Vide — Indila (well-known real French song)",
+        "21. [generic] son original — Evan_dub",
+        "22. [generic] originalljud (Swedish: 'original sound') — Future Millionaire Club",
+        "23. [generic] original sound — Music vibes",
+        "24. [generic] original lyd (Norwegian/Danish: 'original sound') — Statement",
+        "25. [ambiguous] \"AURA\" — lukas (too generic a title to confirm which song, not counted as identified)"
+      ],
+      "additional_identified_beyond_25": [
+        "Danza Kuduro 2025 — A-Clark (2025 edit of the well-known 'Danza Kuduro')",
+        "Gata Only NJ / gata only remix — derivative edits of 'Gata Only' by FloyyMenor & Cris MJ (viral 2024/2025 hit)"
+      ],
+      "takeaway_for_pipeline": "Only ~6-7 of these 25+ are genuinely identifiable songs, and none are confirmed CC0/license-free — they're mainstream/viral tracks (Ice Spice, CKay, Indila, Gata Only, Danza Kuduro) that would need a CC0 substitute, same as every other cycle. The clearest actionable signal: Brazilian funk/phonk 'montagem'-style production (DJZRX/motty/rodricci circle) appears twice independently, reinforcing that aggressive Brazilian-phonk-adjacent production is a real, recurring choice for this niche — consistent with the already-verified 'Phonk ish' CC0 track already in use. The 'generic original sound' majority is itself a finding: a lot of this channel's audio is opportunistic reuse of whatever's currently trending, re-attributed by repost chains, not a curated original soundtrack — not something a CC0-only pipeline can replicate 1:1 regardless of scraping effort."
+    }
   }
 }

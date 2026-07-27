@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Apply Agent 3.1's mandatory transform checklist producing a FAST-CUT
-vertical short: reframe to vertical, dark/low-exposure grade, quick cuts
-(each individual shot capped at 2.0s max, per real competitor research —
-see state/performance_notes.json), burned-in text sized to fit the frame,
-and full audio replacement.
+vertical short: reframe to vertical, dark/low-exposure grade, cuts synced
+to the actual detected beats of the audio track (capped at 2.0s max per
+shot, per real competitor research — see state/performance_notes.json),
+burned-in text sized to fit the frame, and full audio replacement.
 
 Per config/channel.json short_form_style_guidance: short-form must be
 high-energy/fast-paced, dark/moody low-exposure grade, upbeat/fast-tempo
-CC0 audio only.
+CC0 audio only. A fast-tempo track naturally gives closer-together beats
+and therefore quicker cuts — pick upbeat audio, not just for mood but
+because it directly drives the edit pace.
 
 Usage:
   short_form_transform.py --output OUT.mp4 --audio TRACK.mp3 --duration 27 \
@@ -18,23 +20,25 @@ Usage:
 that fit the visual_direction — more is better for variety). `--texts` is
 the list of on-screen text BEATS (fewer, longer than the cut count is
 fine/expected — each beat spans multiple quick cuts so it stays readable
-while the visuals still cut every <=2s). The script:
-  1. Splits total duration into shots of <=2.0s each (more shots than you
-     have clips is fine — clips are reused with a rotating start-offset so
-     repeats don't show the identical frame each time).
+while the visuals still cut on the beat). The script:
+  1. Runs beat detection (librosa) on the audio track and uses the actual
+     detected beat timestamps as cut points, so every visual cut lands on
+     a beat — not an arbitrary fixed interval. Beats further apart than
+     2.0s get subdivided so no shot ever exceeds the cap; beats closer
+     together than ~0.5s get merged so cuts don't flicker unreadably.
   2. Assigns each shot's on-screen text from whichever text beat's time
      window it falls into.
   3. Applies the dark/low-exposure grade to every shot.
   4. Concats all shots, replaces audio entirely with the given CC0 track.
 """
 import argparse
-import math
 import subprocess
 import tempfile
 import os
 import sys
 
 MAX_SHOT_SECONDS = 2.0
+MIN_SHOT_SECONDS = 0.45
 MAX_CHARS_PER_LINE = 22
 DEFAULT_FONTSIZE = 52
 MIN_FONTSIZE = 34
@@ -47,6 +51,62 @@ def ffprobe_duration(path):
         capture_output=True, text=True, check=True,
     )
     return float(out.stdout.strip())
+
+
+def beat_cut_points(audio_path, duration):
+    """Detect real beat timestamps in the audio and turn them into a list
+    of shot-boundary times covering [0, duration], respecting
+    MAX_SHOT_SECONDS/MIN_SHOT_SECONDS. Falls back to an even 2.0s grid if
+    beat detection finds nothing usable (e.g. a non-musical/ambient track).
+    """
+    try:
+        import librosa
+        y, sr = librosa.load(audio_path, sr=None, duration=duration)
+        _, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
+        beats = sorted(set(round(t, 3) for t in librosa.frames_to_time(beat_frames, sr=sr)))
+        # Cutting on every single detected beat is often too fast to read
+        # (sub-1s flicker on a dense track). Target ~1.5s/shot by striding
+        # through the beat list, while staying genuinely beat-locked (every
+        # cut still lands exactly on a real beat, just not every one).
+        if len(beats) >= 2:
+            avg_interval = (beats[-1] - beats[0]) / (len(beats) - 1)
+            target_shot = 1.5
+            stride = max(1, round(target_shot / avg_interval))
+            beats = beats[::stride]
+    except Exception as e:
+        print(f"Beat detection failed ({e}), falling back to a fixed 2.0s grid.", file=sys.stderr)
+        beats = []
+
+    points = [0.0] + [b for b in beats if 0.0 < b < duration] + [duration]
+    points = sorted(set(points))
+
+    # Merge points closer together than MIN_SHOT_SECONDS (avoids
+    # unreadable sub-frame flicker on very dense beat tracks).
+    merged = [points[0]]
+    for p in points[1:]:
+        if p - merged[-1] >= MIN_SHOT_SECONDS:
+            merged.append(p)
+    if merged[-1] != duration:
+        merged[-1] = duration
+    points = merged
+
+    # Subdivide any gap wider than MAX_SHOT_SECONDS (covers slow intros,
+    # breakdowns, or a track with no detected beats at all).
+    final = [points[0]]
+    for p in points[1:]:
+        gap_start = final[-1]
+        gap = p - gap_start
+        if gap > MAX_SHOT_SECONDS:
+            n_sub = int(gap // MAX_SHOT_SECONDS) + 1
+            step = gap / n_sub
+            for k in range(1, n_sub + 1):
+                final.append(round(gap_start + step * k, 3))
+        else:
+            final.append(p)
+
+    final[0] = 0.0
+    final[-1] = duration
+    return final
 
 
 def font_size_for_text(text):
@@ -72,42 +132,34 @@ def main():
     clips = args.clips
     texts = args.texts or [""]
 
-    num_shots = max(1, math.ceil(duration / MAX_SHOT_SECONDS))
-    shot_dur = round(duration / num_shots, 3)
+    cut_points = beat_cut_points(args.audio, duration)
+    num_shots = len(cut_points) - 1
     beat_dur = duration / len(texts)
 
     clip_durations = {c: ffprobe_duration(c) for c in set(clips)}
-    reuse_count = {c: 0 for c in clips}
 
     with tempfile.TemporaryDirectory() as textdir:
-        input_args = []
-        for c in clips:
-            pass
-        filter_parts = []
-        concat_labels = ""
-        shot_input_idx = []
+        shot_input_idx = [clips[i % len(clips)] for i in range(num_shots)]
 
-        for i in range(num_shots):
-            clip = clips[i % len(clips)]
-            shot_input_idx.append(clip)
-
-        # ffmpeg -i args: one per shot (simplest correctness-first approach;
-        # duplicate -i for a reused clip is fine, ffmpeg handles it, and it
-        # lets each reused instance seek to a different start offset).
         input_args = []
         for clip in shot_input_idx:
             input_args += ["-i", clip]
         input_args += ["-i", args.audio]
         audio_idx = len(shot_input_idx)
 
+        filter_parts = []
+        concat_labels = ""
         clip_repeat_seen = {}
+        shot_durs = []
         for i, clip in enumerate(shot_input_idx):
+            shot_dur = round(cut_points[i + 1] - cut_points[i], 3)
+            shot_durs.append(shot_dur)
             seen = clip_repeat_seen.get(clip, 0)
             clip_repeat_seen[clip] = seen + 1
             cdur = clip_durations[clip]
             start = (seen * shot_dur) % max(cdur - shot_dur, 0.01)
 
-            shot_center_time = (i + 0.5) * shot_dur
+            shot_center_time = cut_points[i] + shot_dur / 2
             beat_index = min(int(shot_center_time / beat_dur), len(texts) - 1)
             text = texts[beat_index]
             fontsize = font_size_for_text(text)
@@ -156,10 +208,13 @@ def main():
             print(result.stderr[-4000:], file=sys.stderr)
             sys.exit(1)
 
+    avg_dur = sum(shot_durs) / len(shot_durs)
     print(
-        f"Transformed (fast-cut, <=2s shots): {num_shots} shots from "
-        f"{len(set(clips))} distinct clips x ~{shot_dur:.2f}s -> vertical, "
-        f"dark/low-exposure grade, per-beat text, audio-replaced -> {args.output}"
+        f"Transformed (beat-synced cuts, <={MAX_SHOT_SECONDS}s cap): {num_shots} shots from "
+        f"{len(set(clips))} distinct clips, avg ~{avg_dur:.2f}s/shot "
+        f"(range {min(shot_durs):.2f}s-{max(shot_durs):.2f}s, cut points from real "
+        f"beat detection on {args.audio}) -> vertical, dark/low-exposure grade, "
+        f"per-beat text, audio-replaced -> {args.output}"
     )
 
 
