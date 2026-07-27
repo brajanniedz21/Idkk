@@ -843,14 +843,14 @@
     {
       "id": "sf_010",
       "scouted_at": "2026-07-27T19:15:00Z",
-      "angle": "Relentless-standards / refuse-mediocrity narrative: not a story about grinding harder or never resting (that's sf_008's 'no days off' effort-and-endurance framing) but an identity/caliber statement — the footage is framed as what separates people who refuse to accept average from everyone else, a competitive 'built for this' register. Matched to 'Montagem Celestial Esperanza's aggressive Brazilian phonk/montagem intensity (same DJZRX/motty/rodricci production circle as VEKI VEKI (Slowed), used on sf_008), but deliberately given a distinct thematic lane from sf_008 so the two same-production-circle tracks don't map to the same narrative twice. Distinct from every other prior angle: not quiet/restrained (sf_002/sf_002_v2), not isolation-to-purpose (sf_005), not car-as-proof-of-past-work (sf_006), not future-self visualization (sf_007), not grind/no-rest (sf_008), not confident/settled-arrival (sf_009). Uses the luxury-lifestyle footage pool directly (cars/showrooms/night-city visuals read naturally as 'built different' competitive-caliber imagery), so it carries zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope.",
+      "angle": "Relentless-standards / refuse-mediocrity narrative: not a story about grinding harder or never resting (that's sf_008's 'no days off' effort-and-endurance framing) but an identity/caliber statement \u2014 the footage is framed as what separates people who refuse to accept average from everyone else, a competitive 'built for this' register. Matched to 'Montagem Celestial Esperanza's aggressive Brazilian phonk/montagem intensity (same DJZRX/motty/rodricci production circle as VEKI VEKI (Slowed), used on sf_008), but deliberately given a distinct thematic lane from sf_008 so the two same-production-circle tracks don't map to the same narrative twice. Distinct from every other prior angle: not quiet/restrained (sf_002/sf_002_v2), not isolation-to-purpose (sf_005), not car-as-proof-of-past-work (sf_006), not future-self visualization (sf_007), not grind/no-rest (sf_008), not confident/settled-arrival (sf_009). Uses the luxury-lifestyle footage pool directly (cars/showrooms/night-city visuals read naturally as 'built different' competitive-caliber imagery), so it carries zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope.",
       "title_pattern": "Built For This. Not Everyone Is.",
       "caption_hooks": [
         "Some people were never built to settle for average.",
         "Standards aren't for everyone. That's the point.",
         "This isn't about trying harder. It's about refusing less."
       ],
-      "trending_sound_style": "Aggressive Brazilian phonk/'montagem' energy — heavy distorted sub-bass, rapid drum stabs, pitch-riser builds into hard drops, relentless forward-driving tempo. Same intensity family as the VEKI VEKI (Slowed) style already used on sf_008, but this is a description of the style only per this agent's brief — the specific real track ('Montagem Celestial Esperanza') is already sourced with documented provenance in state/trending_audio_library.json for Agent 3.1 to pull directly under the owner's lift of the CC0-only requirement.",
+      "trending_sound_style": "Aggressive Brazilian phonk/'montagem' energy \u2014 heavy distorted sub-bass, rapid drum stabs, pitch-riser builds into hard drops, relentless forward-driving tempo. Same intensity family as the VEKI VEKI (Slowed) style already used on sf_008, but this is a description of the style only per this agent's brief \u2014 the specific real track ('Montagem Celestial Esperanza') is already sourced with documented provenance in state/trending_audio_library.json for Agent 3.1 to pull directly under the owner's lift of the CC0-only requirement.",
       "hashtags": [
         "#builtforthis",
         "#standardsnotmotivation",
@@ -858,12 +858,12 @@
         "#millionairemindset",
         "#luxurymindset"
       ],
-      "source_notes": "Modeled on this cycle's mandatory competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt7, 2026-07-27): a fresh 200-video flat-playlist pull of @millionaire_mentality_7's TikTok found Montagem Celestial Esperanza recurs only once (the same source video already logged in pt5, engagement numbers essentially unchanged — 5,997 views/538 likes vs pt5's 5,996/538), versus VEKI VEKI (Slowed) from the same production circle appearing 9 times in the same pull with views now up to 936,000. Honest takeaway carried into this angle: Montagem is a real, genuinely-identified track from the same aggressive-phonk circle as VEKI VEKI, but is a one-off use on this channel, not a proven recurring hit the way VEKI VEKI is — this angle leans on the track's shared aggressive-energy identity (which is genuinely verified) rather than any false claim of proven repeat performance. Deliberately given a 'refuse mediocrity / built for this' identity framing rather than reusing sf_008's 'no days off' endurance framing, so the two same-circle tracks don't get mapped to the same narrative.",
+      "source_notes": "Modeled on this cycle's mandatory competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt7, 2026-07-27): a fresh 200-video flat-playlist pull of @millionaire_mentality_7's TikTok found Montagem Celestial Esperanza recurs only once (the same source video already logged in pt5, engagement numbers essentially unchanged \u2014 5,997 views/538 likes vs pt5's 5,996/538), versus VEKI VEKI (Slowed) from the same production circle appearing 9 times in the same pull with views now up to 936,000. Honest takeaway carried into this angle: Montagem is a real, genuinely-identified track from the same aggressive-phonk circle as VEKI VEKI, but is a one-off use on this channel, not a proven recurring hit the way VEKI VEKI is \u2014 this angle leans on the track's shared aggressive-energy identity (which is genuinely verified) rather than any false claim of proven repeat performance. Deliberately given a 'refuse mediocrity / built for this' identity framing rather than reusing sf_008's 'no days off' endurance framing, so the two same-circle tracks don't get mapped to the same narrative.",
       "no_political_or_controversial_topics": "pass - none referenced",
       "no_footage_mismatch": "angle uses cars/showrooms/night-city luxury visuals literally, well-represented in the raw pool per README.md Content scope",
       "scripted_at": "2026-07-27T19:40:00Z",
       "title": "Built For This. Not Everyone Is.",
-      "seo_description": "Some people were never built to settle for average — this is what refusing mediocrity actually looks like, not another 'grind harder' speech. A fast-cut motivational short about standards, caliber, and the identity behind the result, set to relentless Brazilian phonk energy for anyone who was built for this and knows it.",
+      "seo_description": "Some people were never built to settle for average \u2014 this is what refusing mediocrity actually looks like, not another 'grind harder' speech. A fast-cut motivational short about standards, caliber, and the identity behind the result, set to relentless Brazilian phonk energy for anyone who was built for this and knows it.",
       "tags": [
         "built for this",
         "refuse mediocrity",
@@ -881,15 +881,8 @@
         "competitive mindset",
         "supercar motivation"
       ],
-      "hashtags": [
-        "#builtforthis",
-        "#standardsnotmotivation",
-        "#refusetobenaverage",
-        "#millionairemindset",
-        "#luxurymindset"
-      ],
-      "sound_direction": "Using the real trending track 'Montagem Celestial Esperanza' (assets/audio/trending/montagem_celestial_esperanza.mp3, state/trending_audio_library.json, Brazilian funk/phonk 'montagem' style, ~20.09s native duration, credited to DJZRX/motty/rodricci/MC Novin — same production circle as VEKI VEKI (Slowed), already used on sf_008) per the owner's 2026-07-27 lift of the CC0-only requirement for short-form, and per this cycle's specific instruction to use this exact track. Chosen for this angle because its aggressive, relentless, forward-driving phonk/montagem intensity matches a competitive 'built for this / refuse mediocrity' register well — it is NOT reused for sf_008's grind-endurance theme; this cycle's competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt7) found the track is a real, genuinely-identified sound but only a one-off use on @millionaire_mentality_7 (1 hit in a fresh 200-video pull, vs VEKI VEKI's 9), so this angle leans on the track's verified aggressive-energy identity rather than any false claim that it's a proven recurring hit on that channel. Fast-tempo enough to drive real beat-locked fast cuts per config/channel.json.short_form_style_guidance; never a calm/ambient track. Distinct from the last 3 published shorts' tracks (sf_007: Phonk Remix, sf_008: VEKI VEKI (Slowed), sf_009: Gata Only NJ), satisfying track rotation.",
-      "visual_direction": "Suggested candidate clips from assets/short-form-clips/raw/ for this competitive-caliber/'built for this' arc (Agent 3.1 to pick 6-10 of these, reuse from prior videos is fine since these genuinely fit the aggressive car/prestige energy this angle calls for): 13.mp4 (showroom full of multiple supercars — 'not everyone gets here' reveal), 17.mp4 (night city street with a supercar, moody lighting — standard-setting mood), 7.mp4 (night street, colorful supercars lineup — competitive multiple-car energy), 51.mp4 (red cars lineup on a street), 55.mp4 (parking garage red/black cars), 6.mp4 (car driving through a narrow alley — precision/skill motion), 48.mp4 (driving POV shot, hands on wheel — control/focus), 5.mp4 (close-up on a dark car's front grille — intensity/aggression), 23.mp4 (dark car at a house at night, moody/solitary standard), 52.mp4 (yellow supercar on a mansion driveway in daylight — payoff/arrival), 3.mp4 (yellow supercar, confident daylight flex), 12.mp4 (close-up luxury watch on wrist — precision/caliber detail). All are literal cars/prestige-object footage from the permitted luxury-lifestyle pool, zero mismatch risk. Prefer the faster, more aggressive car/motion shots (13, 17, 7, 51, 55, 6, 48, 5) as the backbone for the relentless-energy beats, with 23/52/3/12 as variety/payoff inserts.",
+      "sound_direction": "Using the real trending track 'Montagem Celestial Esperanza' (assets/audio/trending/montagem_celestial_esperanza.mp3, state/trending_audio_library.json, Brazilian funk/phonk 'montagem' style, ~20.09s native duration, credited to DJZRX/motty/rodricci/MC Novin \u2014 same production circle as VEKI VEKI (Slowed), already used on sf_008) per the owner's 2026-07-27 lift of the CC0-only requirement for short-form, and per this cycle's specific instruction to use this exact track. Chosen for this angle because its aggressive, relentless, forward-driving phonk/montagem intensity matches a competitive 'built for this / refuse mediocrity' register well \u2014 it is NOT reused for sf_008's grind-endurance theme; this cycle's competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt7) found the track is a real, genuinely-identified sound but only a one-off use on @millionaire_mentality_7 (1 hit in a fresh 200-video pull, vs VEKI VEKI's 9), so this angle leans on the track's verified aggressive-energy identity rather than any false claim that it's a proven recurring hit on that channel. Fast-tempo enough to drive real beat-locked fast cuts per config/channel.json.short_form_style_guidance; never a calm/ambient track. Distinct from the last 3 published shorts' tracks (sf_007: Phonk Remix, sf_008: VEKI VEKI (Slowed), sf_009: Gata Only NJ), satisfying track rotation.",
+      "visual_direction": "Suggested candidate clips from assets/short-form-clips/raw/ for this competitive-caliber/'built for this' arc (Agent 3.1 to pick 6-10 of these, reuse from prior videos is fine since these genuinely fit the aggressive car/prestige energy this angle calls for): 13.mp4 (showroom full of multiple supercars \u2014 'not everyone gets here' reveal), 17.mp4 (night city street with a supercar, moody lighting \u2014 standard-setting mood), 7.mp4 (night street, colorful supercars lineup \u2014 competitive multiple-car energy), 51.mp4 (red cars lineup on a street), 55.mp4 (parking garage red/black cars), 6.mp4 (car driving through a narrow alley \u2014 precision/skill motion), 48.mp4 (driving POV shot, hands on wheel \u2014 control/focus), 5.mp4 (close-up on a dark car's front grille \u2014 intensity/aggression), 23.mp4 (dark car at a house at night, moody/solitary standard), 52.mp4 (yellow supercar on a mansion driveway in daylight \u2014 payoff/arrival), 3.mp4 (yellow supercar, confident daylight flex), 12.mp4 (close-up luxury watch on wrist \u2014 precision/caliber detail). All are literal cars/prestige-object footage from the permitted luxury-lifestyle pool, zero mismatch risk. Prefer the faster, more aggressive car/motion shots (13, 17, 7, 51, 55, 6, 48, 5) as the backbone for the relentless-energy beats, with 23/52/3/12 as variety/payoff inserts.",
       "factual_controversy_screen": {
         "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
         "no_political_figures_parties_elections_policy": "pass - none referenced",
@@ -913,15 +906,15 @@
           "48.mp4 (driving POV shot, hands on wheel)",
           "5.mp4 (close-up on a dark car's front grille)"
         ],
-        "clip_source": "Picked the 8 'backbone' clips (of the 12 suggested by Agent 2.1's visual_direction) that Agent 2.1 itself flagged as the faster/more aggressive car-motion shots best matching this angle's relentless competitive energy; all 8 are reused from prior published shorts (sf_006/sf_008), which is expected and fine given the raw pool is nearly exhausted (only 30.mp4 is fully unused, and 30.mp4 is a stately-mansion/lawn daylight shot that does not fit this angle's aggressive car-motion energy, so it was deliberately not forced in — checked via a frame grab before deciding).",
+        "clip_source": "Picked the 8 'backbone' clips (of the 12 suggested by Agent 2.1's visual_direction) that Agent 2.1 itself flagged as the faster/more aggressive car-motion shots best matching this angle's relentless competitive energy; all 8 are reused from prior published shorts (sf_006/sf_008), which is expected and fine given the raw pool is nearly exhausted (only 30.mp4 is fully unused, and 30.mp4 is a stately-mansion/lawn daylight shot that does not fit this angle's aggressive car-motion energy, so it was deliberately not forced in \u2014 checked via a frame grab before deciding).",
         "steps_applied": [
           "1. Selected 8 distinct raw clips matching visual_direction (within the 6-15 recommended range for ~27s target)",
-          "2. Reframed/cropped every shot to vertical 1080x1920 via the script's default center-crop (crop=min(iw,ih*9/16):min(ih,iw*16/9),scale=1080:1920) — excludes the baked-in left-side watermark per assets/short-form-clips/raw/README.md",
+          "2. Reframed/cropped every shot to vertical 1080x1920 via the script's default center-crop (crop=min(iw,ih*9/16):min(ih,iw*16/9),scale=1080:1920) \u2014 excludes the baked-in left-side watermark per assets/short-form-clips/raw/README.md",
           "3. Applied the mandatory dark/low-exposure 'gymcore' color grade to every shot (reduced brightness/exposure, boosted contrast, slight desaturation, mild vignette)",
           "4. Cuts locked to real beat detection (librosa) on assets/audio/trending/montagem_celestial_esperanza.mp3, capped at the tightened 1.5s/shot ceiling: 27 shots from the 8 distinct clips, avg ~1.00s/shot, range 0.90s-1.07s (all well under the 1.5s hard cap), clips reused with rotating start-offsets to cover 27 shots from 8 source clips",
-          "5. No on-screen text/captions burned in — dropped entirely per the updated 2.1_scriptwriter.md/3.1_producer.md specs (2026-07-27); no --texts argument exists in scripts/short_form_transform.py anymore and none was passed",
-          "6. Intro-skip: script detected 0.00s of slow/quiet intro to skip on this track (Montagem Celestial Esperanza's own ~20s native clip apparently opens already at/near its energetic hook, unlike some of the library's other tracks) — confirmed via stdout, not assumed",
-          "7. Replaced audio entirely with the real trending track 'Montagem Celestial Esperanza' (assets/audio/trending/montagem_celestial_esperanza.mp3, state/trending_audio_library.json, ~20.09s native, looped via -stream_loop to fill 27s) per the owner's 2026-07-27 lift of the CC0-only requirement and this cycle's specific instruction to use this track — no original clip audio retained",
+          "5. No on-screen text/captions burned in \u2014 dropped entirely per the updated 2.1_scriptwriter.md/3.1_producer.md specs (2026-07-27); no --texts argument exists in scripts/short_form_transform.py anymore and none was passed",
+          "6. Intro-skip: script detected 0.00s of slow/quiet intro to skip on this track (Montagem Celestial Esperanza's own ~20s native clip apparently opens already at/near its energetic hook, unlike some of the library's other tracks) \u2014 confirmed via stdout, not assumed",
+          "7. Replaced audio entirely with the real trending track 'Montagem Celestial Esperanza' (assets/audio/trending/montagem_celestial_esperanza.mp3, state/trending_audio_library.json, ~20.09s native, looped via -stream_loop to fill 27s) per the owner's 2026-07-27 lift of the CC0-only requirement and this cycle's specific instruction to use this track \u2014 no original clip audio retained",
           "8. Exported at 27s target duration (within the 15-30s short-form spec, matching the requested 25-28s window)"
         ],
         "script_stdout_confirmation": "Transformed (beat-synced cuts, <=1.5s cap): 27 shots from 8 distinct clips, avg ~1.00s/shot (range 0.90s-1.07s, intro skipped: 0.00s, cut points from real beat detection on assets/audio/trending/montagem_celestial_esperanza.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_010.mp4",
@@ -932,8 +925,92 @@
           "file_size_bytes": 16559946,
           "file_integrity": "full ffmpeg decode pass (-i ... -f null -) completed with zero errors, non-corrupt"
         },
-        "gates_note": "config/gates.json short_form_gates.copyright_gate.mitigation_required_before_publish still lists 'original text overlay/caption burned in' as a checklist item — this predates today's (2026-07-27) on-screen-text removal directive in agents/short_form/2.1_scriptwriter.md and 3.1_producer.md and config/channel.json.short_form_style_guidance.text_rules, which explicitly drop captions entirely. Followed the newer, explicitly-dated spec per this task's instructions rather than the stale gates.json wording; flagging this discrepancy so Agent 0/the owner can update gates.json's checklist to match (reframe+color-grade+audio-replacement remain fully applied, satisfying the other 3 of 4 listed mitigation items)."
+        "gates_note": "config/gates.json short_form_gates.copyright_gate.mitigation_required_before_publish still lists 'original text overlay/caption burned in' as a checklist item \u2014 this predates today's (2026-07-27) on-screen-text removal directive in agents/short_form/2.1_scriptwriter.md and 3.1_producer.md and config/channel.json.short_form_style_guidance.text_rules, which explicitly drop captions entirely. Followed the newer, explicitly-dated spec per this task's instructions rather than the stale gates.json wording; flagging this discrepancy so Agent 0/the owner can update gates.json's checklist to match (reframe+color-grade+audio-replacement remain fully applied, satisfying the other 3 of 4 listed mitigation items)."
       }
+    },
+    {
+      "id": "sf_011",
+      "scouted_at": "2026-07-27T20:30:00Z",
+      "angle": "'No one clocks me in' time-freedom/autonomy narrative: the real luxury on display isn't the object itself, it's not needing anyone's permission for how you spend your own time \u2014 waking without an alarm, boarding a flight on a Tuesday, having no one to clock in for. Distinct from every prior angle in this queue: not quiet/restrained old-money framing (sf_002/sf_002_v2), not isolation-to-purpose (sf_005), not car-as-proof-of-past-invisible-work (sf_006, backward-looking), not future-self visualization/manifestation (sf_007, forward-looking/becoming), not relentless grind/no-days-off endurance (sf_008), not confident-settled-arrival/'just normal now' (sf_009, which is about status already being ordinary, not about controlling one's own time), not competitive standards/refuse-mediocrity identity framing (sf_010). This is specifically about autonomy over time/schedule as the actual prize, a genuinely new register. Uses the luxury-lifestyle footage pool directly and literally (sunrise/dawn shots, hot air balloon, skydiving, yacht-at-sea, daylight mansion leisure) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope.",
+      "title_pattern": "Nobody Clocks Me In Anymore.",
+      "caption_hooks": [
+        "No alarm. No boss. No apology.",
+        "I stopped asking what time I'm allowed to start.",
+        "This is what owning your own time actually looks like."
+      ],
+      "trending_sound_style": "Upbeat, confident, celebratory dance/reggaeton-adjacent energy (mid-tempo, roughly 80-90 BPM) \u2014 a victory-lap groove rather than an aggressive grind-kick track, since this angle's register is settled/free rather than striving/aggressive. Style description only, per this stage's brief \u2014 Agent 2.1/3.1 pick the actual verified track from the audio libraries.",
+      "hashtags": [
+        "#timefreedom",
+        "#luxurylifestyle",
+        "#nooneclocksmein",
+        "#millionairemindset",
+        "#freedommindset"
+      ],
+      "source_notes": "Modeled directly on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt8, 2026-07-27): a fresh RSS pull plus a fresh 60-video TikTok flat-playlist pull of @Millionaire_Mentality_7 (the closest direct analog in this niche) found zero occurrences of any 'time freedom'/'no permission'/'no alarm'/autonomy framing across current rotation \u2014 the channel's captions remain exclusively its generic '[Rich/Luxury] Life/Lifestyle \ud83d\udcb0' template or specific-car-model callouts (BMW/Dodge Charger/BMW Edit/BMW Vibes). This is the same kind of validated gap that supported sf_007's manifestation angle (per pt4): an angle this niche's audience/psychographic (config/channel.json target_audience \u2014 'untapped potential', 'entrepreneurship', wants to feel understood) clearly fits, that the closest competitor simply isn't using yet. Also grounded in a real freshness check: the newest video in this scan (m5BByGlck3I / TikTok 7667074926465092882, 'Dodge Charger') grew from 330 views (pt4) to 650 (this scan's RSS pull) to 4,554 (this scan's later single-video re-pull minutes afterward) over the course of one scan cycle, reconfirming pt3/pt4/pt5's repeated finding that view counts should never be judged at the moment of publish.",
+      "title": "Nobody Clocks Me In Anymore.",
+      "seo_description": "No alarm, no boss, no one to ask permission from \u2014 this is what it actually looks like to own your own time. A fast-cut motivational short on time-freedom and autonomy as the real luxury, for anyone chasing the version of themselves who never has to clock in again.",
+      "tags": [
+        "time freedom",
+        "luxury lifestyle",
+        "millionaire mindset",
+        "financial freedom",
+        "no boss",
+        "self improvement",
+        "entrepreneur mindset",
+        "own your time",
+        "success mindset",
+        "wealth mindset",
+        "motivational shorts",
+        "cinematic motivation",
+        "abundance mindset",
+        "luxury motivation",
+        "freedom mindset"
+      ],
+      "sound_direction": "Checked state/trending_audio_library.json and state/cc0_audio_library.json plus the audio actually used by the last several produced/published candidates before picking (sf_007: Phonk Remix, sf_008: VEKI VEKI (Slowed), sf_009: Gata Only NJ, sf_010: Montagem Celestial Esperanza) so this doesn't repeat whatever was used last purely out of habit. Selected 'Danza Kuduro 2025' (assets/audio/trending/danza_kuduro_2025.mp3, state/trending_audio_library.json, ~83 BPM, genuinely identified as A-Clark's 2025 edit of the globally well-known 'Danza Kuduro') \u2014 not used by any prior candidate in this queue. Chosen over the two most-recently-used tracks specifically for its upbeat, celebratory 'victory lap' dance energy rather than an aggressive grind-kick sound: this angle's register is settled/free/autonomous, closer to sf_009's confident tone than sf_008/sf_010's aggressive-grind register, and Danza Kuduro's celebratory dance-pop energy fits that better than the harder Brazilian phonk/montagem tracks would. Still genuinely fast-tempo (~83 BPM) so it drives real beat-locked fast cuts per config/channel.json.short_form_style_guidance \u2014 this is a different flavor of upbeat, not a slowdown; never a calm/ambient track (those are long-form only).",
+      "visual_direction": "Raw pool is almost entirely reused across prior candidates already (checked every other entry's transform_log in this file \u2014 only 30.mp4 has never appeared in any prior production), so most of these are legitimate reuse rather than fresh footage, chosen for genuine visual fit to a 'my time, no permission needed' arc rather than novelty: 25.mp4 (rooftop/balcony watching hot air balloons at dawn \u2014 waking on your own terms, no alarm), 21.mp4 (hot air balloons at dawn \u2014 unhurried, drifting, nobody's schedule), 43.mp4 (skydiving above the clouds \u2014 total autonomy/no permission needed), 18.mp4 (yacht at sea \u2014 no fixed location, no clock), 1.mp4 (sunset/sunrise over a field \u2014 a morning nobody else dictates), 30.mp4 (stately mansion/lawn in daylight \u2014 genuinely unused by any prior candidate; a leisurely daytime scene fits 'free on a Tuesday afternoon' well). Suggesting all 6 as the candidate pool; since target duration is now only 8-12s, Agent 3.1 doesn't need all 6 \u2014 even 4-5 of these would give enough cut variety at the 1.5s/shot cap.",
+      "factual_controversy_screen": {
+        "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
+        "no_political_figures_parties_elections_policy": "pass - none referenced",
+        "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - title/description/tags are generic first-person autonomy/lifestyle framing only; no named individuals, no statistics or studies cited, no quotes attributed to any real person, no financial/outcome guarantees implied",
+        "no_controversial_social_topics_per_channel_exclusions": "pass - topic is self-improvement/time-autonomy motivational framing only, no politics or controversial topics per channel.json content_exclusions",
+        "result": "cleared, no rewrite needed"
+      },
+      "scripted_at": "2026-07-27T20:45:00Z",
+      "produced_at": "2026-07-27T21:05:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_011.mp4",
+      "transform_log": {
+        "clips_used": [
+          "25.mp4 (rooftop/balcony watching hot air balloons at dawn \u2014 waking on own terms, no alarm)",
+          "21.mp4 (hot air balloons at dawn \u2014 unhurried, nobody's schedule)",
+          "43.mp4 (skydiving above the clouds \u2014 total autonomy, no permission needed)",
+          "18.mp4 (yacht at sea \u2014 no fixed location, no clock)",
+          "1.mp4 (sunset/sunrise over a field \u2014 a morning nobody else dictates)",
+          "30.mp4 (stately mansion/lawn in daylight \u2014 genuinely unused by any prior candidate in this queue; leisurely daytime scene fits 'free on a Tuesday afternoon')"
+        ],
+        "clip_source": "6 clips selected per visual_direction for genuine fit to the time-freedom/autonomy arc. 5 of the 6 are reused from earlier productions (sf_005/sf_007 used 25,21,43,18,1) which is expected and acceptable now that the raw pool is mostly used up \u2014 checked every other entry's transform_log first and confirmed these are still a real visual match for this angle, not reused merely for convenience. 30.mp4 is the one raw clip that has never appeared in any prior sf_00x production, confirmed by checking every transform_log in this file.",
+        "steps_applied": [
+          "1. Selected the 6 clips above matching visual_direction, passed to --clips in that order.",
+          "2. Reframed/cropped every shot to vertical 1080x1920 via the script's default center-crop (crop=min(iw,ih*9/16):min(ih,iw*16/9),scale=1080:1920) \u2014 excludes the baked-in left-side watermark per assets/short-form-clips/raw/README.md; crop centering was not modified.",
+          "3. Applied the mandatory dark/low-exposure 'gymcore' color grade to every shot (eq=contrast=1.20:saturation=0.88:brightness=-0.09:gamma=0.92, vignette=PI/4).",
+          "4. Cuts locked to real beat detection (librosa) on assets/audio/trending/danza_kuduro_2025.mp3, capped at the current 1.5s/shot ceiling: 8 shots from the 6 distinct clips, avg ~1.25s/shot, range 0.83s-1.48s (all under the 1.5s hard cap, confirmed by script stdout, not just claimed).",
+          "5. No on-screen text/captions burned in \u2014 dropped entirely per the current 2.1_scriptwriter.md/3.1_producer.md specs; no --texts argument exists in scripts/short_form_transform.py and none was passed.",
+          "6. Intro-skip: script detected and trimmed 0.21s of slow/quiet intro from Danza Kuduro 2025 before beat detection, confirmed via stdout, so playback opens on the track's real energetic hook rather than a build-up.",
+          "7. Replaced audio entirely with the real trending track 'Danza Kuduro 2025' (assets/audio/trending/danza_kuduro_2025.mp3, state/trending_audio_library.json, ~83 BPM, A-Clark's 2025 edit of 'Danza Kuduro') per the owner's 2026-07-27 lift of the CC0-only requirement for short-form \u2014 no original clip audio retained. Not used by any prior sf_00x candidate, satisfying track rotation (last 4 produced: sf_007 Phonk Remix, sf_008 VEKI VEKI (Slowed), sf_009 Gata Only NJ, sf_010 Montagem Celestial Esperanza).",
+          "8. Exported at 10s target duration, within the current 8-12s short-form spec (config/channel.json.short_form_style_guidance.target_duration_seconds)."
+        ],
+        "script_stdout_confirmation": "Transformed (beat-synced cuts, <=1.5s cap): 8 shots from 6 distinct clips, avg ~1.25s/shot (range 0.83s-1.48s, intro skipped: 0.21s, cut points from real beat detection on assets/audio/trending/danza_kuduro_2025.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_011.mp4",
+        "ffprobe_verification": {
+          "video_stream": "h264, 1080x1920",
+          "audio_stream": "aac, present",
+          "duration_seconds": 10.0,
+          "file_size_bytes": 4911852,
+          "file_integrity": "full ffmpeg decode pass (ffmpeg -v error -i ... -f null -) completed with zero errors, non-corrupt",
+          "silence_check": "ffmpeg silencedetect (noise=-40dB, d=0.5s) over the full output found zero silence-interval matches"
+        }
+      },
+      "status": "published",
+      "published_video_id": "5pv__ZadiaI",
+      "published_url": "https://youtu.be/5pv__ZadiaI"
     }
   ]
 }
