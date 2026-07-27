@@ -569,6 +569,34 @@
       ],
       "published_video_id": "O3YSNtfh9rs",
       "published_url": "https://youtu.be/O3YSNtfh9rs"
+    },
+    {
+      "id": "sf_007",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T16:45:00Z",
+      "angle": "Future-self visualization / manifestation narrative: the viewer is told to look at the cars, skylines, and travel on screen not as someone else's life but as a rehearsal of their own future — a direct 'see it, feel it, become it' visualization exercise, tying the channel's manifestation/visualization niche (per config/channel.json niche field and handle @makeitmanifest) to the luxury-lifestyle footage pool. Distinct from every already-produced/queued angle: not 'quiet/old-money restraint' (sf_002/sf_002_v2), not 'isolation-to-purpose' (sf_005), not 'the car as proof of past work already done' (sf_006), not a gym/rep-grinding scene (sf_004, footage-incompatible). Here the luxury footage is framed forward-looking (a visualization/rehearsal of a future not yet built) rather than backward-looking (proof of work already put in) — a genuinely different narrative direction using the same permitted footage categories (cars/yachts/jets/cash/travel/skylines), so it carries zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope, unlike sf_001/sf_003 (quarantined) and unlike sf_004 (still unproduced for the same reason, not selected here either).",
+      "title_pattern": "This Is Your Future. Rehearse It.",
+      "caption_hooks": [
+        "You're not watching someone else's life. You're previewing yours.",
+        "Whatever you keep picturing, you keep becoming.",
+        "Feel it now so it recognizes you later."
+      ],
+      "trending_sound_style": "Upbeat/fast-tempo aggressive phonk or hardtekk-style instrumental, heavy sub-kick, beat-locked fast cuts (<=2.0s/shot per config/channel.json.short_form_style_guidance) — same mandatory short-form energy profile as every prior queued candidate; the 'visualization/manifestation' theme is a lyrical/thematic frame only, not a cue to slow the edit or use a calm/ambient track (that mistake was already owner-flagged on sf_002 and corrected in sf_002_v2/sf_003/sf_006).",
+      "hashtags": [
+        "#manifestation",
+        "#futureself",
+        "#visualization",
+        "#lawofattraction",
+        "#luxurymindset"
+      ],
+      "source_notes": "Modeled on: (1) config/channel.json's own niche description ('Motivational luxury background videos') and target_audience.psychographics ('believes they have untapped potential') plus the channel handle itself, @makeitmanifest, which names manifestation/visualization directly as the channel's core hook — a niche angle no prior candidate (sf_001-sf_006) has actually used despite being literally in the handle; (2) this cycle's fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt4, 2026-07-27): a fresh RSS pull of @Millionaire_Mentality_7 confirmed the channel's ~3x/day posting cadence and that the specific-car-model-callout title style (first flagged in pt3) is still active as of a video published minutes before this scan (m5BByGlck3I, 'Dodge Charger', 2026-07-27T15:00:37Z); this scan did not surface a direct manifestation-framed competitor example, which is itself informative — it suggests this framing is currently under-served relative to the generic 'rich lifestyle' and 'car as proof' templates dominating the space, rather than a saturated angle to avoid.",
+      "factual_controversy_self_check": {
+        "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
+        "no_political_figures_parties_elections_policy": "pass - none referenced",
+        "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - script framing is generic second-person manifestation/visualization messaging only, no named individuals, no statistics, studies, or quotes attributed to any real person; no medical, legal, or financial guarantees implied (does not claim visualization causes wealth as fact, framed as a mindset/motivation exercise)",
+        "no_controversial_social_topics_per_channel_exclusions": "pass - topic is self-improvement/manifestation mindset only, no politics or controversial topics per channel.json content_exclusions",
+        "result": "cleared, no rewrite needed"
+      }
     }
   ]
 }
