@@ -1,35 +1,39 @@
 #!/usr/bin/env python3
 """Apply Agent 3.1's mandatory transform checklist producing a FAST-CUT
 vertical short: reframe to vertical, dark/low-exposure grade, cuts synced
-to the actual detected beats of the audio track (capped at 2.0s max per
-shot, per real competitor research — see state/performance_notes.json),
-burned-in text sized to fit the frame, and full audio replacement.
+to the actual detected beats of the audio track (capped at 1.5s max per
+shot, per owner direction — see state/performance_notes.json), and full
+audio replacement. No on-screen text/captions — owner decided these add
+nothing and should be dropped (2026-07-27).
 
 Per config/channel.json short_form_style_guidance: short-form must be
 high-energy/fast-paced, dark/moody low-exposure grade, upbeat/fast-tempo
-CC0 audio only. A fast-tempo track naturally gives closer-together beats
-and therefore quicker cuts — pick upbeat audio, not just for mood but
+audio. A fast-tempo track naturally gives closer-together beats and
+therefore quicker cuts — pick upbeat audio, not just for mood but
 because it directly drives the edit pace.
+
+The audio's own slow/quiet intro (before the beat/hook really kicks in)
+is detected and skipped, so playback starts on the actual energetic part
+of the song — matters because a viewer scrolling onto a Short should
+land on the hook, not a quiet build-up.
 
 Usage:
   short_form_transform.py --output OUT.mp4 --audio TRACK.mp3 --duration 27 \
-    --clips raw/38.mp4 raw/9.mp4 raw/37.mp4 raw/53.mp4 raw/8.mp4 \
-    --texts "BEAT ONE TEXT" "BEAT TWO TEXT" ...
+    --clips raw/38.mp4 raw/9.mp4 raw/37.mp4 raw/53.mp4 raw/8.mp4
 
 `--clips` is the pool of source clips (as many distinct ones as you have
-that fit the visual_direction — more is better for variety). `--texts` is
-the list of on-screen text BEATS (fewer, longer than the cut count is
-fine/expected — each beat spans multiple quick cuts so it stays readable
-while the visuals still cut on the beat). The script:
-  1. Runs beat detection (librosa) on the audio track and uses the actual
-     detected beat timestamps as cut points, so every visual cut lands on
-     a beat — not an arbitrary fixed interval. Beats further apart than
-     2.0s get subdivided so no shot ever exceeds the cap; beats closer
-     together than ~0.5s get merged so cuts don't flicker unreadably.
-  2. Assigns each shot's on-screen text from whichever text beat's time
-     window it falls into.
+that fit the visual_direction — more is better for variety). The script:
+  1. Detects where the track's slow/quiet intro ends (RMS energy ramp-up)
+     and trims it off, so the audio used starts on the real hook.
+  2. Runs beat detection (librosa) on that trimmed audio and uses the
+     actual detected beat timestamps as cut points, so every visual cut
+     lands on a beat — not an arbitrary fixed interval. Beats further
+     apart than 1.5s get subdivided so no shot ever exceeds the cap;
+     beats closer together than ~0.45s get merged so cuts don't flicker
+     unreadably.
   3. Applies the dark/low-exposure grade to every shot.
-  4. Concats all shots, replaces audio entirely with the given CC0 track.
+  4. Concats all shots, replaces audio entirely with the trimmed/looped
+     track — no text overlays.
 """
 import argparse
 import subprocess
@@ -37,11 +41,8 @@ import tempfile
 import os
 import sys
 
-MAX_SHOT_SECONDS = 2.0
+MAX_SHOT_SECONDS = 1.5
 MIN_SHOT_SECONDS = 0.45
-MAX_CHARS_PER_LINE = 22
-DEFAULT_FONTSIZE = 52
-MIN_FONTSIZE = 34
 
 
 def ffprobe_duration(path):
@@ -53,11 +54,70 @@ def ffprobe_duration(path):
     return float(out.stdout.strip())
 
 
+def detect_hook_offset(y, sr):
+    """Find where the track's energy ramps up into its real hook/drop,
+    so a slow/quiet intro can be skipped. Uses short-time RMS energy:
+    finds the first time the RMS crosses ~65% of the track's sustained
+    high-energy level and stays there for at least ~0.5s. Returns 0.0 if
+    no clear ramp-up is found (e.g. the track is already high-energy from
+    the start, or too short to have a meaningful intro).
+    """
+    import librosa
+    import numpy as np
+
+    hop_length = 512
+    rms = librosa.feature.rms(y=y, hop_length=hop_length)[0]
+    times = librosa.frames_to_time(range(len(rms)), sr=sr, hop_length=hop_length)
+
+    if len(rms) < 10:
+        return 0.0
+
+    # "Sustained high-energy level" = 75th percentile of RMS across the
+    # whole track (robust to a single loud transient, unlike the max).
+    high_level = float(np.percentile(rms, 75))
+    threshold = 0.65 * high_level
+
+    min_sustain_frames = max(1, int(0.5 * sr / hop_length))
+    for i in range(len(rms) - min_sustain_frames):
+        if rms[i] >= threshold and (rms[i:i + min_sustain_frames] >= threshold * 0.8).all():
+            offset = float(times[i])
+            # Don't skip more than half the track — a false-positive late
+            # detection shouldn't eat most of the available audio.
+            native_dur = len(y) / sr
+            return offset if offset < native_dur * 0.5 else 0.0
+    return 0.0
+
+
+def trim_intro(audio_path, workdir):
+    """Detect and cut the slow intro off, returning a path to a new,
+    shorter audio file that starts on the real hook. Falls back to the
+    original file untouched if detection fails or finds no offset.
+    """
+    try:
+        import librosa
+        y, sr = librosa.load(audio_path, sr=None)
+        offset = detect_hook_offset(y, sr)
+    except Exception as e:
+        print(f"Hook-detection failed ({e}), using the track from its start.", file=sys.stderr)
+        offset = 0.0
+
+    if offset <= 0.05:
+        return audio_path, 0.0
+
+    trimmed_path = os.path.join(workdir, "trimmed_audio.mp3")
+    subprocess.run(
+        ["ffmpeg", "-y", "-ss", f"{offset:.3f}", "-i", audio_path,
+         "-c:a", "libmp3lame", "-q:a", "2", trimmed_path],
+        capture_output=True, check=True,
+    )
+    return trimmed_path, offset
+
+
 def beat_cut_points(audio_path, duration):
-    """Detect real beat timestamps in the audio and turn them into a list
-    of shot-boundary times covering [0, duration], respecting
-    MAX_SHOT_SECONDS/MIN_SHOT_SECONDS. Falls back to an even 2.0s grid if
-    beat detection finds nothing usable (e.g. a non-musical/ambient track).
+    """Detect real beat timestamps in the (already intro-trimmed) audio
+    and turn them into a list of shot-boundary times covering
+    [0, duration], respecting MAX_SHOT_SECONDS/MIN_SHOT_SECONDS. Falls
+    back to an even 1.5s grid if beat detection finds nothing usable.
     """
     try:
         import librosa
@@ -71,12 +131,13 @@ def beat_cut_points(audio_path, duration):
         _, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
         beats = sorted(set(round(t, 3) for t in librosa.frames_to_time(beat_frames, sr=sr)))
         # Cutting on every single detected beat is often too fast to read
-        # (sub-1s flicker on a dense track). Target ~1.5s/shot by striding
+        # (sub-1s flicker on a dense track). Target ~1.2s/shot by striding
         # through the beat list, while staying genuinely beat-locked (every
-        # cut still lands exactly on a real beat, just not every one).
+        # cut still lands exactly on a real beat, just not every one) and
+        # comfortably under the new 1.5s hard cap.
         if len(beats) >= 2:
             avg_interval = (beats[-1] - beats[0]) / (len(beats) - 1)
-            target_shot = 1.5
+            target_shot = 1.2
             stride = max(1, round(target_shot / avg_interval))
             beats = beats[::stride]
         if native_dur < duration and beats:
@@ -87,7 +148,7 @@ def beat_cut_points(audio_path, duration):
                 offset += native_dur
             beats = tiled
     except Exception as e:
-        print(f"Beat detection failed ({e}), falling back to a fixed 2.0s grid.", file=sys.stderr)
+        print(f"Beat detection failed ({e}), falling back to a fixed 1.5s grid.", file=sys.stderr)
         beats = []
 
     points = [0.0] + [b for b in beats if 0.0 < b < duration] + [duration]
@@ -122,46 +183,34 @@ def beat_cut_points(audio_path, duration):
     return final
 
 
-def font_size_for_text(text):
-    if not text:
-        return DEFAULT_FONTSIZE
-    longest = max(len(line) for line in text.replace("\\n", "\n").split("\n"))
-    if longest <= MAX_CHARS_PER_LINE:
-        return DEFAULT_FONTSIZE
-    scaled = int(DEFAULT_FONTSIZE * MAX_CHARS_PER_LINE / longest)
-    return max(scaled, MIN_FONTSIZE)
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", required=True)
     ap.add_argument("--audio", required=True)
     ap.add_argument("--duration", type=float, required=True)
     ap.add_argument("--clips", nargs="+", required=True)
-    ap.add_argument("--texts", nargs="*", default=[])
     args = ap.parse_args()
 
     duration = args.duration
     clips = args.clips
-    texts = args.texts or [""]
-
-    cut_points = beat_cut_points(args.audio, duration)
-    num_shots = len(cut_points) - 1
-    beat_dur = duration / len(texts)
 
     clip_durations = {c: ffprobe_duration(c) for c in set(clips)}
 
-    with tempfile.TemporaryDirectory() as textdir:
+    with tempfile.TemporaryDirectory() as workdir:
+        trimmed_audio, intro_offset = trim_intro(args.audio, workdir)
+        cut_points = beat_cut_points(trimmed_audio, duration)
+        num_shots = len(cut_points) - 1
+
         shot_input_idx = [clips[i % len(clips)] for i in range(num_shots)]
 
         input_args = []
         for clip in shot_input_idx:
             input_args += ["-i", clip]
-        # -stream_loop -1 loops the audio input indefinitely so short
-        # source clips (e.g. a ~15-20s TikTok excerpt of a song) still
-        # fill the full target duration via the atrim below, instead of
-        # leaving the tail silent.
-        input_args += ["-stream_loop", "-1", "-i", args.audio]
+        # -stream_loop -1 loops the (intro-trimmed) audio input
+        # indefinitely so short source clips (e.g. a ~15-20s TikTok
+        # excerpt of a song) still fill the full target duration via the
+        # atrim below, instead of leaving the tail silent.
+        input_args += ["-stream_loop", "-1", "-i", trimmed_audio]
         audio_idx = len(shot_input_idx)
 
         filter_parts = []
@@ -176,31 +225,12 @@ def main():
             cdur = clip_durations[clip]
             start = (seen * shot_dur) % max(cdur - shot_dur, 0.01)
 
-            shot_center_time = cut_points[i] + shot_dur / 2
-            beat_index = min(int(shot_center_time / beat_dur), len(texts) - 1)
-            text = texts[beat_index]
-            fontsize = font_size_for_text(text)
-
-            drawtext = ""
-            if text:
-                textfile = os.path.join(textdir, f"text_{i}.txt")
-                with open(textfile, "w") as f:
-                    # Accept a literal two-character "\n" (common when text
-                    # arrives via shell double-quotes, which don't expand
-                    # it) as well as a real newline character.
-                    f.write(text.replace("\\n", "\n"))
-                drawtext = (
-                    f",drawtext=textfile='{textfile}':fontcolor=white:"
-                    f"fontsize={fontsize}:box=1:boxcolor=black@0.45:"
-                    f"boxborderw=18:x=(w-text_w)/2:y=h*0.74:line_spacing=8"
-                )
-
             filter_parts.append(
                 f"[{i}:v]trim={start:.3f}:{start + shot_dur:.3f},"
                 f"setpts=PTS-STARTPTS,"
                 f"crop='min(iw,ih*9/16)':'min(ih,iw*16/9)',scale=1080:1920,"
                 f"eq=contrast=1.20:saturation=0.88:brightness=-0.09:gamma=0.92,"
-                f"vignette=PI/4{drawtext}[v{i}]"
+                f"vignette=PI/4[v{i}]"
             )
             concat_labels += f"[v{i}]"
 
@@ -229,9 +259,9 @@ def main():
     print(
         f"Transformed (beat-synced cuts, <={MAX_SHOT_SECONDS}s cap): {num_shots} shots from "
         f"{len(set(clips))} distinct clips, avg ~{avg_dur:.2f}s/shot "
-        f"(range {min(shot_durs):.2f}s-{max(shot_durs):.2f}s, cut points from real "
-        f"beat detection on {args.audio}) -> vertical, dark/low-exposure grade, "
-        f"per-beat text, audio-replaced -> {args.output}"
+        f"(range {min(shot_durs):.2f}s-{max(shot_durs):.2f}s, intro skipped: {intro_offset:.2f}s, "
+        f"cut points from real beat detection on {args.audio}) -> vertical, "
+        f"dark/low-exposure grade, no captions, audio-replaced -> {args.output}"
     )
 
 
