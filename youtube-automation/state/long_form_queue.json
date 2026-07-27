@@ -104,7 +104,7 @@
       "status": "ready_to_publish",
       "visual_theme": "CORRECTED by Agent 2.2 after inspecting the actual downloaded file (Drive file 1LfLP5qOhDdkcpHki-2U6YCBgEuxudXVI, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (21).jpg') \u2014 this is NOT a car/mansion driveway scene as the original placeholder note assumed. It is a Dubai Marina night skyline shot (736x414 source) from a lower, closer angle than lf_003's: a row of moored white motor yachts fills the left/center foreground on dark reflective water, warm-lit high-rise towers (several again carrying legible 'EMAAR' illuminated building signage, same naturally-occurring architectural signage already disclosed for lf_003 \u2014 not a deliberate logo/watermark overlay) rise across the background, colorful light reflections (amber/red/teal) ripple on the water surface. No stock-photo watermark, no scam/ad text (checked top/bottom edge crops at 2x zoom, both clean). No people/faces readable.",
       "mood": "slow ambient piano with a light continuous rain layer, warm sustained pads, no percussion, no vocals, sub-60bpm (Rain / Sleep / Meditation track)",
-      "title": "1 Hour of Stillness | Marina Yachts at Night - Ambience for Deep Focus",
+      "title": "This Is What Stillness Feels Like",
       "seo_description": "A quiet hour among moored yachts on a glittering marina at night, warm-lit towers rising behind still water. Let this calm ambience carry you into stillness while you focus, study, journal, or manifest your next level. Perfect for study sessions, late-night reflection, or falling asleep to calm ambience. #ambience #motivation #manifestation #deepfocus #discipline #studywithme #luxurylifestyle #selfimprovement",
       "tags": [
         "luxury ambience",
@@ -133,14 +133,15 @@
       "target_length_seconds": 3600,
       "assembly_note": "scripts/ffmpeg_loop.sh-equivalent command: -stream_loop -1 on both lf_004_loop_segment.mp4 (20s visual) and holiznacc0_rain_sleep_meditation.mp3 (875.976s audio), capped -t 3600, 8s fade in/out on both video (fade) and audio (afade). ffprobe confirms exact 3600.000000s duration, 1920x1080 h264 video + aac audio. Full `ffmpeg -i ... -f null -` decode pass completed with zero errors. Frame checks at t=0,5,900,1800,2700,3595,3599 all show the intended calm marina/yacht scene with correct fade-in/fade-out at the edges and consistent mid-video framing. silencedetect (-35dB/2s) found only the expected 8s fade-in ramp at the start plus ~14s periodic quiet passages recurring every ~876s (one per audio-track loop iteration, matching the track's own natural quiet stretch, not a corrupted/dropped-audio defect) -- no unintentional long silent/black stretch.",
       "gate_check_note": "long_form_gates run and passed: image_copyright_gate path B (image_pool.json has source:owner_provided_unverified + disclosed-risk note referenced, no active red flags found on inspection). audio_license_gate (Rain/Sleep/Meditation verified:true in cc0_audio_library.json, CC0 1.0, source page rel=license checked at verification time). loop_length_gate (3600s = 60min, within [60,600]). shared_gates.basic_qa (a/v sync fine per decode pass, 1920x1080 native long-form resolution, duration exactly matches target, non-corrupt/non-zero-byte 401,954,060-byte file, no unintentional silent/black stretch beyond 2s per silencedetect results above). shared_gates.factual_controversy_screen and platform_policy_check already confirmed clean per content_exclusions_screen field above.",
-      "publish_note": "Per owner/orchestrator update on 2026-07-27: YouTube's daily per-channel upload quota (~11 videos already uploaded today) was hit by sf_019/020/021 (HTTP 400 uploadLimitExceeded). Production/gating for long-form is no longer coupled to same-cycle publishing -- lf_004 is fully produced and gate-passed but deliberately NOT uploaded this run to avoid the same quota wall. Status set to ready_to_publish; a future daily publishing-throttle trigger will upload it nearer its scheduled slot."
+      "publish_note": "Per owner/orchestrator update on 2026-07-27: YouTube's daily per-channel upload quota (~11 videos already uploaded today) was hit by sf_019/020/021 (HTTP 400 uploadLimitExceeded). Production/gating for long-form is no longer coupled to same-cycle publishing -- lf_004 is fully produced and gate-passed but deliberately NOT uploaded this run to avoid the same quota wall. Status set to ready_to_publish; a future daily publishing-throttle trigger will upload it nearer its scheduled slot.",
+      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '1 Hour of Stillness | Marina Yachts at Night - Ambience for Deep Focus'."
     },
     {
       "id": "lf_005",
       "status": "scouted",
       "visual_theme": "Owner-supplied still image (Drive file 1Ghxx0Yvt_OjzJW_M9Dc4EuaJ3xgjAtVJ, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (11).jpg'): not yet downloaded/inspected by this agent; per the folder's established theme expected to be a luxury car/mansion night scene consistent with the rest of the batch. General description only \u2014 Agent 2.2 will download, inspect, and correct/refine this note against the real file.",
       "mood": "calm ambient background, cozy/warm character (Fire Place track)",
-      "title": "2 Hours of Discipline | Private Estate Ambience for Study & Manifestation",
+      "title": "Discipline Doesn't Need An Audience",
       "seo_description": "Two hours of calm outside a private estate at night, made for deep study sessions, long focus blocks, or working toward the life you're building. Let the stillness carry you through discipline, journaling, or manifestation practice. Great for background study, late-night reflection, or sleep. #ambience #discipline #manifestation #deepfocus #studywithme #luxurylifestyle #selfimprovement",
       "tags": [
         "luxury ambience",
@@ -160,14 +161,15 @@
       "audio_track_id_provisional": "Fire Place (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0), alternated with Rain/Sleep/Meditation across this batch for variety.",
       "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags. Passes shared_gates.factual_controversy_screen and platform_policy_check on inspection: no misleading title/thumbnail mismatch, no hate speech/violence/self-harm content, purely generic luxury-ambience motivational framing with no fabricated claims or named-individual quotes.",
       "banana_status_note": "Still blocked, same as lf_003 \u2014 see that entry's banana_status_note for the direct curl confirmation performed this cycle. Path B used instead.",
-      "scouted_at": "2026-07-27T21:50:00Z"
+      "scouted_at": "2026-07-27T21:50:00Z",
+      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '2 Hours of Discipline | Private Estate Ambience for Study & Manifestation'."
     },
     {
       "id": "lf_006",
       "status": "scouted",
       "visual_theme": "Owner-supplied still image (Drive file 1W0N23txWk6VX7KhU5vTfafT38P_GEux2, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (2).jpg'): not yet downloaded/inspected by this agent; per the folder's established theme expected to be a luxury car/mansion night scene consistent with the rest of the batch. General description only \u2014 Agent 2.2 will download, inspect, and correct/refine this note against the real file.",
       "mood": "slow ambient piano with a light continuous rain layer, warm sustained pads, no percussion, no vocals, sub-60bpm (Rain / Sleep / Meditation track)",
-      "title": "75 Minutes of Calm | Luxury Courtyard Ambience for Deep Work",
+      "title": "You Build In The Quiet",
       "seo_description": "Seventy-five minutes of quiet luxury courtyard ambience, made for deep work, studying, journaling, or manifesting your next chapter. Let the calm carry you into focus and stillness. Great for study sessions, late-night reflection, or falling asleep. #ambience #deepfocus #manifestation #studywithme #luxurylifestyle #selfimprovement #discipline",
       "tags": [
         "luxury ambience",
@@ -187,14 +189,15 @@
       "audio_track_id_provisional": "Rain _ Sleep _ Meditation (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0), alternated with Fire Place across this batch for variety.",
       "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags. Passes shared_gates.factual_controversy_screen and platform_policy_check on inspection: no misleading title/thumbnail mismatch, no hate speech/violence/self-harm content, purely generic luxury-ambience motivational framing with no fabricated claims or named-individual quotes.",
       "banana_status_note": "Still blocked, same as lf_003 \u2014 see that entry's banana_status_note for the direct curl confirmation performed this cycle. Path B used instead.",
-      "scouted_at": "2026-07-27T21:50:00Z"
+      "scouted_at": "2026-07-27T21:50:00Z",
+      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '75 Minutes of Calm | Luxury Courtyard Ambience for Deep Work'."
     },
     {
       "id": "lf_007",
       "status": "scouted",
       "visual_theme": "Owner-supplied still image (Drive file 1qAcAoDcjthtR_2TYdQmlfQiicVgkvuYs, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (1).jpg'): not yet downloaded/inspected by this agent; per the folder's established theme expected to be a luxury car/mansion night scene consistent with the rest of the batch. General description only \u2014 Agent 2.2 will download, inspect, and correct/refine this note against the real file.",
       "mood": "calm ambient background, cozy/warm character (Fire Place track)",
-      "title": "2.5 Hours of Focus | Moonlit Mansion Ambience for Deep Study",
+      "title": "Nobody Sees The Nights Like This",
       "seo_description": "Two and a half hours of moonlit mansion ambience \u2014 calm, warm, and steady for long study sessions, deep work, or manifesting the life you're building toward. Let the stillness carry you through discipline and focus. Great for background study, late-night reflection, or sleep. #ambience #deepfocus #manifestation #discipline #studywithme #luxurylifestyle #selfimprovement",
       "tags": [
         "luxury ambience",
@@ -214,14 +217,15 @@
       "audio_track_id_provisional": "Fire Place (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0), alternated with Rain/Sleep/Meditation across this batch for variety.",
       "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags. Passes shared_gates.factual_controversy_screen and platform_policy_check on inspection: no misleading title/thumbnail mismatch, no hate speech/violence/self-harm content, purely generic luxury-ambience motivational framing with no fabricated claims or named-individual quotes.",
       "banana_status_note": "Still blocked, same as lf_003 \u2014 see that entry's banana_status_note for the direct curl confirmation performed this cycle. Path B used instead.",
-      "scouted_at": "2026-07-27T21:50:00Z"
+      "scouted_at": "2026-07-27T21:50:00Z",
+      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '2.5 Hours of Focus | Moonlit Mansion Ambience for Deep Study'."
     },
     {
       "id": "lf_008",
       "status": "scouted",
       "visual_theme": "REUSE of lf_003's image (Drive file 13QRZQiB2BcrDqF5PyKXcmXlg5nTMoTsw, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g) \u2014 all 5 remaining unused owner-supplied images were assigned to lf_003-lf_007 and the banana AI-generation path is still confirmed blocked (see banana_status_note), so this 6th candidate deliberately reuses lf_003's source image rather than leaving the slot unfilled. This is honestly a reuse, not a fresh image. To make it a genuinely distinct video rather than a duplicate: Agent 2.2/3.2 should crop/frame tighter on a different portion of the same still (e.g. a closer detail crop on the car/entryway rather than lf_003's wider establishing view), and it carries a different mood, title, and audio track from lf_003 below.",
       "mood": "slow ambient piano with a light continuous rain layer, warm sustained pads, no percussion, no vocals, sub-60bpm (Rain / Sleep / Meditation track) \u2014 deliberately the opposite track choice from lf_003's Fire Place pick on the same source image, reinforcing that this is a distinct treatment (rain/night-reflection mood vs. lf_003's warm/cozy framing)",
-      "title": "1 Hour of Solitude | Same Estate, Different Night - Slow Ambience for Reflection",
+      "title": "Some Nights You Just Sit With It",
       "seo_description": "An hour of quiet reflection at a private estate at night, told from a closer, stiller angle \u2014 slow rain ambience for winding down, journaling, or falling asleep after a long day. A calmer companion piece for anyone who wants stillness over stimulation tonight. #ambience #manifestation #deepfocus #sleepambience #selfimprovement #luxurylifestyle #studywithme",
       "tags": [
         "luxury ambience",
@@ -241,7 +245,8 @@
       "audio_track_id_provisional": "Rain _ Sleep _ Meditation (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0) \u2014 chosen deliberately different from lf_003's Fire Place pick on the same image, per the distinct-treatment requirement for this reuse slot.",
       "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags. Passes shared_gates.factual_controversy_screen and platform_policy_check on inspection: no misleading title/thumbnail mismatch, no hate speech/violence/self-harm content, purely generic luxury-ambience motivational framing with no fabricated claims or named-individual quotes.",
       "banana_status_note": "Still blocked \u2014 direct curl test against generativelanguage.googleapis.com this cycle returned 429 RESOURCE_EXHAUSTED, generate_content_free_tier_requests limit:0 for gemini-2.0-flash, identical failure mode to lf_001 despite validate_setup.py now passing all 9 local config checks (a key is configured, but the underlying project has zero usable quota). This is the reason lf_008 reuses an owner-supplied image instead of a 6th unique AI-generated one.",
-      "scouted_at": "2026-07-27T21:50:00Z"
+      "scouted_at": "2026-07-27T21:50:00Z",
+      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '1 Hour of Solitude | Same Estate, Different Night - Slow Ambience for Reflection'."
     }
   ]
 }

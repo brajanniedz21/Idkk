@@ -79,7 +79,15 @@
   "long_form_style_guidance": {
     "pacing": "Slow, calm, minimal/no cuts — a single looping ambient scene, not edited for pace at all.",
     "energy": "Calm, ambient, meditative. Slow piano/pad/rain/nature tracks belong here, never in short-form.",
-    "visual_grade": "Warm or cool moody ambient tones per the scene (rain-on-window, fireplace, etc.), not the dark low-exposure short-form grade — long-form should read as a calm background, not an energetic edit."
+    "visual_grade": "Warm or cool moody ambient tones per the scene (rain-on-window, fireplace, etc.), not the dark low-exposure short-form grade — long-form should read as a calm background, not an energetic edit.",
+    "title_convention": {
+      "added_at": "2026-07-27T22:10:00Z",
+      "status": "Replaces the older 'X Hours of Y | Z Ambience for Focus & Manifestation' template used through lf_001-lf_004. Analyzed real data from @angelechoes909 (a long-form-only channel in this same niche, ~3hr videos) per owner direction.",
+      "source_data": "yt-dlp flat-playlist pull of @angelechoes909's Videos tab (13 titled uploads, all ~3hr runtime; channel has no Shorts tab, confirmed via yt-dlp error). Titles/views: 'While They Sleep You Build' 95,000 | 'You're Closer to This Than You Think' 30,000 | 'The Reward for Staying Focused' 19,000 | 'Don't Give Up Now!' 15,000 | 'You Need to Keep Going!' 15,000 | 'You'll make it' 7,300 | 'Hard Work Pays Off' 7,200 | 'You've Come Too Far to Quit Now!' 3,400 | 'You Don't Forget Where It Started' 2,000 | 'POV: You Never Gave Up' 1,000 | 'POV: you finally made it' 922 | 'Work Hard, Play Hard' 747 | 'You Need to Lock In Right Now' 499.",
+      "pattern": "Short (3-7 words), punchy, standalone motivational statement or command — no duration, no format descriptor, no pipe-separated SEO subtitle, no 'Ambience for Focus & Manifestation' boilerplate. Two dominant structures: (1) second-person direct address ('You Need to Keep Going!', 'You're Closer to This Than You Think', 'While They Sleep You Build') and (2) a flat declarative aphorism with no pronoun ('Hard Work Pays Off', 'Work Hard, Play Hard'). Exclamation points appear on ~half but not the very top performer. 'POV:' prefix appears twice and both are among the lowest performers in this sample (1,000 and 922 views) — thin evidence given the small sample, but don't lean on it as a strong pattern.",
+      "guidance": "New long-form titles should read like these — a short, complete motivational statement someone could say out loud, not a labeled product description. Do NOT include the video's length, the word 'ambience', or a pipe/dash-separated subtitle. seo_description and tags still carry the keyword-rich/searchable content the title used to partially carry (duration, mood, use-case like 'study with me' or 'deep focus') — the title itself should be the emotional hook only.",
+      "examples_matching_pattern": ["You Already Know What You Have To Do", "This Is What Discipline Looks Like", "Nobody's Coming To Save You", "You're Not Tired. You're Uninspired.", "Stay Ready So You Don't Have To Get Ready"]
+    }
   },
   "reference_examples": {
     "long_form": [
