@@ -19,9 +19,9 @@
       "drive_folder_id": "1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g",
       "drive_file_id": "13QRZQiB2BcrDqF5PyKXcmXlg5nTMoTsw",
       "original_filename": "643100021828012323.jpg",
-      "provenance_note": "Previously downloaded/inspected per prior note ('similar low-res car/mansion scene, not yet used'); assigned to lf_003 by Agent 1.2 this cycle. Not yet downloaded/re-inspected by Agent 2.2 for this specific assignment. Also reused (distinct crop/mood/treatment) for lf_008 — see that candidate's brief in state/long_form_queue.json for why the same file is assigned twice.",
+      "provenance_note": "Downloaded and inspected by Agent 2.2 on this cycle: actual content is NOT a car/mansion scene as the prior placeholder note assumed — it is a Dubai Marina night skyline shot (736x414 source), high-rise towers, illuminated blue-lit waterfront promenade, and moored yachts/boats in the marina channel. No scam/ad text, no stock-photo watermark (checked top/bottom edge crops at 3x zoom, both clean). One real observation: several towers carry legible 'EMAAR' illuminated signage (Emaar Properties, a real Dubai developer) — this is naturally-occurring architectural signage baked into the original photograph (comparable to any real skyline photo showing building names), not a deliberately placed logo/watermark/ad overlay like the excluded Bitcoin-wallet file. Judged not to rise to the 'obvious active red flag' bar that would warrant skipping under Path B guidance, but disclosed here for the record per the same scrutiny applied to lf_002. visual_theme in long_form_queue.json corrected to match actual content. Also reused (distinct crop/mood/treatment) for lf_008 — see that candidate's brief in state/long_form_queue.json for why the same file is assigned twice.",
       "also_assigned_to": ["lf_008"],
-      "consumed": false
+      "consumed": true
     },
     {
       "candidate_id": "lf_004",
