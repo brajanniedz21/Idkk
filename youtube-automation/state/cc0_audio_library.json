@@ -22,6 +22,28 @@
       "verification_note": "Checked the license badge/link on the track's own FMA page directly via raw HTML fetch (not a third-party aggregator claim, not just the WebFetch text summary): two rel=\"license\" anchors on the page both point directly to https://creativecommons.org/publicdomain/zero/1.0/. Source page also states track title 'Rain _ Sleep _ Meditation', artist HoliznaCC0 (the same self-releasing-CC0 netlabel artist already verified for the phonk-ish track in this library), album 'Space - Sleep - Meditation', duration 14:35, Instrumental: Yes, AI Generated: No. File fetched from the page's own embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth required, same method as prior verified entry). Downloaded file verified via `file` and `ffprobe`: real MPEG ADTS layer III audio, 320kbps, 48kHz stereo, 875.976s (14:36) duration, non-corrupt, size 35,040,205 bytes matching the download. Mood match note: genre tags on the source page are Ambient/Ambient Electronic/Chill-out/Lo-fi Instrumental with an explicit 'Rain' + 'Sleep' + 'Meditation' title, which is a strong fit for the brief's 'slow ambient with light rain layer, no percussion, sub-60bpm' mood; the track was not able to be literally listened to end-to-end in this environment, so the tempo/instrumentation match is inferred from title, genre tags, and the artist's established ambient/meditation catalog rather than an audible waveform/BPM analysis.",
       "added_at": "2026-07-27T09:55:00Z",
       "local_path": "assets/audio/holiznacc0_rain_sleep_meditation.mp3"
+    },
+    {
+      "title": "Phonk Remix",
+      "artist": "HoliznaCC0",
+      "album": "PHONK - AURA FARMING",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/phonk-aura-farming/phonk-remix/",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Checked directly on the track's own FMA page via raw HTML fetch (curl, not just WebFetch's markdown summary): rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement ('This music is completely Public Domain, so use it how you want!'). File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 169.49s duration, non-corrupt, 6,780,643 bytes. Real tempo check via librosa beat detection: ~92 BPM detected over a 30s sample (28 beats) — genuinely upbeat, confirmed not just by genre label. Third distinct track sourced specifically to stop reusing 'Phonk ish' for every short-form video (owner feedback 2026-07-27).",
+      "added_at": "2026-07-27T16:20:00Z",
+      "local_path": "assets/audio/holiznacc0_phonk_remix.mp3"
+    },
+    {
+      "title": "ONLY HUMAN",
+      "artist": "HoliznaCC0",
+      "album": "PHONK - AURA FARMING",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/phonk-aura-farming/only-human/",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Checked directly on the track's own FMA page via raw HTML fetch: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement. File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 235.03s duration, non-corrupt, 9,402,403 bytes. Real tempo check via librosa beat detection: ~85 BPM detected over a 30s sample (37 beats) — genuinely upbeat. Fourth track, sourced alongside Phonk Remix specifically for short-form audio variety.",
+      "added_at": "2026-07-27T16:20:00Z",
+      "local_path": "assets/audio/holiznacc0_only_human.mp3"
     }
   ]
 }
