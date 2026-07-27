@@ -130,6 +130,15 @@
       "format": "long",
       "duration_minutes": 60,
       "note": "lf_002 \u2014 first long-form video published. Background image is owner-supplied (image_copyright_gate path B, unverified provenance, explicit owner risk acceptance: 'just try to make one video, if it gets copyrighted ill change the plan'). Audio is verified CC0 (Rain _ Sleep _ Meditation, HoliznaCC0). If a Content ID claim or strike lands on this video, stop using new images from the owner's Drive folder and revisit per the owner's own stated condition. CORRECTION: the original upload (o1FUnaP8gWE) never actually went live \u2014 the YouTube account wasn't yet verified for uploads over 15 minutes, so that upload was silently rejected despite the upload script reporting a video_id. Confirmed via the Data API (videos.list returned zero results for that ID). Account is now verified; re-uploaded successfully as J5o72mPmCzs."
+    },
+    {
+      "video_id": "3Uat_ycZ4k8",
+      "url": "https://youtu.be/3Uat_ycZ4k8",
+      "title": "1.5 Hours of Ambition | Marina Skyline at Night - Ambience for Focus & Manifestation",
+      "published_at": "2026-07-28T19:00:00Z",
+      "format": "long",
+      "duration_minutes": 90,
+      "note": "Weekly batch item (lf_003); uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt. Image is owner-supplied (image_copyright_gate path B)."
     }
   ]
 }
