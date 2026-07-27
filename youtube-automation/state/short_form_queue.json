@@ -1247,6 +1247,69 @@
       "published_url": "https://youtu.be/LE_thiHiqHM",
       "scheduled_publish_at": "2026-07-28T18:00:00Z",
       "publish_note": "Uploaded now, scheduled via YouTube publishAt (privacyStatus=private until that timestamp, then auto-public) per the weekly batch cycle."
+    },
+    {
+      "id": "sf_016",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:45:00Z",
+      "angle": "Curated-environment narrative: reframes the luxury visuals (skyline penthouse, private jet cabin, yacht deck, tailored/car interior) not as possessions or proof of work but as a deliberately chosen environment — the argument is that who/what surrounds you sets your ceiling, and the footage is the evidence of an environment engineered on purpose rather than arrived at by accident. Distinct from sf_006 (car-as-proof-of-invisible-work — that angle is about the object as a receipt for past effort) and from sf_011 (autonomy/time-freedom — that angle is about not answering to anyone, not about curating surroundings). This is the first angle in the queue built around environment-as-cause rather than effort or time as cause.",
+      "title_pattern": "You Become The Room You're In.",
+      "caption_hooks": [
+        "I didn't change. I changed what was around me.",
+        "Your ceiling is whoever's closest to you.",
+        "This room was chosen. Nothing here is an accident."
+      ],
+      "trending_sound_style": "Mid-tempo, confident and controlled rather than aggressive (roughly 85-95 BPM) — a steady, deliberate low-end pulse with headroom for the visual to breathe between cuts, closer to the reggaeton/Latin 'confident flex' register already validated for sf_009 than to the harder phonk/montagem tracks, but not a repeat of the exact same track — Agent 2.1/3.1 should look at underused options in state/trending_audio_library.json (e.g. 'Danza Kuduro 2025' at ~83 BPM, or one of the mid-tempo unidentified owner-provided tracks such as owner_provided_181608 at ~94 BPM) rather than defaulting again to VEKI VEKI/Montagem/Gata Only NJ, which have already anchored most of sf_008-sf_015.",
+      "hashtags": [
+        "#environment",
+        "#surroundyourself",
+        "#luxurylifestyle",
+        "#millionairemindset",
+        "#standardsnotluck"
+      ],
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): a fresh 120-video TikTok pull plus every prior scan's logged titles (14 scans deep) were checked for 'environment'/'surround'/'who you're around' framing — none found anywhere in this channel's history, a confirmed real gap. A supplementary web check (ytsearch15) found only generic long-form motivational-speech content, no genuine short-form luxury example of this specific framing — disclosed honestly as thin/inconclusive supplementary evidence, with the core case resting on the confirmed direct-competitor gap. Fully representable by the existing luxury-lifestyle-only footage pool (penthouse/skyline, private jet cabin, yacht deck, car interior all already in assets/short-form-clips/raw) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope."
+    },
+    {
+      "id": "sf_017",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:47:00Z",
+      "angle": "Patience/compounding narrative: directly counters the 'overnight success' read of luxury visuals by naming the actual time cost — years, not weeks or months — behind what's on screen, framing patience itself as the discipline being displayed, not the cars/travel/skyline shots themselves. Distinct from sf_014 (own-timeline/anti-comparison, which addresses comparing your pace to other people) and from sf_008 (grind/no-days-off, which is about relentless daily effort/endurance, not the multi-year time horizon). This angle's emotional register is calm certainty about a long game already being won, not present-tense struggle.",
+      "title_pattern": "This Took Years. It Looks Like Luck.",
+      "caption_hooks": [
+        "You saw one day. This was a thousand of them.",
+        "Nothing here happened this year.",
+        "Patience isn't passive. It's the whole strategy."
+      ],
+      "trending_sound_style": "Slow-building mid-tempo (roughly 75-85 BPM) with a patient, unhurried groove that resolves into a fuller low end partway through rather than hitting hard from the first beat — mirrors the 'building over time' theme in the audio's own structure. Style description only; Agent 2.1/3.1 to pick the actual track, with a preference for an underused option (e.g. one of the slower unidentified owner-provided tracks in state/trending_audio_library.json, such as owner_provided_181653 at ~67 BPM, or 'Tourner Dans Le Vide' which has only been used once to date) rather than re-reaching for VEKI VEKI or Gata Only NJ again.",
+      "hashtags": [
+        "#thelonggame",
+        "#compoundeffect",
+        "#patiencepaysoff",
+        "#luxurylifestyle",
+        "#millionairemindset"
+      ],
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): the fresh 120-video pull plus all 14 prior scans' logged titles were checked for 'patience'/'compound'/'takes years'/'overnight' framing — none found anywhere in this channel's history, a confirmed real gap, the same category of underserved-framing finding that validated sf_007/sf_011/sf_012/sf_013/sf_014/sf_015/sf_016. Fully representable by the existing luxury-lifestyle-only footage pool (the visuals stand in as the 'proof' of years of accumulation, reusing the same supercar/skyline/private-jet shot categories already validated for sf_006/sf_012/sf_015's proof-style framing) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope."
+    },
+    {
+      "id": "sf_018",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:49:00Z",
+      "angle": "Retrospective self-comparison narrative: looks backward at a specific past version of self (a year or more ago) and holds it up against the current luxury visuals as an unrecognizable-gap comparison — explicitly the mirror image of sf_007's future-self visualization (which looks forward and tells the viewer to rehearse a future they haven't reached yet). This angle instead validates progress already made, addressing the psychographic of feeling isolated/uncertain about the past while now having tangible proof it worked out. Distinct from sf_012 (vindication, which is about answering other people's doubt) and sf_013 (generational-legacy, which is about family/bloodline framing, not a personal before/after).",
+      "title_pattern": "The Old Me Wouldn't Recognize This.",
+      "caption_hooks": [
+        "A year ago I couldn't picture this. Now I live in it.",
+        "He wouldn't believe you if you told him.",
+        "This isn't a glow-up. It's a different person."
+      ],
+      "trending_sound_style": "Emotional, cinematic build (roughly 100-120 BPM) with a swelling, slightly dramatic quality rather than pure aggression — closer to the emotional/cinematic register already validated for 'Tourner Dans Le Vide' (~120 BPM) than to the flatter aggressive-phonk tracks, since the beat itself needs to carry a sense of arrival/realization. Style description only; Agent 2.1/3.1 to pick the actual track — consider an underused option (e.g. owner_provided_181336 at ~131 BPM or owner_provided_181830 at ~122 BPM) instead of defaulting to the same 2-3 tracks used across most of sf_008-sf_015.",
+      "hashtags": [
+        "#glowup",
+        "#unrecognizable",
+        "#growth",
+        "#luxurylifestyle",
+        "#millionairemindset"
+      ],
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt11, 2026-07-27): the fresh 120-video pull plus all 14 prior scans' logged titles were checked for backward-looking 'old me'/'used to be'/'wouldn't recognize' framing (as distinct from sf_007's already-scouted forward-looking future-self angle) — none found anywhere in this channel's history, a confirmed real gap. Fully representable by the existing luxury-lifestyle-only footage pool (present-day supercar/skyline/private-jet/yacht shots stand in as the 'after', with the 'before' conveyed purely through voiceover/caption contrast rather than requiring any non-luxury footage) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope."
     }
   ]
 }
