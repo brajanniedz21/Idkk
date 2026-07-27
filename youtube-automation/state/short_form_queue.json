@@ -1011,6 +1011,21 @@
       "status": "published",
       "published_video_id": "5pv__ZadiaI",
       "published_url": "https://youtu.be/5pv__ZadiaI"
+    },
+    {
+      "id": "sf_012",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:10:00Z",
+      "angle": "'They doubted me, I proved it' vindication narrative: the luxury visuals (supercar reveal, private jet, skyline at night) are framed as the quiet, undeniable answer to people who didn't believe it would happen — not a story about grinding harder (sf_008), not an identity/caliber statement about refusing mediocrity (sf_010), not a confident-settled-arrival 'this is just normal now' register with no reference to anyone else (sf_009), and not the backward-looking 'proof of invisible work' framing of sf_006. This is the first angle in the queue built around an explicit interpersonal arc — a doubter, a prediction, and the moment it's disproven — rather than a purely internal mindset, effort, or status framing. Matched to the real, strong-performing (39,300 views/948 saves, high save-rate) 'ion care cuz he did it first' (Ice Spice) track already sourced in state/trending_audio_library.json but never yet used in this queue — a track whose own title is a defiant, doubt-dismissing line, currently paired on the source competitor video with only a generic caption ('Luxury Life 💰'), leaving its actual lyrical energy unused. Uses the luxury-lifestyle footage pool directly and literally (supercar reveal shots, night skyline, private jet boarding read naturally as 'the receipt' in a vindication story) so it carries zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope.",
+      "title_pattern": "They Said I Wouldn't Make It. I Did.",
+      "caption_hooks": [
+        "I didn't argue. I just kept going.",
+        "You don't owe anyone a comeback speech.",
+        "They forgot they ever doubted me. I didn't."
+      ],
+      "trending_sound_style": "Confident, defiant, unbothered energy — mid-tempo (roughly 75-80 BPM range), hip-hop/drill-adjacent groove with a cocky, matter-of-fact swagger rather than pure aggression; reads as a quiet mic-drop, not a shouted victory lap. Style description only, per this stage's brief — the specific real track ('ion care cuz he did it first', already sourced with documented provenance in state/trending_audio_library.json) is for Agent 2.1/3.1 to pull directly given the owner's lift of the CC0-only requirement for short-form.",
+      "hashtags": ["#provedthemwrong", "#luxurylifestyle", "#millionairemindset", "#doubtersfuel", "#successstory"],
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt9, 2026-07-27): a fresh RSS pull of @Millionaire_Mentality_7 found no video newer than pt8's cutoff yet; a fresh 80-video TikTok flat-playlist pull found the same generic-template dominance as every prior scan plus one genuinely new data point (a 'Dodge Challenger' car-model callout, 88,500 views, extending pt3/pt4/pt5's BMW/Dodge-Charger pattern to a third model) and confirmed 'ion care cuz he did it first' still appears only once in 80 videos (a real but one-off use, not proven repeat rotation, per the same honesty standard pt7 applied to Montagem Celestial Esperanza). A fresh single-video re-pull of that Ice Spice source video (39,300 views, 948 saves — a notably high save-rate) confirmed strong real performance paired only with a generic caption, an unexploited gap consistent with pt5's original finding that this channel's aggressive/pointed-sounding tracks never actually get pointed captions. An explicit search of all 80 fresh titles plus every prior scan's logged titles for any 'doubted'/'told you'/'proved' framing found none — the same category of validated gap that supported sf_007 (pt4) and sf_011 (pt8). A supplementary ytsearch for a 'doubted me' angle elsewhere in the niche returned only thin/nano-channel results and is disclosed as unproven supplementary evidence, not the basis for this pick — the real basis is the track's own strong, real performance and the confirmed caption-energy gap on this specific channel."
     }
   ]
 }
