@@ -1424,6 +1424,69 @@
       "published_url": "https://youtu.be/tvr7Pe99b2o",
       "scheduled_publish_at": "2026-07-29T18:00:00Z",
       "publish_note": "Uploaded now, scheduled via YouTube publishAt per the weekly batch cycle."
+    },
+    {
+      "id": "sf_019",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:10:00Z",
+      "angle": "Boundaries-as-wealth-protection / selective access: quietly distancing from people who drain time or energy, framed not as bitterness but as an unexplained boundary a builder is entitled to hold. Distinct from the already-used quiet-restraint angle (which is about not announcing growth to anyone) and from curated-environment (which is about becoming your surroundings, not about actively removing people) -- this angle is specifically about the deliberate act of cutting access, mirrored visually by gated/private luxury spaces (private jet interior, gated estate driveway, empty yacht deck, VIP-only rooms) that only some people ever get into.",
+      "title_pattern": "I Stopped Explaining My Boundaries.",
+      "caption_hooks": [
+        "Distance isn't punishment. It's protection.",
+        "Not everyone gets access to this version of me.",
+        "I don't owe anyone an explanation for who I removed."
+      ],
+      "trending_sound_style": "Confident, controlled mid-tempo energy (~100-105 BPM) -- assured rather than aggressive, matching a 'calm boundary, not a confrontation' tone. Real candidate: owner_provided_182026 (state/trending_audio_library.json unidentified_owner_provided_tracks, measured 104.2 BPM via librosa, unused in every prior candidate) fits this energy range without overclaiming a specific song identity.",
+      "hashtags": [
+        "#boundaries",
+        "#protectyourpeace",
+        "#luxurymindset",
+        "#silentdiscipline",
+        "#selfrespect"
+      ],
+      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: an explicit keyword gap-check across a fresh 150-video TikTok pull of @millionaire_mentality_7 found zero occurrences of any boundary/distancing/protection-of-energy language ('boundar', 'protect', 'peace', 'energy', 'circle', 'cut off', 'walk away', 'discern', 'select') anywhere in this channel's caption history across 15 cumulative scans -- a genuine, confirmed gap in the niche's most-analyzed direct competitor, not an assumption."
+    },
+    {
+      "id": "sf_020",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:10:00Z",
+      "angle": "Reinvest-not-spend capital-allocation discipline: every luxury visual on screen is framed as the byproduct of reinvesting profit back into growth rather than consuming it for show. Distinct from sf_006's car-as-proof-of-work angle (that's about luxury as evidence of past invisible effort) and from the already-used sacrifice/cost angle (that's about what discipline personally cost someone emotionally/socially) -- this angle is specifically about forward-looking capital allocation: choosing to put money back to work instead of spending it, with the luxury result being a consequence of that discipline, not the point of it.",
+      "title_pattern": "I Don't Spend It. I Reinvest It.",
+      "caption_hooks": [
+        "Every dollar has a job before it has a price tag.",
+        "This isn't a purchase. It's a byproduct.",
+        "Consumption is the finish line for people without a plan."
+      ],
+      "trending_sound_style": "Fast, driving energy (~130 BPM) to match an assertive, no-nonsense financial-discipline tone. Real candidate: owner_provided_181336 (state/trending_audio_library.json unidentified_owner_provided_tracks, measured 130.8 BPM via librosa, unused in every prior candidate).",
+      "hashtags": [
+        "#reinvest",
+        "#wealthmindset",
+        "#luxurymotivation",
+        "#businessmindset",
+        "#compoundgrowth"
+      ],
+      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: the same fresh 150-video keyword gap-check found zero occurrences of any investment/reinvestment/capital-allocation language ('invest', 'reinvest', 'leverage', 'asset', 'compound') anywhere in @millionaire_mentality_7's caption history -- this channel's captions stay purely at the generic-luxury-label or specific-car-model-callout level (confirmed again this cycle) and never articulate a financial-discipline framing, despite the channel's own luxury-as-result visuals implicitly supporting one."
+    },
+    {
+      "id": "sf_021",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:10:00Z",
+      "angle": "Self-authorized permission / no one crowned me: the shift into pursuing real ambition happened by simply deciding and acting, not because any person, title, or external validation ever granted permission first. Distinct from the already-used vindication/doubters angle (sf_012, which is a response to someone's explicit doubt, proven wrong after the fact) and from confident-arrival (sf_009, which is about having already settled into arrival) -- this angle is about the internal, pre-outcome moment of self-authorization, with no doubter or audience required at all.",
+      "title_pattern": "Nobody Gave Me Permission. I Took It.",
+      "caption_hooks": [
+        "I didn't wait to be chosen. I chose myself.",
+        "No one crowned me. I just started acting like it was already mine.",
+        "Permission is a myth successful people stopped waiting for."
+      ],
+      "trending_sound_style": "Mid-fast, driving forward-momentum energy (~117 BPM). Real candidate: owner_provided_181931 (state/trending_audio_library.json unidentified_owner_provided_tracks, measured 117.2 BPM via librosa, unused in every prior candidate).",
+      "hashtags": [
+        "#selfmade",
+        "#nopermissionneeded",
+        "#luxurymindset",
+        "#millionairemindset",
+        "#ownyourpower"
+      ],
+      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: the same fresh 150-video keyword gap-check found zero occurrences of any self-permission/authorization language ('permission', 'chose myself', 'crowned') anywhere in @millionaire_mentality_7's caption history -- a third confirmed gap this cycle, chosen to be internally distinct from the vindication/doubters angle already used on sf_012 by removing the doubter/external-response element entirely."
     }
   ]
 }
