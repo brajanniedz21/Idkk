@@ -9,15 +9,15 @@
       "produced_at": "2026-07-27T08:12:00Z",
       "produced_file_path": "assets/short-form-clips/processed/sf_001.mp4",
       "transform_log": [
-        "1. Select: heuristically picked 3 raw clips (56.mp4, 50.mp4, 39.mp4) out of the untagged raw pool by weakest available proxy (smallest file sizes among the 58 available clips, on the theory that lower-motion/lower-detail footage is more likely to be static, dim, low-key material matching the requested dim/dark gym visual_direction). This was NOT a real content review — there is no video-viewing capability available in this pipeline step, so visual match to 'dim/dark gym interior, pre-dawn lighting, solitary figure' is unverified and should be treated as approximate/unconfirmed, not confirmed.",
+        "1. Select: heuristically picked 3 raw clips (56.mp4, 50.mp4, 39.mp4) out of the untagged raw pool by weakest available proxy (smallest file sizes among the 58 available clips, on the theory that lower-motion/lower-detail footage is more likely to be static, dim, low-key material matching the requested dim/dark gym visual_direction). This was NOT a real content review \u2014 there is no video-viewing capability available in this pipeline step, so visual match to 'dim/dark gym interior, pre-dawn lighting, solitary figure' is unverified and should be treated as approximate/unconfirmed, not confirmed.",
         "2. Reframe/crop: applied crop='min(iw,ih*9/16)':'min(ih,iw*16/9)' then scale=1080:1920 to each of the 3 source clips (source was 1920x1080 landscape) to reframe to vertical 1080x1920.",
-        "3. Speed/color change: applied both — setpts=PTS/0.90 (10% slow-down) on the concatenated sequence, and eq=contrast=1.10:saturation=1.12:brightness=0.0 color grade on each clip.",
+        "3. Speed/color change: applied both \u2014 setpts=PTS/0.90 (10% slow-down) on the concatenated sequence, and eq=contrast=1.10:saturation=1.12:brightness=0.0 color grade on each clip.",
         "4. Burn in on-screen text: chained 5 separate drawtext filters (one per non-empty on_screen_text beat from the script) using enable='between(t,start,end)' timed to match the script's beat boundaries (3-7s, 7-12s, 12-18s, 18-24s, 24-29s); text content pulled verbatim from sf_001.on_screen_text. The 0:00-0:03 beat has empty text in the script so no drawtext was applied there.",
-        "5. Replace audio: original clip audio was never mapped/included in the output (filter graph only maps [vout] and the new [a] audio stream) — full audio replaced with the verified CC0 track 'Phonk ish' by HoliznaCC0 from state/cc0_audio_library.json, trimmed to 29s with a 2s fade-out at the end.",
-        "6. Voiceover: NOT added. The script's voiceover_script.full_text/beats were not synthesized or recorded in this pass — no TTS engine was available/invoked in this step. This is a gap versus the full script brief; the output currently relies on burned-in text only to carry the line content, with no spoken narration.",
+        "5. Replace audio: original clip audio was never mapped/included in the output (filter graph only maps [vout] and the new [a] audio stream) \u2014 full audio replaced with the verified CC0 track 'Phonk ish' by HoliznaCC0 from state/cc0_audio_library.json, trimmed to 29s with a 2s fade-out at the end.",
+        "6. Voiceover: NOT added. The script's voiceover_script.full_text/beats were not synthesized or recorded in this pass \u2014 no TTS engine was available/invoked in this step. This is a gap versus the full script brief; the output currently relies on burned-in text only to carry the line content, with no spoken narration.",
         "7. Duration: exported at 29s, within the 15-45s target range (~28-30s as instructed). Source material was only ~4-10s per clip, so the 3-clip sequence (total ~15.9s raw) was played twice back-to-back (concat n=6, sequence ABCABC) then slowed 10% and trimmed to 29s to reach target duration -- this repetition is a real editorial compromise, not a full continuous 29s of unique footage."
       ],
-      "angle": "3am gym discipline monologue: 'Discipline over motivation' — silent alarm, empty gym, cold open on tying laces in the dark, voiceover on why willpower fails and systems don't",
+      "angle": "3am gym discipline monologue: 'Discipline over motivation' \u2014 silent alarm, empty gym, cold open on tying laces in the dark, voiceover on why willpower fails and systems don't",
       "title_pattern": "Don't Be Motivated. Be Disciplined.",
       "caption_hooks": [
         "Nobody is coming to save you. Get up.",
@@ -25,29 +25,72 @@
         "3am. No one's watching. That's the point."
       ],
       "trending_sound_style": "slowed hardtekk/phonk, heavy sub-kick building under a single spoken-word line, then dropping to near-silence for the payoff sentence",
-      "source_notes": "Modeled on the widely-circulating 'Don't Be Motivated. Be Disciplined.' phrase and the aggressive slowed-phonk gym-mindset wave currently trending on TikTok/Shorts (per TikTok Discover: 'Motivational Phonk Music', 'Discipline Sounds', 'Motivation Phonk Edits')."
-      ,
+      "source_notes": "Modeled on the widely-circulating 'Don't Be Motivated. Be Disciplined.' phrase and the aggressive slowed-phonk gym-mindset wave currently trending on TikTok/Shorts (per TikTok Discover: 'Motivational Phonk Music', 'Discipline Sounds', 'Motivation Phonk Edits').",
       "title": "Don't Be Motivated. Be Disciplined.",
       "voiceover_script": {
-        "full_text": "3am. No alarm going off. No one clapping. No one watching. Motivation left the moment it got hard — it always does. It's a feeling, and feelings don't show up on schedule. Discipline isn't loud. It isn't a mood. It's the decision you already made, so you don't have to make it again tonight. You're not here because you feel like it. You're here because you built a system that doesn't ask how you feel. Nobody's coming to save you. Get up. Again.",
+        "full_text": "3am. No alarm going off. No one clapping. No one watching. Motivation left the moment it got hard \u2014 it always does. It's a feeling, and feelings don't show up on schedule. Discipline isn't loud. It isn't a mood. It's the decision you already made, so you don't have to make it again tonight. You're not here because you feel like it. You're here because you built a system that doesn't ask how you feel. Nobody's coming to save you. Get up. Again.",
         "beats": [
-          {"time": "0:00-0:03", "type": "silent_visual", "line": null, "direction": "No VO. Hand silences alarm before it rings. Laces tied in near-dark."},
-          {"time": "0:03-0:07", "type": "vo", "line": "3am. No alarm going off. No one clapping. No one watching."},
-          {"time": "0:07-0:12", "type": "vo", "line": "Motivation left the moment it got hard — it always does. It's a feeling, and feelings don't show up on schedule."},
-          {"time": "0:12-0:18", "type": "vo", "line": "Discipline isn't loud. It isn't a mood. It's the decision you already made, so you don't have to make it again tonight."},
-          {"time": "0:18-0:24", "type": "vo", "line": "You're not here because you feel like it. You're here because you built a system that doesn't ask how you feel."},
-          {"time": "0:24-0:30", "type": "vo_whisper_payoff", "line": "Nobody's coming to save you. Get up. Again.", "direction": "Sub-kick drops to near-silence under this line; hard cut to black or single still frame on final word."}
+          {
+            "time": "0:00-0:03",
+            "type": "silent_visual",
+            "line": null,
+            "direction": "No VO. Hand silences alarm before it rings. Laces tied in near-dark."
+          },
+          {
+            "time": "0:03-0:07",
+            "type": "vo",
+            "line": "3am. No alarm going off. No one clapping. No one watching."
+          },
+          {
+            "time": "0:07-0:12",
+            "type": "vo",
+            "line": "Motivation left the moment it got hard \u2014 it always does. It's a feeling, and feelings don't show up on schedule."
+          },
+          {
+            "time": "0:12-0:18",
+            "type": "vo",
+            "line": "Discipline isn't loud. It isn't a mood. It's the decision you already made, so you don't have to make it again tonight."
+          },
+          {
+            "time": "0:18-0:24",
+            "type": "vo",
+            "line": "You're not here because you feel like it. You're here because you built a system that doesn't ask how you feel."
+          },
+          {
+            "time": "0:24-0:30",
+            "type": "vo_whisper_payoff",
+            "line": "Nobody's coming to save you. Get up. Again.",
+            "direction": "Sub-kick drops to near-silence under this line; hard cut to black or single still frame on final word."
+          }
         ]
       },
       "on_screen_text": [
-        {"time": "0:00-0:03", "text": ""},
-        {"time": "0:03-0:07", "text": "3AM.\nNO ONE'S WATCHING."},
-        {"time": "0:07-0:12", "text": "MOTIVATION IS A FEELING.\nFEELINGS DON'T SHOW UP ON SCHEDULE."},
-        {"time": "0:12-0:18", "text": "DISCIPLINE ISN'T A MOOD.\nIT'S A DECISION YOU ALREADY MADE."},
-        {"time": "0:18-0:24", "text": "YOU BUILT A SYSTEM\nTHAT DOESN'T ASK HOW YOU FEEL."},
-        {"time": "0:24-0:30", "text": "NOBODY'S COMING TO SAVE YOU.\nGET UP. AGAIN."}
+        {
+          "time": "0:00-0:03",
+          "text": ""
+        },
+        {
+          "time": "0:03-0:07",
+          "text": "3AM.\nNO ONE'S WATCHING."
+        },
+        {
+          "time": "0:07-0:12",
+          "text": "MOTIVATION IS A FEELING.\nFEELINGS DON'T SHOW UP ON SCHEDULE."
+        },
+        {
+          "time": "0:12-0:18",
+          "text": "DISCIPLINE ISN'T A MOOD.\nIT'S A DECISION YOU ALREADY MADE."
+        },
+        {
+          "time": "0:18-0:24",
+          "text": "YOU BUILT A SYSTEM\nTHAT DOESN'T ASK HOW YOU FEEL."
+        },
+        {
+          "time": "0:24-0:30",
+          "text": "NOBODY'S COMING TO SAVE YOU.\nGET UP. AGAIN."
+        }
       ],
-      "seo_description": "3am, no motivation, no audience — just the decision to move anyway. A short cinematic monologue on why discipline beats motivation every time you don't feel like showing up. For anyone building the version of themselves nobody sees yet.",
+      "seo_description": "3am, no motivation, no audience \u2014 just the decision to move anyway. A short cinematic monologue on why discipline beats motivation every time you don't feel like showing up. For anyone building the version of themselves nobody sees yet.",
       "tags": [
         "discipline over motivation",
         "3am workout",
@@ -65,9 +108,15 @@
         "build discipline",
         "mental toughness"
       ],
-      "hashtags": ["#discipline", "#disciplineovermotivation", "#mindset", "#gymmotivation", "#stoic"],
-      "sound_direction": "Slowed hardtekk/phonk instrumental, minimal melodic content — heavy sub-kick and distorted bass building steadily under the spoken lines from 0:03 to 0:18, tension increasing but never overpowering the voiceover. Sound thins out through the 0:18-0:24 beat, then drops to near-silence (kick removed entirely, faint low drone only) under the final whispered payoff line at 0:24-0:30 so the line lands in near-quiet. No lyrics, no recognizable sample, CC0/library source only — matched by Agent 4.2.",
-      "visual_direction": "Mood/type needed (raw clips 1.mp4-60.mp4 not yet tagged by description; Agent 3.1 to match): dim, near-dark gym interior, pre-dawn/blue-hour lighting, single practical light source (phone flashlight, single overhead bulb, or window streetlight). Cold open: close-up on a hand silencing a phone alarm before it sounds, then hands tying shoelaces in low light. Follow with solitary-figure shots — empty weight room, one person alone on a bench or rack, no other people in frame, condensation/breath visible if available. Close on face or hands for the final payoff line (still or near-still frame, high contrast, desaturated/cool color grade). Avoid any clip with visible gym branding, other identifiable people, or bright/crowded settings — tone must stay isolated, cinematic, and low-key throughout.",
+      "hashtags": [
+        "#discipline",
+        "#disciplineovermotivation",
+        "#mindset",
+        "#gymmotivation",
+        "#stoic"
+      ],
+      "sound_direction": "Slowed hardtekk/phonk instrumental, minimal melodic content \u2014 heavy sub-kick and distorted bass building steadily under the spoken lines from 0:03 to 0:18, tension increasing but never overpowering the voiceover. Sound thins out through the 0:18-0:24 beat, then drops to near-silence (kick removed entirely, faint low drone only) under the final whispered payoff line at 0:24-0:30 so the line lands in near-quiet. No lyrics, no recognizable sample, CC0/library source only \u2014 matched by Agent 4.2.",
+      "visual_direction": "Mood/type needed (raw clips 1.mp4-60.mp4 not yet tagged by description; Agent 3.1 to match): dim, near-dark gym interior, pre-dawn/blue-hour lighting, single practical light source (phone flashlight, single overhead bulb, or window streetlight). Cold open: close-up on a hand silencing a phone alarm before it sounds, then hands tying shoelaces in low light. Follow with solitary-figure shots \u2014 empty weight room, one person alone on a bench or rack, no other people in frame, condensation/breath visible if available. Close on face or hands for the final payoff line (still or near-still frame, high contrast, desaturated/cool color grade). Avoid any clip with visible gym branding, other identifiable people, or bright/crowded settings \u2014 tone must stay isolated, cinematic, and low-key throughout.",
       "factual_controversy_self_check": {
         "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
         "no_political_figures_parties_elections_policy": "pass - none referenced",
@@ -80,7 +129,7 @@
       "id": "sf_002",
       "scouted_at": "2026-07-27T00:00:00Z",
       "scripted_at": "2026-07-27T13:07:49Z",
-      "angle": "Quiet/silent discipline luxury narrative: rebuilding yourself with no audience — old-money interior visuals (library, rain on window, tailored coat) intercut with solitary self-work, framed as 'stealth wealth of the mind'",
+      "angle": "Quiet/silent discipline luxury narrative: rebuilding yourself with no audience \u2014 old-money interior visuals (library, rain on window, tailored coat) intercut with solitary self-work, framed as 'stealth wealth of the mind'",
       "title_pattern": "Rebuild Yourself In Silence",
       "caption_hooks": [
         "The quiet ones are the dangerous ones.",
@@ -89,17 +138,35 @@
       ],
       "trending_sound_style": "slowed ambient piano/pad with a soft vinyl-crackle texture, near-silent verses building to a brief cinematic swell under the closing line",
       "source_notes": "Modeled on the trending 'Rebuild Yourself In Silence / Quiet Discipline' motivational-speech format and the 2026 'quiet luxury'/stealth-wealth aesthetic wave crossing over into self-improvement content.",
-      "format_note": "Non-narrated, on-screen-text-driven short by design (2.1_scriptwriter.md explicitly allows 'on_screen_text or voiceover_script'). The angle's own 'near-silent verses'/'quiet, silent discipline' framing fits a minimal-copy, text-over-visuals format naturally — this is a real, common format in this niche, not a workaround for the lack of a TTS engine in this environment. No voiceover_script field is written for this candidate; only on_screen_text beats carry the line content.",
+      "format_note": "Non-narrated, on-screen-text-driven short by design (2.1_scriptwriter.md explicitly allows 'on_screen_text or voiceover_script'). The angle's own 'near-silent verses'/'quiet, silent discipline' framing fits a minimal-copy, text-over-visuals format naturally \u2014 this is a real, common format in this niche, not a workaround for the lack of a TTS engine in this environment. No voiceover_script field is written for this candidate; only on_screen_text beats carry the line content.",
       "title": "Rebuild Yourself In Silence",
       "on_screen_text": [
-        {"time": "0:00-0:04", "text": ""},
-        {"time": "0:04-0:09", "text": "NO ONE IS WATCHING YOU REBUILD."},
-        {"time": "0:09-0:14", "text": "REAL GROWTH DOESN'T ANNOUNCE ITSELF."},
-        {"time": "0:14-0:19", "text": "LET THEM WONDER WHAT CHANGED."},
-        {"time": "0:19-0:24", "text": "THE QUIET ONES ARE THE DANGEROUS ONES."},
-        {"time": "0:24-0:29", "text": "BUILD IN SILENCE.\nLET IT SPEAK LATER."}
+        {
+          "time": "0:00-0:04",
+          "text": ""
+        },
+        {
+          "time": "0:04-0:09",
+          "text": "NO ONE IS WATCHING YOU REBUILD."
+        },
+        {
+          "time": "0:09-0:14",
+          "text": "REAL GROWTH DOESN'T ANNOUNCE ITSELF."
+        },
+        {
+          "time": "0:14-0:19",
+          "text": "LET THEM WONDER WHAT CHANGED."
+        },
+        {
+          "time": "0:19-0:24",
+          "text": "THE QUIET ONES ARE THE DANGEROUS ONES."
+        },
+        {
+          "time": "0:24-0:29",
+          "text": "BUILD IN SILENCE.\nLET IT SPEAK LATER."
+        }
       ],
-      "seo_description": "There's no audience for the version of you that's being built right now — just the quiet, unglamorous work of showing up alone. A cinematic, text-driven short on rebuilding yourself in silence, for anyone who'd rather let the change speak for itself than announce it.",
+      "seo_description": "There's no audience for the version of you that's being built right now \u2014 just the quiet, unglamorous work of showing up alone. A cinematic, text-driven short on rebuilding yourself in silence, for anyone who'd rather let the change speak for itself than announce it.",
       "tags": [
         "quiet luxury",
         "silent discipline",
@@ -116,9 +183,15 @@
         "quiet growth",
         "aesthetic motivation"
       ],
-      "hashtags": ["#quietluxury", "#silentdiscipline", "#oldmoney", "#stealthwealth", "#selfmastery"],
-      "sound_direction": "Slowed ambient piano/pad, minimal melodic movement, soft vinyl-crackle texture layered underneath for warmth and 'old media' intimacy. Near-silent, sparse verses through 0:04-0:19 (single sustained piano/pad notes, long decay, no percussion) so the on-screen text carries the weight, building gradually into a brief, warm cinematic swell (strings or fuller pad, still no percussion) under the closing line at 0:24-0:29. No lyrics, no recognizable sample, CC0/library source only — matched by Agent 3.1/4.2.",
-      "visual_direction": "Mood/type needed (raw clips in assets/short-form-clips/raw/ not yet tagged by description; Agent 3.1 to select and note its own heuristic since this stage cannot watch footage): dark-academia, quiet old-money interiors — a private library or study (bookshelves, warm lamp light), rain streaking down a windowpane, a tailored coat/close-up on fabric or hands, solitary figure working alone (writing, reading, reorganizing) with no other people in frame. Warm practical lighting (lamp, firelight) contrasted with the cool blue of the rain-window shots. Avoid bright, crowded, or branded footage — tone must stay restrained, intimate, and unhurried throughout, matching the 'no audience' theme.",
+      "hashtags": [
+        "#quietluxury",
+        "#silentdiscipline",
+        "#oldmoney",
+        "#stealthwealth",
+        "#selfmastery"
+      ],
+      "sound_direction": "Slowed ambient piano/pad, minimal melodic movement, soft vinyl-crackle texture layered underneath for warmth and 'old media' intimacy. Near-silent, sparse verses through 0:04-0:19 (single sustained piano/pad notes, long decay, no percussion) so the on-screen text carries the weight, building gradually into a brief, warm cinematic swell (strings or fuller pad, still no percussion) under the closing line at 0:24-0:29. No lyrics, no recognizable sample, CC0/library source only \u2014 matched by Agent 3.1/4.2.",
+      "visual_direction": "Mood/type needed (raw clips in assets/short-form-clips/raw/ not yet tagged by description; Agent 3.1 to select and note its own heuristic since this stage cannot watch footage): dark-academia, quiet old-money interiors \u2014 a private library or study (bookshelves, warm lamp light), rain streaking down a windowpane, a tailored coat/close-up on fabric or hands, solitary figure working alone (writing, reading, reorganizing) with no other people in frame. Warm practical lighting (lamp, firelight) contrasted with the cool blue of the rain-window shots. Avoid bright, crowded, or branded footage \u2014 tone must stay restrained, intimate, and unhurried throughout, matching the 'no audience' theme.",
       "factual_controversy_self_check": {
         "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
         "no_political_figures_parties_elections_policy": "pass - none referenced",
@@ -132,13 +205,101 @@
       "produced_at": "2026-07-27T13:11:30Z",
       "produced_file_path": "assets/short-form-clips/processed/sf_002.mp4",
       "transform_log": [
-        "1. Select: heuristically picked 3 raw clips (20.mp4, 32.mp4, 60.mp4) out of the untagged raw pool by largest file size among the 58 available clips (opposite heuristic from sf_001's smallest-file-size pick, chosen deliberately for variety this cycle) on the theory that larger files at similar duration are likely to carry more visual/textural detail (bookshelves, rain droplets, fabric texture) more consistent with an interior library/rain-window/quiet-luxury mood than flatter, lower-detail footage. This is NOT a real content review — there is no video-viewing capability available in this pipeline step, so visual match to 'dark-academia library, rain on window, tailored coat, warm lamp light' is unverified and approximate, not confirmed. Agent 0/the gate check should treat this clip selection as an honest guess, not a confirmed visual match.",
+        "1. Select: heuristically picked 3 raw clips (20.mp4, 32.mp4, 60.mp4) out of the untagged raw pool by largest file size among the 58 available clips (opposite heuristic from sf_001's smallest-file-size pick, chosen deliberately for variety this cycle) on the theory that larger files at similar duration are likely to carry more visual/textural detail (bookshelves, rain droplets, fabric texture) more consistent with an interior library/rain-window/quiet-luxury mood than flatter, lower-detail footage. This is NOT a real content review \u2014 there is no video-viewing capability available in this pipeline step, so visual match to 'dark-academia library, rain on window, tailored coat, warm lamp light' is unverified and approximate, not confirmed. Agent 0/the gate check should treat this clip selection as an honest guess, not a confirmed visual match.",
         "2. Reframe/crop: applied crop=ih*9/16:ih then scale=1080:1920 to each of the 3 source clips (source was 1920x1080 landscape) to reframe to vertical 1080x1920.",
-        "3. Speed/color change: applied both — setpts=PTS/0.92 (~8% slow-down, restrained/cinematic pacing) on the concatenated sequence, and eq=contrast=1.08:saturation=0.90:brightness=0.02 color grade (slightly desaturated, subtly lifted contrast) for a muted 'quiet luxury' look.",
+        "3. Speed/color change: applied both \u2014 setpts=PTS/0.92 (~8% slow-down, restrained/cinematic pacing) on the concatenated sequence, and eq=contrast=1.08:saturation=0.90:brightness=0.02 color grade (slightly desaturated, subtly lifted contrast) for a muted 'quiet luxury' look.",
         "4. Burn in on-screen text: chained 5 separate drawtext filters (one per non-empty on_screen_text beat from the script, DejaVu Serif Bold, white text on a soft black box, centered) using enable='between(t,start,end)' timed to match the script's beat boundaries (4-9s, 9-14s, 14-19s, 19-24s, 24-29s). The 0:00-0:04 beat has empty text in the script so no drawtext was applied there (silent visual open).",
-        "5. Replace audio: original clip audio was never mapped/included in the output (crop/scale pass used -an throughout, and the final mux maps video from the text-burned track and audio only from the separately prepared track) — full audio replaced with the verified CC0 track 'Rain _ Sleep _ Meditation' by HoliznaCC0 from state/cc0_audio_library.json (already verified true, ambient/no-percussion, judged a good-enough fit for the 'slowed ambient piano/pad, near-silent, quiet luxury' sound_direction without sourcing a new track), a 29s segment trimmed starting at the 60s mark of the 14:36 source file, with a 2s fade-in and a 4s fade-out.",
-        "6. Voiceover: N/A — script is text-only by design, not a gap. sf_002 was scripted with on_screen_text only and explicitly no voiceover_script field (per the scripting brief's non-narrated format decision), so there is no spoken-line content to synthesize or omit; the on-screen text alone carries the line content by design, consistent with the script's own creative device (unlike sf_001, which was quarantined for this exact mismatch).",
-        "7. Duration/export: exported at 29s, within the 15-45s target range. Total raw source material selected (9.90s + 10.47s + 12.17s = 32.53s) exceeded the target before the speed change, so clips were concatenated once (no repetition/looping needed, unlike sf_001), slowed ~8%, then trimmed to exactly 29s — the full 29s is unique, non-repeated footage."
+        "5. Replace audio: original clip audio was never mapped/included in the output (crop/scale pass used -an throughout, and the final mux maps video from the text-burned track and audio only from the separately prepared track) \u2014 full audio replaced with the verified CC0 track 'Rain _ Sleep _ Meditation' by HoliznaCC0 from state/cc0_audio_library.json (already verified true, ambient/no-percussion, judged a good-enough fit for the 'slowed ambient piano/pad, near-silent, quiet luxury' sound_direction without sourcing a new track), a 29s segment trimmed starting at the 60s mark of the 14:36 source file, with a 2s fade-in and a 4s fade-out.",
+        "6. Voiceover: N/A \u2014 script is text-only by design, not a gap. sf_002 was scripted with on_screen_text only and explicitly no voiceover_script field (per the scripting brief's non-narrated format decision), so there is no spoken-line content to synthesize or omit; the on-screen text alone carries the line content by design, consistent with the script's own creative device (unlike sf_001, which was quarantined for this exact mismatch).",
+        "7. Duration/export: exported at 29s, within the 15-45s target range. Total raw source material selected (9.90s + 10.47s + 12.17s = 32.53s) exceeded the target before the speed change, so clips were concatenated once (no repetition/looping needed, unlike sf_001), slowed ~8%, then trimmed to exactly 29s \u2014 the full 29s is unique, non-repeated footage."
+      ]
+    },
+    {
+      "id": "sf_002_v2",
+      "status": "published",
+      "published_video_id": "Bz7e8FgzL3A",
+      "published_url": "https://youtu.be/Bz7e8FgzL3A",
+      "scouted_at": "2026-07-27T14:20:00Z",
+      "reproduction_note": "Reproduction of sf_002's angle ('Rebuild Yourself In Silence' / quiet-luxury silent-discipline), requested by the channel owner after live feedback on the published sf_002 video: text overflowed the frame, pacing/audio were calm/slow (a long-form treatment) instead of short-form's required fast/upbeat energy. This is a NEW, separate candidate/video \u2014 sf_002 stays published and untouched, this is not an edit or replacement of it. Re-run through the real Agent 2.1 -> 3.1 -> 4.1 pipeline (not just a file patch) using the updated short_form_style_guidance, transform script, and agent specs.",
+      "angle": "Quiet/silent discipline luxury narrative: rebuilding yourself with no audience \u2014 old-money interior visuals (library, rain on window, tailored coat) intercut with solitary self-work, framed as 'stealth wealth of the mind'. Same theme as sf_002, but re-scripted for short-form's required fast pacing (quick beats/cuts) rather than sf_002's slow/held treatment \u2014 'quiet' is the theme, not the edit speed.",
+      "title_pattern": "Rebuild Yourself In Silence",
+      "caption_hooks": [
+        "The quiet ones are the dangerous ones.",
+        "Let them wonder what changed.",
+        "Real growth doesn't announce itself."
+      ],
+      "trending_sound_style": "Upbeat/high-energy per config/channel.json.short_form_style_guidance \u2014 NOT sf_002's calm ambient piano/vinyl-crackle treatment (that was the owner-flagged mistake). Use a fast-tempo phonk/hardtekk-style CC0 track (e.g. the already-verified 'Phonk ish' by HoliznaCC0) even though the theme is 'quiet discipline' \u2014 the visual/text theme stays restrained and moody, but the cut pace and audio energy must be fast, matching real short-form norms in this niche.",
+      "hashtags": [
+        "#quietluxury",
+        "#silentdiscipline",
+        "#oldmoney",
+        "#stealthwealth",
+        "#selfmastery"
+      ],
+      "source_notes": "Modeled on the trending 'Rebuild Yourself In Silence / Quiet Discipline' motivational-speech format and the 2026 'quiet luxury'/stealth-wealth aesthetic wave crossing over into self-improvement content. Re-scouted per owner feedback and state/performance_notes.json competitor_trend_research (2026-07-27): fast cuts every 1.5-3s, dark/low-exposure grade, upbeat/fast-tempo audio.",
+      "scripted_at": "2026-07-27T14:35:00Z",
+      "title": "Rebuild Yourself In Silence",
+      "on_screen_text": [
+        {
+          "time": "0:00-0:05",
+          "text": "NO ONE IS WATCHING\nYOU REBUILD."
+        },
+        {
+          "time": "0:05-0:10",
+          "text": "REAL GROWTH DOESN'T\nANNOUNCE ITSELF."
+        },
+        {
+          "time": "0:10-0:15",
+          "text": "LET THEM WONDER\nWHAT CHANGED."
+        },
+        {
+          "time": "0:15-0:20",
+          "text": "THE QUIET ONES ARE\nTHE DANGEROUS ONES."
+        },
+        {
+          "time": "0:20-0:27",
+          "text": "BUILD IN SILENCE.\nLET IT SPEAK LATER."
+        }
+      ],
+      "format_note": "Non-narrated, on-screen-text-driven short, same format decision as sf_002 (2.1_scriptwriter.md allows on_screen_text-only). Re-scripted per owner feedback: split into 5 short beats of ~5-5.4s each (vs sf_002's 5 beats that were burned onto ONE held/slowed shot) so each beat maps to its own fast cut across 5 different clips. No voiceover_script field, same as sf_002.",
+      "seo_description": "There's no audience for the version of you that's being built right now \u2014 just the quiet, unglamorous work of showing up alone. A fast-cut, text-driven short on rebuilding yourself in silence, for anyone who'd rather let the change speak for itself than announce it.",
+      "tags": [
+        "quiet luxury",
+        "silent discipline",
+        "old money aesthetic",
+        "stealth wealth",
+        "self mastery",
+        "rebuild yourself",
+        "mindset shorts",
+        "dark academia",
+        "cinematic motivation",
+        "self improvement",
+        "personal growth",
+        "discipline",
+        "quiet growth",
+        "aesthetic motivation",
+        "gymcore"
+      ],
+      "sound_direction": "Upbeat/fast-tempo phonk instrumental \u2014 'Phonk ish' by HoliznaCC0 (CC0 1.0, verified in state/cc0_audio_library.json), reused from the sf_001 pass. This replaces sf_002's calm ambient piano/vinyl-crackle track, which was the owner-flagged mistake (that treatment is long-form only). The theme stays quiet/restrained in wording and visual mood, but the audio energy must be fast/aggressive per config/channel.json.short_form_style_guidance \u2014 'quiet' is lyrical/thematic content, not permission to slow the edit or use ambient audio. No lyrics, no recognizable sample, CC0 source only.",
+      "visual_direction": "Mood/type needed (raw clips in assets/short-form-clips/raw/ not yet tagged by description; Agent 3.1 to select and note its own heuristic since this stage cannot watch footage): dark-academia, quiet old-money interiors \u2014 private library or study (bookshelves, warm lamp light), rain streaking down a windowpane, tailored coat/close-up on fabric or hands, solitary figure working alone (writing, reading, reorganizing), no other people in frame. Since fast cuts are mandatory this time, suggest 5 candidate clips (not 1-3) for real cut variety, one per text beat, each held only ~5s before cutting to the next: candidates are clip numbers 38, 9, 37, 53, 8 (untagged raw pool, selection is a file-size-based guess per Agent 3.1's heuristic below, not a confirmed visual match) \u2014 Agent 3.1 should apply the mandatory dark/low-exposure grade on top of whichever clips it actually selects at production time, and should feel free to substitute from the wider pool if it judges differently, this list is a starting suggestion only.",
+      "factual_controversy_self_check": {
+        "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
+        "no_political_figures_parties_elections_policy": "pass - none referenced",
+        "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - script is generic second-person motivational framing only, no named individuals, no statistics or studies cited",
+        "no_controversial_social_topics_per_channel_exclusions": "pass - topic is self-improvement/aesthetic mindset only, no politics or controversial topics per channel.json content_exclusions",
+        "result": "cleared, no rewrite needed"
+      },
+      "produced_at": "2026-07-27T14:52:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_002_v2.mp4",
+      "transform_log": [
+        "1. Select: heuristically picked 5 raw clips (38.mp4, 9.mp4, 37.mp4, 53.mp4, 8.mp4) out of the untagged raw pool by largest file size among the 58 available clips, DELIBERATELY EXCLUDING sf_002's own picks (20.mp4, 32.mp4, 60.mp4) for variety this cycle per the task instruction, on the same theory as sf_002's pick (larger files at similar duration likely carry more visual/textural detail \u2014 bookshelves, rain droplets, fabric texture \u2014 more consistent with an interior library/rain-window/quiet-luxury mood than flatter, lower-detail footage). This is NOT a real content review \u2014 there is no video-viewing capability available in this pipeline step, so visual match to 'dark-academia library, rain on window, tailored coat, warm lamp light' is unverified and approximate, not confirmed. Source durations checked via ffprobe before selection (38.mp4=19.2s, 9.mp4=8.71s, 37.mp4=15.0s, 53.mp4=17.5s, 8.mp4=11.1s) to confirm each had enough length for its ~5.4s segment.",
+        "2. Reframe/crop: scripts/short_form_transform.sh applied crop='min(iw,ih*9/16)':'min(ih,iw*16/9)' then scale=1080:1920 to each of the 5 source clips (source was 1920x1080 landscape), same centered-crop as sf_002/README confirms excludes the baked-in left-side watermark by construction.",
+        "3. Color grade: applied the script's fixed dark/low-exposure 'gymcore' grade to every clip segment \u2014 eq=contrast=1.20:saturation=0.88:brightness=-0.09:gamma=0.92 plus vignette=PI/4 (mild vignette). This replaces sf_002's lighter/warmer 'quiet luxury' grade (contrast=1.08:saturation=0.90:brightness=0.02, no vignette) with the now-mandatory darker, moodier, lower-exposure look per config/channel.json.short_form_style_guidance and the owner's direct feedback.",
+        "4. Fast cuts: target duration (27s) split evenly across the 5 selected clips (~5.4s each segment) via the script's per-clip trim+concat, so the visual changes every ~5.4s (5 hard cuts total across 27s) instead of sf_002's single held/slowed 3-clip sequence for the full 29s. No setpts slow-down was applied this time (sf_002 used setpts=PTS/0.92 to slow footage ~8% for a 'restrained/cinematic' feel \u2014 that slowing was part of the owner-flagged pacing problem, so this pass plays all footage at native speed).",
+        "5. Burn in on-screen text: script's drawtext (via textfile=, not inline text=, so apostrophes in 'DOESN'T' never needed manual filtergraph escaping) applied per-segment, one text beat per clip, auto-sized (52pt default, scaled down toward a 34pt floor for any line over 22 chars/line) so lines fit the 1080px frame width with margin, directly fixing the owner-flagged text-overflow defect from sf_002. Beats: 0:00-0:05 'NO ONE IS WATCHING / YOU REBUILD.', 0:05-0:10 'REAL GROWTH DOESN'T / ANNOUNCE ITSELF.', 0:10-0:15 'LET THEM WONDER / WHAT CHANGED.', 0:15-0:20 'THE QUIET ONES ARE / THE DANGEROUS ONES.', 0:20-0:27 'BUILD IN SILENCE. / LET IT SPEAK LATER.'",
+        "6. Replace audio: original clip audio was never mapped/included in the output (filter graph only maps [vout] and the new [a] audio stream) \u2014 full audio replaced with the verified CC0 track 'Phonk ish' by HoliznaCC0 (state/cc0_audio_library.json, verified=true, assets/audio/holiznacc0_phonk_ish.mp3), trimmed to the first 27s of the track. This directly replaces sf_002's calm ambient 'Rain _ Sleep _ Meditation' track, which was the owner-flagged audio mistake for short-form (that track remains correctly reserved for long-form use).",
+        "7. Voiceover: N/A \u2014 script is text-only by design (on_screen_text only, no voiceover_script field), same non-narrated format decision as sf_002; no spoken-line content to synthesize or omit.",
+        "8. Duration/export: exported at exactly 27s (within the 15-30s target range and the requested ~25-29s window), verified via ffprobe: video stream h264 1080x1920, audio stream aac, format duration=27.000000s, container non-corrupt (valid ISO Media/MP4). All 27s is unique footage split across the 5 clips, no looping/repetition needed since each source clip comfortably exceeded its ~5.4s segment length."
       ]
     },
     {
@@ -153,7 +314,14 @@
         "This is why you feel different from everyone around you."
       ],
       "trending_sound_style": "spoken-word voiceover over a slow piano/string instrumental bed, minimal percussion, cinematic swell only under the final line",
-      "hashtags": ["#stoicism", "#darkacademia", "#philosophy", "#deepthoughts", "#selfimprovement", "#mindsetmatters"],
+      "hashtags": [
+        "#stoicism",
+        "#darkacademia",
+        "#philosophy",
+        "#deepthoughts",
+        "#selfimprovement",
+        "#mindsetmatters"
+      ],
       "source_notes": "Modeled on dark-academia aesthetic trend (deep tones, library/candle imagery, Marcus Aurelius/Seneca-style quote content) crossing into stoic-quote Shorts, matching reference channel style (@SilentUntilSeen-type cinematic edits) and adjacent creators like Jordan Peterson."
     },
     {
@@ -168,7 +336,14 @@
         "This is what quiet obsession looks like."
       ],
       "trending_sound_style": "aggressive slowed phonk/hardtekk with a heavy kick pattern, matching the 2026 gym-workout phonk-mix wave, cutting to silence on the final voiceover line",
-      "hashtags": ["#builtdifferent", "#gymmotivation", "#disciplineovermotivation", "#mindset", "#selfimprovement", "#gymrat"],
+      "hashtags": [
+        "#builtdifferent",
+        "#gymmotivation",
+        "#disciplineovermotivation",
+        "#mindset",
+        "#selfimprovement",
+        "#gymrat"
+      ],
       "source_notes": "Modeled on 'Built, not bought' / 'built different' caption trend and the aggressive slowed-phonk gym-motivation mix wave currently circulating on TikTok Discover ('Gym Motivation Songs', 'Motivational Phonk Songs')."
     },
     {
@@ -183,7 +358,14 @@
         "You weren't made to stay who you are right now."
       ],
       "trending_sound_style": "slowed ambient/lofi pad with a soft rising synth, spoken-word voiceover carrying the piece, no percussion until the last 2 seconds",
-      "hashtags": ["#selfimprovement", "#mindset", "#personaldevelopment", "#growth", "#youarenotalone", "#stoic"],
+      "hashtags": [
+        "#selfimprovement",
+        "#mindset",
+        "#personaldevelopment",
+        "#growth",
+        "#youarenotalone",
+        "#stoic"
+      ],
       "source_notes": "Modeled on the core-audience psychographic in channel.json (feels isolated/uncertain, wants to feel understood) and the 'share trigger' phrasing ('This is exactly how I feel'), combined with the quiet-discipline/introspective voiceover format trending alongside Huberman/Chris Williamson-adjacent content."
     }
   ]
