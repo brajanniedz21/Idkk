@@ -79,8 +79,9 @@
     },
     {
       "id": "sf_002",
-      "status": "scouted",
+      "status": "scripted",
       "scouted_at": "2026-07-27T00:00:00Z",
+      "scripted_at": "2026-07-27T13:07:49Z",
       "angle": "Quiet/silent discipline luxury narrative: rebuilding yourself with no audience — old-money interior visuals (library, rain on window, tailored coat) intercut with solitary self-work, framed as 'stealth wealth of the mind'",
       "title_pattern": "Rebuild Yourself In Silence",
       "caption_hooks": [
@@ -89,8 +90,44 @@
         "Real growth doesn't announce itself."
       ],
       "trending_sound_style": "slowed ambient piano/pad with a soft vinyl-crackle texture, near-silent verses building to a brief cinematic swell under the closing line",
-      "hashtags": ["#quietluxury", "#silentdiscipline", "#oldmoney", "#stealthwealth", "#selfmastery", "#mindset"],
-      "source_notes": "Modeled on the trending 'Rebuild Yourself In Silence / Quiet Discipline' motivational-speech format and the 2026 'quiet luxury'/stealth-wealth aesthetic wave crossing over into self-improvement content."
+      "source_notes": "Modeled on the trending 'Rebuild Yourself In Silence / Quiet Discipline' motivational-speech format and the 2026 'quiet luxury'/stealth-wealth aesthetic wave crossing over into self-improvement content.",
+      "format_note": "Non-narrated, on-screen-text-driven short by design (2.1_scriptwriter.md explicitly allows 'on_screen_text or voiceover_script'). The angle's own 'near-silent verses'/'quiet, silent discipline' framing fits a minimal-copy, text-over-visuals format naturally — this is a real, common format in this niche, not a workaround for the lack of a TTS engine in this environment. No voiceover_script field is written for this candidate; only on_screen_text beats carry the line content.",
+      "title": "Rebuild Yourself In Silence",
+      "on_screen_text": [
+        {"time": "0:00-0:04", "text": ""},
+        {"time": "0:04-0:09", "text": "NO ONE IS WATCHING YOU REBUILD."},
+        {"time": "0:09-0:14", "text": "REAL GROWTH DOESN'T ANNOUNCE ITSELF."},
+        {"time": "0:14-0:19", "text": "LET THEM WONDER WHAT CHANGED."},
+        {"time": "0:19-0:24", "text": "THE QUIET ONES ARE THE DANGEROUS ONES."},
+        {"time": "0:24-0:29", "text": "BUILD IN SILENCE.\nLET IT SPEAK LATER."}
+      ],
+      "seo_description": "There's no audience for the version of you that's being built right now — just the quiet, unglamorous work of showing up alone. A cinematic, text-driven short on rebuilding yourself in silence, for anyone who'd rather let the change speak for itself than announce it.",
+      "tags": [
+        "quiet luxury",
+        "silent discipline",
+        "old money aesthetic",
+        "stealth wealth",
+        "self mastery",
+        "rebuild yourself",
+        "mindset shorts",
+        "dark academia",
+        "cinematic motivation",
+        "self improvement",
+        "personal growth",
+        "discipline",
+        "quiet growth",
+        "aesthetic motivation"
+      ],
+      "hashtags": ["#quietluxury", "#silentdiscipline", "#oldmoney", "#stealthwealth", "#selfmastery"],
+      "sound_direction": "Slowed ambient piano/pad, minimal melodic movement, soft vinyl-crackle texture layered underneath for warmth and 'old media' intimacy. Near-silent, sparse verses through 0:04-0:19 (single sustained piano/pad notes, long decay, no percussion) so the on-screen text carries the weight, building gradually into a brief, warm cinematic swell (strings or fuller pad, still no percussion) under the closing line at 0:24-0:29. No lyrics, no recognizable sample, CC0/library source only — matched by Agent 3.1/4.2.",
+      "visual_direction": "Mood/type needed (raw clips in assets/short-form-clips/raw/ not yet tagged by description; Agent 3.1 to select and note its own heuristic since this stage cannot watch footage): dark-academia, quiet old-money interiors — a private library or study (bookshelves, warm lamp light), rain streaking down a windowpane, a tailored coat/close-up on fabric or hands, solitary figure working alone (writing, reading, reorganizing) with no other people in frame. Warm practical lighting (lamp, firelight) contrasted with the cool blue of the rain-window shots. Avoid bright, crowded, or branded footage — tone must stay restrained, intimate, and unhurried throughout, matching the 'no audience' theme.",
+      "factual_controversy_self_check": {
+        "checked_against": "config/gates.json shared_gates.factual_controversy_screen",
+        "no_political_figures_parties_elections_policy": "pass - none referenced",
+        "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - script is generic second-person motivational framing only, no named individuals, no statistics or studies cited",
+        "no_controversial_social_topics_per_channel_exclusions": "pass - topic is self-improvement/aesthetic mindset only, no politics or controversial topics per channel.json content_exclusions",
+        "result": "cleared, no rewrite needed"
+      }
     },
     {
       "id": "sf_003",
