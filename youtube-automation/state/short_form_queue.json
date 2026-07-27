@@ -1069,6 +1069,70 @@
       "published_video_id": "UXnA8OJeZjI",
       "published_url": "https://youtu.be/UXnA8OJeZjI",
       "published_at": "2026-07-27T20:50:00Z"
+    },
+    {
+      "id": "sf_013",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:30:00Z",
+      "angle": "Generational-legacy narrative: luxury visuals reframed not as personal indulgence but as proof that a new baseline has been set for everyone who comes after — family/bloodline framing ('I'm the first, not the last'), the work as something bigger than the person doing it. Distinct from every angle already used: not car-as-proof-of-invisible-work (sf_006, backward-looking/self-directed), not grind/no-days-off (sf_008, effort-focused), not competitive-standards/caliber (sf_010, identity-focused), not vindication (sf_012, response to a doubter) — this is the first angle in the queue framed around who benefits beyond the person in the video.",
+      "title_pattern": "I'm The First. Not The Last.",
+      "caption_hooks": [
+        "Someone has to go first.",
+        "This isn't just for me anymore.",
+        "The cycle stops with me."
+      ],
+      "trending_sound_style": "Confident, warm-but-driving mid-tempo (roughly 85-95 BPM), a triumphant/anthemic build rather than an aggressive grind-kick — energy that reads as 'this matters beyond me,' not a personal flex. Style description only, per this stage's brief; Agent 2.1/3.1 to pick the actual track from state/trending_audio_library.json / state/cc0_audio_library.json.",
+      "hashtags": [
+        "#generationalwealth",
+        "#breakthecycle",
+        "#firstgeneration",
+        "#legacymindset",
+        "#luxurylifestyle"
+      ],
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt10, 2026-07-27): a fresh 100-video TikTok pull of @millionaire_mentality_7 confirmed the channel's caption vocabulary remains genuinely narrow (generic 'Luxury/Rich/Millionaire Life' template plus BMW/Dodge-model callouts only, no new template after 10 cumulative scans) and an explicit search of this pull plus every prior scan's logged titles found zero use of generational/legacy/'for the ones after me' language anywhere in this channel's history — a real, confirmed gap, the same category of finding that validated sf_007/sf_011/sf_012. Fully representable by the existing luxury-lifestyle-only footage pool (mansion, skyline, supercar, private jet shots all read naturally as 'a new baseline' without needing any footage this channel doesn't have, per assets/short-form-clips/raw/README.md Content scope)."
+    },
+    {
+      "id": "sf_014",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:30:00Z",
+      "angle": "Own-timeline / anti-comparison narrative: luxury visuals used as evidence that the viewer isn't behind their peers, they're just running on a different clock — directly addresses comparing your own progress to someone else's, rather than framing the discomfort as isolation (sf_005) or omitting other people entirely (sf_009's settled-arrival register, which makes no reference to anyone else's pace). This is the first angle in the queue that explicitly names the comparison instinct and reframes it, rather than sidestepping it.",
+      "title_pattern": "Everyone's On A Different Clock.",
+      "caption_hooks": [
+        "Their timeline was never yours to keep.",
+        "Stop racing a clock that isn't yours.",
+        "You're not late. You're on your own schedule."
+      ],
+      "trending_sound_style": "Dreamy but still propulsive mid-tempo (roughly 90-100 BPM), a steady driving beat under a wide, spacious melodic layer — forward motion without an urgent/countdown feel. Style description only, per this stage's brief; Agent 2.1/3.1 to pick the actual track from the audio libraries.",
+      "hashtags": [
+        "#ownyourpace",
+        "#successtimeline",
+        "#luxurymindset",
+        "#patiencepays",
+        "#millionairemindset"
+      ],
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt10, 2026-07-27) and the core-audience psychographic in config/channel.json (believes they have untapped potential, wants to feel understood rather than entertained). The fresh 100-video pull plus every prior scan's logged titles were checked for any 'own pace'/'different clock'/comparison-reframe language — none found, a confirmed gap. Distinct from sf_005 (isolation-to-purpose, framed around loneliness) by making the comparison-to-others instinct the explicit subject rather than an implicit backdrop. Representable by the existing footage pool via unhurried travel/skyline/dawn shots (hot air balloon, sunrise, yacht-at-sea) already used for similarly paced angles like sf_007/sf_011.",
+      "content_exclusions_check": "No controversial topics or politics referenced; passes config/channel.json.content_exclusions per agents/short_form/1.1_trend_scout.md Method step 4."
+    },
+    {
+      "id": "sf_015",
+      "status": "scouted",
+      "scouted_at": "2026-07-27T22:30:00Z",
+      "angle": "Sacrifice/cost narrative: explicitly names what was given up for the current lifestyle (nights out, people who fell away, the easy path not taken) and holds that cost up against the luxury visuals as the real answer to 'was it worth it' — the emotional core is loss/trade-off, not effort. Distinct from car-as-proof-of-work (sf_006, which frames luxury as proof of ongoing invisible WORK, not something given up) and from grind/no-days-off (sf_008, endurance-focused, no loss framing). This is the first angle in the queue built around an explicit cost/grief-within-success register, matching the core audience's introspective, 'wants to feel understood' psychographic in config/channel.json.",
+      "title_pattern": "Nobody Talks About What I Gave Up.",
+      "caption_hooks": [
+        "I didn't lose people. I lost who wasn't coming with me.",
+        "This wasn't free. It just doesn't look like the bill.",
+        "Ask me what it cost. I'll show you instead."
+      ],
+      "trending_sound_style": "Slower-building mid-tempo (roughly 78-85 BPM) with a bittersweet, slightly melancholic undertone beneath a still-upbeat, driving low end — weight and reflection rather than pure celebration, closer to a 'quiet, costly victory' register than a flex. Style description only, per this stage's brief; Agent 2.1/3.1 to pick the actual track from the audio libraries (e.g. the warmer/gentler tracks like Love Nwantiti (Acoustic) or one of the slower unidentified owner-provided tracks in state/trending_audio_library.json may fit this register better than the aggressive phonk/montagem tracks already used for sf_008/sf_010).",
+      "hashtags": [
+        "#whatitcost",
+        "#luxurylifestyle",
+        "#successstory",
+        "#sacrificepays",
+        "#millionairemindset"
+      ],
+      "source_notes": "Modeled on this cycle's mandatory fresh competitor scan (state/performance_notes.json.competitor_scan_2026_07_27_pt10, 2026-07-27): the fresh 100-video pull plus every prior scan's logged titles were checked for any 'what it cost'/'what I gave up'/sacrifice framing — none found anywhere in this channel's history, a confirmed real gap, the same category of underserved-framing finding that validated sf_007/sf_011/sf_012/sf_013/sf_014 this cycle. Fully representable by the existing luxury-lifestyle-only footage pool (the visuals ARE the 'proof' being held up against the cost, using the same supercar/skyline/private-jet shots already validated for reveal-style framing in sf_012) with zero footage-mismatch risk per assets/short-form-clips/raw/README.md Content scope."
     }
   ]
 }
