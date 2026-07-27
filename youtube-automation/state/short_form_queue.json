@@ -1427,7 +1427,7 @@
     },
     {
       "id": "sf_019",
-      "status": "scouted",
+      "status": "produced",
       "scouted_at": "2026-07-27T22:10:00Z",
       "angle": "Boundaries-as-wealth-protection / selective access: quietly distancing from people who drain time or energy, framed not as bitterness but as an unexplained boundary a builder is entitled to hold. Distinct from the already-used quiet-restraint angle (which is about not announcing growth to anyone) and from curated-environment (which is about becoming your surroundings, not about actively removing people) -- this angle is specifically about the deliberate act of cutting access, mirrored visually by gated/private luxury spaces (private jet interior, gated estate driveway, empty yacht deck, VIP-only rooms) that only some people ever get into.",
       "title_pattern": "I Stopped Explaining My Boundaries.",
@@ -1440,15 +1440,50 @@
       "hashtags": [
         "#boundaries",
         "#protectyourpeace",
-        "#luxurymindset",
-        "#silentdiscipline",
-        "#selfrespect"
+        "#unbothered",
+        "#millionairemindset",
+        "#luxurylifestyle"
       ],
-      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: an explicit keyword gap-check across a fresh 150-video TikTok pull of @millionaire_mentality_7 found zero occurrences of any boundary/distancing/protection-of-energy language ('boundar', 'protect', 'peace', 'energy', 'circle', 'cut off', 'walk away', 'discern', 'select') anywhere in this channel's caption history across 15 cumulative scans -- a genuine, confirmed gap in the niche's most-analyzed direct competitor, not an assumption."
+      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: an explicit keyword gap-check across a fresh 150-video TikTok pull of @millionaire_mentality_7 found zero occurrences of any boundary/distancing/protection-of-energy language ('boundar', 'protect', 'peace', 'energy', 'circle', 'cut off', 'walk away', 'discern', 'select') anywhere in this channel's caption history across 15 cumulative scans -- a genuine, confirmed gap in the niche's most-analyzed direct competitor, not an assumption.",
+      "title": "I Stopped Explaining My Boundaries.",
+      "seo_description": "I don't argue for my boundaries anymore. If someone drains time or energy, the distance happens quietly \u2014 no speech, no justification, just space. Made for anyone tired of defending the line they've already decided to hold.",
+      "tags": [
+        "stopped explaining",
+        "protect your peace",
+        "quiet boundaries",
+        "unbothered mindset",
+        "luxury lifestyle motivation",
+        "millionaire mindset",
+        "manifestation shorts",
+        "self improvement shorts",
+        "wealth mindset shorts",
+        "luxury aesthetic",
+        "discipline motivation",
+        "no explanations needed",
+        "energy protection",
+        "quiet confidence",
+        "success mindset"
+      ],
+      "sound_direction": "Real trending track: owner_provided_182026 (unidentified, extracted from owner-supplied screen recordings), state/trending_audio_library.json unidentified_owner_provided_tracks \u2014 ~104.2 BPM (measured via librosa), unused in any prior candidate. Same accepted-risk basis as other owner-provided unidentified tracks used earlier in this batch (sf_017, sf_018).",
+      "visual_direction": "'Quiet distance / selective access' framing \u2014 solitary, unhurried luxury moments rather than crowds: 17.mp4 (night-city supercar, solo), 13.mp4 (supercar showroom, no people), 30.mp4 (daytime mansion grounds, calm/unhurried), 41.mp4 (Cappadocia sunrise, contemplative). Agent 3.1 to confirm actual content before finalizing.",
+      "factual_controversy_screen_note": "Checked against config/gates.json shared_gates.factual_controversy_screen: no political content, no fabricated claims/quotes, no controversial topics. Passes.",
+      "scripted_at": "2026-07-27T23:40:00Z",
+      "produced_at": "2026-07-27T23:50:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_019.mp4",
+      "transform_log": [
+        "1. Select: 17.mp4 (night-city supercar, solo), 13.mp4 (supercar showroom), 30.mp4 (daytime mansion grounds, calm), 41.mp4 (Cappadocia sunrise) \u2014 visually confirmed matching content",
+        "2. Reframe/crop: default center-crop to 1080x1920 applied \u2014 watermark exclusion confirmed by visual frame inspection.",
+        "3. Color grade: dark/low-exposure grade applied \u2014 confirmed by visual inspection.",
+        "4. No on-screen text/captions.",
+        "5. Audio replaced entirely with 'owner_provided_182026 (unidentified, owner-supplied)', state/trending_audio_library.json.",
+        "Script stdout: 'Transformed (beat-synced cuts, <=1.5s cap): 10 shots from 4 distinct clips, avg ~1.00s/shot (range 0.79s-1.14s, intro skipped: 5.86s, cut points from real beat detection on assets/audio/trending/owner_provided_182026.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_019.mp4'",
+        "Independent verification (Agent 0/producer role): ffprobe confirmed 1080x1920, 10.00s duration, h264/aac for all three. Full decode pass (ffmpeg -f null -) clean for all three. Visually inspected a frame from each output (t=3s) \u2014 watermark correctly excluded by the crop, dark grade visibly applied, content matches each brief."
+      ],
+      "publish_blocker": "YouTube API returned 400 uploadLimitExceeded ('The user has exceeded the number of videos they may upload') on the publish attempt at 2026-07-27T23:55Z. This is a real platform daily-upload-quota limit, not a gate failure or content problem \u2014 the video is fully produced and gate-passed, just blocked from uploading until the quota resets (YouTube's daily upload cap is typically per rolling 24h window; exact reset time not confirmed from this environment). Status intentionally left at 'produced', NOT moved to quarantine.json (quarantine is for gate/content failures, this is a platform throttle) and NOT marked 'published' (no fabricated success). Retry the publish step once quota allows \u2014 do not re-run scripting/production, the produced file and all gate results are already valid and don't need to be redone."
     },
     {
       "id": "sf_020",
-      "status": "scouted",
+      "status": "produced",
       "scouted_at": "2026-07-27T22:10:00Z",
       "angle": "Reinvest-not-spend capital-allocation discipline: every luxury visual on screen is framed as the byproduct of reinvesting profit back into growth rather than consuming it for show. Distinct from sf_006's car-as-proof-of-work angle (that's about luxury as evidence of past invisible effort) and from the already-used sacrifice/cost angle (that's about what discipline personally cost someone emotionally/socially) -- this angle is specifically about forward-looking capital allocation: choosing to put money back to work instead of spending it, with the luxury result being a consequence of that discipline, not the point of it.",
       "title_pattern": "I Don't Spend It. I Reinvest It.",
@@ -1460,16 +1495,51 @@
       "trending_sound_style": "Fast, driving energy (~130 BPM) to match an assertive, no-nonsense financial-discipline tone. Real candidate: owner_provided_181336 (state/trending_audio_library.json unidentified_owner_provided_tracks, measured 130.8 BPM via librosa, unused in every prior candidate).",
       "hashtags": [
         "#reinvest",
-        "#wealthmindset",
-        "#luxurymotivation",
-        "#businessmindset",
-        "#compoundgrowth"
+        "#capitaldiscipline",
+        "#compoundingmindset",
+        "#millionairemindset",
+        "#luxurylifestyle"
       ],
-      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: the same fresh 150-video keyword gap-check found zero occurrences of any investment/reinvestment/capital-allocation language ('invest', 'reinvest', 'leverage', 'asset', 'compound') anywhere in @millionaire_mentality_7's caption history -- this channel's captions stay purely at the generic-luxury-label or specific-car-model-callout level (confirmed again this cycle) and never articulate a financial-discipline framing, despite the channel's own luxury-as-result visuals implicitly supporting one."
+      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: the same fresh 150-video keyword gap-check found zero occurrences of any investment/reinvestment/capital-allocation language ('invest', 'reinvest', 'leverage', 'asset', 'compound') anywhere in @millionaire_mentality_7's caption history -- this channel's captions stay purely at the generic-luxury-label or specific-car-model-callout level (confirmed again this cycle) and never articulate a financial-discipline framing, despite the channel's own luxury-as-result visuals implicitly supporting one.",
+      "title": "I Don't Spend It. I Reinvest It.",
+      "seo_description": "Everything you're seeing isn't consumption \u2014 it's what's left over after reinvesting back into growth, again and again. The lifestyle is the byproduct, not the goal. Made for anyone who thinks in compounding, not spending.",
+      "tags": [
+        "reinvest not spend",
+        "capital discipline",
+        "compounding mindset",
+        "wealth building",
+        "luxury lifestyle motivation",
+        "millionaire mindset",
+        "manifestation shorts",
+        "self improvement shorts",
+        "wealth mindset shorts",
+        "luxury aesthetic",
+        "discipline motivation",
+        "financial discipline",
+        "growth over consumption",
+        "quiet wealth",
+        "success mindset"
+      ],
+      "sound_direction": "Real trending track: owner_provided_181726 (unidentified, extracted from owner-supplied screen recordings), state/trending_audio_library.json unidentified_owner_provided_tracks \u2014 ~90.7 BPM (measured via librosa). NOTE: this candidate was originally scouted pointing at owner_provided_181336, but that track was already assigned to sf_018 (scouted/produced concurrently) \u2014 swapped to this genuinely unused track instead to preserve real rotation variety rather than duplicate within the same batch. Same accepted-risk basis as other owner-provided unidentified tracks in this batch.",
+      "visual_direction": "'Growth, not spending' framing \u2014 footage should read as accumulated/compounding assets rather than a single indulgent purchase: 13.mp4 (supercar showroom \u2014 a collection built over time, not one flashy buy), 18.mp4 (yacht at marina), 14.mp4 (Dubai skyline \u2014 a city of compounded growth), 21.mp4 (Rolls-Royce interior, cash \u2014 reinvestment/capital visual). Agent 3.1 to confirm actual content before finalizing.",
+      "factual_controversy_screen_note": "Checked against config/gates.json shared_gates.factual_controversy_screen: no political content, no fabricated claims/quotes, no controversial topics. Passes.",
+      "scripted_at": "2026-07-27T23:40:00Z",
+      "produced_at": "2026-07-27T23:50:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_020.mp4",
+      "transform_log": [
+        "1. Select: 13.mp4 (supercar showroom), 18.mp4 (yacht at marina), 14.mp4 (Dubai skyline), 21.mp4 (Rolls-Royce interior, cash) \u2014 visually confirmed matching content",
+        "2. Reframe/crop: default center-crop to 1080x1920 applied \u2014 watermark exclusion confirmed by visual frame inspection.",
+        "3. Color grade: dark/low-exposure grade applied \u2014 confirmed by visual inspection.",
+        "4. No on-screen text/captions.",
+        "5. Audio replaced entirely with 'owner_provided_181726 (unidentified, owner-supplied; swapped from the originally-scouted 181336 which turned out to already be assigned to sf_018)', state/trending_audio_library.json.",
+        "Script stdout: 'Transformed (beat-synced cuts, <=1.5s cap): 8 shots from 4 distinct clips, avg ~1.25s/shot (range 0.67s-1.34s, intro skipped: 0.94s, cut points from real beat detection on assets/audio/trending/owner_provided_181726.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_020.mp4'",
+        "Independent verification (Agent 0/producer role): ffprobe confirmed 1080x1920, 10.00s duration, h264/aac for all three. Full decode pass (ffmpeg -f null -) clean for all three. Visually inspected a frame from each output (t=3s) \u2014 watermark correctly excluded by the crop, dark grade visibly applied, content matches each brief."
+      ],
+      "publish_blocker": "YouTube API returned 400 uploadLimitExceeded ('The user has exceeded the number of videos they may upload') on the publish attempt at 2026-07-27T23:55Z. This is a real platform daily-upload-quota limit, not a gate failure or content problem \u2014 the video is fully produced and gate-passed, just blocked from uploading until the quota resets (YouTube's daily upload cap is typically per rolling 24h window; exact reset time not confirmed from this environment). Status intentionally left at 'produced', NOT moved to quarantine.json (quarantine is for gate/content failures, this is a platform throttle) and NOT marked 'published' (no fabricated success). Retry the publish step once quota allows \u2014 do not re-run scripting/production, the produced file and all gate results are already valid and don't need to be redone."
     },
     {
       "id": "sf_021",
-      "status": "scouted",
+      "status": "produced",
       "scouted_at": "2026-07-27T22:10:00Z",
       "angle": "Self-authorized permission / no one crowned me: the shift into pursuing real ambition happened by simply deciding and acting, not because any person, title, or external validation ever granted permission first. Distinct from the already-used vindication/doubters angle (sf_012, which is a response to someone's explicit doubt, proven wrong after the fact) and from confident-arrival (sf_009, which is about having already settled into arrival) -- this angle is about the internal, pre-outcome moment of self-authorization, with no doubter or audience required at all.",
       "title_pattern": "Nobody Gave Me Permission. I Took It.",
@@ -1480,13 +1550,48 @@
       ],
       "trending_sound_style": "Mid-fast, driving forward-momentum energy (~117 BPM). Real candidate: owner_provided_181931 (state/trending_audio_library.json unidentified_owner_provided_tracks, measured 117.2 BPM via librosa, unused in every prior candidate).",
       "hashtags": [
-        "#selfmade",
+        "#selfauthorized",
         "#nopermissionneeded",
-        "#luxurymindset",
+        "#tookitmyself",
         "#millionairemindset",
-        "#ownyourpower"
+        "#luxurylifestyle"
       ],
-      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: the same fresh 150-video keyword gap-check found zero occurrences of any self-permission/authorization language ('permission', 'chose myself', 'crowned') anywhere in @millionaire_mentality_7's caption history -- a third confirmed gap this cycle, chosen to be internally distinct from the vindication/doubters angle already used on sf_012 by removing the doubter/external-response element entirely."
+      "source_notes": "Per state/performance_notes.json competitor_scan_2026_07_27_pt12: the same fresh 150-video keyword gap-check found zero occurrences of any self-permission/authorization language ('permission', 'chose myself', 'crowned') anywhere in @millionaire_mentality_7's caption history -- a third confirmed gap this cycle, chosen to be internally distinct from the vindication/doubters angle already used on sf_012 by removing the doubter/external-response element entirely.",
+      "title": "Nobody Gave Me Permission. I Took It.",
+      "seo_description": "No one crowned me. No title, no person, no external validation ever gave the go-ahead \u2014 the shift happened the moment I decided and started acting like it was already true. Made for anyone still waiting for permission that was never coming.",
+      "tags": [
+        "took it myself",
+        "self authorized",
+        "no permission needed",
+        "decide and act",
+        "luxury lifestyle motivation",
+        "millionaire mindset",
+        "manifestation shorts",
+        "self improvement shorts",
+        "wealth mindset shorts",
+        "luxury aesthetic",
+        "discipline motivation",
+        "self made mindset",
+        "no validation needed",
+        "just decided",
+        "success mindset"
+      ],
+      "sound_direction": "Real trending track: owner_provided_181931 (unidentified, extracted from owner-supplied screen recordings), state/trending_audio_library.json unidentified_owner_provided_tracks \u2014 ~117.2 BPM (measured via librosa), unused in any prior candidate. Same accepted-risk basis as other owner-provided unidentified tracks used earlier in this batch.",
+      "visual_direction": "'Self-authorized decision' framing \u2014 an active, decisive energy rather than a passive/contemplative one: 17.mp4 (night-city supercar in motion), 15.mp4 (luxury hotel arrival at night \u2014 an active entrance), 13.mp4 (supercar showroom), 36.mp4 (solo supercar at sunset \u2014 a deliberate, self-directed moment). Agent 3.1 to confirm actual content before finalizing.",
+      "factual_controversy_screen_note": "Checked against config/gates.json shared_gates.factual_controversy_screen: no political content, no fabricated claims/quotes, no controversial topics. Passes.",
+      "scripted_at": "2026-07-27T23:40:00Z",
+      "produced_at": "2026-07-27T23:50:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_021.mp4",
+      "transform_log": [
+        "1. Select: 17.mp4 (night-city supercar), 15.mp4 (luxury hotel arrival at night), 13.mp4 (supercar showroom), 36.mp4 (solo supercar at sunset) \u2014 visually confirmed matching content",
+        "2. Reframe/crop: default center-crop to 1080x1920 applied \u2014 watermark exclusion confirmed by visual frame inspection.",
+        "3. Color grade: dark/low-exposure grade applied \u2014 confirmed by visual inspection.",
+        "4. No on-screen text/captions.",
+        "5. Audio replaced entirely with 'owner_provided_181931 (unidentified, owner-supplied)', state/trending_audio_library.json.",
+        "Script stdout: 'Transformed (beat-synced cuts, <=1.5s cap): 11 shots from 4 distinct clips, avg ~0.91s/shot (range 0.46s-1.09s, intro skipped: 0.52s, cut points from real beat detection on assets/audio/trending/owner_provided_181931.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_021.mp4'",
+        "Independent verification (Agent 0/producer role): ffprobe confirmed 1080x1920, 10.00s duration, h264/aac for all three. Full decode pass (ffmpeg -f null -) clean for all three. Visually inspected a frame from each output (t=3s) \u2014 watermark correctly excluded by the crop, dark grade visibly applied, content matches each brief."
+      ],
+      "publish_blocker": "YouTube API returned 400 uploadLimitExceeded ('The user has exceeded the number of videos they may upload') on the publish attempt at 2026-07-27T23:55Z. This is a real platform daily-upload-quota limit, not a gate failure or content problem \u2014 the video is fully produced and gate-passed, just blocked from uploading until the quota resets (YouTube's daily upload cap is typically per rolling 24h window; exact reset time not confirmed from this environment). Status intentionally left at 'produced', NOT moved to quarantine.json (quarantine is for gate/content failures, this is a platform throttle) and NOT marked 'published' (no fabricated success). Retry the publish step once quota allows \u2014 do not re-run scripting/production, the produced file and all gate results are already valid and don't need to be redone."
     }
   ]
 }
