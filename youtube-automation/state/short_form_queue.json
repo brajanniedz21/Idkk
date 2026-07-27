@@ -3,9 +3,20 @@
   "queue": [
     {
       "id": "sf_001",
-      "status": "scripted",
+      "status": "quarantined",
       "scouted_at": "2026-07-27T00:00:00Z",
       "scripted_at": "2026-07-27T00:00:00Z",
+      "produced_at": "2026-07-27T08:12:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_001.mp4",
+      "transform_log": [
+        "1. Select: heuristically picked 3 raw clips (56.mp4, 50.mp4, 39.mp4) out of the untagged raw pool by weakest available proxy (smallest file sizes among the 58 available clips, on the theory that lower-motion/lower-detail footage is more likely to be static, dim, low-key material matching the requested dim/dark gym visual_direction). This was NOT a real content review — there is no video-viewing capability available in this pipeline step, so visual match to 'dim/dark gym interior, pre-dawn lighting, solitary figure' is unverified and should be treated as approximate/unconfirmed, not confirmed.",
+        "2. Reframe/crop: applied crop='min(iw,ih*9/16)':'min(ih,iw*16/9)' then scale=1080:1920 to each of the 3 source clips (source was 1920x1080 landscape) to reframe to vertical 1080x1920.",
+        "3. Speed/color change: applied both — setpts=PTS/0.90 (10% slow-down) on the concatenated sequence, and eq=contrast=1.10:saturation=1.12:brightness=0.0 color grade on each clip.",
+        "4. Burn in on-screen text: chained 5 separate drawtext filters (one per non-empty on_screen_text beat from the script) using enable='between(t,start,end)' timed to match the script's beat boundaries (3-7s, 7-12s, 12-18s, 18-24s, 24-29s); text content pulled verbatim from sf_001.on_screen_text. The 0:00-0:03 beat has empty text in the script so no drawtext was applied there.",
+        "5. Replace audio: original clip audio was never mapped/included in the output (filter graph only maps [vout] and the new [a] audio stream) — full audio replaced with the verified CC0 track 'Phonk ish' by HoliznaCC0 from state/cc0_audio_library.json, trimmed to 29s with a 2s fade-out at the end.",
+        "6. Voiceover: NOT added. The script's voiceover_script.full_text/beats were not synthesized or recorded in this pass — no TTS engine was available/invoked in this step. This is a gap versus the full script brief; the output currently relies on burned-in text only to carry the line content, with no spoken narration.",
+        "7. Duration: exported at 29s, within the 15-45s target range (~28-30s as instructed). Source material was only ~4-10s per clip, so the 3-clip sequence (total ~15.9s raw) was played twice back-to-back (concat n=6, sequence ABCABC) then slowed 10% and trimmed to 29s to reach target duration -- this repetition is a real editorial compromise, not a full continuous 29s of unique footage."
+      ],
       "angle": "3am gym discipline monologue: 'Discipline over motivation' — silent alarm, empty gym, cold open on tying laces in the dark, voiceover on why willpower fails and systems don't",
       "title_pattern": "Don't Be Motivated. Be Disciplined.",
       "caption_hooks": [

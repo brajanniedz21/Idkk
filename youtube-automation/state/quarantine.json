@@ -1,5 +1,14 @@
 {
   "_comment": "Every item that fails any gate lands here with the reason, timestamp, and which gate failed. Never silently discarded or forced through. Reviewed periodically to spot systemic issues (e.g. a gate that's too strict, or a recurring source problem).",
-  "short_form": [],
+  "short_form": [
+    {
+      "id": "sf_001",
+      "quarantined_at": "2026-07-27T08:20:00Z",
+      "gate": "basic_qa (quality risk, Agent 0 judgement call — no literal gates.json rule directly covers this case)",
+      "reason": "Produced file (assets/short-form-clips/processed/sf_001.mp4, 1080x1920, 29s, verified via ffprobe) correctly applied the short_form_gates.copyright_gate mitigation checklist in full (vertical reframe, 0.90x speed change + color grade, 5 burned-in on-screen-text beats, original audio fully replaced with a verified CC0 track). However, the script's voiceover_script (full narrated spoken-word lines that are the core creative device of this candidate's angle) was never added — no TTS engine is available in this environment, so Agent 3.1's own mandatory checklist step 6 (voiceover) was left incomplete by necessity, not oversight. Publishing a spoken-word-monologue concept with zero spoken words as the channel's first-ever video is a quality/creative-intent mismatch significant enough to withhold rather than auto-publish under a gate that doesn't explicitly anticipate this case. Holding for a human decision: accept text-only shorts as the format going forward, or add a TTS step to the pipeline before this candidate (or others like it) can publish.",
+      "additional_note": "Visual clip selection (56.mp4, 50.mp4, 39.mp4, looped ABCABC to reach 29s) was also only a weak heuristic (file size as a low-motion proxy) since no video-viewing capability exists to genuinely match visual_direction; flagged for awareness, not treated as a separate gate failure.",
+      "cc0_track_used": "Phonk ish by HoliznaCC0 (CC0 1.0, verified) — this part of the pipeline worked correctly and the track is retained in state/cc0_audio_library.json for reuse."
+    }
+  ],
   "long_form": []
 }

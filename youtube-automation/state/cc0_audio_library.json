@@ -1,4 +1,16 @@
 {
   "_comment": "Verified CC0 / no-attribution-required audio tracks for long-form (ambient/phonk) and short-form (swap-in for reused clips). Agent 4.2 and Agent 3.1 only pull from entries where verified=true. verification_note must state what was checked (license tag AND source page), not just the platform label.",
-  "tracks": []
+  "tracks": [
+    {
+      "title": "Phonk ish",
+      "artist": "HoliznaCC0",
+      "album": "PHONK - AURA FARMING",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/phonk-aura-farming/phonk-ish/",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Checked the license badge/link on the track's own FMA page (not a third-party aggregator claim): rel=\"license\" anchor points directly to https://creativecommons.org/publicdomain/zero/1.0/. Also confirmed via the site's own download-overlay modal (https://freemusicarchive.org/track/phonk-ish/downloadOverlay/) which explicitly states 'CC0/Public Domain' for this track. Direct file download via the standard /track/<slug>/download/ route requires an FMA login (302 to /login when unauthenticated), so the file was instead fetched from the same-page embedded data-track-info JSON's public 'fileUrl' field, which points to FMA's own CDN (files.freemusicarchive.org) and required no authentication. Downloaded file verified via `file` and `ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 145.56s duration, non-corrupt, non-zero size (5,823,523 bytes). Stylistic match note: FMA has no literal 'phonk' genre-CC0 catalog beyond this artist; HoliznaCC0 is a netlabel-style artist who explicitly self-releases all work as CC0 and this track is genre-tagged/titled 'Phonk ish' under album 'PHONK - AURA FARMING', a genuine bass-driven electronic instrumental — closest real CC0 match found to the requested slowed hardtekk/phonk direction (no lyrics, no recognizable sample).",
+      "added_at": "2026-07-27T08:15:00Z",
+      "local_path": "assets/audio/holiznacc0_phonk_ish.mp3"
+    }
+  ]
 }
