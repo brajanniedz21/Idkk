@@ -71,6 +71,30 @@
       "title": "They Said I Wouldn't Make It. I Did.",
       "published_at": "2026-07-27T20:50:00Z",
       "format": "short"
+    },
+    {
+      "video_id": "jPadbAWbYsU",
+      "url": "https://youtu.be/jPadbAWbYsU",
+      "title": "I'm The First. Not The Last.",
+      "published_at": "2026-07-28T08:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
+    },
+    {
+      "video_id": "QA8WndS3tZM",
+      "url": "https://youtu.be/QA8WndS3tZM",
+      "title": "Everyone's On A Different Clock.",
+      "published_at": "2026-07-28T13:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
+    },
+    {
+      "video_id": "LE_thiHiqHM",
+      "url": "https://youtu.be/LE_thiHiqHM",
+      "title": "Nobody Talks About What I Gave Up.",
+      "published_at": "2026-07-28T18:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
     }
   ],
   "long_form": [
