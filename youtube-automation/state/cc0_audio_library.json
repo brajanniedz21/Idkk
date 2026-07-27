@@ -11,6 +11,17 @@
       "verification_note": "Checked the license badge/link on the track's own FMA page (not a third-party aggregator claim): rel=\"license\" anchor points directly to https://creativecommons.org/publicdomain/zero/1.0/. Also confirmed via the site's own download-overlay modal (https://freemusicarchive.org/track/phonk-ish/downloadOverlay/) which explicitly states 'CC0/Public Domain' for this track. Direct file download via the standard /track/<slug>/download/ route requires an FMA login (302 to /login when unauthenticated), so the file was instead fetched from the same-page embedded data-track-info JSON's public 'fileUrl' field, which points to FMA's own CDN (files.freemusicarchive.org) and required no authentication. Downloaded file verified via `file` and `ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 145.56s duration, non-corrupt, non-zero size (5,823,523 bytes). Stylistic match note: FMA has no literal 'phonk' genre-CC0 catalog beyond this artist; HoliznaCC0 is a netlabel-style artist who explicitly self-releases all work as CC0 and this track is genre-tagged/titled 'Phonk ish' under album 'PHONK - AURA FARMING', a genuine bass-driven electronic instrumental — closest real CC0 match found to the requested slowed hardtekk/phonk direction (no lyrics, no recognizable sample).",
       "added_at": "2026-07-27T08:15:00Z",
       "local_path": "assets/audio/holiznacc0_phonk_ish.mp3"
+    },
+    {
+      "title": "Rain _ Sleep _ Meditation",
+      "artist": "HoliznaCC0",
+      "album": "Space - Sleep - Meditation",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/space-sleep-meditation/rain-sleep-meditation/",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Checked the license badge/link on the track's own FMA page directly via raw HTML fetch (not a third-party aggregator claim, not just the WebFetch text summary): two rel=\"license\" anchors on the page both point directly to https://creativecommons.org/publicdomain/zero/1.0/. Source page also states track title 'Rain _ Sleep _ Meditation', artist HoliznaCC0 (the same self-releasing-CC0 netlabel artist already verified for the phonk-ish track in this library), album 'Space - Sleep - Meditation', duration 14:35, Instrumental: Yes, AI Generated: No. File fetched from the page's own embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth required, same method as prior verified entry). Downloaded file verified via `file` and `ffprobe`: real MPEG ADTS layer III audio, 320kbps, 48kHz stereo, 875.976s (14:36) duration, non-corrupt, size 35,040,205 bytes matching the download. Mood match note: genre tags on the source page are Ambient/Ambient Electronic/Chill-out/Lo-fi Instrumental with an explicit 'Rain' + 'Sleep' + 'Meditation' title, which is a strong fit for the brief's 'slow ambient with light rain layer, no percussion, sub-60bpm' mood; the track was not able to be literally listened to end-to-end in this environment, so the tempo/instrumentation match is inferred from title, genre tags, and the artist's established ambient/meditation catalog rather than an audible waveform/BPM analysis.",
+      "added_at": "2026-07-27T09:55:00Z",
+      "local_path": "assets/audio/holiznacc0_rain_sleep_meditation.mp3"
     }
   ]
 }

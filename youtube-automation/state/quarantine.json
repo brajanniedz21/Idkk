@@ -10,5 +10,15 @@
       "cc0_track_used": "Phonk ish by HoliznaCC0 (CC0 1.0, verified) — this part of the pipeline worked correctly and the track is retained in state/cc0_audio_library.json for reuse."
     }
   ],
-  "long_form": []
+  "long_form": [
+    {
+      "id": "lf_001",
+      "quarantined_at": "2026-07-27T09:56:00Z",
+      "gate": "long_form_gates.image_copyright_gate (environment/credentials blocker, not a content failure)",
+      "reason": "Stage 2.2 (Image Sourcer) could not run: the `banana` skill requires a Google AI (Gemini) API key, and none is configured anywhere in this environment (no GOOGLE_AI_API_KEY/GOOGLE_API_KEY env var, no MCP server registration, no ~/.banana config, no gcloud application-default credentials). Independently re-verified by Agent 0 via scripts/validate_setup.py and an env/config scan before quarantining, to rule out a subagent false negative. No image was generated, and per the hard image_copyright_gate requirement (generated only, never scraped/substituted), no placeholder or non-AI-generated image was used as a workaround. Stage 3.2 (Animator) and Stage 5 (Assembler) were consequently not attempted since they depend on the image.",
+      "brief_status": "The scouted brief (title, visual_theme, mood, SEO, target_length_minutes=60) is sound and screened clean against content_exclusions — retained in state/long_form_queue.json for reuse once image generation is unblocked, rather than discarded.",
+      "audio_status": "A verified CC0 ambient track was already sourced for this candidate's mood ('Rain _ Sleep _ Meditation' by HoliznaCC0, CC0 1.0, verified) and is in state/cc0_audio_library.json, ready to use once the pipeline can proceed.",
+      "unblock_action_needed": "A Google AI Studio API key (free tier available at https://aistudio.google.com/apikey) needs to be added to this environment before the banana skill / long-form image generation can run. This is a one-time setup step, not something Agent 0 can resolve autonomously."
+    }
+  ]
 }
