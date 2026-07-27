@@ -29,6 +29,80 @@
       "note": "Same production circle (DJZRX/motty/rodricci) as VEKI VEKI (Slowed) — this niche appears to favor this specific Brazilian phonk/montagem production style. Also short (~20s), same looping approach applies.",
       "local_path": "assets/audio/trending/montagem_celestial_esperanza.mp3",
       "added_at": "2026-07-27T16:00:00Z"
+    },
+    {
+      "title": "ion care cuz he did it first",
+      "credited_artists": ["Ice Spice"],
+      "genre": "Hip-hop/drill-adjacent sound bite",
+      "mood": "Confident/defiant flex energy — real tempo ~77 BPM (measured via librosa beat detection)",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7663599901153971463",
+      "identification_confidence": "Genuinely identified — named artist (Ice Spice), a real recognizable sound bite",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 14.42,
+      "local_path": "assets/audio/trending/ice_spice_sound.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "Love Nwantiti (Acoustic Ver.)",
+      "credited_artists": ["CKay"],
+      "genre": "Afrobeats/acoustic",
+      "mood": "Softer, smoother, romantic/warm — real tempo ~91 BPM but gentle instrumentation, not aggressive. Better suited to a warmer/aspirational angle than a hard-grind one.",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7658502602010758418",
+      "identification_confidence": "Genuinely identified — well-known real song by CKay, acoustic edit",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 10.79,
+      "local_path": "assets/audio/trending/love_nwantiti_acoustic.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "Tourner Dans Le Vide",
+      "credited_artists": ["Indila"],
+      "genre": "French pop/cinematic",
+      "mood": "Emotional, cinematic, builds intensity — real tempo ~120 BPM (fastest of this batch, measured via librosa), good fit for a more dramatic/emotional angle rather than pure aggression.",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7643135162686999826",
+      "identification_confidence": "Genuinely identified — well-known real song by Indila",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 12.56,
+      "local_path": "assets/audio/trending/tourner_dans_le_vide.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "Gata Only NJ",
+      "credited_artists": ["Derick (edit of FloyyMenor & Cris MJ's 'Gata Only')"],
+      "genre": "Reggaeton/Latin",
+      "mood": "Confident, viral 2024/2025 hit energy — real tempo ~81 BPM (measured via librosa)",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7620236571626753287",
+      "identification_confidence": "Genuinely identified — derivative edit of the real viral hit 'Gata Only'",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 23.09,
+      "note": "Longest native clip in this batch (~23s) — needs minimal looping for a typical ~26-27s short.",
+      "local_path": "assets/audio/trending/gata_only_nj.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "gata only remix",
+      "credited_artists": ["ⱼᵤₙy (remix edit of 'Gata Only')"],
+      "genre": "Reggaeton/Latin remix",
+      "mood": "Faster remix energy — real tempo ~99 BPM (measured via librosa), the fastest/most energetic of the two Gata Only edits.",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7619541091901082898",
+      "identification_confidence": "Genuinely identified — derivative remix edit of the real viral hit 'Gata Only'",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 9.12,
+      "local_path": "assets/audio/trending/gata_only_remix.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "Danza Kuduro 2025",
+      "credited_artists": ["A-Clark (2025 edit of the well-known 'Danza Kuduro')"],
+      "genre": "Reggaeton/dance",
+      "mood": "Upbeat, celebratory dance energy — real tempo ~83 BPM (measured via librosa)",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7627403796670549255",
+      "identification_confidence": "Genuinely identified — edit of the globally well-known 'Danza Kuduro'",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 11.44,
+      "local_path": "assets/audio/trending/danza_kuduro_2025.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
     }
-  ]
+  ],
+  "rotation_guidance": "8 tracks total as of 2026-07-27. Check state/posted_history.json / recent state/short_form_queue.json entries before picking one — don't reuse the same track for consecutive shorts (same rule as state/cc0_audio_library.json). Match mood to angle: VEKI VEKI/Montagem/Ice Spice/Danza Kuduro/Gata Only variants for aggressive-energy angles (grind, hustle, proof-of-work); Love Nwantiti (Acoustic) or Tourner Dans Le Vide for warmer/more emotional or dramatic angles where pure aggression doesn't fit the theme. All native clips are short (9-23s) — scripts/short_form_transform.py loops and beat-tiles them automatically for any target duration, no manual handling needed."
 }
