@@ -25,7 +25,6 @@
         "3am. No one's watching. That's the point."
       ],
       "trending_sound_style": "slowed hardtekk/phonk, heavy sub-kick building under a single spoken-word line, then dropping to near-silence for the payoff sentence",
-      "hashtags": ["#discipline", "#disciplineovermotivation", "#mindset", "#gymmotivation", "#stoic", "#selfimprovement"],
       "source_notes": "Modeled on the widely-circulating 'Don't Be Motivated. Be Disciplined.' phrase and the aggressive slowed-phonk gym-mindset wave currently trending on TikTok/Shorts (per TikTok Discover: 'Motivational Phonk Music', 'Discipline Sounds', 'Motivation Phonk Edits')."
       ,
       "title": "Don't Be Motivated. Be Disciplined.",
@@ -79,7 +78,6 @@
     },
     {
       "id": "sf_002",
-      "status": "scripted",
       "scouted_at": "2026-07-27T00:00:00Z",
       "scripted_at": "2026-07-27T13:07:49Z",
       "angle": "Quiet/silent discipline luxury narrative: rebuilding yourself with no audience — old-money interior visuals (library, rain on window, tailored coat) intercut with solitary self-work, framed as 'stealth wealth of the mind'",
@@ -127,7 +125,21 @@
         "no_fabricated_claims_stats_or_quotes_attributed_to_real_people": "pass - script is generic second-person motivational framing only, no named individuals, no statistics or studies cited",
         "no_controversial_social_topics_per_channel_exclusions": "pass - topic is self-improvement/aesthetic mindset only, no politics or controversial topics per channel.json content_exclusions",
         "result": "cleared, no rewrite needed"
-      }
+      },
+      "status": "published",
+      "published_video_id": "qYTu_SqyCSw",
+      "published_url": "https://youtu.be/qYTu_SqyCSw",
+      "produced_at": "2026-07-27T13:11:30Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_002.mp4",
+      "transform_log": [
+        "1. Select: heuristically picked 3 raw clips (20.mp4, 32.mp4, 60.mp4) out of the untagged raw pool by largest file size among the 58 available clips (opposite heuristic from sf_001's smallest-file-size pick, chosen deliberately for variety this cycle) on the theory that larger files at similar duration are likely to carry more visual/textural detail (bookshelves, rain droplets, fabric texture) more consistent with an interior library/rain-window/quiet-luxury mood than flatter, lower-detail footage. This is NOT a real content review — there is no video-viewing capability available in this pipeline step, so visual match to 'dark-academia library, rain on window, tailored coat, warm lamp light' is unverified and approximate, not confirmed. Agent 0/the gate check should treat this clip selection as an honest guess, not a confirmed visual match.",
+        "2. Reframe/crop: applied crop=ih*9/16:ih then scale=1080:1920 to each of the 3 source clips (source was 1920x1080 landscape) to reframe to vertical 1080x1920.",
+        "3. Speed/color change: applied both — setpts=PTS/0.92 (~8% slow-down, restrained/cinematic pacing) on the concatenated sequence, and eq=contrast=1.08:saturation=0.90:brightness=0.02 color grade (slightly desaturated, subtly lifted contrast) for a muted 'quiet luxury' look.",
+        "4. Burn in on-screen text: chained 5 separate drawtext filters (one per non-empty on_screen_text beat from the script, DejaVu Serif Bold, white text on a soft black box, centered) using enable='between(t,start,end)' timed to match the script's beat boundaries (4-9s, 9-14s, 14-19s, 19-24s, 24-29s). The 0:00-0:04 beat has empty text in the script so no drawtext was applied there (silent visual open).",
+        "5. Replace audio: original clip audio was never mapped/included in the output (crop/scale pass used -an throughout, and the final mux maps video from the text-burned track and audio only from the separately prepared track) — full audio replaced with the verified CC0 track 'Rain _ Sleep _ Meditation' by HoliznaCC0 from state/cc0_audio_library.json (already verified true, ambient/no-percussion, judged a good-enough fit for the 'slowed ambient piano/pad, near-silent, quiet luxury' sound_direction without sourcing a new track), a 29s segment trimmed starting at the 60s mark of the 14:36 source file, with a 2s fade-in and a 4s fade-out.",
+        "6. Voiceover: N/A — script is text-only by design, not a gap. sf_002 was scripted with on_screen_text only and explicitly no voiceover_script field (per the scripting brief's non-narrated format decision), so there is no spoken-line content to synthesize or omit; the on-screen text alone carries the line content by design, consistent with the script's own creative device (unlike sf_001, which was quarantined for this exact mismatch).",
+        "7. Duration/export: exported at 29s, within the 15-45s target range. Total raw source material selected (9.90s + 10.47s + 12.17s = 32.53s) exceeded the target before the speed change, so clips were concatenated once (no repetition/looping needed, unlike sf_001), slowed ~8%, then trimmed to exactly 29s — the full 29s is unique, non-repeated footage."
+      ]
     },
     {
       "id": "sf_003",

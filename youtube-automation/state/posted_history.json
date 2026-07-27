@@ -1,5 +1,13 @@
 {
   "_comment": "Append-only log of published videos, written by Agent 4.1 (shorts) and Agent 6 (long-form). Read by Agent 1.1/1.2 for trend-repetition avoidance and by the weekly analytics routine.",
-  "short_form": [],
+  "short_form": [
+    {
+      "video_id": "qYTu_SqyCSw",
+      "url": "https://youtu.be/qYTu_SqyCSw",
+      "title": "Rebuild Yourself In Silence",
+      "published_at": "2026-07-27T13:20:00Z",
+      "format": "short"
+    }
+  ],
   "long_form": []
 }
