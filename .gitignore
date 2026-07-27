@@ -3,3 +3,4 @@ youtube-automation/**/*.token.json
 youtube-automation/**/client_secret*.json
 __pycache__/
 *.pyc
+youtube-automation/.venv/
