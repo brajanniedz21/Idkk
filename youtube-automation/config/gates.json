@@ -1,0 +1,63 @@
+{
+  "principle": "Gates are never lowered to hit the publishing schedule. A failing item is quarantined with a logged reason and Agent 0 selects the next candidate instead.",
+  "shared_gates": {
+    "factual_controversy_screen": {
+      "checks": [
+        "No political figures, parties, elections, or policy debate",
+        "No claims presented as fact that cannot be sourced from the script's own generic motivational framing (no fabricated statistics, studies, or quotes attributed to real named individuals)",
+        "No controversial social topics (per config/channel.json content_exclusions)"
+      ],
+      "on_fail": "quarantine; log matched phrase/topic; return to Agent 0 for a new candidate"
+    },
+    "platform_policy_check": {
+      "checks": [
+        "No hate speech, harassment, or targeting of protected groups",
+        "No graphic violence, self-harm, or dangerous-act depictions",
+        "No misleading titles/thumbnails not supported by video content (no clickbait mismatch)",
+        "Complies with YouTube monetization + reused-content policies at a basic level (not purely static/looping with zero transformation for shorts)"
+      ],
+      "on_fail": "quarantine; log rule violated"
+    },
+    "basic_qa": {
+      "checks": [
+        "Audio/video sync within tolerance",
+        "Output resolution matches target (1080x1920 shorts, 1920x1080 or native long-form)",
+        "Duration within target range for the format",
+        "No corrupt/zero-byte output file",
+        "No silent/black-frame stretches beyond 2s unintentional"
+      ],
+      "on_fail": "quarantine; log which QA check failed; do not retry-publish without regenerating"
+    }
+  },
+  "short_form_gates": {
+    "copyright_gate": {
+      "status": "intentionally not automated for short-form source clips",
+      "rationale": "Channel owner explicitly accepted the risk of reusing third-party sourced clips (see assets/short-form-clips/raw/README.md), on condition that Agent 3.1 transforms every clip (reframe/crop, speed or color change, original text overlay, swapped-in CC0 audio) before publish. This is a documented decision, not a silent skip.",
+      "mitigation_required_before_publish": [
+        "reframed/cropped to vertical from source",
+        "at least one of: speed change, color grade change",
+        "original text overlay/caption burned in",
+        "original audio replaced with a verified CC0 track from state/cc0_audio_library.json"
+      ],
+      "backstop": "YouTube Content ID is the real enforcement mechanism; expect possible revenue-share claims. Channel owner has accepted this."
+    }
+  },
+  "long_form_gates": {
+    "image_copyright_gate": {
+      "checks": ["Background image was generated (Nano Banana / AI image gen), not scraped or copied from another creator's work"],
+      "on_fail": "quarantine; regenerate image"
+    },
+    "audio_license_gate": {
+      "checks": [
+        "Track exists in state/cc0_audio_library.json with a verified_by_human_readable_source = true flag",
+        "Source URL for the license tag was checked at verification time, not just the platform's own label",
+        "Track is CC0 or explicitly 'no attribution required' (e.g. YouTube Audio Library tracks marked as such)"
+      ],
+      "on_fail": "quarantine track; do not use; select next candidate track"
+    },
+    "loop_length_gate": {
+      "checks": ["Final assembled video duration is between 60 and 600 minutes"],
+      "on_fail": "quarantine; re-run Agent 5 loop step with corrected target length"
+    }
+  }
+}

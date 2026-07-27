@@ -1,0 +1,3 @@
+youtube-automation/secrets/
+youtube-automation/**/*.token.json
+youtube-automation/**/client_secret*.json

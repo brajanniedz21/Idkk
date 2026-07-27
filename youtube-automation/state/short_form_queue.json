@@ -1,0 +1,4 @@
+{
+  "_comment": "Candidates produced by Agent 1.1, consumed in order by Agent 0. Each item moves through statuses: scouted -> scripted -> produced -> gated -> published | quarantined.",
+  "queue": []
+}

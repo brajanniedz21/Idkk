@@ -1,0 +1,77 @@
+{
+  "channel_handle": "@makeitmanifest",
+  "niche": "Motivational luxury background videos",
+  "language": "English",
+  "primary_market": ["US", "UK", "Canada", "Australia"],
+  "secondary_market": ["Europe", "Asia"],
+  "content_exclusions": ["controversial topics", "politics"],
+  "target_audience": {
+    "primary_share_pct": [80, 90],
+    "age_range": [16, 28],
+    "gender_skew": "mostly male (e.g. @SilentUntilSeen, @3ternal_2 style); more mixed/female-skewing acceptable (e.g. @angelechoes909 style)",
+    "interests": [
+      "gym and fitness",
+      "self-improvement",
+      "productivity",
+      "philosophy",
+      "psychology",
+      "entrepreneurship",
+      "personal development",
+      "spirituality"
+    ],
+    "psychographics": [
+      "spends a lot of time thinking about life",
+      "enjoys deep conversations and introspection",
+      "likes cinematic, emotional edits",
+      "believes they have untapped potential",
+      "wants to feel understood more than entertained"
+    ],
+    "adjacent_creators": [
+      "Andrew Huberman",
+      "Chris Williamson",
+      "Hamza",
+      "Ali Abdaal",
+      "Jordan Peterson",
+      "David Goggins",
+      "HealthyGamerGG"
+    ],
+    "core_avatar": "A 19-year-old university student or young professional who goes to the gym, listens to ambient or phonk music, spends time on YouTube Shorts and TikTok, wants to become more disciplined, sometimes feels isolated or uncertain about the future, and actively looks for content that helps them grow mentally and emotionally.",
+    "share_triggers": [
+      "This is exactly how I feel.",
+      "You need to hear this.",
+      "This changed my perspective."
+    ]
+  },
+  "format_mix": {
+    "short_form_pct": 70,
+    "long_form_pct": 30
+  },
+  "publishing_schedule": {
+    "timezone": "Europe/London",
+    "shorts_per_week": 21,
+    "shorts_per_day": 3,
+    "long_form_per_week": 7,
+    "long_form_per_day": 1,
+    "long_form_length_minutes": [60, 600]
+  },
+  "operating_budget": "Claude Pro subscription usage only; no paid third-party APIs",
+  "publishing_mode": "public",
+  "human_approval": "disabled",
+  "human_approval_note": "No manual approval step exists in this pipeline. Automatic gates (config/gates.json) replace human review. Gates are never weakened to hit the publishing schedule; failing items are quarantined and the next candidate is selected instead.",
+  "reference_examples": {
+    "long_form": [
+      "https://youtu.be/dntQdztmSdk",
+      "https://youtu.be/OR5kNbobja4",
+      "https://youtu.be/a7SxBcgm_cU",
+      "https://youtu.be/2D-0Y2CVAmM",
+      "https://youtu.be/bglcM90CDjs"
+    ],
+    "short_form": [
+      "https://youtube.com/shorts/_e9TrXrSv-s",
+      "https://youtube.com/shorts/te1htnG3iI0",
+      "https://youtube.com/shorts/Jn8nw6bI2J0",
+      "https://youtube.com/shorts/0k4KFkoEh4c",
+      "https://youtube.com/shorts/lCHBLevZK1c"
+    ]
+  }
+}

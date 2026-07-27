@@ -1,0 +1,5 @@
+{
+  "_comment": "Every item that fails any gate lands here with the reason, timestamp, and which gate failed. Never silently discarded or forced through. Reviewed periodically to spot systemic issues (e.g. a gate that's too strict, or a recurring source problem).",
+  "short_form": [],
+  "long_form": []
+}

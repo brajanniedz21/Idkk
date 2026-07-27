@@ -1,0 +1,5 @@
+{
+  "_comment": "Append-only log of published videos, written by Agent 4.1 (shorts) and Agent 6 (long-form). Read by Agent 1.1/1.2 for trend-repetition avoidance and by the weekly analytics routine.",
+  "short_form": [],
+  "long_form": []
+}

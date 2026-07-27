@@ -1,0 +1,4 @@
+{
+  "_comment": "Verified CC0 / no-attribution-required audio tracks for long-form (ambient/phonk) and short-form (swap-in for reused clips). Agent 4.2 and Agent 3.1 only pull from entries where verified=true. verification_note must state what was checked (license tag AND source page), not just the platform label.",
+  "tracks": []
+}
