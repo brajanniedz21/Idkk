@@ -53,8 +53,15 @@
   },
   "long_form_gates": {
     "image_copyright_gate": {
-      "checks": ["Background image was generated (Nano Banana / AI image gen), not scraped or copied from another creator's work"],
-      "on_fail": "quarantine; regenerate image"
+      "status": "As of 2026-07-27, a second accepted path exists alongside AI generation: owner-supplied images of unverified/unknown provenance, explicitly risk-accepted by the channel owner. See rationale below before assuming either path is the default.",
+      "checks_path_a_ai_generated": ["Background image was generated (Nano Banana / AI image gen), not scraped or copied from another creator's work"],
+      "checks_path_b_owner_supplied": [
+        "Image is listed in state/image_pool.json with source: 'owner_provided_unverified'",
+        "The specific owner-supplied risk_acceptance note (see below) is referenced, not re-litigated per video"
+      ],
+      "rationale_path_b": "Owner supplied a Google Drive folder of luxury car/mansion images (folder id 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g) for a new long-form loop format. On inspection, the images carry real provenance red flags: generic browser 'download (N).jpg' filenames indicating they were pulled from the web rather than owned/created by the channel owner, and one file's original filename was a Russian-language Bitcoin-wallet ad title, suggesting at least one image originated from a crypto-ad/stock page rather than a personal or licensed source. This was explicitly flagged to the owner before use. Owner's direct response: 'just try to make one video, if it gets copyrighted ill change the plan' — an informed decision to proceed despite the disclosed provenance risk, distinct from and in addition to the short-form clip-reuse and trending-audio risk acceptances already on file.",
+      "on_fail": "quarantine; regenerate (path A) or pull a different owner-supplied image and re-flag (path B)",
+      "backstop": "YouTube Content ID / copyright claims are the real enforcement mechanism for path B images, same as the short-form clip-reuse and trending-audio decisions. If a claim or strike actually lands on a path-B video, stop using new images from this source and revisit with the owner rather than continuing by default — per the owner's own stated condition ('if it gets copyrighted ill change the plan')."
     },
     "audio_license_gate": {
       "checks": [
