@@ -75,13 +75,13 @@
   ],
   "long_form": [
     {
-      "video_id": "o1FUnaP8gWE",
-      "url": "https://youtu.be/o1FUnaP8gWE",
+      "video_id": "J5o72mPmCzs",
+      "url": "https://youtu.be/J5o72mPmCzs",
       "title": "1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus & Manifestation",
-      "published_at": "2026-07-27T20:20:00Z",
+      "published_at": "2026-07-27T21:10:00Z",
       "format": "long",
       "duration_minutes": 60,
-      "note": "lf_002 \u2014 first long-form video published. Background image is owner-supplied (image_copyright_gate path B, unverified provenance, explicit owner risk acceptance: 'just try to make one video, if it gets copyrighted ill change the plan'). Audio is verified CC0 (Rain _ Sleep _ Meditation, HoliznaCC0). If a Content ID claim or strike lands on this video, stop using new images from the owner's Drive folder and revisit per the owner's own stated condition."
+      "note": "lf_002 \u2014 first long-form video published. Background image is owner-supplied (image_copyright_gate path B, unverified provenance, explicit owner risk acceptance: 'just try to make one video, if it gets copyrighted ill change the plan'). Audio is verified CC0 (Rain _ Sleep _ Meditation, HoliznaCC0). If a Content ID claim or strike lands on this video, stop using new images from the owner's Drive folder and revisit per the owner's own stated condition. CORRECTION: the original upload (o1FUnaP8gWE) never actually went live \u2014 the YouTube account wasn't yet verified for uploads over 15 minutes, so that upload was silently rejected despite the upload script reporting a video_id. Confirmed via the Data API (videos.list returned zero results for that ID). Account is now verified; re-uploaded successfully as J5o72mPmCzs."
     }
   ]
 }

@@ -24,33 +24,45 @@
       ],
       "target_length_minutes": 60,
       "target_length_note": "Deliberately chosen at the low end of the allowed [60,600] range for this first long-form cycle to keep compute/storage/upload cost reasonable while the pipeline is validated end-to-end.",
-      "scouting_method_note": "Brief was NOT produced by literally watching the 5 reference videos in config/channel.json (no video-watching capability available in this environment) — it was informed by their URLs/context plus general knowledge of the established 'motivational luxury ambient' YouTube niche conventions (rain-on-window / city skyline / fireplace / warm-lit moody interiors, 'X Hours of [mood] | [purpose] Ambience' title pattern). No live web trend search was performed for this cycle either; this is a judgement-based brief, not a data-verified one.",
+      "scouting_method_note": "Brief was NOT produced by literally watching the 5 reference videos in config/channel.json (no video-watching capability available in this environment) \u2014 it was informed by their URLs/context plus general knowledge of the established 'motivational luxury ambient' YouTube niche conventions (rain-on-window / city skyline / fireplace / warm-lit moody interiors, 'X Hours of [mood] | [purpose] Ambience' title pattern). No live web trend search was performed for this cycle either; this is a judgement-based brief, not a data-verified one.",
       "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags. Passes shared_gates.factual_controversy_screen and platform_policy_check on inspection.",
       "scouted_at": "2026-07-27T09:40:53Z",
       "pipeline_blocker": "Stage 2.2 (Image Sourcer) could not run: the `banana` skill requires a Google AI (Gemini) API key (GOOGLE_AI_API_KEY/GOOGLE_API_KEY) which is not configured anywhere in this environment (no env var, no MCP server registration, no ~/.banana config, no gcloud ADC credentials found). No image was generated. Per the image_copyright_gate this is a hard blocker, not something to work around with a non-banana-generated placeholder. Consequently Stage 3.2 (Animator, needs the image) and Stage 5 (Assembler, needs the animated loop) were not attempted. Status remains 'scouted' rather than advancing to 'image_sourced'.",
-      "audio_track_id_provisional": "Rain _ Sleep _ Meditation (HoliznaCC0) — sourced and verified during this cycle for when the pipeline is unblocked; see state/cc0_audio_library.json. Not written to audio_track_id/status sound_sourced because per pipeline order that field is only meant to be set once the candidate has actually reached the sound_sourced stage (i.e. after image_sourced/animated), and this candidate is still stuck at scouted."
+      "audio_track_id_provisional": "Rain _ Sleep _ Meditation (HoliznaCC0) \u2014 sourced and verified during this cycle for when the pipeline is unblocked; see state/cc0_audio_library.json. Not written to audio_track_id/status sound_sourced because per pipeline order that field is only meant to be set once the candidate has actually reached the sound_sourced stage (i.e. after image_sourced/animated), and this candidate is still stuck at scouted."
     },
     {
       "id": "lf_002",
       "status": "published",
-      "published_video_id": "o1FUnaP8gWE",
-      "published_url": "https://youtu.be/o1FUnaP8gWE",
-      "published_at": "2026-07-27T20:20:00Z",
+      "published_video_id": "J5o72mPmCzs",
+      "published_url": "https://youtu.be/J5o72mPmCzs",
+      "published_at": "2026-07-27T21:10:00Z",
       "visual_theme": "Owner-supplied still image: matte-black Lamborghini parked in the lit driveway of a Mediterranean-style villa at dusk/night, warm amber window and lantern glow, tall cypress trees framing the scene, no visible logos/plates/people",
       "mood": "calm ambient background (rain/sleep/meditation track used as pure ambience, not a thematic rain match to the visual)",
       "title": "1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus & Manifestation",
-      "seo_description": "An hour of stillness at a private villa at night — a matte-black Lamborghini resting in the warm glow of the driveway lights. Let this calm ambience carry you through deep focus, studying, journaling, or manifesting the life you're building toward. Perfect for study sessions, late-night reflection, or falling asleep. #ambience #luxurylifestyle #manifestation #deepfocus #studywithme #selfimprovement #nightambience",
-      "tags": ["luxury ambience", "villa night", "supercar aesthetic", "manifestation music", "deep focus ambience", "study with me", "luxury lifestyle aesthetic", "self improvement background", "sleep ambience", "cinematic ambience"],
+      "seo_description": "An hour of stillness at a private villa at night \u2014 a matte-black Lamborghini resting in the warm glow of the driveway lights. Let this calm ambience carry you through deep focus, studying, journaling, or manifesting the life you're building toward. Perfect for study sessions, late-night reflection, or falling asleep. #ambience #luxurylifestyle #manifestation #deepfocus #studywithme #selfimprovement #nightambience",
+      "tags": [
+        "luxury ambience",
+        "villa night",
+        "supercar aesthetic",
+        "manifestation music",
+        "deep focus ambience",
+        "study with me",
+        "luxury lifestyle aesthetic",
+        "self improvement background",
+        "sleep ambience",
+        "cinematic ambience"
+      ],
       "target_length_minutes": 60,
-      "target_length_note": "Low end of the [60,600] allowed range — first test cycle for the new owner-supplied-image format, matches lf_001's original validation-cost rationale.",
-      "image_source": "owner_provided_unverified (image_copyright_gate path B) — see state/image_pool.json and config/gates.json long_form_gates.image_copyright_gate.rationale_path_b for the full disclosed-risk note and owner's explicit go-ahead: 'just try to make one video, if it gets copyrighted ill change the plan'.",
+      "target_length_note": "Low end of the [60,600] allowed range \u2014 first test cycle for the new owner-supplied-image format, matches lf_001's original validation-cost rationale.",
+      "image_source": "owner_provided_unverified (image_copyright_gate path B) \u2014 see state/image_pool.json and config/gates.json long_form_gates.image_copyright_gate.rationale_path_b for the full disclosed-risk note and owner's explicit go-ahead: 'just try to make one video, if it gets copyrighted ill change the plan'.",
       "image_path": "assets/long-form/images/source_pool/lf_002_source.jpg",
       "animated_loop_path": "assets/long-form/output/lf_002_loop_segment.mp4",
-      "animation_note": "20s seamless symmetric ken-burns zoom (1.0 -> 1.035 -> 1.0), slight warm color filter (contrast 1.06, saturation 1.08, warm color-balance shift), mild vignette — first/last frame visually confirmed identical zoom state, loop verified seamless.",
+      "animation_note": "20s seamless symmetric ken-burns zoom (1.0 -> 1.035 -> 1.0), slight warm color filter (contrast 1.06, saturation 1.08, warm color-balance shift), mild vignette \u2014 first/last frame visually confirmed identical zoom state, loop verified seamless.",
       "audio_track_id": "Rain _ Sleep _ Meditation (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0)",
       "final_video_path": "assets/long-form/output/lf_002_final.mp4",
       "target_length_seconds": 3600,
-      "scouted_at": "2026-07-27T18:00:00Z"
+      "scouted_at": "2026-07-27T18:00:00Z",
+      "reupload_note": "First upload (o1FUnaP8gWE) was silently rejected by YouTube \u2014 account was not yet verified for videos over 15 minutes. Confirmed via videos.list (zero results) after the owner reported it. Account verified, re-uploaded successfully as J5o72mPmCzs."
     }
   ]
 }
