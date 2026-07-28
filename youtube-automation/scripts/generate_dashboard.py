@@ -35,6 +35,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "state")
 AGENTS_DIR = os.path.join(ROOT, "agents")
 OUT_DIR = os.path.join(ROOT, "dashboard")
+FONT_PATH = os.path.join(ROOT, "assets", "fonts", "Inter-Variable.woff2")
 
 
 def load(name, default=None):
@@ -378,7 +379,7 @@ def main():
         return f"""<svg viewBox="0 0 {W} {H}" class="trend-svg" preserveAspectRatio="none" role="img" aria-label="{esc(metric_label)} trend">
           {gridlines}
           <path d="{area_path}" class="chart-area" fill="{color_var}"/>
-          <path d="{line_path}" class="chart-line" stroke="{color_var}" fill="none"/>
+          <path d="{line_path}" class="chart-line" stroke="{color_var}" fill="none" pathLength="1"/>
           <circle cx="{last_x:.1f}" cy="{last_y:.1f}" r="4" fill="{color_var}" class="chart-dot"/>
           <text x="{min(last_x, W-90):.1f}" y="{max(last_y-10, 12):.1f}" class="chart-end-label">{esc(last_label)}</text>
           <text x="{PAD_L}" y="{H-4}" class="chart-axis-label">{esc(first_date)}</text>
@@ -422,7 +423,7 @@ def main():
         return f"""<svg viewBox="0 0 {W} {H}" class="trend-svg" preserveAspectRatio="none" role="img" aria-label="audience retention">
           {gridlines}
           <path d="{area_path}" class="chart-area" fill="{color_var}"/>
-          <path d="{line_path}" class="chart-line" stroke="{color_var}" fill="none"/>
+          <path d="{line_path}" class="chart-line" stroke="{color_var}" fill="none" pathLength="1"/>
           <circle cx="{last_x:.1f}" cy="{last_y:.1f}" r="4" fill="{color_var}" class="chart-dot"/>
           <text x="{min(last_x, W-70):.1f}" y="{max(last_y-10, 12):.1f}" class="chart-end-label">{last_pct}%</text>
           <text x="{PAD_L}" y="{H-4}" class="chart-axis-label">Start</text>
@@ -685,6 +686,14 @@ def main():
     icon192_b64 = make_icon_png_b64(192)
     icon180_b64 = make_icon_png_b64(180)
 
+    # Inter (SIL Open Font License) embedded as a variable font, standing in
+    # for SF Pro — same geometry family, but Apple's actual font is licensed
+    # only for use on Apple platforms, so it can't be embedded in a web page.
+    inter_b64 = ""
+    if os.path.exists(FONT_PATH):
+        with open(FONT_PATH, "rb") as f:
+            inter_b64 = base64.b64encode(f.read()).decode("ascii")
+
     manifest = {
         "name": f"{handle} Pipeline",
         "short_name": "Pipeline",
@@ -776,13 +785,20 @@ def main():
     --bar-bg: rgba(248,248,250,0.78);
   }}
 }}
+{f'''@font-face {{
+  font-family: "Inter";
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url(data:font/woff2;base64,{inter_b64}) format("woff2-variations"), url(data:font/woff2;base64,{inter_b64}) format("woff2");
+}}''' if inter_b64 else ''}
 * {{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }}
 html {{ -webkit-text-size-adjust: 100%; }}
 body {{
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }}
@@ -869,6 +885,16 @@ body.scrolled .navbar {{
   font-size: 17px;
   font-weight: 600;
   padding: 0 16px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}}
+body.scrolled .navbar-compact {{
+  opacity: 1;
+  transform: translateY(0);
+}}
+@media (prefers-reduced-motion: reduce) {{
+  .navbar-compact {{ transition: none; }}
 }}
 .large-title-block {{
   padding: 4px 16px 12px;
@@ -906,8 +932,28 @@ body.scrolled .large-title-block {{
 .tab-page {{ display: none; padding-bottom: calc(100px + env(safe-area-inset-bottom)); }}
 .tab-page.active {{ display: block; animation: iosIn 0.24s cubic-bezier(0.22,1,0.36,1); }}
 @keyframes iosIn {{ from {{ opacity: 0; transform: translateY(6px); }} to {{ opacity: 1; transform: none; }} }}
+.tab-page.active .stat-card,
+.tab-page.active .ios-section,
+.tab-page.active .chart-card {{
+  animation: riseIn 0.36s cubic-bezier(0.22,1,0.36,1) backwards;
+}}
+.tab-page.active .stat-card:nth-child(1) {{ animation-delay: 0.02s; }}
+.tab-page.active .stat-card:nth-child(2) {{ animation-delay: 0.06s; }}
+.tab-page.active .stat-card:nth-child(3) {{ animation-delay: 0.10s; }}
+.tab-page.active .stat-card:nth-child(4) {{ animation-delay: 0.14s; }}
+.tab-page.active .ios-section:nth-of-type(1) {{ animation-delay: 0.03s; }}
+.tab-page.active .ios-section:nth-of-type(2) {{ animation-delay: 0.07s; }}
+.tab-page.active .ios-section:nth-of-type(3) {{ animation-delay: 0.11s; }}
+.tab-page.active .ios-section:nth-of-type(4) {{ animation-delay: 0.15s; }}
+.tab-page.active .chart-card:nth-of-type(1) {{ animation-delay: 0.03s; }}
+.tab-page.active .chart-card:nth-of-type(2) {{ animation-delay: 0.08s; }}
+.tab-page.active .chart-card:nth-of-type(3) {{ animation-delay: 0.13s; }}
+@keyframes riseIn {{ from {{ opacity: 0; transform: translateY(8px); }} to {{ opacity: 1; transform: none; }} }}
 @media (prefers-reduced-motion: reduce) {{
   .tab-page.active {{ animation: none; }}
+  .tab-page.active .stat-card,
+  .tab-page.active .ios-section,
+  .tab-page.active .chart-card {{ animation: none; }}
 }}
 
 /* ---- Stat widgets (Overview) ---- */
@@ -924,7 +970,29 @@ body.scrolled .large-title-block {{
   border-radius: 16px;
   padding: 14px 14px 12px;
   position: relative;
+  overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  transition: transform 0.18s ease;
+}}
+.stat-card:active {{ transform: scale(0.97); }}
+.stat-card::before {{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.06) 46%, transparent 62%);
+  background-size: 220% 220%;
+  background-position: 120% -20%;
+  pointer-events: none;
+  animation: sheen 9s ease-in-out infinite;
+  animation-delay: var(--sheen-delay, 0s);
+}}
+@keyframes sheen {{
+  0%, 30% {{ background-position: 120% -20%; }}
+  70%, 100% {{ background-position: -20% 120%; }}
+}}
+@media (prefers-reduced-motion: reduce) {{
+  .stat-card::before {{ animation: none; }}
+  .stat-card {{ transition: none; }}
 }}
 .stat-icon {{
   width: 26px; height: 26px;
@@ -976,6 +1044,7 @@ body.scrolled .large-title-block {{
   color: inherit;
 }}
 .ios-row:last-child {{ border-bottom: none; }}
+.ios-row {{ transition: background 0.15s ease; }}
 .ios-row:active {{ background: var(--surface-2); }}
 .row-icon {{
   width: 29px; height: 29px;
@@ -1082,10 +1151,13 @@ body.scrolled .large-title-block {{
 
 /* ---- Charts (Analytics tab) ---- */
 .chart-card {{
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: saturate(150%) blur(12px);
+  -webkit-backdrop-filter: saturate(150%) blur(12px);
   border-radius: 14px;
   margin: 0 16px;
   padding: 14px 8px 10px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }}
 .chart-card-sub {{
   font-size: 12px;
@@ -1152,8 +1224,23 @@ body.scrolled .large-title-block {{
   fill: var(--text-tertiary);
   font-family: ui-monospace, monospace;
 }}
-.chart-area {{ opacity: 0.12; }}
-.chart-line {{ stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }}
+.chart-area {{ opacity: 0.12; animation: chartAreaIn 0.6s ease 0.15s backwards; }}
+.chart-line {{
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: chartLineDraw 0.9s cubic-bezier(0.22,1,0.36,1) forwards;
+}}
+@keyframes chartLineDraw {{ to {{ stroke-dashoffset: 0; }} }}
+@keyframes chartAreaIn {{ from {{ opacity: 0; }} to {{ opacity: 0.12; }} }}
+.chart-dot {{ transform-box: fill-box; transform-origin: center; animation: dotPop 0.3s ease 0.85s backwards; }}
+@keyframes dotPop {{ from {{ transform: scale(0); opacity: 0; }} to {{ transform: scale(1); opacity: 1; }} }}
+@media (prefers-reduced-motion: reduce) {{
+  .chart-line {{ stroke-dasharray: none; stroke-dashoffset: 0; animation: none; }}
+  .chart-area, .chart-dot {{ animation: none; }}
+}}
 .chart-end-label {{
   font-size: 10.5px;
   font-weight: 600;
@@ -1190,9 +1277,14 @@ body.scrolled .large-title-block {{
   font-weight: 500;
   cursor: pointer;
 }}
-.tab-btn svg {{ width: 25px; height: 25px; }}
+.tab-btn svg {{ width: 25px; height: 25px; transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1); }}
+.tab-btn {{ transition: color 0.18s ease; }}
 .tab-btn.active {{ color: var(--accent); }}
+.tab-btn.active svg {{ transform: scale(1.08); }}
 .tab-btn:active {{ opacity: 0.5; }}
+@media (prefers-reduced-motion: reduce) {{
+  .tab-btn svg {{ transition: none; }}
+}}
 
 @media (min-width: 700px) {{
   .stats-grid {{ grid-template-columns: repeat(4, 1fr); }}
