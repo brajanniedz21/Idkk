@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>@makeitmanifest — Pipeline Dashboard</title>
+<style>
+:root {
+  --bg: #10121a;
+  --surface: #191c27;
+  --surface-2: #20242f;
+  --border: #2b303f;
+  --text: #edeef3;
+  --text-dim: #8e93a8;
+  --text-faint: #5b6070;
+  --accent: #c98a4b;
+  --success: #4cb17d;
+  --info: #6f9bd1;
+  --warning: #e0a83e;
+  --critical: #e2584b;
+  --neutral: #565c70;
+  font-variant-numeric: tabular-nums;
+}
+:root[data-theme="light"] {
+  --bg: #f5f3ef;
+  --surface: #ffffff;
+  --surface-2: #f0ede6;
+  --border: #ddd7cb;
+  --text: #201d18;
+  --text-dim: #6b6459;
+  --text-faint: #a39c8c;
+  --accent: #a9682c;
+  --success: #2f8f5f;
+  --info: #3b6ea5;
+  --warning: #b3811f;
+  --critical: #c23f32;
+  --neutral: #8a8578;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f3ef;
+    --surface: #ffffff;
+    --surface-2: #f0ede6;
+    --border: #ddd7cb;
+    --text: #201d18;
+    --text-dim: #6b6459;
+    --text-faint: #a39c8c;
+    --accent: #a9682c;
+    --success: #2f8f5f;
+    --info: #3b6ea5;
+    --warning: #b3811f;
+    --critical: #c23f32;
+    --neutral: #8a8578;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  padding: 28px 20px 80px;
+}
+.mono {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace;
+}
+.wrap { max-width: 1180px; margin: 0 auto; }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 18px;
+}
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+h1 .sub {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+.updated {
+  font-size: 12px;
+  color: var(--text-faint);
+  text-align: right;
+}
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  border-top: 2px solid var(--neutral);
+}
+.kpi-success { border-top-color: var(--success); }
+.kpi-info { border-top-color: var(--info); }
+.kpi-critical { border-top-color: var(--critical); }
+.kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+  font-family: ui-monospace, "SF Mono", monospace;
+}
+.kpi-label {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.kpi-sub {
+  font-size: 11.5px;
+  color: var(--text-faint);
+  margin-top: 4px;
+  font-family: ui-monospace, monospace;
+}
+h2 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin: 36px 0 12px;
+}
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+.panel-critical { border-color: color-mix(in srgb, var(--critical) 40%, var(--border)); }
+.panel h3 { margin: 0 0 8px; font-size: 13px; color: var(--critical); }
+.blocker-row { font-size: 13px; padding: 6px 0; border-top: 1px solid var(--border); }
+.blocker-row:first-child { border-top: none; }
+.blocker-note { color: var(--text-dim); font-size: 12px; margin-top: 2px; }
+
+.grid {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow-x: auto;
+  padding: 6px;
+}
+.grid-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.grid-row:last-child { border-bottom: none; }
+.grid-day {
+  width: 92px;
+  flex-shrink: 0;
+  font-family: ui-monospace, monospace;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+.grid-slots { display: flex; gap: 8px; flex-wrap: wrap; }
+.slot {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  min-width: 92px;
+  font-size: 11px;
+}
+.slot-time { color: var(--text-faint); font-family: ui-monospace, monospace; }
+.slot-fmt { font-weight: 600; }
+.slot-id { color: var(--text-dim); font-family: ui-monospace, monospace; font-size: 10.5px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+td { padding: 9px 10px; border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: none; }
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+.muted { color: var(--text-faint); }
+.empty { color: var(--text-faint); padding: 18px; text-align: center; }
+
+.pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+}
+.pill-success { background: color-mix(in srgb, var(--success) 18%, transparent); color: var(--success); }
+.pill-info { background: color-mix(in srgb, var(--info) 18%, transparent); color: var(--info); }
+.pill-critical { background: color-mix(in srgb, var(--critical) 18%, transparent); color: var(--critical); }
+.pill-neutral { background: color-mix(in srgb, var(--neutral) 22%, transparent); color: var(--text-dim); }
+
+.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 860px) { .cols2 { grid-template-columns: 1fr; } }
+
+.log {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 4px;
+}
+.log-row {
+  display: grid;
+  grid-template-columns: 18px 150px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.log-row:last-child { border-bottom: none; }
+.log-icon.log-short { color: var(--accent); }
+.log-icon.log-long { color: var(--info); }
+.log-time { font-size: 11.5px; color: var(--text-faint); }
+.log-title { color: var(--text); text-decoration: none; }
+.log-title:hover { color: var(--accent); text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11.5px;
+  color: var(--text-faint);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>@makeitmanifest
+      <span class="sub">YouTube automation pipeline — daily batch dashboard</span>
+    </h1>
+    <div class="updated">Generated Jul 28, 2026 — 07:45 UTC<br/>Redeployed once per daily cycle</div>
+  </header>
+
+  <div class="kpis">
+        <div class="kpi kpi-success">
+          <div class="kpi-value">7</div>
+          <div class="kpi-label">Published this batch</div>
+          
+        </div>
+        <div class="kpi kpi-info">
+          <div class="kpi-value">16</div>
+          <div class="kpi-label">Ready to publish</div>
+          
+        </div>
+        <div class="kpi kpi-neutral">
+          <div class="kpi-value">5</div>
+          <div class="kpi-label">Still pending</div>
+          
+        </div>
+        <div class="kpi kpi-critical">
+          <div class="kpi-value">4</div>
+          <div class="kpi-label">Quarantined (all-time)</div>
+          
+        </div>
+        <div class="kpi kpi-info">
+          <div class="kpi-value">Jul 29, 19:00 UTC</div>
+          <div class="kpi-label">Next scheduled</div>
+          <div class="kpi-sub">lf_004</div>
+        </div></div>
+
+  <div class="panel panel-critical"><h3>⚠ Blocked on publish</h3><div class="blocker-row"><span class="mono">lf_004</span> — This Is What Stillness Feels Like<div class="blocker-note">Retried publish 2026-07-28T06:10Z (~9h after yesterday's uploads that first hit the cap around 2026-07-27T23:55Z) — still HTTP 400 uploadLimitExceeded. This tells us the quota reset window is longer than 'next calendar UTC day' or at least longer than ~9-10h; exact reset timing still not confirmed. Status remains ready_to_publish, not published, not quarantined. No further retry loop this firing — production continues instead. Retried again 2026-07-28T06:33Z, still uploadLimitExceeded.</div></div></div>
+
+  <h2>This week's batch</h2>
+  <div class="grid"><div class="grid-row"><div class="grid-day">2026-07-28</div><div class="grid-slots"><div class="slot pill-success" title="sf_013 · done"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_013</span></div><div class="slot pill-success" title="sf_014 · done"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_014</span></div><div class="slot pill-success" title="sf_015 · done"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_015</span></div><div class="slot pill-success" title="lf_003 · done"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_003</span></div></div></div><div class="grid-row"><div class="grid-day">2026-07-29</div><div class="grid-slots"><div class="slot pill-success" title="sf_016 · done"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_016</span></div><div class="slot pill-success" title="sf_017 · done"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_017</span></div><div class="slot pill-success" title="sf_018 · done"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_018</span></div><div class="slot pill-info" title="lf_004 · ready_to_publish"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_004</span></div></div></div><div class="grid-row"><div class="grid-day">2026-07-30</div><div class="grid-slots"><div class="slot pill-info" title="sf_019 · ready_to_publish"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_019</span></div><div class="slot pill-info" title="sf_020 · ready_to_publish"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_020</span></div><div class="slot pill-info" title="sf_021 · ready_to_publish"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_021</span></div><div class="slot pill-info" title="lf_005 · ready_to_publish"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_005</span></div></div></div><div class="grid-row"><div class="grid-day">2026-07-31</div><div class="grid-slots"><div class="slot pill-info" title="sf_022 · ready_to_publish"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_022</span></div><div class="slot pill-info" title="sf_023 · ready_to_publish"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_023</span></div><div class="slot pill-info" title="sf_024 · ready_to_publish"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_024</span></div><div class="slot pill-info" title="lf_006 · ready_to_publish"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_006</span></div></div></div><div class="grid-row"><div class="grid-day">2026-08-01</div><div class="grid-slots"><div class="slot pill-info" title="sf_025 · ready_to_publish"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_025</span></div><div class="slot pill-info" title="sf_026 · ready_to_publish"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_026</span></div><div class="slot pill-info" title="sf_027 · ready_to_publish"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_027</span></div><div class="slot pill-neutral" title="— · pending"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">—</span></div></div></div><div class="grid-row"><div class="grid-day">2026-08-02</div><div class="grid-slots"><div class="slot pill-info" title="sf_028 · ready_to_publish"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_028</span></div><div class="slot pill-info" title="sf_029 · ready_to_publish"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_029</span></div><div class="slot pill-info" title="sf_030 · ready_to_publish"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_030</span></div><div class="slot pill-info" title="lf_008 · ready_to_publish"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_008</span></div></div></div><div class="grid-row"><div class="grid-day">2026-08-03</div><div class="grid-slots"><div class="slot pill-neutral" title="— · pending"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">—</span></div><div class="slot pill-neutral" title="— · pending"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">—</span></div><div class="slot pill-neutral" title="— · pending"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">—</span></div><div class="slot pill-neutral" title="— · pending"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">—</span></div></div></div></div>
+
+  <h2>Queues</h2>
+  <div class="cols2">
+    <div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Long-form (8)</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Length</th><th>Scouted</th></tr></thead>
+          <tbody><tr><td class="mono">lf_001</td><td>1 Hour of Discipline | Rainy City Ambience for Deep Focus &amp; Manifestation</td><td><span class="pill pill-critical">Quarantined</span></td><td class="mono">60 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_002</td><td>1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus &amp; Manifestation</td><td><span class="pill pill-success">Published</span></td><td class="mono">60 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_003</td><td>1.5 Hours of Ambition | Marina Skyline at Night - Ambience for Focus &amp; Manifestation</td><td><span class="pill pill-success">Published</span></td><td class="mono">90 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_004</td><td>This Is What Stillness Feels Like</td><td><span class="pill pill-info">Ready</span></td><td class="mono">60 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_005</td><td>Discipline Doesn't Need An Audience</td><td><span class="pill pill-info">Ready</span></td><td class="mono">120 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_006</td><td>You Build In The Quiet</td><td><span class="pill pill-info">Ready</span></td><td class="mono">75 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_007</td><td>Nobody Sees The Nights Like This</td><td><span class="pill pill-neutral">Scouted</span></td><td class="mono">150 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_008</td><td>Some Nights You Just Sit With It</td><td><span class="pill pill-info">Ready</span></td><td class="mono">60 min</td><td class="mono muted">2026-07-27</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Short-form (31)</div>
+      <div class="table-wrap" style="max-height:420px;overflow-y:auto;">
+        <table>
+          <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody><tr><td class="mono">sf_001</td><td>Don't Be Motivated. Be Disciplined.</td><td><span class="pill pill-critical">Quarantined</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_002</td><td>Rebuild Yourself In Silence</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_002_v2</td><td>Rebuild Yourself In Silence</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_003</td><td>The Man Who Reads Alone Wins Alone</td><td><span class="pill pill-critical">Quarantined</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_004</td><td>—</td><td><span class="pill pill-critical">Quarantined</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_005</td><td>You're Not Behind. You're Becoming.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_006</td><td>They See The Car. Not The Work.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_007</td><td>This Is Your Future. Rehearse It.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_008</td><td>No Days Off. No Excuses.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_009</td><td>Just Another Tuesday.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_010</td><td>Built For This. Not Everyone Is.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_011</td><td>Nobody Clocks Me In Anymore.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_012</td><td>They Said I Wouldn't Make It. I Did.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_013</td><td>I'm The First. Not The Last.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_014</td><td>Everyone's On A Different Clock.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_015</td><td>Nobody Talks About What I Gave Up.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_016</td><td>You Become The Room You're In.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_017</td><td>This Took Years. It Looks Like Luck.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_018</td><td>The Old Me Wouldn't Recognize This.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_019</td><td>I Stopped Explaining My Boundaries.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_020</td><td>I Don't Spend It. I Reinvest It.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_021</td><td>Nobody Gave Me Permission. I Took It.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_022</td><td>I Chose Uncertain Over Comfortable.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_023</td><td>Luck Is Just Timing You Prepared For.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_024</td><td>I Was Never Built For Normal.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_025</td><td>My Attention Is Not For Sale.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_026</td><td>I Trust My Instincts Over Their Opinions.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_027</td><td>I Saw This Before It Existed.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_028</td><td>I Raised My Standards. Not My Voice.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_029</td><td>Discipline Doesn't Ask How I Feel.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_030</td><td>Their Timeline Was Never Mine.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h2>Recently published</h2>
+  <div class="log"><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 29, 18:00 UTC</span><a class="log-title" href="https://youtu.be/tvr7Pe99b2o" target="_blank" rel="noopener">The Old Me Wouldn't Recognize This.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 29, 13:00 UTC</span><a class="log-title" href="https://youtu.be/Ia2jWCbXAIs" target="_blank" rel="noopener">This Took Years. It Looks Like Luck.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 29, 08:00 UTC</span><a class="log-title" href="https://youtu.be/-61RQDvyQtM" target="_blank" rel="noopener">You Become The Room You're In.</a></div><div class="log-row"><span class="log-icon log-long">━</span><span class="log-time mono">Jul 28, 19:00 UTC</span><a class="log-title" href="https://youtu.be/3Uat_ycZ4k8" target="_blank" rel="noopener">1.5 Hours of Ambition | Marina Skyline at Night - Ambience for Focus &amp; Manifestation</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 28, 18:00 UTC</span><a class="log-title" href="https://youtu.be/LE_thiHiqHM" target="_blank" rel="noopener">Nobody Talks About What I Gave Up.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 28, 13:00 UTC</span><a class="log-title" href="https://youtu.be/QA8WndS3tZM" target="_blank" rel="noopener">Everyone's On A Different Clock.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 28, 08:00 UTC</span><a class="log-title" href="https://youtu.be/jPadbAWbYsU" target="_blank" rel="noopener">I'm The First. Not The Last.</a></div><div class="log-row"><span class="log-icon log-long">━</span><span class="log-time mono">Jul 27, 21:10 UTC</span><a class="log-title" href="https://youtu.be/J5o72mPmCzs" target="_blank" rel="noopener">1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus &amp; Manifestation</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 20:50 UTC</span><a class="log-title" href="https://youtu.be/UXnA8OJeZjI" target="_blank" rel="noopener">They Said I Wouldn't Make It. I Did.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 19:05 UTC</span><a class="log-title" href="https://youtu.be/6EW_tfba9bo" target="_blank" rel="noopener">Just Another Tuesday.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 17:06 UTC</span><a class="log-title" href="https://youtu.be/5pv__ZadiaI" target="_blank" rel="noopener">Nobody Clocks Me In Anymore.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 16:47 UTC</span><a class="log-title" href="https://youtu.be/2A-1RDsOQ6w" target="_blank" rel="noopener">Built For This. Not Everyone Is.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 16:08 UTC</span><a class="log-title" href="https://youtu.be/oE4J7Q6RkcE" target="_blank" rel="noopener">No Days Off. No Excuses.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 16:05 UTC</span><a class="log-title" href="https://youtu.be/O3YSNtfh9rs" target="_blank" rel="noopener">They See The Car. Not The Work.</a></div></div>
+
+  <footer>
+    Pipeline state read from <span class="mono">state/*.json</span> in the repo at generation time · quarantined items: 4 · image pool clean/unused: 14, pending vet: 3
+  </footer>
+</div>
+</body>
+</html>

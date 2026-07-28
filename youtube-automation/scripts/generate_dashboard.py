@@ -1,0 +1,583 @@
+#!/usr/bin/env python3
+"""Generate a static, self-contained HTML dashboard from the pipeline's
+state/*.json files. No network calls, no external assets — safe to run
+anywhere and safe to publish as a Claude Artifact.
+
+Design: intentionally cheap to run (pure stdlib, no LLM calls). Meant to be
+re-run once per daily trigger firing (see agents/0_orchestrator.md), not
+after every single item, to keep the "publish an updated Artifact" step
+low-cost. Run manually any time with:
+
+    python3 scripts/generate_dashboard.py
+
+Output: dashboard/index.html (also copied to a scratch path for Artifact
+publishing by the calling agent).
+"""
+import json
+import os
+from datetime import datetime, timezone
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATE = os.path.join(ROOT, "state")
+OUT_DIR = os.path.join(ROOT, "dashboard")
+
+
+def load(name, default=None):
+    path = os.path.join(STATE, name)
+    if not os.path.exists(path):
+        return default
+    with open(path) as f:
+        return json.load(f)
+
+
+def esc(s):
+    if s is None:
+        return ""
+    return (
+        str(s)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
+
+
+def fmt_dt(iso):
+    if not iso:
+        return "—"
+    try:
+        dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+        return dt.strftime("%b %-d, %H:%M UTC")
+    except Exception:
+        return iso
+
+
+STATUS_CLASS = {
+    "done": "pill-success",
+    "published": "pill-success",
+    "ready_to_publish": "pill-info",
+    "pending": "pill-neutral",
+    "scouted": "pill-neutral",
+    "scripted": "pill-neutral",
+    "produced": "pill-neutral",
+    "sound_sourced": "pill-neutral",
+    "image_sourced": "pill-neutral",
+    "animated": "pill-neutral",
+    "quarantined": "pill-critical",
+}
+
+STATUS_LABEL = {
+    "done": "Published",
+    "published": "Published",
+    "ready_to_publish": "Ready",
+    "pending": "Pending",
+    "scouted": "Scouted",
+    "scripted": "Scripted",
+    "produced": "Produced",
+    "sound_sourced": "Sound sourced",
+    "image_sourced": "Image sourced",
+    "animated": "Animated",
+    "quarantined": "Quarantined",
+}
+
+
+def pill(status):
+    cls = STATUS_CLASS.get(status, "pill-neutral")
+    label = STATUS_LABEL.get(status, status or "—")
+    return f'<span class="pill {cls}">{esc(label)}</span>'
+
+
+def main():
+    now = datetime.now(timezone.utc)
+    channel = load("../config/channel.json", {}) if os.path.exists(
+        os.path.join(STATE, "..", "config", "channel.json")
+    ) else {}
+    channel_path = os.path.join(ROOT, "config", "channel.json")
+    channel = json.load(open(channel_path)) if os.path.exists(channel_path) else {}
+    handle = channel.get("channel_handle", "@channel")
+
+    batch = load("weekly_batch_progress.json", {})
+    current = (batch or {}).get("current_batch") or {}
+    items = current.get("items", [])
+
+    sfq = load("short_form_queue.json", {"queue": []})["queue"]
+    lfq = load("long_form_queue.json", {"queue": []})["queue"]
+    sf_by_id = {c["id"]: c for c in sfq}
+    lf_by_id = {c["id"]: c for c in lfq}
+
+    posted = load("posted_history.json", {"short_form": [], "long_form": []})
+    quarantine = load("quarantine.json", {"short_form": [], "long_form": []})
+    image_pool = load("image_pool.json", {})
+    trending_audio = load("trending_audio_library.json", {})
+    cc0_audio = load("cc0_audio_library.json", {})
+
+    # ---- KPI counts ----
+    status_counts = {"done": 0, "ready_to_publish": 0, "pending": 0}
+    for it in items:
+        s = it.get("status", "pending")
+        status_counts[s] = status_counts.get(s, 0) + 1
+    total_items = len(items) or 1
+
+    blockers = []
+    for c in lfq:
+        if c.get("publish_blocker"):
+            blockers.append((c["id"], c.get("title", c["id"]), c["publish_blocker"]))
+
+    next_due = None
+    for it in sorted(items, key=lambda x: x.get("scheduled_publish_at") or "9999"):
+        if it.get("status") == "ready_to_publish":
+            next_due = it
+            break
+
+    quarantine_count = len(quarantine.get("short_form", [])) + len(
+        quarantine.get("long_form", [])
+    )
+
+    # ---- Activity log (posted history, newest first) ----
+    activity = []
+    for v in posted.get("short_form", []):
+        activity.append({**v, "kind": "short"})
+    for v in posted.get("long_form", []):
+        activity.append({**v, "kind": "long"})
+    activity.sort(key=lambda v: v.get("published_at", ""), reverse=True)
+    activity = activity[:14]
+
+    # ---- Batch grid (day x slot) ----
+    days = []
+    for it in items:
+        d = it.get("day")
+        if d and d not in [x["day"] for x in days]:
+            days.append({"day": d, "slots": []})
+    for it in items:
+        for entry in days:
+            if entry["day"] == it["day"]:
+                entry["slots"].append(it)
+
+    # ---- Audio usage ----
+    named_tracks = trending_audio.get("named_tracks", trending_audio.get("tracks", []))
+    unident = trending_audio.get("unidentified_owner_provided_tracks", [])
+
+    def count_track_uses(track_id_or_name):
+        n = 0
+        for c in sfq:
+            sd = (c.get("sound_direction") or "")
+            if track_id_or_name and track_id_or_name in sd:
+                n += 1
+        return n
+
+    # ---- Image pool ----
+    unused_pool = image_pool.get("unused_owner_provided_pool", [])
+    pending_images = [
+        e for e in unused_pool if "PENDING" in (e.get("note", "").upper())
+    ]
+    clean_unused = [e for e in unused_pool if e not in pending_images]
+
+    generated_at = now.strftime("%b %-d, %Y — %H:%M UTC")
+
+    # ---------------------------------------------------------------
+    # HTML
+    # ---------------------------------------------------------------
+    def kpi_tile(label, value, sub="", tone="neutral"):
+        return f"""
+        <div class="kpi kpi-{tone}">
+          <div class="kpi-value">{value}</div>
+          <div class="kpi-label">{esc(label)}</div>
+          {f'<div class="kpi-sub">{esc(sub)}</div>' if sub else ''}
+        </div>"""
+
+    kpis = "".join([
+        kpi_tile("Published this batch", status_counts.get("done", 0), tone="success"),
+        kpi_tile("Ready to publish", status_counts.get("ready_to_publish", 0), tone="info"),
+        kpi_tile("Still pending", status_counts.get("pending", 0), tone="neutral"),
+        kpi_tile(
+            "Quarantined (all-time)",
+            quarantine_count,
+            tone="critical" if quarantine_count else "neutral",
+        ),
+        kpi_tile(
+            "Next scheduled",
+            fmt_dt(next_due["scheduled_publish_at"]) if next_due else "—",
+            sub=(next_due.get("candidate_id", "") if next_due else ""),
+            tone="info",
+        ),
+    ])
+
+    grid_rows = []
+    slot_order = {"09:00": 0, "14:00": 1, "19:00": 2, "20:00": 3}
+    for entry in days:
+        slots = sorted(entry["slots"], key=lambda s: slot_order.get(s.get("local_slot"), 9))
+        cells = []
+        for s in slots:
+            fmt = s.get("format")
+            icon = "▮▮▮" if fmt == "short" else "━━━"
+            cid = s.get("candidate_id") or "—"
+            cls = STATUS_CLASS.get(s.get("status"), "pill-neutral")
+            cells.append(
+                f'<div class="slot {cls}" title="{esc(cid)} · {esc(s.get("status"))}">'
+                f'<span class="slot-time">{esc(s.get("local_slot",""))}</span>'
+                f'<span class="slot-fmt">{"Short" if fmt=="short" else "Long"}</span>'
+                f'<span class="slot-id">{esc(cid)}</span>'
+                f"</div>"
+            )
+        grid_rows.append(
+            f'<div class="grid-row"><div class="grid-day">{esc(entry["day"])}</div>'
+            f'<div class="grid-slots">{"".join(cells)}</div></div>'
+        )
+    grid_html = "".join(grid_rows) or '<div class="empty">No batch initialized yet.</div>'
+
+    def lf_row(c):
+        return (
+            f'<tr><td class="mono">{esc(c["id"])}</td>'
+            f'<td>{esc(c.get("title","—"))}</td>'
+            f'<td>{pill(c.get("status"))}</td>'
+            f'<td class="mono">{esc(c.get("target_length_minutes","—"))} min</td>'
+            f'<td class="mono muted">{esc(c.get("scouted_at","—")[:10])}</td></tr>'
+        )
+
+    lf_rows = "".join(lf_row(c) for c in lfq) or '<tr><td colspan="5" class="empty">No candidates yet.</td></tr>'
+
+    def sf_row(c):
+        return (
+            f'<tr><td class="mono">{esc(c["id"])}</td>'
+            f'<td>{esc(c.get("title","—"))}</td>'
+            f'<td>{pill(c.get("status"))}</td>'
+            f'<td class="mono muted">{esc((c.get("scripted_at") or c.get("scouted_at") or "—")[:10])}</td></tr>'
+        )
+
+    sf_rows = "".join(sf_row(c) for c in sfq) or '<tr><td colspan="4" class="empty">No candidates yet.</td></tr>'
+
+    def activity_row(v):
+        icon = "▮" if v["kind"] == "short" else "━"
+        url = v.get("url", "#")
+        return (
+            f'<div class="log-row">'
+            f'<span class="log-icon log-{v["kind"]}">{icon}</span>'
+            f'<span class="log-time mono">{fmt_dt(v.get("published_at"))}</span>'
+            f'<a class="log-title" href="{esc(url)}" target="_blank" rel="noopener">{esc(v.get("title","—"))}</a>'
+            f"</div>"
+        )
+
+    activity_html = "".join(activity_row(v) for v in activity) or '<div class="empty">Nothing published yet.</div>'
+
+    blocker_html = ""
+    if blockers:
+        rows = "".join(
+            f'<div class="blocker-row"><span class="mono">{esc(bid)}</span> — {esc(title)}<div class="blocker-note">{esc(note)}</div></div>'
+            for bid, title, note in blockers
+        )
+        blocker_html = f'<div class="panel panel-critical"><h3>⚠ Blocked on publish</h3>{rows}</div>'
+
+    html = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{esc(handle)} — Pipeline Dashboard</title>
+<style>
+:root {{
+  --bg: #10121a;
+  --surface: #191c27;
+  --surface-2: #20242f;
+  --border: #2b303f;
+  --text: #edeef3;
+  --text-dim: #8e93a8;
+  --text-faint: #5b6070;
+  --accent: #c98a4b;
+  --success: #4cb17d;
+  --info: #6f9bd1;
+  --warning: #e0a83e;
+  --critical: #e2584b;
+  --neutral: #565c70;
+  font-variant-numeric: tabular-nums;
+}}
+:root[data-theme="light"] {{
+  --bg: #f5f3ef;
+  --surface: #ffffff;
+  --surface-2: #f0ede6;
+  --border: #ddd7cb;
+  --text: #201d18;
+  --text-dim: #6b6459;
+  --text-faint: #a39c8c;
+  --accent: #a9682c;
+  --success: #2f8f5f;
+  --info: #3b6ea5;
+  --warning: #b3811f;
+  --critical: #c23f32;
+  --neutral: #8a8578;
+}}
+@media (prefers-color-scheme: light) {{
+  :root:not([data-theme="dark"]) {{
+    --bg: #f5f3ef;
+    --surface: #ffffff;
+    --surface-2: #f0ede6;
+    --border: #ddd7cb;
+    --text: #201d18;
+    --text-dim: #6b6459;
+    --text-faint: #a39c8c;
+    --accent: #a9682c;
+    --success: #2f8f5f;
+    --info: #3b6ea5;
+    --warning: #b3811f;
+    --critical: #c23f32;
+    --neutral: #8a8578;
+  }}
+}}
+* {{ box-sizing: border-box; }}
+body {{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  padding: 28px 20px 80px;
+}}
+.mono {{
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace;
+}}
+.wrap {{ max-width: 1180px; margin: 0 auto; }}
+header {{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 18px;
+}}
+h1 {{
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}}
+h1 .sub {{
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin-top: 4px;
+  letter-spacing: 0;
+}}
+.updated {{
+  font-size: 12px;
+  color: var(--text-faint);
+  text-align: right;
+}}
+.kpis {{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}}
+.kpi {{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  border-top: 2px solid var(--neutral);
+}}
+.kpi-success {{ border-top-color: var(--success); }}
+.kpi-info {{ border-top-color: var(--info); }}
+.kpi-critical {{ border-top-color: var(--critical); }}
+.kpi-value {{
+  font-size: 26px;
+  font-weight: 700;
+  font-family: ui-monospace, "SF Mono", monospace;
+}}
+.kpi-label {{
+  font-size: 12.5px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}}
+.kpi-sub {{
+  font-size: 11.5px;
+  color: var(--text-faint);
+  margin-top: 4px;
+  font-family: ui-monospace, monospace;
+}}
+h2 {{
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin: 36px 0 12px;
+}}
+.panel {{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}}
+.panel-critical {{ border-color: color-mix(in srgb, var(--critical) 40%, var(--border)); }}
+.panel h3 {{ margin: 0 0 8px; font-size: 13px; color: var(--critical); }}
+.blocker-row {{ font-size: 13px; padding: 6px 0; border-top: 1px solid var(--border); }}
+.blocker-row:first-child {{ border-top: none; }}
+.blocker-note {{ color: var(--text-dim); font-size: 12px; margin-top: 2px; }}
+
+.grid {{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow-x: auto;
+  padding: 6px;
+}}
+.grid-row {{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}}
+.grid-row:last-child {{ border-bottom: none; }}
+.grid-day {{
+  width: 92px;
+  flex-shrink: 0;
+  font-family: ui-monospace, monospace;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}}
+.grid-slots {{ display: flex; gap: 8px; flex-wrap: wrap; }}
+.slot {{
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  min-width: 92px;
+  font-size: 11px;
+}}
+.slot-time {{ color: var(--text-faint); font-family: ui-monospace, monospace; }}
+.slot-fmt {{ font-weight: 600; }}
+.slot-id {{ color: var(--text-dim); font-family: ui-monospace, monospace; font-size: 10.5px; }}
+
+table {{ width: 100%; border-collapse: collapse; font-size: 13px; }}
+th {{
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}}
+td {{ padding: 9px 10px; border-bottom: 1px solid var(--border); }}
+tr:last-child td {{ border-bottom: none; }}
+.table-wrap {{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow-x: auto;
+}}
+.muted {{ color: var(--text-faint); }}
+.empty {{ color: var(--text-faint); padding: 18px; text-align: center; }}
+
+.pill {{
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+}}
+.pill-success {{ background: color-mix(in srgb, var(--success) 18%, transparent); color: var(--success); }}
+.pill-info {{ background: color-mix(in srgb, var(--info) 18%, transparent); color: var(--info); }}
+.pill-critical {{ background: color-mix(in srgb, var(--critical) 18%, transparent); color: var(--critical); }}
+.pill-neutral {{ background: color-mix(in srgb, var(--neutral) 22%, transparent); color: var(--text-dim); }}
+
+.cols2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }}
+@media (max-width: 860px) {{ .cols2 {{ grid-template-columns: 1fr; }} }}
+
+.log {{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 4px;
+}}
+.log-row {{
+  display: grid;
+  grid-template-columns: 18px 150px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}}
+.log-row:last-child {{ border-bottom: none; }}
+.log-icon.log-short {{ color: var(--accent); }}
+.log-icon.log-long {{ color: var(--info); }}
+.log-time {{ font-size: 11.5px; color: var(--text-faint); }}
+.log-title {{ color: var(--text); text-decoration: none; }}
+.log-title:hover {{ color: var(--accent); text-decoration: underline; }}
+
+footer {{
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11.5px;
+  color: var(--text-faint);
+}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>{esc(handle)}
+      <span class="sub">YouTube automation pipeline — daily batch dashboard</span>
+    </h1>
+    <div class="updated">Generated {esc(generated_at)}<br/>Redeployed once per daily cycle</div>
+  </header>
+
+  <div class="kpis">{kpis}</div>
+
+  {blocker_html}
+
+  <h2>This week's batch</h2>
+  <div class="grid">{grid_html}</div>
+
+  <h2>Queues</h2>
+  <div class="cols2">
+    <div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Long-form ({len(lfq)})</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Length</th><th>Scouted</th></tr></thead>
+          <tbody>{lf_rows}</tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Short-form ({len(sfq)})</div>
+      <div class="table-wrap" style="max-height:420px;overflow-y:auto;">
+        <table>
+          <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody>{sf_rows}</tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h2>Recently published</h2>
+  <div class="log">{activity_html}</div>
+
+  <footer>
+    Pipeline state read from <span class="mono">state/*.json</span> in the repo at generation time · quarantined items: {quarantine_count} · image pool clean/unused: {len(clean_unused)}, pending vet: {len(pending_images)}
+  </footer>
+</div>
+</body>
+</html>
+"""
+
+    os.makedirs(OUT_DIR, exist_ok=True)
+    out_path = os.path.join(OUT_DIR, "index.html")
+    with open(out_path, "w") as f:
+        f.write(html)
+    print("wrote", out_path, f"({len(html)} bytes)")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,10 @@
+{
+  "_comment": "Records the published Artifact dashboard's URL so future sessions/firings can redeploy the SAME URL (via Artifact tool's `url` param) instead of minting a new one each time. See scripts/generate_dashboard.py and agents/0_orchestrator.md's 'Dashboard refresh' step.",
+  "url": "https://claude.ai/code/artifact/a7fafc6f-2fab-495b-8a1e-6954ca63f71c",
+  "file_path": "dashboard/index.html",
+  "title": "@makeitmanifest — Pipeline Dashboard",
+  "description": "Daily-updated status dashboard for the YouTube automation content pipeline.",
+  "favicon": "🎛️",
+  "created_at": "2026-07-28T07:35:00Z",
+  "refresh_policy": "Regenerated and republished exactly once per daily trigger firing (end of cycle), never per-item, to keep maintenance cost near-zero. See agents/0_orchestrator.md 'Dashboard refresh' step."
+}
