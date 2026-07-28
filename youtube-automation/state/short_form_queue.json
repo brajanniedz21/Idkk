@@ -1745,6 +1745,56 @@
       "produced_at": "2026-07-28T06:45:00Z",
       "gate_note": "Gates applied 2026-07-28T06:50Z: copyright_gate mitigation satisfied (vertical reframe, dark/low-exposure color grade change, audio fully replaced with trending track) -> PASS. audio_license_gate: track is an owner-supplied unidentified trending track in state/trending_audio_library.json, not used before -> PASS. factual_controversy_screen: no political/controversial content -> PASS (see factual_controversy_screen_note). platform_policy_check: no hate speech/violence/misleading title -> PASS. basic_qa: 1080x1920, 10.0s (within 8-12s target), av sync ok, no corrupt file, no silence gaps -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T06:50:00Z"
+    },
+    {
+      "id": "sf_025",
+      "status": "ready_to_publish",
+      "scouted_at": "2026-07-28T10:00:00Z",
+      "angle": "Attention/focus-as-protected-resource: treating one's own focus and attention as the genuinely scarce, valuable thing worth guarding, refusing to spend it on noise, other people's opinions, or distraction -- framed as a deliberate act of protection, not avoidance. Distinct from boundaries-as-wealth-protection (sf_019, which is about removing specific people/access) and self-authorized-permission (sf_021, about acting without waiting) -- this angle is specifically about what gets internal attention/energy day to day, not about who gets access or who authorized an action.",
+      "title_pattern": "My Attention Is Not For Sale.",
+      "caption_hooks": [
+        "My attention is the last thing they can't take.",
+        "Everyone wants a piece of it. Not anymore.",
+        "I stopped giving my focus away for free."
+      ],
+      "trending_sound_style": "Fast, urgent momentum energy (~175-185 BPM) -- sharp and decisive rather than celebratory, matching a 'zero patience for distraction' protective tone.",
+      "hashtags": [
+        "#protectyourfocus",
+        "#attentionisyourcurrency",
+        "#lockedin",
+        "#millionairemindset",
+        "#luxurylifestyle"
+      ],
+      "source_notes": "Informed by competitor_scan_2026_07_28_pt2 (state/performance_notes.json): a fresh 150-video TikTok pull of @millionaire_mentality_7 found zero occurrences of 'focus', 'clarity', 'distraction', or any attention-protection language across the channel's caption history -- a confirmed gap, same category as sf_007/sf_011-sf_024's validated angles. The channel's caption vocabulary remains limited to the two structural shapes (generic template, car-model callout) reconfirmed in the same scan.",
+      "candidate_footage_suggestions": "Fits the luxury-lifestyle-only footage pool as a 'guarded, exclusive, no-distraction' visual register -- suggest 8 distinct clips: private mansion-gate entry at night (65.mp4, second batch), solo night-city supercar (17.mp4), a guarded underground supercar garage (55.mp4), a Rolex close-up for precision/focus (12.mp4), Rolls-Royce interior cash count as deliberate task-focus (21.mp4), private jet + Cullinan tarmac for exclusive access (68.mp4, second batch), a solitary rooftop infinity pool over a night skyline (63.mp4, second batch), solo supercar at sunset (36.mp4). All 8 personally frame-grab-verified this cycle (not blind number picks) -- see transform_log for confirmation notes. Agent 3.1 to substitute freely if it judges differently.",
+      "title": "My Attention Is Not For Sale.",
+      "seo_description": "My focus is the one thing I refuse to hand out for free anymore -- not to noise, not to opinions, not to anyone who didn't earn it. Made for anyone done spending their attention on things that don't deserve it.",
+      "tags": [
+        "protect your focus",
+        "attention is currency",
+        "locked in mindset",
+        "no distractions",
+        "luxury lifestyle motivation",
+        "millionaire mindset",
+        "manifestation shorts",
+        "self improvement shorts",
+        "wealth mindset shorts",
+        "luxury aesthetic",
+        "discipline motivation",
+        "deep focus",
+        "guard your energy",
+        "success story",
+        "mental clarity"
+      ],
+      "sound_direction": "Real trending track: owner_provided_181240 (unidentified, owner-supplied), state/trending_audio_library.json unidentified_owner_provided_tracks -- ~181.5 BPM, tied for the fastest track in the library (with owner_provided_181757, already used in sf_024). Checked posted_history/short_form_queue.json: owner_provided_181240 has never been used by any prior candidate -- the last genuinely fresh owner-provided track remaining. Very fast tempo drives rapid beat-locked cuts, fitting the sharp, zero-patience-for-distraction energy of this angle.",
+      "visual_direction": "'Guarded focus, no distraction' framing -- 65.mp4 (supercar through a private mansion gate at night, second batch), 17.mp4 (solo night-city supercar), 55.mp4 (private underground garage, guarded supercar collection), 12.mp4 (Rolex watch close-up), 21.mp4 (Rolls-Royce interior cash count), 68.mp4 (private jet + Rolls-Royce Cullinan on tarmac, second batch), 63.mp4 (rooftop infinity pool over a night skyline, second batch), 36.mp4 (solo supercar at sunset). All 8 personally verified via ffmpeg frame grab this cycle before finalizing (per the recent process fix requiring spot-checks) -- actual content matches the description above for every clip, none substituted blind.",
+      "factual_controversy_screen_note": "Checked against config/gates.json shared_gates.factual_controversy_screen: no political content, no fabricated claims/quotes attributed to real people, no controversial topics. Passes.",
+      "scripted_at": "2026-07-28T10:10:00Z",
+      "final_video_path": "assets/short-form-clips/output/sf_025_final.mp4",
+      "transform_log": "Beat-synced cuts (<=1.5s cap): 8 shots from 8 distinct clips (raw/65,17,55,12,21,68,63,36.mp4), avg ~1.25s/shot (range 0.66s-1.36s), intro skipped 0.30s, cut points from real beat detection on owner_provided_181240.mp3. Vertical 1080x1920, dark/low-exposure grade, audio fully replaced, no captions. Clip content spot-checked via ffmpeg frame grabs before selection (raw/21, raw/55 explicitly re-verified this cycle: 21.mp4 = Rolls-Royce interior cash count confirmed, not the balloon shot an earlier candidate's unconfirmed suggestion had guessed; 55.mp4 = underground private garage with red Ferrari + black Porsches confirmed). Verified: ffprobe (10.000000s, h264/aac, 1080x1920), full ffmpeg decode pass clean (no errors), silencedetect -40dB/1s found no silence gaps, frame-grab visual check at t=3s confirms dark grade, vertical crop, no watermark/text, matches described garage content.",
+      "produced_at": "2026-07-28T10:35:00Z",
+      "gate_note": "Gates applied 2026-07-28T10:40Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with owner-provided trending track) -> PASS. audio_license_gate: track owner_provided_181240 is an owner-supplied track in state/trending_audio_library.json unidentified_owner_provided_tracks, provenance documented (extracted from owner Drive folder screen recording), never used by a prior candidate -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
+      "gated_at": "2026-07-28T10:40:00Z"
     }
   ]
 }
