@@ -1595,6 +1595,72 @@
       ],
       "publish_blocker": null,
       "publishing_note": "Fully produced and gate-passed. Not yet uploaded \u2014 under the corrected two-phase batch model (production has no daily cap, publishing is throttled to ~4/day matching YouTube's quota), this candidate's scheduled slot is 2026-07-30 and it will be uploaded by the daily trigger closer to that date rather than immediately. The earlier 'blocked_on_upload_quota' framing was accurate about what happened but implied this was purely a platform blocker to retry past; the real fix was pacing the upload calls correctly, which is now the daily trigger's job."
+    },
+    {
+      "id": "sf_022",
+      "status": "scouted",
+      "scouted_at": "2026-07-28T09:00:00Z",
+      "angle": "Risk/bet-on-myself acceptance: the moment of deliberately walking away from a safe, known path (stable job, predictable income, approval of people who'd have talked you out of it) toward an uncertain but self-directed one, framed as a trade willingly made rather than a reckless leap. Distinct from autonomy/time-freedom (sf_011, which is about not being controlled once arrived) and self-authorized-permission (sf_021, which is about the internal decision to act without waiting for permission) \u2014 this angle is specifically about consciously accepting uncertainty/risk as the price of the different life, before any outcome exists, not about who granted (or didn't grant) the decision or what freedom looks like after.",
+      "title_pattern": "I Chose Uncertain Over Comfortable.",
+      "caption_hooks": [
+        "Comfortable was never the goal.",
+        "I traded a guarantee for a chance.",
+        "Certainty was the cage. I picked the risk."
+      ],
+      "trending_sound_style": "Driving, mid-fast momentum energy (~115-125 BPM) \u2014 forward-leaning and assured rather than aggressive or celebratory, matching a deliberate 'stepping off the ledge with clear eyes' tone rather than panic or bravado.",
+      "hashtags": [
+        "#betonyourself",
+        "#takerisks",
+        "#luxurymindset",
+        "#selfmadesuccess",
+        "#mindset"
+      ],
+      "source_notes": "Informed by competitor_scan_2026_07_28_pt1 (state/performance_notes.json): a fresh 150-video TikTok pull of @millionaire_mentality_7 plus a keyword gap-check found zero occurrences of any risk/uncertainty-acceptance language ('risk', 'bet on myself', 'uncomfortable', 'uncertain', 'scared', 'fear') across the channel's full caption history to date (16 cumulative scans) \u2014 a genuine, confirmed gap in this closest direct competitor's own vocabulary, the same category of underserved-framing signal that validated sf_007/sf_011/sf_012/sf_013/sf_014/sf_015/sf_016/sf_017/sf_018/sf_019/sf_020/sf_021. The channel's own structural findings (still only two title shapes \u2014 generic template and specific-car-model callout \u2014 across every scan to date, per the same pt1 entry) confirm this niche's captions stay narrow, reinforcing that a genuinely new framing like this one is differentiated rather than redundant.",
+      "candidate_footage_suggestions": "Fits the luxury-lifestyle-only footage pool (per assets/short-form-clips/raw/README.md) as a 'leaving the known behind' visual arc \u2014 suggest 7-8 distinct clips for real cut variety across the 8-12s format: private jet + Rolls-Royce Cullinan on tarmac (68.mp4, second-batch), supercar pulling out of a mansion gate at night (65.mp4, second-batch), open road/highway supercar shot (e.g. 17.mp4), solo figure at a marina/yacht deck before departure (18.mp4), Dubai Marina skyline at dusk (69.mp4, second-batch), hot air balloon at dawn (21.mp4, a literal 'leaving the ground' visual), sunset/sunrise over open water or a field (1.mp4). Agent 3.1 to confirm actual content before finalizing and to substitute freely from the wider pool (including originals not yet reused, e.g. 3, 5, 6, 7, 10, 12, 23, 25, 26 \u2014 unconfirmed content, file-size/number only) if it judges differently."
+    },
+    {
+      "id": "sf_023",
+      "status": "scouted",
+      "scouted_at": "2026-07-28T09:05:00Z",
+      "angle": "Preparation-meets-opportunity: the quiet, unglamorous work of getting ready before any opportunity exists, so that when the moment finally arrives it looks like luck to everyone else but was actually years of readiness. Distinct from patience/compounding (sf_017, which is about the slow accumulation of a result over time) and sacrifice/cost (sf_014, which is about what discipline cost someone personally) \u2014 this angle is specifically about the causal link between private preparation and a single seized moment, not about duration or personal cost in isolation.",
+      "title_pattern": "Luck Is Just Timing You Prepared For.",
+      "caption_hooks": [
+        "They call it luck. I call it homework nobody saw.",
+        "The opportunity didn't make me ready. I was already ready.",
+        "Prepared long before anyone was watching."
+      ],
+      "trending_sound_style": "Controlled, confident mid-tempo energy (~85-95 BPM) \u2014 steady and assured rather than explosive, matching a 'quiet readiness paying off' tone; should feel composed, not rushed, even within the fast-cut format.",
+      "hashtags": [
+        "#preparation",
+        "#opportunityknocks",
+        "#luckispreparation",
+        "#discipline",
+        "#millionairemindset"
+      ],
+      "source_notes": "Informed by competitor_scan_2026_07_28_pt1 (state/performance_notes.json): the same fresh 150-video pull's keyword gap-check found zero occurrences of any preparation/opportunity language ('prepared', 'preparation', 'opportunity', 'ready', 'luck', 'lucky') across @millionaire_mentality_7's full caption history \u2014 a confirmed gap, same underserved-framing category as sf_007/sf_011/sf_012/sf_013 etc. The track-frequency portion of the same scan also reconfirmed VEKI VEKI (Slowed) and the unidentified '\u2671'-artist 'fancy' track remain the channel's only proven-recurring picks, both already used/logged in prior cycles \u2014 this candidate deliberately does not lean on either, using an unused owner-provided track instead for audio variety per rotation_guidance in state/trending_audio_library.json.",
+      "candidate_footage_suggestions": "Suggest 7 distinct clips for real cut variety across the 8-12s format, mixing a 'quiet groundwork' visual register with a 'moment arrives' payoff: rooftop infinity pool over a city skyline at dawn (66.mp4, second-batch \u2014 a calm, watchful register), cash-counting close-up (67.mp4, second-batch \u2014 literal preparation/accounting), supercar showroom (13.mp4), mansion gates with supercars (65.mp4, second-batch), private jet + Cullinan on tarmac (68.mp4, second-batch \u2014 the 'moment' payoff), Dubai Marina yacht/skyline at golden hour (69.mp4 or 70.mp4, second-batch), a night cityscape/lit skyline shot (e.g. 24.mp4). Agent 3.1 to confirm actual content before finalizing and to substitute freely if it judges differently."
+    },
+    {
+      "id": "sf_024",
+      "status": "scouted",
+      "scouted_at": "2026-07-28T09:10:00Z",
+      "angle": "Refusing ordinary: an identity-level rejection of a conventional, safe, 'normal' life path \u2014 not as a reaction to a specific doubter (distinct from sf_012's vindication/doubters angle, which requires someone who explicitly doubted) and not about pace/comparison to peers (distinct from sf_016's own-timeline/anti-comparison angle) \u2014 this angle is about never having accepted 'normal' as the goal in the first place, an internal identity claim rather than a response to anyone else.",
+      "title_pattern": "I Was Never Built For Normal.",
+      "caption_hooks": [
+        "Normal was never the plan.",
+        "I didn't settle for ordinary. I refused it.",
+        "Some of us were never meant to blend in."
+      ],
+      "trending_sound_style": "Mid-tempo, confident energy (~90-100 BPM) with a slightly assertive edge \u2014 not aggressive grind-energy, more of a settled, identity-certain register, distinct from sf_008's harder 'no days off' effort energy.",
+      "hashtags": [
+        "#neverordinary",
+        "#builtdifferent",
+        "#luxurylifestyle",
+        "#millionairemindset",
+        "#standoutmindset"
+      ],
+      "source_notes": "Informed by competitor_scan_2026_07_28_pt1 (state/performance_notes.json): the same fresh 150-video keyword gap-check found zero occurrences of 'normal', 'ordinary', or 'extraordinary' anywhere across @millionaire_mentality_7's caption history \u2014 a confirmed gap. The same scan's title-prefix breakdown also surfaced a new car-model callout not previously logged (Camaro, 1/150, extending the BMW/Dodge Charger/Dodge Challenger pattern to a fourth model), reconfirming that after 16 cumulative scans this channel's caption vocabulary has exactly two structural shapes (generic template, specific-car-model callout) and nothing resembling an identity-rejection framing like this one \u2014 genuinely differentiated territory for this candidate.",
+      "candidate_footage_suggestions": "Suggest 6-7 distinct clips leaning into visually distinctive/non-generic luxury imagery (to visually reinforce 'not normal'): Dubai Marina yacht/skyline shot (69.mp4, second-batch), rooftop infinity pool over a skyline (66.mp4, second-batch), private jet + Rolls-Royce Cullinan on tarmac (68.mp4, second-batch), supercar at a mansion gate at night (65.mp4 or 70.mp4, second-batch), hot air balloons at dawn (21.mp4 \u2014 a literal above-the-crowd visual), a jetski/open-water shot if available in the original 1-60 pool (unconfirmed content, number only \u2014 e.g. 6.mp4 or 10.mp4). Agent 3.1 to confirm actual content before finalizing and to substitute freely from the wider pool if it judges differently."
     }
   ]
 }
