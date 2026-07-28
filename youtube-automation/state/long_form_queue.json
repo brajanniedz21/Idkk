@@ -172,7 +172,7 @@
     },
     {
       "id": "lf_006",
-      "status": "image_sourced",
+      "status": "animated",
       "visual_theme": "CONFIRMED by Agent 2.2 after downloading and inspecting the actual file (Drive file 1W0N23txWk6VX7KhU5vTfafT38P_GEux2, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (2).jpg', 735x490 JPEG) — genuinely is a car/mansion night courtyard scene as the brief guessed: a paved stone driveway at night with two dark supercars (a black Lamborghini-style car on the left, scissor door raised, illuminated rear diffuser/wing; a dark sports car on the right with a red LED taillight strip) facing each other, a white garage door with wall sconce lighting at left, ivy/foliage on the wall above, a palm frond in the right foreground, and a silver sedan plus additional exterior lights visible in the blurred background. No visible license plates, faces, watermark, or ad text (edge crops checked at 3x zoom, all clean).",
       "mood": "slow ambient piano with a light continuous rain layer, warm sustained pads, no percussion, no vocals, sub-60bpm (Rain / Sleep / Meditation track)",
       "title": "You Build In The Quiet",
@@ -197,7 +197,9 @@
       "banana_status_note": "Still blocked, same as lf_003 — see that entry's banana_status_note for the direct curl confirmation performed this cycle. Path B used instead.",
       "scouted_at": "2026-07-27T21:50:00Z",
       "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '75 Minutes of Calm | Luxury Courtyard Ambience for Deep Work'.",
-      "image_path": "assets/long-form/images/source_pool/lf_006_source.jpg"
+      "image_path": "assets/long-form/images/source_pool/lf_006_source.jpg",
+      "animated_loop_path": "assets/long-form/output/lf_006_loop_segment.mp4",
+      "animation_note": "20s (500 frames @ 25fps) seamless symmetric ken-burns zoom via cosine easing (zoom=1+0.0175*(1-cos(2*PI*on/500)), i.e. 1.0 -> 1.035 -> 1.0), mild warm/contrast color grade (eq contrast=1.05, saturation=1.10, brightness=0.02, gamma=1.02), mild vignette (PI/5) -- same treatment as lf_002/lf_003/lf_004/lf_005 for aesthetic consistency across the batch. Output 1920x1080 h264. First and last extracted frames (frame 0 vs frame 499) visually compared and confirmed indistinguishable (mean pixel diff 1.86/255, consistent with codec quantization noise, not a visible seam) -- loop verified seamless. Mid-point frame (250) also checked and reads as a calm, still-image-like frame (no mid-action look, thumbnail-worthy), consistent with the ambient-motion requirement."
     },
     {
       "id": "lf_007",
