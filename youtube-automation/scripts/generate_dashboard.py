@@ -29,7 +29,7 @@ import io
 import json
 import os
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "state")
@@ -131,6 +131,7 @@ def icon(name, size=24):
         "warn": '<path d="M12 4 2.5 20h19L12 4Z" stroke-linejoin="round"/><path d="M12 10.5v4.2" stroke-linecap="round"/><circle cx="12" cy="17.3" r="0.9" fill="currentColor" stroke="none"/>',
         "check": '<path d="M4.5 12.5l5 5 10-11" stroke-linecap="round" stroke-linejoin="round"/>',
         "chart": '<path d="M5 19V10" stroke-linecap="round"/><path d="M12 19V5" stroke-linecap="round"/><path d="M19 19v-6" stroke-linecap="round"/>',
+        "upcoming": '<circle cx="12" cy="13" r="7.5"/><path d="M12 9.5v3.8l2.6 1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.3 4.8 5.8 6.9M15.7 4.8l2.5 2.1" stroke-linecap="round"/>',
     }
     d = paths.get(name, "")
     return (
@@ -236,6 +237,46 @@ def main():
             break
 
     quarantine_count = len(quarantine.get("short_form", [])) + len(quarantine.get("long_form", []))
+
+    # ---- Next Run: predicted timeline for the next two scheduled firings.
+    # Both triggers run on fixed daily UTC crons (content batch 06:00,
+    # analytics 07:00) — computed here from `now`, not read from the
+    # trigger API, so this stays a pure/cheap read of state files. ----
+    def next_occurrence(hour):
+        candidate = now.replace(hour=hour, minute=0, second=0, microsecond=0)
+        if candidate <= now:
+            candidate += timedelta(days=1)
+        return candidate
+
+    def countdown(target):
+        mins = max(int((target - now).total_seconds() // 60), 0)
+        h, m = divmod(mins, 60)
+        return f"{h}h {m}m" if h else f"{m}m"
+
+    title_by_id = {}
+    for c in sfq:
+        title_by_id[c.get("id")] = c.get("title", c.get("id"))
+    for c in lfq:
+        title_by_id[c.get("id")] = c.get("title", c.get("id"))
+
+    next_batch_at = next_occurrence(6)
+    next_analytics_at = next_occurrence(7)
+    publish_window_end = (next_batch_at + timedelta(hours=24)).isoformat()
+
+    nextrun_pending = [it for it in items if it.get("status") == "pending"]
+    nextrun_due = [
+        it for it in items
+        if it.get("status") == "ready_to_publish"
+        and it.get("scheduled_publish_at")
+        and it["scheduled_publish_at"] <= publish_window_end
+    ]
+    nextrun_due.sort(key=lambda x: x.get("scheduled_publish_at") or "")
+    nextrun_due_shorts = [it for it in nextrun_due if it.get("format") == "short"]
+    nextrun_due_longs = [it for it in nextrun_due if it.get("format") == "long"]
+    nextrun_will_publish = nextrun_due_shorts[:3] + nextrun_due_longs[:1]
+    nextrun_will_publish_ids = {it["candidate_id"] for it in nextrun_will_publish}
+    nextrun_deferred = [it for it in nextrun_due if it["candidate_id"] not in nextrun_will_publish_ids]
+    nextrun_blocker_ids = {b[0] for b in blockers}
 
     # ---- Activity log (posted history, newest first) ----
     activity = []
@@ -681,6 +722,101 @@ def main():
     analytics_pulled_note = f'Pulled {esc(fmt_dt(video_analytics.get("pulled_at")))}' if video_analytics.get("pulled_at") else "Not pulled yet"
 
     # =================================================================
+    # Next Run tab — predicted timeline for the two upcoming firings
+    # =================================================================
+    def nextrun_item_row(it, trailing_html=""):
+        cid = it.get("candidate_id")
+        title = title_by_id.get(cid, cid or "—")
+        fmt_label = "Short" if it.get("format") == "short" else "Long-form"
+        return row(
+            icon_bubble("S" if it.get("format") == "short" else "L", "accent" if it.get("format") == "short" else "info"),
+            esc(title),
+            f'{fmt_label} · {esc(fmt_dt(it.get("scheduled_publish_at")))}',
+            trailing=trailing_html,
+        )
+
+    production_rows = "".join(
+        row(
+            icon_bubble("S" if it.get("format") == "short" else "L", "neutral"),
+            f'Slot {it.get("index")} — {"Short" if it.get("format") == "short" else "Long-form"}',
+            f'Scheduled {esc(fmt_dt(it.get("scheduled_publish_at")))} · scout → script → produce → gate',
+        )
+        for it in sorted(nextrun_pending, key=lambda x: x.get("scheduled_publish_at") or "")[:6]
+    )
+    production_section = section(
+        "Production phase — no daily cap",
+        production_rows,
+        note=(
+            f"{len(nextrun_pending)} slot{'s' if len(nextrun_pending) != 1 else ''} still pending will move through scout → script → produce → gate as time allows."
+            if nextrun_pending else
+            "Nothing pending — every slot in the current batch has already been produced or published."
+        ),
+    )
+
+    publish_rows = "".join(nextrun_item_row(it, '<span class="pill pill-success">will publish</span>') for it in nextrun_will_publish)
+    publish_rows += "".join(
+        nextrun_item_row(
+            it,
+            '<span class="pill pill-warning">quota-carried</span>' if it["candidate_id"] in nextrun_blocker_ids else '<span class="pill pill-neutral">deferred</span>',
+        )
+        for it in nextrun_deferred
+    )
+    if nextrun_will_publish:
+        publish_note = (
+            f"Quota allows up to 3 shorts + 1 long-form per 24h window. "
+            f"{len(nextrun_will_publish)} item{'s' if len(nextrun_will_publish) != 1 else ''} due in the next 24h will actually upload"
+            + (f"; {len(nextrun_deferred)} more due in that window will wait for a later firing." if nextrun_deferred else ".")
+        )
+    elif nextrun_deferred:
+        publish_note = "Items are due but quota-blocked from a prior firing — see the pill on each row."
+    else:
+        publish_note = "Nothing is due to publish in the next 24 hours."
+    publish_section = section("Publishing window — next 24h", publish_rows, note=publish_note)
+
+    carryover_rows = "".join(
+        row(icon_bubble(icon("warn", 15), "critical", is_svg=True), esc(name), esc(reason), multiline=True)
+        for (bid, name, reason) in blockers
+    )
+    carryover_section = section("Carried-over blockers", carryover_rows, note="Will be retried once, then production continues regardless — never a retry loop.") if blockers else ""
+
+    analytics_run_rows = row(
+        icon_bubble(icon("chart", 15), "info", is_svg=True),
+        "Pull YouTube stats",
+        "Views/likes/comments for every posted video via the Data API" + (" + watch time/retention/traffic via the Analytics API" if has_analytics_scope else " (Analytics API scope not usable — Data API stats only)"),
+    )
+    analytics_run_rows += row(
+        icon_bubble(icon("gauge", 15), "accent", is_svg=True),
+        "Write performance notes",
+        "Appends a dated over/under-performing summary by format, topic, and style to state/performance_notes.json",
+    )
+    analytics_section = section("Analytics cycle", analytics_run_rows)
+
+    nextrun_html = f"""
+      <div class="large-title-block">
+        <h1 class="large-title">Next Run</h1>
+        <div class="large-title-sub">Predicted from current state · generated {esc(generated_at)}</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-accent">{icon('gauge', 20)}</div>
+          <div class="stat-value">{countdown(next_batch_at)}</div>
+          <div class="stat-label">Content batch</div>
+          <div class="stat-sub">{esc(fmt_dt(next_batch_at.isoformat()))}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-info">{icon('chart', 20)}</div>
+          <div class="stat-value">{countdown(next_analytics_at)}</div>
+          <div class="stat-label">Analytics run</div>
+          <div class="stat-sub">{esc(fmt_dt(next_analytics_at.isoformat()))}</div>
+        </div>
+      </div>
+      {carryover_section}
+      {production_section}
+      {publish_section}
+      {analytics_section}
+    """
+
+    # =================================================================
     # PWA icon + manifest (best-effort "Add to Home Screen")
     # =================================================================
     icon192_b64 = make_icon_png_b64(192)
@@ -1027,6 +1163,7 @@ body.scrolled .large-title-block {{
 .stat-icon-info {{ color: var(--info); }}
 .stat-icon-neutral {{ color: var(--neutral); }}
 .stat-icon-critical {{ color: var(--critical); }}
+.stat-icon-accent {{ color: var(--accent); }}
 .stat-value {{ font-size: 28px; font-weight: 700; letter-spacing: -0.01em; font-family: ui-monospace, "SF Mono", monospace; }}
 .stat-label {{ font-size: 13px; color: var(--text-secondary); margin-top: 1px; }}
 .stat-sub {{ font-size: 11px; color: var(--text-tertiary); margin-top: 3px; font-family: ui-monospace, monospace; }}
@@ -1353,6 +1490,10 @@ body.scrolled .large-title-block {{
     {week_html}
   </section>
 
+  <section class="tab-page" id="tab-nextrun">
+    {nextrun_html}
+  </section>
+
   <section class="tab-page" id="tab-agents">
     <div class="large-title-block">
       <h1 class="large-title">Agents</h1>
@@ -1409,6 +1550,7 @@ body.scrolled .large-title-block {{
 
 <nav class="tabbar">
   <button class="tab-btn active" data-tab="overview" data-title="Overview">{icon('gauge')}<span>Overview</span></button>
+  <button class="tab-btn" data-tab="nextrun" data-title="Next Run">{icon('upcoming')}<span>Next Run</span></button>
   <button class="tab-btn" data-tab="agents" data-title="Agents">{icon('agents')}<span>Agents</span></button>
   <button class="tab-btn" data-tab="queues" data-title="Queues">{icon('queues')}<span>Queues</span></button>
   <button class="tab-btn" data-tab="analytics" data-title="Analytics">{icon('chart')}<span>Analytics</span></button>
