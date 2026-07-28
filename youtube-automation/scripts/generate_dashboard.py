@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
-"""Generate a static, self-contained HTML dashboard from the pipeline's
-state/*.json files. No network calls, no external assets — safe to run
-anywhere and safe to publish as a Claude Artifact.
+"""Generate a static, self-contained, installable-PWA HTML dashboard from
+the pipeline's state/*.json files and agents/*.md role docs. No network
+calls, no external assets — safe to run anywhere and safe to publish as a
+Claude Artifact.
 
-Design: intentionally cheap to run (pure stdlib, no LLM calls). Meant to be
-re-run once per daily trigger firing (see agents/0_orchestrator.md), not
-after every single item, to keep the "publish an updated Artifact" step
-low-cost. Run manually any time with:
+Design: intentionally cheap to run (pure stdlib + PIL for the app icon, no
+LLM calls). Meant to be re-run once per daily trigger firing (see
+agents/0_orchestrator.md), not after every single item, to keep the
+"publish an updated Artifact" step low-cost. Run manually any time with:
 
     python3 scripts/generate_dashboard.py
 
-Output: dashboard/index.html (also copied to a scratch path for Artifact
-publishing by the calling agent).
+Output: dashboard/index.html
 """
+import base64
+import io
 import json
 import os
+import re
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "state")
+AGENTS_DIR = os.path.join(ROOT, "agents")
 OUT_DIR = os.path.join(ROOT, "dashboard")
 
 
@@ -50,6 +54,21 @@ def fmt_dt(iso):
         return dt.strftime("%b %-d, %H:%M UTC")
     except Exception:
         return iso
+
+
+def role_text(md_relpath):
+    """Pull the '## Role' paragraph straight out of an agent's own markdown
+    doc, so the dashboard can never drift out of sync with the real spec."""
+    path = os.path.join(AGENTS_DIR, md_relpath)
+    if not os.path.exists(path):
+        return "(spec file not found)"
+    text = open(path).read()
+    m = re.search(r"##\s*Role\s*\n+(.+?)(?=\n##|\Z)", text, re.S)
+    if not m:
+        return ""
+    para = m.group(1).strip()
+    para = re.sub(r"\s+", " ", para)
+    return para
 
 
 STATUS_CLASS = {
@@ -87,14 +106,52 @@ def pill(status):
     return f'<span class="pill {cls}">{esc(label)}</span>'
 
 
+# ---------------------------------------------------------------------
+# App icon — drawn locally with PIL (no network), a simple "dial" mark in
+# the brand's copper accent on the dark ground, used for the PWA manifest
+# and Apple touch icon so the dashboard can be added to a home screen.
+# ---------------------------------------------------------------------
+def make_icon_png_b64(size):
+    from PIL import Image, ImageDraw
+
+    bg = (16, 18, 26, 255)
+    accent = (201, 138, 75, 255)
+    accent_dim = (201, 138, 75, 130)
+
+    im = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    r = int(size * 0.22)
+    d.rounded_rectangle([0, 0, size - 1, size - 1], radius=r, fill=bg)
+
+    cx = cy = size / 2
+    outer = size * 0.30
+    inner = size * 0.11
+    d.ellipse(
+        [cx - outer, cy - outer, cx + outer, cy + outer],
+        outline=accent,
+        width=max(2, int(size * 0.045)),
+    )
+    d.ellipse([cx - inner, cy - inner, cx + inner, cy + inner], fill=accent)
+    # a single "needle" tick, like a dial/meter — echoes the batch-progress idea
+    import math
+
+    ang = math.radians(-55)
+    x2 = cx + outer * 1.0 * math.cos(ang)
+    y2 = cy + outer * 1.0 * math.sin(ang)
+    d.line([cx, cy, x2, y2], fill=accent_dim, width=max(2, int(size * 0.035)))
+
+    buf = io.BytesIO()
+    im.save(buf, format="PNG")
+    return base64.b64encode(buf.getvalue()).decode("ascii")
+
+
 def main():
     now = datetime.now(timezone.utc)
-    channel = load("../config/channel.json", {}) if os.path.exists(
-        os.path.join(STATE, "..", "config", "channel.json")
-    ) else {}
     channel_path = os.path.join(ROOT, "config", "channel.json")
     channel = json.load(open(channel_path)) if os.path.exists(channel_path) else {}
     handle = channel.get("channel_handle", "@channel")
+
+    dashboard_meta = load("dashboard_artifact.json", {})
 
     batch = load("weekly_batch_progress.json", {})
     current = (batch or {}).get("current_batch") or {}
@@ -102,21 +159,16 @@ def main():
 
     sfq = load("short_form_queue.json", {"queue": []})["queue"]
     lfq = load("long_form_queue.json", {"queue": []})["queue"]
-    sf_by_id = {c["id"]: c for c in sfq}
-    lf_by_id = {c["id"]: c for c in lfq}
 
     posted = load("posted_history.json", {"short_form": [], "long_form": []})
     quarantine = load("quarantine.json", {"short_form": [], "long_form": []})
     image_pool = load("image_pool.json", {})
-    trending_audio = load("trending_audio_library.json", {})
-    cc0_audio = load("cc0_audio_library.json", {})
 
     # ---- KPI counts ----
     status_counts = {"done": 0, "ready_to_publish": 0, "pending": 0}
     for it in items:
         s = it.get("status", "pending")
         status_counts[s] = status_counts.get(s, 0) + 1
-    total_items = len(items) or 1
 
     blockers = []
     for c in lfq:
@@ -153,29 +205,60 @@ def main():
             if entry["day"] == it["day"]:
                 entry["slots"].append(it)
 
-    # ---- Audio usage ----
-    named_tracks = trending_audio.get("named_tracks", trending_audio.get("tracks", []))
-    unident = trending_audio.get("unidentified_owner_provided_tracks", [])
-
-    def count_track_uses(track_id_or_name):
-        n = 0
-        for c in sfq:
-            sd = (c.get("sound_direction") or "")
-            if track_id_or_name and track_id_or_name in sd:
-                n += 1
-        return n
-
     # ---- Image pool ----
     unused_pool = image_pool.get("unused_owner_provided_pool", [])
-    pending_images = [
-        e for e in unused_pool if "PENDING" in (e.get("note", "").upper())
-    ]
+    pending_images = [e for e in unused_pool if "PENDING" in (e.get("note", "").upper())]
     clean_unused = [e for e in unused_pool if e not in pending_images]
 
     generated_at = now.strftime("%b %-d, %Y — %H:%M UTC")
 
+    # ---- Agent totals (per-track) ----
+    sf_counts = {}
+    for c in sfq:
+        sf_counts[c.get("status", "?")] = sf_counts.get(c.get("status", "?"), 0) + 1
+    lf_counts = {}
+    for c in lfq:
+        lf_counts[c.get("status", "?")] = lf_counts.get(c.get("status", "?"), 0) + 1
+    sf_published = sf_counts.get("published", 0) + sf_counts.get("done", 0)
+    sf_quarantined = sf_counts.get("quarantined", 0)
+    lf_published = lf_counts.get("published", 0) + lf_counts.get("done", 0)
+    lf_quarantined = lf_counts.get("quarantined", 0)
+
     # ---------------------------------------------------------------
-    # HTML
+    # Agents
+    # ---------------------------------------------------------------
+    def agent_card(num, name, md_path, extra=""):
+        return f"""
+        <div class="agent">
+          <div class="agent-head">
+            <span class="agent-num mono">{esc(num)}</span>
+            <span class="agent-name">{esc(name)}</span>
+          </div>
+          <p class="agent-role">{esc(role_text(md_path))}</p>
+          {extra}
+        </div>"""
+
+    sf_agents = "".join([
+        agent_card("1.1", "Trend Scout", "short_form/1.1_trend_scout.md"),
+        agent_card("2.1", "Scriptwriter", "short_form/2.1_scriptwriter.md"),
+        agent_card("3.1", "Producer", "short_form/3.1_producer.md"),
+        agent_card_gates(),
+        agent_card("4.1", "Publisher", "short_form/4.1_publisher.md"),
+    ])
+
+    lf_agents = "".join([
+        agent_card("1.2", "Format Scout", "long_form/1.2_format_scout.md"),
+        agent_card("2.2", "Image Sourcer", "long_form/2.2_image_sourcer.md"),
+        agent_card("3.2", "Animator", "long_form/3.2_animator.md"),
+        agent_card("4.2", "Sound Sourcer", "long_form/4.2_sound_sourcer.md"),
+        agent_card("5", "Assembler / Looper", "long_form/5_assembler.md"),
+        agent_card("6", "Publisher", "long_form/6_publisher.md"),
+    ])
+
+    orchestrator_role = role_text("0_orchestrator.md")
+
+    # ---------------------------------------------------------------
+    # HTML fragments
     # ---------------------------------------------------------------
     def kpi_tile(label, value, sub="", tone="neutral"):
         return f"""
@@ -209,7 +292,6 @@ def main():
         cells = []
         for s in slots:
             fmt = s.get("format")
-            icon = "▮▮▮" if fmt == "short" else "━━━"
             cid = s.get("candidate_id") or "—"
             cls = STATUS_CLASS.get(s.get("status"), "pill-neutral")
             cells.append(
@@ -267,11 +349,49 @@ def main():
         )
         blocker_html = f'<div class="panel panel-critical"><h3>⚠ Blocked on publish</h3>{rows}</div>'
 
+    # ---- PWA icon + manifest (installable "app") ----
+    icon192_b64 = make_icon_png_b64(192)
+    icon512_b64 = make_icon_png_b64(512)
+    icon180_b64 = make_icon_png_b64(180)  # apple-touch-icon
+    icon192_uri = f"data:image/png;base64,{icon192_b64}"
+    icon512_uri = f"data:image/png;base64,{icon512_b64}"
+    icon180_uri = f"data:image/png;base64,{icon180_b64}"
+
+    app_name = f"{handle} Pipeline"
+    manifest = {
+        "name": app_name,
+        "short_name": "Pipeline",
+        "description": "Status dashboard for the YouTube automation content pipeline.",
+        "start_url": ".",
+        "display": "standalone",
+        "background_color": "#10121a",
+        "theme_color": "#10121a",
+        "icons": [
+            {"src": icon192_uri, "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+            {"src": icon512_uri, "sizes": "512x512", "type": "image/png", "purpose": "any maskable"},
+        ],
+    }
+    manifest_json = json.dumps(manifest)
+    manifest_data_uri = "data:application/manifest+json," + manifest_json.replace("#", "%23")
+
     html = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>{esc(handle)} — Pipeline Dashboard</title>
+
+<!-- Installable web app -->
+<link rel="manifest" href="{manifest_data_uri}" />
+<meta name="theme-color" content="#10121a" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f5f3ef" media="(prefers-color-scheme: light)" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Pipeline" />
+<link rel="apple-touch-icon" href="{icon180_uri}" />
+<link rel="icon" href="{icon192_uri}" />
+
 <style>
 :root {{
   --bg: #10121a;
@@ -321,31 +441,36 @@ def main():
     --neutral: #8a8578;
   }}
 }}
-* {{ box-sizing: border-box; }}
+* {{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }}
+html {{ -webkit-text-size-adjust: 100%; }}
 body {{
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
   line-height: 1.5;
-  padding: 28px 20px 80px;
+  padding: 20px 16px calc(80px + env(safe-area-inset-bottom));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  padding-top: max(20px, env(safe-area-inset-top));
 }}
 .mono {{
   font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace;
 }}
 .wrap {{ max-width: 1180px; margin: 0 auto; }}
+a {{ -webkit-touch-callout: default; }}
 header {{
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 28px;
+  gap: 10px;
+  margin-bottom: 24px;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 18px;
+  padding-bottom: 16px;
 }}
 h1 {{
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin: 0;
@@ -353,62 +478,70 @@ h1 {{
 }}
 h1 .sub {{
   display: block;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--text-dim);
   margin-top: 4px;
   letter-spacing: 0;
 }}
 .updated {{
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--text-faint);
   text-align: right;
 }}
 .kpis {{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-  margin-bottom: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 28px;
 }}
 .kpi {{
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px 18px;
+  padding: 14px 16px;
   border-top: 2px solid var(--neutral);
 }}
 .kpi-success {{ border-top-color: var(--success); }}
 .kpi-info {{ border-top-color: var(--info); }}
 .kpi-critical {{ border-top-color: var(--critical); }}
 .kpi-value {{
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   font-family: ui-monospace, "SF Mono", monospace;
 }}
 .kpi-label {{
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--text-dim);
   margin-top: 2px;
 }}
 .kpi-sub {{
-  font-size: 11.5px;
+  font-size: 11px;
   color: var(--text-faint);
   margin-top: 4px;
   font-family: ui-monospace, monospace;
+  word-break: break-word;
 }}
 h2 {{
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-dim);
-  margin: 36px 0 12px;
+  margin: 32px 0 12px;
+}}
+h2 .h2-note {{
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: var(--text-faint);
+  font-size: 11.5px;
 }}
 .panel {{
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px 18px;
+  padding: 14px 16px;
   margin-bottom: 16px;
 }}
 .panel-critical {{ border-color: color-mix(in srgb, var(--critical) 40%, var(--border)); }}
@@ -422,6 +555,7 @@ h2 {{
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 6px;
 }}
 .grid-row {{
@@ -433,13 +567,13 @@ h2 {{
 }}
 .grid-row:last-child {{ border-bottom: none; }}
 .grid-day {{
-  width: 92px;
+  width: 78px;
   flex-shrink: 0;
   font-family: ui-monospace, monospace;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--text-dim);
 }}
-.grid-slots {{ display: flex; gap: 8px; flex-wrap: wrap; }}
+.grid-slots {{ display: flex; gap: 8px; }}
 .slot {{
   display: flex;
   flex-direction: column;
@@ -447,23 +581,25 @@ h2 {{
   padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid var(--border);
-  min-width: 92px;
+  min-width: 88px;
+  flex-shrink: 0;
   font-size: 11px;
 }}
 .slot-time {{ color: var(--text-faint); font-family: ui-monospace, monospace; }}
 .slot-fmt {{ font-weight: 600; }}
 .slot-id {{ color: var(--text-dim); font-family: ui-monospace, monospace; font-size: 10.5px; }}
 
-table {{ width: 100%; border-collapse: collapse; font-size: 13px; }}
+table {{ width: 100%; border-collapse: collapse; font-size: 12.5px; }}
 th {{
   text-align: left;
-  font-size: 11px;
+  font-size: 10.5px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-faint);
   font-weight: 600;
   padding: 8px 10px;
   border-bottom: 1px solid var(--border);
+  white-space: nowrap;
 }}
 td {{ padding: 9px 10px; border-bottom: 1px solid var(--border); }}
 tr:last-child td {{ border-bottom: none; }}
@@ -472,25 +608,27 @@ tr:last-child td {{ border-bottom: none; }}
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }}
 .muted {{ color: var(--text-faint); }}
 .empty {{ color: var(--text-faint); padding: 18px; text-align: center; }}
 
 .pill {{
   display: inline-block;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 600;
   padding: 3px 9px;
   border-radius: 999px;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }}
 .pill-success {{ background: color-mix(in srgb, var(--success) 18%, transparent); color: var(--success); }}
 .pill-info {{ background: color-mix(in srgb, var(--info) 18%, transparent); color: var(--info); }}
 .pill-critical {{ background: color-mix(in srgb, var(--critical) 18%, transparent); color: var(--critical); }}
 .pill-neutral {{ background: color-mix(in srgb, var(--neutral) 22%, transparent); color: var(--text-dim); }}
 
-.cols2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }}
-@media (max-width: 860px) {{ .cols2 {{ grid-template-columns: 1fr; }} }}
+.cols2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }}
+@media (max-width: 760px) {{ .cols2 {{ grid-template-columns: 1fr; }} }}
 
 .log {{
   background: var(--surface);
@@ -499,27 +637,83 @@ tr:last-child td {{ border-bottom: none; }}
   padding: 6px 4px;
 }}
 .log-row {{
-  display: grid;
-  grid-template-columns: 18px 150px 1fr;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
+  row-gap: 2px;
+  padding: 8px 12px;
   border-bottom: 1px solid var(--border);
   font-size: 13px;
 }}
 .log-row:last-child {{ border-bottom: none; }}
 .log-icon.log-short {{ color: var(--accent); }}
 .log-icon.log-long {{ color: var(--info); }}
-.log-time {{ font-size: 11.5px; color: var(--text-faint); }}
-.log-title {{ color: var(--text); text-decoration: none; }}
+.log-time {{ font-size: 11px; color: var(--text-faint); }}
+.log-title {{ color: var(--text); text-decoration: none; flex: 1 1 200px; min-width: 0; }}
 .log-title:hover {{ color: var(--accent); text-decoration: underline; }}
 
+.track {{ margin-bottom: 22px; }}
+.track-head {{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}}
+.track-title {{ font-size: 13.5px; font-weight: 700; }}
+.track-stats {{ font-size: 11.5px; color: var(--text-faint); font-family: ui-monospace, monospace; }}
+.agent-row {{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+}}
+.agent {{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 14px;
+  border-left: 2px solid var(--accent);
+}}
+.agent-gates {{ border-left-color: var(--warning); }}
+.agent-head {{ display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }}
+.agent-num {{
+  font-size: 10.5px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  padding: 2px 6px;
+  border-radius: 5px;
+}}
+.agent-gates .agent-num {{ color: var(--warning); background: color-mix(in srgb, var(--warning) 16%, transparent); }}
+.agent-name {{ font-size: 13px; font-weight: 700; }}
+.agent-role {{ font-size: 12px; color: var(--text-dim); margin: 0; line-height: 1.5; }}
+
+.orchestrator {{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+  border-top: 2px solid var(--accent);
+}}
+.orchestrator-head {{ font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }}
+.orchestrator p {{ font-size: 12.5px; color: var(--text-dim); margin: 0; line-height: 1.55; }}
+
 footer {{
-  margin-top: 40px;
+  margin-top: 36px;
   padding-top: 16px;
   border-top: 1px solid var(--border);
-  font-size: 11.5px;
+  font-size: 11px;
   color: var(--text-faint);
+  padding-bottom: env(safe-area-inset-bottom);
+}}
+
+@media (max-width: 480px) {{
+  body {{ padding-left: 12px; padding-right: 12px; }}
+  h1 {{ font-size: 18px; }}
+  .kpis {{ grid-template-columns: repeat(2, 1fr); }}
+  .agent-row {{ grid-template-columns: 1fr; }}
 }}
 </style>
 </head>
@@ -539,6 +733,29 @@ footer {{
   <h2>This week's batch</h2>
   <div class="grid">{grid_html}</div>
 
+  <h2>Pipeline agents <span class="h2-note">— live from agents/*.md</span></h2>
+
+  <div class="orchestrator">
+    <div class="orchestrator-head">Agent 0 — Orchestrator</div>
+    <p>{esc(orchestrator_role)}</p>
+  </div>
+
+  <div class="track">
+    <div class="track-head">
+      <div class="track-title">Short-form track</div>
+      <div class="track-stats mono">{len(sfq)} total · {sf_published} published · {sf_quarantined} quarantined</div>
+    </div>
+    <div class="agent-row">{sf_agents}</div>
+  </div>
+
+  <div class="track">
+    <div class="track-head">
+      <div class="track-title">Long-form track</div>
+      <div class="track-stats mono">{len(lfq)} total · {lf_published} published · {lf_quarantined} quarantined</div>
+    </div>
+    <div class="agent-row">{lf_agents}</div>
+  </div>
+
   <h2>Queues</h2>
   <div class="cols2">
     <div>
@@ -552,7 +769,7 @@ footer {{
     </div>
     <div>
       <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Short-form ({len(sfq)})</div>
-      <div class="table-wrap" style="max-height:420px;overflow-y:auto;">
+      <div class="table-wrap" style="max-height:420px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
         <table>
           <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Date</th></tr></thead>
           <tbody>{sf_rows}</tbody>
@@ -565,7 +782,8 @@ footer {{
   <div class="log">{activity_html}</div>
 
   <footer>
-    Pipeline state read from <span class="mono">state/*.json</span> in the repo at generation time · quarantined items: {quarantine_count} · image pool clean/unused: {len(clean_unused)}, pending vet: {len(pending_images)}
+    Pipeline state read from <span class="mono">state/*.json</span> and agent specs from <span class="mono">agents/*.md</span> at generation time · quarantined items: {quarantine_count} · image pool clean/unused: {len(clean_unused)}, pending vet: {len(pending_images)}<br/>
+    Tip: open this page in your phone's browser (not the Claude app) and use "Add to Home Screen" to install it as an app.
   </footer>
 </div>
 </body>
@@ -577,6 +795,25 @@ footer {{
     with open(out_path, "w") as f:
         f.write(html)
     print("wrote", out_path, f"({len(html)} bytes)")
+
+
+def agent_card_gates():
+    gates_role = (
+        "Every candidate must pass the shared and format-specific gates in "
+        "config/gates.json before it can move to ready_to_publish — factual/"
+        "controversy screen, platform policy check, basic QA, copyright "
+        "mitigation, and audio license check. A failing candidate is "
+        "quarantined with a logged reason and the next candidate is scouted "
+        "instead; gates are never lowered to hit the publishing schedule."
+    )
+    return f"""
+        <div class="agent agent-gates">
+          <div class="agent-head">
+            <span class="agent-num mono">—</span>
+            <span class="agent-name">Gates</span>
+          </div>
+          <p class="agent-role">{esc(gates_role)}</p>
+        </div>"""
 
 
 if __name__ == "__main__":
