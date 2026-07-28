@@ -276,6 +276,19 @@ def main():
     nextrun_will_publish = nextrun_due_shorts[:3] + nextrun_due_longs[:1]
     nextrun_will_publish_ids = {it["candidate_id"] for it in nextrun_will_publish}
     nextrun_deferred = [it for it in nextrun_due if it["candidate_id"] not in nextrun_will_publish_ids]
+
+    # Look-ahead: the next full day's worth of ready items after this
+    # window, so a light day (e.g. only a carried-over long-form is due)
+    # doesn't read as "the 3 shorts went missing" — they're just a firing away.
+    nextrun_upcoming_ready = [
+        it for it in items
+        if it.get("status") == "ready_to_publish"
+        and it.get("candidate_id") not in nextrun_will_publish_ids
+        and it not in nextrun_deferred
+    ]
+    nextrun_upcoming_ready.sort(key=lambda x: x.get("scheduled_publish_at") or "")
+    nextrun_then_day = nextrun_upcoming_ready[0]["day"] if nextrun_upcoming_ready else None
+    nextrun_then_items = [it for it in nextrun_upcoming_ready if it.get("day") == nextrun_then_day]
     nextrun_blocker_ids = {b[0] for b in blockers}
 
     # ---- Activity log (posted history, newest first) ----
@@ -761,17 +774,29 @@ def main():
         )
         for it in nextrun_deferred
     )
+    short_count = len(nextrun_due_shorts[:3])
+    long_count = len(nextrun_due_longs[:1])
     if nextrun_will_publish:
         publish_note = (
             f"Quota allows up to 3 shorts + 1 long-form per 24h window. "
-            f"{len(nextrun_will_publish)} item{'s' if len(nextrun_will_publish) != 1 else ''} due in the next 24h will actually upload"
-            + (f"; {len(nextrun_deferred)} more due in that window will wait for a later firing." if nextrun_deferred else ".")
+            f"This window has {short_count} short{'s' if short_count != 1 else ''} + {long_count} long-form due"
+            + (f"; {len(nextrun_deferred)} more due in that window will wait for a later firing." if nextrun_deferred else
+               " — the rest of this batch's day is either already published or not due yet, see below.")
         )
     elif nextrun_deferred:
         publish_note = "Items are due but quota-blocked from a prior firing — see the pill on each row."
     else:
-        publish_note = "Nothing is due to publish in the next 24 hours."
+        publish_note = "Nothing is due to publish in the next 24 hours — see the next full batch below."
     publish_section = section("Publishing window — next 24h", publish_rows, note=publish_note)
+
+    then_rows = "".join(nextrun_item_row(it, '<span class="pill pill-neutral">then</span>') for it in nextrun_then_items)
+    then_section = ""
+    if nextrun_then_items:
+        then_section = section(
+            f"Following batch — {fmt_day(nextrun_then_day)}",
+            then_rows,
+            note="Not in the window above yet, but this is the next full set once its firing comes around — nothing here is stuck or lost.",
+        )
 
     carryover_rows = "".join(
         row(icon_bubble(icon("warn", 15), "critical", is_svg=True), esc(name), esc(reason), multiline=True)
@@ -813,6 +838,7 @@ def main():
       {carryover_section}
       {production_section}
       {publish_section}
+      {then_section}
       {analytics_section}
     """
 
