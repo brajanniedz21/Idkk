@@ -784,20 +784,82 @@ body {{
   color: var(--text);
   font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }}
 .mono {{ font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace; }}
 .muted-text {{ color: var(--text-tertiary); }}
 
-/* ---- Nav bar (per tab, sticky, iOS large title) ---- */
+/* ---- Ambient background — faint, slow-drifting light sources behind the
+   glass surfaces, the way a Liquid Glass wallpaper reads through system
+   chrome. Three soft blobs in the brand hues, low opacity, blurred, each
+   drifting on its own long loop so the motion never repeats in sync. ---- */
+.bg-glow {{
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  filter: blur(70px);
+}}
+.bg-glow span {{
+  position: absolute;
+  width: 46vmax;
+  height: 46vmax;
+  border-radius: 50%;
+  opacity: 0.16;
+}}
+.bg-glow span:nth-child(1) {{
+  background: var(--accent);
+  top: -14%;
+  left: -12%;
+  animation: drift1 46s ease-in-out infinite alternate;
+}}
+.bg-glow span:nth-child(2) {{
+  background: var(--info);
+  bottom: -18%;
+  right: -14%;
+  animation: drift2 58s ease-in-out infinite alternate;
+}}
+.bg-glow span:nth-child(3) {{
+  background: var(--success);
+  top: 38%;
+  left: 32%;
+  opacity: 0.08;
+  animation: drift3 70s ease-in-out infinite alternate;
+}}
+@keyframes drift1 {{
+  from {{ transform: translate(0, 0) scale(1); }}
+  to   {{ transform: translate(8vw, 10vh) scale(1.15); }}
+}}
+@keyframes drift2 {{
+  from {{ transform: translate(0, 0) scale(1); }}
+  to   {{ transform: translate(-9vw, -6vh) scale(1.1); }}
+}}
+@keyframes drift3 {{
+  from {{ transform: translate(-4vw, 0) scale(0.95); }}
+  to   {{ transform: translate(5vw, -8vh) scale(1.08); }}
+}}
+@media (prefers-reduced-motion: reduce) {{
+  .bg-glow span {{ animation: none; }}
+}}
+
+/* ---- Nav bar (per tab, sticky, iOS "Liquid Glass" material: a real
+   glass surface — blur + saturation + a hairline top highlight — that
+   compacts as the large title collapses on scroll, same as system apps. ---- */
 .navbar {{
   position: sticky;
   top: 0;
   z-index: 40;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(200%) blur(26px);
+  -webkit-backdrop-filter: saturate(200%) blur(26px);
   background: var(--bar-bg);
-  border-bottom: 0.5px solid var(--border);
+  border-bottom: 0.5px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
   padding-top: env(safe-area-inset-top);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}}
+body.scrolled .navbar {{
+  border-bottom-color: var(--border);
 }}
 .navbar-compact {{
   height: 44px;
@@ -808,7 +870,24 @@ body {{
   font-weight: 600;
   padding: 0 16px;
 }}
-.large-title-block {{ padding: 4px 16px 12px; }}
+.large-title-block {{
+  padding: 4px 16px 12px;
+  max-height: 80px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.22s ease, transform 0.22s ease, max-height 0.22s ease, padding 0.22s ease;
+  overflow: hidden;
+}}
+body.scrolled .large-title-block {{
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  padding-top: 0;
+  padding-bottom: 0;
+}}
+@media (prefers-reduced-motion: reduce) {{
+  .large-title-block {{ transition: none; }}
+}}
 .large-title {{
   font-size: 34px;
   font-weight: 700;
@@ -839,10 +918,13 @@ body {{
   padding: 0 16px 8px;
 }}
 .stat-card {{
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  backdrop-filter: saturate(160%) blur(16px);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
   border-radius: 16px;
   padding: 14px 14px 12px;
   position: relative;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }}
 .stat-icon {{
   width: 26px; height: 26px;
@@ -1085,10 +1167,11 @@ body {{
   left: 0; right: 0; bottom: 0;
   z-index: 50;
   display: flex;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(200%) blur(26px);
+  -webkit-backdrop-filter: saturate(200%) blur(26px);
   background: var(--bar-bg);
   border-top: 0.5px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
   padding-bottom: env(safe-area-inset-bottom);
 }}
 .tab-btn {{
@@ -1117,6 +1200,8 @@ body {{
 </style>
 </head>
 <body>
+
+<div class="bg-glow" aria-hidden="true"><span></span><span></span><span></span></div>
 
 <nav class="navbar">
   <div class="navbar-compact" id="navTitle">Overview</div>
@@ -1212,6 +1297,7 @@ body {{
       var main = document.querySelector('main');
       if (main) main.scrollTop = 0;
       window.scrollTo(0, 0);
+      document.body.classList.remove('scrolled');
     }});
   }});
   var segBtns = document.querySelectorAll('.segmented button');
@@ -1224,6 +1310,22 @@ body {{
       if (panel) panel.classList.add('active');
     }});
   }});
+
+  // Fluid toolbar: the large title collapses into the compact nav bar
+  // once the page scrolls, same behavior as system apps' "Liquid Glass"
+  // navigation bars.
+  var scrollTicking = false;
+  function updateScrolled() {{
+    var y = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.classList.toggle('scrolled', y > 28);
+    scrollTicking = false;
+  }}
+  window.addEventListener('scroll', function() {{
+    if (!scrollTicking) {{
+      window.requestAnimationFrame(updateScrolled);
+      scrollTicking = true;
+    }}
+  }}, {{ passive: true }});
 }})();
 </script>
 </body>
