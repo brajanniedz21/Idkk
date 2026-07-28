@@ -995,17 +995,15 @@ body.scrolled .large-title-block {{
   .stat-card {{ transition: none; }}
 }}
 .stat-icon {{
-  width: 26px; height: 26px;
-  border-radius: 8px;
+  width: 22px; height: 22px;
   display: flex; align-items: center; justify-content: center;
-  color: #fff;
   margin-bottom: 20px;
 }}
-.stat-icon svg {{ width: 14px; height: 14px; }}
-.stat-icon-success {{ background: var(--success); }}
-.stat-icon-info {{ background: var(--info); }}
-.stat-icon-neutral {{ background: var(--neutral); }}
-.stat-icon-critical {{ background: var(--critical); }}
+.stat-icon svg {{ width: 20px; height: 20px; }}
+.stat-icon-success {{ color: var(--success); }}
+.stat-icon-info {{ color: var(--info); }}
+.stat-icon-neutral {{ color: var(--neutral); }}
+.stat-icon-critical {{ color: var(--critical); }}
 .stat-value {{ font-size: 28px; font-weight: 700; letter-spacing: -0.01em; font-family: ui-monospace, "SF Mono", monospace; }}
 .stat-label {{ font-size: 13px; color: var(--text-secondary); margin-top: 1px; }}
 .stat-sub {{ font-size: 11px; color: var(--text-tertiary); margin-top: 3px; font-family: ui-monospace, monospace; }}
@@ -1048,20 +1046,18 @@ body.scrolled .large-title-block {{
 .ios-row:active {{ background: var(--surface-2); }}
 .row-icon {{
   width: 29px; height: 29px;
-  border-radius: 8px;
   flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  color: #fff;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   margin-top: 1px;
 }}
-.row-icon svg {{ width: 15px; height: 15px; }}
-.row-icon-accent {{ background: var(--accent); }}
-.row-icon-info {{ background: var(--info); }}
-.row-icon-success {{ background: var(--success); }}
-.row-icon-warning {{ background: var(--warning); color: #1c1c1e; }}
-.row-icon-critical {{ background: var(--critical); }}
+.row-icon svg {{ width: 20px; height: 20px; }}
+.row-icon-accent {{ color: var(--accent); }}
+.row-icon-info {{ color: var(--info); }}
+.row-icon-success {{ color: var(--success); }}
+.row-icon-warning {{ color: var(--warning); }}
+.row-icon-critical {{ color: var(--critical); }}
 .row-text {{ flex: 1; min-width: 0; padding-top: 3px; }}
 .row-title {{
   font-size: 16px;
