@@ -102,13 +102,16 @@ This is a ~5 minute repeat of steps 3-5 above, not a full redo:
 4. **Overwrite** `youtube-automation/secrets/youtube_token.json` with the new file (same filename, same location — it replaces the old one, which only had the narrower scopes).
 5. Tell me once it's replaced and I'll verify the new scope is live and start actually pulling analytics data (views alone were already working; this unlocks retention/traffic-source data for the daily analytics cycle in `agents/0_orchestrator.md` — note CTR/impressions specifically are NOT available through this API at all, confirmed via a live 400 error, regardless of scopes; that one's YouTube Studio-only).
 
-### Known issue as of 2026-07-28: the scope doesn't actually work yet
+### Resolved 2026-07-28: the scope initially didn't work, here's what actually fixed it
 
-After the steps above, `yt-analytics.readonly` shows up in `secrets/youtube_token.json`'s stored scope list, and single API calls worked right after re-authorizing — but refreshing the token with that scope fails with `invalid_scope`, meaning it stops working as soon as the original access token expires (roughly an hour). This is most likely because `yt-analytics.readonly` is one of Google's "sensitive" scopes, and something about the app's OAuth consent screen configuration for it wasn't fully accepted — just adding the scope string to the list (step 2 above) may not be enough on its own.
+For most of one day, `yt-analytics.readonly` showed up correctly in `secrets/youtube_token.json`'s stored scope list, and single API calls worked right after re-authorizing — but refreshing the token with that scope failed with `invalid_scope`, meaning it stopped working as soon as the original access token expired (roughly an hour). The OAuth consent screen's **Data Access** page confirmed the scope *was* properly configured (listed under non-sensitive scopes, nothing flagged missing), which ruled out a Cloud Console configuration problem. `prompt=consent` on the re-auth script didn't fix it either.
 
-Things worth checking if you want to try fixing this:
-- On the **OAuth consent screen**, under whatever section lists sensitive/restricted scopes, confirm `yt-analytics.readonly` actually shows as **saved** (not just entered) — Google sometimes requires re-saving the whole consent screen configuration after adding a sensitive scope.
-- Some sensitive scopes prompt for extra app info (privacy policy URL, app icon) even in Testing mode — check if the console is flagging anything as incomplete.
-- If it's still broken after checking those, it may need Google's own review process for sensitive scopes even for a Testing-mode app with test users — this isn't something to keep retrying blindly.
+**The actual cause:** Google was reusing the original refresh token (tied only to the base 3 scopes) across every re-auth attempt instead of issuing a genuinely new one for the expanded scope set — this happens when an app already has an existing offline grant for your account, and re-approving doesn't always replace it, even when you approve new scopes in the consent screen.
 
-The pipeline itself handles this gracefully either way — `scripts/youtube_auth.py` keeps the base publishing scopes (`youtube.upload`/`youtube`/`youtube.readonly`) in a separate, isolated credential path from the analytics scope specifically so a broken analytics grant can never block uploads again (it briefly did, before this was split out) — see `load_credentials()` vs `load_analytics_credentials()` in that file.
+**The actual fix:**
+1. Go to **myaccount.google.com/permissions** (Google Account → Security → "Third-party apps & services")
+2. Find the app and click **Remove Access** — this deletes the old grant entirely.
+3. Re-run the token script with `prompt="consent", access_type="offline"` passed to `run_local_server(...)`. With no prior grant left to reuse, Google issues a genuinely new refresh token this time.
+4. **Verify with an actual forced refresh call, not just one live API call right after auth** — a fresh access token can work immediately even when the underlying refresh token is broken, which is exactly what made this look intermittently "fixed" several times before it actually was.
+
+If this ever regresses after a future re-authorization, this is the fix to reach for again — not re-checking the consent screen configuration, which was correct the whole time.
