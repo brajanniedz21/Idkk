@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a static, self-contained, installable-PWA HTML dashboard from
+"""Generate a static, self-contained, iOS-style tabbed HTML dashboard from
 the pipeline's state/*.json files and agents/*.md role docs. No network
 calls, no external assets — safe to run anywhere and safe to publish as a
 Claude Artifact.
@@ -14,14 +14,15 @@ agents/0_orchestrator.md), not after every single item, to keep the
 Output: dashboard/index.html — a single self-contained file (data: URI
 manifest/icons inlined, no service worker) meant to be published via the
 Claude Artifact tool. Owner decided (2026-07-28) to keep this Artifact-only
-rather than also stand up a separately-hosted installable build (GitHub
-Pages would need the repo made public; a Netlify git-integration deploy
-was also considered) — so this covers the manifest/icons needed for a
-best-effort "Add to Home Screen" on a phone, understanding that on
-Android/Chrome this installs as a shortcut (opens in a browser tab), not
-a full standalone-launching PWA, since an Artifact can't serve the
-separate real files + service worker Chrome requires for that. iOS
-Safari's "Add to Home Screen" is closer to app-like out of the box.
+rather than also stand up a separately-hosted installable build — so this
+covers the manifest/icons needed for a best-effort "Add to Home Screen" on
+a phone, understanding that on Android/Chrome this installs as a shortcut
+(opens in a browser tab), not a full standalone-launching PWA, since an
+Artifact can't serve the separate real files + service worker Chrome
+requires for that. iOS Safari's "Add to Home Screen" is closer to
+app-like out of the box, which is also why the UI itself (updated
+2026-07-28, owner request) follows iOS Human Interface Guidelines: a
+bottom tab bar, grouped inset lists, large titles, and iOS system colors.
 """
 import base64
 import io
@@ -66,6 +67,16 @@ def fmt_dt(iso):
         return iso
 
 
+def fmt_day(iso):
+    if not iso:
+        return "—"
+    try:
+        dt = datetime.fromisoformat(iso)
+        return dt.strftime("%a, %b %-d")
+    except Exception:
+        return iso
+
+
 def role_text(md_relpath):
     """Pull the '## Role' paragraph straight out of an agent's own markdown
     doc, so the dashboard can never drift out of sync with the real spec."""
@@ -81,39 +92,69 @@ def role_text(md_relpath):
     return para
 
 
-STATUS_CLASS = {
-    "done": "pill-success",
-    "published": "pill-success",
-    "ready_to_publish": "pill-info",
-    "pending": "pill-neutral",
-    "scouted": "pill-neutral",
-    "scripted": "pill-neutral",
-    "produced": "pill-neutral",
-    "sound_sourced": "pill-neutral",
-    "image_sourced": "pill-neutral",
-    "animated": "pill-neutral",
-    "quarantined": "pill-critical",
-}
-
-STATUS_LABEL = {
-    "done": "Published",
-    "published": "Published",
-    "ready_to_publish": "Ready",
-    "pending": "Pending",
-    "scouted": "Scouted",
-    "scripted": "Scripted",
-    "produced": "Produced",
-    "sound_sourced": "Sound sourced",
-    "image_sourced": "Image sourced",
-    "animated": "Animated",
-    "quarantined": "Quarantined",
+# Status -> (short label, semantic tone). Tone drives pill color only —
+# never the row's leading icon bubble, which encodes *what* the row is,
+# not its current state.
+STATUS_META = {
+    "done": ("Published", "success"),
+    "published": ("Published", "success"),
+    "ready_to_publish": ("Ready", "info"),
+    "pending": ("Pending", "neutral"),
+    "scouted": ("Scouted", "neutral"),
+    "scripted": ("Scripted", "neutral"),
+    "produced": ("Produced", "neutral"),
+    "sound_sourced": ("Sound sourced", "neutral"),
+    "image_sourced": ("Image sourced", "neutral"),
+    "animated": ("Animated", "neutral"),
+    "quarantined": ("Quarantined", "critical"),
 }
 
 
 def pill(status):
-    cls = STATUS_CLASS.get(status, "pill-neutral")
-    label = STATUS_LABEL.get(status, status or "—")
-    return f'<span class="pill {cls}">{esc(label)}</span>'
+    label, tone = STATUS_META.get(status, (status or "—", "neutral"))
+    return f'<span class="pill pill-{tone}">{esc(label)}</span>'
+
+
+# ---------------------------------------------------------------------
+# Inline icons — small stroke-based glyphs in the SF Symbols spirit
+# (no icon font/CDN available inside an Artifact's CSP, so these are
+# hand-drawn SVG paths at a consistent 24x24 grid, 1.7-1.9 stroke weight).
+# ---------------------------------------------------------------------
+def icon(name, size=24):
+    paths = {
+        "gauge": '<circle cx="12" cy="12" r="9"/><path d="M12 12 L16 8"/><path d="M8 15a5 5 0 0 1 8 0" stroke-linecap="round"/>',
+        "agents": '<circle cx="9" cy="9" r="3.2"/><circle cx="16.5" cy="10.5" r="2.4"/><path d="M4 19c0-2.9 2.4-5 5-5s5 2.1 5 5"/><path d="M14.5 14.6c2.2.2 4 1.9 4 4.4"/>',
+        "queues": '<path d="M4 6h16" stroke-linecap="round"/><path d="M4 12h16" stroke-linecap="round"/><path d="M4 18h10" stroke-linecap="round"/>',
+        "activity": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round" stroke-linejoin="round"/>',
+        "chevron": '<path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/>',
+        "warn": '<path d="M12 4 2.5 20h19L12 4Z" stroke-linejoin="round"/><path d="M12 10.5v4.2" stroke-linecap="round"/><circle cx="12" cy="17.3" r="0.9" fill="currentColor" stroke="none"/>',
+        "check": '<path d="M4.5 12.5l5 5 10-11" stroke-linecap="round" stroke-linejoin="round"/>',
+    }
+    d = paths.get(name, "")
+    return (
+        f'<svg viewBox="0 0 24 24" width="{size}" height="{size}" fill="none" '
+        f'stroke="currentColor" stroke-width="1.8">{d}</svg>'
+    )
+
+
+ICON_TONE = {
+    "trend_scout": "accent",
+    "scriptwriter": "accent",
+    "producer": "accent",
+    "gates": "warning",
+    "publisher": "success",
+    "format_scout": "info",
+    "image_sourcer": "info",
+    "animator": "info",
+    "sound_sourcer": "info",
+    "assembler": "info",
+    "orchestrator": "accent",
+}
+
+
+def icon_bubble(letter_or_icon, tone="accent", is_svg=False):
+    inner = letter_or_icon if is_svg else f'<span>{esc(letter_or_icon)}</span>'
+    return f'<div class="row-icon row-icon-{tone}">{inner}</div>'
 
 
 # ---------------------------------------------------------------------
@@ -125,7 +166,7 @@ def make_icon_png_bytes(size):
     from PIL import Image, ImageDraw
     import math
 
-    bg = (16, 18, 26, 255)
+    bg = (0, 0, 0, 255)
     accent = (201, 138, 75, 255)
     accent_dim = (201, 138, 75, 130)
 
@@ -143,7 +184,6 @@ def make_icon_png_bytes(size):
         width=max(2, int(size * 0.045)),
     )
     d.ellipse([cx - inner, cy - inner, cx + inner, cy + inner], fill=accent)
-    # a single "needle" tick, like a dial/meter — echoes the batch-progress idea
     ang = math.radians(-55)
     x2 = cx + outer * 1.0 * math.cos(ang)
     y2 = cy + outer * 1.0 * math.sin(ang)
@@ -163,8 +203,6 @@ def main():
     channel_path = os.path.join(ROOT, "config", "channel.json")
     channel = json.load(open(channel_path)) if os.path.exists(channel_path) else {}
     handle = channel.get("channel_handle", "@channel")
-
-    dashboard_meta = load("dashboard_artifact.json", {})
 
     batch = load("weekly_batch_progress.json", {})
     current = (batch or {}).get("current_batch") or {}
@@ -194,9 +232,7 @@ def main():
             next_due = it
             break
 
-    quarantine_count = len(quarantine.get("short_form", [])) + len(
-        quarantine.get("long_form", [])
-    )
+    quarantine_count = len(quarantine.get("short_form", [])) + len(quarantine.get("long_form", []))
 
     # ---- Activity log (posted history, newest first) ----
     activity = []
@@ -205,7 +241,7 @@ def main():
     for v in posted.get("long_form", []):
         activity.append({**v, "kind": "long"})
     activity.sort(key=lambda v: v.get("published_at", ""), reverse=True)
-    activity = activity[:14]
+    activity = activity[:20]
 
     # ---- Batch grid (day x slot) ----
     days = []
@@ -226,10 +262,9 @@ def main():
     generated_at = now.strftime("%b %-d, %Y — %H:%M UTC")
 
     # ---- Agent totals (per-track) ----
-    sf_counts = {}
+    sf_counts, lf_counts = {}, {}
     for c in sfq:
         sf_counts[c.get("status", "?")] = sf_counts.get(c.get("status", "?"), 0) + 1
-    lf_counts = {}
     for c in lfq:
         lf_counts[c.get("status", "?")] = lf_counts.get(c.get("status", "?"), 0) + 1
     sf_published = sf_counts.get("published", 0) + sf_counts.get("done", 0)
@@ -237,168 +272,191 @@ def main():
     lf_published = lf_counts.get("published", 0) + lf_counts.get("done", 0)
     lf_quarantined = lf_counts.get("quarantined", 0)
 
-    # ---------------------------------------------------------------
-    # Agents
-    # ---------------------------------------------------------------
-    def agent_card(num, name, md_path, extra=""):
-        return f"""
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">{esc(num)}</span>
-            <span class="agent-name">{esc(name)}</span>
-          </div>
-          <p class="agent-role">{esc(role_text(md_path))}</p>
-          {extra}
-        </div>"""
+    # =================================================================
+    # Row builders (iOS grouped-list style)
+    # =================================================================
+    def row(icon_html, title, subtitle="", trailing="", href=None, chevron=False, multiline=False):
+        tag, attrs = ("a", f' href="{esc(href)}" target="_blank" rel="noopener"') if href else ("div", "")
+        sub = f'<div class="row-subtitle{" row-subtitle-wrap" if multiline else ""}">{subtitle}</div>' if subtitle else ""
+        trail = f'<div class="row-trailing">{trailing}{icon("chevron", 15) if chevron else ""}</div>'
+        return (
+            f'<{tag} class="ios-row"{attrs}>{icon_html}'
+            f'<div class="row-text"><div class="row-title">{title}</div>{sub}</div>'
+            f"{trail}</{tag}>"
+        )
 
-    sf_agents = "".join([
-        agent_card("1.1", "Trend Scout", "short_form/1.1_trend_scout.md"),
-        agent_card("2.1", "Scriptwriter", "short_form/2.1_scriptwriter.md"),
-        agent_card("3.1", "Producer", "short_form/3.1_producer.md"),
-        agent_card_gates(),
-        agent_card("4.1", "Publisher", "short_form/4.1_publisher.md"),
+    def section(title, rows_html, note=""):
+        rows_html = rows_html or '<div class="ios-row"><div class="row-text"><div class="row-title muted-text">Nothing here yet.</div></div></div>'
+        note_html = f'<div class="ios-footer">{note}</div>' if note else ""
+        return (
+            f'<div class="ios-section">'
+            f'<div class="ios-section-header">{esc(title)}</div>'
+            f'<div class="ios-list">{rows_html}</div>'
+            f"{note_html}</div>"
+        )
+
+    # ---- Agents tab ----
+    def agent_row(num, name, md_path, tone):
+        role = role_text(md_path)
+        return row(icon_bubble(num, tone), esc(name), esc(role), multiline=True)
+
+    gates_row = row(
+        icon_bubble(icon("check", 15), "warning", is_svg=True),
+        "Gates",
+        esc(
+            "Every candidate must pass the shared and format-specific gates in "
+            "config/gates.json before it can move to ready_to_publish — factual/"
+            "controversy screen, platform policy check, basic QA, copyright "
+            "mitigation, and audio license check. A failing candidate is "
+            "quarantined with a logged reason and the next candidate is "
+            "scouted instead; gates are never lowered to hit the publishing "
+            "schedule."
+        ),
+        multiline=True,
+    )
+
+    sf_agent_rows = "".join([
+        agent_row("1.1", "Trend Scout", "short_form/1.1_trend_scout.md", "accent"),
+        agent_row("2.1", "Scriptwriter", "short_form/2.1_scriptwriter.md", "accent"),
+        agent_row("3.1", "Producer", "short_form/3.1_producer.md", "accent"),
+        gates_row,
+        agent_row("4.1", "Publisher", "short_form/4.1_publisher.md", "success"),
     ])
 
-    lf_agents = "".join([
-        agent_card("1.2", "Format Scout", "long_form/1.2_format_scout.md"),
-        agent_card("2.2", "Image Sourcer", "long_form/2.2_image_sourcer.md"),
-        agent_card("3.2", "Animator", "long_form/3.2_animator.md"),
-        agent_card("4.2", "Sound Sourcer", "long_form/4.2_sound_sourcer.md"),
-        agent_card("5", "Assembler / Looper", "long_form/5_assembler.md"),
-        agent_card("6", "Publisher", "long_form/6_publisher.md"),
+    lf_agent_rows = "".join([
+        agent_row("1.2", "Format Scout", "long_form/1.2_format_scout.md", "info"),
+        agent_row("2.2", "Image Sourcer", "long_form/2.2_image_sourcer.md", "info"),
+        agent_row("3.2", "Animator", "long_form/3.2_animator.md", "info"),
+        agent_row("4.2", "Sound Sourcer", "long_form/4.2_sound_sourcer.md", "info"),
+        agent_row("5", "Assembler / Looper", "long_form/5_assembler.md", "info"),
+        agent_row("6", "Publisher", "long_form/6_publisher.md", "success"),
     ])
 
     orchestrator_role = role_text("0_orchestrator.md")
 
-    # ---------------------------------------------------------------
-    # HTML fragments
-    # ---------------------------------------------------------------
-    def kpi_tile(label, value, sub="", tone="neutral"):
-        return f"""
-        <div class="kpi kpi-{tone}">
-          <div class="kpi-value">{value}</div>
-          <div class="kpi-label">{esc(label)}</div>
-          {f'<div class="kpi-sub">{esc(sub)}</div>' if sub else ''}
+    # ---- Overview tab ----
+    def stat_card(label, value, tone="neutral", sub=""):
+        return f"""<div class="stat-card">
+          <div class="stat-icon stat-icon-{tone}">{icon('check' if tone=='success' else ('warn' if tone=='critical' else 'gauge'), 14)}</div>
+          <div class="stat-value">{value}</div>
+          <div class="stat-label">{esc(label)}</div>
+          {f'<div class="stat-sub">{esc(sub)}</div>' if sub else ''}
         </div>"""
 
-    kpis = "".join([
-        kpi_tile("Published this batch", status_counts.get("done", 0), tone="success"),
-        kpi_tile("Ready to publish", status_counts.get("ready_to_publish", 0), tone="info"),
-        kpi_tile("Still pending", status_counts.get("pending", 0), tone="neutral"),
-        kpi_tile(
-            "Quarantined (all-time)",
-            quarantine_count,
-            tone="critical" if quarantine_count else "neutral",
-        ),
-        kpi_tile(
-            "Next scheduled",
-            fmt_dt(next_due["scheduled_publish_at"]) if next_due else "—",
-            sub=(next_due.get("candidate_id", "") if next_due else ""),
-            tone="info",
-        ),
+    stats_html = "".join([
+        stat_card("Published", status_counts.get("done", 0), "success"),
+        stat_card("Ready to publish", status_counts.get("ready_to_publish", 0), "info"),
+        stat_card("Pending", status_counts.get("pending", 0), "neutral"),
+        stat_card("Quarantined", quarantine_count, "critical" if quarantine_count else "neutral"),
     ])
 
-    grid_rows = []
-    slot_order = {"09:00": 0, "14:00": 1, "19:00": 2, "20:00": 3}
-    for entry in days:
-        slots = sorted(entry["slots"], key=lambda s: slot_order.get(s.get("local_slot"), 9))
-        cells = []
-        for s in slots:
-            fmt = s.get("format")
-            cid = s.get("candidate_id") or "—"
-            cls = STATUS_CLASS.get(s.get("status"), "pill-neutral")
-            cells.append(
-                f'<div class="slot {cls}" title="{esc(cid)} · {esc(s.get("status"))}">'
-                f'<span class="slot-time">{esc(s.get("local_slot",""))}</span>'
-                f'<span class="slot-fmt">{"Short" if fmt=="short" else "Long"}</span>'
-                f'<span class="slot-id">{esc(cid)}</span>'
-                f"</div>"
-            )
-        grid_rows.append(
-            f'<div class="grid-row"><div class="grid-day">{esc(entry["day"])}</div>'
-            f'<div class="grid-slots">{"".join(cells)}</div></div>'
+    next_row = ""
+    if next_due:
+        next_row = section(
+            "Next scheduled",
+            row(
+                icon_bubble(icon("gauge", 15), "accent", is_svg=True),
+                esc(next_due.get("candidate_id", "—")),
+                f'{esc(fmt_dt(next_due["scheduled_publish_at"]))} · {"Short-form" if next_due.get("format")=="short" else "Long-form"}',
+            ),
         )
-    grid_html = "".join(grid_rows) or '<div class="empty">No batch initialized yet.</div>'
-
-    def lf_row(c):
-        return (
-            f'<tr><td class="mono">{esc(c["id"])}</td>'
-            f'<td>{esc(c.get("title","—"))}</td>'
-            f'<td>{pill(c.get("status"))}</td>'
-            f'<td class="mono">{esc(c.get("target_length_minutes","—"))} min</td>'
-            f'<td class="mono muted">{esc(c.get("scouted_at","—")[:10])}</td></tr>'
-        )
-
-    lf_rows = "".join(lf_row(c) for c in lfq) or '<tr><td colspan="5" class="empty">No candidates yet.</td></tr>'
-
-    def sf_row(c):
-        return (
-            f'<tr><td class="mono">{esc(c["id"])}</td>'
-            f'<td>{esc(c.get("title","—"))}</td>'
-            f'<td>{pill(c.get("status"))}</td>'
-            f'<td class="mono muted">{esc((c.get("scripted_at") or c.get("scouted_at") or "—")[:10])}</td></tr>'
-        )
-
-    sf_rows = "".join(sf_row(c) for c in sfq) or '<tr><td colspan="4" class="empty">No candidates yet.</td></tr>'
-
-    def activity_row(v):
-        icon = "▮" if v["kind"] == "short" else "━"
-        url = v.get("url", "#")
-        return (
-            f'<div class="log-row">'
-            f'<span class="log-icon log-{v["kind"]}">{icon}</span>'
-            f'<span class="log-time mono">{fmt_dt(v.get("published_at"))}</span>'
-            f'<a class="log-title" href="{esc(url)}" target="_blank" rel="noopener">{esc(v.get("title","—"))}</a>'
-            f"</div>"
-        )
-
-    activity_html = "".join(activity_row(v) for v in activity) or '<div class="empty">Nothing published yet.</div>'
 
     blocker_html = ""
     if blockers:
         rows = "".join(
-            f'<div class="blocker-row"><span class="mono">{esc(bid)}</span> — {esc(title)}<div class="blocker-note">{esc(note)}</div></div>'
+            row(
+                icon_bubble(icon("warn", 15), "critical", is_svg=True),
+                esc(bid) + " — " + esc(title),
+                esc(note),
+                multiline=True,
+            )
             for bid, title, note in blockers
         )
-        blocker_html = f'<div class="panel panel-critical"><h3>⚠ Blocked on publish</h3>{rows}</div>'
+        blocker_html = section("⚠️ Blocked on publish", rows)
 
-    # ---- PWA icon + manifest (best-effort "Add to Home Screen") ----
-    # Single self-contained build for the Claude Artifact tool — owner
-    # decided (2026-07-28) not to stand up a separately-hosted version
-    # (would need the repo public for GitHub Pages, or a Netlify git
-    # integration), so manifest/icons are inlined as data: URIs. Note this
-    # means Android/Chrome will offer "Create shortcut" rather than a full
-    # standalone "Install" (that needs real served files + a service
-    # worker, which an Artifact can't provide) — iOS Safari's "Add to
-    # Home Screen" gets closer to app-like out of the box.
+    slot_order = {"09:00": 0, "14:00": 1, "19:00": 2, "20:00": 3}
+    week_sections = []
+    for entry in days:
+        slots = sorted(entry["slots"], key=lambda s: slot_order.get(s.get("local_slot"), 9))
+        rows_html = "".join(
+            row(
+                icon_bubble("S" if s.get("format") == "short" else "L", "accent" if s.get("format") == "short" else "info"),
+                esc(s.get("candidate_id") or "—"),
+                f'{esc(s.get("local_slot",""))} · {"Short-form" if s.get("format")=="short" else "Long-form"}',
+                trailing=pill(s.get("status")),
+            )
+            for s in slots
+        )
+        week_sections.append(section(fmt_day(entry["day"]), rows_html))
+    week_html = "".join(week_sections) or section("This week", "")
+
+    # ---- Queues tab ----
+    def lf_row_html(c):
+        return row(
+            icon_bubble("L", "info"),
+            esc(c.get("title", c["id"])),
+            f'{esc(c["id"])} · {esc(c.get("target_length_minutes","—"))} min',
+            trailing=pill(c.get("status")),
+        )
+
+    def sf_row_html(c):
+        return row(
+            icon_bubble("S", "accent"),
+            esc(c.get("title", c["id"])),
+            esc(c["id"]),
+            trailing=pill(c.get("status")),
+        )
+
+    lf_queue_html = section(f"Long-form ({len(lfq)})", "".join(lf_row_html(c) for c in lfq))
+    sf_queue_html = section(f"Short-form ({len(sfq)})", "".join(sf_row_html(c) for c in sfq))
+
+    # ---- Activity tab ----
+    def activity_row_html(v):
+        return row(
+            icon_bubble("S" if v["kind"] == "short" else "L", "accent" if v["kind"] == "short" else "info"),
+            esc(v.get("title", "—")),
+            esc(fmt_dt(v.get("published_at"))),
+            href=v.get("url"),
+            chevron=True,
+        )
+
+    activity_html = section("Recently published", "".join(activity_row_html(v) for v in activity))
+
+    # =================================================================
+    # PWA icon + manifest (best-effort "Add to Home Screen")
+    # =================================================================
     icon192_b64 = make_icon_png_b64(192)
-    icon180_b64 = make_icon_png_b64(180)  # apple-touch-icon
+    icon180_b64 = make_icon_png_b64(180)
 
-    app_name = f"{handle} Pipeline"
     manifest = {
-        "name": app_name,
+        "name": f"{handle} Pipeline",
         "short_name": "Pipeline",
         "description": "Status dashboard for the YouTube automation content pipeline.",
         "start_url": ".",
         "display": "standalone",
-        "background_color": "#10121a",
-        "theme_color": "#10121a",
+        "background_color": "#000000",
+        "theme_color": "#000000",
         "icons": [
             {"src": f"data:image/png;base64,{icon192_b64}", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
         ],
     }
-    manifest_json = json.dumps(manifest)
-    manifest_data_uri = "data:application/manifest+json," + manifest_json.replace("#", "%23")
+    manifest_data_uri = "data:application/manifest+json," + json.dumps(manifest).replace("#", "%23")
 
     pwa_head = f"""<link rel="manifest" href="{manifest_data_uri}" />
-<meta name="theme-color" content="#10121a" media="(prefers-color-scheme: dark)" />
-<meta name="theme-color" content="#f5f3ef" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Pipeline" />
 <link rel="apple-touch-icon" href="data:image/png;base64,{icon180_b64}" />
 <link rel="icon" href="data:image/png;base64,{icon192_b64}" />"""
+
+    footer_note = (
+        f'Read from state/*.json and agents/*.md at generation time · '
+        f'image pool clean/unused: {len(clean_unused)}, pending vet: {len(pending_images)}<br/>'
+        f'Add to Home Screen from your phone\'s browser to install.'
+    )
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -411,51 +469,54 @@ def main():
 
 <style>
 :root {{
-  --bg: #10121a;
-  --surface: #191c27;
-  --surface-2: #20242f;
-  --border: #2b303f;
-  --text: #edeef3;
-  --text-dim: #8e93a8;
-  --text-faint: #5b6070;
-  --accent: #c98a4b;
-  --success: #4cb17d;
-  --info: #6f9bd1;
-  --warning: #e0a83e;
-  --critical: #e2584b;
-  --neutral: #565c70;
+  --bg: #000000;
+  --surface: #1c1c1e;
+  --surface-2: #2c2c2e;
+  --border: rgba(255,255,255,0.14);
+  --text: #ffffff;
+  --text-secondary: rgba(235,235,245,0.6);
+  --text-tertiary: rgba(235,235,245,0.35);
+  --accent: #cd9a5c;
+  --success: #30d158;
+  --info: #409cff;
+  --warning: #ffd60a;
+  --critical: #ff453a;
+  --neutral: #8e8e93;
+  --bar-bg: rgba(28,28,30,0.78);
   font-variant-numeric: tabular-nums;
 }}
 :root[data-theme="light"] {{
-  --bg: #f5f3ef;
+  --bg: #f2f2f7;
   --surface: #ffffff;
-  --surface-2: #f0ede6;
-  --border: #ddd7cb;
-  --text: #201d18;
-  --text-dim: #6b6459;
-  --text-faint: #a39c8c;
+  --surface-2: #e5e5ea;
+  --border: rgba(60,60,67,0.16);
+  --text: #000000;
+  --text-secondary: rgba(60,60,67,0.6);
+  --text-tertiary: rgba(60,60,67,0.3);
   --accent: #a9682c;
-  --success: #2f8f5f;
-  --info: #3b6ea5;
+  --success: #34c759;
+  --info: #007aff;
   --warning: #b3811f;
-  --critical: #c23f32;
-  --neutral: #8a8578;
+  --critical: #ff3b30;
+  --neutral: #8e8e93;
+  --bar-bg: rgba(248,248,250,0.78);
 }}
 @media (prefers-color-scheme: light) {{
   :root:not([data-theme="dark"]) {{
-    --bg: #f5f3ef;
+    --bg: #f2f2f7;
     --surface: #ffffff;
-    --surface-2: #f0ede6;
-    --border: #ddd7cb;
-    --text: #201d18;
-    --text-dim: #6b6459;
-    --text-faint: #a39c8c;
+    --surface-2: #e5e5ea;
+    --border: rgba(60,60,67,0.16);
+    --text: #000000;
+    --text-secondary: rgba(60,60,67,0.6);
+    --text-tertiary: rgba(60,60,67,0.3);
     --accent: #a9682c;
-    --success: #2f8f5f;
-    --info: #3b6ea5;
+    --success: #34c759;
+    --info: #007aff;
     --warning: #b3811f;
-    --critical: #c23f32;
-    --neutral: #8a8578;
+    --critical: #ff3b30;
+    --neutral: #8e8e93;
+    --bar-bg: rgba(248,248,250,0.78);
   }}
 }}
 * {{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }}
@@ -465,344 +526,350 @@ body {{
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-  line-height: 1.5;
-  padding: 20px 16px calc(80px + env(safe-area-inset-bottom));
-  padding-left: max(16px, env(safe-area-inset-left));
-  padding-right: max(16px, env(safe-area-inset-right));
-  padding-top: max(20px, env(safe-area-inset-top));
+  -webkit-font-smoothing: antialiased;
 }}
-.mono {{
-  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace;
+.mono {{ font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace; }}
+.muted-text {{ color: var(--text-tertiary); }}
+
+/* ---- Nav bar (per tab, sticky, iOS large title) ---- */
+.navbar {{
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bar-bg);
+  border-bottom: 0.5px solid var(--border);
+  padding-top: env(safe-area-inset-top);
 }}
-.wrap {{ max-width: 1180px; margin: 0 auto; }}
-a {{ -webkit-touch-callout: default; }}
-header {{
+.navbar-compact {{
+  height: 44px;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 16px;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 0 16px;
 }}
-h1 {{
-  font-size: 20px;
+.large-title-block {{ padding: 4px 16px 12px; }}
+.large-title {{
+  font-size: 34px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.021em;
   margin: 0;
   text-wrap: balance;
 }}
-h1 .sub {{
-  display: block;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--text-dim);
-  margin-top: 4px;
-  letter-spacing: 0;
-}}
-.updated {{
-  font-size: 11.5px;
-  color: var(--text-faint);
-  text-align: right;
-}}
-.kpis {{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
-  margin-bottom: 28px;
-}}
-.kpi {{
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  border-top: 2px solid var(--neutral);
-}}
-.kpi-success {{ border-top-color: var(--success); }}
-.kpi-info {{ border-top-color: var(--info); }}
-.kpi-critical {{ border-top-color: var(--critical); }}
-.kpi-value {{
-  font-size: 24px;
-  font-weight: 700;
-  font-family: ui-monospace, "SF Mono", monospace;
-}}
-.kpi-label {{
-  font-size: 12px;
-  color: var(--text-dim);
+.large-title-sub {{
+  font-size: 13px;
+  color: var(--text-secondary);
   margin-top: 2px;
 }}
-.kpi-sub {{
-  font-size: 11px;
-  color: var(--text-faint);
-  margin-top: 4px;
-  font-family: ui-monospace, monospace;
-  word-break: break-word;
+
+/* ---- Page / tab content ---- */
+.page-wrap {{ max-width: 640px; margin: 0 auto; }}
+.tab-page {{ display: none; padding-bottom: calc(100px + env(safe-area-inset-bottom)); }}
+.tab-page.active {{ display: block; animation: iosIn 0.24s cubic-bezier(0.22,1,0.36,1); }}
+@keyframes iosIn {{ from {{ opacity: 0; transform: translateY(6px); }} to {{ opacity: 1; transform: none; }} }}
+@media (prefers-reduced-motion: reduce) {{
+  .tab-page.active {{ animation: none; }}
 }}
-h2 {{
+
+/* ---- Stat widgets (Overview) ---- */
+.stats-grid {{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 16px 8px;
+}}
+.stat-card {{
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 14px 14px 12px;
+  position: relative;
+}}
+.stat-icon {{
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  margin-bottom: 20px;
+}}
+.stat-icon svg {{ width: 14px; height: 14px; }}
+.stat-icon-success {{ background: var(--success); }}
+.stat-icon-info {{ background: var(--info); }}
+.stat-icon-neutral {{ background: var(--neutral); }}
+.stat-icon-critical {{ background: var(--critical); }}
+.stat-value {{ font-size: 28px; font-weight: 700; letter-spacing: -0.01em; font-family: ui-monospace, "SF Mono", monospace; }}
+.stat-label {{ font-size: 13px; color: var(--text-secondary); margin-top: 1px; }}
+.stat-sub {{ font-size: 11px; color: var(--text-tertiary); margin-top: 3px; font-family: ui-monospace, monospace; }}
+
+/* ---- Grouped inset list (iOS Settings-style) ---- */
+.ios-section {{ margin: 20px 0 0; }}
+.ios-section:first-child {{ margin-top: 4px; }}
+.ios-section-header {{
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-dim);
-  margin: 32px 0 12px;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  padding: 0 30px 6px;
 }}
-h2 .h2-note {{
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 500;
-  color: var(--text-faint);
-  font-size: 11.5px;
-}}
-.panel {{
+.ios-list {{
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 16px;
+  border-radius: 14px;
+  margin: 0 16px;
+  overflow: hidden;
 }}
-.panel-critical {{ border-color: color-mix(in srgb, var(--critical) 40%, var(--border)); }}
-.panel h3 {{ margin: 0 0 8px; font-size: 13px; color: var(--critical); }}
-.blocker-row {{ font-size: 13px; padding: 6px 0; border-top: 1px solid var(--border); }}
-.blocker-row:first-child {{ border-top: none; }}
-.blocker-note {{ color: var(--text-dim); font-size: 12px; margin-top: 2px; }}
-
-.grid {{
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 6px;
+.ios-footer {{
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 8px 30px 0;
+  line-height: 1.4;
 }}
-.grid-row {{
+.ios-row {{
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 8px;
-  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-bottom: 0.5px solid var(--border);
+  text-decoration: none;
+  color: inherit;
 }}
-.grid-row:last-child {{ border-bottom: none; }}
-.grid-day {{
-  width: 78px;
+.ios-row:last-child {{ border-bottom: none; }}
+.ios-row:active {{ background: var(--surface-2); }}
+.row-icon {{
+  width: 29px; height: 29px;
+  border-radius: 8px;
   flex-shrink: 0;
-  font-family: ui-monospace, monospace;
-  font-size: 12px;
-  color: var(--text-dim);
-}}
-.grid-slots {{ display: flex; gap: 8px; }}
-.slot {{
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  min-width: 88px;
-  flex-shrink: 0;
-  font-size: 11px;
-}}
-.slot-time {{ color: var(--text-faint); font-family: ui-monospace, monospace; }}
-.slot-fmt {{ font-weight: 600; }}
-.slot-id {{ color: var(--text-dim); font-family: ui-monospace, monospace; font-size: 10.5px; }}
-
-table {{ width: 100%; border-collapse: collapse; font-size: 12.5px; }}
-th {{
-  text-align: left;
-  font-size: 10.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-faint);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 13px;
   font-weight: 600;
-  padding: 8px 10px;
-  border-bottom: 1px solid var(--border);
+  margin-top: 1px;
+}}
+.row-icon svg {{ width: 15px; height: 15px; }}
+.row-icon-accent {{ background: var(--accent); }}
+.row-icon-info {{ background: var(--info); }}
+.row-icon-success {{ background: var(--success); }}
+.row-icon-warning {{ background: var(--warning); color: #1c1c1e; }}
+.row-icon-critical {{ background: var(--critical); }}
+.row-text {{ flex: 1; min-width: 0; padding-top: 3px; }}
+.row-title {{
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }}
-td {{ padding: 9px 10px; border-bottom: 1px solid var(--border); }}
-tr:last-child td {{ border-bottom: none; }}
-.table-wrap {{
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+.row-subtitle {{
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }}
-.muted {{ color: var(--text-faint); }}
-.empty {{ color: var(--text-faint); padding: 18px; text-align: center; }}
+.row-subtitle-wrap {{
+  white-space: normal;
+  line-height: 1.4;
+  margin-top: 3px;
+}}
+.row-trailing {{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  padding-top: 3px;
+}}
 
 .pill {{
   display: inline-block;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 600;
   padding: 3px 9px;
   border-radius: 999px;
   letter-spacing: 0.01em;
   white-space: nowrap;
 }}
-.pill-success {{ background: color-mix(in srgb, var(--success) 18%, transparent); color: var(--success); }}
-.pill-info {{ background: color-mix(in srgb, var(--info) 18%, transparent); color: var(--info); }}
-.pill-critical {{ background: color-mix(in srgb, var(--critical) 18%, transparent); color: var(--critical); }}
-.pill-neutral {{ background: color-mix(in srgb, var(--neutral) 22%, transparent); color: var(--text-dim); }}
+.pill-success {{ background: color-mix(in srgb, var(--success) 20%, transparent); color: var(--success); }}
+.pill-info {{ background: color-mix(in srgb, var(--info) 20%, transparent); color: var(--info); }}
+.pill-critical {{ background: color-mix(in srgb, var(--critical) 20%, transparent); color: var(--critical); }}
+.pill-neutral {{ background: color-mix(in srgb, var(--neutral) 24%, transparent); color: var(--text-secondary); }}
+.pill-warning {{ background: color-mix(in srgb, var(--warning) 24%, transparent); color: var(--warning); }}
 
-.cols2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }}
-@media (max-width: 760px) {{ .cols2 {{ grid-template-columns: 1fr; }} }}
-
-.log {{
+/* ---- Orchestrator banner ---- */
+.banner {{
+  margin: 4px 16px 4px;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 6px 4px;
+  border-radius: 16px;
+  padding: 14px 16px 16px;
 }}
-.log-row {{
+.banner-head {{ display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }}
+.banner-head .row-icon {{ margin-top: 0; }}
+.banner-title {{ font-size: 16px; font-weight: 600; }}
+.banner p {{ font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin: 0; }}
+
+/* ---- Segmented control (Queues tab) ---- */
+.segmented {{
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 10px;
-  row-gap: 2px;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  border-radius: 9px;
+  padding: 2px;
+  margin: 4px 16px 4px;
+  gap: 2px;
+}}
+.segmented button {{
+  flex: 1;
+  border: none;
+  background: transparent;
+  font: inherit;
   font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  border-radius: 7px;
+  cursor: pointer;
 }}
-.log-row:last-child {{ border-bottom: none; }}
-.log-icon.log-short {{ color: var(--accent); }}
-.log-icon.log-long {{ color: var(--info); }}
-.log-time {{ font-size: 11px; color: var(--text-faint); }}
-.log-title {{ color: var(--text); text-decoration: none; flex: 1 1 200px; min-width: 0; }}
-.log-title:hover {{ color: var(--accent); text-decoration: underline; }}
+.segmented button.active {{
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}}
+.queue-panel {{ display: none; }}
+.queue-panel.active {{ display: block; }}
 
-.track {{ margin-bottom: 22px; }}
-.track-head {{
+/* ---- Bottom tab bar ---- */
+.tabbar {{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 50;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-  gap: 6px;
-}}
-.track-title {{ font-size: 13.5px; font-weight: 700; }}
-.track-stats {{ font-size: 11.5px; color: var(--text-faint); font-family: ui-monospace, monospace; }}
-.agent-row {{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 10px;
-}}
-.agent {{
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 14px;
-  border-left: 2px solid var(--accent);
-}}
-.agent-gates {{ border-left-color: var(--warning); }}
-.agent-head {{ display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }}
-.agent-num {{
-  font-size: 10.5px;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 16%, transparent);
-  padding: 2px 6px;
-  border-radius: 5px;
-}}
-.agent-gates .agent-num {{ color: var(--warning); background: color-mix(in srgb, var(--warning) 16%, transparent); }}
-.agent-name {{ font-size: 13px; font-weight: 700; }}
-.agent-role {{ font-size: 12px; color: var(--text-dim); margin: 0; line-height: 1.5; }}
-
-.orchestrator {{
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 24px;
-  border-top: 2px solid var(--accent);
-}}
-.orchestrator-head {{ font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }}
-.orchestrator p {{ font-size: 12.5px; color: var(--text-dim); margin: 0; line-height: 1.55; }}
-
-footer {{
-  margin-top: 36px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-  font-size: 11px;
-  color: var(--text-faint);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bar-bg);
+  border-top: 0.5px solid var(--border);
   padding-bottom: env(safe-area-inset-bottom);
 }}
+.tab-btn {{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 7px 0 6px;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}}
+.tab-btn svg {{ width: 25px; height: 25px; }}
+.tab-btn.active {{ color: var(--accent); }}
+.tab-btn:active {{ opacity: 0.5; }}
 
-@media (max-width: 480px) {{
-  body {{ padding-left: 12px; padding-right: 12px; }}
-  h1 {{ font-size: 18px; }}
-  .kpis {{ grid-template-columns: repeat(2, 1fr); }}
-  .agent-row {{ grid-template-columns: 1fr; }}
+@media (min-width: 700px) {{
+  .stats-grid {{ grid-template-columns: repeat(4, 1fr); }}
 }}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>{esc(handle)}
-      <span class="sub">YouTube automation pipeline — daily batch dashboard</span>
-    </h1>
-    <div class="updated">Generated {esc(generated_at)}<br/>Redeployed once per daily cycle</div>
-  </header>
 
-  <div class="kpis">{kpis}</div>
+<nav class="navbar">
+  <div class="navbar-compact" id="navTitle">Overview</div>
+</nav>
 
-  {blocker_html}
+<main class="page-wrap">
 
-  <h2>This week's batch</h2>
-  <div class="grid">{grid_html}</div>
-
-  <h2>Pipeline agents <span class="h2-note">— live from agents/*.md</span></h2>
-
-  <div class="orchestrator">
-    <div class="orchestrator-head">Agent 0 — Orchestrator</div>
-    <p>{esc(orchestrator_role)}</p>
-  </div>
-
-  <div class="track">
-    <div class="track-head">
-      <div class="track-title">Short-form track</div>
-      <div class="track-stats mono">{len(sfq)} total · {sf_published} published · {sf_quarantined} quarantined</div>
+  <section class="tab-page active" id="tab-overview">
+    <div class="large-title-block">
+      <h1 class="large-title">Overview</h1>
+      <div class="large-title-sub">{esc(handle)} · generated {esc(generated_at)}</div>
     </div>
-    <div class="agent-row">{sf_agents}</div>
-  </div>
+    <div class="stats-grid">{stats_html}</div>
+    {blocker_html}
+    {next_row}
+    {week_html}
+  </section>
 
-  <div class="track">
-    <div class="track-head">
-      <div class="track-title">Long-form track</div>
-      <div class="track-stats mono">{len(lfq)} total · {lf_published} published · {lf_quarantined} quarantined</div>
+  <section class="tab-page" id="tab-agents">
+    <div class="large-title-block">
+      <h1 class="large-title">Agents</h1>
+      <div class="large-title-sub">Live from agents/*.md</div>
     </div>
-    <div class="agent-row">{lf_agents}</div>
-  </div>
-
-  <h2>Queues</h2>
-  <div class="cols2">
-    <div>
-      <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Long-form ({len(lfq)})</div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Length</th><th>Scouted</th></tr></thead>
-          <tbody>{lf_rows}</tbody>
-        </table>
-      </div>
+    <div class="banner">
+      <div class="banner-head">{icon_bubble(icon('gauge', 15), 'accent', is_svg=True)}<div class="banner-title">Agent 0 — Orchestrator</div></div>
+      <p>{esc(orchestrator_role)}</p>
     </div>
-    <div>
-      <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Short-form ({len(sfq)})</div>
-      <div class="table-wrap" style="max-height:420px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-        <table>
-          <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Date</th></tr></thead>
-          <tbody>{sf_rows}</tbody>
-        </table>
-      </div>
+    {section(f"Short-form · {len(sfq)} total, {sf_published} published, {sf_quarantined} quarantined", sf_agent_rows)}
+    {section(f"Long-form · {len(lfq)} total, {lf_published} published, {lf_quarantined} quarantined", lf_agent_rows)}
+  </section>
+
+  <section class="tab-page" id="tab-queues">
+    <div class="large-title-block">
+      <h1 class="large-title">Queues</h1>
+      <div class="large-title-sub">{len(lfq) + len(sfq)} candidates total</div>
     </div>
-  </div>
+    <div class="segmented">
+      <button class="active" data-queue="long">Long-form</button>
+      <button data-queue="short">Short-form</button>
+    </div>
+    <div class="queue-panel active" id="queue-long">{lf_queue_html}</div>
+    <div class="queue-panel" id="queue-short">{sf_queue_html}</div>
+  </section>
 
-  <h2>Recently published</h2>
-  <div class="log">{activity_html}</div>
+  <section class="tab-page" id="tab-activity">
+    <div class="large-title-block">
+      <h1 class="large-title">Activity</h1>
+      <div class="large-title-sub">Recently published</div>
+    </div>
+    {activity_html}
+    <div class="ios-footer" style="margin:16px 16px 0;">{footer_note}</div>
+  </section>
 
-  <footer>
-    Pipeline state read from <span class="mono">state/*.json</span> and agent specs from <span class="mono">agents/*.md</span> at generation time · quarantined items: {quarantine_count} · image pool clean/unused: {len(clean_unused)}, pending vet: {len(pending_images)}<br/>
-    Tip: open this page in your phone's browser (not the Claude app) and use "Add to Home Screen" / "Install".
-  </footer>
-</div>
+</main>
+
+<nav class="tabbar">
+  <button class="tab-btn active" data-tab="overview" data-title="Overview">{icon('gauge')}<span>Overview</span></button>
+  <button class="tab-btn" data-tab="agents" data-title="Agents">{icon('agents')}<span>Agents</span></button>
+  <button class="tab-btn" data-tab="queues" data-title="Queues">{icon('queues')}<span>Queues</span></button>
+  <button class="tab-btn" data-tab="activity" data-title="Activity">{icon('activity')}<span>Activity</span></button>
+</nav>
+
+<script>
+(function() {{
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var navTitle = document.getElementById('navTitle');
+  tabBtns.forEach(function(btn) {{
+    btn.addEventListener('click', function() {{
+      tabBtns.forEach(function(b) {{ b.classList.remove('active'); }});
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-page').forEach(function(p) {{ p.classList.remove('active'); }});
+      var page = document.getElementById('tab-' + btn.dataset.tab);
+      if (page) page.classList.add('active');
+      navTitle.textContent = btn.dataset.title;
+      var main = document.querySelector('main');
+      if (main) main.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }});
+  }});
+  var segBtns = document.querySelectorAll('.segmented button');
+  segBtns.forEach(function(btn) {{
+    btn.addEventListener('click', function() {{
+      segBtns.forEach(function(b) {{ b.classList.remove('active'); }});
+      btn.classList.add('active');
+      document.querySelectorAll('.queue-panel').forEach(function(p) {{ p.classList.remove('active'); }});
+      var panel = document.getElementById('queue-' + btn.dataset.queue);
+      if (panel) panel.classList.add('active');
+    }});
+  }});
+}})();
+</script>
 </body>
 </html>
 """
@@ -812,25 +879,6 @@ footer {{
     with open(out_path, "w") as f:
         f.write(html)
     print("wrote", out_path, f"({len(html)} bytes)")
-
-
-def agent_card_gates():
-    gates_role = (
-        "Every candidate must pass the shared and format-specific gates in "
-        "config/gates.json before it can move to ready_to_publish — factual/"
-        "controversy screen, platform policy check, basic QA, copyright "
-        "mitigation, and audio license check. A failing candidate is "
-        "quarantined with a logged reason and the next candidate is scouted "
-        "instead; gates are never lowered to hit the publishing schedule."
-    )
-    return f"""
-        <div class="agent agent-gates">
-          <div class="agent-head">
-            <span class="agent-num mono">—</span>
-            <span class="agent-name">Gates</span>
-          </div>
-          <p class="agent-role">{esc(gates_role)}</p>
-        </div>"""
 
 
 if __name__ == "__main__":

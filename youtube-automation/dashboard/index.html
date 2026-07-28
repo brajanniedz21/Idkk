@@ -5,63 +5,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>@makeitmanifest — Pipeline Dashboard</title>
 
-<link rel="manifest" href="data:application/manifest+json,{"name": "@makeitmanifest Pipeline", "short_name": "Pipeline", "description": "Status dashboard for the YouTube automation content pipeline.", "start_url": ".", "display": "standalone", "background_color": "%2310121a", "theme_color": "%2310121a", "icons": [{"src": "data:image/png;base64,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", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"}]}" />
-<meta name="theme-color" content="#10121a" media="(prefers-color-scheme: dark)" />
-<meta name="theme-color" content="#f5f3ef" media="(prefers-color-scheme: light)" />
+<link rel="manifest" href="data:application/manifest+json,{"name": "@makeitmanifest Pipeline", "short_name": "Pipeline", "description": "Status dashboard for the YouTube automation content pipeline.", "start_url": ".", "display": "standalone", "background_color": "%23000000", "theme_color": "%23000000", "icons": [{"src": "data:image/png;base64,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", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"}]}" />
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Pipeline" />
-<link rel="apple-touch-icon" href="data:image/png;base64,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" />
-<link rel="icon" href="data:image/png;base64,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" />
+<link rel="apple-touch-icon" href="data:image/png;base64,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" />
+<link rel="icon" href="data:image/png;base64,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" />
 
 <style>
 :root {
-  --bg: #10121a;
-  --surface: #191c27;
-  --surface-2: #20242f;
-  --border: #2b303f;
-  --text: #edeef3;
-  --text-dim: #8e93a8;
-  --text-faint: #5b6070;
-  --accent: #c98a4b;
-  --success: #4cb17d;
-  --info: #6f9bd1;
-  --warning: #e0a83e;
-  --critical: #e2584b;
-  --neutral: #565c70;
+  --bg: #000000;
+  --surface: #1c1c1e;
+  --surface-2: #2c2c2e;
+  --border: rgba(255,255,255,0.14);
+  --text: #ffffff;
+  --text-secondary: rgba(235,235,245,0.6);
+  --text-tertiary: rgba(235,235,245,0.35);
+  --accent: #cd9a5c;
+  --success: #30d158;
+  --info: #409cff;
+  --warning: #ffd60a;
+  --critical: #ff453a;
+  --neutral: #8e8e93;
+  --bar-bg: rgba(28,28,30,0.78);
   font-variant-numeric: tabular-nums;
 }
 :root[data-theme="light"] {
-  --bg: #f5f3ef;
+  --bg: #f2f2f7;
   --surface: #ffffff;
-  --surface-2: #f0ede6;
-  --border: #ddd7cb;
-  --text: #201d18;
-  --text-dim: #6b6459;
-  --text-faint: #a39c8c;
+  --surface-2: #e5e5ea;
+  --border: rgba(60,60,67,0.16);
+  --text: #000000;
+  --text-secondary: rgba(60,60,67,0.6);
+  --text-tertiary: rgba(60,60,67,0.3);
   --accent: #a9682c;
-  --success: #2f8f5f;
-  --info: #3b6ea5;
+  --success: #34c759;
+  --info: #007aff;
   --warning: #b3811f;
-  --critical: #c23f32;
-  --neutral: #8a8578;
+  --critical: #ff3b30;
+  --neutral: #8e8e93;
+  --bar-bg: rgba(248,248,250,0.78);
 }
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --bg: #f5f3ef;
+    --bg: #f2f2f7;
     --surface: #ffffff;
-    --surface-2: #f0ede6;
-    --border: #ddd7cb;
-    --text: #201d18;
-    --text-dim: #6b6459;
-    --text-faint: #a39c8c;
+    --surface-2: #e5e5ea;
+    --border: rgba(60,60,67,0.16);
+    --text: #000000;
+    --text-secondary: rgba(60,60,67,0.6);
+    --text-tertiary: rgba(60,60,67,0.3);
     --accent: #a9682c;
-    --success: #2f8f5f;
-    --info: #3b6ea5;
+    --success: #34c759;
+    --info: #007aff;
     --warning: #b3811f;
-    --critical: #c23f32;
-    --neutral: #8a8578;
+    --critical: #ff3b30;
+    --neutral: #8e8e93;
+    --bar-bg: rgba(248,248,250,0.78);
   }
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -71,455 +74,369 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-  line-height: 1.5;
-  padding: 20px 16px calc(80px + env(safe-area-inset-bottom));
-  padding-left: max(16px, env(safe-area-inset-left));
-  padding-right: max(16px, env(safe-area-inset-right));
-  padding-top: max(20px, env(safe-area-inset-top));
+  -webkit-font-smoothing: antialiased;
 }
-.mono {
-  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace;
+.mono { font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace; }
+.muted-text { color: var(--text-tertiary); }
+
+/* ---- Nav bar (per tab, sticky, iOS large title) ---- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bar-bg);
+  border-bottom: 0.5px solid var(--border);
+  padding-top: env(safe-area-inset-top);
 }
-.wrap { max-width: 1180px; margin: 0 auto; }
-a { -webkit-touch-callout: default; }
-header {
+.navbar-compact {
+  height: 44px;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 16px;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 0 16px;
 }
-h1 {
-  font-size: 20px;
+.large-title-block { padding: 4px 16px 12px; }
+.large-title {
+  font-size: 34px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.021em;
   margin: 0;
   text-wrap: balance;
 }
-h1 .sub {
-  display: block;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--text-dim);
-  margin-top: 4px;
-  letter-spacing: 0;
-}
-.updated {
-  font-size: 11.5px;
-  color: var(--text-faint);
-  text-align: right;
-}
-.kpis {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
-  margin-bottom: 28px;
-}
-.kpi {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  border-top: 2px solid var(--neutral);
-}
-.kpi-success { border-top-color: var(--success); }
-.kpi-info { border-top-color: var(--info); }
-.kpi-critical { border-top-color: var(--critical); }
-.kpi-value {
-  font-size: 24px;
-  font-weight: 700;
-  font-family: ui-monospace, "SF Mono", monospace;
-}
-.kpi-label {
-  font-size: 12px;
-  color: var(--text-dim);
+.large-title-sub {
+  font-size: 13px;
+  color: var(--text-secondary);
   margin-top: 2px;
 }
-.kpi-sub {
-  font-size: 11px;
-  color: var(--text-faint);
-  margin-top: 4px;
-  font-family: ui-monospace, monospace;
-  word-break: break-word;
+
+/* ---- Page / tab content ---- */
+.page-wrap { max-width: 640px; margin: 0 auto; }
+.tab-page { display: none; padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
+.tab-page.active { display: block; animation: iosIn 0.24s cubic-bezier(0.22,1,0.36,1); }
+@keyframes iosIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .tab-page.active { animation: none; }
 }
-h2 {
+
+/* ---- Stat widgets (Overview) ---- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 16px 8px;
+}
+.stat-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 14px 14px 12px;
+  position: relative;
+}
+.stat-icon {
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.stat-icon svg { width: 14px; height: 14px; }
+.stat-icon-success { background: var(--success); }
+.stat-icon-info { background: var(--info); }
+.stat-icon-neutral { background: var(--neutral); }
+.stat-icon-critical { background: var(--critical); }
+.stat-value { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; font-family: ui-monospace, "SF Mono", monospace; }
+.stat-label { font-size: 13px; color: var(--text-secondary); margin-top: 1px; }
+.stat-sub { font-size: 11px; color: var(--text-tertiary); margin-top: 3px; font-family: ui-monospace, monospace; }
+
+/* ---- Grouped inset list (iOS Settings-style) ---- */
+.ios-section { margin: 20px 0 0; }
+.ios-section:first-child { margin-top: 4px; }
+.ios-section-header {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-dim);
-  margin: 32px 0 12px;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  padding: 0 30px 6px;
 }
-h2 .h2-note {
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 500;
-  color: var(--text-faint);
-  font-size: 11.5px;
-}
-.panel {
+.ios-list {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 16px;
+  border-radius: 14px;
+  margin: 0 16px;
+  overflow: hidden;
 }
-.panel-critical { border-color: color-mix(in srgb, var(--critical) 40%, var(--border)); }
-.panel h3 { margin: 0 0 8px; font-size: 13px; color: var(--critical); }
-.blocker-row { font-size: 13px; padding: 6px 0; border-top: 1px solid var(--border); }
-.blocker-row:first-child { border-top: none; }
-.blocker-note { color: var(--text-dim); font-size: 12px; margin-top: 2px; }
-
-.grid {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 6px;
+.ios-footer {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 8px 30px 0;
+  line-height: 1.4;
 }
-.grid-row {
+.ios-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 8px;
-  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-bottom: 0.5px solid var(--border);
+  text-decoration: none;
+  color: inherit;
 }
-.grid-row:last-child { border-bottom: none; }
-.grid-day {
-  width: 78px;
+.ios-row:last-child { border-bottom: none; }
+.ios-row:active { background: var(--surface-2); }
+.row-icon {
+  width: 29px; height: 29px;
+  border-radius: 8px;
   flex-shrink: 0;
-  font-family: ui-monospace, monospace;
-  font-size: 12px;
-  color: var(--text-dim);
-}
-.grid-slots { display: flex; gap: 8px; }
-.slot {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  min-width: 88px;
-  flex-shrink: 0;
-  font-size: 11px;
-}
-.slot-time { color: var(--text-faint); font-family: ui-monospace, monospace; }
-.slot-fmt { font-weight: 600; }
-.slot-id { color: var(--text-dim); font-family: ui-monospace, monospace; font-size: 10.5px; }
-
-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-th {
-  text-align: left;
-  font-size: 10.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-faint);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 13px;
   font-weight: 600;
-  padding: 8px 10px;
-  border-bottom: 1px solid var(--border);
+  margin-top: 1px;
+}
+.row-icon svg { width: 15px; height: 15px; }
+.row-icon-accent { background: var(--accent); }
+.row-icon-info { background: var(--info); }
+.row-icon-success { background: var(--success); }
+.row-icon-warning { background: var(--warning); color: #1c1c1e; }
+.row-icon-critical { background: var(--critical); }
+.row-text { flex: 1; min-width: 0; padding-top: 3px; }
+.row-title {
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
-td { padding: 9px 10px; border-bottom: 1px solid var(--border); }
-tr:last-child td { border-bottom: none; }
-.table-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+.row-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.muted { color: var(--text-faint); }
-.empty { color: var(--text-faint); padding: 18px; text-align: center; }
+.row-subtitle-wrap {
+  white-space: normal;
+  line-height: 1.4;
+  margin-top: 3px;
+}
+.row-trailing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  padding-top: 3px;
+}
 
 .pill {
   display: inline-block;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 600;
   padding: 3px 9px;
   border-radius: 999px;
   letter-spacing: 0.01em;
   white-space: nowrap;
 }
-.pill-success { background: color-mix(in srgb, var(--success) 18%, transparent); color: var(--success); }
-.pill-info { background: color-mix(in srgb, var(--info) 18%, transparent); color: var(--info); }
-.pill-critical { background: color-mix(in srgb, var(--critical) 18%, transparent); color: var(--critical); }
-.pill-neutral { background: color-mix(in srgb, var(--neutral) 22%, transparent); color: var(--text-dim); }
+.pill-success { background: color-mix(in srgb, var(--success) 20%, transparent); color: var(--success); }
+.pill-info { background: color-mix(in srgb, var(--info) 20%, transparent); color: var(--info); }
+.pill-critical { background: color-mix(in srgb, var(--critical) 20%, transparent); color: var(--critical); }
+.pill-neutral { background: color-mix(in srgb, var(--neutral) 24%, transparent); color: var(--text-secondary); }
+.pill-warning { background: color-mix(in srgb, var(--warning) 24%, transparent); color: var(--warning); }
 
-.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-@media (max-width: 760px) { .cols2 { grid-template-columns: 1fr; } }
-
-.log {
+/* ---- Orchestrator banner ---- */
+.banner {
+  margin: 4px 16px 4px;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 6px 4px;
+  border-radius: 16px;
+  padding: 14px 16px 16px;
 }
-.log-row {
+.banner-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.banner-head .row-icon { margin-top: 0; }
+.banner-title { font-size: 16px; font-weight: 600; }
+.banner p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin: 0; }
+
+/* ---- Segmented control (Queues tab) ---- */
+.segmented {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 10px;
-  row-gap: 2px;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  border-radius: 9px;
+  padding: 2px;
+  margin: 4px 16px 4px;
+  gap: 2px;
+}
+.segmented button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font: inherit;
   font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  border-radius: 7px;
+  cursor: pointer;
 }
-.log-row:last-child { border-bottom: none; }
-.log-icon.log-short { color: var(--accent); }
-.log-icon.log-long { color: var(--info); }
-.log-time { font-size: 11px; color: var(--text-faint); }
-.log-title { color: var(--text); text-decoration: none; flex: 1 1 200px; min-width: 0; }
-.log-title:hover { color: var(--accent); text-decoration: underline; }
+.segmented button.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.queue-panel { display: none; }
+.queue-panel.active { display: block; }
 
-.track { margin-bottom: 22px; }
-.track-head {
+/* ---- Bottom tab bar ---- */
+.tabbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 50;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.track-title { font-size: 13.5px; font-weight: 700; }
-.track-stats { font-size: 11.5px; color: var(--text-faint); font-family: ui-monospace, monospace; }
-.agent-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 10px;
-}
-.agent {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 14px;
-  border-left: 2px solid var(--accent);
-}
-.agent-gates { border-left-color: var(--warning); }
-.agent-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.agent-num {
-  font-size: 10.5px;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 16%, transparent);
-  padding: 2px 6px;
-  border-radius: 5px;
-}
-.agent-gates .agent-num { color: var(--warning); background: color-mix(in srgb, var(--warning) 16%, transparent); }
-.agent-name { font-size: 13px; font-weight: 700; }
-.agent-role { font-size: 12px; color: var(--text-dim); margin: 0; line-height: 1.5; }
-
-.orchestrator {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 24px;
-  border-top: 2px solid var(--accent);
-}
-.orchestrator-head { font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }
-.orchestrator p { font-size: 12.5px; color: var(--text-dim); margin: 0; line-height: 1.55; }
-
-footer {
-  margin-top: 36px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-  font-size: 11px;
-  color: var(--text-faint);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bar-bg);
+  border-top: 0.5px solid var(--border);
   padding-bottom: env(safe-area-inset-bottom);
 }
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 7px 0 6px;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.tab-btn svg { width: 25px; height: 25px; }
+.tab-btn.active { color: var(--accent); }
+.tab-btn:active { opacity: 0.5; }
 
-@media (max-width: 480px) {
-  body { padding-left: 12px; padding-right: 12px; }
-  h1 { font-size: 18px; }
-  .kpis { grid-template-columns: repeat(2, 1fr); }
-  .agent-row { grid-template-columns: 1fr; }
+@media (min-width: 700px) {
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>@makeitmanifest
-      <span class="sub">YouTube automation pipeline — daily batch dashboard</span>
-    </h1>
-    <div class="updated">Generated Jul 28, 2026 — 08:20 UTC<br/>Redeployed once per daily cycle</div>
-  </header>
 
-  <div class="kpis">
-        <div class="kpi kpi-success">
-          <div class="kpi-value">7</div>
-          <div class="kpi-label">Published this batch</div>
-          
-        </div>
-        <div class="kpi kpi-info">
-          <div class="kpi-value">16</div>
-          <div class="kpi-label">Ready to publish</div>
-          
-        </div>
-        <div class="kpi kpi-neutral">
-          <div class="kpi-value">5</div>
-          <div class="kpi-label">Still pending</div>
-          
-        </div>
-        <div class="kpi kpi-critical">
-          <div class="kpi-value">4</div>
-          <div class="kpi-label">Quarantined (all-time)</div>
-          
-        </div>
-        <div class="kpi kpi-info">
-          <div class="kpi-value">Jul 29, 19:00 UTC</div>
-          <div class="kpi-label">Next scheduled</div>
-          <div class="kpi-sub">lf_004</div>
-        </div></div>
+<nav class="navbar">
+  <div class="navbar-compact" id="navTitle">Overview</div>
+</nav>
 
-  <div class="panel panel-critical"><h3>⚠ Blocked on publish</h3><div class="blocker-row"><span class="mono">lf_004</span> — This Is What Stillness Feels Like<div class="blocker-note">Retried publish 2026-07-28T06:10Z (~9h after yesterday's uploads that first hit the cap around 2026-07-27T23:55Z) — still HTTP 400 uploadLimitExceeded. This tells us the quota reset window is longer than 'next calendar UTC day' or at least longer than ~9-10h; exact reset timing still not confirmed. Status remains ready_to_publish, not published, not quarantined. No further retry loop this firing — production continues instead. Retried again 2026-07-28T06:33Z, still uploadLimitExceeded.</div></div></div>
+<main class="page-wrap">
 
-  <h2>This week's batch</h2>
-  <div class="grid"><div class="grid-row"><div class="grid-day">2026-07-28</div><div class="grid-slots"><div class="slot pill-success" title="sf_013 · done"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_013</span></div><div class="slot pill-success" title="sf_014 · done"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_014</span></div><div class="slot pill-success" title="sf_015 · done"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_015</span></div><div class="slot pill-success" title="lf_003 · done"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_003</span></div></div></div><div class="grid-row"><div class="grid-day">2026-07-29</div><div class="grid-slots"><div class="slot pill-success" title="sf_016 · done"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_016</span></div><div class="slot pill-success" title="sf_017 · done"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_017</span></div><div class="slot pill-success" title="sf_018 · done"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_018</span></div><div class="slot pill-info" title="lf_004 · ready_to_publish"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_004</span></div></div></div><div class="grid-row"><div class="grid-day">2026-07-30</div><div class="grid-slots"><div class="slot pill-info" title="sf_019 · ready_to_publish"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_019</span></div><div class="slot pill-info" title="sf_020 · ready_to_publish"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_020</span></div><div class="slot pill-info" title="sf_021 · ready_to_publish"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_021</span></div><div class="slot pill-info" title="lf_005 · ready_to_publish"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_005</span></div></div></div><div class="grid-row"><div class="grid-day">2026-07-31</div><div class="grid-slots"><div class="slot pill-info" title="sf_022 · ready_to_publish"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_022</span></div><div class="slot pill-info" title="sf_023 · ready_to_publish"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_023</span></div><div class="slot pill-info" title="sf_024 · ready_to_publish"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_024</span></div><div class="slot pill-info" title="lf_006 · ready_to_publish"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_006</span></div></div></div><div class="grid-row"><div class="grid-day">2026-08-01</div><div class="grid-slots"><div class="slot pill-info" title="sf_025 · ready_to_publish"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_025</span></div><div class="slot pill-info" title="sf_026 · ready_to_publish"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_026</span></div><div class="slot pill-info" title="sf_027 · ready_to_publish"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_027</span></div><div class="slot pill-neutral" title="— · pending"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">—</span></div></div></div><div class="grid-row"><div class="grid-day">2026-08-02</div><div class="grid-slots"><div class="slot pill-info" title="sf_028 · ready_to_publish"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_028</span></div><div class="slot pill-info" title="sf_029 · ready_to_publish"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_029</span></div><div class="slot pill-info" title="sf_030 · ready_to_publish"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">sf_030</span></div><div class="slot pill-info" title="lf_008 · ready_to_publish"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">lf_008</span></div></div></div><div class="grid-row"><div class="grid-day">2026-08-03</div><div class="grid-slots"><div class="slot pill-neutral" title="— · pending"><span class="slot-time">09:00</span><span class="slot-fmt">Short</span><span class="slot-id">—</span></div><div class="slot pill-neutral" title="— · pending"><span class="slot-time">14:00</span><span class="slot-fmt">Short</span><span class="slot-id">—</span></div><div class="slot pill-neutral" title="— · pending"><span class="slot-time">19:00</span><span class="slot-fmt">Short</span><span class="slot-id">—</span></div><div class="slot pill-neutral" title="— · pending"><span class="slot-time">20:00</span><span class="slot-fmt">Long</span><span class="slot-id">—</span></div></div></div></div>
-
-  <h2>Pipeline agents <span class="h2-note">— live from agents/*.md</span></h2>
-
-  <div class="orchestrator">
-    <div class="orchestrator-head">Agent 0 — Orchestrator</div>
-    <p>Agent 0 is the only agent a scheduled routine talks to directly. It never produces content itself — it reads state, decides what needs to happen this cycle, delegates each stage to the right sub-agent (via the `Agent` tool, one sub-agent per pipeline stage), enforces gates, and logs everything. It is the sole owner of `state/*.json` writes at the top level (sub-agents return results to Agent 0, which persists them — though in practice, sub-agents are often given direct Read/Edit/Write access to the state files themselves and asked to update their own candidate's entry; Agent 0's real job either way is to *verify* those writes are correct and complete before moving on, not to blindly trust a sub-agent's self-report). Think of Agent 0 as the show-runner: it doesn't write the script, shoot the footage, or pick the music — it decides what needs doing, hands each job to the right specialist, checks the work when it comes back, and is the one who has to explain to the channel owner why something did or didn't get published.</p>
-  </div>
-
-  <div class="track">
-    <div class="track-head">
-      <div class="track-title">Short-form track</div>
-      <div class="track-stats mono">31 total · 16 published · 3 quarantined</div>
+  <section class="tab-page active" id="tab-overview">
+    <div class="large-title-block">
+      <h1 class="large-title">Overview</h1>
+      <div class="large-title-sub">@makeitmanifest · generated Jul 28, 2026 — 08:27 UTC</div>
     </div>
-    <div class="agent-row">
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">1.1</span>
-            <span class="agent-name">Trend Scout</span>
-          </div>
-          <p class="agent-role">Find what's currently working in the &quot;motivational luxury&quot; Shorts/TikTok niche and produce a ranked, concrete opportunity — not just a topic, but a specific angle with a real sound-energy direction, title, and visual approach already attached, grounded in genuinely observed data rather than assumption.</p>
+    <div class="stats-grid"><div class="stat-card">
+          <div class="stat-icon stat-icon-success"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 12.5l5 5 10-11" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="stat-value">7</div>
+          <div class="stat-label">Published</div>
           
-        </div>
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">2.1</span>
-            <span class="agent-name">Scriptwriter</span>
-          </div>
-          <p class="agent-role">Turn one scouted opportunity from Agent 1.1 into a complete, ready-to-produce brief: title, SEO metadata, and sound/visual direction — everything Agent 3.1 (Producer) and Agent 4.1 (Publisher) need, so neither has to make creative decisions of their own. Despite the name &quot;Scriptwriter,&quot; this stage no longer writes an on-screen or spoken script at all — see below.</p>
+        </div><div class="stat-card">
+          <div class="stat-icon stat-icon-info"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 12 L16 8"/><path d="M8 15a5 5 0 0 1 8 0" stroke-linecap="round"/></svg></div>
+          <div class="stat-value">16</div>
+          <div class="stat-label">Ready to publish</div>
           
-        </div>
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">3.1</span>
-            <span class="agent-name">Producer</span>
-          </div>
-          <p class="agent-role">Turn a scripted brief into an actual finished vertical video file, using the supplied raw clips in `assets/short-form-clips/raw/` as base visuals and a track from one of the two audio libraries. This is the stage where the pipeline's real technical substance lives — everything else is planning, this is where a file actually gets rendered.</p>
+        </div><div class="stat-card">
+          <div class="stat-icon stat-icon-neutral"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 12 L16 8"/><path d="M8 15a5 5 0 0 1 8 0" stroke-linecap="round"/></svg></div>
+          <div class="stat-value">5</div>
+          <div class="stat-label">Pending</div>
           
-        </div>
-        <div class="agent agent-gates">
-          <div class="agent-head">
-            <span class="agent-num mono">—</span>
-            <span class="agent-name">Gates</span>
-          </div>
-          <p class="agent-role">Every candidate must pass the shared and format-specific gates in config/gates.json before it can move to ready_to_publish — factual/controversy screen, platform policy check, basic QA, copyright mitigation, and audio license check. A failing candidate is quarantined with a logged reason and the next candidate is scouted instead; gates are never lowered to hit the publishing schedule.</p>
-        </div>
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">4.1</span>
-            <span class="agent-name">Publisher</span>
-          </div>
-          <p class="agent-role">Publish a gate-passed short to YouTube via the YouTube Data API v3, using metadata from Agent 2.1's brief, and record the result. This is a mechanical, deterministic stage — by the time this agent runs, Agent 0 has already gate-checked the video and made the creative/quality call to publish. Agent 4.1's job is to execute the upload correctly and record what actually happened, not to second-guess the decision to publish.</p>
+        </div><div class="stat-card">
+          <div class="stat-icon stat-icon-critical"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4 2.5 20h19L12 4Z" stroke-linejoin="round"/><path d="M12 10.5v4.2" stroke-linecap="round"/><circle cx="12" cy="17.3" r="0.9" fill="currentColor" stroke="none"/></svg></div>
+          <div class="stat-value">4</div>
+          <div class="stat-label">Quarantined</div>
           
         </div></div>
-  </div>
+    <div class="ios-section"><div class="ios-section-header">⚠️ Blocked on publish</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-critical"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4 2.5 20h19L12 4Z" stroke-linejoin="round"/><path d="M12 10.5v4.2" stroke-linecap="round"/><circle cx="12" cy="17.3" r="0.9" fill="currentColor" stroke="none"/></svg></div><div class="row-text"><div class="row-title">lf_004 — This Is What Stillness Feels Like</div><div class="row-subtitle row-subtitle-wrap">Retried publish 2026-07-28T06:10Z (~9h after yesterday's uploads that first hit the cap around 2026-07-27T23:55Z) — still HTTP 400 uploadLimitExceeded. This tells us the quota reset window is longer than 'next calendar UTC day' or at least longer than ~9-10h; exact reset timing still not confirmed. Status remains ready_to_publish, not published, not quarantined. No further retry loop this firing — production continues instead. Retried again 2026-07-28T06:33Z, still uploadLimitExceeded.</div></div><div class="row-trailing"></div></div></div></div>
+    <div class="ios-section"><div class="ios-section-header">Next scheduled</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 12 L16 8"/><path d="M8 15a5 5 0 0 1 8 0" stroke-linecap="round"/></svg></div><div class="row-text"><div class="row-title">lf_004</div><div class="row-subtitle">Jul 29, 19:00 UTC · Long-form</div></div><div class="row-trailing"></div></div></div></div>
+    <div class="ios-section"><div class="ios-section-header">Tue, Jul 28</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_013</div><div class="row-subtitle">09:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_014</div><div class="row-subtitle">14:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_015</div><div class="row-subtitle">19:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">lf_003</div><div class="row-subtitle">20:00 · Long-form</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div></div></div><div class="ios-section"><div class="ios-section-header">Wed, Jul 29</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_016</div><div class="row-subtitle">09:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_017</div><div class="row-subtitle">14:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_018</div><div class="row-subtitle">19:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">lf_004</div><div class="row-subtitle">20:00 · Long-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div></div></div><div class="ios-section"><div class="ios-section-header">Thu, Jul 30</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_019</div><div class="row-subtitle">09:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_020</div><div class="row-subtitle">14:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_021</div><div class="row-subtitle">19:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">lf_005</div><div class="row-subtitle">20:00 · Long-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div></div></div><div class="ios-section"><div class="ios-section-header">Fri, Jul 31</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_022</div><div class="row-subtitle">09:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_023</div><div class="row-subtitle">14:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_024</div><div class="row-subtitle">19:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">lf_006</div><div class="row-subtitle">20:00 · Long-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div></div></div><div class="ios-section"><div class="ios-section-header">Sat, Aug 1</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_025</div><div class="row-subtitle">09:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_026</div><div class="row-subtitle">14:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_027</div><div class="row-subtitle">19:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">—</div><div class="row-subtitle">20:00 · Long-form</div></div><div class="row-trailing"><span class="pill pill-neutral">Pending</span></div></div></div></div><div class="ios-section"><div class="ios-section-header">Sun, Aug 2</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_028</div><div class="row-subtitle">09:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_029</div><div class="row-subtitle">14:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_030</div><div class="row-subtitle">19:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">lf_008</div><div class="row-subtitle">20:00 · Long-form</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div></div></div><div class="ios-section"><div class="ios-section-header">Mon, Aug 3</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">—</div><div class="row-subtitle">09:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-neutral">Pending</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">—</div><div class="row-subtitle">14:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-neutral">Pending</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">—</div><div class="row-subtitle">19:00 · Short-form</div></div><div class="row-trailing"><span class="pill pill-neutral">Pending</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">—</div><div class="row-subtitle">20:00 · Long-form</div></div><div class="row-trailing"><span class="pill pill-neutral">Pending</span></div></div></div></div>
+  </section>
 
-  <div class="track">
-    <div class="track-head">
-      <div class="track-title">Long-form track</div>
-      <div class="track-stats mono">8 total · 2 published · 1 quarantined</div>
+  <section class="tab-page" id="tab-agents">
+    <div class="large-title-block">
+      <h1 class="large-title">Agents</h1>
+      <div class="large-title-sub">Live from agents/*.md</div>
     </div>
-    <div class="agent-row">
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">1.2</span>
-            <span class="agent-name">Format Scout</span>
-          </div>
-          <p class="agent-role">Study what's currently working for other channels in the motivational-luxury long-form ambient-video niche (aesthetic, sound vibe, title/SEO patterns) and produce a concrete brief for the rest of the long-form pipeline. Long-form here means a multi-hour ambient background video — a still, generated scene with subtle motion, looped audio, and a long runtime (60-600 minutes) — a completely different format from the fast-cut short-form pipeline, and the two should never be confused: nothing about short-form's beat-locked cuts, 1.5s cap, or dropped captions applies here. Long-form is deliberately slow, calm, and static by design.</p>
-          
-        </div>
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">2.2</span>
-            <span class="agent-name">Image Sourcer</span>
-          </div>
-          <p class="agent-role">Generate an original background image matching the aesthetic described in Agent 1.2's brief. This agent replaces the originally-proposed Pinterest-scraping approach, which was rejected for ToS/copyright reasons — every image here is newly generated, never scraped or copied. This is the one long-form stage with a hard environmental dependency that can fail for reasons entirely outside the agent's control — read the troubleshooting note below before assuming a failure is something you did wrong.</p>
-          
-        </div>
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">3.2</span>
-            <span class="agent-name">Animator</span>
-          </div>
-          <p class="agent-role">Take Agent 2.2's static generated image and add subtle ambient motion so the long-form video isn't a dead static frame for hours — light rain drift, slow zoom/parallax, flickering light, drifting clouds, etc., matched to the image's theme. This is a mood-preservation stage, not a creative-license one: the goal is &quot;not static,&quot; not &quot;an interesting animation in its own right.&quot;</p>
-          
-        </div>
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">4.2</span>
-            <span class="agent-name">Sound Sourcer</span>
-          </div>
-          <p class="agent-role">Select a genuinely copyright-free (CC0 / no-attribution-required) ambient track matching the mood of the reference examples, for the long-form video. &quot;Copyright free&quot; must be a checkable, sourced fact — never just a prompt instruction taken on faith. **Unlike short-form, long-form audio has no exception to this rule** — the owner's 2026-07-27 decision to permit real trending/commercial songs applies to short-form only (see `config/gates.json` → `short_form_gates.audio_license_gate`); a multi-hour loop of a ~15-20s commercial-song excerpt would both sound absurd on repeat and carry meaningfully higher legal exposure than a single short's use, so long-form stays CC0-only, no exceptions.</p>
-          
-        </div>
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">5</span>
-            <span class="agent-name">Assembler / Looper</span>
-          </div>
-          <p class="agent-role">Combine the animated visual loop (Agent 3.2) and the verified audio track (Agent 4.2) into the final long-form video, looped to the target runtime (60-600 minutes). This is the stage where a mistake is most expensive to redo — a multi-hour render/encode is not something to casually re-run for a small fix, so get the parameters right before starting.</p>
-          
-        </div>
-        <div class="agent">
-          <div class="agent-head">
-            <span class="agent-num mono">6</span>
-            <span class="agent-name">Publisher</span>
-          </div>
-          <p class="agent-role">Publish a gate-passed long-form video to YouTube via the YouTube Data API v3, using metadata from Agent 1.2's brief, and record the result. Mirrors Agent 4.1's role for the short-form pipeline, with one significant practical difference: these files are large (a multi-hour video, potentially several GB), so the upload itself takes real time and needs to be handled as a resumable operation, not a fire-and-forget request.</p>
-          
-        </div></div>
-  </div>
-
-  <h2>Queues</h2>
-  <div class="cols2">
-    <div>
-      <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Long-form (8)</div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Length</th><th>Scouted</th></tr></thead>
-          <tbody><tr><td class="mono">lf_001</td><td>1 Hour of Discipline | Rainy City Ambience for Deep Focus &amp; Manifestation</td><td><span class="pill pill-critical">Quarantined</span></td><td class="mono">60 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_002</td><td>1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus &amp; Manifestation</td><td><span class="pill pill-success">Published</span></td><td class="mono">60 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_003</td><td>1.5 Hours of Ambition | Marina Skyline at Night - Ambience for Focus &amp; Manifestation</td><td><span class="pill pill-success">Published</span></td><td class="mono">90 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_004</td><td>This Is What Stillness Feels Like</td><td><span class="pill pill-info">Ready</span></td><td class="mono">60 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_005</td><td>Discipline Doesn't Need An Audience</td><td><span class="pill pill-info">Ready</span></td><td class="mono">120 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_006</td><td>You Build In The Quiet</td><td><span class="pill pill-info">Ready</span></td><td class="mono">75 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_007</td><td>Nobody Sees The Nights Like This</td><td><span class="pill pill-neutral">Scouted</span></td><td class="mono">150 min</td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">lf_008</td><td>Some Nights You Just Sit With It</td><td><span class="pill pill-info">Ready</span></td><td class="mono">60 min</td><td class="mono muted">2026-07-27</td></tr></tbody>
-        </table>
-      </div>
+    <div class="banner">
+      <div class="banner-head"><div class="row-icon row-icon-accent"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 12 L16 8"/><path d="M8 15a5 5 0 0 1 8 0" stroke-linecap="round"/></svg></div><div class="banner-title">Agent 0 — Orchestrator</div></div>
+      <p>Agent 0 is the only agent a scheduled routine talks to directly. It never produces content itself — it reads state, decides what needs to happen this cycle, delegates each stage to the right sub-agent (via the `Agent` tool, one sub-agent per pipeline stage), enforces gates, and logs everything. It is the sole owner of `state/*.json` writes at the top level (sub-agents return results to Agent 0, which persists them — though in practice, sub-agents are often given direct Read/Edit/Write access to the state files themselves and asked to update their own candidate's entry; Agent 0's real job either way is to *verify* those writes are correct and complete before moving on, not to blindly trust a sub-agent's self-report). Think of Agent 0 as the show-runner: it doesn't write the script, shoot the footage, or pick the music — it decides what needs doing, hands each job to the right specialist, checks the work when it comes back, and is the one who has to explain to the channel owner why something did or didn't get published.</p>
     </div>
-    <div>
-      <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">Short-form (31)</div>
-      <div class="table-wrap" style="max-height:420px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-        <table>
-          <thead><tr><th>ID</th><th>Title</th><th>Status</th><th>Date</th></tr></thead>
-          <tbody><tr><td class="mono">sf_001</td><td>Don't Be Motivated. Be Disciplined.</td><td><span class="pill pill-critical">Quarantined</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_002</td><td>Rebuild Yourself In Silence</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_002_v2</td><td>Rebuild Yourself In Silence</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_003</td><td>The Man Who Reads Alone Wins Alone</td><td><span class="pill pill-critical">Quarantined</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_004</td><td>—</td><td><span class="pill pill-critical">Quarantined</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_005</td><td>You're Not Behind. You're Becoming.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_006</td><td>They See The Car. Not The Work.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_007</td><td>This Is Your Future. Rehearse It.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_008</td><td>No Days Off. No Excuses.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_009</td><td>Just Another Tuesday.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_010</td><td>Built For This. Not Everyone Is.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_011</td><td>Nobody Clocks Me In Anymore.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_012</td><td>They Said I Wouldn't Make It. I Did.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_013</td><td>I'm The First. Not The Last.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_014</td><td>Everyone's On A Different Clock.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_015</td><td>Nobody Talks About What I Gave Up.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_016</td><td>You Become The Room You're In.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_017</td><td>This Took Years. It Looks Like Luck.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_018</td><td>The Old Me Wouldn't Recognize This.</td><td><span class="pill pill-success">Published</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_019</td><td>I Stopped Explaining My Boundaries.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_020</td><td>I Don't Spend It. I Reinvest It.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_021</td><td>Nobody Gave Me Permission. I Took It.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-27</td></tr><tr><td class="mono">sf_022</td><td>I Chose Uncertain Over Comfortable.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_023</td><td>Luck Is Just Timing You Prepared For.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_024</td><td>I Was Never Built For Normal.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_025</td><td>My Attention Is Not For Sale.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_026</td><td>I Trust My Instincts Over Their Opinions.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_027</td><td>I Saw This Before It Existed.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_028</td><td>I Raised My Standards. Not My Voice.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_029</td><td>Discipline Doesn't Ask How I Feel.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr><tr><td class="mono">sf_030</td><td>Their Timeline Was Never Mine.</td><td><span class="pill pill-info">Ready</span></td><td class="mono muted">2026-07-28</td></tr></tbody>
-        </table>
-      </div>
+    <div class="ios-section"><div class="ios-section-header">Short-form · 31 total, 16 published, 3 quarantined</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>1.1</span></div><div class="row-text"><div class="row-title">Trend Scout</div><div class="row-subtitle row-subtitle-wrap">Find what's currently working in the &quot;motivational luxury&quot; Shorts/TikTok niche and produce a ranked, concrete opportunity — not just a topic, but a specific angle with a real sound-energy direction, title, and visual approach already attached, grounded in genuinely observed data rather than assumption.</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>2.1</span></div><div class="row-text"><div class="row-title">Scriptwriter</div><div class="row-subtitle row-subtitle-wrap">Turn one scouted opportunity from Agent 1.1 into a complete, ready-to-produce brief: title, SEO metadata, and sound/visual direction — everything Agent 3.1 (Producer) and Agent 4.1 (Publisher) need, so neither has to make creative decisions of their own. Despite the name &quot;Scriptwriter,&quot; this stage no longer writes an on-screen or spoken script at all — see below.</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>3.1</span></div><div class="row-text"><div class="row-title">Producer</div><div class="row-subtitle row-subtitle-wrap">Turn a scripted brief into an actual finished vertical video file, using the supplied raw clips in `assets/short-form-clips/raw/` as base visuals and a track from one of the two audio libraries. This is the stage where the pipeline's real technical substance lives — everything else is planning, this is where a file actually gets rendered.</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-warning"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 12.5l5 5 10-11" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="row-text"><div class="row-title">Gates</div><div class="row-subtitle row-subtitle-wrap">Every candidate must pass the shared and format-specific gates in config/gates.json before it can move to ready_to_publish — factual/controversy screen, platform policy check, basic QA, copyright mitigation, and audio license check. A failing candidate is quarantined with a logged reason and the next candidate is scouted instead; gates are never lowered to hit the publishing schedule.</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-success"><span>4.1</span></div><div class="row-text"><div class="row-title">Publisher</div><div class="row-subtitle row-subtitle-wrap">Publish a gate-passed short to YouTube via the YouTube Data API v3, using metadata from Agent 2.1's brief, and record the result. This is a mechanical, deterministic stage — by the time this agent runs, Agent 0 has already gate-checked the video and made the creative/quality call to publish. Agent 4.1's job is to execute the upload correctly and record what actually happened, not to second-guess the decision to publish.</div></div><div class="row-trailing"></div></div></div></div>
+    <div class="ios-section"><div class="ios-section-header">Long-form · 8 total, 2 published, 1 quarantined</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-info"><span>1.2</span></div><div class="row-text"><div class="row-title">Format Scout</div><div class="row-subtitle row-subtitle-wrap">Study what's currently working for other channels in the motivational-luxury long-form ambient-video niche (aesthetic, sound vibe, title/SEO patterns) and produce a concrete brief for the rest of the long-form pipeline. Long-form here means a multi-hour ambient background video — a still, generated scene with subtle motion, looped audio, and a long runtime (60-600 minutes) — a completely different format from the fast-cut short-form pipeline, and the two should never be confused: nothing about short-form's beat-locked cuts, 1.5s cap, or dropped captions applies here. Long-form is deliberately slow, calm, and static by design.</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>2.2</span></div><div class="row-text"><div class="row-title">Image Sourcer</div><div class="row-subtitle row-subtitle-wrap">Generate an original background image matching the aesthetic described in Agent 1.2's brief. This agent replaces the originally-proposed Pinterest-scraping approach, which was rejected for ToS/copyright reasons — every image here is newly generated, never scraped or copied. This is the one long-form stage with a hard environmental dependency that can fail for reasons entirely outside the agent's control — read the troubleshooting note below before assuming a failure is something you did wrong.</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>3.2</span></div><div class="row-text"><div class="row-title">Animator</div><div class="row-subtitle row-subtitle-wrap">Take Agent 2.2's static generated image and add subtle ambient motion so the long-form video isn't a dead static frame for hours — light rain drift, slow zoom/parallax, flickering light, drifting clouds, etc., matched to the image's theme. This is a mood-preservation stage, not a creative-license one: the goal is &quot;not static,&quot; not &quot;an interesting animation in its own right.&quot;</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>4.2</span></div><div class="row-text"><div class="row-title">Sound Sourcer</div><div class="row-subtitle row-subtitle-wrap">Select a genuinely copyright-free (CC0 / no-attribution-required) ambient track matching the mood of the reference examples, for the long-form video. &quot;Copyright free&quot; must be a checkable, sourced fact — never just a prompt instruction taken on faith. **Unlike short-form, long-form audio has no exception to this rule** — the owner's 2026-07-27 decision to permit real trending/commercial songs applies to short-form only (see `config/gates.json` → `short_form_gates.audio_license_gate`); a multi-hour loop of a ~15-20s commercial-song excerpt would both sound absurd on repeat and carry meaningfully higher legal exposure than a single short's use, so long-form stays CC0-only, no exceptions.</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>5</span></div><div class="row-text"><div class="row-title">Assembler / Looper</div><div class="row-subtitle row-subtitle-wrap">Combine the animated visual loop (Agent 3.2) and the verified audio track (Agent 4.2) into the final long-form video, looped to the target runtime (60-600 minutes). This is the stage where a mistake is most expensive to redo — a multi-hour render/encode is not something to casually re-run for a small fix, so get the parameters right before starting.</div></div><div class="row-trailing"></div></div><div class="ios-row"><div class="row-icon row-icon-success"><span>6</span></div><div class="row-text"><div class="row-title">Publisher</div><div class="row-subtitle row-subtitle-wrap">Publish a gate-passed long-form video to YouTube via the YouTube Data API v3, using metadata from Agent 1.2's brief, and record the result. Mirrors Agent 4.1's role for the short-form pipeline, with one significant practical difference: these files are large (a multi-hour video, potentially several GB), so the upload itself takes real time and needs to be handled as a resumable operation, not a fire-and-forget request.</div></div><div class="row-trailing"></div></div></div></div>
+  </section>
+
+  <section class="tab-page" id="tab-queues">
+    <div class="large-title-block">
+      <h1 class="large-title">Queues</h1>
+      <div class="large-title-sub">39 candidates total</div>
     </div>
-  </div>
+    <div class="segmented">
+      <button class="active" data-queue="long">Long-form</button>
+      <button data-queue="short">Short-form</button>
+    </div>
+    <div class="queue-panel active" id="queue-long"><div class="ios-section"><div class="ios-section-header">Long-form (8)</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">1 Hour of Discipline | Rainy City Ambience for Deep Focus &amp; Manifestation</div><div class="row-subtitle">lf_001 · 60 min</div></div><div class="row-trailing"><span class="pill pill-critical">Quarantined</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus &amp; Manifestation</div><div class="row-subtitle">lf_002 · 60 min</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">1.5 Hours of Ambition | Marina Skyline at Night - Ambience for Focus &amp; Manifestation</div><div class="row-subtitle">lf_003 · 90 min</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">This Is What Stillness Feels Like</div><div class="row-subtitle">lf_004 · 60 min</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">Discipline Doesn't Need An Audience</div><div class="row-subtitle">lf_005 · 120 min</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">You Build In The Quiet</div><div class="row-subtitle">lf_006 · 75 min</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">Nobody Sees The Nights Like This</div><div class="row-subtitle">lf_007 · 150 min</div></div><div class="row-trailing"><span class="pill pill-neutral">Scouted</span></div></div><div class="ios-row"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">Some Nights You Just Sit With It</div><div class="row-subtitle">lf_008 · 60 min</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div></div></div></div>
+    <div class="queue-panel" id="queue-short"><div class="ios-section"><div class="ios-section-header">Short-form (31)</div><div class="ios-list"><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Don't Be Motivated. Be Disciplined.</div><div class="row-subtitle">sf_001</div></div><div class="row-trailing"><span class="pill pill-critical">Quarantined</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Rebuild Yourself In Silence</div><div class="row-subtitle">sf_002</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Rebuild Yourself In Silence</div><div class="row-subtitle">sf_002_v2</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">The Man Who Reads Alone Wins Alone</div><div class="row-subtitle">sf_003</div></div><div class="row-trailing"><span class="pill pill-critical">Quarantined</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">sf_004</div><div class="row-subtitle">sf_004</div></div><div class="row-trailing"><span class="pill pill-critical">Quarantined</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">You're Not Behind. You're Becoming.</div><div class="row-subtitle">sf_005</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">They See The Car. Not The Work.</div><div class="row-subtitle">sf_006</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">This Is Your Future. Rehearse It.</div><div class="row-subtitle">sf_007</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">No Days Off. No Excuses.</div><div class="row-subtitle">sf_008</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Just Another Tuesday.</div><div class="row-subtitle">sf_009</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Built For This. Not Everyone Is.</div><div class="row-subtitle">sf_010</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Nobody Clocks Me In Anymore.</div><div class="row-subtitle">sf_011</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">They Said I Wouldn't Make It. I Did.</div><div class="row-subtitle">sf_012</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I'm The First. Not The Last.</div><div class="row-subtitle">sf_013</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Everyone's On A Different Clock.</div><div class="row-subtitle">sf_014</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Nobody Talks About What I Gave Up.</div><div class="row-subtitle">sf_015</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">You Become The Room You're In.</div><div class="row-subtitle">sf_016</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">This Took Years. It Looks Like Luck.</div><div class="row-subtitle">sf_017</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">The Old Me Wouldn't Recognize This.</div><div class="row-subtitle">sf_018</div></div><div class="row-trailing"><span class="pill pill-success">Published</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I Stopped Explaining My Boundaries.</div><div class="row-subtitle">sf_019</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I Don't Spend It. I Reinvest It.</div><div class="row-subtitle">sf_020</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Nobody Gave Me Permission. I Took It.</div><div class="row-subtitle">sf_021</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I Chose Uncertain Over Comfortable.</div><div class="row-subtitle">sf_022</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Luck Is Just Timing You Prepared For.</div><div class="row-subtitle">sf_023</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I Was Never Built For Normal.</div><div class="row-subtitle">sf_024</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">My Attention Is Not For Sale.</div><div class="row-subtitle">sf_025</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I Trust My Instincts Over Their Opinions.</div><div class="row-subtitle">sf_026</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I Saw This Before It Existed.</div><div class="row-subtitle">sf_027</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I Raised My Standards. Not My Voice.</div><div class="row-subtitle">sf_028</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Discipline Doesn't Ask How I Feel.</div><div class="row-subtitle">sf_029</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div><div class="ios-row"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Their Timeline Was Never Mine.</div><div class="row-subtitle">sf_030</div></div><div class="row-trailing"><span class="pill pill-info">Ready</span></div></div></div></div></div>
+  </section>
 
-  <h2>Recently published</h2>
-  <div class="log"><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 29, 18:00 UTC</span><a class="log-title" href="https://youtu.be/tvr7Pe99b2o" target="_blank" rel="noopener">The Old Me Wouldn't Recognize This.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 29, 13:00 UTC</span><a class="log-title" href="https://youtu.be/Ia2jWCbXAIs" target="_blank" rel="noopener">This Took Years. It Looks Like Luck.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 29, 08:00 UTC</span><a class="log-title" href="https://youtu.be/-61RQDvyQtM" target="_blank" rel="noopener">You Become The Room You're In.</a></div><div class="log-row"><span class="log-icon log-long">━</span><span class="log-time mono">Jul 28, 19:00 UTC</span><a class="log-title" href="https://youtu.be/3Uat_ycZ4k8" target="_blank" rel="noopener">1.5 Hours of Ambition | Marina Skyline at Night - Ambience for Focus &amp; Manifestation</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 28, 18:00 UTC</span><a class="log-title" href="https://youtu.be/LE_thiHiqHM" target="_blank" rel="noopener">Nobody Talks About What I Gave Up.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 28, 13:00 UTC</span><a class="log-title" href="https://youtu.be/QA8WndS3tZM" target="_blank" rel="noopener">Everyone's On A Different Clock.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 28, 08:00 UTC</span><a class="log-title" href="https://youtu.be/jPadbAWbYsU" target="_blank" rel="noopener">I'm The First. Not The Last.</a></div><div class="log-row"><span class="log-icon log-long">━</span><span class="log-time mono">Jul 27, 21:10 UTC</span><a class="log-title" href="https://youtu.be/J5o72mPmCzs" target="_blank" rel="noopener">1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus &amp; Manifestation</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 20:50 UTC</span><a class="log-title" href="https://youtu.be/UXnA8OJeZjI" target="_blank" rel="noopener">They Said I Wouldn't Make It. I Did.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 19:05 UTC</span><a class="log-title" href="https://youtu.be/6EW_tfba9bo" target="_blank" rel="noopener">Just Another Tuesday.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 17:06 UTC</span><a class="log-title" href="https://youtu.be/5pv__ZadiaI" target="_blank" rel="noopener">Nobody Clocks Me In Anymore.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 16:47 UTC</span><a class="log-title" href="https://youtu.be/2A-1RDsOQ6w" target="_blank" rel="noopener">Built For This. Not Everyone Is.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 16:08 UTC</span><a class="log-title" href="https://youtu.be/oE4J7Q6RkcE" target="_blank" rel="noopener">No Days Off. No Excuses.</a></div><div class="log-row"><span class="log-icon log-short">▮</span><span class="log-time mono">Jul 27, 16:05 UTC</span><a class="log-title" href="https://youtu.be/O3YSNtfh9rs" target="_blank" rel="noopener">They See The Car. Not The Work.</a></div></div>
+  <section class="tab-page" id="tab-activity">
+    <div class="large-title-block">
+      <h1 class="large-title">Activity</h1>
+      <div class="large-title-sub">Recently published</div>
+    </div>
+    <div class="ios-section"><div class="ios-section-header">Recently published</div><div class="ios-list"><a class="ios-row" href="https://youtu.be/tvr7Pe99b2o" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">The Old Me Wouldn't Recognize This.</div><div class="row-subtitle">Jul 29, 18:00 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/Ia2jWCbXAIs" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">This Took Years. It Looks Like Luck.</div><div class="row-subtitle">Jul 29, 13:00 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/-61RQDvyQtM" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">You Become The Room You're In.</div><div class="row-subtitle">Jul 29, 08:00 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/3Uat_ycZ4k8" target="_blank" rel="noopener"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">1.5 Hours of Ambition | Marina Skyline at Night - Ambience for Focus &amp; Manifestation</div><div class="row-subtitle">Jul 28, 19:00 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/LE_thiHiqHM" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Nobody Talks About What I Gave Up.</div><div class="row-subtitle">Jul 28, 18:00 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/QA8WndS3tZM" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Everyone's On A Different Clock.</div><div class="row-subtitle">Jul 28, 13:00 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/jPadbAWbYsU" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">I'm The First. Not The Last.</div><div class="row-subtitle">Jul 28, 08:00 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/J5o72mPmCzs" target="_blank" rel="noopener"><div class="row-icon row-icon-info"><span>L</span></div><div class="row-text"><div class="row-title">1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus &amp; Manifestation</div><div class="row-subtitle">Jul 27, 21:10 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/UXnA8OJeZjI" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">They Said I Wouldn't Make It. I Did.</div><div class="row-subtitle">Jul 27, 20:50 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/6EW_tfba9bo" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Just Another Tuesday.</div><div class="row-subtitle">Jul 27, 19:05 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/5pv__ZadiaI" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Nobody Clocks Me In Anymore.</div><div class="row-subtitle">Jul 27, 17:06 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/2A-1RDsOQ6w" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Built For This. Not Everyone Is.</div><div class="row-subtitle">Jul 27, 16:47 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/oE4J7Q6RkcE" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">No Days Off. No Excuses.</div><div class="row-subtitle">Jul 27, 16:08 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/O3YSNtfh9rs" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">They See The Car. Not The Work.</div><div class="row-subtitle">Jul 27, 16:05 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/p3cLXwMS-d4" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">This Is Your Future. Rehearse It.</div><div class="row-subtitle">Jul 27, 15:44 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/Y120Tlxpu9U" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">You're Not Behind. You're Becoming.</div><div class="row-subtitle">Jul 27, 14:56 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/Bz7e8FgzL3A" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Rebuild Yourself In Silence</div><div class="row-subtitle">Jul 27, 14:35 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a><a class="ios-row" href="https://youtu.be/qYTu_SqyCSw" target="_blank" rel="noopener"><div class="row-icon row-icon-accent"><span>S</span></div><div class="row-text"><div class="row-title">Rebuild Yourself In Silence</div><div class="row-subtitle">Jul 27, 13:20 UTC</div></div><div class="row-trailing"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a></div></div>
+    <div class="ios-footer" style="margin:16px 16px 0;">Read from state/*.json and agents/*.md at generation time · image pool clean/unused: 14, pending vet: 3<br/>Add to Home Screen from your phone's browser to install.</div>
+  </section>
 
-  <footer>
-    Pipeline state read from <span class="mono">state/*.json</span> and agent specs from <span class="mono">agents/*.md</span> at generation time · quarantined items: 4 · image pool clean/unused: 14, pending vet: 3<br/>
-    Tip: open this page in your phone's browser (not the Claude app) and use "Add to Home Screen" / "Install".
-  </footer>
-</div>
+</main>
+
+<nav class="tabbar">
+  <button class="tab-btn active" data-tab="overview" data-title="Overview"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 12 L16 8"/><path d="M8 15a5 5 0 0 1 8 0" stroke-linecap="round"/></svg><span>Overview</span></button>
+  <button class="tab-btn" data-tab="agents" data-title="Agents"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3.2"/><circle cx="16.5" cy="10.5" r="2.4"/><path d="M4 19c0-2.9 2.4-5 5-5s5 2.1 5 5"/><path d="M14.5 14.6c2.2.2 4 1.9 4 4.4"/></svg><span>Agents</span></button>
+  <button class="tab-btn" data-tab="queues" data-title="Queues"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16" stroke-linecap="round"/><path d="M4 12h16" stroke-linecap="round"/><path d="M4 18h10" stroke-linecap="round"/></svg><span>Queues</span></button>
+  <button class="tab-btn" data-tab="activity" data-title="Activity"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Activity</span></button>
+</nav>
+
+<script>
+(function() {
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var navTitle = document.getElementById('navTitle');
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      tabBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-page').forEach(function(p) { p.classList.remove('active'); });
+      var page = document.getElementById('tab-' + btn.dataset.tab);
+      if (page) page.classList.add('active');
+      navTitle.textContent = btn.dataset.title;
+      var main = document.querySelector('main');
+      if (main) main.scrollTop = 0;
+      window.scrollTo(0, 0);
+    });
+  });
+  var segBtns = document.querySelectorAll('.segmented button');
+  segBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      segBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.queue-panel').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('queue-' + btn.dataset.queue);
+      if (panel) panel.classList.add('active');
+    });
+  });
+})();
+</script>
 </body>
 </html>
