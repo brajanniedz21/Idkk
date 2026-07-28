@@ -11,7 +11,17 @@ agents/0_orchestrator.md), not after every single item, to keep the
 
     python3 scripts/generate_dashboard.py
 
-Output: dashboard/index.html
+Output (all in dashboard/):
+  index.html, manifest.json, icon-192.png, icon-512.png, icon-180.png, sw.js
+      — the installable build, deployed to GitHub Pages by
+        .github/workflows/deploy-dashboard.yml on every push. This is the
+        one to "Install" as an app on a phone (needs real files + a
+        service worker for Chrome/Android to offer a true install instead
+        of a bookmark-style "Create shortcut").
+  artifact.html
+      — a single self-contained file (data: URI manifest/icons, no
+        service worker) for publishing via the Claude Artifact tool,
+        which can't serve the separate files above.
 """
 import base64
 import io
@@ -111,8 +121,9 @@ def pill(status):
 # the brand's copper accent on the dark ground, used for the PWA manifest
 # and Apple touch icon so the dashboard can be added to a home screen.
 # ---------------------------------------------------------------------
-def make_icon_png_b64(size):
+def make_icon_png_bytes(size):
     from PIL import Image, ImageDraw
+    import math
 
     bg = (16, 18, 26, 255)
     accent = (201, 138, 75, 255)
@@ -133,8 +144,6 @@ def make_icon_png_b64(size):
     )
     d.ellipse([cx - inner, cy - inner, cx + inner, cy + inner], fill=accent)
     # a single "needle" tick, like a dial/meter — echoes the batch-progress idea
-    import math
-
     ang = math.radians(-55)
     x2 = cx + outer * 1.0 * math.cos(ang)
     y2 = cy + outer * 1.0 * math.sin(ang)
@@ -142,7 +151,49 @@ def make_icon_png_b64(size):
 
     buf = io.BytesIO()
     im.save(buf, format="PNG")
-    return base64.b64encode(buf.getvalue()).decode("ascii")
+    return buf.getvalue()
+
+
+def make_icon_png_b64(size):
+    return base64.b64encode(make_icon_png_bytes(size)).decode("ascii")
+
+
+SERVICE_WORKER_JS = """\
+// Minimal service worker — required by Chrome/Android for full "Install"
+// (vs. "Create shortcut") PWA eligibility. Caches the app shell so the
+// dashboard also opens (with possibly-stale data) if offline.
+const CACHE = "pipeline-dashboard-v1";
+const SHELL = ["./", "./index.html", "./manifest.json"];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE).then((cache) => cache.addAll(SHELL)).catch(() => {})
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+  event.respondWith(
+    fetch(event.request)
+      .then((res) => {
+        const copy = res.clone();
+        caches.open(CACHE).then((cache) => cache.put(event.request, copy)).catch(() => {});
+        return res;
+      })
+      .catch(() => caches.match(event.request))
+  );
+});
+"""
 
 
 def main():
@@ -350,6 +401,14 @@ def main():
         blocker_html = f'<div class="panel panel-critical"><h3>⚠ Blocked on publish</h3>{rows}</div>'
 
     # ---- PWA icon + manifest (installable "app") ----
+    # Two output modes need different head markup:
+    #   "artifact" — a single self-contained file (Claude Artifact CSP: no
+    #     separate files, no service worker registration reliability), so
+    #     the manifest/icons are inlined as data: URIs.
+    #   "pages"    — real separate files served over HTTPS (GitHub Pages),
+    #     which is what Chrome/Android actually requires for a full
+    #     "Install" (own icon, own app-switcher entry) instead of falling
+    #     back to "Create shortcut" (a bookmark that opens in a browser tab).
     icon192_b64 = make_icon_png_b64(192)
     icon512_b64 = make_icon_png_b64(512)
     icon180_b64 = make_icon_png_b64(180)  # apple-touch-icon
@@ -358,21 +417,59 @@ def main():
     icon180_uri = f"data:image/png;base64,{icon180_b64}"
 
     app_name = f"{handle} Pipeline"
-    manifest = {
+    manifest_common = {
         "name": app_name,
         "short_name": "Pipeline",
         "description": "Status dashboard for the YouTube automation content pipeline.",
         "start_url": ".",
+        "scope": ".",
         "display": "standalone",
         "background_color": "#10121a",
         "theme_color": "#10121a",
-        "icons": [
-            {"src": icon192_uri, "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
-            {"src": icon512_uri, "sizes": "512x512", "type": "image/png", "purpose": "any maskable"},
-        ],
     }
-    manifest_json = json.dumps(manifest)
-    manifest_data_uri = "data:application/manifest+json," + manifest_json.replace("#", "%23")
+
+    manifest_artifact = dict(manifest_common, icons=[
+        {"src": icon192_uri, "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+        {"src": icon512_uri, "sizes": "512x512", "type": "image/png", "purpose": "any maskable"},
+    ])
+    manifest_artifact_json = json.dumps(manifest_artifact)
+    manifest_artifact_data_uri = "data:application/manifest+json," + manifest_artifact_json.replace("#", "%23")
+
+    manifest_pages = dict(manifest_common, icons=[
+        {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+        {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"},
+    ])
+
+    common_meta = f"""<meta name="theme-color" content="#10121a" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f5f3ef" media="(prefers-color-scheme: light)" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Pipeline" />"""
+
+    pwa_head_artifact = f"""<!-- Installable web app (self-contained: data: URIs, since a Claude
+     Artifact can't serve separate files or reliably run a service worker) -->
+<link rel="manifest" href="{manifest_artifact_data_uri}" />
+{common_meta}
+<link rel="apple-touch-icon" href="{icon180_uri}" />
+<link rel="icon" href="{icon192_uri}" />"""
+
+    pwa_head_pages = f"""<!-- Installable web app: real files served over HTTPS + a service
+     worker, which is what Chrome/Android require for a true "Install"
+     (own icon, own app-switcher entry) instead of "Create shortcut". -->
+<link rel="manifest" href="manifest.json" />
+{common_meta}
+<link rel="apple-touch-icon" href="icon-180.png" />
+<link rel="icon" href="icon-192.png" />"""
+
+    sw_register_pages = """<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}
+</script>
+"""
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -381,16 +478,7 @@ def main():
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>{esc(handle)} — Pipeline Dashboard</title>
 
-<!-- Installable web app -->
-<link rel="manifest" href="{manifest_data_uri}" />
-<meta name="theme-color" content="#10121a" media="(prefers-color-scheme: dark)" />
-<meta name="theme-color" content="#f5f3ef" media="(prefers-color-scheme: light)" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Pipeline" />
-<link rel="apple-touch-icon" href="{icon180_uri}" />
-<link rel="icon" href="{icon192_uri}" />
+%%PWA_HEAD%%
 
 <style>
 :root {{
@@ -783,18 +871,48 @@ footer {{
 
   <footer>
     Pipeline state read from <span class="mono">state/*.json</span> and agent specs from <span class="mono">agents/*.md</span> at generation time · quarantined items: {quarantine_count} · image pool clean/unused: {len(clean_unused)}, pending vet: {len(pending_images)}<br/>
-    Tip: open this page in your phone's browser (not the Claude app) and use "Add to Home Screen" to install it as an app.
+    %%FOOTER_TIP%%
   </footer>
 </div>
+%%SW_REGISTER%%
 </body>
 </html>
 """
 
+    footer_tip_artifact = 'Tip: open this page in your phone\'s browser (not the Claude app) and use "Add to Home Screen" — on Android this installs as a bookmark shortcut, not a full app, since a Claude Artifact can\'t serve the separate files Chrome requires for a true install. See the GitHub Pages version below for that.'
+    footer_tip_pages = 'Installable as a real app: open this page in your phone\'s browser and choose "Install" (Android/Chrome) or Share → "Add to Home Screen" (iOS/Safari).'
+
+    html_artifact = html.replace("%%PWA_HEAD%%", pwa_head_artifact).replace(
+        "%%SW_REGISTER%%", ""
+    ).replace("%%FOOTER_TIP%%", footer_tip_artifact)
+    html_pages = html.replace("%%PWA_HEAD%%", pwa_head_pages).replace(
+        "%%SW_REGISTER%%", sw_register_pages
+    ).replace("%%FOOTER_TIP%%", footer_tip_pages)
+
     os.makedirs(OUT_DIR, exist_ok=True)
-    out_path = os.path.join(OUT_DIR, "index.html")
-    with open(out_path, "w") as f:
-        f.write(html)
-    print("wrote", out_path, f"({len(html)} bytes)")
+
+    # Pages build: the canonical, installable version — real manifest,
+    # real icon files, real service worker, deployed by
+    # .github/workflows/deploy-dashboard.yml on every push.
+    with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
+        f.write(html_pages)
+    with open(os.path.join(OUT_DIR, "manifest.json"), "w") as f:
+        json.dump(manifest_pages, f, indent=2)
+    with open(os.path.join(OUT_DIR, "icon-192.png"), "wb") as f:
+        f.write(make_icon_png_bytes(192))
+    with open(os.path.join(OUT_DIR, "icon-512.png"), "wb") as f:
+        f.write(make_icon_png_bytes(512))
+    with open(os.path.join(OUT_DIR, "icon-180.png"), "wb") as f:
+        f.write(make_icon_png_bytes(180))
+    with open(os.path.join(OUT_DIR, "sw.js"), "w") as f:
+        f.write(SERVICE_WORKER_JS)
+
+    # Artifact build: single self-contained file for publishing via the
+    # Artifact tool (which can't serve the separate files above).
+    with open(os.path.join(OUT_DIR, "artifact.html"), "w") as f:
+        f.write(html_artifact)
+
+    print("wrote", OUT_DIR, f"(pages: {len(html_pages)} bytes, artifact: {len(html_artifact)} bytes)")
 
 
 def agent_card_gates():

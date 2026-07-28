@@ -1,10 +1,19 @@
 {
-  "_comment": "Records the published Artifact dashboard's URL so future sessions/firings can redeploy the SAME URL (via Artifact tool's `url` param) instead of minting a new one each time. See scripts/generate_dashboard.py and agents/0_orchestrator.md's 'Dashboard refresh' step.",
-  "url": "https://claude.ai/code/artifact/a7fafc6f-2fab-495b-8a1e-6954ca63f71c",
-  "file_path": "dashboard/index.html",
-  "title": "@makeitmanifest — Pipeline Dashboard",
-  "description": "Daily-updated status dashboard for the YouTube automation content pipeline.",
-  "favicon": "🎛️",
+  "_comment": "Records the published dashboard URLs so future sessions/firings redeploy the SAME links instead of minting new ones. Two builds exist as of 2026-07-28: an in-conversation Artifact preview, and the real installable-PWA build on GitHub Pages. See scripts/generate_dashboard.py and agents/0_orchestrator.md's 'Dashboard refresh' step.",
+  "artifact": {
+    "url": "https://claude.ai/code/artifact/a7fafc6f-2fab-495b-8a1e-6954ca63f71c",
+    "file_path": "dashboard/artifact.html",
+    "title": "@makeitmanifest — Pipeline Dashboard",
+    "description": "Daily-updated status dashboard for the YouTube automation content pipeline.",
+    "favicon": "🎛️",
+    "note": "Self-contained single-file build (data: URI manifest/icons, no service worker) — the in-conversation preview only. Not installable as a real app on Android (Chrome requires real served files + a service worker for that, which an Artifact can't provide)."
+  },
+  "pages": {
+    "url": "PENDING — fill in once the owner enables GitHub Pages (Settings > Pages > Source: GitHub Actions) on the now-public brajanniedz21/Idkk repo and .github/workflows/deploy-dashboard.yml has run once. Expected shape: https://brajanniedz21.github.io/Idkk/",
+    "source_dir": "youtube-automation/dashboard",
+    "deploy_workflow": ".github/workflows/deploy-dashboard.yml (runs on every push to youtube-automation/dashboard/**)",
+    "note": "This is the canonical installable version — real manifest.json + icon-*.png + sw.js served over HTTPS. Install via Chrome/Android 'Install' or iOS Safari 'Add to Home Screen'. Once the pages URL is confirmed working, fill it in above."
+  },
   "created_at": "2026-07-28T07:35:00Z",
-  "refresh_policy": "Regenerated and republished exactly once per daily trigger firing (end of cycle), never per-item, to keep maintenance cost near-zero. See agents/0_orchestrator.md 'Dashboard refresh' step."
+  "refresh_policy": "Regenerated once per daily trigger firing (end of cycle), never per-item, to keep maintenance cost near-zero. The Pages build updates itself for free via the GitHub Actions workflow on every push — no Artifact-tool call needed for it. Only artifact.html needs an explicit Artifact-tool republish. See agents/0_orchestrator.md 'Dashboard refresh' step."
 }
