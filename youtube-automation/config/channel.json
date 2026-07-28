@@ -2,12 +2,29 @@
   "channel_handle": "@makeitmanifest",
   "niche": "Motivational luxury background videos",
   "language": "English",
-  "primary_market": ["US", "UK", "Canada", "Australia"],
-  "secondary_market": ["Europe", "Asia"],
-  "content_exclusions": ["controversial topics", "politics"],
+  "primary_market": [
+    "US",
+    "UK",
+    "Canada",
+    "Australia"
+  ],
+  "secondary_market": [
+    "Europe",
+    "Asia"
+  ],
+  "content_exclusions": [
+    "controversial topics",
+    "politics"
+  ],
   "target_audience": {
-    "primary_share_pct": [80, 90],
-    "age_range": [16, 28],
+    "primary_share_pct": [
+      80,
+      90
+    ],
+    "age_range": [
+      16,
+      28
+    ],
     "gender_skew": "mostly male (e.g. @SilentUntilSeen, @3ternal_2 style); more mixed/female-skewing acceptable (e.g. @angelechoes909 style)",
     "interests": [
       "gym and fitness",
@@ -52,15 +69,22 @@
     "shorts_per_day": 3,
     "long_form_per_week": 7,
     "long_form_per_day": 1,
-    "long_form_length_minutes": [60, 600],
+    "long_form_length_minutes": [
+      60,
+      600
+    ],
     "weekly_batch_mode": {
       "added_at": "2026-07-27T21:30:00Z",
       "description": "As of 2026-07-27, the owner requested a fully autonomous weekly batch: every Monday, script/produce/gate all 21 shorts and 7 long-form videos for that week in one cycle, then upload all of them immediately but with YouTube's scheduled-publish feature (privacyStatus=private + publishAt) so they actually go live spread across the week at the slot times below, rather than all going public on Monday. See agents/0_orchestrator.md 'Weekly batch cycle' for the full operating logic.",
-      "shorts_daily_publish_times_local": ["09:00", "14:00", "19:00"],
+      "shorts_daily_publish_times_local": [
+        "09:00",
+        "14:00",
+        "19:00"
+      ],
       "long_form_daily_publish_time_local": "20:00",
       "slot_time_note": "Local times in the timezone above (Europe/London); convert to UTC accounting for BST/GMT when computing each video's publishAt timestamp. Long-form is scheduled after the day's 3rd short so a viewer's day has short-form energy first, calm ambient content in the evening.",
-      "batch_scale_warning": "28 full pipeline cycles (scout->script->produce->gate->publish) in a single run is a large amount of work — real risk of hitting session/token/time limits mid-batch (this has already happened once in a much smaller single-day session). The weekly trigger fires into a persistent, pre-existing session that already has repo access (a fresh session per firing was tried first and failed a live test run: it had no repo clone and no add_repo tool available to get one, since MCP/connector tools aren't passed to fresh-session routine firings). state/weekly_batch_progress.json tracks completion per-item so an interrupted run can be resumed from where it left off rather than restarting the whole batch, and sub-agents should be used liberally within the run to keep the parent session's own context budget from being the limiting factor.",
-      "upload_quota_warning": "2026-07-27T21:35Z: uploading ~11 videos within about an hour of wall-clock time hit YouTube's daily upload quota (HTTP 400 uploadLimitExceeded), even though each video's scheduled_publish_at (via the API's publishAt scheduling) was spread across the week — publishAt only controls when a video goes public, not when the upload call itself counts against the daily cap. Fixed by decoupling production (script/produce/gate, no per-day limit) from publishing (throttled to ~4 uploads/day matching shorts_per_day+long_form_per_day, driven by a trigger that now fires daily instead of weekly). See agents/0_orchestrator.md's Weekly batch cycle section for the full two-phase model."
+      "batch_scale_warning": "28 full pipeline cycles (scout->script->produce->gate->publish) in a single run is a large amount of work \u2014 real risk of hitting session/token/time limits mid-batch (this has already happened once in a much smaller single-day session). The weekly trigger fires into a persistent, pre-existing session that already has repo access (a fresh session per firing was tried first and failed a live test run: it had no repo clone and no add_repo tool available to get one, since MCP/connector tools aren't passed to fresh-session routine firings). state/weekly_batch_progress.json tracks completion per-item so an interrupted run can be resumed from where it left off rather than restarting the whole batch, and sub-agents should be used liberally within the run to keep the parent session's own context budget from being the limiting factor.",
+      "upload_quota_warning": "2026-07-27T21:35Z: uploading ~11 videos within about an hour of wall-clock time hit YouTube's daily upload quota (HTTP 400 uploadLimitExceeded), even though each video's scheduled_publish_at (via the API's publishAt scheduling) was spread across the week \u2014 publishAt only controls when a video goes public, not when the upload call itself counts against the daily cap. Fixed by decoupling production (script/produce/gate, no per-day limit) from publishing (throttled to ~4 uploads/day matching shorts_per_day+long_form_per_day, driven by a trigger that now fires daily instead of weekly). See agents/0_orchestrator.md's Weekly batch cycle section for the full two-phase model. UPDATE 2026-07-28: owner tightened the publish window from 24-48h to a strict next-24h window \u2014 each daily firing publishes exactly that day's 3 shorts + 1 long-form and nothing pulled forward from a later day, repeating identically every day. See agents/0_orchestrator.md Weekly batch cycle PUBLISHING phase for the exact rule."
     }
   },
   "operating_budget": "Claude Pro subscription usage only; no paid third-party APIs",
@@ -68,25 +92,34 @@
   "human_approval": "disabled",
   "human_approval_note": "No manual approval step exists in this pipeline. Automatic gates (config/gates.json) replace human review. Gates are never weakened to hit the publishing schedule; failing items are quarantined and the next candidate is selected instead.",
   "short_form_style_guidance": {
-    "target_duration_seconds": [8, 12],
-    "pacing": "Fast cuts locked to the actual beat of the audio track (real beat detection, not a fixed-interval grid), HARD CAP of 1.5 seconds per individual shot regardless of beat spacing (tightened from 2.0s per owner direction, 2026-07-27). Pick upbeat/fast-tempo audio deliberately BECAUSE it drives the cut pace — a faster song produces closer-together beats and therefore quicker, more energetic cuts; a slow track would force fewer/slower cuts even with the cap in place. Total video length is now 8-12 seconds (tightened from ~27s per owner direction, 2026-07-27) — at that length a video is roughly 6-9 distinct cuts, not 18-20. The audio's own slow/quiet intro is detected and skipped so playback opens on the real hook/drop, not a build-up — a viewer scrolling onto the Short should land on the energetic part immediately.",
-    "energy": "High-energy, upbeat, aggressive. Sound must be fast-tempo (phonk, hardtekk, reggaeton, aggressive trap/drill, uptempo mixes) — this is what's actually trending for gym/discipline/motivation shorts per real competitor research (2026), not a stylistic guess. NEVER use slow ambient/piano/meditation/rain tracks for short-form — those belong to long-form only. If a candidate's angle is genuinely 'quiet/silent' in theme, the visual pacing must still stay fast (quick cuts) even if the music is sparse — 'quiet' is a lyrical/thematic concept, not permission to slow the edit down.",
-    "visual_grade": "Dark, moody, low-exposure color grade ('gymcore' aesthetic) — reduced brightness/exposure, boosted contrast, slightly desaturated or cool-toned. This is a real, currently-trending look for this niche, not just a preference.",
-    "text_rules": "NO on-screen text/captions — dropped entirely per owner direction (2026-07-27). This is a pure visual+audio edit; the title/description carry the message instead.",
+    "target_duration_seconds": [
+      8,
+      12
+    ],
+    "pacing": "Fast cuts locked to the actual beat of the audio track (real beat detection, not a fixed-interval grid), HARD CAP of 1.5 seconds per individual shot regardless of beat spacing (tightened from 2.0s per owner direction, 2026-07-27). Pick upbeat/fast-tempo audio deliberately BECAUSE it drives the cut pace \u2014 a faster song produces closer-together beats and therefore quicker, more energetic cuts; a slow track would force fewer/slower cuts even with the cap in place. Total video length is now 8-12 seconds (tightened from ~27s per owner direction, 2026-07-27) \u2014 at that length a video is roughly 6-9 distinct cuts, not 18-20. The audio's own slow/quiet intro is detected and skipped so playback opens on the real hook/drop, not a build-up \u2014 a viewer scrolling onto the Short should land on the energetic part immediately.",
+    "energy": "High-energy, upbeat, aggressive. Sound must be fast-tempo (phonk, hardtekk, reggaeton, aggressive trap/drill, uptempo mixes) \u2014 this is what's actually trending for gym/discipline/motivation shorts per real competitor research (2026), not a stylistic guess. NEVER use slow ambient/piano/meditation/rain tracks for short-form \u2014 those belong to long-form only. If a candidate's angle is genuinely 'quiet/silent' in theme, the visual pacing must still stay fast (quick cuts) even if the music is sparse \u2014 'quiet' is a lyrical/thematic concept, not permission to slow the edit down.",
+    "visual_grade": "Dark, moody, low-exposure color grade ('gymcore' aesthetic) \u2014 reduced brightness/exposure, boosted contrast, slightly desaturated or cool-toned. This is a real, currently-trending look for this niche, not just a preference.",
+    "text_rules": "NO on-screen text/captions \u2014 dropped entirely per owner direction (2026-07-27). This is a pure visual+audio edit; the title/description carry the message instead.",
     "researched_at": "2026-07-27",
-    "sources_note": "Based on live web research into trending gym/motivation/phonk shorts content and general 2026 YouTube Shorts editing/retention best practices — see state/performance_notes.json for the full findings and sources."
+    "sources_note": "Based on live web research into trending gym/motivation/phonk shorts content and general 2026 YouTube Shorts editing/retention best practices \u2014 see state/performance_notes.json for the full findings and sources."
   },
   "long_form_style_guidance": {
-    "pacing": "Slow, calm, minimal/no cuts — a single looping ambient scene, not edited for pace at all.",
+    "pacing": "Slow, calm, minimal/no cuts \u2014 a single looping ambient scene, not edited for pace at all.",
     "energy": "Calm, ambient, meditative. Slow piano/pad/rain/nature tracks belong here, never in short-form.",
-    "visual_grade": "Warm or cool moody ambient tones per the scene (rain-on-window, fireplace, etc.), not the dark low-exposure short-form grade — long-form should read as a calm background, not an energetic edit.",
+    "visual_grade": "Warm or cool moody ambient tones per the scene (rain-on-window, fireplace, etc.), not the dark low-exposure short-form grade \u2014 long-form should read as a calm background, not an energetic edit.",
     "title_convention": {
       "added_at": "2026-07-27T22:10:00Z",
       "status": "Replaces the older 'X Hours of Y | Z Ambience for Focus & Manifestation' template used through lf_001-lf_004. Analyzed real data from @angelechoes909 (a long-form-only channel in this same niche, ~3hr videos) per owner direction.",
       "source_data": "yt-dlp flat-playlist pull of @angelechoes909's Videos tab (13 titled uploads, all ~3hr runtime; channel has no Shorts tab, confirmed via yt-dlp error). Titles/views: 'While They Sleep You Build' 95,000 | 'You're Closer to This Than You Think' 30,000 | 'The Reward for Staying Focused' 19,000 | 'Don't Give Up Now!' 15,000 | 'You Need to Keep Going!' 15,000 | 'You'll make it' 7,300 | 'Hard Work Pays Off' 7,200 | 'You've Come Too Far to Quit Now!' 3,400 | 'You Don't Forget Where It Started' 2,000 | 'POV: You Never Gave Up' 1,000 | 'POV: you finally made it' 922 | 'Work Hard, Play Hard' 747 | 'You Need to Lock In Right Now' 499.",
-      "pattern": "Short (3-7 words), punchy, standalone motivational statement or command — no duration, no format descriptor, no pipe-separated SEO subtitle, no 'Ambience for Focus & Manifestation' boilerplate. Two dominant structures: (1) second-person direct address ('You Need to Keep Going!', 'You're Closer to This Than You Think', 'While They Sleep You Build') and (2) a flat declarative aphorism with no pronoun ('Hard Work Pays Off', 'Work Hard, Play Hard'). Exclamation points appear on ~half but not the very top performer. 'POV:' prefix appears twice and both are among the lowest performers in this sample (1,000 and 922 views) — thin evidence given the small sample, but don't lean on it as a strong pattern.",
-      "guidance": "New long-form titles should read like these — a short, complete motivational statement someone could say out loud, not a labeled product description. Do NOT include the video's length, the word 'ambience', or a pipe/dash-separated subtitle. seo_description and tags still carry the keyword-rich/searchable content the title used to partially carry (duration, mood, use-case like 'study with me' or 'deep focus') — the title itself should be the emotional hook only.",
-      "examples_matching_pattern": ["You Already Know What You Have To Do", "This Is What Discipline Looks Like", "Nobody's Coming To Save You", "You're Not Tired. You're Uninspired.", "Stay Ready So You Don't Have To Get Ready"]
+      "pattern": "Short (3-7 words), punchy, standalone motivational statement or command \u2014 no duration, no format descriptor, no pipe-separated SEO subtitle, no 'Ambience for Focus & Manifestation' boilerplate. Two dominant structures: (1) second-person direct address ('You Need to Keep Going!', 'You're Closer to This Than You Think', 'While They Sleep You Build') and (2) a flat declarative aphorism with no pronoun ('Hard Work Pays Off', 'Work Hard, Play Hard'). Exclamation points appear on ~half but not the very top performer. 'POV:' prefix appears twice and both are among the lowest performers in this sample (1,000 and 922 views) \u2014 thin evidence given the small sample, but don't lean on it as a strong pattern.",
+      "guidance": "New long-form titles should read like these \u2014 a short, complete motivational statement someone could say out loud, not a labeled product description. Do NOT include the video's length, the word 'ambience', or a pipe/dash-separated subtitle. seo_description and tags still carry the keyword-rich/searchable content the title used to partially carry (duration, mood, use-case like 'study with me' or 'deep focus') \u2014 the title itself should be the emotional hook only.",
+      "examples_matching_pattern": [
+        "You Already Know What You Have To Do",
+        "This Is What Discipline Looks Like",
+        "Nobody's Coming To Save You",
+        "You're Not Tired. You're Uninspired.",
+        "Stay Ready So You Don't Have To Get Ready"
+      ]
     }
   },
   "reference_examples": {
