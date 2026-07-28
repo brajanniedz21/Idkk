@@ -129,6 +129,7 @@ def icon(name, size=24):
         "chevron": '<path d="M9 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"/>',
         "warn": '<path d="M12 4 2.5 20h19L12 4Z" stroke-linejoin="round"/><path d="M12 10.5v4.2" stroke-linecap="round"/><circle cx="12" cy="17.3" r="0.9" fill="currentColor" stroke="none"/>',
         "check": '<path d="M4.5 12.5l5 5 10-11" stroke-linecap="round" stroke-linejoin="round"/>',
+        "chart": '<path d="M5 19V10" stroke-linecap="round"/><path d="M12 19V5" stroke-linecap="round"/><path d="M19 19v-6" stroke-linecap="round"/>',
     }
     d = paths.get(name, "")
     return (
@@ -214,6 +215,7 @@ def main():
     posted = load("posted_history.json", {"short_form": [], "long_form": []})
     quarantine = load("quarantine.json", {"short_form": [], "long_form": []})
     image_pool = load("image_pool.json", {})
+    video_analytics = load("video_analytics.json", {"videos": [], "has_analytics_scope": False, "pulled_at": None})
 
     # ---- KPI counts ----
     status_counts = {"done": 0, "ready_to_publish": 0, "pending": 0}
@@ -421,6 +423,55 @@ def main():
         )
 
     activity_html = section("Recently published", "".join(activity_row_html(v) for v in activity))
+
+    # ---- Analytics tab ----
+    analytics_videos = sorted(
+        video_analytics.get("videos", []),
+        key=lambda v: v.get("views") or 0,
+        reverse=True,
+    )
+    has_analytics_scope = video_analytics.get("has_analytics_scope", False)
+    total_views = sum(v.get("views") or 0 for v in analytics_videos)
+    total_likes = sum(v.get("likes") or 0 for v in analytics_videos)
+    total_watched_min = sum(v.get("estimated_minutes_watched") or 0 for v in analytics_videos)
+
+    analytics_stats_html = "".join([
+        stat_card("Total views", total_views, "success"),
+        stat_card("Total likes", total_likes, "info"),
+        stat_card("Minutes watched", total_watched_min, "neutral", sub="0 while data catches up" if not total_watched_min else ""),
+        stat_card("Videos tracked", len(analytics_videos), "neutral"),
+    ])
+
+    def analytics_row_html(v):
+        views = v.get("views")
+        views_str = f"{views:,}" if views is not None else "—"
+        watched = v.get("estimated_minutes_watched")
+        sub_parts = [f'{esc(v.get("likes") or 0)} likes']
+        if watched:
+            sub_parts.append(f"{esc(watched)} min watched")
+        return row(
+            icon_bubble("S" if v["format"] == "short" else "L", "accent" if v["format"] == "short" else "info"),
+            esc(v.get("title", "—")),
+            " · ".join(sub_parts),
+            trailing=f'<span class="mono">{views_str}</span>&nbsp;views',
+            href=v.get("url"),
+            chevron=True,
+        )
+
+    if not analytics_videos:
+        analytics_list_html = section("Per-video stats", "")
+    else:
+        analytics_list_html = section(f"Per-video stats ({len(analytics_videos)})", "".join(analytics_row_html(v) for v in analytics_videos))
+
+    analytics_note = (
+        video_analytics.get("analytics_data_note")
+        or (
+            "Views/likes/comments are near-real-time via the YouTube Data API. Watch time and average "
+            "view duration need the YouTube Analytics API (yt-analytics.readonly scope) — "
+            + ("authorized, but YouTube's analytics processing pipeline lags behind the public view counter (often a day or two on a new channel), so those fields read 0/— until it catches up." if has_analytics_scope else "not yet authorized — see setup/YOUTUBE_API_SETUP.md.")
+        )
+    )
+    analytics_pulled_note = f'Pulled {esc(fmt_dt(video_analytics.get("pulled_at")))}' if video_analytics.get("pulled_at") else "Not pulled yet"
 
     # =================================================================
     # PWA icon + manifest (best-effort "Add to Home Screen")
@@ -832,12 +883,23 @@ body {{
     <div class="ios-footer" style="margin:16px 16px 0;">{footer_note}</div>
   </section>
 
+  <section class="tab-page" id="tab-analytics">
+    <div class="large-title-block">
+      <h1 class="large-title">Analytics</h1>
+      <div class="large-title-sub">{esc(analytics_pulled_note)}</div>
+    </div>
+    <div class="stats-grid">{analytics_stats_html}</div>
+    {analytics_list_html}
+    <div class="ios-footer" style="margin:16px 16px 0;">{esc(analytics_note)}</div>
+  </section>
+
 </main>
 
 <nav class="tabbar">
   <button class="tab-btn active" data-tab="overview" data-title="Overview">{icon('gauge')}<span>Overview</span></button>
   <button class="tab-btn" data-tab="agents" data-title="Agents">{icon('agents')}<span>Agents</span></button>
   <button class="tab-btn" data-tab="queues" data-title="Queues">{icon('queues')}<span>Queues</span></button>
+  <button class="tab-btn" data-tab="analytics" data-title="Analytics">{icon('chart')}<span>Analytics</span></button>
   <button class="tab-btn" data-tab="activity" data-title="Activity">{icon('activity')}<span>Activity</span></button>
 </nav>
 
