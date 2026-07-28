@@ -9,7 +9,8 @@
       "mcp__Claude_Code_Remote__update_trigger",
       "mcp__Claude_Code_Remote__delete_trigger",
       "mcp__Claude_Code_Remote__fire_trigger",
-      "Bash(ffprobe *)"
+      "Bash(ffprobe *)",
+      "Artifact"
     ],
     "defaultMode": "bypassPermissions"
   }
