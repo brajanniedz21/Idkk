@@ -1795,6 +1795,56 @@
       "produced_at": "2026-07-28T10:35:00Z",
       "gate_note": "Gates applied 2026-07-28T10:40Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with owner-provided trending track) -> PASS. audio_license_gate: track owner_provided_181240 is an owner-supplied track in state/trending_audio_library.json unidentified_owner_provided_tracks, provenance documented (extracted from owner Drive folder screen recording), never used by a prior candidate -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T10:40:00Z"
+    },
+    {
+      "id": "sf_026",
+      "status": "ready_to_publish",
+      "scouted_at": "2026-07-28T10:45:00Z",
+      "angle": "Self-trust/instinct-over-external-opinion: making a decision based on one's own internal read of a situation, without needing outside validation or agreement to feel certain about it. Distinct from self-authorized-permission (sf_021, which is about acting without waiting for anyone's go-ahead) and boundaries-as-wealth-protection (sf_019, about removing specific people/access) -- this angle is specifically about which internal signal governs a decision (instinct vs. others' commentary), not about the act of proceeding or who gets access.",
+      "title_pattern": "I Trust My Instincts Over Their Opinions.",
+      "caption_hooks": [
+        "Their opinion was never the deciding vote.",
+        "I trusted the read only I could see.",
+        "Nobody else has to understand it. I do."
+      ],
+      "trending_sound_style": "Calm, controlled low-tempo energy (~65-70 BPM) -- steady and unhurried rather than aggressive, matching an internally-certain, doesn't-need-to-convince-anyone tone; visual pacing still stays fast-cut per format rules even though the track itself is slower.",
+      "hashtags": [
+        "#trustyourinstincts",
+        "#innerknowing",
+        "#selftrust",
+        "#millionairemindset",
+        "#luxurylifestyle"
+      ],
+      "source_notes": "Informed by competitor_scan_2026_07_28_pt2 (state/performance_notes.json): the same fresh 150-video TikTok pull found zero occurrences of 'instinct', 'clarity', or 'self-respect'/'self respect' across @millionaire_mentality_7's caption history -- a confirmed gap. The scan also reconfirmed the channel's captions never use any identity-framing language this pipeline has scouted to date (16+ cumulative scans), reinforcing that this angle is genuinely differentiated territory.",
+      "candidate_footage_suggestions": "Fits the luxury-lifestyle-only footage pool as a calm, unhurried, solo-certainty visual register (contrast to a hectic/crowd-validated one) -- suggest 8 distinct clips: daytime mansion grounds at an unhurried pace (30.mp4), Cappadocia hot-air-balloon sunrise, solitary/contemplative (41.mp4), Venice canal boats, solo travel (9.mp4), a calm rooftop infinity pool over a skyline (66.mp4, second batch), a vintage red convertible cruising Monaco at sunset, unhurried (20.mp4), yacht at a marina (18.mp4), a confident solo jetski maneuver near a megayacht (60.mp4), Dubai Marina skyline (69.mp4, second batch). All 8 personally frame-grab-verified this cycle. Agent 3.1 to substitute freely if it judges differently.",
+      "title": "I Trust My Instincts Over Their Opinions.",
+      "seo_description": "I don't need a room full of agreement to know I'm right about my own life. My instincts got me this far -- their opinions were never part of the plan. Made for anyone who trusts their own read over everyone else's commentary.",
+      "tags": [
+        "trust your instincts",
+        "inner knowing",
+        "self trust",
+        "your own opinion",
+        "luxury lifestyle motivation",
+        "millionaire mindset",
+        "manifestation shorts",
+        "self improvement shorts",
+        "wealth mindset shorts",
+        "luxury aesthetic",
+        "discipline motivation",
+        "trust yourself",
+        "quiet confidence",
+        "success story",
+        "self belief"
+      ],
+      "sound_direction": "Real trending track: owner_provided_181653 (unidentified, owner-supplied), state/trending_audio_library.json unidentified_owner_provided_tracks -- ~67.0 BPM, the slowest track in the library. Checked posted_history/short_form_queue.json: owner_provided_181653 has never been used by any prior candidate -- the last genuinely fresh track remaining in the entire library (named + owner-provided) after sf_025 claimed owner_provided_181240. Its steady, unhurried tempo fits the internally-certain, doesn't-need-to-convince-anyone energy of this angle; cuts still land on the real detected beat and stay within the 1.5s cap per format rules even at this lower tempo.",
+      "visual_direction": "'Calm, unhurried self-certainty' framing -- 30.mp4 (daytime mansion grounds, calm/unhurried), 41.mp4 (Cappadocia hot air balloon sunrise, solitary), 9.mp4 (Venice canal boats, solo travel), 66.mp4 (rooftop infinity pool over a skyline, second batch, calm), 20.mp4 (vintage red convertible cruising Monaco at sunset, unhurried), 18.mp4 (yacht at marina), 60.mp4 (confident solo jetski maneuver near a megayacht), 69.mp4 (Dubai Marina yacht/skyline, second batch). All 8 personally verified via ffmpeg frame grab this cycle before finalizing -- actual content matches the description above for every clip.",
+      "factual_controversy_screen_note": "Checked against config/gates.json shared_gates.factual_controversy_screen: no political content, no fabricated claims/quotes attributed to real people, no controversial topics. Passes.",
+      "scripted_at": "2026-07-28T10:55:00Z",
+      "final_video_path": "assets/short-form-clips/output/sf_026_final.mp4",
+      "transform_log": "Beat-synced cuts (<=1.5s cap): 11 shots from 8 distinct clips (raw/30,41,9,66,20,18,60,69.mp4), avg ~0.91s/shot (range 0.78s-1.26s), intro skipped 0.31s, cut points from real beat detection on owner_provided_181653.mp3. Vertical 1080x1920, dark/low-exposure grade, audio fully replaced, no captions. All 8 clips personally frame-grab-verified before selection this cycle (30.mp4 = daytime mansion grounds, 41.mp4 = Cappadocia balloon sunrise, 9.mp4 = Venice canal boats, 66.mp4 = rooftop infinity pool/skyline, 20.mp4 = vintage red convertible Monaco sunset, 18.mp4 = yacht marina, 60.mp4 = jetski near megayacht, 69.mp4 = Dubai Marina skyline). Verified: ffprobe (10.000000s, h264/aac, 1080x1920), full ffmpeg decode pass clean (no errors), silencedetect -40dB/1s found no silence gaps, frame-grab visual check at t=3s confirms dark grade, vertical crop, no watermark/text, rooftop pool/night skyline content matches description.",
+      "produced_at": "2026-07-28T11:15:00Z",
+      "gate_note": "Gates applied 2026-07-28T11:20Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with owner-provided trending track) -> PASS. audio_license_gate: track owner_provided_181653 is an owner-supplied track in state/trending_audio_library.json unidentified_owner_provided_tracks, provenance documented, never used by a prior candidate (last remaining fresh track in the entire library) -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
+      "gated_at": "2026-07-28T11:20:00Z"
     }
   ]
 }
