@@ -139,7 +139,7 @@
     },
     {
       "id": "lf_005",
-      "status": "sound_sourced",
+      "status": "ready_to_publish",
       "visual_theme": "CONFIRMED by Agent 2.2 after downloading and inspecting the actual file (Drive file 1Ghxx0Yvt_OjzJW_M9Dc4EuaJ3xgjAtVJ, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (11).jpg', 735x490 JPEG) \u2014 unlike lf_003/lf_004 (both mis-guessed as car/mansion scenes but actually Dubai Marina skylines), this one genuinely IS a car/mansion garage scene as the brief guessed: a modern minimalist dark-wood/concrete garage bay at night housing two supercars (a black Lamborghini Huracan-style car on the left, a bronze/champagne Porsche 911 GT-style car on the right), warm interior downlighting, exterior wall sconces, dark evergreen trees framing the left edge, wet-look concrete driveway in the foreground. No visible license plates, logos, faces, or watermark/ad text (edge crops checked at 3x zoom, all clean).",
       "image_path": "assets/long-form/images/source_pool/lf_005_source.jpg",
       "animated_loop_path": "assets/long-form/output/lf_005_loop_segment.mp4",
@@ -168,7 +168,11 @@
       "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags. Passes shared_gates.factual_controversy_screen and platform_policy_check on inspection: no misleading title/thumbnail mismatch, no hate speech/violence/self-harm content, purely generic luxury-ambience motivational framing with no fabricated claims or named-individual quotes.",
       "banana_status_note": "Still blocked, same as lf_003 \u2014 see that entry's banana_status_note for the direct curl confirmation performed this cycle. Path B used instead.",
       "scouted_at": "2026-07-27T21:50:00Z",
-      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '2 Hours of Discipline | Private Estate Ambience for Study & Manifestation'."
+      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '2 Hours of Discipline | Private Estate Ambience for Study & Manifestation'.",
+      "final_video_path": "assets/long-form/output/lf_005_final.mp4",
+      "target_length_seconds": 7200,
+      "assembly_note": "stream_loop -1 on both lf_005_loop_segment.mp4 (20s visual) and holiznacc0_fire_place.mp3 audio, capped -t 7200, 8s fade in/out on both video and audio. Rendered as a genuinely detached background process (disowned, survived across multiple session turns) \u2014 ran for approximately 40 minutes wall-clock at ~4.5x realtime speed. See gate_check_note for full independent verification.",
+      "gate_check_note": "Gates applied 2026-07-28T06:59Z by parent session (finishing verification the lf_006-cycle background agent handed off): shared_gates.basic_qa: ffprobe confirms exact 7200.000000s duration (120min target), 1920x1080 h264 + aac, 1,040,934,295-byte non-corrupt file. Full ffmpeg -f null - decode pass completed with zero errors (exit code 0). silencedetect -35dB/2s across the full 2h runtime found zero silence gaps (empty result). Frame-grab checks at t=0 (black, fade-in start), t=10 (fading in), t=3600 (midpoint, correct garage/two-supercars scene, well-lit, no artifacts), t=7190 and t=7199 (fading to black correctly at the end) all confirm expected content and edit points. shared_gates.factual_controversy_screen and platform_policy_check: already confirmed clean per content_exclusions_screen field. long_form_gates.image_copyright_gate path B: image_pool.json has consumed:true + owner_provided_unverified source + disclosed-risk note referenced, no red flags on inspection (edge crops clean, no watermark/logos/faces). audio_license_gate: Fire Place track verified:true in state/cc0_audio_library.json, CC0 1.0. loop_length_gate: 7200s = 120min, within [60,600]. All gates PASS."
     },
     {
       "id": "lf_006",
