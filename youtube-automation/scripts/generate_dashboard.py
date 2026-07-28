@@ -822,7 +822,7 @@ body {{
   width: 46vmax;
   height: 46vmax;
   border-radius: 50%;
-  opacity: 0.16;
+  opacity: 0.32;
 }}
 .bg-glow span:nth-child(1) {{
   background: var(--accent);
@@ -834,13 +834,14 @@ body {{
   background: var(--info);
   bottom: -18%;
   right: -14%;
+  opacity: 0.26;
   animation: drift2 58s ease-in-out infinite alternate;
 }}
 .bg-glow span:nth-child(3) {{
   background: var(--success);
   top: 38%;
   left: 32%;
-  opacity: 0.08;
+  opacity: 0.18;
   animation: drift3 70s ease-in-out infinite alternate;
 }}
 @keyframes drift1 {{
@@ -964,22 +965,44 @@ body.scrolled .large-title-block {{
   padding: 0 16px 8px;
 }}
 .stat-card {{
-  background: color-mix(in srgb, var(--surface) 78%, transparent);
-  backdrop-filter: saturate(160%) blur(16px);
-  -webkit-backdrop-filter: saturate(160%) blur(16px);
-  border-radius: 16px;
+  background:
+    radial-gradient(120% 140% at 12% 0%, rgba(255,255,255,0.16), transparent 55%),
+    linear-gradient(165deg, color-mix(in srgb, var(--surface) 92%, white 8%) 0%, color-mix(in srgb, var(--surface) 90%, transparent) 60%, color-mix(in srgb, var(--surface) 82%, black 8%) 100%);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-radius: 20px;
+  border: 0.75px solid rgba(255,255,255,0.16);
   padding: 14px 14px 12px;
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -12px 20px -14px rgba(0,0,0,0.35),
+    0 8px 20px -12px rgba(0,0,0,0.4);
   transition: transform 0.18s ease;
+}}
+:root[data-theme="light"] .stat-card {{
+  border-color: rgba(0,0,0,0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    inset 0 -10px 18px -14px rgba(0,0,0,0.1),
+    0 6px 16px -12px rgba(0,0,0,0.18);
+}}
+@media (prefers-color-scheme: light) {{
+  :root:not([data-theme="dark"]) .stat-card {{
+    border-color: rgba(0,0,0,0.06);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.7),
+      inset 0 -10px 18px -14px rgba(0,0,0,0.1),
+      0 6px 16px -12px rgba(0,0,0,0.18);
+  }}
 }}
 .stat-card:active {{ transform: scale(0.97); }}
 .stat-card::before {{
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.06) 46%, transparent 62%);
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.10) 46%, transparent 62%);
   background-size: 220% 220%;
   background-position: 120% -20%;
   pointer-events: none;
@@ -1147,13 +1170,35 @@ body.scrolled .large-title-block {{
 
 /* ---- Charts (Analytics tab) ---- */
 .chart-card {{
-  background: color-mix(in srgb, var(--surface) 85%, transparent);
-  backdrop-filter: saturate(150%) blur(12px);
-  -webkit-backdrop-filter: saturate(150%) blur(12px);
-  border-radius: 14px;
+  background:
+    radial-gradient(120% 140% at 12% 0%, rgba(255,255,255,0.14), transparent 55%),
+    linear-gradient(165deg, color-mix(in srgb, var(--surface) 92%, white 8%) 0%, color-mix(in srgb, var(--surface) 90%, transparent) 60%, color-mix(in srgb, var(--surface) 82%, black 8%) 100%);
+  backdrop-filter: saturate(170%) blur(18px);
+  -webkit-backdrop-filter: saturate(170%) blur(18px);
+  border-radius: 20px;
+  border: 0.75px solid rgba(255,255,255,0.16);
   margin: 0 16px;
   padding: 14px 8px 10px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -12px 20px -14px rgba(0,0,0,0.35),
+    0 8px 20px -12px rgba(0,0,0,0.4);
+}}
+:root[data-theme="light"] .chart-card {{
+  border-color: rgba(0,0,0,0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    inset 0 -10px 18px -14px rgba(0,0,0,0.1),
+    0 6px 16px -12px rgba(0,0,0,0.18);
+}}
+@media (prefers-color-scheme: light) {{
+  :root:not([data-theme="dark"]) .chart-card {{
+    border-color: rgba(0,0,0,0.06);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.7),
+      inset 0 -10px 18px -14px rgba(0,0,0,0.1),
+      0 6px 16px -12px rgba(0,0,0,0.18);
+  }}
 }}
 .chart-card-sub {{
   font-size: 12px;
