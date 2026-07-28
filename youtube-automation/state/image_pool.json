@@ -46,13 +46,14 @@
     },
     {
       "candidate_id": "lf_006",
+      "image_path": "assets/long-form/images/source_pool/lf_006_source.jpg",
       "assigned_at": "2026-07-27T21:50:00Z",
       "source": "owner_provided_unverified",
       "drive_folder_id": "1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g",
       "drive_file_id": "1W0N23txWk6VX7KhU5vTfafT38P_GEux2",
       "original_filename": "download (2).jpg",
-      "provenance_note": "Not yet downloaded/inspected by any agent. Assigned to lf_006 by Agent 1.2 this cycle based on folder-level theme; Agent 2.2 must download and inspect before use.",
-      "consumed": false
+      "provenance_note": "Downloaded and inspected by Agent 2.2 this cycle: 735x490 JPEG, 58778 bytes (matches Drive metadata exactly). Confirms the folder-level guess -- genuinely is a car/mansion night scene: a paved stone courtyard/driveway at night with two dark supercars (a black Lamborghini-style car on the left with its scissor door raised and illuminated rear diffuser/wing, and a dark sports car on the right with a red LED taillight strip, likely Porsche-style) parked facing each other, a white garage door with wall sconce lighting at left, ivy/foliage draping the wall above, a large palm/tropical leaf frond in the right foreground, and a third car (silver sedan) plus additional exterior lights visible in the blurred background. No visible license plates, faces, watermark/ad text, or 'download link' overlay -- edge crops checked at 3x zoom (all four borders), all clean. Same scrutiny applied as lf_002-lf_005.",
+      "consumed": true
     },
     {
       "candidate_id": "lf_007",
