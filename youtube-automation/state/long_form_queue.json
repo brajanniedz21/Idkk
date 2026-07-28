@@ -139,8 +139,9 @@
     },
     {
       "id": "lf_005",
-      "status": "scouted",
-      "visual_theme": "Owner-supplied still image (Drive file 1Ghxx0Yvt_OjzJW_M9Dc4EuaJ3xgjAtVJ, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (11).jpg'): not yet downloaded/inspected by this agent; per the folder's established theme expected to be a luxury car/mansion night scene consistent with the rest of the batch. General description only \u2014 Agent 2.2 will download, inspect, and correct/refine this note against the real file.",
+      "status": "image_sourced",
+      "visual_theme": "CONFIRMED by Agent 2.2 after downloading and inspecting the actual file (Drive file 1Ghxx0Yvt_OjzJW_M9Dc4EuaJ3xgjAtVJ, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (11).jpg', 735x490 JPEG) \u2014 unlike lf_003/lf_004 (both mis-guessed as car/mansion scenes but actually Dubai Marina skylines), this one genuinely IS a car/mansion garage scene as the brief guessed: a modern minimalist dark-wood/concrete garage bay at night housing two supercars (a black Lamborghini Huracan-style car on the left, a bronze/champagne Porsche 911 GT-style car on the right), warm interior downlighting, exterior wall sconces, dark evergreen trees framing the left edge, wet-look concrete driveway in the foreground. No visible license plates, logos, faces, or watermark/ad text (edge crops checked at 3x zoom, all clean).",
+      "image_path": "assets/long-form/images/source_pool/lf_005_source.jpg",
       "mood": "calm ambient background, cozy/warm character (Fire Place track)",
       "title": "Discipline Doesn't Need An Audience",
       "seo_description": "Two hours of calm outside a private estate at night, made for deep study sessions, long focus blocks, or working toward the life you're building. Let the stillness carry you through discipline, journaling, or manifestation practice. Great for background study, late-night reflection, or sleep. #ambience #discipline #manifestation #deepfocus #studywithme #luxurylifestyle #selfimprovement",
