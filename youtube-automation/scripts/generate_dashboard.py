@@ -313,7 +313,11 @@ def main():
         items = [it for it in items if it]
         if not items:
             return '<div class="chart-empty">No data yet.</div>'
-        max_val = max((it[1] for it in items), default=0) or 1
+        # Headroom so the longest bar's value label has room to sit after
+        # it in the same row instead of overflowing the container — a
+        # 100%-width fill leaves zero space for the label in a nowrap flex
+        # row, which is exactly the bug this constant fixes.
+        max_val = (max((it[1] for it in items), default=0) or 1) * 1.22
         rows = []
         for it in items:
             label, value, href = it[0], it[1], it[2]
@@ -379,6 +383,50 @@ def main():
           <text x="{min(last_x, W-90):.1f}" y="{max(last_y-10, 12):.1f}" class="chart-end-label">{esc(last_label)}</text>
           <text x="{PAD_L}" y="{H-4}" class="chart-axis-label">{esc(first_date)}</text>
           <text x="{W-8}" y="{H-4}" class="chart-axis-label" text-anchor="end">{esc(last_date)}</text>
+        </svg>"""
+
+    def retention_chart(points, color_var="var(--info)"):
+        """Audience retention curve: x = % of video elapsed, y = % of
+        audience still watching. Real per-video data from the Analytics
+        API (elapsedVideoTimeRatio / audienceWatchRatio), no fabrication —
+        empty state when a video doesn't have retention data yet."""
+        if not points:
+            return (
+                '<div class="chart-empty">'
+                "No retention data yet — needs a video with enough views for YouTube to "
+                "compute a curve, and the same processing lag as the other Analytics metrics."
+                "</div>"
+            )
+        W, H, PAD_L, PAD_B, PAD_T = 600, 160, 30, 22, 14
+        plot_w = W - PAD_L - 8
+        plot_h = H - PAD_B - PAD_T
+        pts = sorted(points, key=lambda p: p["elapsed"])
+        n = len(pts)
+
+        def xy(i, p):
+            x = PAD_L + plot_w * (p["elapsed"])
+            y = PAD_T + plot_h - (plot_h * min(1.0, p["ratio"]))
+            return x, y
+
+        coords = [xy(i, p) for i, p in enumerate(pts)]
+        line_path = "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in coords)
+        area_path = line_path + f" L {coords[-1][0]:.1f} {PAD_T+plot_h:.1f} L {coords[0][0]:.1f} {PAD_T+plot_h:.1f} Z"
+        last_x, last_y = coords[-1]
+        last_pct = round(pts[-1]["ratio"] * 100)
+        gridlines = (
+            f'<line x1="{PAD_L}" y1="{PAD_T+plot_h:.1f}" x2="{W-8}" y2="{PAD_T+plot_h:.1f}" class="chart-grid"/>'
+            f'<text x="2" y="{PAD_T+plot_h+4:.1f}" class="chart-axis-label">0%</text>'
+            f'<line x1="{PAD_L}" y1="{PAD_T:.1f}" x2="{W-8}" y2="{PAD_T:.1f}" class="chart-grid"/>'
+            f'<text x="2" y="{PAD_T+4:.1f}" class="chart-axis-label">100%</text>'
+        )
+        return f"""<svg viewBox="0 0 {W} {H}" class="trend-svg" preserveAspectRatio="none" role="img" aria-label="audience retention">
+          {gridlines}
+          <path d="{area_path}" class="chart-area" fill="{color_var}"/>
+          <path d="{line_path}" class="chart-line" stroke="{color_var}" fill="none"/>
+          <circle cx="{last_x:.1f}" cy="{last_y:.1f}" r="4" fill="{color_var}" class="chart-dot"/>
+          <text x="{min(last_x, W-70):.1f}" y="{max(last_y-10, 12):.1f}" class="chart-end-label">{last_pct}%</text>
+          <text x="{PAD_L}" y="{H-4}" class="chart-axis-label">Start</text>
+          <text x="{W-8}" y="{H-4}" class="chart-axis-label" text-anchor="end">End</text>
         </svg>"""
 
     # ---- Agents tab ----
@@ -578,14 +626,57 @@ def main():
         trend_chart(video_analytics.get("daily_series", []), "var(--accent)", "views", "views"),
     )
 
+    # Traffic sources — where views actually come from
+    TRAFFIC_SOURCE_LABELS = {
+        "YT_SEARCH": "YouTube search",
+        "SUGGESTED_VIDEO": "Suggested videos",
+        "BROWSE": "Browse / Home",
+        "EXTERNAL": "External sites",
+        "NOTIFICATION": "Notifications",
+        "PLAYLIST": "Playlists",
+        "SHORTS": "Shorts feed",
+        "CHANNEL": "Channel page",
+        "NO_LINK_OTHER": "Direct / unlinked",
+        "SUBSCRIBER": "Subscription feed",
+    }
+    traffic_items = [
+        (TRAFFIC_SOURCE_LABELS.get(t.get("source"), t.get("source")), t.get("views") or 0, None)
+        for t in (video_analytics.get("traffic_sources") or [])
+    ]
+    traffic_html = chart_card("Traffic sources", bar_chart(traffic_items, "var(--info)"))
+
+    # Audience retention curve — for the single most-viewed video
+    retention_curve = video_analytics.get("retention_curve")
+    retention_video = video_analytics.get("retention_video")
+    retention_html = chart_card(
+        "Audience retention",
+        retention_chart(retention_curve),
+        subtitle=esc(retention_video["title"]) if retention_video else "",
+    )
+
+    subs_gained = video_analytics.get("subscribers_gained")
+    subs_lost = video_analytics.get("subscribers_lost")
+    subs_html = ""
+    if subs_gained is not None:
+        subs_net = subs_gained - subs_lost
+        subs_html = chart_card(
+            "Subscribers",
+            bar_chart(
+                [("Gained", subs_gained, None, "var(--success)"), ("Lost", subs_lost, None, "var(--critical)")],
+                "var(--success)",
+            ),
+            subtitle=f"Net {'+' if subs_net >= 0 else ''}{subs_net}",
+        )
+
     analytics_note = (
         video_analytics.get("analytics_data_note")
         or (
             "Views/likes/comments are near-real-time via the YouTube Data API. Watch time and average "
             "view duration need the YouTube Analytics API (yt-analytics.readonly scope) — "
-            + ("authorized, but YouTube's analytics processing pipeline lags behind the public view counter (often a day or two on a new channel), so those fields read 0/— until it catches up." if has_analytics_scope else "not yet authorized — see setup/YOUTUBE_API_SETUP.md.")
+            + ("authorized, but YouTube's analytics processing pipeline lags behind the public view counter (often a day or two on a new channel), so those fields read 0/— until it catches up." if has_analytics_scope else "not currently usable — see the note below.")
         )
     )
+    ctr_note = video_analytics.get("ctr_impressions_note", "")
     analytics_pulled_note = f'Pulled {esc(fmt_dt(video_analytics.get("pulled_at")))}' if video_analytics.get("pulled_at") else "Not pulled yet"
 
     # =================================================================
@@ -948,16 +1039,19 @@ body {{
   align-items: center;
   height: 20px;
   min-width: 0;
+  max-width: 100%;
 }}
 .bar-fill {{
   height: 20px;
   min-width: 3px;
+  max-width: 78%;
   border-radius: 0 4px 4px 0;
   flex-shrink: 0;
   transition: width 0.4s cubic-bezier(0.22,1,0.36,1);
 }}
 .bar-value {{
   margin-left: 8px;
+  flex-shrink: 0;
   font-size: 12px;
   font-weight: 600;
   color: var(--text);
@@ -968,7 +1062,7 @@ body {{
   width: 100%;
   height: 150px;
   display: block;
-  overflow: visible;
+  overflow: hidden;
 }}
 .chart-grid {{ stroke: var(--border); stroke-width: 1; }}
 .chart-axis-label {{
@@ -1083,10 +1177,14 @@ body {{
     </div>
     <div class="stats-grid">{analytics_stats_html}</div>
     {trend_html}
+    {retention_html}
+    {traffic_html}
+    {subs_html}
     {views_bar_html}
     {format_bar_html}
     {analytics_list_html}
     <div class="ios-footer" style="margin:16px 16px 0;">{esc(analytics_note)}</div>
+    <div class="ios-footer" style="margin:4px 16px 0;">{esc(ctr_note)}</div>
   </section>
 
 </main>

@@ -100,6 +100,15 @@ This is a ~5 minute repeat of steps 3-5 above, not a full redo:
 
    Run this from a machine with a browser, in the same directory as your `client_secret.json`. You'll see the same "unverified app" warning as before — same click-through as last time. This time the consent screen will list an extra permission ("View YouTube Analytics reports") — approve it too.
 4. **Overwrite** `youtube-automation/secrets/youtube_token.json` with the new file (same filename, same location — it replaces the old one, which only had the narrower scopes).
-5. Tell me once it's replaced and I'll verify the new scope is live and start actually pulling analytics data (views alone were already working; this unlocks retention/CTR/traffic-source/demographics for the weekly analytics cycle in `agents/0_orchestrator.md`).
+5. Tell me once it's replaced and I'll verify the new scope is live and start actually pulling analytics data (views alone were already working; this unlocks retention/traffic-source data for the daily analytics cycle in `agents/0_orchestrator.md` — note CTR/impressions specifically are NOT available through this API at all, confirmed via a live 400 error, regardless of scopes; that one's YouTube Studio-only).
 
-`scripts/youtube_auth.py`'s `SCOPES` list already includes `yt-analytics.readonly` as of 2026-07-28, ready for the new token.
+### Known issue as of 2026-07-28: the scope doesn't actually work yet
+
+After the steps above, `yt-analytics.readonly` shows up in `secrets/youtube_token.json`'s stored scope list, and single API calls worked right after re-authorizing — but refreshing the token with that scope fails with `invalid_scope`, meaning it stops working as soon as the original access token expires (roughly an hour). This is most likely because `yt-analytics.readonly` is one of Google's "sensitive" scopes, and something about the app's OAuth consent screen configuration for it wasn't fully accepted — just adding the scope string to the list (step 2 above) may not be enough on its own.
+
+Things worth checking if you want to try fixing this:
+- On the **OAuth consent screen**, under whatever section lists sensitive/restricted scopes, confirm `yt-analytics.readonly` actually shows as **saved** (not just entered) — Google sometimes requires re-saving the whole consent screen configuration after adding a sensitive scope.
+- Some sensitive scopes prompt for extra app info (privacy policy URL, app icon) even in Testing mode — check if the console is flagging anything as incomplete.
+- If it's still broken after checking those, it may need Google's own review process for sensitive scopes even for a Testing-mode app with test users — this isn't something to keep retrying blindly.
+
+The pipeline itself handles this gracefully either way — `scripts/youtube_auth.py` keeps the base publishing scopes (`youtube.upload`/`youtube`/`youtube.readonly`) in a separate, isolated credential path from the analytics scope specifically so a broken analytics grant can never block uploads again (it briefly did, before this was split out) — see `load_credentials()` vs `load_analytics_credentials()` in that file.

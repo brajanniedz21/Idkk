@@ -21,7 +21,7 @@ import sys
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from youtube_auth import load_credentials  # noqa: E402
+from youtube_auth import load_credentials, load_analytics_credentials  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "state")
@@ -30,8 +30,9 @@ STATE = os.path.join(ROOT, "state")
 def main():
     from googleapiclient.discovery import build
 
-    creds = load_credentials()
-    has_analytics_scope = "https://www.googleapis.com/auth/yt-analytics.readonly" in creds.scopes
+    creds = load_credentials()  # base scopes only — must never be allowed to fail publishing
+    analytics_creds = load_analytics_credentials()  # separate, isolated — None if unusable
+    has_analytics_scope = analytics_creds is not None
 
     posted = json.load(open(os.path.join(STATE, "posted_history.json")))
     entries = [{**v, "format": "short"} for v in posted.get("short_form", [])]
@@ -60,7 +61,7 @@ def main():
     analytics_by_id = {}
     daily_series = []
     if has_analytics_scope:
-        yta = build("youtubeAnalytics", "v2", credentials=creds)
+        yta = build("youtubeAnalytics", "v2", credentials=analytics_creds)
         try:
             resp = yta.reports().query(
                 ids="channel==MINE",
@@ -103,6 +104,63 @@ def main():
         except Exception as e:
             print(f"Analytics API daily-trend query failed (non-fatal): {e}", file=sys.stderr)
 
+    # Traffic sources — where views actually come from (search, suggested,
+    # external, etc.). Real API dimension, verified live 2026-07-28.
+    traffic_sources = []
+    if has_analytics_scope:
+        try:
+            resp3 = yta.reports().query(
+                ids="channel==MINE",
+                startDate="2020-01-01",
+                endDate=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                metrics="views",
+                dimensions="insightTrafficSourceType",
+                sort="-views",
+            ).execute()
+            for r in resp3.get("rows", []):
+                traffic_sources.append({"source": r[0], "views": r[1]})
+        except Exception as e:
+            print(f"Analytics API traffic-source query failed (non-fatal): {e}", file=sys.stderr)
+
+    # Audience retention curve for the single most-viewed video — real
+    # per-video retention data (% of the video elapsed vs. % of audience
+    # still watching). Verified live 2026-07-28.
+    retention_curve = None
+    retention_video = None
+    if has_analytics_scope and entries:
+        try:
+            top = max(entries, key=lambda e: int((stats_by_id.get(e["video_id"], {}) or {}).get("viewCount") or 0))
+            resp4 = yta.reports().query(
+                ids="channel==MINE",
+                startDate="2020-01-01",
+                endDate=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                metrics="audienceWatchRatio",
+                dimensions="elapsedVideoTimeRatio",
+                filters=f"video=={top['video_id']}",
+                sort="elapsedVideoTimeRatio",
+            ).execute()
+            points = [{"elapsed": r[0], "ratio": r[1]} for r in resp4.get("rows", [])]
+            if points:
+                retention_curve = points
+                retention_video = {"video_id": top["video_id"], "title": top.get("title", "—")}
+        except Exception as e:
+            print(f"Analytics API retention-curve query failed (non-fatal): {e}", file=sys.stderr)
+
+    # Subscribers gained/lost — channel-level, all-time.
+    subs_gained, subs_lost = None, None
+    if has_analytics_scope:
+        try:
+            resp5 = yta.reports().query(
+                ids="channel==MINE",
+                startDate="2020-01-01",
+                endDate=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                metrics="subscribersGained,subscribersLost",
+            ).execute()
+            if resp5.get("rows"):
+                subs_gained, subs_lost = resp5["rows"][0]
+        except Exception as e:
+            print(f"Analytics API subscribers query failed (non-fatal): {e}", file=sys.stderr)
+
     videos = []
     for e in entries:
         vid = e["video_id"]
@@ -133,8 +191,20 @@ def main():
             "YouTube's Analytics reporting pipeline catches up (known lag, especially on a new channel "
             "— can be a day or two behind the public view counter). views/likes/comments are near-real-time."
         ) if has_analytics_scope else "yt-analytics.readonly scope not authorized — only Data API stats (views/likes/comments) available.",
+        "ctr_impressions_note": (
+            "Impressions and click-through rate are NOT available here — they're exclusive to the "
+            "YouTube Studio UI and aren't exposed by the public YouTube Analytics API at all (not a "
+            "scope/permission issue, confirmed by a live 400 'Unknown identifier (impressions)' test "
+            "2026-07-28). If you need exact CTR numbers, that means opening YouTube Studio directly; "
+            "there's no API path to automate pulling it."
+        ),
         "videos": videos,
         "daily_series": daily_series,
+        "traffic_sources": traffic_sources,
+        "retention_curve": retention_curve,
+        "retention_video": retention_video,
+        "subscribers_gained": subs_gained,
+        "subscribers_lost": subs_lost,
     }
     with open(os.path.join(STATE, "video_analytics.json"), "w") as f:
         json.dump(out, f, indent=2)
