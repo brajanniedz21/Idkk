@@ -58,9 +58,10 @@ def main():
             stats_by_id[item["id"]] = item["statistics"]
 
     analytics_by_id = {}
+    daily_series = []
     if has_analytics_scope:
+        yta = build("youtubeAnalytics", "v2", credentials=creds)
         try:
-            yta = build("youtubeAnalytics", "v2", credentials=creds)
             resp = yta.reports().query(
                 ids="channel==MINE",
                 startDate="2020-01-01",
@@ -75,7 +76,32 @@ def main():
                 rowd = dict(zip(headers, row))
                 analytics_by_id[rowd["video"]] = rowd
         except Exception as e:
-            print(f"Analytics API query failed (non-fatal, falling back to Data API only): {e}", file=sys.stderr)
+            print(f"Analytics API per-video query failed (non-fatal, falling back to Data API only): {e}", file=sys.stderr)
+
+        # Channel-level day-by-day trend — real historical series (YouTube
+        # retains this regardless of when it's queried, so no local
+        # snapshot history is needed to plot a trend line).
+        try:
+            earliest_publish = min((e.get("published_at") for e in entries if e.get("published_at")), default=None)
+            start_date = (earliest_publish or "2026-01-01")[:10]
+            resp2 = yta.reports().query(
+                ids="channel==MINE",
+                startDate=start_date,
+                endDate=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                metrics="views,estimatedMinutesWatched",
+                dimensions="day",
+                sort="day",
+            ).execute()
+            headers2 = [h["name"] for h in resp2.get("columnHeaders", [])]
+            for row in resp2.get("rows", []):
+                rowd = dict(zip(headers2, row))
+                daily_series.append({
+                    "date": rowd["day"],
+                    "views": rowd.get("views", 0),
+                    "minutes_watched": rowd.get("estimatedMinutesWatched", 0),
+                })
+        except Exception as e:
+            print(f"Analytics API daily-trend query failed (non-fatal): {e}", file=sys.stderr)
 
     videos = []
     for e in entries:
@@ -108,6 +134,7 @@ def main():
             "— can be a day or two behind the public view counter). views/likes/comments are near-real-time."
         ) if has_analytics_scope else "yt-analytics.readonly scope not authorized — only Data API stats (views/likes/comments) available.",
         "videos": videos,
+        "daily_series": daily_series,
     }
     with open(os.path.join(STATE, "video_analytics.json"), "w") as f:
         json.dump(out, f, indent=2)

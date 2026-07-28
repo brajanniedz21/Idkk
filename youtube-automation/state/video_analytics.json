@@ -1,6 +1,6 @@
 {
   "_comment": "Structured per-video stats, pulled daily. Consumed by the Analytics tab in dashboard/index.html (see scripts/generate_dashboard.py) and by agents/0_orchestrator.md's daily analytics cycle.",
-  "pulled_at": "2026-07-28T08:49:57.713043+00:00",
+  "pulled_at": "2026-07-28T08:58:19.367300+00:00",
   "has_analytics_scope": true,
   "analytics_data_note": "estimated_minutes_watched/avg_view_duration_sec/avg_view_percentage will be null until YouTube's Analytics reporting pipeline catches up (known lag, especially on a new channel \u2014 can be a day or two behind the public view counter). views/likes/comments are near-real-time.",
   "videos": [
@@ -205,7 +205,7 @@
       "format": "short",
       "url": "https://youtu.be/Y120Tlxpu9U",
       "published_at": "2026-07-27T14:56:43Z",
-      "views": 439,
+      "views": 441,
       "likes": 4,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -218,7 +218,7 @@
       "format": "short",
       "url": "https://youtu.be/Bz7e8FgzL3A",
       "published_at": "2026-07-27T14:35:00Z",
-      "views": 719,
+      "views": 720,
       "likes": 4,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -238,5 +238,6 @@
       "avg_view_duration_sec": null,
       "avg_view_percentage": null
     }
-  ]
+  ],
+  "daily_series": []
 }

@@ -297,6 +297,90 @@ def main():
             f"{note_html}</div>"
         )
 
+    def chart_card(title, body_html, subtitle=""):
+        sub_html = f'<div class="chart-card-sub">{esc(subtitle)}</div>' if subtitle else ""
+        return (
+            f'<div class="ios-section"><div class="ios-section-header">{esc(title)}</div>'
+            f'<div class="chart-card">{sub_html}{body_html}</div></div>'
+        )
+
+    def bar_chart(items, color_var, unit=""):
+        """items: list of (label, value, href|None) or (label, value, href, color).
+        Horizontal bars sharing one scale (common max across all items) —
+        pass a per-item color as a 4th tuple element for a small (<=3)
+        categorical comparison; omit it for a single-hue magnitude chart.
+        Value sits at the tip — see dataviz skill marks-and-anatomy."""
+        items = [it for it in items if it]
+        if not items:
+            return '<div class="chart-empty">No data yet.</div>'
+        max_val = max((it[1] for it in items), default=0) or 1
+        rows = []
+        for it in items:
+            label, value, href = it[0], it[1], it[2]
+            color = it[3] if len(it) > 3 else color_var
+            pct = max(2, round((value / max_val) * 100, 1))
+            val_str = f"{value:,}{unit}"
+            label_html = esc(label)
+            if href:
+                label_html = f'<a href="{esc(href)}" target="_blank" rel="noopener">{label_html}</a>'
+            rows.append(
+                f'<div class="bar-row"><div class="bar-label">{label_html}</div>'
+                f'<div class="bar-track"><div class="bar-fill" style="width:{pct}%;background:{color}"></div>'
+                f'<span class="bar-value">{val_str}</span></div></div>'
+            )
+        return "".join(rows)
+
+    def trend_chart(daily_series, color_var="var(--accent)", metric_key="views", metric_label="views"):
+        """Line + area chart over channel daily totals. Real historical
+        series from the Analytics API (dimensions=day) — no local snapshot
+        history needed. Shows an honest empty state rather than a
+        misleading flat-zero line when YouTube's processing hasn't caught
+        up yet (routine on a very new channel)."""
+        points = [d for d in daily_series if d.get(metric_key) is not None]
+        total = sum(d.get(metric_key, 0) for d in points)
+        if not points or total == 0:
+            return (
+                '<div class="chart-empty">'
+                "Waiting on YouTube's analytics processing to catch up — this fills in "
+                "automatically once it does (routine lag on a new channel, not an error)."
+                "</div>"
+            )
+        W, H, PAD_L, PAD_B, PAD_T = 600, 160, 44, 22, 14
+        vals = [d.get(metric_key, 0) for d in points]
+        max_v = max(vals) or 1
+        n = len(points)
+        plot_w = W - PAD_L - 8
+        plot_h = H - PAD_B - PAD_T
+
+        def xy(i, v):
+            x = PAD_L + (plot_w * (i / (n - 1)) if n > 1 else plot_w / 2)
+            y = PAD_T + plot_h - (plot_h * (v / max_v))
+            return x, y
+
+        coords = [xy(i, v) for i, v in enumerate(vals)]
+        line_path = "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in coords)
+        area_path = line_path + f" L {coords[-1][0]:.1f} {PAD_T+plot_h:.1f} L {coords[0][0]:.1f} {PAD_T+plot_h:.1f} Z"
+        last_x, last_y = coords[-1]
+        last_label = f"{vals[-1]:,} {metric_label}"
+
+        gridlines = (
+            f'<line x1="{PAD_L}" y1="{PAD_T+plot_h:.1f}" x2="{W-8}" y2="{PAD_T+plot_h:.1f}" class="chart-grid"/>'
+            f'<text x="4" y="{PAD_T+plot_h+4:.1f}" class="chart-axis-label">0</text>'
+            f'<line x1="{PAD_L}" y1="{PAD_T:.1f}" x2="{W-8}" y2="{PAD_T:.1f}" class="chart-grid"/>'
+            f'<text x="4" y="{PAD_T+4:.1f}" class="chart-axis-label">{max_v:,}</text>'
+        )
+        first_date = points[0]["date"][5:]
+        last_date = points[-1]["date"][5:]
+        return f"""<svg viewBox="0 0 {W} {H}" class="trend-svg" preserveAspectRatio="none" role="img" aria-label="{esc(metric_label)} trend">
+          {gridlines}
+          <path d="{area_path}" class="chart-area" fill="{color_var}"/>
+          <path d="{line_path}" class="chart-line" stroke="{color_var}" fill="none"/>
+          <circle cx="{last_x:.1f}" cy="{last_y:.1f}" r="4" fill="{color_var}" class="chart-dot"/>
+          <text x="{min(last_x, W-90):.1f}" y="{max(last_y-10, 12):.1f}" class="chart-end-label">{esc(last_label)}</text>
+          <text x="{PAD_L}" y="{H-4}" class="chart-axis-label">{esc(first_date)}</text>
+          <text x="{W-8}" y="{H-4}" class="chart-axis-label" text-anchor="end">{esc(last_date)}</text>
+        </svg>"""
+
     # ---- Agents tab ----
     def agent_row(num, name, md_path, tone):
         role = role_text(md_path)
@@ -462,6 +546,37 @@ def main():
         analytics_list_html = section("Per-video stats", "")
     else:
         analytics_list_html = section(f"Per-video stats ({len(analytics_videos)})", "".join(analytics_row_html(v) for v in analytics_videos))
+
+    # Views by video — horizontal bar chart, top 10, one hue (magnitude comparison)
+    views_bar_items = [
+        (v.get("title", "—")[:36], v.get("views") or 0, v.get("url"))
+        for v in analytics_videos[:10]
+    ]
+    views_bar_html = chart_card(
+        "Views by video",
+        bar_chart(views_bar_items, "var(--accent)"),
+        subtitle="Top 10 of " + str(len(analytics_videos)) if len(analytics_videos) > 10 else "",
+    )
+
+    # Short-form vs long-form — 2-category comparison, direct-labeled
+    sf_views_total = sum(v.get("views") or 0 for v in analytics_videos if v["format"] == "short")
+    lf_views_total = sum(v.get("views") or 0 for v in analytics_videos if v["format"] == "long")
+    format_bar_html = chart_card(
+        "Views by format",
+        bar_chart(
+            [
+                ("Short-form", sf_views_total, None, "var(--accent)"),
+                ("Long-form", lf_views_total, None, "var(--info)"),
+            ],
+            "var(--accent)",
+        ),
+    )
+
+    # Views over time — real day-by-day channel trend
+    trend_html = chart_card(
+        "Views over time",
+        trend_chart(video_analytics.get("daily_series", []), "var(--accent)", "views", "views"),
+    )
 
     analytics_note = (
         video_analytics.get("analytics_data_note")
@@ -792,6 +907,84 @@ body {{
 .queue-panel {{ display: none; }}
 .queue-panel.active {{ display: block; }}
 
+/* ---- Charts (Analytics tab) ---- */
+.chart-card {{
+  background: var(--surface);
+  border-radius: 14px;
+  margin: 0 16px;
+  padding: 14px 8px 10px;
+}}
+.chart-card-sub {{
+  font-size: 12px;
+  color: var(--text-tertiary);
+  padding: 0 12px 8px;
+}}
+.chart-empty {{
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 20px 16px;
+  line-height: 1.5;
+  text-align: center;
+}}
+.bar-row {{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+}}
+.bar-label {{
+  width: 118px;
+  flex-shrink: 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}}
+.bar-label a {{ color: inherit; text-decoration: none; }}
+.bar-track {{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  min-width: 0;
+}}
+.bar-fill {{
+  height: 20px;
+  min-width: 3px;
+  border-radius: 0 4px 4px 0;
+  flex-shrink: 0;
+  transition: width 0.4s cubic-bezier(0.22,1,0.36,1);
+}}
+.bar-value {{
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  font-family: ui-monospace, "SF Mono", monospace;
+  white-space: nowrap;
+}}
+.trend-svg {{
+  width: 100%;
+  height: 150px;
+  display: block;
+  overflow: visible;
+}}
+.chart-grid {{ stroke: var(--border); stroke-width: 1; }}
+.chart-axis-label {{
+  font-size: 9px;
+  fill: var(--text-tertiary);
+  font-family: ui-monospace, monospace;
+}}
+.chart-area {{ opacity: 0.12; }}
+.chart-line {{ stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }}
+.chart-end-label {{
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: var(--text);
+  font-family: ui-monospace, monospace;
+}}
+
 /* ---- Bottom tab bar ---- */
 .tabbar {{
   position: fixed;
@@ -889,6 +1082,9 @@ body {{
       <div class="large-title-sub">{esc(analytics_pulled_note)}</div>
     </div>
     <div class="stats-grid">{analytics_stats_html}</div>
+    {trend_html}
+    {views_bar_html}
+    {format_bar_html}
     {analytics_list_html}
     <div class="ios-footer" style="margin:16px 16px 0;">{esc(analytics_note)}</div>
   </section>
