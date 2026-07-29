@@ -27,6 +27,22 @@
         "No silent/black-frame stretches beyond 2s unintentional"
       ],
       "on_fail": "quarantine; log which QA check failed; do not retry-publish without regenerating"
+    },
+    "content_quality_gate": {
+      "added_at": "2026-07-30T00:00:00Z",
+      "status": "The 'Curiosity Engine' (owner direction, 2026-07-30). Runs on every candidate (short and long-form) after title + thumbnail exist, before publish. This is a self-scored judgment gate — Agent 0 (or the sub-agent handed this step) evaluates its own output against the categories below, same 'trust mechanics, verify judgment' discipline used everywhere else in this pipeline (actually look at the thumbnail/title, don't just assume they're good). No human reviewer is involved at any point — this stays fully automated.",
+      "core_question": "Why would someone click THIS instead of the hundreds of similar ambience/motivation videos already out there? If there's no real answer, the score should reflect that honestly rather than being inflated to clear the bar.",
+      "categories": {
+        "luxury_aesthetic": "Does the visual (thumbnail + scene) read as genuinely luxury/expensive, not a generic stock scene?",
+        "emotional_impact": "Does the title+thumbnail combination land in config/channel.json.brand_identity's 'always' list (calm, ambition, wealth, peace, quiet confidence, manifestation) rather than just describing content?",
+        "thumbnail_strength": "Billboard test: would the main subject (car/villa/skyline/yacht/focal subject) still be instantly recognizable at 120px wide? Is it brighter/sharper/more legible than the raw sourced frame, without looking artificial or oversaturated?",
+        "title_strength": "Does the title create curiosity/emotional pull per short_form_style_guidance.title_convention / long_form_style_guidance.title_convention, or does it merely describe the scene (banned_pattern)?",
+        "brand_consistency": "Does this output match config/channel.json.brand_identity's identity (luxury, calm, elegant, minimal, quiet confidence, manifestation) rather than drifting into generic hustle-bro motivation or anything off-brand?",
+        "manifestation_vibe": "Does the overall piece make a viewer feel 'this is the life I'm working towards' — visualisation/aspiration — rather than just being pleasant background content?"
+      },
+      "scoring": "Score each category 1-10. Threshold is 8. Any category below 8 means that specific component (title, thumbnail, or scene/angle — whichever the low score points to) gets regenerated and re-scored, not the whole candidate from scratch. Cap at 3 regeneration attempts per component before quarantining with an honest note ('couldn't clear the curiosity-engine threshold on title strength after 3 attempts') rather than looping indefinitely or silently shipping a sub-8 score.",
+      "on_fail": "regenerate the specific low-scoring component (title via Agent 2.1/1.2, thumbnail via the thumbnail-optimization step, angle/scene via Agent 1.1/1.2) and re-score; after 3 failed attempts on the same component, quarantine with the specific score breakdown logged",
+      "never": "Never lower the threshold below 8 to hit a publishing deadline, and never let a numeric score override shared_gates.platform_policy_check's no-clickbait-mismatch rule — a high curiosity score never justifies a title/thumbnail that misrepresents the actual video."
     }
   },
   "short_form_gates": {

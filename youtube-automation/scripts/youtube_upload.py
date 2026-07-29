@@ -19,7 +19,7 @@ from googleapiclient.http import MediaFileUpload
 from youtube_auth import load_credentials
 
 
-def upload(file_path, title, description, tags, category_id, privacy, publish_at=None):
+def upload(file_path, title, description, tags, category_id, privacy, publish_at=None, thumbnail_path=None):
     creds = load_credentials()
     youtube = build("youtube", "v3", credentials=creds)
 
@@ -69,6 +69,16 @@ def upload(file_path, title, description, tags, category_id, privacy, publish_at
             f"policy strike). Do not treat this as a successful publish."
         )
 
+    if thumbnail_path:
+        # thumbnails().set requires the youtube.upload or youtube scope —
+        # both already in SCOPES, no separate credential/re-auth needed.
+        # A thumbnail failure should never fail the whole publish: the video
+        # itself already succeeded, so log and continue rather than raising.
+        try:
+            youtube.thumbnails().set(videoId=video_id, media_body=MediaFileUpload(thumbnail_path)).execute()
+        except Exception as e:
+            print(f"WARNING: video published but thumbnail upload failed: {e}", file=sys.stderr)
+
     return response
 
 
@@ -84,6 +94,10 @@ if __name__ == "__main__":
                          help="RFC3339 UTC timestamp (e.g. 2026-08-03T15:00:00Z) for scheduled publish. "
                               "Forces privacyStatus=private on upload; YouTube auto-publishes at this time. "
                               "Must be in the future or the API will reject it.")
+    parser.add_argument("--thumbnail", default=None,
+                         help="Path to a custom thumbnail image (run through scripts/thumbnail_optimize.py "
+                              "first). Uploaded via thumbnails().set after the video itself succeeds; a "
+                              "thumbnail failure is logged as a warning but does not fail the publish.")
     args = parser.parse_args()
 
     try:
@@ -95,6 +109,7 @@ if __name__ == "__main__":
             category_id=args.category,
             privacy=args.privacy,
             publish_at=args.publish_at,
+            thumbnail_path=args.thumbnail,
         )
         video_id = result["id"]
         scheduled_note = f" (scheduled for {args.publish_at})" if args.publish_at else ""

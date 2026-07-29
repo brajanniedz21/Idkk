@@ -115,3 +115,38 @@ For most of one day, `yt-analytics.readonly` showed up correctly in `secrets/you
 4. **Verify with an actual forced refresh call, not just one live API call right after auth** — a fresh access token can work immediately even when the underlying refresh token is broken, which is exactly what made this look intermittently "fixed" several times before it actually was.
 
 If this ever regresses after a future re-authorization, this is the fix to reach for again — not re-checking the consent screen configuration, which was correct the whole time.
+
+## Adding comment-posting access for the Shorts→long-form funnel (owner requested, 2026-07-30)
+
+The Shorts→long-form funnel (every Short gets a pinned comment pointing to the long-form catalog) needs a scope the current token doesn't have: `https://www.googleapis.com/auth/youtube.force-ssl`. Without it, `scripts/post_pinned_comment.py` just prints "SKIPPED" and does nothing — it never blocks or fails a video publish, but comments won't actually post until this is added.
+
+This is the same ~5 minute repeat of the re-auth flow as the analytics scope above, and the same lesson applies: revoke access first, don't just re-run with the scope added, or Google may silently reuse the old refresh token again.
+
+1. **Add the scope to the consent screen.** APIs & Services → OAuth consent screen → Data Access (or Scopes) → Add or Remove Scopes → search/add `https://www.googleapis.com/auth/youtube.force-ssl` → save.
+2. **Revoke the app's existing access first** at myaccount.google.com/permissions (Security → Third-party apps & services → find the app → Remove Access) — this is not optional; skipping it is exactly what caused the analytics scope to silently fail for a day (see above).
+3. **Re-run the token script** with all four scopes now (the three base ones + analytics + this one):
+   ```python
+   from google_auth_oauthlib.flow import InstalledAppFlow
+
+   SCOPES = [
+       "https://www.googleapis.com/auth/youtube.upload",
+       "https://www.googleapis.com/auth/youtube",
+       "https://www.googleapis.com/auth/youtube.readonly",
+       "https://www.googleapis.com/auth/yt-analytics.readonly",
+       "https://www.googleapis.com/auth/youtube.force-ssl",
+   ]
+
+   flow = InstalledAppFlow.from_client_secrets_file("client_secret.json", SCOPES)
+   creds = flow.run_local_server(port=0, prompt="consent", access_type="offline")
+
+   with open("youtube_token.json", "w") as f:
+       f.write(creds.to_json())
+
+   print("Saved youtube_token.json — copy this into youtube-automation/secrets/, overwriting the old one")
+   ```
+4. **Overwrite** `youtube-automation/secrets/youtube_token.json` with the new file.
+5. Tell me once it's replaced and I'll verify with a real forced-refresh test (not just one live call) before trusting it, same discipline as the analytics fix.
+
+Until this is done, pinned comments simply won't post — everything else (uploads, thumbnails, scheduling) is unaffected, since this scope is isolated in its own credential loader (`load_comment_credentials()`) and never touches the base publish scopes.
+
+Note on what "pinning" actually means here: the YouTube Data API v3 has no dedicated "pin comment" endpoint. `post_pinned_comment.py` posts the comment as the channel owner; YouTube typically shows the channel owner's own comment with a "Pinned by creator" affordance automatically in some contexts, but if it doesn't auto-pin, pinning it for real requires one manual click in YouTube Studio. This is disclosed plainly in the script's own output rather than silently claiming a pin that didn't happen.

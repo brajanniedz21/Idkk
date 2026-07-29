@@ -39,6 +39,20 @@ SCOPES = [
 # pipeline again the way it did before this was split out.
 ANALYTICS_SCOPES = ["https://www.googleapis.com/auth/yt-analytics.readonly"]
 
+# Comment-posting (for the Shorts->long-form pinned-comment funnel, owner
+# direction 2026-07-30) needs commentThreads().insert, which requires
+# youtube.force-ssl specifically — neither of the base SCOPES above covers
+# it. Same isolation discipline as ANALYTICS_SCOPES: this is NOT in SCOPES
+# and never should be, so an unusable/not-yet-granted comment scope can
+# never break publishing the way the analytics scope briefly did. This
+# scope has not been granted yet as of 2026-07-30 (secrets/youtube_token.json
+# predates this feature) — the owner needs to re-run the setup/YOUTUBE_API_
+# SETUP.md re-auth flow with this scope added before pinned comments can
+# actually post. Until then, load_comment_credentials() returns None and
+# callers must treat that as "comment posting unavailable" and skip it,
+# not as an error.
+COMMENT_SCOPES = ["https://www.googleapis.com/auth/youtube.force-ssl"]
+
 
 def load_credentials() -> Credentials:
     if not TOKEN_PATH.exists():
@@ -69,6 +83,24 @@ def load_analytics_credentials():
         return None
 
 
+def load_comment_credentials():
+    """Returns a Credentials object scoped to youtube.force-ssl, or None if
+    it can't actually be used (scope not yet granted, or fails on refresh —
+    see COMMENT_SCOPES comment above). Callers (e.g. post_pinned_comment.py)
+    must handle None as "comment posting not available right now" and skip
+    the pinned-comment step gracefully, never crash or block a publish."""
+    if not TOKEN_PATH.exists():
+        return None
+    try:
+        creds = Credentials.from_authorized_user_file(str(TOKEN_PATH), COMMENT_SCOPES)
+        if creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        return creds
+    except Exception as e:
+        print(f"youtube.force-ssl (comment) credentials unusable (non-fatal): {e}", file=sys.stderr)
+        return None
+
+
 if __name__ == "__main__":
     try:
         c = load_credentials()
@@ -78,3 +110,5 @@ if __name__ == "__main__":
         sys.exit(1)
     ac = load_analytics_credentials()
     print("Analytics credentials:", "OK" if ac and ac.valid else "NOT available")
+    cc = load_comment_credentials()
+    print("Comment-posting credentials:", "OK" if cc and cc.valid else "NOT available")

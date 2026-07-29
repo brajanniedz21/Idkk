@@ -1,6 +1,15 @@
 {
   "channel_handle": "@makeitmanifest",
   "niche": "Motivational luxury background videos",
+  "brand_identity": {
+    "added_at": "2026-07-30T00:00:00Z",
+    "status": "Owner direction, 2026-07-30: an explicit, permanent identity guardrail that every title, thumbnail, scene choice, audio mood, and Short must reinforce — not a one-time style note to skim past. The niche itself is unchanged (motivational luxury ambient/manifestation content); this codifies the *emotional register* every output must land in.",
+    "core_feeling": "\"This is the life I'm working towards.\" Every output should make the viewer feel like the video represents the life they want, not just show them a scene.",
+    "always": ["luxury", "calm", "elegant", "minimal", "expensive-feeling", "quiet confidence", "manifestation", "visualisation", "peace", "sophisticated", "ambition", "wealth", "success", "discipline", "escapism"],
+    "never": ["generic hustle-bro/grind-at-all-costs motivation with no luxury/calm framing", "aggressive or angry tone in titles/copy", "anything that reads as a stock-photo caption or scene description rather than an emotional hook", "cheap/gimmicky clickbait that oversells what the video actually is (still bound by shared_gates.platform_policy_check's no-mismatch rule)"],
+    "reconciling_short_form_energy": "Short-form's fast-cut editing pace and upbeat audio tempo (see short_form_style_guidance below) are retention/pacing mechanics, not a brand-identity contradiction — keep the cuts fast, but the *emotional register* of the title, sound choice, and hook must still land in the 'always' list above, not generic aggressive hustle-grind. This also lines up with real performance data already on file (see state/performance_notes.json's 2026-07-29 finding: the channel's own top-performing shorts used calmer, confident-but-not-aggressive tracks, while the two bottom performers both used the most aggressive phonk) — so this isn't just a branding preference, it's also the direction the data points.",
+    "self_check_question": "Before finalizing any title, thumbnail, or scene: would a viewer feel 'this represents the life I want' — calm, wealthy, disciplined, at peace — or does it just describe what's on screen? If the latter, rewrite it. See config/gates.json's content_quality_gate (the 'Curiosity Engine') for the scored version of this check."
+  },
   "language": "English",
   "primary_market": [
     "US",
@@ -97,9 +106,18 @@
       12
     ],
     "pacing": "Fast cuts locked to the actual beat of the audio track (real beat detection, not a fixed-interval grid), HARD CAP of 1.5 seconds per individual shot regardless of beat spacing (tightened from 2.0s per owner direction, 2026-07-27). Pick upbeat/fast-tempo audio deliberately BECAUSE it drives the cut pace \u2014 a faster song produces closer-together beats and therefore quicker, more energetic cuts; a slow track would force fewer/slower cuts even with the cap in place. Total video length is now 8-12 seconds (tightened from ~27s per owner direction, 2026-07-27) \u2014 at that length a video is roughly 6-9 distinct cuts, not 18-20. The audio's own slow/quiet intro is detected and skipped so playback opens on the real hook/drop, not a build-up \u2014 a viewer scrolling onto the Short should land on the energetic part immediately.",
-    "energy": "High-energy, upbeat, aggressive. Sound must be fast-tempo (phonk, hardtekk, reggaeton, aggressive trap/drill, uptempo mixes) \u2014 this is what's actually trending for gym/discipline/motivation shorts per real competitor research (2026), not a stylistic guess. NEVER use slow ambient/piano/meditation/rain tracks for short-form \u2014 those belong to long-form only. If a candidate's angle is genuinely 'quiet/silent' in theme, the visual pacing must still stay fast (quick cuts) even if the music is sparse \u2014 'quiet' is a lyrical/thematic concept, not permission to slow the edit down.",
+    "energy": "Fast-cut pacing stays as described above \u2014 that's a retention mechanic, not a brand contradiction. But as of 2026-07-30 (owner direction, and reinforced by the channel's own performance data \u2014 see brand_identity.reconciling_short_form_energy above), the *emotional register* of the audio/hook must land in the luxury/calm/quiet-confidence identity, not generic aggressive hustle-grind. In practice: confident, driving, mid-tempo tracks (not necessarily slow, but not maximally aggressive phonk/hardtekk either) generally fit better than the most aggressive trap/drill options \u2014 sound_direction should default toward the calmer end of the 'upbeat' range unless a specific candidate genuinely calls for more intensity. Still NEVER use fully slow ambient/piano/meditation/rain tracks for short-form \u2014 those belong to long-form only; the cut pace must still be fast regardless of audio energy level.",
     "visual_grade": "Dark, moody, low-exposure color grade ('gymcore' aesthetic) \u2014 reduced brightness/exposure, boosted contrast, slightly desaturated or cool-toned. This is a real, currently-trending look for this niche, not just a preference.",
     "text_rules": "NO on-screen text/captions \u2014 dropped entirely per owner direction (2026-07-27). This is a pure visual+audio edit; the title/description carry the message instead.",
+    "title_convention": {
+      "added_at": "2026-07-30T00:00:00Z",
+      "status": "Owner direction, 2026-07-30: the previous title approach was too descriptive of the scene itself. Titles must now create an emotional response or curiosity, not describe what's on screen.",
+      "pattern": "The viewer should feel like the title represents the life they want. Evoke: ambition, wealth, peace, success, discipline, manifestation, luxury, quiet confidence, escapism. A title should make someone curious before they even see the thumbnail.",
+      "banned_pattern": "Never write a title that merely describes the scenery/subject (e.g. 'Marina Skyline at Night', 'Luxury Car in the Rain', 'Villa at Sunset'). If the title could function as a stock-photo caption, rewrite it.",
+      "good_examples": ["Escape Reality for One Hour", "Imagine This Is Your Life", "The Mindset of Quiet Success", "Manifest the Life You Deserve", "Wealth Begins in Silence", "Success Sounds Like This", "This Is What Peace Feels Like", "The Calm Before Greatness", "Live the Life You Keep Imagining", "Become the Person You Dream About", "Quiet Nights. Loud Dreams.", "Luxury Is a State of Mind", "Where Ambition Meets Peace", "Dream Bigger Than Yesterday", "The Night That Changes Everything"],
+      "bad_vs_good": {"bad": "Marina Skyline at Night", "good": "The Night That Changes Everything"},
+      "note": "This applies on top of, not instead of, the existing hook-driven approach in agents/short_form/1.1_trend_scout.md/2.1_scriptwriter.md \u2014 a good `angle` still matters, but the `title` itself must pass the banned_pattern check above regardless of how the angle was framed."
+    },
     "researched_at": "2026-07-27",
     "sources_note": "Based on live web research into trending gym/motivation/phonk shorts content and general 2026 YouTube Shorts editing/retention best practices \u2014 see state/performance_notes.json for the full findings and sources."
   },
@@ -108,18 +126,17 @@
     "energy": "Calm, ambient, meditative. Slow piano/pad/rain/nature tracks belong here, never in short-form.",
     "visual_grade": "Warm or cool moody ambient tones per the scene (rain-on-window, fireplace, etc.), not the dark low-exposure short-form grade \u2014 long-form should read as a calm background, not an energetic edit.",
     "title_convention": {
-      "added_at": "2026-07-27T22:10:00Z",
-      "status": "Replaces the older 'X Hours of Y | Z Ambience for Focus & Manifestation' template used through lf_001-lf_004. Analyzed real data from @angelechoes909 (a long-form-only channel in this same niche, ~3hr videos) per owner direction.",
-      "source_data": "yt-dlp flat-playlist pull of @angelechoes909's Videos tab (13 titled uploads, all ~3hr runtime; channel has no Shorts tab, confirmed via yt-dlp error). Titles/views: 'While They Sleep You Build' 95,000 | 'You're Closer to This Than You Think' 30,000 | 'The Reward for Staying Focused' 19,000 | 'Don't Give Up Now!' 15,000 | 'You Need to Keep Going!' 15,000 | 'You'll make it' 7,300 | 'Hard Work Pays Off' 7,200 | 'You've Come Too Far to Quit Now!' 3,400 | 'You Don't Forget Where It Started' 2,000 | 'POV: You Never Gave Up' 1,000 | 'POV: you finally made it' 922 | 'Work Hard, Play Hard' 747 | 'You Need to Lock In Right Now' 499.",
-      "pattern": "Short (3-7 words), punchy, standalone motivational statement or command \u2014 no duration, no format descriptor, no pipe-separated SEO subtitle, no 'Ambience for Focus & Manifestation' boilerplate. Two dominant structures: (1) second-person direct address ('You Need to Keep Going!', 'You're Closer to This Than You Think', 'While They Sleep You Build') and (2) a flat declarative aphorism with no pronoun ('Hard Work Pays Off', 'Work Hard, Play Hard'). Exclamation points appear on ~half but not the very top performer. 'POV:' prefix appears twice and both are among the lowest performers in this sample (1,000 and 922 views) \u2014 thin evidence given the small sample, but don't lean on it as a strong pattern.",
-      "guidance": "New long-form titles should read like these \u2014 a short, complete motivational statement someone could say out loud, not a labeled product description. Do NOT include the video's length, the word 'ambience', or a pipe/dash-separated subtitle. seo_description and tags still carry the keyword-rich/searchable content the title used to partially carry (duration, mood, use-case like 'study with me' or 'deep focus') \u2014 the title itself should be the emotional hook only.",
-      "examples_matching_pattern": [
-        "You Already Know What You Have To Do",
-        "This Is What Discipline Looks Like",
-        "Nobody's Coming To Save You",
-        "You're Not Tired. You're Uninspired.",
-        "Stay Ready So You Don't Have To Get Ready"
-      ]
+      "added_at": "2026-07-30T00:00:00Z",
+      "status": "Owner direction, 2026-07-30, SUPERSEDES the 2026-07-27 version below \u2014 the prior pattern (short punchy 'grind harder' motivational commands, e.g. 'Nobody's Coming To Save You') drifted toward generic hustle-bro motivation rather than the channel's actual luxury/calm/manifestation identity. New titles must land in that identity \u2014 see config/channel.json.brand_identity.",
+      "pattern": "The viewer should feel like the title represents the life they want. Evoke: ambition, wealth, peace, success, discipline, manifestation, luxury, quiet confidence, escapism. A title should make someone curious before they even see the thumbnail \u2014 not describe the scene, not be a generic grind-harder command.",
+      "banned_pattern": "Never write a title that merely describes the scenery/subject (e.g. 'Marina Skyline at Night', 'Rain on the Window', 'Villa at Sunset'). If the title could function as a stock-photo caption, rewrite it.",
+      "good_examples": ["Escape Reality for One Hour", "Imagine This Is Your Life", "The Mindset of Quiet Success", "Manifest the Life You Deserve", "Wealth Begins in Silence", "Success Sounds Like This", "This Is What Peace Feels Like", "The Calm Before Greatness", "Live the Life You Keep Imagining", "Become the Person You Dream About", "Quiet Nights. Loud Dreams.", "Luxury Is a State of Mind", "Where Ambition Meets Peace", "Dream Bigger Than Yesterday", "The Night That Changes Everything"],
+      "bad_vs_good": {"bad": "Marina Skyline at Night", "good": "The Night That Changes Everything"},
+      "still_true_from_2026-07-27": "Short (3-7 words), punchy, standalone statement someone could say out loud \u2014 no duration, no format descriptor, no pipe-separated SEO subtitle, no 'Ambience for Focus & Manifestation' boilerplate, no video-length mention. seo_description and tags still carry the keyword-rich/searchable content (duration, mood, use-case like 'study with me' or 'deep focus').",
+      "superseded_2026-07-27_version": {
+        "source_data": "yt-dlp flat-playlist pull of @angelechoes909's Videos tab (13 titled uploads, all ~3hr runtime). Titles/views: 'While They Sleep You Build' 95,000 | 'You're Closer to This Than You Think' 30,000 | 'The Reward for Staying Focused' 19,000 | 'Don't Give Up Now!' 15,000 | 'You Need to Keep Going!' 15,000 | 'You'll make it' 7,300 | 'Hard Work Pays Off' 7,200 | 'You've Come Too Far to Quit Now!' 3,400 | 'You Don't Forget Where It Started' 2,000 | 'POV: You Never Gave Up' 1,000 | 'POV: you finally made it' 922 | 'Work Hard, Play Hard' 747 | 'You Need to Lock In Right Now' 499.",
+        "note": "This data is still useful for structural patterns (short/punchy/second-person or aphorism), just not for emotional register \u2014 @angelechoes909's titles skew grind/effort rather than luxury/calm/manifestation. Use the structure, not the tone."
+      }
     }
   },
   "reference_examples": {
