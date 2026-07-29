@@ -1708,7 +1708,7 @@
     },
     {
       "id": "sf_024",
-      "status": "ready_to_publish",
+      "status": "published",
       "scouted_at": "2026-07-28T09:10:00Z",
       "angle": "Refusing ordinary: an identity-level rejection of a conventional, safe, 'normal' life path — not as a reaction to a specific doubter (distinct from sf_012's vindication/doubters angle, which requires someone who explicitly doubted) and not about pace/comparison to peers (distinct from sf_016's own-timeline/anti-comparison angle) — this angle is about never having accepted 'normal' as the goal in the first place, an internal identity claim rather than a response to anyone else.",
       "title_pattern": "I Was Never Built For Normal.",
@@ -1754,7 +1754,9 @@
       "transform_log": "Beat-synced cuts (<=1.5s cap): 8 shots from 6 distinct clips (raw/69,66,68,65,21,36.mp4), avg ~1.25s/shot (range 1.04s-1.33s), intro skipped 0.06s, cut points from real beat detection on owner_provided_181757.mp3. Vertical 1080x1920, dark/low-exposure grade, audio fully replaced, no captions. Verified: ffprobe (10.000000s, h264/aac, 1080x1920), full ffmpeg decode pass clean, silencedetect -40dB/1s found no silence gaps, frame-grab visual check at t=3s confirms dark grade, vertical crop, no watermark/text.",
       "produced_at": "2026-07-28T06:45:00Z",
       "gate_note": "Gates applied 2026-07-28T06:50Z: copyright_gate mitigation satisfied (vertical reframe, dark/low-exposure color grade change, audio fully replaced with trending track) -> PASS. audio_license_gate: track is an owner-supplied unidentified trending track in state/trending_audio_library.json, not used before -> PASS. factual_controversy_screen: no political/controversial content -> PASS (see factual_controversy_screen_note). platform_policy_check: no hate speech/violence/misleading title -> PASS. basic_qa: 1080x1920, 10.0s (within 8-12s target), av sync ok, no corrupt file, no silence gaps -> PASS. All gates PASS.",
-      "gated_at": "2026-07-28T06:50:00Z"
+      "gated_at": "2026-07-28T06:50:00Z",
+      "video_id": "0glcqjWLhBU",
+      "video_url": "https://youtu.be/0glcqjWLhBU"
     },
     {
       "id": "sf_025",
