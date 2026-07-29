@@ -227,7 +227,13 @@ def main():
 
     blockers = []
     for c in lfq:
-        if c.get("publish_blocker"):
+        # Only surface publish_blocker for items that are actually still
+        # blocked — a status of published/done means it was retried
+        # successfully, and a stale (unremoved) blocker note shouldn't make
+        # a finished video look stuck. See 2026-07-29 incident: lf_004 was
+        # republished but the blocker field wasn't cleared, so the dashboard
+        # kept reporting it as blocked after the fact.
+        if c.get("publish_blocker") and c.get("status") not in ("published", "done"):
             blockers.append((c["id"], c.get("title", c["id"]), c["publish_blocker"]))
 
     next_due = None
