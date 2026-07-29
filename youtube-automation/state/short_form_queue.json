@@ -1656,7 +1656,7 @@
     },
     {
       "id": "sf_023",
-      "status": "ready_to_publish",
+      "status": "published",
       "scouted_at": "2026-07-28T09:05:00Z",
       "angle": "Preparation-meets-opportunity: the quiet, unglamorous work of getting ready before any opportunity exists, so that when the moment finally arrives it looks like luck to everyone else but was actually years of readiness. Distinct from patience/compounding (sf_017, which is about the slow accumulation of a result over time) and sacrifice/cost (sf_014, which is about what discipline cost someone personally) — this angle is specifically about the causal link between private preparation and a single seized moment, not about duration or personal cost in isolation.",
       "title_pattern": "Luck Is Just Timing You Prepared For.",
@@ -1702,7 +1702,9 @@
       "transform_log": "Beat-synced cuts (<=1.5s cap): 11 shots from 6 distinct clips (raw/66,67,13,65,68,70.mp4), avg ~0.91s/shot (range 0.71s-1.49s), intro skipped 0.23s, cut points from real beat detection on owner_provided_181430.mp3. Vertical 1080x1920, dark/low-exposure grade, audio fully replaced, no captions. Verified: ffprobe (10.000000s, h264/aac, 1080x1920), full ffmpeg decode pass clean, silencedetect -40dB/1s found no silence gaps, frame-grab visual check at t=3s confirms dark grade, vertical crop, no watermark/text.",
       "produced_at": "2026-07-28T06:45:00Z",
       "gate_note": "Gates applied 2026-07-28T06:50Z: copyright_gate mitigation satisfied (vertical reframe, dark/low-exposure color grade change, audio fully replaced with trending track) -> PASS. audio_license_gate: track is an owner-supplied unidentified trending track in state/trending_audio_library.json, not used before -> PASS. factual_controversy_screen: no political/controversial content -> PASS (see factual_controversy_screen_note). platform_policy_check: no hate speech/violence/misleading title -> PASS. basic_qa: 1080x1920, 10.0s (within 8-12s target), av sync ok, no corrupt file, no silence gaps -> PASS. All gates PASS.",
-      "gated_at": "2026-07-28T06:50:00Z"
+      "gated_at": "2026-07-28T06:50:00Z",
+      "video_id": "_JoMdED8iWQ",
+      "video_url": "https://youtu.be/_JoMdED8iWQ"
     },
     {
       "id": "sf_024",

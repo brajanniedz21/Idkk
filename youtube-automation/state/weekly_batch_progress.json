@@ -126,7 +126,7 @@
         "format": "short",
         "day": "2026-07-31",
         "local_slot": "14:00",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-07-31T13:00:00Z",
         "candidate_id": "sf_023"
       },
