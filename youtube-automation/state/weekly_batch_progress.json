@@ -153,7 +153,7 @@
         "format": "short",
         "day": "2026-08-01",
         "local_slot": "09:00",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-01T08:00:00Z",
         "candidate_id": "sf_025"
       },

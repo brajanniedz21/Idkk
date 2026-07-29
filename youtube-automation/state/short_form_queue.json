@@ -1760,7 +1760,7 @@
     },
     {
       "id": "sf_025",
-      "status": "ready_to_publish",
+      "status": "published",
       "scouted_at": "2026-07-28T10:00:00Z",
       "angle": "Attention/focus-as-protected-resource: treating one's own focus and attention as the genuinely scarce, valuable thing worth guarding, refusing to spend it on noise, other people's opinions, or distraction -- framed as a deliberate act of protection, not avoidance. Distinct from boundaries-as-wealth-protection (sf_019, which is about removing specific people/access) and self-authorized-permission (sf_021, about acting without waiting) -- this angle is specifically about what gets internal attention/energy day to day, not about who gets access or who authorized an action.",
       "title_pattern": "My Attention Is Not For Sale.",
@@ -1806,7 +1806,9 @@
       "transform_log": "Beat-synced cuts (<=1.5s cap): 8 shots from 8 distinct clips (raw/65,17,55,12,21,68,63,36.mp4), avg ~1.25s/shot (range 0.66s-1.36s), intro skipped 0.30s, cut points from real beat detection on owner_provided_181240.mp3. Vertical 1080x1920, dark/low-exposure grade, audio fully replaced, no captions. Clip content spot-checked via ffmpeg frame grabs before selection (raw/21, raw/55 explicitly re-verified this cycle: 21.mp4 = Rolls-Royce interior cash count confirmed, not the balloon shot an earlier candidate's unconfirmed suggestion had guessed; 55.mp4 = underground private garage with red Ferrari + black Porsches confirmed). Verified: ffprobe (10.000000s, h264/aac, 1080x1920), full ffmpeg decode pass clean (no errors), silencedetect -40dB/1s found no silence gaps, frame-grab visual check at t=3s confirms dark grade, vertical crop, no watermark/text, matches described garage content.",
       "produced_at": "2026-07-28T10:35:00Z",
       "gate_note": "Gates applied 2026-07-28T10:40Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with owner-provided trending track) -> PASS. audio_license_gate: track owner_provided_181240 is an owner-supplied track in state/trending_audio_library.json unidentified_owner_provided_tracks, provenance documented (extracted from owner Drive folder screen recording), never used by a prior candidate -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
-      "gated_at": "2026-07-28T10:40:00Z"
+      "gated_at": "2026-07-28T10:40:00Z",
+      "video_id": "ANBhb7OgxcM",
+      "video_url": "https://youtu.be/ANBhb7OgxcM"
     },
     {
       "id": "sf_026",
