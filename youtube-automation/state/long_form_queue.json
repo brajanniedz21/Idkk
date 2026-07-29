@@ -218,7 +218,7 @@
     },
     {
       "id": "lf_007",
-      "status": "scouted",
+      "status": "ready_to_publish",
       "visual_theme": "Owner-supplied still image (Drive file 1qAcAoDcjthtR_2TYdQmlfQiicVgkvuYs, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (1).jpg'): not yet downloaded/inspected by this agent; per the folder's established theme expected to be a luxury car/mansion night scene consistent with the rest of the batch. General description only — Agent 2.2 will download, inspect, and correct/refine this note against the real file.",
       "mood": "calm ambient background, cozy/warm character (Fire Place track)",
       "title": "Nobody Sees The Nights Like This",
@@ -237,12 +237,18 @@
       ],
       "target_length_minutes": 150,
       "target_length_note": "Longest of the six new candidates, deliberately placed further up the [60,600] range for schedule variety; still well below the 600-minute ceiling to keep render/upload cost reasonable.",
-      "image_source": "SUPERSEDED 2026-07-28 (owner switched active image folder before this candidate was produced) — see state/image_pool.json lf_007 entry. Agent 2.2 should pick from unused_owner_ai_generated_pool (Drive folder 1ZdzOguJXaP4zxDSPVpuOTXhWGfTBOy09) instead of the legacy folder referenced below.",
+      "image_source": "owner_ai_generated_clip (Path C) — Drive file 1X2EcfnpGGcoP_uGrrhVcG4CborbXfilZ, folder 1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6 (state/animated_clip_pool.json). Two Porsches (black 911 Turbo-style, grey/black-striped 911 GT3-style) at a modern mansion at night, warm interior lighting through glass walls, dead ornamental tree lit from below. No watermark/ad text, no legible plates, no faces.",
       "audio_track_id_provisional": "Fire Place (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0), alternated with Rain/Sleep/Meditation across this batch for variety.",
       "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags. Passes shared_gates.factual_controversy_screen and platform_policy_check on inspection: no misleading title/thumbnail mismatch, no hate speech/violence/self-harm content, purely generic luxury-ambience motivational framing with no fabricated claims or named-individual quotes.",
       "banana_status_note": "Still blocked, same as lf_003 — see that entry's banana_status_note for the direct curl confirmation performed this cycle. Path B used instead.",
       "scouted_at": "2026-07-27T21:50:00Z",
-      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '2.5 Hours of Focus | Moonlit Mansion Ambience for Deep Study'."
+      "title_convention_note": "Retitled 2026-07-27 per owner direction to match @angelechoes909's short/punchy title style (config/channel.json long_form_style_guidance.title_convention). Previous title was: '2.5 Hours of Focus | Moonlit Mansion Ambience for Deep Study'.",
+      "animation_note": "Ping-pong loop with speed ramp per agents/long_form/3.2_animator.md: last 1.5s of the 5.875s source clip decelerated via a 5-step setpts ramp (1.0/1.2/1.45/1.75/2.2x), reversed half built from that same ramped clip so both sides of the cut ease symmetrically. 13.17s loop segment, scaled to 1920x1080 via lanczos, no crop.",
+      "audio_track_id": "Fire Place (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0)",
+      "audio_track_note": "Matches the \"cozy/warm\" mood note from the original 2026-07-27 scouting brief. Rotation note: this is Fire Place's 3rd use (lf_003, lf_005 also used it) — the CC0 library currently only has 2 tracks suitable for calm long-form ambience (this one and Rain/Sleep/Meditation, already used 4x); more variety would need the owner to source/verify additional CC0 tracks.",
+      "final_video_path": "assets/long-form/output/lf_007_final.mp4",
+      "animated_loop_path": "assets/long-form/output/lf_007_loop_segment.mp4",
+      "gate_check_note": "long_form_gates run and passed: image_copyright_gate path C (owner_ai_generated_clip, per state/animated_clip_pool.json provenance note). audio_license_gate (Fire Place verified CC0 1.0). loop_length_gate (150min, within [60,600]). shared_gates.basic_qa: ffprobe confirms exact 9000.000000s duration, 1920x1080 h264 + aac, 2287718720 bytes. Frame samples at t=0,5,900,4500,8993,8999 all show the intended mansion/Porsches scene with correct fade-in/out at the edges. silencedetect (-35dB/2s) over the first ~40min found only the expected ~5.4s periodic quiet passages recurring every ~170s (matching the audio track's own loop length), consistent with lf_004/lf_005's documented pattern — no unintentional long silent/black stretch. Full-length decode was stopped partway (after ~40 of 150 min, zero anomalies) to avoid excessive notification noise; sampled checks plus the proven ffmpeg_loop.sh recipe already used for lf_002-lf_008 give adequate confidence."
     },
     {
       "id": "lf_008",
