@@ -1486,7 +1486,7 @@
     },
     {
       "id": "sf_020",
-      "status": "ready_to_publish",
+      "status": "published",
       "scouted_at": "2026-07-27T22:10:00Z",
       "angle": "Reinvest-not-spend capital-allocation discipline: every luxury visual on screen is framed as the byproduct of reinvesting profit back into growth rather than consuming it for show. Distinct from sf_006's car-as-proof-of-work angle (that's about luxury as evidence of past invisible effort) and from the already-used sacrifice/cost angle (that's about what discipline personally cost someone emotionally/socially) -- this angle is specifically about forward-looking capital allocation: choosing to put money back to work instead of spending it, with the luxury result being a consequence of that discipline, not the point of it.",
       "title_pattern": "I Don't Spend It. I Reinvest It.",
@@ -1539,7 +1539,9 @@
         "Independent verification (Agent 0/producer role): ffprobe confirmed 1080x1920, 10.00s duration, h264/aac for all three. Full decode pass (ffmpeg -f null -) clean for all three. Visually inspected a frame from each output (t=3s) — watermark correctly excluded by the crop, dark grade visibly applied, content matches each brief."
       ],
       "publish_blocker": null,
-      "publishing_note": "Fully produced and gate-passed. Not yet uploaded — under the corrected two-phase batch model (production has no daily cap, publishing is throttled to ~4/day matching YouTube's quota), this candidate's scheduled slot is 2026-07-30 and it will be uploaded by the daily trigger closer to that date rather than immediately. The earlier 'blocked_on_upload_quota' framing was accurate about what happened but implied this was purely a platform blocker to retry past; the real fix was pacing the upload calls correctly, which is now the daily trigger's job."
+      "publishing_note": "Fully produced and gate-passed. Not yet uploaded — under the corrected two-phase batch model (production has no daily cap, publishing is throttled to ~4/day matching YouTube's quota), this candidate's scheduled slot is 2026-07-30 and it will be uploaded by the daily trigger closer to that date rather than immediately. The earlier 'blocked_on_upload_quota' framing was accurate about what happened but implied this was purely a platform blocker to retry past; the real fix was pacing the upload calls correctly, which is now the daily trigger's job.",
+      "video_id": "rcT5fayYojc",
+      "video_url": "https://youtu.be/rcT5fayYojc"
     },
     {
       "id": "sf_021",
