@@ -182,6 +182,27 @@
       "title": "I Saw This Before It Existed.",
       "published_at": "2026-08-01T18:00:00Z",
       "format": "short"
+    },
+    {
+      "video_id": "hyVZAT6aB58",
+      "url": "https://youtu.be/hyVZAT6aB58",
+      "title": "I Raised My Standards. Not My Voice.",
+      "published_at": "2026-08-02T08:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "WmQr6bAwfpM",
+      "url": "https://youtu.be/WmQr6bAwfpM",
+      "title": "Discipline Doesn't Ask How I Feel.",
+      "published_at": "2026-08-02T13:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "qOWTFoI6YZA",
+      "url": "https://youtu.be/qOWTFoI6YZA",
+      "title": "Their Timeline Was Never Mine.",
+      "published_at": "2026-08-02T18:00:00Z",
+      "format": "short"
     }
   ],
   "long_form": [
@@ -222,6 +243,13 @@
       "url": "https://youtu.be/uZ4s9P3zJ3U",
       "title": "You Build In The Quiet",
       "published_at": "2026-07-31T19:00:00Z",
+      "format": "long"
+    },
+    {
+      "video_id": "e1XaX_meQlU",
+      "url": "https://youtu.be/e1XaX_meQlU",
+      "title": "Some Nights You Just Sit With It",
+      "published_at": "2026-08-02T19:00:00Z",
       "format": "long"
     }
   ]

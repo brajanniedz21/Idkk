@@ -1916,7 +1916,7 @@
     },
     {
       "id": "sf_028",
-      "status": "ready_to_publish",
+      "status": "published",
       "scouted_at": "2026-07-28T12:15:00Z",
       "angle": "Personal standards as the source of authority, not volume: quietly raising the bar for what's acceptable in your own life/work, and letting the elevated result do the convincing instead of announcing or arguing for it. Distinct from self-authorized-permission (sf_021, about acting without waiting for anyone's go-ahead) and calm self-trust over external opinion (sf_026, about which internal signal decides) -- this angle is specifically about standards-as-self-imposed-ceiling-raise, expressed through outcome rather than declaration.",
       "title_pattern": "I Raised My Standards. Not My Voice.",
@@ -1962,11 +1962,13 @@
       "transform_log": "Beat-synced cuts (<=1.5s cap): 10 shots from 8 distinct clips (raw/2,8,61,56,53,50,57,31.mp4), avg ~1.00s/shot (range 0.93s-1.07s), intro skipped 0.00s, cut points from real beat detection on montagem_celestial_esperanza.mp3. Vertical 1080x1920, dark/low-exposure grade, audio fully replaced, no captions. Clip content spot-checked via ffmpeg frame grabs before selection (23 candidate clips reviewed this cycle across all 3 sf_028-030 candidates; one candidate, 28.mp4, a motocross/dirt-bike clip, was explicitly excluded as outside the luxury-lifestyle content scope rather than force-fit). Verified: ffprobe (10.000000s, h264/aac, 1080x1920), full ffmpeg decode pass clean (no errors), silencedetect -40dB/1s found no silence gaps, frame-grab visual check at t=3s confirms dark grade, vertical crop, no watermark/text, gated palm-lined mansion estate content (61.mp4 at that timestamp) matches description.",
       "produced_at": "2026-07-28T12:45:00Z",
       "gate_note": "Gates applied 2026-07-28T12:50Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with trending track) -> PASS. audio_license_gate: track 'Montagem Celestial Esperanza' is a genuinely identified real track in state/trending_audio_library.json (named tracks list) with documented TikTok source/provenance; last used sf_010, third-oldest in rotation, not used by sf_025/026/027 -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
-      "gated_at": "2026-07-28T12:50:00Z"
+      "gated_at": "2026-07-28T12:50:00Z",
+      "video_id": "hyVZAT6aB58",
+      "video_url": "https://youtu.be/hyVZAT6aB58"
     },
     {
       "id": "sf_029",
-      "status": "ready_to_publish",
+      "status": "published",
       "scouted_at": "2026-07-28T12:55:00Z",
       "angle": "Discipline as mood-independent: showing up and doing the work regardless of how you feel that day, framed as the actual mechanism behind consistency rather than motivation/inspiration. Distinct from sf_008's grind-endurance framing (persistence despite fatigue) and sf_024's 'never built for normal' framing (identity/self-concept) -- this angle is specifically about the mechanism (feeling vs. doing) that governs whether the work happens on a given day, not about endurance or identity.",
       "title_pattern": "Discipline Doesn't Ask How I Feel.",
@@ -2012,11 +2014,13 @@
       "transform_log": "Beat-synced cuts (<=1.5s cap): 10 shots from 8 distinct clips (raw/35,39,37,54,27,38,16,64.mp4), avg ~1.00s/shot (range 0.95s-1.19s), intro skipped 0.94s, cut points from real beat detection on veki_veki_slowed.mp3. Vertical 1080x1920, dark/low-exposure grade, audio fully replaced, no captions. All 8 clips personally frame-grab-verified before selection this cycle (35.mp4 = red supercar in night tunnel with red underglow, 39.mp4 = orange Aventador night highway, 37.mp4 = cash-counting machine, 54.mp4 = stacked $20 bills, 27.mp4 = red Huracan STO in parking garage, 38.mp4 = Burj Khalifa fireworks, 16.mp4 = Monte Carlo Hotel de Paris street, 64.mp4 = jetski POV turquoise channel). Verified: ffprobe (10.000000s, h264/aac, 1080x1920), full ffmpeg decode pass clean (no errors), silencedetect -40dB/1s found no silence gaps, frame-grab visual check at t=3s confirms dark grade, vertical crop, no watermark/text, cash-counting close-up content matches description.",
       "produced_at": "2026-07-28T13:20:00Z",
       "gate_note": "Gates applied 2026-07-28T13:25Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with trending track) -> PASS. audio_license_gate: track 'VEKI VEKI (Slowed)' is a genuinely identified real track in state/trending_audio_library.json (named tracks list) with documented TikTok source/provenance; last used sf_008, the single oldest last-use in the library, not used by sf_025/026/027 or by sf_028 this cycle -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
-      "gated_at": "2026-07-28T13:25:00Z"
+      "gated_at": "2026-07-28T13:25:00Z",
+      "video_id": "WmQr6bAwfpM",
+      "video_url": "https://youtu.be/WmQr6bAwfpM"
     },
     {
       "id": "sf_030",
-      "status": "ready_to_publish",
+      "status": "published",
       "scouted_at": "2026-07-28T13:30:00Z",
       "angle": "Immunity to comparison / other people's pace: refusing to measure your own progress against anyone else's timeline, framed as a settled, non-anxious confidence rather than a competitive rebuttal. Distinct from sf_026's instinct-over-opinion framing (which internal signal decides a specific decision) and sf_023's luck-is-preparation framing (how an external moment came to be) -- this angle is specifically about timeline/pace comparison, not decision-making or origin-of-outcome.",
       "title_pattern": "Their Timeline Was Never Mine.",
@@ -2062,7 +2066,9 @@
       "transform_log": "Beat-synced cuts (<=1.5s cap): 7 shots from 8 distinct clips supplied (raw/9,19,29,45,62,58,47,26.mp4; one supplied clip not needed for the final shot count at this track's beat spacing/duration), avg ~1.43s/shot (range 1.11s-1.50s), intro skipped 7.13s (Gata Only NJ has a long slow build before its main groove -- confirmed correctly skipped so playback opens on the beat), cut points from real beat detection on gata_only_nj.mp3. Vertical 1080x1920, dark/low-exposure grade, audio fully replaced, no captions. All 8 supplied clips personally frame-grab-verified before selection this cycle (9.mp4 = Venice canal water taxis, 19.mp4 = aerial cruise ship near tropical island, 29.mp4 = Cappadocia hot air balloons at sunrise, 45.mp4 = floating breakfast tray on overwater pool, 62.mp4 = yacht wake with Miami skyline, 58.mp4 = superyacht deck golf putting, 47.mp4 = jetski POV turquoise water, 26.mp4 = beach dinner canopy at dusk). Verified: ffprobe (10.000000s, h264/aac, 1080x1920), full ffmpeg decode pass clean (no errors), silencedetect -40dB/1s found no silence gaps, frame-grab visual check at t=3s confirms dark grade, vertical crop, no watermark/text, Cappadocia hot-air-balloon sunrise content matches description.",
       "produced_at": "2026-07-28T14:00:00Z",
       "gate_note": "Gates applied 2026-07-28T14:05Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with trending track) -> PASS. audio_license_gate: track 'Gata Only NJ' is a genuinely identified real track in state/trending_audio_library.json (named tracks list, derivative edit of the real viral hit 'Gata Only') with documented TikTok source/provenance; last used sf_009, second-oldest in rotation, not used by sf_025/026/027 or by sf_028/sf_029 this cycle -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
-      "gated_at": "2026-07-28T14:05:00Z"
+      "gated_at": "2026-07-28T14:05:00Z",
+      "video_id": "qOWTFoI6YZA",
+      "video_url": "https://youtu.be/qOWTFoI6YZA"
     }
   ]
 }
