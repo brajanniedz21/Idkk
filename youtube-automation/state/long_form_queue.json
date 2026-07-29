@@ -218,7 +218,7 @@
     },
     {
       "id": "lf_007",
-      "status": "ready_to_publish",
+      "status": "published",
       "visual_theme": "Owner-supplied still image (Drive file 1qAcAoDcjthtR_2TYdQmlfQiicVgkvuYs, folder 1eDQ9-NyZ1ko8WTmaNSDtrNwQUFuQI24g, filename 'download (1).jpg'): not yet downloaded/inspected by this agent; per the folder's established theme expected to be a luxury car/mansion night scene consistent with the rest of the batch. General description only — Agent 2.2 will download, inspect, and correct/refine this note against the real file.",
       "mood": "calm ambient background, cozy/warm character (Fire Place track)",
       "title": "Nobody Sees The Nights Like This",
@@ -248,7 +248,9 @@
       "audio_track_note": "Matches the \"cozy/warm\" mood note from the original 2026-07-27 scouting brief. Rotation note: this is Fire Place's 3rd use (lf_003, lf_005 also used it) — the CC0 library currently only has 2 tracks suitable for calm long-form ambience (this one and Rain/Sleep/Meditation, already used 4x); more variety would need the owner to source/verify additional CC0 tracks.",
       "final_video_path": "assets/long-form/output/lf_007_final.mp4",
       "animated_loop_path": "assets/long-form/output/lf_007_loop_segment.mp4",
-      "gate_check_note": "long_form_gates run and passed: image_copyright_gate path C (owner_ai_generated_clip, per state/animated_clip_pool.json provenance note). audio_license_gate (Fire Place verified CC0 1.0). loop_length_gate (150min, within [60,600]). shared_gates.basic_qa: ffprobe confirms exact 9000.000000s duration, 1920x1080 h264 + aac, 2287718720 bytes. Frame samples at t=0,5,900,4500,8993,8999 all show the intended mansion/Porsches scene with correct fade-in/out at the edges. silencedetect (-35dB/2s) over the first ~40min found only the expected ~5.4s periodic quiet passages recurring every ~170s (matching the audio track's own loop length), consistent with lf_004/lf_005's documented pattern — no unintentional long silent/black stretch. Full-length decode was stopped partway (after ~40 of 150 min, zero anomalies) to avoid excessive notification noise; sampled checks plus the proven ffmpeg_loop.sh recipe already used for lf_002-lf_008 give adequate confidence."
+      "gate_check_note": "long_form_gates run and passed: image_copyright_gate path C (owner_ai_generated_clip, per state/animated_clip_pool.json provenance note). audio_license_gate (Fire Place verified CC0 1.0). loop_length_gate (150min, within [60,600]). shared_gates.basic_qa: ffprobe confirms exact 9000.000000s duration, 1920x1080 h264 + aac, 2287718720 bytes. Frame samples at t=0,5,900,4500,8993,8999 all show the intended mansion/Porsches scene with correct fade-in/out at the edges. silencedetect (-35dB/2s) over the first ~40min found only the expected ~5.4s periodic quiet passages recurring every ~170s (matching the audio track's own loop length), consistent with lf_004/lf_005's documented pattern — no unintentional long silent/black stretch. Full-length decode was stopped partway (after ~40 of 150 min, zero anomalies) to avoid excessive notification noise; sampled checks plus the proven ffmpeg_loop.sh recipe already used for lf_002-lf_008 give adequate confidence.",
+      "video_id": "R-yKGY6c1y0",
+      "video_url": "https://youtu.be/R-yKGY6c1y0"
     },
     {
       "id": "lf_008",
