@@ -1,6 +1,6 @@
 {
   "_comment": "Structured per-video stats, pulled daily. Consumed by the Analytics tab in dashboard/index.html (see scripts/generate_dashboard.py) and by agents/0_orchestrator.md's daily analytics cycle.",
-  "pulled_at": "2026-08-01T19:41:38.978488+00:00",
+  "pulled_at": "2026-08-01T19:57:06.823445+00:00",
   "has_analytics_scope": true,
   "analytics_data_note": "estimated_minutes_watched/avg_view_duration_sec/avg_view_percentage will be null until YouTube's Analytics reporting pipeline catches up (known lag, especially on a new channel \u2014 can be a day or two behind the public view counter). views/likes/comments are near-real-time.",
   "ctr_impressions_note": "Impressions and click-through rate are NOT available here \u2014 they're exclusive to the YouTube Studio UI and aren't exposed by the public YouTube Analytics API at all (not a scope/permission issue, confirmed by a live 400 'Unknown identifier (impressions)' test 2026-07-28). If you need exact CTR numbers, that means opening YouTube Studio directly; there's no API path to automate pulling it.",

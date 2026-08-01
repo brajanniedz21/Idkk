@@ -153,6 +153,87 @@ def test_run_id_and_append():
             check("duplicate run_id is rejected", True)
 
 
+def test_cadence_timezone():
+    print("local_time_info / time_block (Europe/London, DST-aware)")
+    winter = ai.local_time_info("2026-01-15T20:00:00Z")  # GMT, UTC+0
+    summer = ai.local_time_info("2026-07-15T20:00:00Z")  # BST, UTC+1
+    check("winter (GMT) hour matches UTC exactly", winter["hour"] == 20)
+    check("summer (BST) hour is UTC+1, not a fixed offset", summer["hour"] == 21)
+    check("winter 20:00 time_block is evening", winter["time_block"] == "evening")
+    check("summer time_block is evening", summer["time_block"] == "evening")
+    check("missing published_at returns None, not a fabricated guess", ai.local_time_info(None) is None)
+    check("time_block boundaries: 6->morning, 11->morning, 12->afternoon",
+          ai.time_block(6) == "morning" and ai.time_block(11) == "morning" and ai.time_block(12) == "afternoon")
+    check("time_block boundaries: 16->afternoon, 17->evening, 21->evening, 22->late_night",
+          ai.time_block(16) == "afternoon" and ai.time_block(17) == "evening"
+          and ai.time_block(21) == "evening" and ai.time_block(22) == "late_night")
+
+
+def test_cadence_spacing():
+    print("hours_between / cadence_features")
+    check("hours_between computes correctly", ai.hours_between("2026-01-01T00:00:00Z", "2026-01-02T06:00:00Z") == 30.0)
+    check("hours_between missing input -> None", ai.hours_between(None, "2026-01-01T00:00:00Z") is None)
+
+    v = {"video_id": "v3", "format": "short", "published_at": "2026-01-02T12:00:00Z"}
+    prev_same = {"video_id": "v2", "published_at": "2026-01-02T09:00:00Z"}
+    prev_any = {"video_id": "v_long", "published_at": "2026-01-01T20:00:00Z"}
+    feats = ai.cadence_features(v, previous_same_format=prev_same, previous_any_format=prev_any)
+    check("hours_since_previous_same_format correct", feats["hours_since_previous_same_format"] == 3.0)
+    check("hours_since_previous_any_format correct", feats["hours_since_previous_any_format"] == 16.0)
+    check("local_time populated", feats["local_time"] is not None)
+
+    first_of_kind = ai.cadence_features(v, previous_same_format=None, previous_any_format=None)
+    check("first upload of its kind has no spacing (not fabricated as 0)",
+          first_of_kind["hours_since_previous_same_format"] is None)
+
+
+def test_group_baseline_by_key():
+    print("group_baseline_by_key")
+    now = datetime(2026, 8, 1, tzinfo=timezone.utc)
+    videos = [
+        {"video_id": "e1", "views": 100, "likes": 5, "comments": 1, "published_at": "2026-07-31T19:00:00Z"},  # evening
+        {"video_id": "e2", "views": 200, "likes": 8, "comments": 2, "published_at": "2026-07-30T18:30:00Z"},  # evening
+        {"video_id": "m1", "views": 50, "likes": 1, "comments": 0, "published_at": "2026-07-30T07:00:00Z"},   # morning
+    ]
+    grouped = ai.group_baseline_by_key(videos, lambda v: ai.local_time_info(v["published_at"])["time_block"], now=now)
+    check("groups by time block correctly", set(grouped) == {"evening", "morning"})
+    check("evening group has n=2", grouped["evening"]["n"] == 2)
+    check("morning group has n=1", grouped["morning"]["n"] == 1)
+
+
+def test_fatigue_assessment():
+    print("fatigue_assessment — the spec's own worked scenarios")
+    now = datetime(2026, 8, 10, tzinfo=timezone.utc)
+
+    def mk(vid, days_ago, views):
+        ts = (now - __import__("datetime").timedelta(days=days_ago)).isoformat()
+        return {"video_id": vid, "format": "short", "views": views, "likes": 5, "comments": 1, "published_at": ts}
+
+    # Frequent but consistently strong -> diversify, never reduce/retire on frequency alone.
+    pattern_strong = [mk("p4", 1, 600), mk("p3", 3, 650), mk("p2", 5, 700), mk("p1", 7, 680)]
+    same_format = [mk("p4", 1, 600), mk("o1", 2, 200), mk("p3", 3, 650), mk("o2", 4, 180),
+                    mk("p2", 5, 700), mk("o3", 6, 150), mk("p1", 7, 680)]
+    baseline = ai.format_baseline(same_format, now=now)
+    result = ai.fatigue_assessment(pattern_strong, same_format, baseline, now=now)
+    check("frequent + strong performance -> diversify, not reduce/retire", result["fatigue_status"] == "diversify")
+
+    # Frequent AND declining -> fatigue_detected.
+    pattern_declining = [mk("q4", 1, 50), mk("q3", 2, 60), mk("q2", 3, 55), mk("q1", 8, 800)]
+    same_format2 = [mk("q4", 1, 50), mk("q3", 2, 60), mk("q2", 3, 55), mk("x1", 5, 200), mk("q1", 8, 800)]
+    baseline2 = ai.format_baseline(same_format2, now=now)
+    result2 = ai.fatigue_assessment(pattern_declining, same_format2, baseline2, now=now)
+    check("frequent + declining -> fatigue_detected", result2["fatigue_status"] == "fatigue_detected")
+
+    # One weak use never proves fatigue.
+    result3 = ai.fatigue_assessment([mk("r1", 1, 10)], same_format, baseline, now=now)
+    check("single use -> healthy (one weak repetition doesn't prove fatigue)", result3["fatigue_status"] == "healthy")
+
+    # Never mixes formats: a long-form pattern must never be judged against a short baseline.
+    check("consecutive_uses counts correctly for the strong pattern",
+          result["recent_usage"]["consecutive_uses"] == 1)  # p4 then a non-pattern video breaks the streak
+    check("share_of_last_10 is a real fraction, not fabricated", 0 < result["recent_usage"]["share_of_last_10"] < 1)
+
+
 def test_real_state_files_readable():
     print("sanity check against the real project state files (read-only)")
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -182,6 +263,10 @@ def main():
     test_evidence_levels()
     test_join_video_attributes()
     test_run_id_and_append()
+    test_cadence_timezone()
+    test_cadence_spacing()
+    test_group_baseline_by_key()
+    test_fatigue_assessment()
     test_real_state_files_readable()
 
     print(f"\n{PASS} passed, {FAIL} failed")
