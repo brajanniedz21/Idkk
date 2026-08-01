@@ -973,59 +973,18 @@ body {{
 .mono {{ font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", monospace; }}
 .muted-text {{ color: var(--text-tertiary); }}
 
-/* ---- Ambient background — faint, slow-drifting light sources behind the
-   glass surfaces, the way a Liquid Glass wallpaper reads through system
-   chrome. Three soft blobs in the brand hues, low opacity, blurred, each
-   drifting on its own long loop so the motion never repeats in sync. ---- */
+/* ---- Ambient background — a single, static, very low-opacity glow anchored
+   top-left. Earlier version used 3 independently-animating blurred blobs;
+   replaced (2026-08-02, owner request: cleaner mobile UI) with one static
+   glow — same sense of depth behind the glass surfaces, none of the
+   perpetual-motion cost (repaints/battery on real phones, visual noise
+   competing with actual content on a small screen). ---- */
 .bg-glow {{
   position: fixed;
-  inset: -10%;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  overflow: hidden;
-  filter: blur(70px);
-}}
-.bg-glow span {{
-  position: absolute;
-  width: 46vmax;
-  height: 46vmax;
-  border-radius: 50%;
-  opacity: 0.32;
-}}
-.bg-glow span:nth-child(1) {{
-  background: var(--accent);
-  top: -14%;
-  left: -12%;
-  animation: drift1 46s ease-in-out infinite alternate;
-}}
-.bg-glow span:nth-child(2) {{
-  background: var(--info);
-  bottom: -18%;
-  right: -14%;
-  opacity: 0.26;
-  animation: drift2 58s ease-in-out infinite alternate;
-}}
-.bg-glow span:nth-child(3) {{
-  background: var(--success);
-  top: 38%;
-  left: 32%;
-  opacity: 0.18;
-  animation: drift3 70s ease-in-out infinite alternate;
-}}
-@keyframes drift1 {{
-  from {{ transform: translate(0, 0) scale(1); }}
-  to   {{ transform: translate(8vw, 10vh) scale(1.15); }}
-}}
-@keyframes drift2 {{
-  from {{ transform: translate(0, 0) scale(1); }}
-  to   {{ transform: translate(-9vw, -6vh) scale(1.1); }}
-}}
-@keyframes drift3 {{
-  from {{ transform: translate(-4vw, 0) scale(0.95); }}
-  to   {{ transform: translate(5vw, -8vh) scale(1.08); }}
-}}
-@media (prefers-reduced-motion: reduce) {{
-  .bg-glow span {{ animation: none; }}
+  background: radial-gradient(70% 50% at 6% -6%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 70%);
 }}
 
 /* ---- Nav bar (per tab, sticky, iOS "Liquid Glass" material: a real
@@ -1083,6 +1042,20 @@ body.scrolled .large-title-block {{
 @media (prefers-reduced-motion: reduce) {{
   .large-title-block {{ transition: none; }}
 }}
+.back-row {{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border: none;
+  background: none;
+  padding: 4px 0 8px;
+  margin: 0;
+  color: var(--accent);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}}
+.back-row svg {{ width: 16px; height: 16px; transform: scaleX(-1); }}
 .large-title {{
   font-size: 34px;
   font-weight: 700;
@@ -1133,56 +1106,16 @@ body.scrolled .large-title-block {{
   padding: 0 16px 8px;
 }}
 .stat-card {{
-  background:
-    radial-gradient(120% 140% at 12% 0%, rgba(255,255,255,0.16), transparent 55%),
-    linear-gradient(165deg, color-mix(in srgb, var(--surface) 92%, white 8%) 0%, color-mix(in srgb, var(--surface) 90%, transparent) 60%, color-mix(in srgb, var(--surface) 82%, black 8%) 100%);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-radius: 20px;
-  border: 0.75px solid rgba(255,255,255,0.16);
+  background: var(--surface);
+  border-radius: 18px;
+  border: 0.75px solid var(--border);
   padding: 14px 14px 12px;
   position: relative;
-  overflow: hidden;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.22),
-    inset 0 -12px 20px -14px rgba(0,0,0,0.35),
-    0 8px 20px -12px rgba(0,0,0,0.4);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.16);
   transition: transform 0.18s ease;
 }}
-:root[data-theme="light"] .stat-card {{
-  border-color: rgba(0,0,0,0.06);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.7),
-    inset 0 -10px 18px -14px rgba(0,0,0,0.1),
-    0 6px 16px -12px rgba(0,0,0,0.18);
-}}
-@media (prefers-color-scheme: light) {{
-  :root:not([data-theme="dark"]) .stat-card {{
-    border-color: rgba(0,0,0,0.06);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.7),
-      inset 0 -10px 18px -14px rgba(0,0,0,0.1),
-      0 6px 16px -12px rgba(0,0,0,0.18);
-  }}
-}}
 .stat-card:active {{ transform: scale(0.97); }}
-.stat-card::before {{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.10) 46%, transparent 62%);
-  background-size: 220% 220%;
-  background-position: 120% -20%;
-  pointer-events: none;
-  animation: sheen 9s ease-in-out infinite;
-  animation-delay: var(--sheen-delay, 0s);
-}}
-@keyframes sheen {{
-  0%, 30% {{ background-position: 120% -20%; }}
-  70%, 100% {{ background-position: -20% 120%; }}
-}}
 @media (prefers-reduced-motion: reduce) {{
-  .stat-card::before {{ animation: none; }}
   .stat-card {{ transition: none; }}
 }}
 .stat-icon {{
@@ -1339,35 +1272,12 @@ body.scrolled .large-title-block {{
 
 /* ---- Charts (Analytics tab) ---- */
 .chart-card {{
-  background:
-    radial-gradient(120% 140% at 12% 0%, rgba(255,255,255,0.14), transparent 55%),
-    linear-gradient(165deg, color-mix(in srgb, var(--surface) 92%, white 8%) 0%, color-mix(in srgb, var(--surface) 90%, transparent) 60%, color-mix(in srgb, var(--surface) 82%, black 8%) 100%);
-  backdrop-filter: saturate(170%) blur(18px);
-  -webkit-backdrop-filter: saturate(170%) blur(18px);
-  border-radius: 20px;
-  border: 0.75px solid rgba(255,255,255,0.16);
+  background: var(--surface);
+  border-radius: 18px;
+  border: 0.75px solid var(--border);
   margin: 0 16px;
   padding: 14px 8px 10px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.22),
-    inset 0 -12px 20px -14px rgba(0,0,0,0.35),
-    0 8px 20px -12px rgba(0,0,0,0.4);
-}}
-:root[data-theme="light"] .chart-card {{
-  border-color: rgba(0,0,0,0.06);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.7),
-    inset 0 -10px 18px -14px rgba(0,0,0,0.1),
-    0 6px 16px -12px rgba(0,0,0,0.18);
-}}
-@media (prefers-color-scheme: light) {{
-  :root:not([data-theme="dark"]) .chart-card {{
-    border-color: rgba(0,0,0,0.06);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.7),
-      inset 0 -10px 18px -14px rgba(0,0,0,0.1),
-      0 6px 16px -12px rgba(0,0,0,0.18);
-  }}
+  box-shadow: 0 1px 2px rgba(0,0,0,0.16);
 }}
 .chart-card-sub {{
   font-size: 12px;
@@ -1388,7 +1298,7 @@ body.scrolled .large-title-block {{
   padding: 6px 12px;
 }}
 .bar-label {{
-  width: 118px;
+  width: clamp(72px, 30vw, 118px);
   flex-shrink: 0;
   font-size: 12.5px;
   color: var(--text-secondary);
@@ -1503,7 +1413,7 @@ body.scrolled .large-title-block {{
 </head>
 <body>
 
-<div class="bg-glow" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="bg-glow" aria-hidden="true"></div>
 
 <nav class="navbar">
   <div class="navbar-compact" id="navTitle">Overview</div>
@@ -1520,6 +1430,7 @@ body.scrolled .large-title-block {{
     {blocker_html}
     {next_row}
     {week_html}
+    {section("System", f'<div class="ios-row" data-goto="agents" data-title="Agents" role="button" tabindex="0">{icon_bubble(icon("agents", 15), "accent", is_svg=True)}<div class="row-text"><div class="row-title">Agents &amp; pipeline stages</div><div class="row-subtitle">What each stage does, read live from agents/*.md</div></div><div class="row-trailing">{icon("chevron", 15)}</div></div>')}
   </section>
 
   <section class="tab-page" id="tab-nextrun">
@@ -1528,6 +1439,7 @@ body.scrolled .large-title-block {{
 
   <section class="tab-page" id="tab-agents">
     <div class="large-title-block">
+      <button class="back-row" data-goto="overview" data-title="Overview">{icon("chevron", 14)}<span>Overview</span></button>
       <h1 class="large-title">Agents</h1>
       <div class="large-title-sub">Live from agents/*.md</div>
     </div>
@@ -1583,7 +1495,6 @@ body.scrolled .large-title-block {{
 <nav class="tabbar">
   <button class="tab-btn active" data-tab="overview" data-title="Overview">{icon('gauge')}<span>Overview</span></button>
   <button class="tab-btn" data-tab="nextrun" data-title="Next Run">{icon('upcoming')}<span>Next Run</span></button>
-  <button class="tab-btn" data-tab="agents" data-title="Agents">{icon('agents')}<span>Agents</span></button>
   <button class="tab-btn" data-tab="queues" data-title="Queues">{icon('queues')}<span>Queues</span></button>
   <button class="tab-btn" data-tab="analytics" data-title="Analytics">{icon('chart')}<span>Analytics</span></button>
   <button class="tab-btn" data-tab="activity" data-title="Activity">{icon('activity')}<span>Activity</span></button>
@@ -1593,18 +1504,36 @@ body.scrolled .large-title-block {{
 (function() {{
   var tabBtns = document.querySelectorAll('.tab-btn');
   var navTitle = document.getElementById('navTitle');
+
+  // Shared page-switch: shows the target tab-page and resets scroll. Tab-bar
+  // buttons also update which bottom-tab is highlighted; drill-down rows
+  // (data-goto on a non-tab-btn element, e.g. Overview -> Agents) leave the
+  // tab bar alone, since the destination is a pushed sub-page of Overview,
+  // not a sibling tab — same as an iOS list row pushing a detail screen
+  // while its parent tab stays highlighted.
+  function goTo(tabName, title) {{
+    document.querySelectorAll('.tab-page').forEach(function(p) {{ p.classList.remove('active'); }});
+    var page = document.getElementById('tab-' + tabName);
+    if (page) page.classList.add('active');
+    if (title) navTitle.textContent = title;
+    var main = document.querySelector('main');
+    if (main) main.scrollTop = 0;
+    window.scrollTo(0, 0);
+    document.body.classList.remove('scrolled');
+  }}
+
   tabBtns.forEach(function(btn) {{
     btn.addEventListener('click', function() {{
       tabBtns.forEach(function(b) {{ b.classList.remove('active'); }});
       btn.classList.add('active');
-      document.querySelectorAll('.tab-page').forEach(function(p) {{ p.classList.remove('active'); }});
-      var page = document.getElementById('tab-' + btn.dataset.tab);
-      if (page) page.classList.add('active');
-      navTitle.textContent = btn.dataset.title;
-      var main = document.querySelector('main');
-      if (main) main.scrollTop = 0;
-      window.scrollTo(0, 0);
-      document.body.classList.remove('scrolled');
+      goTo(btn.dataset.tab, btn.dataset.title);
+    }});
+  }});
+
+  document.querySelectorAll('[data-goto]:not(.tab-btn)').forEach(function(el) {{
+    el.addEventListener('click', function() {{ goTo(el.dataset.goto, el.dataset.title); }});
+    el.addEventListener('keydown', function(e) {{
+      if (e.key === 'Enter' || e.key === ' ') {{ e.preventDefault(); goTo(el.dataset.goto, el.dataset.title); }}
     }});
   }});
   var segBtns = document.querySelectorAll('.segmented button');
