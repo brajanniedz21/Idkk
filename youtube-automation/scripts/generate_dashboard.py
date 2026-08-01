@@ -538,11 +538,21 @@ def main():
           {f'<div class="stat-sub">{esc(sub)}</div>' if sub else ''}
         </div>"""
 
+    # "Published" must be the true all-time total (matches posted_history.json
+    # and the Agents tab's per-format counts) — NOT status_counts["done"],
+    # which only counts items tracked in weekly_batch_progress.json's current
+    # week-of schedule skeleton. Those are two different numbers for a real
+    # reason (the schedule skeleton doesn't cover everything ever published,
+    # e.g. candidates published before the batch tracker existed, or outside
+    # its day-slot tracking) but showing the smaller one under a label that
+    # reads as "how many have I published" is misleading — a real user-
+    # reported confusion (2026-08-02), not a hypothetical.
+    published_total = sf_published + lf_published
     stats_html = "".join([
-        stat_card("Published", status_counts.get("done", 0), "success"),
-        stat_card("Ready to publish", status_counts.get("ready_to_publish", 0), "info"),
-        stat_card("Pending", status_counts.get("pending", 0), "neutral"),
-        stat_card("Quarantined", quarantine_count, "critical" if quarantine_count else "neutral"),
+        stat_card("Published", published_total, "success", sub="all-time"),
+        stat_card("Ready to publish", status_counts.get("ready_to_publish", 0), "info", sub="this week"),
+        stat_card("Pending", status_counts.get("pending", 0), "neutral", sub="this week"),
+        stat_card("Quarantined", quarantine_count, "critical" if quarantine_count else "neutral", sub="all-time"),
     ])
 
     next_row = ""
