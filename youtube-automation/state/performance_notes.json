@@ -65,6 +65,46 @@
         "new_signal_worth_flagging": "The two lowest performers both used aggressive phonk/hardtekk, while the top 3 performers all used calmer confident/bittersweet mid-tempo (78-95bpm) tracks instead. This is the opposite of the pipeline's working assumption that aggressive phonk is the safe default for this niche. Not enough data yet to flip the default, but worth testing more mid-tempo anthemic/bittersweet tracks in upcoming scouting rather than defaulting to aggressive phonk every time."
       },
       "scouting_guidance": "repeat: generational-legacy and sacrifice/cost narrative angles; confident-warm or bittersweet mid-tempo (78-95bpm) tracks over aggressive phonk by default. avoid repeating as-is: aggressive phonk/hardtekk paired with a 'proof of work' or 'competitive standards' angle specifically — both instances of that combination are the current bottom performers. Re-check this once more data accumulates (current sample is thin)."
+    },
+    {
+      "run_at": "2026-08-01T19:01:43.322871+00:00",
+      "lookback_days": 7,
+      "analytics_scope_status": "working this run (has_analytics_scope=true, 35 videos pulled)",
+      "findings": {
+        "top_performers": [
+          {
+            "title": "I'm The First. Not The Last.",
+            "views": 1827,
+            "likes": 38
+          },
+          {
+            "title": "Nobody Talks About What I Gave Up.",
+            "views": 1736,
+            "likes": 36
+          },
+          {
+            "title": "This Took Years. It Looks Like Luck.",
+            "views": 1580,
+            "likes": 49,
+            "note": "highest like count of any video so far, and highest like-rate (~3.1%)"
+          }
+        ],
+        "bottom_performers": [
+          {
+            "title": "Nobody Gave Me Permission. I Took It.",
+            "views": 268,
+            "likes": 1
+          },
+          {
+            "title": "Everyone's On A Different Clock.",
+            "views": 257,
+            "likes": 0
+          }
+        ],
+        "pattern_holding": "Same signal as the 2026-07-29 entry: top performers keep skewing toward generational-legacy/sacrifice/earned-over-time narratives ('I'm The First...', 'Nobody Talks About What I Gave Up...', 'This Took Years...') over competitive-standards/proof-of-work framings. This is now a 2nd consecutive daily pull showing the same direction, so it's a slightly firmer signal than the 2026-07-29 entry (which flagged itself as thin/early).",
+        "caveat": "Views are still climbing on the most recent posts (2026-08-01's short has only been up ~11h), so today's newest entries aren't directly comparable to week-old ones yet."
+      },
+      "scouting_guidance": "Continue weighting toward legacy/sacrifice/earned-over-time narratives with confident-not-aggressive mid-tempo audio (consistent with config/channel.json.brand_identity's luxury/calm/quiet-confidence direction adopted 2026-07-30). No new attributes to deliberately avoid beyond what's already logged 2026-07-29."
     }
   ],
   "competitor_trend_research": {

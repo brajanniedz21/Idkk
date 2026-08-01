@@ -1,0 +1,25 @@
+{
+  "_comment": "Branding overlays for the automated pipeline. Added 2026-08-01 (owner direction) for the Subscribe animation overlay on long-form videos. Keep all paths/tuning values here rather than hard-coded in scripts/agents, so a future asset swap or re-tune is a one-file edit.",
+  "subscribe_animation": {
+    "enabled": true,
+    "applies_to_formats": ["long_form"],
+    "asset_path": "assets/branding/subscribe_animation.mp4",
+    "asset_source_note": "Owner-supplied via Google Drive (file 1wjEuXZ_FV2KM7Q7mPlW2K16-fOZXLeR0, 'Subscribe.mp4'), downloaded 2026-08-01. 1920x1080, 30fps, 4.0747s, has its own AAC audio track (click/pop SFX).",
+    "chromakey_color": "0x11FE02",
+    "chromakey_similarity": 0.15,
+    "chromakey_blend": 0.08,
+    "chromakey_note": "Measured directly from the asset (frame sample at t=1.0s, top-left background pixel = RGB(17,254,2)) rather than assumed pure 0x00FF00 — the actual green has a slight blue/red tint. similarity=0.15/blend=0.08 tuned to fully remove the green field and its anti-aliased edge fringe (verified: no residual green halo around the rounded panel or cursor) without eating into the panel's near-white interior (verified: no transparent holes inside the panel/icons).",
+    "despill_mix": 0.4,
+    "despill_note": "Applied after chromakey to strip residual green tint from the ~4-5px anti-aliased edge band between the green field and the white panel (confirmed present via a zoomed pixel inspection) — this is what prevents a visible green halo/fringe around the panel's rounded corners and the cursor icon.",
+    "source_fade_start_sec": 3.3,
+    "source_fade_end_sec": 4.0747,
+    "source_fade_note": "The source asset itself fades to near-black (not pure green) starting at t=3.3s, confirmed by sampling background pixel luma at 10fps across the whole clip: stable green through t=3.3s, then a steady decline to RGB(0,0,0) by t=4.0s. Because this fade is no longer pure green, chromakey alone would leave a dark/near-black rectangle visible for the last ~0.7s. Fixed by layering an explicit alpha fade-out (see overlay_alpha_fade_* below) timed to reach full transparency by the same point the source visually fades to black, so the darkening region is never actually composited.",
+    "overlay_alpha_fade_start_sec": 3.3,
+    "overlay_alpha_fade_duration_sec": 0.7,
+    "start_offset_sec": 0.0,
+    "position_note": "Overlaid at (0,0) covering the full 1920x1080 frame with no scaling/cropping/repositioning — the asset is already the target long-form resolution and the visible graphic sits within its own designed position in that canvas (lower-middle third), so a direct full-frame overlay preserves original proportions and intended positioning exactly, per owner requirement.",
+    "audio_mix_volume": 0.65,
+    "audio_mix_note": "The animation's own click/pop SFX is mixed under the ambient track at reduced volume (0.65x) via amix, timed to play once at t=0 alongside the visual, never replacing or interrupting the ambience. duration=first in the amix call means the mix runs for the full ambient track's length (the short SFX simply ends on its own within that).",
+    "play_once_note": "The overlay input is fed to ffmpeg WITHOUT -stream_loop (unlike the visual/audio loop inputs), so it naturally plays exactly once regardless of how many times the underlying loop segment repeats to fill the target runtime. eof_action=pass on the overlay filter means playback continues normally (main video passes through untouched) once the ~4s animation ends, for the rest of the multi-hour video."
+  }
+}
