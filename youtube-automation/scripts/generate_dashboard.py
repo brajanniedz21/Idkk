@@ -560,7 +560,7 @@ def main():
         next_row = section(
             "Next scheduled",
             row(
-                icon_bubble(icon("gauge", 15), "accent", is_svg=True),
+                icon_bubble(icon("gauge", 15), "gold", is_svg=True),
                 esc(next_due.get("candidate_id", "—")),
                 f'{esc(fmt_dt(next_due["scheduled_publish_at"]))} · {"Short-form" if next_due.get("format")=="short" else "Long-form"}',
             ),
@@ -833,7 +833,7 @@ def main():
     analytics_section = section("Analytics cycle", analytics_run_rows)
 
     nextrun_html = f"""
-      <div class="large-title-block">
+      <div class="page-header">
         <h1 class="large-title">Next Run</h1>
         <div class="large-title-sub">Predicted from current state · generated {esc(generated_at)}</div>
       </div>
@@ -912,55 +912,69 @@ def main():
 {pwa_head}
 
 <style>
+/* ---- Color system (owner direction, 2026-08-02: rebuilt as a distinct
+   identity, not a copy of Apple's system palette). OKLCH-derived, contrast-
+   verified (ink/bg >=7:1, muted/bg >=3.5:1, every semantic color >=4.5:1
+   against its own bg, primary/gold >=1.7:1 apart). Restrained strategy:
+   near-pure neutrals carry the surface, a single indigo/violet primary
+   (--accent, kept as the historical variable name so every usage site
+   below didn't need touching) carries brand emphasis, one warm gold
+   (--gold) used sparingly for a single deliberate highlight rather than
+   scattered everywhere. Semantic status colors (--success/--critical/
+   --warning/--info) are deliberately a different hue family from primary
+   so a status pill is never confused with a brand-emphasis element. ---- */
 :root {{
-  --bg: #000000;
-  --surface: #1c1c1e;
-  --surface-2: #2c2c2e;
-  --border: rgba(255,255,255,0.14);
-  --text: #ffffff;
-  --text-secondary: rgba(235,235,245,0.6);
-  --text-tertiary: rgba(235,235,245,0.35);
-  --accent: #cd9a5c;
-  --success: #30d158;
-  --info: #409cff;
-  --warning: #ffd60a;
-  --critical: #ff453a;
-  --neutral: #8e8e93;
-  --bar-bg: rgba(28,28,30,0.78);
+  --bg: #020202;
+  --surface: #0b0b0e;
+  --surface-2: #141317;
+  --border: rgba(242,242,242,0.10);
+  --text: #f2f2f2;
+  --text-secondary: #a3a2a8;
+  --text-tertiary: #7a7a7c;
+  --accent: #8771de;
+  --gold: #ebb353;
+  --success: #61bd67;
+  --info: #809ddd;
+  --warning: #f98f3a;
+  --critical: #ed5350;
+  --neutral: #86858c;
+  --bar-bg: rgba(11,11,14,0.82);
   font-variant-numeric: tabular-nums;
 }}
 :root[data-theme="light"] {{
-  --bg: #f2f2f7;
-  --surface: #ffffff;
-  --surface-2: #e5e5ea;
-  --border: rgba(60,60,67,0.16);
-  --text: #000000;
-  --text-secondary: rgba(60,60,67,0.6);
-  --text-tertiary: rgba(60,60,67,0.3);
-  --accent: #a9682c;
-  --success: #34c759;
-  --info: #007aff;
-  --warning: #b3811f;
-  --critical: #ff3b30;
-  --neutral: #8e8e93;
-  --bar-bg: rgba(248,248,250,0.78);
+  --bg: #ffffff;
+  --surface: #f5f4f9;
+  --surface-2: #ebeaf0;
+  --border: rgba(11,11,14,0.10);
+  --text: #0b0b0e;
+  --text-secondary: #56555c;
+  --text-tertiary: #636366;
+  --accent: #512da6;
+  --gold: #ac6900;
+  --success: #1e7729;
+  --info: #4460a2;
+  --warning: #b15300;
+  --critical: #ba2b2e;
+  --neutral: #717177;
+  --bar-bg: rgba(255,255,255,0.86);
 }}
 @media (prefers-color-scheme: light) {{
   :root:not([data-theme="dark"]) {{
-    --bg: #f2f2f7;
-    --surface: #ffffff;
-    --surface-2: #e5e5ea;
-    --border: rgba(60,60,67,0.16);
-    --text: #000000;
-    --text-secondary: rgba(60,60,67,0.6);
-    --text-tertiary: rgba(60,60,67,0.3);
-    --accent: #a9682c;
-    --success: #34c759;
-    --info: #007aff;
-    --warning: #b3811f;
-    --critical: #ff3b30;
-    --neutral: #8e8e93;
-    --bar-bg: rgba(248,248,250,0.78);
+    --bg: #ffffff;
+    --surface: #f5f4f9;
+    --surface-2: #ebeaf0;
+    --border: rgba(11,11,14,0.10);
+    --text: #0b0b0e;
+    --text-secondary: #56555c;
+    --text-tertiary: #636366;
+    --accent: #512da6;
+    --gold: #ac6900;
+    --success: #1e7729;
+    --info: #4460a2;
+    --warning: #b15300;
+    --critical: #ba2b2e;
+    --neutral: #717177;
+    --bar-bg: rgba(255,255,255,0.86);
   }}
 }}
 {f'''@font-face {{
@@ -997,60 +1011,18 @@ body {{
   background: radial-gradient(70% 50% at 6% -6%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 70%);
 }}
 
-/* ---- Nav bar (per tab, sticky, iOS "Liquid Glass" material: a real
-   glass surface — blur + saturation + a hairline top highlight — that
-   compacts as the large title collapses on scroll, same as system apps. ---- */
-.navbar {{
+/* ---- Page header: a plain, static, sticky header per tab. Deliberately
+   NOT the iOS "large title collapses into a centered compact bar on
+   scroll" pattern (owner direction, 2026-08-02: distinct identity, not a
+   system-app impression) — one flat header, left-aligned, always showing
+   the full title. Simpler code too: no scroll listener needed for this. ---- */
+.page-header {{
   position: sticky;
   top: 0;
   z-index: 40;
-  backdrop-filter: saturate(200%) blur(26px);
-  -webkit-backdrop-filter: saturate(200%) blur(26px);
-  background: var(--bar-bg);
-  border-bottom: 0.5px solid transparent;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-  padding-top: env(safe-area-inset-top);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}}
-body.scrolled .navbar {{
-  border-bottom-color: var(--border);
-}}
-.navbar-compact {{
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 17px;
-  font-weight: 600;
-  padding: 0 16px;
-  opacity: 0;
-  transform: translateY(-4px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
-}}
-body.scrolled .navbar-compact {{
-  opacity: 1;
-  transform: translateY(0);
-}}
-@media (prefers-reduced-motion: reduce) {{
-  .navbar-compact {{ transition: none; }}
-}}
-.large-title-block {{
-  padding: 4px 16px 12px;
-  max-height: 80px;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.22s ease, transform 0.22s ease, max-height 0.22s ease, padding 0.22s ease;
-  overflow: hidden;
-}}
-body.scrolled .large-title-block {{
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-6px);
-  padding-top: 0;
-  padding-bottom: 0;
-}}
-@media (prefers-reduced-motion: reduce) {{
-  .large-title-block {{ transition: none; }}
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: calc(env(safe-area-inset-top) + 14px) 16px 14px;
 }}
 .back-row {{
   display: flex;
@@ -1067,9 +1039,9 @@ body.scrolled .large-title-block {{
 }}
 .back-row svg {{ width: 16px; height: 16px; transform: scaleX(-1); }}
 .large-title {{
-  font-size: 34px;
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: -0.021em;
+  letter-spacing: -0.02em;
   margin: 0;
   text-wrap: balance;
 }}
@@ -1139,6 +1111,7 @@ body.scrolled .large-title-block {{
 .stat-icon-neutral {{ color: var(--neutral); }}
 .stat-icon-critical {{ color: var(--critical); }}
 .stat-icon-accent {{ color: var(--accent); }}
+.stat-icon-gold {{ color: var(--gold); }}
 .stat-value {{ font-size: 28px; font-weight: 700; letter-spacing: -0.01em; font-family: ui-monospace, "SF Mono", monospace; }}
 .stat-label {{ font-size: 13px; color: var(--text-secondary); margin-top: 1px; }}
 .stat-sub {{ font-size: 11px; color: var(--text-tertiary); margin-top: 3px; font-family: ui-monospace, monospace; }}
@@ -1189,6 +1162,7 @@ body.scrolled .large-title-block {{
 }}
 .row-icon svg {{ width: 20px; height: 20px; }}
 .row-icon-accent {{ color: var(--accent); }}
+.row-icon-gold {{ color: var(--gold); }}
 .row-icon-info {{ color: var(--info); }}
 .row-icon-success {{ color: var(--success); }}
 .row-icon-warning {{ color: var(--warning); }}
@@ -1378,27 +1352,26 @@ body.scrolled .large-title-block {{
   font-family: ui-monospace, monospace;
 }}
 
-/* ---- Bottom tab bar ---- */
+/* ---- Bottom tab bar — flat surface, no blur. Active state reads via a
+   top indicator bar (own pattern, not an icon-tint-only affordance). ---- */
 .tabbar {{
   position: fixed;
   left: 0; right: 0; bottom: 0;
   z-index: 50;
   display: flex;
-  backdrop-filter: saturate(200%) blur(26px);
-  -webkit-backdrop-filter: saturate(200%) blur(26px);
-  background: var(--bar-bg);
-  border-top: 0.5px solid var(--border);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
   padding-bottom: env(safe-area-inset-bottom);
 }}
 .tab-btn {{
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  padding: 7px 0 6px;
+  gap: 3px;
+  padding: 9px 0 7px;
   background: none;
   border: none;
   color: var(--text-tertiary);
@@ -1406,14 +1379,26 @@ body.scrolled .large-title-block {{
   font-size: 10px;
   font-weight: 500;
   cursor: pointer;
+  transition: color 0.16s ease-out;
 }}
-.tab-btn svg {{ width: 25px; height: 25px; transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1); }}
-.tab-btn {{ transition: color 0.18s ease; }}
+.tab-btn::before {{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+  background: var(--accent);
+  transform: translateX(-50%) scaleX(0);
+  transition: transform 0.18s cubic-bezier(0.16,1,0.3,1);
+}}
+.tab-btn.active::before {{ transform: translateX(-50%) scaleX(1); }}
+.tab-btn svg {{ width: 24px; height: 24px; }}
 .tab-btn.active {{ color: var(--accent); }}
-.tab-btn.active svg {{ transform: scale(1.08); }}
-.tab-btn:active {{ opacity: 0.5; }}
+.tab-btn:active {{ opacity: 0.6; }}
 @media (prefers-reduced-motion: reduce) {{
-  .tab-btn svg {{ transition: none; }}
+  .tab-btn::before {{ transition: none; }}
 }}
 
 @media (min-width: 700px) {{
@@ -1425,14 +1410,10 @@ body.scrolled .large-title-block {{
 
 <div class="bg-glow" aria-hidden="true"></div>
 
-<nav class="navbar">
-  <div class="navbar-compact" id="navTitle">Overview</div>
-</nav>
-
 <main class="page-wrap">
 
   <section class="tab-page active" id="tab-overview">
-    <div class="large-title-block">
+    <div class="page-header">
       <h1 class="large-title">Overview</h1>
       <div class="large-title-sub">{esc(handle)} · generated {esc(generated_at)}</div>
     </div>
@@ -1448,7 +1429,7 @@ body.scrolled .large-title-block {{
   </section>
 
   <section class="tab-page" id="tab-agents">
-    <div class="large-title-block">
+    <div class="page-header">
       <button class="back-row" data-goto="overview" data-title="Overview">{icon("chevron", 14)}<span>Overview</span></button>
       <h1 class="large-title">Agents</h1>
       <div class="large-title-sub">Live from agents/*.md</div>
@@ -1462,7 +1443,7 @@ body.scrolled .large-title-block {{
   </section>
 
   <section class="tab-page" id="tab-queues">
-    <div class="large-title-block">
+    <div class="page-header">
       <h1 class="large-title">Queues</h1>
       <div class="large-title-sub">{len(lfq) + len(sfq)} candidates total</div>
     </div>
@@ -1475,7 +1456,7 @@ body.scrolled .large-title-block {{
   </section>
 
   <section class="tab-page" id="tab-activity">
-    <div class="large-title-block">
+    <div class="page-header">
       <h1 class="large-title">Activity</h1>
       <div class="large-title-sub">Recently published</div>
     </div>
@@ -1484,7 +1465,7 @@ body.scrolled .large-title-block {{
   </section>
 
   <section class="tab-page" id="tab-analytics">
-    <div class="large-title-block">
+    <div class="page-header">
       <h1 class="large-title">Analytics</h1>
       <div class="large-title-sub">{esc(analytics_pulled_note)}</div>
     </div>
@@ -1513,37 +1494,34 @@ body.scrolled .large-title-block {{
 <script>
 (function() {{
   var tabBtns = document.querySelectorAll('.tab-btn');
-  var navTitle = document.getElementById('navTitle');
 
   // Shared page-switch: shows the target tab-page and resets scroll. Tab-bar
   // buttons also update which bottom-tab is highlighted; drill-down rows
   // (data-goto on a non-tab-btn element, e.g. Overview -> Agents) leave the
   // tab bar alone, since the destination is a pushed sub-page of Overview,
-  // not a sibling tab — same as an iOS list row pushing a detail screen
-  // while its parent tab stays highlighted.
-  function goTo(tabName, title) {{
+  // not a sibling tab — its own page-header shows the destination's title
+  // directly, so no shared title element needs updating.
+  function goTo(tabName) {{
     document.querySelectorAll('.tab-page').forEach(function(p) {{ p.classList.remove('active'); }});
     var page = document.getElementById('tab-' + tabName);
     if (page) page.classList.add('active');
-    if (title) navTitle.textContent = title;
     var main = document.querySelector('main');
     if (main) main.scrollTop = 0;
     window.scrollTo(0, 0);
-    document.body.classList.remove('scrolled');
   }}
 
   tabBtns.forEach(function(btn) {{
     btn.addEventListener('click', function() {{
       tabBtns.forEach(function(b) {{ b.classList.remove('active'); }});
       btn.classList.add('active');
-      goTo(btn.dataset.tab, btn.dataset.title);
+      goTo(btn.dataset.tab);
     }});
   }});
 
   document.querySelectorAll('[data-goto]:not(.tab-btn)').forEach(function(el) {{
-    el.addEventListener('click', function() {{ goTo(el.dataset.goto, el.dataset.title); }});
+    el.addEventListener('click', function() {{ goTo(el.dataset.goto); }});
     el.addEventListener('keydown', function(e) {{
-      if (e.key === 'Enter' || e.key === ' ') {{ e.preventDefault(); goTo(el.dataset.goto, el.dataset.title); }}
+      if (e.key === 'Enter' || e.key === ' ') {{ e.preventDefault(); goTo(el.dataset.goto); }}
     }});
   }});
   var segBtns = document.querySelectorAll('.segmented button');
@@ -1556,22 +1534,6 @@ body.scrolled .large-title-block {{
       if (panel) panel.classList.add('active');
     }});
   }});
-
-  // Fluid toolbar: the large title collapses into the compact nav bar
-  // once the page scrolls, same behavior as system apps' "Liquid Glass"
-  // navigation bars.
-  var scrollTicking = false;
-  function updateScrolled() {{
-    var y = window.scrollY || document.documentElement.scrollTop || 0;
-    document.body.classList.toggle('scrolled', y > 28);
-    scrollTicking = false;
-  }}
-  window.addEventListener('scroll', function() {{
-    if (!scrollTicking) {{
-      window.requestAnimationFrame(updateScrolled);
-      scrollTicking = true;
-    }}
-  }}, {{ passive: true }});
 }})();
 </script>
 </body>
