@@ -297,6 +297,15 @@
       "title": "Nobody Sees The Nights Like This",
       "published_at": "2026-08-01T19:00:00Z",
       "format": "long"
+    },
+    {
+      "video_id": "5WQYs1Sd_fA",
+      "url": "https://youtu.be/5WQYs1Sd_fA",
+      "title": "Slow Down. You've Already Made It.",
+      "published_at": "2026-08-02T06:45:39Z",
+      "format": "long",
+      "duration_minutes": 70,
+      "note": "lf_009 -- daily production cycle test item (index 28, weekly_batch_progress.json, day 2026-08-03 long-form slot). Monaco harbor sunset scene (Porsche 911 GT3 + superyacht), Path C animated_clip_pool source (owner_ai_generated_clip), reverse ping-pong loop (initial crossfade attempt failed empirical mid-blend ghosting check, switched per agents/long_form/3.2_animator.md's verification step -- see state/long_form_queue.json's lf_009 motion_decision/animation_note for the full account). Audio: Peaceful Drift (HoliznaCC0, CC0 1.0), first long-form use of this track, diversifying away from the Rain/Sleep/Meditation + Fire Place rotation used across all of lf_002-lf_008. No Shorts CTA / pinned comment funnel applied (long-form is exempt, per agents/0_orchestrator.md). All gates passed; content_quality_gate self-scored 9/9/9/9/9/9 (threshold 8). Publish independently re-verified via a live videos.list call: public, uploaded."
     }
   ]
 }
