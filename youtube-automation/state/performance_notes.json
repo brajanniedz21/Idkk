@@ -116,6 +116,258 @@
         "caveat": "Views are still climbing on the most recent posts (2026-08-01's short has only been up ~11h), so today's newest entries aren't directly comparable to week-old ones yet."
       },
       "scouting_guidance": "Continue weighting toward legacy/sacrifice/earned-over-time narratives with confident-not-aggressive mid-tempo audio (consistent with config/channel.json.brand_identity's luxury/calm/quiet-confidence direction adopted 2026-07-30). No new attributes to deliberately avoid beyond what's already logged 2026-07-29."
+    },
+    {
+      "run_id": "analytics-2026-08-02-0710",
+      "run_date": "2026-08-02",
+      "analytics_scope": {
+        "has_analytics_scope": true,
+        "note": "Working this run — 39 videos pulled via scripts/pull_video_analytics.py. estimated_minutes_watched/avg_view_duration_sec still lag-nulled/near-zero for most recent uploads (known reporting-pipeline lag)."
+      },
+      "data_quality": {
+        "source": "YouTube Data API v3 (views/likes/comments) via state/video_analytics.json",
+        "window": "last 7 days",
+        "window_type": "recent_upload_cohort",
+        "available_metrics": [
+          "views",
+          "likes",
+          "comments"
+        ],
+        "unavailable_metrics": [
+          "retention",
+          "traffic_sources",
+          "watch_time (lag-nulled for very recent uploads)",
+          "CTR/impressions (no API path, ever)"
+        ],
+        "missing_attributes_count": 18,
+        "missing_attributes_note": "18 of 39 videos in the 7-day window don't join back to a queue candidate_id (mostly weekly-batch items 1-20, published before candidate_id tracking was added to posted_history.json) — findings for those rely on title-text classification only, no angle/sound attributes.",
+        "cta_comment_count_caveat": "sf_031/sf_032/sf_033 (the only Shorts carrying a cta_assignment so far) each show comments=1 — this is exactly the automated pinned funnel comment (scripts/post_pinned_comment.py), not organic viewer engagement. Raw/rate comment metrics for these three are NOT comparable to earlier Shorts' comment counts until this is corrected for (e.g. organic_comments = comments - 1 once the pinned comment is confirmed present) — do not read their current comment-rate as a CTA signal.",
+        "published_at_anomaly": "sf_032 and sf_033's published_at from the live API reads 2026-08-02T00:00:00Z, which does not match their actual observed publish time (both went live several hours after midnight during this session's Monday test-batch run). Cadence/time-block findings involving these two candidates are unreliable and excluded from the cadence analysis below."
+      },
+      "format_baselines": {
+        "short": {
+          "n": 31,
+          "median_views": 9,
+          "median_age_normalized_views": 44.04964166200893,
+          "median_likes_per_1000_views": 0.0,
+          "median_comments_per_1000_views": 0.0
+        },
+        "long": {
+          "n": 8,
+          "median_views": 10.5,
+          "median_age_normalized_views": 8.378549330363889,
+          "median_likes_per_1000_views": 0.0,
+          "median_comments_per_1000_views": 0.0
+        }
+      },
+      "top_performers": {
+        "short": [
+          {
+            "title": "I'm The First. Not The Last.",
+            "views": 1827,
+            "likes": 38
+          },
+          {
+            "title": "Nobody Talks About What I Gave Up.",
+            "views": 1736,
+            "likes": 36
+          },
+          {
+            "title": "This Took Years. It Looks Like Luck.",
+            "views": 1579,
+            "likes": 49,
+            "note": "highest like-rate in the window (~3.1%)"
+          }
+        ],
+        "long": [
+          {
+            "title": "You Build In The Quiet",
+            "views": 61,
+            "likes": 1
+          },
+          {
+            "title": "This Is What Stillness Feels Like",
+            "views": 28,
+            "likes": 0
+          },
+          {
+            "title": "Discipline Doesn't Need An Audience",
+            "views": 22,
+            "likes": 0
+          }
+        ]
+      },
+      "underperformers": {
+        "short": [
+          {
+            "title": "I Saw This Before It Existed.",
+            "views": 0,
+            "likes": 0
+          },
+          {
+            "title": "Discipline Doesn't Ask How I Feel.",
+            "views": 0,
+            "likes": 0
+          },
+          {
+            "title": "This Is What Arrival Feels Like.",
+            "views": 1,
+            "likes": 0,
+            "note": "sf_033, published today (~1.4h old at pull time) — too new to judge, not a real underperformance signal"
+          }
+        ],
+        "long": [
+          {
+            "title": "Slow Down. You've Already Made It.",
+            "views": 2,
+            "likes": 0,
+            "note": "lf_009, published today, too new to judge"
+          },
+          {
+            "title": "1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus & Manifestation",
+            "views": 4,
+            "likes": 0
+          },
+          {
+            "title": "Nobody Sees The Nights Like This",
+            "views": 4,
+            "likes": 0
+          }
+        ]
+      },
+      "attribute_findings": [
+        {
+          "attribute": "Legacy/sacrifice/earned-over-time narrative angle (Shorts)",
+          "direction": "positive — well above short-form baseline",
+          "supporting_videos": [
+            "I'm The First. Not The Last.",
+            "Nobody Talks About What I Gave Up.",
+            "This Took Years. It Looks Like Luck.",
+            "Nobody Saw The Years It Took. (sf_031)"
+          ],
+          "baseline_used": "all-time short-form median (age-normalized views ~44/day, n=31)",
+          "metrics": "First three: 1579-1827 views, age-normalized 368-420/day, well above baseline. sf_031 (newest use, ~1.4h old at pull time): 5 views, age-normalized ~86/day — above the all-format baseline but well below this pattern's own historical rate.",
+          "sample_size": 4,
+          "evidence_level": "repeated_pattern",
+          "evidence_level_note": "The 3 established members are a repeated_pattern (3rd+ consecutive cycle showing this direction). sf_031 is too new (~1.4h old) to add real evidence yet — its early rate is a mixed signal (above the channel-wide baseline, but noticeably below the pattern's own established rate) — watch, don't conclude.",
+          "alternative_explanations": "The 3 older members are also simply older (3.8-5 days), giving more time to accumulate views/algorithmic pickup than sf_031's 1.4 hours — this alone could fully explain the gap without any real decline in the pattern's effectiveness.",
+          "recommended_action": "repeat — continue using this angle in upcoming Shorts, and re-check sf_031's age-normalized rate once it has a comparable amount of time (2-3 days) before drawing any conclusion about a decline."
+        },
+        {
+          "attribute": "cta-luxury-001 experiment (Shorts CTA variants)",
+          "direction": "insufficient_data",
+          "supporting_videos": [
+            "Nobody Saw The Years It Took. (sf_031, cta_luxury_control)",
+            "It Was Never Luck. It Was Decided. (sf_032, cta_luxury_future)",
+            "This Is What Arrival Feels Like. (sf_033, cta_luxury_claim)"
+          ],
+          "baseline_used": "n/a — only 1 Short per variant so far",
+          "metrics": "All three show comments=1, which is the automated pinned comment, not an organic signal (see data_quality.cta_comment_count_caveat) — no usable comment-rate data yet for any variant.",
+          "sample_size": 1,
+          "evidence_level": "observation",
+          "alternative_explanations": "n/a — genuinely no data yet",
+          "recommended_action": "continue gathering data; do not compare variants until organic comment counts are distinguishable from the automated pinned comment and each variant has at least 3 comparable Shorts."
+        }
+      ],
+      "previous_recommendations_evaluated": [
+        {
+          "prior_cycle": "2026-08-01 cycle (and earlier), repeat bucket",
+          "recommendation": "Continue weighting toward legacy/sacrifice/earned-over-time narratives",
+          "used_by": "sf_031 (\"Nobody Saw The Years It Took.\", published 2026-08-02, explicitly scouted as a repeat-bucket pick per its own source_notes)",
+          "outcome": "still_gathering_data — sf_031 is only ~1.4 hours old at this pull; its early age-normalized view rate (~86/day) is above the channel-wide short-form baseline (~44/day) but below this pattern's own historical rate (~370-420/day) from its 3 prior uses. Not enough time elapsed to call this reproduced, declining, or contradicted."
+        }
+      ],
+      "buckets": {
+        "repeat": [
+          "Legacy/sacrifice/earned-over-time narrative angle (Shorts) — see attribute_findings"
+        ],
+        "repeat_and_validate": [],
+        "deliberately_vary": [
+          "Manifestation/alignment-certainty angle (sf_032) — single use, too early to evaluate, was an intentional deliberate_vary pick away from sf_031's angle.",
+          "Quiet-arrival/already-home angle (sf_033) — single use, was an intentional explore pick; too early to evaluate."
+        ],
+        "reduce": [],
+        "retire_temporarily": [],
+        "explore": [
+          "Quiet-arrival/already-home angle (sf_033)"
+        ]
+      },
+      "experiments": [
+        "cta-luxury-001"
+      ],
+      "audience_fatigue": {
+        "short": {
+          "legacy_sacrifice_pattern": {
+            "recent_usage": {
+              "last_10_same_format": 1,
+              "last_20_same_format": 3,
+              "consecutive_uses": 0,
+              "share_of_last_10": 0.1
+            },
+            "performance_trend": "declining (raw) / insufficient_data (age-normalized) — see caveat",
+            "fatigue_status": "repeat_carefully",
+            "reason": "computed via scripts/analytics_intelligence.fatigue_assessment() — repetition share (10%) is well below the 30% high-repetition threshold, so this is NOT fatigue; flagged repeat_carefully only because the raw-views trend looks down, which the age-normalization caveat above says may just be sf_031's youth, not real decline."
+          }
+        },
+        "long": {
+          "note": "Not enough long-form volume yet (n=8 in window, 1 per day) to assess any single pattern's fatigue meaningfully — deferred."
+        }
+      },
+      "cadence_analysis": {
+        "timezone": "Europe/London",
+        "short": {
+          "note": "sf_032/sf_033 excluded — see data_quality.published_at_anomaly.",
+          "baselines_by_time_block": {
+            "morning": {
+              "n": 7,
+              "median_views": 217,
+              "median_age_normalized_views": 224.9
+            },
+            "afternoon": {
+              "n": 10,
+              "median_views": 254.5,
+              "median_age_normalized_views": 66.2
+            },
+            "evening": {
+              "n": 12,
+              "median_views": 6.0,
+              "median_age_normalized_views": 1.1
+            },
+            "late_night": {
+              "n": 2,
+              "median_views": 5.0,
+              "median_age_normalized_views": 16.8
+            }
+          },
+          "finding": "Morning and afternoon local slots show much higher age-normalized medians than evening. Early signal only — the evening bucket is also where most of today's freshest uploads land (same-day short slots), so low age-normalized views there may reflect youth, not a real timing effect. Needs a controlled same-day-age comparison before recommending a schedule change."
+        },
+        "long": {
+          "note": "n=8, one per day, no within-format time-slot variation yet to compare — deferred."
+        },
+        "recommendations": [
+          "No cadence change recommended yet — the morning/afternoon vs evening gap needs a controlled check (comparable video age, not just current time-block totals) before acting on it."
+        ],
+        "active_experiments": []
+      },
+      "cta_analysis": {
+        "active_experiment_id": "cta-luxury-001",
+        "current_control": "cta_luxury_control",
+        "variant_results": "n=1 per variant (control/sf_031, future/sf_032, claim/sf_033) — no usable comment-rate data (see data_quality.cta_comment_count_caveat). Views/likes not attributable to CTA variant this early either.",
+        "decision": "continue gathering data — no action"
+      },
+      "channel_playbook_update": {
+        "updated": null,
+        "sections_changed": [],
+        "note": "Run separately via scripts/update_channel_playbook.py after this entry is appended."
+      },
+      "instructions_for_next_scouting_run": [
+        "Continue the legacy/sacrifice/earned-over-time angle for upcoming Shorts (repeat bucket) — still the best-supported pattern on file, 3rd+ consecutive cycle.",
+        "Do not draw any conclusion about sf_031 declining yet — recheck once it has ~3 days of data, comparable to its pattern-mates' current age.",
+        "Keep the sf_032 (manifestation/alignment) and sf_033 (quiet-arrival) angles as single-use data points for now — do not repeat or discard either until they've had comparable time to accumulate views.",
+        "Do not compare CTA variants yet — only 1 Short per variant exists, and their comment counts are currently polluted by the automated pinned comment (see caveat). Needs 3+ comparable Shorts per variant with organic-comment counts before any evidence-backed comparison.",
+        "No cadence change yet — morning/afternoon showing stronger age-normalized medians than evening is only an early signal confounded by today's evening slots being the freshest uploads in the sample."
+      ],
+      "summary": "Analytics scope working this run (39 videos pulled). Legacy/sacrifice narrative Shorts remain the best-supported winning pattern (3 established uses well above baseline; a 4th use, sf_031, is too fresh to judge yet). No fatigue flagged (repetition share only 10%, well under threshold) — 'repeat_carefully' is precautionary only, driven by a raw-views trend that's likely just sf_031's youth. cta-luxury-001 (Shorts CTA A/B/C/D) and the two newest angle experiments (sf_032, sf_033) are all gathering_data with n=1 each — too early for any comparison, and CTA comment counts need correcting for the automated pinned comment before they're usable. No cadence change recommended — an apparent morning/afternoon advantage over evening needs a controlled age-matched check before acting. No gates touched."
     }
   ],
   "competitor_trend_research": {
@@ -468,5 +720,35 @@
     },
     "action_taken": "config/channel.json short_form_style_guidance and long_form_style_guidance updated with thumbnail_guidance and hashtag_guidance fields reflecting the composition-rule and narrow-stack recommendations, explicitly labeled as owner-provided/unverified per this entry. Title guidance was NOT changed — config/channel.json.short_form_style_guidance.title_convention (added 2026-07-30) already codifies the same identity/emotional-payoff direction this document independently claims is winning, so this document is treated as reinforcing evidence for an existing rule rather than a reason to change it further.",
     "caveat": "Do not treat any figure in claimed_findings as ground truth in future analytics cycles — this pipeline's own pulled views/likes/comments (scripts/pull_video_analytics.py) and its own live RSS competitor scans remain the only data this pipeline can vouch for. This entry exists so scouting agents are aware of the claims and can note if their own results independently corroborate or contradict them over time."
-  }
+  },
+  "experiment_ledger": [
+    {
+      "experiment_id": "cta-luxury-001",
+      "created_at": "2026-08-01T00:00:00Z",
+      "hypothesis": "One of 3 alternative Shorts CTA phrasings (cta_luxury_future/claim/begin) drives a higher comments-per-1000-views rate than the original control (cta_luxury_control), without hurting views/likes.",
+      "target_format": "short",
+      "attribute_tested": "CTA text (description first line)",
+      "controlled_attributes": [
+        "CTA placement (first line as of 2026-08-02)",
+        "CTA presence (all Shorts get one)"
+      ],
+      "planned_variation": "Balanced block rotation across cta_luxury_control/future/claim/begin via assign_variant_by_rotation()",
+      "success_metrics": [
+        "comments_per_1000_views (primary)",
+        "age_normalized_views (guardrail)",
+        "likes_per_1000_views (guardrail)"
+      ],
+      "comparison_cohort": "Shorts published after 2026-08-01, grouped by cta_variant_id",
+      "minimum_evaluation_window": "3+ comparable Shorts per variant before any comparison",
+      "status": "gathering_data",
+      "videos": [
+        "sf_031 (control)",
+        "sf_032 (future)",
+        "sf_033 (claim)"
+      ],
+      "current_evidence": "n=1 per variant; comment counts currently unusable (see 2026-08-02 cycle entry data_quality.cta_comment_count_caveat — each shows exactly 1 comment, which is the automated pinned funnel comment, not organic engagement).",
+      "result": null,
+      "next_decision": "Re-evaluate once each variant has 3+ Shorts with organic (pinned-comment-corrected) comment data."
+    }
+  ]
 }

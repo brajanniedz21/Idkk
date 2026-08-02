@@ -1,7 +1,7 @@
 # Make It Manifest Channel Playbook
 
-Last updated: 2026-08-01T19:53:59.473735+00:00
-Generated from analytics runs: 2026-08-01T19:01:43.322871+00:00 (plus 3 total cycle entries in state/performance_notes.json)
+Last updated: 2026-08-02T07:10:56.680753+00:00
+Generated from analytics runs: analytics-2026-08-02-0710 (plus 4 total cycle entries in state/performance_notes.json)
 
 _This file is a distilled operational summary, not the source of truth. `state/performance_notes.json` and `state/video_analytics.json` hold the full history and every underlying evidence entry — nothing here should be trusted over them, and nothing here is ever the only place a finding lives._
 
@@ -13,15 +13,15 @@ Aspirational luxury / manifestation / future-self motivation, cinematic lifestyl
 
 - Analytics scope this generation: `has_analytics_scope=True` (Data API views/likes/comments are always available regardless; retention/watch-time need the Analytics scope and have a processing lag even when granted).
 - Retention, CTR, impressions, watch-time, and traffic-source data are not claimed anywhere in this file — CTR/impressions have no API path at all; the others are only ever included when a cycle explicitly pulled them.
-- 17 of 35 published videos currently don't join back to their scouted creative attributes (missing `published_video_id` linkage in the queue) — findings below are necessarily blind to those videos' angle/sound/title-pattern.
+- 18 of 39 published videos currently don't join back to their scouted creative attributes (missing `published_video_id` linkage in the queue) — findings below are necessarily blind to those videos' angle/sound/title-pattern.
 - No historical per-video snapshots exist yet, so all performance windows are recent-upload cohorts (current cumulative totals for recently-published videos), not true deltas — see `agents/0_orchestrator.md`'s Daily analytics cycle for the exact distinction.
-- Sample sizes are still small: 28 Shorts and 7 long-form videos published to date. Most findings below are `observation`/`early_signal`, not `repeated_pattern` or `strong_channel_pattern` — read every confidence label literally.
+- Sample sizes are still small: 31 Shorts and 8 long-form videos published to date. Most findings below are `observation`/`early_signal`, not `repeated_pattern` or `strong_channel_pattern` — read every confidence label literally.
 
 ## Strong Channel Patterns
 
 _None yet._ No finding has persisted across enough batches/dates/controlled variations to earn this tier — see `agents/0_orchestrator.md`'s evidence-level rules. Current same-format baselines, for reference:
-- **Shorts** — n=28, median views=189.0, median age-normalized views/day=54.0, median likes/1000 views=1.87, median comments/1000 views=0.0
-- **Long-form** — n=7, median views=17, median age-normalized views/day=10.8, median likes/1000 views=0.0, median comments/1000 views=0.0
+- **Shorts** — n=31, median views=9, median age-normalized views/day=44.0, median likes/1000 views=0.0, median comments/1000 views=0.0
+- **Long-form** — n=8, median views=10.5, median age-normalized views/day=8.4, median likes/1000 views=0.0, median comments/1000 views=0.0
 
 ## Promising Patterns to Validate
 
@@ -37,7 +37,7 @@ From the most recent narrative analytics finding (`2026-08-01T19:01:43.322871+00
 
 ## Winning Long-Form Patterns
 
-Baseline established (n=7) but no specific attribute-level winner has reached `repeated_pattern` confidence yet.
+Baseline established (n=8) but no specific attribute-level winner has reached `repeated_pattern` confidence yet.
 
 ## Underperforming Patterns
 
@@ -78,11 +78,11 @@ _Not yet populated — no analytics cycle has produced structured evidence for t
 
 ## CTA Experiments
 
-Active experiment defined in code (`scripts/cta_experiment.py`): `cta-luxury-001`, control variant `cta_luxury_control` = `Manifest it. Comment "Luxury" below.`. No ledger entry or published-video results exist yet — this is infrastructure ready to collect evidence, not a finding.
+- `cta-luxury-001` — status: `gathering_data`, hypothesis: One of 3 alternative Shorts CTA phrasings (cta_luxury_future/claim/begin) drives a higher comments-per-1000-views rate than the original control (cta_luxury_control), without hurting views/likes.
 
 ## Active Experiments
 
-_Not yet populated — no analytics cycle has produced structured evidence for this section yet. This is not a gap in the generator; it means the underlying finding doesn't exist as real, traceable data yet. See `state/performance_notes.json` for the full historical record this playbook distills._
+- `cta-luxury-001` — gathering_data — One of 3 alternative Shorts CTA phrasings (cta_luxury_future/claim/begin) drives a higher comments-per-1000-views rate than the original control (cta_luxury_control), without hurting views/likes.
 
 ## Recently Confirmed Experiments
 
@@ -106,7 +106,11 @@ _Not yet populated — no analytics cycle has produced structured evidence for t
 
 ## Instructions for the Next Scouting Run
 
-> Continue weighting toward legacy/sacrifice/earned-over-time narratives with confident-not-aggressive mid-tempo audio (consistent with config/channel.json.brand_identity's luxury/calm/quiet-confidence direction adopted 2026-07-30). No new attributes to deliberately avoid beyond what's already logged 2026-07-29.
+- Continue the legacy/sacrifice/earned-over-time angle for upcoming Shorts (repeat bucket) — still the best-supported pattern on file, 3rd+ consecutive cycle.
+- Do not draw any conclusion about sf_031 declining yet — recheck once it has ~3 days of data, comparable to its pattern-mates' current age.
+- Keep the sf_032 (manifestation/alignment) and sf_033 (quiet-arrival) angles as single-use data points for now — do not repeat or discard either until they've had comparable time to accumulate views.
+- Do not compare CTA variants yet — only 1 Short per variant exists, and their comment counts are currently polluted by the automated pinned comment (see caveat). Needs 3+ comparable Shorts per variant with organic-comment counts before any evidence-backed comparison.
+- No cadence change yet — morning/afternoon showing stronger age-normalized medians than evening is only an early signal confounded by today's evening slots being the freshest uploads in the sample.
 
 ## Contradictions and Uncertainties
 
@@ -114,6 +118,7 @@ _Not yet populated — no analytics cycle has produced structured evidence for t
 
 ## Change Log
 
+- 2026-08-02T07:10:56.680753+00:00: regenerated from 4 cycle entries, 39 joined videos (18 missing attributes), 1 ledger experiments.
 - 2026-08-01T19:53:59.473735+00:00: regenerated from 3 cycle entries, 35 joined videos (17 missing attributes), 0 ledger experiments.
 - 2026-08-01T19:53:59.428961+00:00: regenerated from 3 cycle entries, 35 joined videos (17 missing attributes), 0 ledger experiments.
 - 2026-08-01T19:53:43.260794+00:00: regenerated from 3 cycle entries, 35 joined videos (17 missing attributes), 0 ledger experiments.
