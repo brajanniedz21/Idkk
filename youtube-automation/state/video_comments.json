@@ -1,0 +1,281 @@
+{
+  "_comment": "Real comment TEXT (not just counts) for published videos, via youtube_auth.load_comment_credentials() — see scripts/pull_video_comments.py. organic_count excludes the pipeline's own automated pinned funnel comment; organic_comments_mentioning_luxury is a real signal for whether the Shorts CTA is working, not a guess from raw comment counts.",
+  "pulled_at": "2026-08-02T20:23:51.629995+00:00",
+  "has_comment_scope": true,
+  "channel_id": "UCfTbwJxMPqL004V8Ssc5eWQ",
+  "videos": {
+    "qYTu_SqyCSw": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "Bz7e8FgzL3A": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "Y120Tlxpu9U": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "O3YSNtfh9rs": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "p3cLXwMS-d4": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "oE4J7Q6RkcE": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "6EW_tfba9bo": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "2A-1RDsOQ6w": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "5pv__ZadiaI": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "UXnA8OJeZjI": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "jPadbAWbYsU": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "QA8WndS3tZM": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "LE_thiHiqHM": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "-61RQDvyQtM": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "Ia2jWCbXAIs": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "tvr7Pe99b2o": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "akiZmSPevaw": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "rcT5fayYojc": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "5NMLdRmIbaY": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "ROZobyfbqBk": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "_JoMdED8iWQ": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "0glcqjWLhBU": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "ANBhb7OgxcM": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "H7xpqKYn-Hk": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "C36aOyXkBFs": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "hyVZAT6aB58": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "WmQr6bAwfpM": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "qOWTFoI6YZA": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "lwp4uCkom6g": {
+      "comments": [
+        {
+          "comment_id": "UgzrUDV-pFZaXfeuETh4AaABAg",
+          "author": "@makeitmanifest",
+          "author_is_channel_owner": true,
+          "text": "Manifest with ambience, full videos on my channel.",
+          "like_count": 0,
+          "published_at": "2026-08-02T05:41:55Z",
+          "is_automated_pinned_comment": true
+        }
+      ],
+      "automated_count": 1,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "jpbqavO91xo": {
+      "comments": [
+        {
+          "comment_id": "UgzaYjrOWROQCA5m5e54AaABAg",
+          "author": "@rutab3415",
+          "author_is_channel_owner": false,
+          "text": "😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮😮;;;😮;😮😮😮😮😮😮😮😮😮😮😮😮",
+          "like_count": 0,
+          "published_at": "2026-08-02T09:13:47Z",
+          "is_automated_pinned_comment": false
+        },
+        {
+          "comment_id": "UgxWKsZ29nfq6xnCsbN4AaABAg",
+          "author": "@makeitmanifest",
+          "author_is_channel_owner": true,
+          "text": "Manifest with ambience, full videos on my channel.",
+          "like_count": 0,
+          "published_at": "2026-08-02T05:52:44Z",
+          "is_automated_pinned_comment": true
+        }
+      ],
+      "automated_count": 1,
+      "organic_count": 1,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "GrTxN_pY4CM": {
+      "comments": [
+        {
+          "comment_id": "UgzMpqSAmLs5KzjS2eN4AaABAg",
+          "author": "@makeitmanifest",
+          "author_is_channel_owner": true,
+          "text": "Manifest with ambience, full videos on my channel.",
+          "like_count": 0,
+          "published_at": "2026-08-02T06:10:28Z",
+          "is_automated_pinned_comment": true
+        }
+      ],
+      "automated_count": 1,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "J5o72mPmCzs": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "3Uat_ycZ4k8": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "LZU2LFX2d7c": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "2BSTpvwWQcU": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "uZ4s9P3zJ3U": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "e1XaX_meQlU": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "R-yKGY6c1y0": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "5WQYs1Sd_fA": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    }
+  }
+}

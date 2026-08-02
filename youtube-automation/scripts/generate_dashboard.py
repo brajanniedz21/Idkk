@@ -218,6 +218,7 @@ def main():
     quarantine = load("quarantine.json", {"short_form": [], "long_form": []})
     image_pool = load("image_pool.json", {})
     video_analytics = load("video_analytics.json", {"videos": [], "has_analytics_scope": False, "pulled_at": None})
+    channel_stats = load("channel_stats.json", {})
 
     # ---- KPI counts ----
     status_counts = {"done": 0, "ready_to_publish": 0, "pending": 0}
@@ -638,9 +639,14 @@ def main():
     total_likes = sum(v.get("likes") or 0 for v in analytics_videos)
     total_watched_min = sum(v.get("estimated_minutes_watched") or 0 for v in analytics_videos)
 
+    subscriber_count = channel_stats.get("subscriber_count")
+    lifetime_view_count = channel_stats.get("lifetime_view_count")
+
     analytics_stats_html = "".join([
-        stat_card("Total views", total_views, "success"),
-        stat_card("Total likes", total_likes, "info"),
+        stat_card("Subscribers", subscriber_count if subscriber_count is not None else "—", "success", sub="real-time" if subscriber_count is not None else "not pulled yet"),
+        stat_card("Lifetime views", f"{lifetime_view_count:,}" if lifetime_view_count is not None else "—", "info", sub="all-time, channel total"),
+        stat_card("Total views", total_views, "success", sub="tracked videos, 7-day cohort"),
+        stat_card("Total likes", total_likes, "info", sub="tracked videos, 7-day cohort"),
         stat_card("Minutes watched", total_watched_min, "neutral", sub="0 while data catches up" if not total_watched_min else ""),
         stat_card("Videos tracked", len(analytics_videos), "neutral"),
     ])

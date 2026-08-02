@@ -1,0 +1,9 @@
+{
+  "_comment": "Real channel-level totals (subscriber count, lifetime views, video count) via youtube.channels().list(mine=true) — see scripts/pull_channel_stats.py. Read by scripts/generate_dashboard.py.",
+  "pulled_at": "2026-08-02T20:23:49.481620+00:00",
+  "channel_id": "UCfTbwJxMPqL004V8Ssc5eWQ",
+  "subscriber_count": 23,
+  "lifetime_view_count": 10865,
+  "video_count": 39,
+  "hidden_subscriber_count": false
+}
