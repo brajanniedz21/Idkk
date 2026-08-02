@@ -14,15 +14,20 @@ the video itself is the win condition, the pinned comment is a bonus.
 Fixed 2026-08-02 (real bug, owner-reported): the funnel comment must
 contain an actual clickable link to a real, recently-published, public
 long-form video — "1-hour ambience." with no URL sends viewers nowhere.
-build_funnel_text() looks this up from state/posted_history.json itself
-(most recently published long-form entry) rather than relying on whoever
-calls this script to remember to type a real link in by hand, the same
-reason the CTA/thumbnail logic lives in scripts/ rather than being an
-instruction an agent has to get right every time.
+build_funnel_text() briefly looked this up from state/posted_history.json
+itself (most recently published long-form entry).
+
+Changed 2026-08-02 (owner direction): the owner reviewed the auto-linked
+version and asked for a fixed, no-link line instead — "Manifest with
+ambience, full videos on my channel." — pointing viewers to the channel in
+general rather than one specific video. build_funnel_text() now returns
+this fixed string; latest_long_form_url() is kept only because
+build_funnel_text() still accepts a posted_history_path override for
+testability, not because it's used to build the text anymore.
 
 Usage:
     python3 post_pinned_comment.py --video-id <id> [--text "custom text"]
-    (omit --text to auto-build "1-hour ambience: <real long-form URL>")
+    (omit --text to use the default funnel text)
 """
 import argparse
 import json
@@ -41,7 +46,10 @@ STATE = os.path.join(ROOT, "state")
 def latest_long_form_url(posted_history_path=None):
     """The most recently published long-form video's real URL, or None if
     none exist yet. Sorted by published_at, not insertion order — a queue
-    could theoretically be appended out of chronological order."""
+    could theoretically be appended out of chronological order. Not used by
+    build_funnel_text() as of 2026-08-02 (owner switched to a fixed, no-link
+    line) — kept as a standalone utility in case a future funnel design
+    needs a real link again."""
     path = posted_history_path or os.path.join(STATE, "posted_history.json")
     if not os.path.exists(path):
         return None
@@ -54,14 +62,15 @@ def latest_long_form_url(posted_history_path=None):
     return longs_sorted[0].get("url")
 
 
+FUNNEL_TEXT = "Manifest with ambience, full videos on my channel."
+
+
 def build_funnel_text(posted_history_path=None):
-    """The default funnel comment text: a real link when one exists, or an
-    honest fallback (never a dead-end "1-hour ambience." with no URL) when
-    no long-form video has been published yet at all."""
-    url = latest_long_form_url(posted_history_path)
-    if url:
-        return f"1-hour ambience: {url}"
-    return "1-hour ambience — full-length version coming soon to the channel."
+    """The default funnel comment text (owner direction, 2026-08-02): a
+    fixed line pointing viewers to the channel in general, not a specific
+    video link. posted_history_path is accepted but unused — kept so
+    existing callers (and tests) don't need to change their call shape."""
+    return FUNNEL_TEXT
 
 
 def post_and_pin(video_id, text):
