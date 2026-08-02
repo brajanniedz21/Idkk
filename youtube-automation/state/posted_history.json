@@ -14,7 +14,7 @@
       "title": "Rebuild Yourself In Silence",
       "published_at": "2026-07-27T14:35:00Z",
       "format": "short",
-      "note": "sf_002_v2 — fast-cut/dark-grade/upbeat-audio reproduction of sf_002's angle, made after owner feedback on the original. Both videos are live; this is not a replacement."
+      "note": "sf_002_v2 \u2014 fast-cut/dark-grade/upbeat-audio reproduction of sf_002's angle, made after owner feedback on the original. Both videos are live; this is not a replacement."
     },
     {
       "video_id": "Y120Tlxpu9U",
@@ -203,6 +203,19 @@
       "title": "Their Timeline Was Never Mine.",
       "published_at": "2026-08-02T18:00:00Z",
       "format": "short"
+    },
+    {
+      "candidate_id": "sf_031",
+      "video_id": "lwp4uCkom6g",
+      "url": "https://youtu.be/lwp4uCkom6g",
+      "title": "Nobody Saw The Years It Took.",
+      "published_at": "2026-08-02T05:45:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_control",
+        "cta_text": "Manifest it. Comment \"Luxury\" below."
+      }
     }
   ],
   "long_form": [
@@ -213,7 +226,7 @@
       "published_at": "2026-07-27T21:10:00Z",
       "format": "long",
       "duration_minutes": 60,
-      "note": "lf_002 — first long-form video published. Background image is owner-supplied (image_copyright_gate path B, unverified provenance, explicit owner risk acceptance: 'just try to make one video, if it gets copyrighted ill change the plan'). Audio is verified CC0 (Rain _ Sleep _ Meditation, HoliznaCC0). If a Content ID claim or strike lands on this video, stop using new images from the owner's Drive folder and revisit per the owner's own stated condition. CORRECTION: the original upload (o1FUnaP8gWE) never actually went live — the YouTube account wasn't yet verified for uploads over 15 minutes, so that upload was silently rejected despite the upload script reporting a video_id. Confirmed via the Data API (videos.list returned zero results for that ID). Account is now verified; re-uploaded successfully as J5o72mPmCzs."
+      "note": "lf_002 \u2014 first long-form video published. Background image is owner-supplied (image_copyright_gate path B, unverified provenance, explicit owner risk acceptance: 'just try to make one video, if it gets copyrighted ill change the plan'). Audio is verified CC0 (Rain _ Sleep _ Meditation, HoliznaCC0). If a Content ID claim or strike lands on this video, stop using new images from the owner's Drive folder and revisit per the owner's own stated condition. CORRECTION: the original upload (o1FUnaP8gWE) never actually went live \u2014 the YouTube account wasn't yet verified for uploads over 15 minutes, so that upload was silently rejected despite the upload script reporting a video_id. Confirmed via the Data API (videos.list returned zero results for that ID). Account is now verified; re-uploaded successfully as J5o72mPmCzs."
     },
     {
       "video_id": "3Uat_ycZ4k8",
