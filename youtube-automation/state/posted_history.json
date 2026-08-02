@@ -229,6 +229,19 @@
         "cta_text": "Comment \"Luxury\" if this is your future."
       },
       "candidate_id": "sf_032"
+    },
+    {
+      "video_id": "GrTxN_pY4CM",
+      "url": "https://youtu.be/GrTxN_pY4CM",
+      "title": "This Is What Arrival Feels Like.",
+      "published_at": "2026-08-02T00:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      },
+      "candidate_id": "sf_033"
     }
   ],
   "long_form": [
