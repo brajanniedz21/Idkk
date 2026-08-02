@@ -216,6 +216,19 @@
         "cta_variant_id": "cta_luxury_control",
         "cta_text": "Manifest it. Comment \"Luxury\" below."
       }
+    },
+    {
+      "video_id": "jpbqavO91xo",
+      "url": "https://youtu.be/jpbqavO91xo",
+      "title": "It Was Never Luck. It Was Decided.",
+      "published_at": "2026-08-02T00:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "candidate_id": "sf_032"
     }
   ],
   "long_form": [
