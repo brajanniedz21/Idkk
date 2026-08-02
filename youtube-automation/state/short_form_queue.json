@@ -1652,7 +1652,16 @@
       "gate_note": "Gates applied 2026-07-28T06:50Z: copyright_gate mitigation satisfied (vertical reframe, dark/low-exposure color grade change, audio fully replaced with trending track) -> PASS. audio_license_gate: track is an owner-supplied unidentified trending track in state/trending_audio_library.json, not used before -> PASS. factual_controversy_screen: no political/controversial content -> PASS (see factual_controversy_screen_note). platform_policy_check: no hate speech/violence/misleading title -> PASS. basic_qa: 1080x1920, 10.0s (within 8-12s target), av sync ok, no corrupt file, no silence gaps -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T06:50:00Z",
       "video_id": "ROZobyfbqBk",
-      "video_url": "https://youtu.be/ROZobyfbqBk"
+      "video_url": "https://youtu.be/ROZobyfbqBk",
+      "clips_used": [
+        "68",
+        "65",
+        "17",
+        "18",
+        "69",
+        "41",
+        "21"
+      ]
     },
     {
       "id": "sf_023",
@@ -1704,7 +1713,15 @@
       "gate_note": "Gates applied 2026-07-28T06:50Z: copyright_gate mitigation satisfied (vertical reframe, dark/low-exposure color grade change, audio fully replaced with trending track) -> PASS. audio_license_gate: track is an owner-supplied unidentified trending track in state/trending_audio_library.json, not used before -> PASS. factual_controversy_screen: no political/controversial content -> PASS (see factual_controversy_screen_note). platform_policy_check: no hate speech/violence/misleading title -> PASS. basic_qa: 1080x1920, 10.0s (within 8-12s target), av sync ok, no corrupt file, no silence gaps -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T06:50:00Z",
       "video_id": "_JoMdED8iWQ",
-      "video_url": "https://youtu.be/_JoMdED8iWQ"
+      "video_url": "https://youtu.be/_JoMdED8iWQ",
+      "clips_used": [
+        "66",
+        "67",
+        "13",
+        "65",
+        "68",
+        "70"
+      ]
     },
     {
       "id": "sf_024",
@@ -1756,7 +1773,15 @@
       "gate_note": "Gates applied 2026-07-28T06:50Z: copyright_gate mitigation satisfied (vertical reframe, dark/low-exposure color grade change, audio fully replaced with trending track) -> PASS. audio_license_gate: track is an owner-supplied unidentified trending track in state/trending_audio_library.json, not used before -> PASS. factual_controversy_screen: no political/controversial content -> PASS (see factual_controversy_screen_note). platform_policy_check: no hate speech/violence/misleading title -> PASS. basic_qa: 1080x1920, 10.0s (within 8-12s target), av sync ok, no corrupt file, no silence gaps -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T06:50:00Z",
       "video_id": "0glcqjWLhBU",
-      "video_url": "https://youtu.be/0glcqjWLhBU"
+      "video_url": "https://youtu.be/0glcqjWLhBU",
+      "clips_used": [
+        "69",
+        "66",
+        "68",
+        "65",
+        "21",
+        "36"
+      ]
     },
     {
       "id": "sf_025",
@@ -1808,7 +1833,17 @@
       "gate_note": "Gates applied 2026-07-28T10:40Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with owner-provided trending track) -> PASS. audio_license_gate: track owner_provided_181240 is an owner-supplied track in state/trending_audio_library.json unidentified_owner_provided_tracks, provenance documented (extracted from owner Drive folder screen recording), never used by a prior candidate -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T10:40:00Z",
       "video_id": "ANBhb7OgxcM",
-      "video_url": "https://youtu.be/ANBhb7OgxcM"
+      "video_url": "https://youtu.be/ANBhb7OgxcM",
+      "clips_used": [
+        "65",
+        "17",
+        "55",
+        "12",
+        "21",
+        "68",
+        "63",
+        "36"
+      ]
     },
     {
       "id": "sf_026",
@@ -1860,7 +1895,17 @@
       "gate_note": "Gates applied 2026-07-28T11:20Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with owner-provided trending track) -> PASS. audio_license_gate: track owner_provided_181653 is an owner-supplied track in state/trending_audio_library.json unidentified_owner_provided_tracks, provenance documented, never used by a prior candidate (last remaining fresh track in the entire library) -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T11:20:00Z",
       "video_id": "H7xpqKYn-Hk",
-      "video_url": "https://youtu.be/H7xpqKYn-Hk"
+      "video_url": "https://youtu.be/H7xpqKYn-Hk",
+      "clips_used": [
+        "30",
+        "41",
+        "9",
+        "66",
+        "20",
+        "18",
+        "60",
+        "69"
+      ]
     },
     {
       "id": "sf_027",
@@ -1912,7 +1957,17 @@
       "gate_note": "Gates applied 2026-07-28T12:05Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with trending track) -> PASS. audio_license_gate: track 'Danza Kuduro 2025' is a genuinely identified real track in state/trending_audio_library.json (named tracks list) with documented TikTok source/provenance; this is a deliberate, explicitly-logged reuse (last used sf_011, many candidates ago, not back-to-back with sf_025/sf_026's tracks) since both remaining fresh owner-provided tracks were exhausted earlier this cycle -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T12:05:00Z",
       "video_id": "C36aOyXkBFs",
-      "video_url": "https://youtu.be/C36aOyXkBFs"
+      "video_url": "https://youtu.be/C36aOyXkBFs",
+      "clips_used": [
+        "32",
+        "24",
+        "14",
+        "67",
+        "70",
+        "15",
+        "13",
+        "68"
+      ]
     },
     {
       "id": "sf_028",
@@ -1964,7 +2019,17 @@
       "gate_note": "Gates applied 2026-07-28T12:50Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with trending track) -> PASS. audio_license_gate: track 'Montagem Celestial Esperanza' is a genuinely identified real track in state/trending_audio_library.json (named tracks list) with documented TikTok source/provenance; last used sf_010, third-oldest in rotation, not used by sf_025/026/027 -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T12:50:00Z",
       "video_id": "hyVZAT6aB58",
-      "video_url": "https://youtu.be/hyVZAT6aB58"
+      "video_url": "https://youtu.be/hyVZAT6aB58",
+      "clips_used": [
+        "2",
+        "8",
+        "61",
+        "56",
+        "53",
+        "50",
+        "57",
+        "31"
+      ]
     },
     {
       "id": "sf_029",
@@ -2016,7 +2081,17 @@
       "gate_note": "Gates applied 2026-07-28T13:25Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with trending track) -> PASS. audio_license_gate: track 'VEKI VEKI (Slowed)' is a genuinely identified real track in state/trending_audio_library.json (named tracks list) with documented TikTok source/provenance; last used sf_008, the single oldest last-use in the library, not used by sf_025/026/027 or by sf_028 this cycle -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T13:25:00Z",
       "video_id": "WmQr6bAwfpM",
-      "video_url": "https://youtu.be/WmQr6bAwfpM"
+      "video_url": "https://youtu.be/WmQr6bAwfpM",
+      "clips_used": [
+        "35",
+        "39",
+        "37",
+        "54",
+        "27",
+        "38",
+        "16",
+        "64"
+      ]
     },
     {
       "id": "sf_030",
@@ -2068,7 +2143,17 @@
       "gate_note": "Gates applied 2026-07-28T14:05Z: copyright_gate mitigation satisfied (vertical reframe from landscape source, dark/low-exposure color grade change, original audio fully replaced with trending track) -> PASS. audio_license_gate: track 'Gata Only NJ' is a genuinely identified real track in state/trending_audio_library.json (named tracks list, derivative edit of the real viral hit 'Gata Only') with documented TikTok source/provenance; last used sf_009, second-oldest in rotation, not used by sf_025/026/027 or by sf_028/sf_029 this cycle -> PASS. factual_controversy_screen: no political/controversial content, no fabricated claims (see factual_controversy_screen_note) -> PASS. platform_policy_check: no hate speech/violence, no misleading title/thumbnail mismatch, real transform applied (not a static repost) -> PASS. basic_qa: 1080x1920 matches target, 10.0s within 8-12s target range, audio/video sync ok (single continuous decode pass, no errors), no corrupt/zero-byte file, no silence gaps beyond tolerance -> PASS. All gates PASS.",
       "gated_at": "2026-07-28T14:05:00Z",
       "video_id": "qOWTFoI6YZA",
-      "video_url": "https://youtu.be/qOWTFoI6YZA"
+      "video_url": "https://youtu.be/qOWTFoI6YZA",
+      "clips_used": [
+        "9",
+        "19",
+        "29",
+        "45",
+        "62",
+        "58",
+        "47",
+        "26"
+      ]
     },
     {
       "id": "sf_031",
@@ -2149,7 +2234,17 @@
       "published_video_id": "lwp4uCkom6g",
       "published_url": "https://youtu.be/lwp4uCkom6g",
       "published_at": "2026-08-02T05:45:00Z",
-      "pinned_comment_status": "posted (comment_id=UgzrUDV-pFZaXfeuETh4AaABAg; Data API has no pin endpoint, posted as top-level comment per agents/short_form/4.1_publisher.md)"
+      "pinned_comment_status": "posted (comment_id=UgzrUDV-pFZaXfeuETh4AaABAg; Data API has no pin endpoint, posted as top-level comment per agents/short_form/4.1_publisher.md)",
+      "clips_used": [
+        "3",
+        "6",
+        "10",
+        "18",
+        "23",
+        "69",
+        "25",
+        "51"
+      ]
     },
     {
       "id": "sf_032",
@@ -2230,7 +2325,18 @@
       "published_video_id": "jpbqavO91xo",
       "published_url": "https://youtu.be/jpbqavO91xo",
       "published_at": "2026-08-02T00:00:00Z",
-      "pinned_comment_status": "posted (comment_id=UgxWKsZ29nfq6xnCsbN4AaABAg; Data API has no pin endpoint, posted as top-level comment per agents/short_form/4.1_publisher.md)"
+      "pinned_comment_status": "posted (comment_id=UgxWKsZ29nfq6xnCsbN4AaABAg; Data API has no pin endpoint, posted as top-level comment per agents/short_form/4.1_publisher.md)",
+      "clips_used": [
+        "2",
+        "8",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "20",
+        "21"
+      ]
     },
     {
       "id": "sf_033",
@@ -2311,7 +2417,18 @@
       "published_video_id": "GrTxN_pY4CM",
       "published_url": "https://youtu.be/GrTxN_pY4CM",
       "published_at": "2026-08-02T00:00:00Z",
-      "pinned_comment_status": "posted (comment_id=UgzMpqSAmLs5KzjS2eN4AaABAg; Data API has no pin endpoint, posted as top-level comment per agents/short_form/4.1_publisher.md; verified via a live commentThreads.list call that the text is the auto-built real long-form link '1-hour ambience: https://youtu.be/e1XaX_meQlU', confirming scripts/post_pinned_comment.py's build_funnel_text() fix works correctly -- not the prior hand-typed no-URL bug)"
+      "pinned_comment_status": "posted (comment_id=UgzMpqSAmLs5KzjS2eN4AaABAg; Data API has no pin endpoint, posted as top-level comment per agents/short_form/4.1_publisher.md; verified via a live commentThreads.list call that the text is the auto-built real long-form link '1-hour ambience: https://youtu.be/e1XaX_meQlU', confirming scripts/post_pinned_comment.py's build_funnel_text() fix works correctly -- not the prior hand-typed no-URL bug)",
+      "clips_used": [
+        "5",
+        "7",
+        "12",
+        "26",
+        "27",
+        "30",
+        "31",
+        "32",
+        "36"
+      ]
     }
   ]
 }
