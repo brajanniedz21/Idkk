@@ -2150,6 +2150,87 @@
       "published_url": "https://youtu.be/lwp4uCkom6g",
       "published_at": "2026-08-02T05:45:00Z",
       "pinned_comment_status": "posted (comment_id=UgzrUDV-pFZaXfeuETh4AaABAg; Data API has no pin endpoint, posted as top-level comment per agents/short_form/4.1_publisher.md)"
+    },
+    {
+      "id": "sf_032",
+      "status": "published",
+      "scouted_at": "2026-08-02T00:00:00Z",
+      "angle": "Manifestation-as-inevitability/alignment narrative: the luxury visuals (supercars, private aviation, city-lit penthouse views) are framed not as something earned through visible sacrifice (that was sf_031's register, published earlier this same test run) but as something already decided, already yours, that you simply aligned into \u2014 'this wasn't luck, this was decided' register. Deliberately picks a different psychological mechanism from the legacy/sacrifice pattern so this same-session batch isn't two near-identical narratives back to back, per the repeat/deliberately_vary/explore mix in agents/0_orchestrator.md's Daily analytics cycle guidance (sf_031 already used 'repeat' on the sacrifice pattern this session).",
+      "title_pattern": "It Was Never Luck. It Was Decided.",
+      "caption_hooks": [
+        "You didn't get lucky. You got specific.",
+        "This isn't chance. This was already yours.",
+        "Some people call it luck. You call it decided."
+      ],
+      "trending_sound_style": "Upbeat but confident/driving mid-tempo, not maximally aggressive phonk/hardtekk \u2014 per config/channel.json.brand_identity's luxury/calm/quiet-confidence register and the 2026-07-29/2026-08-01 performance findings that the most aggressive phonk tracks were the bottom performers. Slightly more anticipatory/forward-leaning energy than sf_031's warmer/reflective pick fits this certainty-not-sacrifice framing, while staying in the same calm-confident family \u2014 not a swing toward aggression.",
+      "hashtags": [
+        "#manifestation",
+        "#futureself",
+        "#richmindset",
+        "#alignedlife",
+        "#luxurylifestyle"
+      ],
+      "source_notes": "Bucket: deliberately_vary (per agents/0_orchestrator.md Daily analytics cycle step 2e and Agent 1.1 spec's repeat/vary/reduce/retire/explore guidance \u2014 roughly 70/20/10 repeat/vary/explore mix across a batch). state/performance_notes.json's latest cycles[] entry (run_at 2026-08-01T19:01:43Z) flags legacy/sacrifice/earned-over-time as the current strongest signal, and sf_031 (this same test run, index 25) already used that exact pattern under the 'repeat' bucket \u2014 publishing a second near-identical sacrifice-narrative short back to back in the same session would not actually test anything new and risks exactly the concentration-fatigue pattern agents/0_orchestrator.md's Daily analytics cycle step 4 warns against. This candidate keeps every other controlled variable the same (luxury-lifestyle visual pool, upbeat-not-aggressive audio register, emotional-title convention, same CTA experiment) and varies only the narrative psychology: manifestation/alignment/certainty instead of sacrifice/earned-over-time \u2014 both are explicitly named as valid framings in config/channel.json.brand_identity's 'always' list (manifestation/visualisation vs. discipline/ambition), so this stays within brand identity while being a genuinely different hook. Checked state/channel_playbook.md's 'Audience Fatigue and Cooldowns' section \u2014 not yet populated, no cooldown/retire constraint applies. Live competitor RSS re-scan this cycle (state/performance_notes.json's competitor_scan_2026_08_02_pt2) confirms the reference channel's generic hashtag-caption titles and recurring car-subseries pattern persist but surfaced no new attribute signal either way \u2014 this pick is driven by internal batch-diversity reasoning, not a competitor finding. Checked posted_history.json \u2014 'It Was Never Luck. It Was Decided.' is not a duplicate/near-duplicate of any of the 29 previously published short titles (including sf_031's 'Nobody Saw The Years It Took.').",
+      "fatigue_status": "healthy \u2014 manifestation/alignment-certainty framing has not been used as the primary narrative device in any recent short per a review of posted_history.json titles; this is effectively an under-used angle relative to the sacrifice/legacy pattern, not a repeated one.",
+      "title": "It Was Never Luck. It Was Decided.",
+      "seo_description": "Some outcomes were never chance \u2014 they were decided long before they arrived. Supercars, city lights, quiet certainty: this is what it feels like when you stop chasing and start aligning with who you already are. Want the full 1-hour ambience version? Check the channel for the long-form cut.",
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "future self",
+        "rich mindset",
+        "quiet wealth",
+        "law of attraction",
+        "wealth mindset",
+        "luxury motivation",
+        "aligned life",
+        "success mindset",
+        "millionaire mindset",
+        "luxury cars",
+        "night skyline",
+        "visualisation",
+        "self improvement"
+      ],
+      "sound_direction": "Real trending track: 'Tourner Dans Le Vide' (Indila), state/trending_audio_library.json named tracks \u2014 real tempo ~120 BPM (measured via librosa, the fastest/most driving track in the library), emotional/cinematic, builds intensity. Checked posted_history.json / short_form_queue.json: last used sf_013 (2026-07-28), 18 candidates ago and not used by any of the immediately preceding 5 candidates (sf_027 Danza Kuduro 2025, sf_028 Montagem Celestial Esperanza, sf_029 VEKI VEKI (Slowed), sf_030 Gata Only NJ, sf_031 Love Nwantiti Acoustic Ver.) -- satisfies rotation/non-adjacency. Its cinematic, builds-intensity register fits a 'this was already decided, watch it arrive' framing better than a softer/reflective track (sf_031's choice) or a purely celebratory reggaeton/phonk one -- still upbeat/fast enough (fastest track in the library) to drive genuine beat-locked fast cuts per config/channel.json.short_form_style_guidance, and stays within brand_identity's confident-not-aggressive register (not phonk/hardtekk).",
+      "visual_direction": "9 distinct raw clips, selected after actually extracting and viewing a frame from each of 43 pool candidates not used in the immediately preceding published shorts (sf_028-sf_031 used raw/3,6,9,10,18,19,23,25,29,35,37,39,51,69.mp4) -- confirmed all 9 are genuinely on-theme luxury-lifestyle content, no off-theme material like sf_031's caught raw/1.mp4 (flower field) / raw/43.mp4 (paraglider) errors. Final 9, matching the 'already decided, already arriving' register: raw/2.mp4 (three Lamborghinis + a Urus already parked in a private villa driveway -- the fleet already owned, not being chased), raw/8.mp4 (blue Bugatti Chiron, static exterior), raw/13.mp4 (hypercar showroom floor, dozens of supercars), raw/14.mp4 (Dubai fountain show against the lit skyline at night), raw/15.mp4 (elegant figure in a dress walking from a dark luxury car outside an ornate lit hotel at night), raw/16.mp4 (Monte Carlo street, parked Porsche/supercars outside Hotel de Paris), raw/17.mp4 (white Lamborghini Aventador with underglow driving through a city street at night), raw/20.mp4 (yellow Ferrari 488 Pista outside the Monte Carlo casino/hotel entrance), raw/21.mp4 (hands counting cash inside a Rolls-Royce interior, gold watch visible). None of these 9 clips were used in the immediately preceding 4 published candidates (sf_028-sf_031), avoiding back-to-back reuse.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "cta_sequence_index": 1,
+      "scripted_at": "2026-08-02T00:00:00Z",
+      "transform_log": "Beat-synced cuts (<=1.5s cap): 10 shots from 9 distinct clips (raw/2,8,13,14,15,16,17,20,21.mp4 -- raw/2.mp4 reused once more with a rotating start offset as the 10th shot, a documented fallback since the target duration needed 10 shots from 9 supplied clips, never the identical segment twice), avg ~1.00s/shot (range 0.68s-1.15s), intro skipped 0.06s, cut points from real beat detection on assets/audio/trending/tourner_dans_le_vide.mp3 ('Tourner Dans Le Vide', Indila). Reframed/cropped to vertical 1080x1920 (verified via ffprobe: width=1080, height=1920, duration=10.0s). Dark/low-exposure 'gymcore' grade applied to every shot. No on-screen text/captions. Original clip audio fully replaced. Independently verified: ffmpeg full decode pass (`-f null -`) completed with zero errors -- not corrupt. Actually viewed 10 extracted frames (0.3s/1.5s/2.5s/3.5s/4.5s/5.5s/6.5s/7.5s/8.5s/9.5s) via the Read tool before accepting: confirmed genuine luxury-lifestyle content throughout (3 Lamborghinis + a Urus in a private villa driveway, blue Bugatti Chiron, crowded hypercar showroom floor, Dubai fountain show against a lit skyline, an elegant figure exiting a dark luxury car outside a lit ornate hotel at night, parked supercars outside Monte Carlo's Hotel de Paris, a white Lamborghini Aventador with underglow crossing a night street, a yellow Ferrari 488 Pista outside a Monte Carlo hotel entrance, hands counting cash inside a Rolls-Royce interior with a gold watch visible), consistent dark/moody grade throughout, no watermark bleed, no captions burned in. Two frames (the hotel-exit shot at 4.5s and the Monte Carlo street shot at 5.5s) read quite dark even after the grade -- consistent with the intended 'gymcore' low-exposure look and with prior published shorts' similar treatment, not a defect; content is still identifiable (car silhouette/building facade visible in both).",
+      "produced_file_path": "assets/short-form-clips/processed/sf_032.mp4",
+      "produced_at": "2026-08-02T00:00:00Z",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_032_thumb.jpg",
+      "thumbnail_billboard_check_note": "Actually viewed both the full thumbnail and the 120px billboard preview via the Read tool before accepting. Two candidate frames were compared: (1) the yellow Ferrari 488 Pista outside the Monte Carlo hotel entrance (from raw/20.mp4) -- at 120px the bright yellow car body against the warm-lit hotel facade is instantly recognizable as a sports car, sharp and legible; (2) the three-Lamborghini villa driveway shot (from raw/2.mp4) -- at 120px the cars read as small, somewhat indistinct colored shapes low in frame against a large sky, noticeably weaker than candidate 1. Selected candidate 1 (yellow Ferrari). Passes.",
+      "shared_gates_result": {
+        "factual_controversy_screen": "PASS - no political/controversial content, no fabricated claims/quotes about real named individuals",
+        "platform_policy_check": "PASS - no hate/violence/harassment, thumbnail (yellow Ferrari outside a Monte Carlo hotel) genuinely matches video content (that exact shot is one of the 9 clips used), transformed via crop/grade/audio-swap per copyright mitigation",
+        "basic_qa": "PASS - ffprobe confirms 1080x1920, duration 10.0s (within 8-12s target); full ffmpeg decode pass with zero errors; blackdetect (d=0.5,pix_th=0.10) found zero black-frame stretches; audio stream present, duration matches video (10.0s)"
+      },
+      "short_form_gates_result": {
+        "copyright_gate": "PASS - reframed/cropped to vertical, dark grade applied (color change), original audio fully replaced with a trending_audio_library.json track -- all 3 required mitigations present",
+        "audio_license_gate": "PASS - 'Tourner Dans Le Vide' (Indila) is in state/trending_audio_library.json's named tracks, genuinely identified (real named artist, not a generic 'original sound' label), source TikTok video documented in the library entry"
+      },
+      "content_quality_gate_scores": {
+        "scored_at": "2026-08-02T00:00:00Z",
+        "scored_by": "Agent 0, self-scored per config/gates.json content_quality_gate -- actually viewed the thumbnail (full + 120px billboard) and re-read the title against config/channel.json.brand_identity before scoring, not assumed",
+        "luxury_aesthetic": 9,
+        "emotional_impact": 8,
+        "thumbnail_strength": 9,
+        "title_strength": 8,
+        "brand_consistency": 9,
+        "manifestation_vibe": 9,
+        "threshold": 8,
+        "result": "PASS - all 6 categories >= 8 on first attempt, no regeneration needed",
+        "notes": "Title 'It Was Never Luck. It Was Decided.' evokes manifestation/visualisation register from brand_identity's 'always' list rather than describing the scene -- does not match short_form_style_guidance.title_convention's banned_pattern (not a stock-photo caption). Scored emotional_impact and title_strength at 8 rather than 9 -- the certainty/inevitability hook is a genuinely different mechanism from sf_031's sacrifice/legacy register (deliberate, see source_notes) but reads as slightly more declarative/less viscerally emotional than sf_031's 'Nobody Saw The Years It Took.', still clears the threshold comfortably. Thumbnail (yellow Ferrari 488 Pista outside a lit Monte Carlo hotel entrance) passed the 120px billboard test clearly on the first candidate frame tried -- a second candidate (three Lamborghinis in a villa driveway) was also tested and read weaker at 120px (small, less-distinct shapes), so the Ferrari frame was chosen by comparison, not default."
+      },
+      "published_video_id": "jpbqavO91xo",
+      "published_url": "https://youtu.be/jpbqavO91xo",
+      "published_at": "2026-08-02T00:00:00Z",
+      "pinned_comment_status": "posted (comment_id=UgxWKsZ29nfq6xnCsbN4AaABAg; Data API has no pin endpoint, posted as top-level comment per agents/short_form/4.1_publisher.md)"
     }
   ]
 }
