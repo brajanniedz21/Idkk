@@ -11,16 +11,57 @@ clear "skipped" message rather than failing the calling publish step. A
 Short publishing successfully must never be blocked by the comment step —
 the video itself is the win condition, the pinned comment is a bonus.
 
+Fixed 2026-08-02 (real bug, owner-reported): the funnel comment must
+contain an actual clickable link to a real, recently-published, public
+long-form video — "1-hour ambience." with no URL sends viewers nowhere.
+build_funnel_text() looks this up from state/posted_history.json itself
+(most recently published long-form entry) rather than relying on whoever
+calls this script to remember to type a real link in by hand, the same
+reason the CTA/thumbnail logic lives in scripts/ rather than being an
+instruction an agent has to get right every time.
+
 Usage:
-    python3 post_pinned_comment.py --video-id <id> --text "1-hour ambience."
+    python3 post_pinned_comment.py --video-id <id> [--text "custom text"]
+    (omit --text to auto-build "1-hour ambience: <real long-form URL>")
 """
 import argparse
+import json
+import os
 import sys
 
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 from youtube_auth import load_comment_credentials
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATE = os.path.join(ROOT, "state")
+
+
+def latest_long_form_url(posted_history_path=None):
+    """The most recently published long-form video's real URL, or None if
+    none exist yet. Sorted by published_at, not insertion order — a queue
+    could theoretically be appended out of chronological order."""
+    path = posted_history_path or os.path.join(STATE, "posted_history.json")
+    if not os.path.exists(path):
+        return None
+    with open(path) as f:
+        posted = json.load(f)
+    longs = posted.get("long_form", [])
+    if not longs:
+        return None
+    longs_sorted = sorted(longs, key=lambda v: v.get("published_at") or "", reverse=True)
+    return longs_sorted[0].get("url")
+
+
+def build_funnel_text(posted_history_path=None):
+    """The default funnel comment text: a real link when one exists, or an
+    honest fallback (never a dead-end "1-hour ambience." with no URL) when
+    no long-form video has been published yet at all."""
+    url = latest_long_form_url(posted_history_path)
+    if url:
+        return f"1-hour ambience: {url}"
+    return "1-hour ambience — full-length version coming soon to the channel."
 
 
 def post_and_pin(video_id, text):
@@ -62,11 +103,13 @@ def post_and_pin(video_id, text):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--video-id", required=True)
-    parser.add_argument("--text", required=True)
+    parser.add_argument("--text", default=None,
+                         help="Override text; omit to auto-build the funnel text with a real long-form link.")
     args = parser.parse_args()
+    text = args.text or build_funnel_text()
 
     try:
-        post_and_pin(args.video_id, args.text)
+        post_and_pin(args.video_id, text)
     except Exception as e:
         # Never let a comment-posting failure look like a publish failure —
         # this script's own exit code is separate from youtube_upload.py's.
