@@ -27,11 +27,12 @@ def check(name, condition, detail=""):
         print(f"  FAIL: {name} {detail}")
 
 
-def ends_with_exactly_one_known_cta(description):
-    """How many known CTA variants appear as the description's final
-    non-empty line — must be exactly 1 for a correctly-processed Short."""
+def has_exactly_one_known_cta(description):
+    """A known CTA variant appears somewhere strip_known_cta() removes
+    (leading line, or trailing line as backward-compat fallback) — True if
+    exactly one was found/removed."""
     stripped = cta.strip_known_cta(description)
-    return description != stripped  # True if exactly one was found/removed
+    return description != stripped
 
 
 def test_variant_catalog():
@@ -46,25 +47,25 @@ def test_scenario_1_no_cta():
     print("1. Description with no CTA")
     d = "Some plain description with no call to action."
     out = cta.apply_cta(d, "cta_luxury_control")
-    check("CTA appended as final line", out.endswith(cta.CTA_VARIANTS["cta_luxury_control"]))
-    check("original text preserved", out.startswith(d))
-    check("exactly one CTA present", ends_with_exactly_one_known_cta(out))
+    check("CTA prepended as first line", out.startswith(cta.CTA_VARIANTS["cta_luxury_control"]))
+    check("original text preserved", out.endswith(d))
+    check("exactly one CTA present", has_exactly_one_known_cta(out))
 
 
 def test_scenario_2_already_has_control():
     print("2. Description already containing the control CTA")
-    d = "Some description.\n\nManifest it. Comment \"Luxury\" below."
+    d = "Manifest it. Comment \"Luxury\" below.\n\nSome description."
     out = cta.apply_cta(d, "cta_luxury_control")
     check("not duplicated", out.count('Manifest it. Comment "Luxury" below.') == 1)
-    check("still ends with control", out.endswith(cta.CTA_VARIANTS["cta_luxury_control"]))
+    check("still starts with control", out.startswith(cta.CTA_VARIANTS["cta_luxury_control"]))
 
 
 def test_scenario_3_already_has_other_variant():
     print("3. Description containing another approved variant")
-    d = 'Some description.\n\nType "Luxury" to claim it.'
+    d = 'Type "Luxury" to claim it.\n\nSome description.'
     out = cta.apply_cta(d, "cta_luxury_future")
     check("old variant removed", 'Type "Luxury" to claim it.' not in out)
-    check("new variant applied", out.endswith(cta.CTA_VARIANTS["cta_luxury_future"]))
+    check("new variant applied", out.startswith(cta.CTA_VARIANTS["cta_luxury_future"]))
     check("exactly one CTA present", out.count("Luxury") == 1)
 
 
@@ -81,16 +82,16 @@ def test_scenario_5_trailing_blank_lines():
     print("5. Description with trailing blank lines")
     d = "Base description.\n\n\n   \n"
     out = cta.apply_cta(d, "cta_luxury_control")
-    check("no stray blank lines before the CTA", "\n\n\n" not in out)
-    check("CTA still the final line", out.endswith(cta.CTA_VARIANTS["cta_luxury_control"]))
+    check("no stray blank lines between CTA and body", "\n\n\n" not in out)
+    check("CTA is the first line", out.startswith(cta.CTA_VARIANTS["cta_luxury_control"]))
 
 
 def test_scenario_6_word_luxury_in_body():
     print("6. Description containing the word Luxury in ordinary body text")
     d = "This is a Luxury lifestyle video about a Luxury car in a Luxury district."
     out = cta.apply_cta(d, "cta_luxury_control")
-    check("ordinary body text preserved verbatim", out.startswith(d))
-    check("CTA appended after it", out.endswith(cta.CTA_VARIANTS["cta_luxury_control"]))
+    check("ordinary body text preserved verbatim", out.endswith(d))
+    check("CTA prepended before it", out.startswith(cta.CTA_VARIANTS["cta_luxury_control"]))
     # Re-processing must not treat the body text's "Luxury" mentions as a CTA to strip.
     out2 = cta.apply_cta(out, "cta_luxury_control")
     check("body text survives a second pass unchanged", out2 == out)
@@ -115,8 +116,8 @@ def test_scenario_8_short_with_hashtags():
     d = "Manifest your future.\n\n#luxury #manifestation #wealth"
     out = cta.apply_cta(d, "cta_luxury_control")
     check("hashtags preserved", "#luxury #manifestation #wealth" in out)
-    check("CTA is the true final line, after the hashtags", out.endswith(cta.CTA_VARIANTS["cta_luxury_control"]))
-    check("hashtags come before the CTA", out.index("#luxury") < out.index(cta.CTA_VARIANTS["cta_luxury_control"]))
+    check("CTA is the true first line, before the hashtags", out.startswith(cta.CTA_VARIANTS["cta_luxury_control"]))
+    check("hashtags come after the CTA", out.index("#luxury") > out.index(cta.CTA_VARIANTS["cta_luxury_control"]))
 
 
 def test_scenario_9_regenerated_short_retains_assignment():
@@ -129,8 +130,8 @@ def test_scenario_9_regenerated_short_retains_assignment():
     desc_v2 = "Regenerated, slightly different, draft of the description."
     out1 = cta.apply_cta(desc_v1, stored_variant_id)
     out2 = cta.apply_cta(desc_v2, stored_variant_id)
-    check("same stored variant used both times", out1.endswith(cta.CTA_VARIANTS[stored_variant_id]))
-    check("same stored variant used both times (v2)", out2.endswith(cta.CTA_VARIANTS[stored_variant_id]))
+    check("same stored variant used both times", out1.startswith(cta.CTA_VARIANTS[stored_variant_id]))
+    check("same stored variant used both times (v2)", out2.startswith(cta.CTA_VARIANTS[stored_variant_id]))
     check("re-deriving assign_variant_by_rotation(2) again is stable", cta.assign_variant_by_rotation(2) == stored_variant_id)
 
 
@@ -148,6 +149,16 @@ def test_scenario_10_balanced_assignment():
     hash_assignments_run1 = [cta.assign_variant_by_hash(f"sf_{i:03d}") for i in range(20)]
     hash_assignments_run2 = [cta.assign_variant_by_hash(f"sf_{i:03d}") for i in range(20)]
     check("hash-based assignment is deterministic/stable across calls", hash_assignments_run1 == hash_assignments_run2)
+
+
+def test_scenario_11_backward_compat_trailing_cta():
+    print("11. Backward-compat: description written under the old trailing-CTA convention")
+    d = "Some old-style description.\n\nManifest it. Comment \"Luxury\" below."
+    stripped = cta.strip_known_cta(d)
+    check("trailing CTA stripped via fallback", stripped == "Some old-style description.")
+    out = cta.apply_cta(d, "cta_luxury_future")
+    check("re-applying moves the CTA to the front, no duplicate", out.count("Luxury") == 1)
+    check("new variant is now the first line", out.startswith(cta.CTA_VARIANTS["cta_luxury_future"]))
 
 
 def test_metadata_and_error_handling():
@@ -181,6 +192,7 @@ def main():
     test_scenario_8_short_with_hashtags()
     test_scenario_9_regenerated_short_retains_assignment()
     test_scenario_10_balanced_assignment()
+    test_scenario_11_backward_compat_trailing_cta()
     test_metadata_and_error_handling()
 
     print(f"\n{PASS} passed, {FAIL} failed")

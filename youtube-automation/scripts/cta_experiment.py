@@ -67,17 +67,35 @@ def assign_variant_by_hash(candidate_id, experiment_id=CTA_LUXURY_EXPERIMENT_ID,
 
 
 def strip_known_cta(description):
-    """Remove a trailing known CTA variant (any of CTA_VARIANTS' exact
-    values) from a description, along with the blank-line separator before
-    it, if present. Idempotent input for apply_cta() below.
+    """Remove a known CTA variant (any of CTA_VARIANTS' exact values) from a
+    description, along with its blank-line separator, if present. Idempotent
+    input for apply_cta() below.
+
+    Checks the LEADING line first — the current convention (owner direction,
+    2026-08-02: the CTA must be the first line of a Shorts description,
+    since that's the only part visible in YouTube Shorts' collapsed
+    description preview before a viewer taps "more"). Falls back to
+    checking the TRAILING line for backward compatibility with descriptions
+    written under the original (pre-2026-08-02) last-line convention, so
+    re-processing an old description doesn't leave a stale CTA in place.
 
     Only removes a line that EXACTLY matches a known variant's full text —
     never a substring/fuzzy match — so ordinary description text that
     happens to mention "Luxury" is never touched. Returns the description
-    unchanged if no known CTA is found at the end.
+    unchanged if no known CTA is found at either end.
     """
     lines = description.split("\n")
-    # Strip trailing blank lines first so "last non-empty line" is well-defined.
+    # Leading convention (current): check the first non-empty line.
+    start = 0
+    while start < len(lines) and lines[start].strip() == "":
+        start += 1
+    if start < len(lines) and lines[start].strip() in CTA_VARIANTS.values():
+        lines = lines[start + 1:]
+        while lines and lines[0].strip() == "":
+            lines.pop(0)
+        return "\n".join(lines)
+
+    # Trailing convention (backward-compat fallback): check the last non-empty line.
     while lines and lines[-1].strip() == "":
         lines.pop()
     if not lines:
@@ -90,9 +108,12 @@ def strip_known_cta(description):
 
 
 def apply_cta(description, variant_id=DEFAULT_VARIANT_ID):
-    """Append the given CTA variant as the final non-empty line of a Shorts
-    description. Idempotent and variant-aware: any previously-applied known
-    variant (control or otherwise) is stripped first, so calling this
+    """Prepend the given CTA variant as the first line of a Shorts
+    description (owner direction, 2026-08-02 — YouTube Shorts only shows
+    the first line in its collapsed description preview, so a CTA placed
+    last is effectively invisible unless a viewer taps "more"). Idempotent
+    and variant-aware: any previously-applied known variant (leading or, for
+    backward compatibility, trailing) is stripped first, so calling this
     twice — or once each with two different variants, e.g. on a
     regenerated/retried description — never produces two CTA lines and
     never leaves a stale variant behind a new one.
@@ -102,7 +123,7 @@ def apply_cta(description, variant_id=DEFAULT_VARIANT_ID):
     base = strip_known_cta(description)
     cta_text = CTA_VARIANTS[variant_id]
     separator = "\n\n" if base.strip() else ""
-    return f"{base}{separator}{cta_text}"
+    return f"{cta_text}{separator}{base}"
 
 
 def cta_metadata(variant_id, experiment_id=CTA_LUXURY_EXPERIMENT_ID):
