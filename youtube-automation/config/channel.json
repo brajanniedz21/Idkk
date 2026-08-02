@@ -5,8 +5,29 @@
     "added_at": "2026-07-30T00:00:00Z",
     "status": "Owner direction, 2026-07-30: an explicit, permanent identity guardrail that every title, thumbnail, scene choice, audio mood, and Short must reinforce — not a one-time style note to skim past. The niche itself is unchanged (motivational luxury ambient/manifestation content); this codifies the *emotional register* every output must land in.",
     "core_feeling": "\"This is the life I'm working towards.\" Every output should make the viewer feel like the video represents the life they want, not just show them a scene.",
-    "always": ["luxury", "calm", "elegant", "minimal", "expensive-feeling", "quiet confidence", "manifestation", "visualisation", "peace", "sophisticated", "ambition", "wealth", "success", "discipline", "escapism"],
-    "never": ["generic hustle-bro/grind-at-all-costs motivation with no luxury/calm framing", "aggressive or angry tone in titles/copy", "anything that reads as a stock-photo caption or scene description rather than an emotional hook", "cheap/gimmicky clickbait that oversells what the video actually is (still bound by shared_gates.platform_policy_check's no-mismatch rule)"],
+    "always": [
+      "luxury",
+      "calm",
+      "elegant",
+      "minimal",
+      "expensive-feeling",
+      "quiet confidence",
+      "manifestation",
+      "visualisation",
+      "peace",
+      "sophisticated",
+      "ambition",
+      "wealth",
+      "success",
+      "discipline",
+      "escapism"
+    ],
+    "never": [
+      "generic hustle-bro/grind-at-all-costs motivation with no luxury/calm framing",
+      "aggressive or angry tone in titles/copy",
+      "anything that reads as a stock-photo caption or scene description rather than an emotional hook",
+      "cheap/gimmicky clickbait that oversells what the video actually is (still bound by shared_gates.platform_policy_check's no-mismatch rule)"
+    ],
     "reconciling_short_form_energy": "Short-form's fast-cut editing pace and upbeat audio tempo (see short_form_style_guidance below) are retention/pacing mechanics, not a brand-identity contradiction — keep the cuts fast, but the *emotional register* of the title, sound choice, and hook must still land in the 'always' list above, not generic aggressive hustle-grind. This also lines up with real performance data already on file (see state/performance_notes.json's 2026-07-29 finding: the channel's own top-performing shorts used calmer, confident-but-not-aggressive tracks, while the two bottom performers both used the most aggressive phonk) — so this isn't just a branding preference, it's also the direction the data points.",
     "self_check_question": "Before finalizing any title, thumbnail, or scene: would a viewer feel 'this represents the life I want' — calm, wealthy, disciplined, at peace — or does it just describe what's on screen? If the latter, rewrite it. See config/gates.json's content_quality_gate (the 'Curiosity Engine') for the scored version of this check."
   },
@@ -92,8 +113,8 @@
       ],
       "long_form_daily_publish_time_local": "20:00",
       "slot_time_note": "Local times in the timezone above (Europe/London); convert to UTC accounting for BST/GMT when computing each video's publishAt timestamp. Long-form is scheduled after the day's 3rd short so a viewer's day has short-form energy first, calm ambient content in the evening.",
-      "batch_scale_warning": "28 full pipeline cycles (scout->script->produce->gate->publish) in a single run is a large amount of work \u2014 real risk of hitting session/token/time limits mid-batch (this has already happened once in a much smaller single-day session). The weekly trigger fires into a persistent, pre-existing session that already has repo access (a fresh session per firing was tried first and failed a live test run: it had no repo clone and no add_repo tool available to get one, since MCP/connector tools aren't passed to fresh-session routine firings). state/weekly_batch_progress.json tracks completion per-item so an interrupted run can be resumed from where it left off rather than restarting the whole batch, and sub-agents should be used liberally within the run to keep the parent session's own context budget from being the limiting factor.",
-      "upload_quota_warning": "2026-07-27T21:35Z: uploading ~11 videos within about an hour of wall-clock time hit YouTube's daily upload quota (HTTP 400 uploadLimitExceeded), even though each video's scheduled_publish_at (via the API's publishAt scheduling) was spread across the week \u2014 publishAt only controls when a video goes public, not when the upload call itself counts against the daily cap. Fixed by decoupling production (script/produce/gate, no per-day limit) from publishing (throttled to ~4 uploads/day matching shorts_per_day+long_form_per_day, driven by a trigger that now fires daily instead of weekly). See agents/0_orchestrator.md's Weekly batch cycle section for the full two-phase model. UPDATE 2026-07-28: owner tightened the publish window from 24-48h to a strict next-24h window \u2014 each daily firing publishes exactly that day's 3 shorts + 1 long-form and nothing pulled forward from a later day, repeating identically every day. See agents/0_orchestrator.md Weekly batch cycle PUBLISHING phase for the exact rule."
+      "batch_scale_warning": "28 full pipeline cycles (scout->script->produce->gate->publish) in a single run is a large amount of work — real risk of hitting session/token/time limits mid-batch (this has already happened once in a much smaller single-day session). The weekly trigger fires into a persistent, pre-existing session that already has repo access (a fresh session per firing was tried first and failed a live test run: it had no repo clone and no add_repo tool available to get one, since MCP/connector tools aren't passed to fresh-session routine firings). state/weekly_batch_progress.json tracks completion per-item so an interrupted run can be resumed from where it left off rather than restarting the whole batch, and sub-agents should be used liberally within the run to keep the parent session's own context budget from being the limiting factor.",
+      "upload_quota_warning": "2026-07-27T21:35Z: uploading ~11 videos within about an hour of wall-clock time hit YouTube's daily upload quota (HTTP 400 uploadLimitExceeded), even though each video's scheduled_publish_at (via the API's publishAt scheduling) was spread across the week — publishAt only controls when a video goes public, not when the upload call itself counts against the daily cap. Fixed by decoupling production (script/produce/gate, no per-day limit) from publishing (throttled to ~4 uploads/day matching shorts_per_day+long_form_per_day, driven by a trigger that now fires daily instead of weekly). See agents/0_orchestrator.md's Weekly batch cycle section for the full two-phase model. UPDATE 2026-07-28: owner tightened the publish window from 24-48h to a strict next-24h window — each daily firing publishes exactly that day's 3 shorts + 1 long-form and nothing pulled forward from a later day, repeating identically every day. See agents/0_orchestrator.md Weekly batch cycle PUBLISHING phase for the exact rule."
     }
   },
   "operating_budget": "Claude Pro subscription usage only; no paid third-party APIs",
@@ -105,38 +126,95 @@
       8,
       12
     ],
-    "pacing": "Fast cuts locked to the actual beat of the audio track (real beat detection, not a fixed-interval grid), HARD CAP of 1.5 seconds per individual shot regardless of beat spacing (tightened from 2.0s per owner direction, 2026-07-27). Pick upbeat/fast-tempo audio deliberately BECAUSE it drives the cut pace \u2014 a faster song produces closer-together beats and therefore quicker, more energetic cuts; a slow track would force fewer/slower cuts even with the cap in place. Total video length is now 8-12 seconds (tightened from ~27s per owner direction, 2026-07-27) \u2014 at that length a video is roughly 6-9 distinct cuts, not 18-20. The audio's own slow/quiet intro is detected and skipped so playback opens on the real hook/drop, not a build-up \u2014 a viewer scrolling onto the Short should land on the energetic part immediately.",
-    "energy": "Fast-cut pacing stays as described above \u2014 that's a retention mechanic, not a brand contradiction. But as of 2026-07-30 (owner direction, and reinforced by the channel's own performance data \u2014 see brand_identity.reconciling_short_form_energy above), the *emotional register* of the audio/hook must land in the luxury/calm/quiet-confidence identity, not generic aggressive hustle-grind. In practice: confident, driving, mid-tempo tracks (not necessarily slow, but not maximally aggressive phonk/hardtekk either) generally fit better than the most aggressive trap/drill options \u2014 sound_direction should default toward the calmer end of the 'upbeat' range unless a specific candidate genuinely calls for more intensity. Still NEVER use fully slow ambient/piano/meditation/rain tracks for short-form \u2014 those belong to long-form only; the cut pace must still be fast regardless of audio energy level.",
-    "visual_grade": "Dark, moody, low-exposure color grade ('gymcore' aesthetic) \u2014 reduced brightness/exposure, boosted contrast, slightly desaturated or cool-toned. This is a real, currently-trending look for this niche, not just a preference.",
-    "text_rules": "NO on-screen text/captions \u2014 dropped entirely per owner direction (2026-07-27). This is a pure visual+audio edit; the title/description carry the message instead.",
+    "pacing": "Fast cuts locked to the actual beat of the audio track (real beat detection, not a fixed-interval grid), HARD CAP of 1.5 seconds per individual shot regardless of beat spacing (tightened from 2.0s per owner direction, 2026-07-27). Pick upbeat/fast-tempo audio deliberately BECAUSE it drives the cut pace — a faster song produces closer-together beats and therefore quicker, more energetic cuts; a slow track would force fewer/slower cuts even with the cap in place. Total video length is now 8-12 seconds (tightened from ~27s per owner direction, 2026-07-27) — at that length a video is roughly 6-9 distinct cuts, not 18-20. The audio's own slow/quiet intro is detected and skipped so playback opens on the real hook/drop, not a build-up — a viewer scrolling onto the Short should land on the energetic part immediately.",
+    "energy": "Fast-cut pacing stays as described above — that's a retention mechanic, not a brand contradiction. But as of 2026-07-30 (owner direction, and reinforced by the channel's own performance data — see brand_identity.reconciling_short_form_energy above), the *emotional register* of the audio/hook must land in the luxury/calm/quiet-confidence identity, not generic aggressive hustle-grind. In practice: confident, driving, mid-tempo tracks (not necessarily slow, but not maximally aggressive phonk/hardtekk either) generally fit better than the most aggressive trap/drill options — sound_direction should default toward the calmer end of the 'upbeat' range unless a specific candidate genuinely calls for more intensity. Still NEVER use fully slow ambient/piano/meditation/rain tracks for short-form — those belong to long-form only; the cut pace must still be fast regardless of audio energy level.",
+    "visual_grade": "Dark, moody, low-exposure color grade ('gymcore' aesthetic) — reduced brightness/exposure, boosted contrast, slightly desaturated or cool-toned. This is a real, currently-trending look for this niche, not just a preference.",
+    "text_rules": "NO on-screen text/captions — dropped entirely per owner direction (2026-07-27). This is a pure visual+audio edit; the title/description carry the message instead.",
     "title_convention": {
       "added_at": "2026-07-30T00:00:00Z",
       "status": "Owner direction, 2026-07-30: the previous title approach was too descriptive of the scene itself. Titles must now create an emotional response or curiosity, not describe what's on screen.",
       "pattern": "The viewer should feel like the title represents the life they want. Evoke: ambition, wealth, peace, success, discipline, manifestation, luxury, quiet confidence, escapism. A title should make someone curious before they even see the thumbnail.",
       "banned_pattern": "Never write a title that merely describes the scenery/subject (e.g. 'Marina Skyline at Night', 'Luxury Car in the Rain', 'Villa at Sunset'). If the title could function as a stock-photo caption, rewrite it.",
-      "good_examples": ["Escape Reality for One Hour", "Imagine This Is Your Life", "The Mindset of Quiet Success", "Manifest the Life You Deserve", "Wealth Begins in Silence", "Success Sounds Like This", "This Is What Peace Feels Like", "The Calm Before Greatness", "Live the Life You Keep Imagining", "Become the Person You Dream About", "Quiet Nights. Loud Dreams.", "Luxury Is a State of Mind", "Where Ambition Meets Peace", "Dream Bigger Than Yesterday", "The Night That Changes Everything"],
-      "bad_vs_good": {"bad": "Marina Skyline at Night", "good": "The Night That Changes Everything"},
-      "note": "This applies on top of, not instead of, the existing hook-driven approach in agents/short_form/1.1_trend_scout.md/2.1_scriptwriter.md \u2014 a good `angle` still matters, but the `title` itself must pass the banned_pattern check above regardless of how the angle was framed."
+      "good_examples": [
+        "Escape Reality for One Hour",
+        "Imagine This Is Your Life",
+        "The Mindset of Quiet Success",
+        "Manifest the Life You Deserve",
+        "Wealth Begins in Silence",
+        "Success Sounds Like This",
+        "This Is What Peace Feels Like",
+        "The Calm Before Greatness",
+        "Live the Life You Keep Imagining",
+        "Become the Person You Dream About",
+        "Quiet Nights. Loud Dreams.",
+        "Luxury Is a State of Mind",
+        "Where Ambition Meets Peace",
+        "Dream Bigger Than Yesterday",
+        "The Night That Changes Everything"
+      ],
+      "bad_vs_good": {
+        "bad": "Marina Skyline at Night",
+        "good": "The Night That Changes Everything"
+      },
+      "note": "This applies on top of, not instead of, the existing hook-driven approach in agents/short_form/1.1_trend_scout.md/2.1_scriptwriter.md — a good `angle` still matters, but the `title` itself must pass the banned_pattern check above regardless of how the angle was framed."
     },
     "researched_at": "2026-07-27",
-    "sources_note": "Based on live web research into trending gym/motivation/phonk shorts content and general 2026 YouTube Shorts editing/retention best practices \u2014 see state/performance_notes.json for the full findings and sources."
+    "sources_note": "Based on live web research into trending gym/motivation/phonk shorts content and general 2026 YouTube Shorts editing/retention best practices — see state/performance_notes.json for the full findings and sources.",
+    "thumbnail_guidance": {
+      "added_at": "2026-08-02T00:00:00Z",
+      "status": "Owner direction, 2026-08-02, based on an owner-provided secondary-source competitor brief (see state/performance_notes.json.external_competitor_intelligence_2026_08_02 — unverified, not this pipeline's own data). A composition target on top of the existing billboard-legibility check, not a replacement for it.",
+      "composition": "Let the focal luxury object (car, primarily) fill roughly 40% of the frame, with one bright lighting accent (headlights/taillights/warm window light) against a darker background. Prefer this composition when picking/cropping a candidate thumbnail frame, without violating the never-crop-long-form-source-images rule for long-form (agents/long_form/3.2_animator.md) — for long-form this means choosing a frame/pan position where the subject is already close and large, not cropping down after the fact.",
+      "text_rule": "No on-screen text on the thumbnail image itself (title/description text is separate and already handled elsewhere) — consistent with the brief's claim that winning thumbnails in this niche carry no text overlay.",
+      "still_required": "The existing billboard-principle check (agents/short_form/3.1_producer.md, agents/long_form/6_publisher.md) — actually view the thumbnail and its 120px preview before shipping — is unchanged and still the primary pass/fail gate; this composition guidance informs which frame to pick, it doesn't replace the legibility check."
+    },
+    "hashtag_guidance": {
+      "added_at": "2026-08-02T00:00:00Z",
+      "status": "Owner direction, 2026-08-02, based on the same unverified competitor brief as thumbnail_guidance above.",
+      "guidance": "Prefer a narrow, consistent hashtag stack over broad/varied tag lists where it genuinely fits the candidate — e.g. #deepfocus #luxuryambience #manifestation as a reusable core set — rather than picking 3-5 fresh tags per candidate with no continuity. Still tailor to the specific candidate's angle when the core set doesn't fit (never force an irrelevant tag just for consistency), and still double-check for typos per agents/short_form/2.1_scriptwriter.md."
+    }
   },
   "long_form_style_guidance": {
-    "pacing": "Slow, calm, minimal/no cuts \u2014 a single looping ambient scene, not edited for pace at all.",
+    "pacing": "Slow, calm, minimal/no cuts — a single looping ambient scene, not edited for pace at all.",
     "energy": "Calm, ambient, meditative. Slow piano/pad/rain/nature tracks belong here, never in short-form.",
-    "visual_grade": "Warm or cool moody ambient tones per the scene (rain-on-window, fireplace, etc.), not the dark low-exposure short-form grade \u2014 long-form should read as a calm background, not an energetic edit.",
+    "visual_grade": "Warm or cool moody ambient tones per the scene (rain-on-window, fireplace, etc.), not the dark low-exposure short-form grade — long-form should read as a calm background, not an energetic edit.",
     "title_convention": {
       "added_at": "2026-07-30T00:00:00Z",
-      "status": "Owner direction, 2026-07-30, SUPERSEDES the 2026-07-27 version below \u2014 the prior pattern (short punchy 'grind harder' motivational commands, e.g. 'Nobody's Coming To Save You') drifted toward generic hustle-bro motivation rather than the channel's actual luxury/calm/manifestation identity. New titles must land in that identity \u2014 see config/channel.json.brand_identity.",
-      "pattern": "The viewer should feel like the title represents the life they want. Evoke: ambition, wealth, peace, success, discipline, manifestation, luxury, quiet confidence, escapism. A title should make someone curious before they even see the thumbnail \u2014 not describe the scene, not be a generic grind-harder command.",
+      "status": "Owner direction, 2026-07-30, SUPERSEDES the 2026-07-27 version below — the prior pattern (short punchy 'grind harder' motivational commands, e.g. 'Nobody's Coming To Save You') drifted toward generic hustle-bro motivation rather than the channel's actual luxury/calm/manifestation identity. New titles must land in that identity — see config/channel.json.brand_identity.",
+      "pattern": "The viewer should feel like the title represents the life they want. Evoke: ambition, wealth, peace, success, discipline, manifestation, luxury, quiet confidence, escapism. A title should make someone curious before they even see the thumbnail — not describe the scene, not be a generic grind-harder command.",
       "banned_pattern": "Never write a title that merely describes the scenery/subject (e.g. 'Marina Skyline at Night', 'Rain on the Window', 'Villa at Sunset'). If the title could function as a stock-photo caption, rewrite it.",
-      "good_examples": ["Escape Reality for One Hour", "Imagine This Is Your Life", "The Mindset of Quiet Success", "Manifest the Life You Deserve", "Wealth Begins in Silence", "Success Sounds Like This", "This Is What Peace Feels Like", "The Calm Before Greatness", "Live the Life You Keep Imagining", "Become the Person You Dream About", "Quiet Nights. Loud Dreams.", "Luxury Is a State of Mind", "Where Ambition Meets Peace", "Dream Bigger Than Yesterday", "The Night That Changes Everything"],
-      "bad_vs_good": {"bad": "Marina Skyline at Night", "good": "The Night That Changes Everything"},
-      "still_true_from_2026-07-27": "Short (3-7 words), punchy, standalone statement someone could say out loud \u2014 no duration, no format descriptor, no pipe-separated SEO subtitle, no 'Ambience for Focus & Manifestation' boilerplate, no video-length mention. seo_description and tags still carry the keyword-rich/searchable content (duration, mood, use-case like 'study with me' or 'deep focus').",
+      "good_examples": [
+        "Escape Reality for One Hour",
+        "Imagine This Is Your Life",
+        "The Mindset of Quiet Success",
+        "Manifest the Life You Deserve",
+        "Wealth Begins in Silence",
+        "Success Sounds Like This",
+        "This Is What Peace Feels Like",
+        "The Calm Before Greatness",
+        "Live the Life You Keep Imagining",
+        "Become the Person You Dream About",
+        "Quiet Nights. Loud Dreams.",
+        "Luxury Is a State of Mind",
+        "Where Ambition Meets Peace",
+        "Dream Bigger Than Yesterday",
+        "The Night That Changes Everything"
+      ],
+      "bad_vs_good": {
+        "bad": "Marina Skyline at Night",
+        "good": "The Night That Changes Everything"
+      },
+      "still_true_from_2026-07-27": "Short (3-7 words), punchy, standalone statement someone could say out loud — no duration, no format descriptor, no pipe-separated SEO subtitle, no 'Ambience for Focus & Manifestation' boilerplate, no video-length mention. seo_description and tags still carry the keyword-rich/searchable content (duration, mood, use-case like 'study with me' or 'deep focus').",
       "superseded_2026-07-27_version": {
         "source_data": "yt-dlp flat-playlist pull of @angelechoes909's Videos tab (13 titled uploads, all ~3hr runtime). Titles/views: 'While They Sleep You Build' 95,000 | 'You're Closer to This Than You Think' 30,000 | 'The Reward for Staying Focused' 19,000 | 'Don't Give Up Now!' 15,000 | 'You Need to Keep Going!' 15,000 | 'You'll make it' 7,300 | 'Hard Work Pays Off' 7,200 | 'You've Come Too Far to Quit Now!' 3,400 | 'You Don't Forget Where It Started' 2,000 | 'POV: You Never Gave Up' 1,000 | 'POV: you finally made it' 922 | 'Work Hard, Play Hard' 747 | 'You Need to Lock In Right Now' 499.",
-        "note": "This data is still useful for structural patterns (short/punchy/second-person or aphorism), just not for emotional register \u2014 @angelechoes909's titles skew grind/effort rather than luxury/calm/manifestation. Use the structure, not the tone."
+        "note": "This data is still useful for structural patterns (short/punchy/second-person or aphorism), just not for emotional register — @angelechoes909's titles skew grind/effort rather than luxury/calm/manifestation. Use the structure, not the tone."
       }
+    },
+    "thumbnail_guidance": {
+      "added_at": "2026-08-02T00:00:00Z",
+      "status": "Owner direction, 2026-08-02, based on an owner-provided secondary-source competitor brief (see state/performance_notes.json.external_competitor_intelligence_2026_08_02 — unverified, not this pipeline's own data). A composition target on top of the existing billboard-legibility check, not a replacement for it.",
+      "composition": "Let the focal luxury object (car, primarily) fill roughly 40% of the frame, with one bright lighting accent (headlights/taillights/warm window light) against a darker background. Prefer this composition when picking/cropping a candidate thumbnail frame, without violating the never-crop-long-form-source-images rule for long-form (agents/long_form/3.2_animator.md) — for long-form this means choosing a frame/pan position where the subject is already close and large, not cropping down after the fact.",
+      "text_rule": "No on-screen text on the thumbnail image itself (title/description text is separate and already handled elsewhere) — consistent with the brief's claim that winning thumbnails in this niche carry no text overlay.",
+      "still_required": "The existing billboard-principle check (agents/short_form/3.1_producer.md, agents/long_form/6_publisher.md) — actually view the thumbnail and its 120px preview before shipping — is unchanged and still the primary pass/fail gate; this composition guidance informs which frame to pick, it doesn't replace the legibility check."
     }
   },
   "reference_examples": {
