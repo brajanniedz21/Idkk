@@ -48,10 +48,6 @@
       "description": "Fixed camera, night scene with a silver car (open trunk), person loading items, modern glass building behind. Subtle flickering warm light reflections."
     },
     {
-      "drive_file_id": "1-ky5uk6vHoayuA32uMbm7o0wOAJYdb28",
-      "description": "Static shot, luxury mansion at colorful sunset. Gentle breeze sways palm fronds, slow wispy clouds drift, warm mansion interior lights flicker."
-    },
-    {
       "drive_file_id": "1Mvk6083CSsZm6dLY-V6CeDNpy8ewodeQ",
       "description": "Static shot, night scene with multiple sports cars \u2014 all have bright red LED taillights dynamically pulsing/flashing with lens flares; visible smoke/haze."
     }
@@ -92,6 +88,14 @@
       "consumed_by": "lf_015",
       "consumed_at": "2026-08-03T17:18:00Z",
       "provenance_note": "Real 'EMAAR' and other legible real-estate/brand signage visible on the marina towers in the background (Dubai Marina skyline) -- same disclosed pattern as the legacy image folder's Dubai skyline shots (see agents/long_form/2.2_image_sourcer.md Path B note). Owner-supplied AI-generated clip (source=owner_ai_generated_clip, Path C), not a scraped photo/video, but the signage itself reads as real -- flagged here per the per-file visual-check discipline, no action needed unless a claim lands (see config/gates.json image_copyright_gate backstop)."
+    },
+    {
+      "drive_file_id": "1-ky5uk6vHoayuA32uMbm7o0wOAJYdb28",
+      "description": "Static shot, luxury mansion at colorful sunset. Gentle breeze sways palm fronds, slow wispy clouds drift, warm mansion interior lights flicker.",
+      "duration_sec": 5.875,
+      "resolution": "1364x768",
+      "consumed_by": "lf_016",
+      "consumed_at": "2026-08-03T22:02:00Z"
     }
   ]
 }
