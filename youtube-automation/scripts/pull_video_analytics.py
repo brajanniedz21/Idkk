@@ -161,6 +161,38 @@ def main():
         except Exception as e:
             print(f"Analytics API subscribers query failed (non-fatal): {e}", file=sys.stderr)
 
+    # Subscribers gained/lost, per day — real historical series (owner
+    # direction, 2026-08-02, needed for honest 7-day/28-day growth-pace
+    # calculation toward the 100k subscriber objective; see
+    # analytics_intelligence.calculate_trajectory()). Without this, the
+    # only subscriber number available is a single lifetime snapshot
+    # (state/channel_stats.json), which cannot support a real pace
+    # calculation without fabricating a trend.
+    subscribers_daily_series = []
+    if has_analytics_scope:
+        try:
+            earliest_publish = min((e.get("published_at") for e in entries if e.get("published_at")), default=None)
+            start_date = (earliest_publish or "2026-01-01")[:10]
+            resp6 = yta.reports().query(
+                ids="channel==MINE",
+                startDate=start_date,
+                endDate=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                metrics="subscribersGained,subscribersLost",
+                dimensions="day",
+                sort="day",
+            ).execute()
+            headers6 = [h["name"] for h in resp6.get("columnHeaders", [])]
+            for row in resp6.get("rows", []):
+                rowd = dict(zip(headers6, row))
+                subscribers_daily_series.append({
+                    "date": rowd["day"],
+                    "subscribers_gained": rowd.get("subscribersGained", 0),
+                    "subscribers_lost": rowd.get("subscribersLost", 0),
+                    "net": rowd.get("subscribersGained", 0) - rowd.get("subscribersLost", 0),
+                })
+        except Exception as e:
+            print(f"Analytics API daily-subscribers query failed (non-fatal): {e}", file=sys.stderr)
+
     videos = []
     for e in entries:
         vid = e["video_id"]
@@ -205,6 +237,7 @@ def main():
         "retention_video": retention_video,
         "subscribers_gained": subs_gained,
         "subscribers_lost": subs_lost,
+        "subscribers_daily_series": subscribers_daily_series,
     }
     with open(os.path.join(STATE, "video_analytics.json"), "w") as f:
         json.dump(out, f, indent=2)

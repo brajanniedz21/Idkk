@@ -460,3 +460,127 @@ def append_performance_notes_cycle(entry, path=None):
     if reread["cycles"][-1].get("run_id") != entry.get("run_id"):
         raise RuntimeError("post-write verification failed: appended entry not found at end of cycles[]")
     return len(reread["cycles"])
+
+
+# ---------------------------------------------------------------------------
+# Growth trajectory toward the subscriber objective (owner direction, 2026-08-02)
+# ---------------------------------------------------------------------------
+
+def _parse_date(d):
+    return datetime.strptime(d, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+
+
+def _pace_over_window(subscribers_daily_series, window_days, now=None):
+    """Net subscriber gain per day, averaged over the most recent
+    window_days of ACTUAL available data (never fabricated) — returns
+    (pace_per_day, days_of_data_used). Real daily data (state/video_analytics
+    .json's subscribers_daily_series, from a dimensions="day" Analytics API
+    query) is sparse on a very new channel and often lags a day or two
+    behind the current date — this only ever averages over days that
+    genuinely have a row, and reports how many that was, so a caller never
+    presents a 2-day average as if it were a real 7-day trend."""
+    if not subscribers_daily_series:
+        return None, 0
+    sorted_series = sorted(subscribers_daily_series, key=lambda r: r["date"])
+    window = sorted_series[-window_days:]
+    if not window:
+        return None, 0
+    total_net = sum(r.get("net", r.get("subscribers_gained", 0) - r.get("subscribers_lost", 0)) for r in window)
+    days = len(window)
+    return (total_net / days if days else None), days
+
+
+def next_checkpoint(current_subscribers, checkpoints, now=None):
+    """The first checkpoint (from config/growth_strategy.json's
+    `checkpoints` list) whose date is still in the future — regardless of
+    whether current_subscribers has already reached it (a checkpoint is a
+    pacing marker for a DATE, not just a subscriber count; being ahead of
+    an earlier checkpoint doesn't retroactively change which one is
+    "next"). Returns None if every checkpoint's date has passed."""
+    now = now or datetime.now(timezone.utc)
+    future = [c for c in checkpoints if _parse_date(c["date"]) >= now]
+    if not future:
+        return None
+    return min(future, key=lambda c: c["date"])
+
+
+def calculate_trajectory(current_subscribers, subscribers_daily_series, growth_config, now=None):
+    """The full growth-trajectory snapshot toward growth_config's
+    objective.target_subscribers by objective.target_date — every number
+    here is either a direct real input or simple arithmetic on real
+    inputs, nothing estimated or invented. Returns a dict; see inline keys.
+
+    data_confidence is deliberately blunt (very_low/low/moderate/high based
+    on how many real days of subscriber data are actually available) so a
+    caller can't accidentally treat a 3-day average as a reliable channel
+    trend — on a brand-new channel this will read very_low for weeks, and
+    that's the honest answer, not a bug to work around.
+    """
+    now = now or datetime.now(timezone.utc)
+    obj = growth_config["objective"]
+    target_subscribers = obj["target_subscribers"]
+    target_date = _parse_date(obj["target_date"])
+    checkpoints = growth_config["checkpoints"]
+    thresholds = growth_config["trajectory_status_thresholds"]
+
+    remaining_subscribers = max(target_subscribers - current_subscribers, 0)
+    remaining_days = max((target_date - now).days, 0)
+    required_daily_pace = safe_div(remaining_subscribers, remaining_days) if remaining_days else None
+    required_weekly_pace = required_daily_pace * 7 if required_daily_pace is not None else None
+
+    pace_7day, days_7 = _pace_over_window(subscribers_daily_series, 7, now)
+    pace_28day, days_28 = _pace_over_window(subscribers_daily_series, 28, now)
+
+    if days_7 >= 7:
+        data_confidence = "moderate"
+    elif days_7 >= 3:
+        data_confidence = "low"
+    elif days_7 >= 1:
+        data_confidence = "very_low"
+    else:
+        data_confidence = "no_data"
+
+    projection_7day = current_subscribers + pace_7day * remaining_days if pace_7day is not None else None
+    projection_28day = current_subscribers + pace_28day * remaining_days if pace_28day is not None else None
+
+    pct_complete = safe_div(current_subscribers, target_subscribers) * 100 if target_subscribers else None
+
+    nc = next_checkpoint(current_subscribers, checkpoints, now)
+    checkpoint_status = None
+    if nc:
+        days_to_checkpoint = max((_parse_date(nc["date"]) - now).days, 0)
+        subs_needed_for_checkpoint = max(nc["subscribers"] - current_subscribers, 0)
+        required_pace_to_checkpoint = safe_div(subs_needed_for_checkpoint, days_to_checkpoint) if days_to_checkpoint else None
+
+        best_pace = pace_7day if pace_7day is not None else pace_28day
+        if best_pace is None or required_pace_to_checkpoint is None or data_confidence == "no_data":
+            checkpoint_status = "insufficient_data"
+        else:
+            pct_of_required = safe_div(best_pace, required_pace_to_checkpoint) * 100 if required_pace_to_checkpoint else (100.0 if subs_needed_for_checkpoint == 0 else 0.0)
+            if pct_of_required >= thresholds["green_min_pct_of_required_pace"]:
+                checkpoint_status = "GREEN"
+            elif pct_of_required >= thresholds["amber_min_pct_of_required_pace"]:
+                checkpoint_status = "AMBER"
+            else:
+                checkpoint_status = "RED"
+
+    return {
+        "current_subscribers": current_subscribers,
+        "target_subscribers": target_subscribers,
+        "target_date": obj["target_date"],
+        "remaining_subscribers": remaining_subscribers,
+        "remaining_days": remaining_days,
+        "required_daily_pace": required_daily_pace,
+        "required_weekly_pace": required_weekly_pace,
+        "pace_7day_subscribers_per_day": pace_7day,
+        "pace_7day_days_of_data": days_7,
+        "pace_28day_subscribers_per_day": pace_28day,
+        "pace_28day_days_of_data": days_28,
+        "data_confidence": data_confidence,
+        "projected_subscribers_at_target_date_7day_pace": projection_7day,
+        "projected_subscribers_at_target_date_28day_pace": projection_28day,
+        "percent_of_target_complete": pct_complete,
+        "next_checkpoint": nc,
+        "trajectory_status": checkpoint_status,
+        "note": "A stretch objective, not a guaranteed forecast. Pace/projection figures are arithmetic on real subscribers_daily_series data only (state/video_analytics.json, via the YouTube Analytics API's dimensions=day query) — never estimated. On a very new channel, data_confidence will genuinely be very_low/no_data for some time; treat any status derived from it as low-confidence, not a verdict.",
+    }

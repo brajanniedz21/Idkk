@@ -1,0 +1,76 @@
+{
+  "_comment": "Adaptive growth-strategy configuration (owner direction, 2026-08-02). Mutable operating policy toward the 100k-subscriber objective — separate from config/channel.json (static brand/style identity) and config/gates.json (safety/quality gates, which this file must never duplicate or override). Agent 0 may edit this file's mutable fields when evidence supports it, following the Controlled Self-Modification Loop in agents/0_orchestrator.md's Growth Strategy section. Every edit here should be paired with an experiment_ledger entry in state/performance_notes.json explaining why.",
+  "objective": {
+    "target_subscribers": 100000,
+    "target_date": "2027-04-21",
+    "timezone": "Europe/London",
+    "note": "A stretch objective, not a guaranteed forecast (owner direction, 2026-08-02). Pacing math is descriptive, never a promise."
+  },
+  "checkpoints": [
+    {"date": "2026-08-31", "subscribers": 250},
+    {"date": "2026-09-30", "subscribers": 1000},
+    {"date": "2026-10-31", "subscribers": 3500},
+    {"date": "2026-11-30", "subscribers": 10000},
+    {"date": "2026-12-31", "subscribers": 22000},
+    {"date": "2027-01-31", "subscribers": 40000},
+    {"date": "2027-02-28", "subscribers": 60000},
+    {"date": "2027-03-31", "subscribers": 82000},
+    {"date": "2027-04-21", "subscribers": 100000}
+  ],
+  "trajectory_status_thresholds": {
+    "green_min_pct_of_required_pace": 90,
+    "amber_min_pct_of_required_pace": 70,
+    "note": "GREEN >=90% of required pace to the next checkpoint, AMBER 70-89%, RED <70%. A RED classification must trigger a system-level diagnosis in the next analytics cycle, never an automatic volume increase (agents/0_orchestrator.md Growth Strategy section)."
+  },
+  "current_production_allocation": {
+    "model": "A",
+    "shorts_per_day": 3,
+    "long_form_per_day": 1,
+    "set_at": "2026-08-02T00:00:00Z",
+    "reason": "Starting allocation, unchanged from config/channel.json.publishing_schedule. Not yet evidence-justified to change — channel has ~1 week of real data (39 videos, 23 subscribers) as of this writing, insufficient for a medium/high-risk allocation change per the evidence-level requirements below."
+  },
+  "previous_production_allocation": null,
+  "allowed_production_models": {
+    "A": {"shorts_per_day": 3, "long_form_per_day": 1, "description": "Current baseline."},
+    "B": {"shorts_per_day": 4, "long_form_per_day": 0, "description": "Shorts-only on selected days, long-form on selected days only — requires repeated_pattern evidence that Shorts materially outperform long-form on subscriber/engagement value."},
+    "C": {"shorts_per_day": 2, "long_form_per_day": 1, "description": "One slot reserved for stronger experimentation or no publish — requires evidence that a lower-volume, higher-bar approach improves quality/conversion."},
+    "D": {"shorts_per_day": "variable", "long_form_per_day": "variable", "description": "Weekday-dependent allocation based on verified cadence performance — requires repeated_pattern cadence evidence."},
+    "E": {"shorts_per_day": ">4", "long_form_per_day": "variable", "description": "Controlled expansion above 4 total daily uploads — requires verified quota headroom (real test, not assumption), strong_channel_pattern evidence of demand, and zero quality/fatigue degradation. Historical precedent: ~11 uploads in an hour triggered uploadLimitExceeded once — never assume >4/day works without a real, minimal, reversible test."}
+  },
+  "evidence_requirements": {
+    "low_risk_change": "early_signal (n=2) sufficient",
+    "medium_risk_change": "repeated_pattern (n=3+) normally required",
+    "high_risk_change": "strong_channel_pattern or a clearly exceptional single event (breakout, policy risk, quota failure, credential failure, corrupted state) required",
+    "note": "See agents/0_orchestrator.md's Analytics Intelligence protocol for the full evidence-level definitions (observation/early_signal/repeated_pattern/strong_channel_pattern) — this section only maps evidence levels to the change-risk levels below, it doesn't redefine them."
+  },
+  "change_risk_examples": {
+    "low_risk": ["title-generation rule tweak", "content-pillar weight adjustment", "CTA rotation change", "competitor-scan keyword change", "experiment threshold change", "upload spacing within existing slot count", "dashboard reporting improvement", "concept-scoring adjustment", "repeat/vary/explore ratio adjustment"],
+    "medium_risk": ["swapping one daily format slot for another", "reducing weekly long-form frequency", "increasing Shorts allocation", "video-length range change", "material production-logic change", "pinned-comment funnel change", "Routine prompt change", "upload-time change across the week", "state schema change", "cross-agent handoff change"],
+    "high_risk": ["exceeding historical upload volume (>~4/24h)", "changing several production stages at once", "replacing the dominant content strategy", "changing channel identity", "new source/licensing model", "anything touching publishing credentials", "daily production architecture change"]
+  },
+  "breakout_thresholds": {
+    "strong_ratio_vs_same_format_median": 1.5,
+    "breakout_ratio_vs_same_format_median": 3.0,
+    "major_breakout_ratio_vs_same_format_median": 5.0,
+    "exceptional_ratio_vs_same_format_median": 10.0,
+    "note": "Ratios of a video's age-normalized views to its same-format median (analytics_intelligence.format_baseline()). Never compare Shorts to long-form directly. Agent 0 may adjust these as the channel matures and sample sizes grow — record any change in the experiment ledger."
+  },
+  "fatigue_thresholds": {
+    "note": "Unchanged from the existing system — see analytics_intelligence.FATIGUE_SHARE_THRESHOLD (0.30) and FATIGUE_CONSECUTIVE_THRESHOLD (3). Referenced here, not duplicated, so there is one source of truth."
+  },
+  "quota_aware_limits": {
+    "verified_safe_daily_uploads": 4,
+    "verified_failure_point": "~11 uploads within about an hour of wall-clock time triggered HTTP 400 uploadLimitExceeded (2026-07-27) — publishAt scheduling does not protect against this, only the upload call's own timing matters.",
+    "note": "Do not assume more than 4/day is safe without a real, minimal, reversible test. Never retry a quota-blocked upload in a loop."
+  },
+  "rollback_policy": {
+    "note": "Every medium/high-risk change must define its own rollback condition at implementation time (agents/0_orchestrator.md's Controlled Self-Modification Loop). This file's current_production_allocation.previous_production_allocation field is the mechanical rollback target for allocation changes specifically — set it to the outgoing allocation whenever current_production_allocation changes, never leave it stale.",
+    "rollback_trigger_examples": ["subscriber growth materially declines vs. the pre-change baseline", "same-format performance materially declines", "upload failures increase", "quarantine rate increases", "content quality falls (gate failures, owner feedback)", "audience fatigue increases", "quota errors occur", "the change produces no benefit after its evaluation window"]
+  },
+  "content_portfolio_default": {
+    "repeat_pct": 70,
+    "deliberately_vary_pct": 20,
+    "explore_pct": 10,
+    "note": "Default mix — Agent 0 may adjust temporarily per situation (e.g. 50/30/20 with no winners yet, 70/25/5 validating a clear winner, 50/40/10 under fatigue, 75/20/5 in stable strong growth). Record any deviation and its reason in the relevant cycles[] entry."
+  }
+}

@@ -1,7 +1,7 @@
 # Make It Manifest Channel Playbook
 
-Last updated: 2026-08-02T07:10:56.680753+00:00
-Generated from analytics runs: analytics-2026-08-02-0710 (plus 4 total cycle entries in state/performance_notes.json)
+Last updated: 2026-08-03T00:19:42.699379+00:00
+Generated from analytics runs: analytics-2026-08-03-0019 (plus 5 total cycle entries in state/performance_notes.json)
 
 _This file is a distilled operational summary, not the source of truth. `state/performance_notes.json` and `state/video_analytics.json` hold the full history and every underlying evidence entry — nothing here should be trusted over them, and nothing here is ever the only place a finding lives._
 
@@ -20,8 +20,8 @@ Aspirational luxury / manifestation / future-self motivation, cinematic lifestyl
 ## Strong Channel Patterns
 
 _None yet._ No finding has persisted across enough batches/dates/controlled variations to earn this tier — see `agents/0_orchestrator.md`'s evidence-level rules. Current same-format baselines, for reference:
-- **Shorts** — n=31, median views=9, median age-normalized views/day=44.0, median likes/1000 views=0.0, median comments/1000 views=0.0
-- **Long-form** — n=8, median views=10.5, median age-normalized views/day=8.4, median likes/1000 views=0.0, median comments/1000 views=0.0
+- **Shorts** — n=31, median views=269, median age-normalized views/day=123.7, median likes/1000 views=6.96, median comments/1000 views=0.0
+- **Long-form** — n=8, median views=11.0, median age-normalized views/day=5.6, median likes/1000 views=0.0, median comments/1000 views=0.0
 
 ## Promising Patterns to Validate
 
@@ -106,11 +106,9 @@ _Not yet populated — no analytics cycle has produced structured evidence for t
 
 ## Instructions for the Next Scouting Run
 
-- Continue the legacy/sacrifice/earned-over-time angle for upcoming Shorts (repeat bucket) — still the best-supported pattern on file, 3rd+ consecutive cycle.
-- Do not draw any conclusion about sf_031 declining yet — recheck once it has ~3 days of data, comparable to its pattern-mates' current age.
-- Keep the sf_032 (manifestation/alignment) and sf_033 (quiet-arrival) angles as single-use data points for now — do not repeat or discard either until they've had comparable time to accumulate views.
-- Do not compare CTA variants yet — only 1 Short per variant exists, and their comment counts are currently polluted by the automated pinned comment (see caveat). Needs 3+ comparable Shorts per variant with organic-comment counts before any evidence-backed comparison.
-- No cadence change yet — morning/afternoon showing stronger age-normalized medians than evening is only an early signal confounded by today's evening slots being the freshest uploads in the sample.
+- Continue the legacy/sacrifice/earned-over-time angle for Shorts — still the best-supported pattern, no change.
+- No CTA variant preference yet — keep balanced rotation, gather more data.
+- No production-allocation change — continue 3 Shorts + 1 long-form/day.
 
 ## Contradictions and Uncertainties
 
@@ -118,6 +116,7 @@ _Not yet populated — no analytics cycle has produced structured evidence for t
 
 ## Change Log
 
+- 2026-08-03T00:19:42.699379+00:00: regenerated from 5 cycle entries, 39 joined videos (18 missing attributes), 1 ledger experiments.
 - 2026-08-02T07:10:56.680753+00:00: regenerated from 4 cycle entries, 39 joined videos (18 missing attributes), 1 ledger experiments.
 - 2026-08-01T19:53:59.473735+00:00: regenerated from 3 cycle entries, 35 joined videos (17 missing attributes), 0 ledger experiments.
 - 2026-08-01T19:53:59.428961+00:00: regenerated from 3 cycle entries, 35 joined videos (17 missing attributes), 0 ledger experiments.

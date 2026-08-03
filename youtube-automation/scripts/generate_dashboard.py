@@ -31,6 +31,8 @@ import os
 import re
 from datetime import datetime, timedelta, timezone
 
+import analytics_intelligence as ai
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "state")
 AGENTS_DIR = os.path.join(ROOT, "agents")
@@ -108,6 +110,10 @@ STATUS_META = {
     "image_sourced": ("Image sourced", "neutral"),
     "animated": ("Animated", "neutral"),
     "quarantined": ("Quarantined", "critical"),
+    "GREEN": ("On pace", "success"),
+    "AMBER": ("Behind pace", "warning"),
+    "RED": ("Off pace", "critical"),
+    "insufficient_data": ("Gathering data", "neutral"),
 }
 
 
@@ -219,6 +225,8 @@ def main():
     image_pool = load("image_pool.json", {})
     video_analytics = load("video_analytics.json", {"videos": [], "has_analytics_scope": False, "pulled_at": None})
     channel_stats = load("channel_stats.json", {})
+    growth_config_path = os.path.join(ROOT, "config", "growth_strategy.json")
+    growth_config = json.load(open(growth_config_path)) if os.path.exists(growth_config_path) else {}
 
     # ---- KPI counts ----
     status_counts = {"done": 0, "ready_to_publish": 0, "pending": 0}
@@ -555,6 +563,39 @@ def main():
         stat_card("Pending", status_counts.get("pending", 0), "neutral", sub="this week"),
         stat_card("Quarantined", quarantine_count, "critical" if quarantine_count else "neutral", sub="all-time"),
     ])
+
+    # ---- Growth trajectory toward the 100k-subscriber objective ----
+    growth_html = ""
+    if growth_config:
+        traj = ai.calculate_trajectory(
+            channel_stats.get("subscriber_count") or 0,
+            video_analytics.get("subscribers_daily_series", []),
+            growth_config,
+            now=now,
+        )
+        status = traj["trajectory_status"] or "insufficient_data"
+        status_tone = {"GREEN": "success", "AMBER": "warning", "RED": "critical", "insufficient_data": "neutral"}.get(status, "neutral")
+        nc = traj.get("next_checkpoint")
+        alloc = growth_config.get("current_production_allocation", {})
+        pace_str = f"{traj['pace_7day_subscribers_per_day']:.1f}/day" if traj.get("pace_7day_subscribers_per_day") is not None else "—"
+        growth_rows = row(
+            icon_bubble(icon("gauge", 15), status_tone, is_svg=True),
+            f"{traj['current_subscribers']:,} / {traj['target_subscribers']:,} subscribers",
+            f"{traj['percent_of_target_complete']:.2f}% of target · next checkpoint {esc(nc['date']) if nc else '—'}: {nc['subscribers']:,} subs" if nc else f"{traj['percent_of_target_complete']:.2f}% of target",
+            trailing=pill(status),
+        )
+        growth_rows += row(
+            icon_bubble(icon("gauge", 15), "info", is_svg=True),
+            f"Real pace: {pace_str}",
+            f"data confidence: {esc(traj['data_confidence'])} ({traj['pace_7day_days_of_data']} real day(s) of data) · required ≈ {traj['required_daily_pace']:.0f}/day to hit target date" if traj.get("required_daily_pace") is not None else f"data confidence: {esc(traj['data_confidence'])}",
+        )
+        growth_rows += row(
+            icon_bubble("A", "accent"),
+            f"Allocation: {alloc.get('shorts_per_day', '—')} Shorts + {alloc.get('long_form_per_day', '—')} long-form / day",
+            f"Model {esc(alloc.get('model', '—'))} · {esc(alloc.get('reason', ''))[:90]}",
+        )
+        growth_html = section(f"Growth toward {traj['target_subscribers']:,} by {esc(traj['target_date'])}", growth_rows,
+                               note="Stretch objective, not a forecast. Pace figures use only real per-day subscriber data — never estimated.")
 
     next_row = ""
     if next_due:
@@ -1424,6 +1465,7 @@ body {{
       <div class="large-title-sub">{esc(handle)} · generated {esc(generated_at)}</div>
     </div>
     <div class="stats-grid">{stats_html}</div>
+    {growth_html}
     {blocker_html}
     {next_row}
     {week_html}
