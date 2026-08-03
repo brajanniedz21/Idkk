@@ -281,9 +281,9 @@
         "format": "short",
         "day": "2026-08-03",
         "local_slot": "19:00",
-        "status": "pending",
+        "status": "done",
         "scheduled_publish_at": "2026-08-03T18:00:00Z",
-        "candidate_id": null,
+        "candidate_id": "sf_036",
         "note": "Real Monday 2026-08-03 daily production (owner direction: yesterday's indices 25-28 were an authorized one-time TEST run using Monday's slot numbers preemptively on 2026-08-02 to validate session changes \u2014 they do not substitute for todays real production, which this item is.)"
       },
       {
