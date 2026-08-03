@@ -242,6 +242,19 @@
         "cta_text": "Type \"Luxury\" to claim it."
       },
       "candidate_id": "sf_033"
+    },
+    {
+      "video_id": "qdXepayAqc8",
+      "url": "https://youtu.be/qdXepayAqc8",
+      "title": "I Paid For This Before You Saw It.",
+      "published_at": "2026-08-03T08:32:43Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_begin",
+        "cta_text": "Your future starts here. Comment \"Luxury\"."
+      },
+      "candidate_id": "sf_034"
     }
   ],
   "long_form": [
