@@ -134,7 +134,25 @@ if __name__ == "__main__":
                               "variant ID already assigned and stored on the candidate at scripting time "
                               "(see scripts/cta_experiment.py). Defaults to the control wording, unchanged "
                               "from the original pre-experiment behavior.")
+    parser.add_argument("--confirm-immediate-publish", action="store_true",
+                         help="Required alongside --privacy public with no --publish-at. A real incident "
+                              "(2026-08-03: a full day's worth of Shorts + that day's long-form all went "
+                              "public back-to-back within minutes instead of spread across the day via "
+                              "publishAt scheduling) happened silently because this script's default lets "
+                              "'no --publish-at' mean 'publish immediately' with no signal that a scheduled "
+                              "upload was skipped. This flag makes that choice explicit and impossible to "
+                              "do by accident/omission going forward.")
     args = parser.parse_args()
+
+    if args.privacy == "public" and not args.publish_at and not args.confirm_immediate_publish:
+        print(
+            "REFUSING TO UPLOAD: --privacy public with no --publish-at means this goes live immediately, "
+            "not at a scheduled slot time. If that's genuinely intended (e.g. a manual one-off, or a real "
+            "retry of an already-past-due item), pass --confirm-immediate-publish explicitly. Otherwise pass "
+            "--publish-at <RFC3339 UTC timestamp> for the item's real scheduled slot.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     try:
         result = upload(
