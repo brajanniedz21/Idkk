@@ -390,7 +390,17 @@
       "image_source": "owner_ai_generated_clip (Path C, PRIMARY) -- Drive file 1Q1SWibNuo43zBm9EKT4_bk87Z1aLKpNS, folder 1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6 (state/animated_clip_pool.json). Downloaded and frame-inspected by Agent 2.2 on 2026-08-03: get_file_metadata confirmed parentId=1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6 and a matching title ('Static locked camera cinemagraph. Dubai Fountain water surface with gentle realistic pulsing ripples and subtle shimmer. Skyscraper reflections including Burj Khalifa subtly wave and undulate in time with water mot.mp4'); file is a real 1364x768 h264 mp4, 5.875s, 1,382,465 bytes. Three sampled frames (n=15, n=60, n=100) confirm a genuine match to the catalogued description and the candidate's own visual_theme: locked-off shot, Dubai Fountain water surface, Burj Khalifa and surrounding skyscrapers reflected in the rippling water. Two discrepancies from the visual_theme's stated exclusions, disclosed per the per-file visual check this pool's _comment requires: (1) a legible 'EMAAR' logo/signage is visible on a building at frame-right in every sampled frame -- same category of issue as the disclosed EMAAR-signage precedent on the legacy image folder's Dubai skyline shots, not a fabricated/added mark, just real building signage in a public skyline view; (2) small, distant, non-facial silhouettes of people are visible on a terrace and promenade in the lower-left of frame -- too small/distant for any face to be identifiable, consistent with a wide night skyline shot, but technically present despite the visual_theme's 'no people' line. No cars, no on-screen text overlays, and no other watermarks were found. Judged not to warrant quarantine (real public skyline signage and distant unidentifiable figures, not a fabricated logo or a close/legible face) but flagged here for the owner/next-stage record.",
       "image_path": "assets/long-form/images/source_pool/lf_011_source_clip.mp4",
       "image_sourced_at": "2026-08-03T21:10:00Z",
-      "status": "image_sourced"
+      "status": "animated",
+      "animated_loop_path": "assets/long-form/animated_loops/lf_011_loop_segment.mp4",
+      "motion_decision": {
+        "loop_method": "reverse",
+        "confidence": 0.9,
+        "significant_subject_motion": true,
+        "camera_motion": false,
+        "motion_summary": "Locked-off shot; Burj Khalifa, skyline, and promenade structure are pixel-identical in position across all 10 contact-sheet frames -- no camera pan/zoom/tilt/dolly. Primary ambient motion is water surface ripple/shimmer and reflections undulating. However, the built crossfade's mid-blend-region frame revealed visible pedestrians actually walking along the lower-frame promenade over the clip's duration -- not static silhouettes as the coarse 10-frame contact sheet read suggested.",
+        "reason": "Initial contact-sheet read favored crossfade (locked camera, promenade figures looked static/too-small-to-register at 10 sparse samples). Built the crossfade per Step 2 and inspected the required mid-blend frame per spec verification -- it showed clear double-exposure ghosting/doubling of the promenade pedestrians (ffmpeg crop comparison of start vs mid-blend region), confirming those figures have real coherent walking motion the contact sheet missed. Switched to reverse after this empirical crossfade check failed, per the spec's mixed-scene/mid-blend-ghosting rule -- this is not from the original contact-sheet read alone."
+      },
+      "animated_at": "2026-08-03T22:05:00Z"
     }
   ]
 }
