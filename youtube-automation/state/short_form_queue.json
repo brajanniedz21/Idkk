@@ -2493,7 +2493,8 @@
       "thumbnail_billboard_check_note": "Tried two candidate frames. Frame at 1.9s (private jet + two black Rolls-Royce Cullinans under an airport canopy, headlights lit) looked strong at full size but at the 120px billboard preview the cars reduced to a near-indistinguishable dark blob under the jet -- rejected, fails the legibility check. Frame at 6.4s (twin chrome-gold Lamborghini Aventadors in the palm-lined villa driveway, raw/52) was extracted instead, run through scripts/thumbnail_optimize.py, and viewed at both full size and 120px: the gold Lamborghinis are clearly and instantly recognizable as cars at 120px, the chrome-gold paint itself reads as the bright lighting accent against the darker villa background, and the cars fill a reasonable share of the frame width -- passes the billboard test, and better matches channel.json.short_form_style_guidance.thumbnail_guidance's composition preference (focal car + bright accent against darker background) than the jet frame did. Used as the tiebreaker only, after the legibility check already ruled out the other candidate.",
       "published_video_id": "qdXepayAqc8",
       "published_url": "https://youtu.be/qdXepayAqc8",
-      "pinned_comment_status": "posted"
+      "pinned_comment_status": "posted",
+      "published_at": "2026-08-03T08:32:43Z"
     },
     {
       "id": "sf_035",

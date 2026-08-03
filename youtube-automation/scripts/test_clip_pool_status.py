@@ -78,6 +78,27 @@ def test_unpublished_candidates_excluded():
     check("quarantined/produced clips never enter the cooldown set", "99" not in cooldown and "98" not in cooldown)
 
 
+def test_missing_timestamp_falls_back_to_posted_history():
+    print("5b. A published candidate with no timestamp on its own entry still sorts correctly via posted_history.json fallback (real bug, 2026-08-03: sf_034 was silently excluded from the cooldown window because its queue entry had no published_at, produced_at, or scripted_at set after publish)")
+    candidates = [
+        {"id": "sf_001", "status": "published", "published_at": "2026-07-27T00:00:00Z", "clips_used": ["1"]},
+        {"id": "sf_002", "status": "published", "published_at": "2026-07-28T00:00:00Z", "clips_used": ["2"]},
+        {"id": "sf_003", "status": "published", "clips_used": ["3"]},  # no timestamp anywhere on the entry itself
+    ]
+    queue = make_queue(candidates)
+    posted_history = {"short_form": [
+        {"candidate_id": "sf_003", "published_at": "2026-07-29T00:00:00Z"},
+    ]}
+    # Without the fallback, sf_003 would sort as the OLDEST (empty string sort key) and drop out of a lookback=2 window.
+    cooldown_without_fallback, recent_without_fallback = cps.recently_used_clips(queue, lookback=2)
+    check("without fallback, sf_003 is silently excluded (the bug)", "3" not in cooldown_without_fallback)
+
+    cooldown_with_fallback, recent_with_fallback = cps.recently_used_clips(queue, lookback=2, posted_history=posted_history)
+    check("with fallback, sf_003 is correctly the most recent", recent_with_fallback[0]["id"] == "sf_003")
+    check("with fallback, sf_003's clip is in the cooldown set", "3" in cooldown_with_fallback)
+    check("with fallback, sf_002 still makes the lookback=2 window", recent_with_fallback[1]["id"] == "sf_002")
+
+
 def test_reproduces_the_real_bug_report():
     print("6. Reproduces the real owner-reported bug: raw/68 and raw/65 reused across sf_022/023/024")
     candidates = [
@@ -107,6 +128,7 @@ def main():
     test_no_data_returns_empty()
     test_cooldown_set_last_n()
     test_unpublished_candidates_excluded()
+    test_missing_timestamp_falls_back_to_posted_history()
     test_reproduces_the_real_bug_report()
     test_pool_size_from_real_directory()
 

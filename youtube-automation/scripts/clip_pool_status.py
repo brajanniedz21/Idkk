@@ -69,28 +69,60 @@ def _sort_key(candidate):
     return candidate.get("published_at") or candidate.get("produced_at") or candidate.get("scripted_at") or ""
 
 
-def published_candidates_recent_first(queue):
+def _posted_history_published_at_by_candidate_id(posted_history):
+    """{candidate_id: published_at} from state/posted_history.json's
+    short_form array — the real source of truth for when a video actually
+    went live, since it's written directly by the publish step itself.
+    Used as a fallback below."""
+    if not posted_history:
+        return {}
+    return {
+        e["candidate_id"]: e.get("published_at")
+        for e in posted_history.get("short_form", [])
+        if e.get("candidate_id")
+    }
+
+
+def published_candidates_recent_first(queue, posted_history=None):
     """Published short-form candidates, most recent first, using the best
-    available real timestamp (published_at, falling back to produced_at)."""
+    available real timestamp (published_at, falling back to produced_at,
+    scripted_at, or — real bug found 2026-08-03 — posted_history.json's
+    own published_at when the candidate's own queue entry never got one
+    backfilled after a publish. A candidate silently missing every
+    timestamp sorted as the OLDEST entry, which meant it dropped out of
+    the cooldown window entirely instead of being the most recent one in
+    it — exactly the kind of silent gap this whole module exists to
+    prevent. Pass posted_history (state/posted_history.json, already
+    loaded) to enable this fallback; omitted only for callers/tests that
+    don't have it, in which case the gap can still occur for a candidate
+    with genuinely no timestamp anywhere."""
+    fallback = _posted_history_published_at_by_candidate_id(posted_history)
     published = [c for c in queue.get("queue", []) if c.get("status") == "published"]
-    return sorted(published, key=_sort_key, reverse=True)
+
+    def key(c):
+        real = _sort_key(c)
+        if real:
+            return real
+        return fallback.get(c.get("id"), "") or ""
+
+    return sorted(published, key=key, reverse=True)
 
 
-def recently_used_clips(queue, lookback=DEFAULT_LOOKBACK):
+def recently_used_clips(queue, lookback=DEFAULT_LOOKBACK, posted_history=None):
     """The real cooldown set: every raw clip ID used in any of the most
     recent `lookback` PUBLISHED short-form candidates. This is the hard
     no-reuse set a new candidate's clip selection must avoid (see
     agents/short_form/3.1_producer.md) unless the pool is genuinely
     exhausted for the candidate's visual_direction, which must then be
     stated explicitly rather than silently defaulting into a repeat."""
-    recent = published_candidates_recent_first(queue)[:lookback]
+    recent = published_candidates_recent_first(queue, posted_history)[:lookback]
     cooldown = set()
     for c in recent:
         cooldown.update(clips_used_for_candidate(c))
     return cooldown, recent
 
 
-def usage_report(queue, raw_clips_dir=None, lookback=DEFAULT_LOOKBACK):
+def usage_report(queue, raw_clips_dir=None, lookback=DEFAULT_LOOKBACK, posted_history=None):
     """Full usage report: per-clip usage counts across every published
     candidate with resolvable clip data, which clips have never been used,
     the current cooldown set, and any real back-to-back-reuse violations
@@ -112,7 +144,7 @@ def usage_report(queue, raw_clips_dir=None, lookback=DEFAULT_LOOKBACK):
     all_clip_ids = {str(i) for i in range(1, size + 1)} if size else set(counter)
     never_used = sorted(all_clip_ids - set(counter), key=lambda x: int(x) if x.isdigit() else 0)
 
-    cooldown, recent = recently_used_clips(queue, lookback)
+    cooldown, recent = recently_used_clips(queue, lookback, posted_history)
 
     # Violations: a clip appearing in 2+ of the most recent `lookback`
     # candidates — the exact failure mode this module exists to catch.
@@ -140,16 +172,18 @@ if __name__ == "__main__":
     parser.add_argument("--lookback", type=int, default=DEFAULT_LOOKBACK)
     parser.add_argument("--cooldown-only", action="store_true", help="Print just the cooldown set (for quick pre-selection checks)")
     parser.add_argument("--queue-path", default=os.path.join(STATE, "short_form_queue.json"))
+    parser.add_argument("--posted-history-path", default=os.path.join(STATE, "posted_history.json"))
     args = parser.parse_args()
 
     queue = json.load(open(args.queue_path))
+    posted_history = json.load(open(args.posted_history_path)) if os.path.exists(args.posted_history_path) else None
 
     if args.cooldown_only:
-        cooldown, recent = recently_used_clips(queue, args.lookback)
+        cooldown, recent = recently_used_clips(queue, args.lookback, posted_history)
         print(f"COOLDOWN_SET (last {args.lookback} published: {[c.get('id') for c in recent]}):")
         print(sorted(cooldown, key=lambda x: int(x) if x.isdigit() else 0))
     else:
-        report = usage_report(queue, lookback=args.lookback)
+        report = usage_report(queue, lookback=args.lookback, posted_history=posted_history)
         print(f"Raw clip pool size: {report['pool_size']}")
         print(f"Published candidates with resolvable clip data: {report['resolved_candidate_count']}")
         if report["unresolved_candidates"]:
