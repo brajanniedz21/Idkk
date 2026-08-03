@@ -87,6 +87,14 @@ Also in `agents/0_orchestrator.md`, this is the most complex part of the system.
 | `state/dashboard_artifact.json` | The published Claude Artifact's URL — reuse this, never mint a new one |
 | `state/trending_audio_library.json` / `state/cc0_audio_library.json` | Verified audio tracks, short-form (trending, real Content-ID risk accepted) vs. long-form (CC0-only) |
 
+## 5b. Growth objective and controlled self-modification (added 2026-08-02)
+
+The owner set an explicit growth objective: **100,000 subscribers by 2027-04-21** (a stretch objective, not a forecast). `config/growth_strategy.json` holds the adaptive policy (checkpoints, production-allocation models A-E, evidence-to-change-risk mapping, breakout/quota thresholds, rollback policy) — separate from `channel.json` (static brand identity) and never duplicating `gates.json` (safety). `scripts/analytics_intelligence.calculate_trajectory()` computes real GREEN/AMBER/RED status from a real per-day subscriber series (`pull_video_analytics.py` now pulls `subscribersGained`/`subscribersLost` with `dimensions="day"`) — never fabricated; on a brand-new channel `data_confidence` will honestly read `low`/`very_low`/`no_data` for a while.
+
+**The pipeline is explicitly allowed — and required — to modify itself** (agents, scripts, config, schedules, production allocation, Routine prompts) when evidence supports it, following the "Controlled Self-Modification Loop" in `agents/0_orchestrator.md`'s "Growth Strategy" section: observe → diagnose → hypothesize → define the change → record baseline → implement → test → verify → activate → observe the evaluation window → decide (`keep`/`keep_and_expand`/`continue_testing`/`revise`/`rollback`/`inconclusive`) → record. Changes are classified low/medium/high risk with matching evidence requirements (`early_signal` / `repeated_pattern` / `strong_channel_pattern`) — **no new agent role is ever created for this**, Agent 0 remains the sole strategic authority. The safety rules in §8 of this doc all override the growth objective, always.
+
+First real cycle (2026-08-02): trajectory came back `RED` (honest — 5 real days of data, ~2.8 subs/day vs. ~385/day required). Dominant constraint candidate: Shorts reach ~20x further than long-form so far, but classified only `early_signal` (not `repeated_pattern`) given the format-discovery confound and the total absence of per-video subscriber-attribution data anywhere in the API — no allocation change was made; "insufficient evidence, retain current model" is treated as a legitimate outcome, not a failure to act.
+
 ## 6. Systems built this session (all real, all live-tested)
 
 - **Subscribe animation overlay** — branded overlay baked into short-form output.
