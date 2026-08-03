@@ -39,13 +39,14 @@ youtube-automation/
 
 **No new agents get added.** Every capability added this session (CTA experiments, fatigue detection, cadence analysis, clip-reuse cooldown, comment-text pulling) was wired into the *existing* agents/scripts, never a new agent role. Agent 0 (orchestrator) owns all judgment-requiring synthesis; the numbered agents are mechanical stages.
 
-## 3. Core operating model: the Daily production cycle
+## 3. Core operating model: the Weekly batch cycle (restored 2026-08-03)
 
-**This superseded an earlier "Weekly batch" model on 2026-08-02.** The old model pre-produced a full week of content ahead of schedule and throttled only publishing; it's gone. Current model, in `agents/0_orchestrator.md`'s "Daily production cycle" section:
+**History**: the original "Weekly batch cycle" (produce a full week ahead, throttle only publishing) was replaced on 2026-08-02 by a daily-only model (produce+publish only today's items) to make a real quota incident structurally impossible. On 2026-08-03 the owner explicitly asked to go back to producing/scheduling a full week at once ("usage credits are higher now" — session/compute budget, a different resource from YouTube's own API quota). The weekly model is restored, in `agents/0_orchestrator.md`'s "Weekly batch cycle" section:
 
-- Each daily firing scouts, scripts, produces, gates, and publishes **only that real calendar day's items** (3 shorts + 1 long-form, per `config/channel.json.publishing_schedule`), then stops.
-- **Hard rule: never scout/script/produce/gate a video for any day other than today.** This structurally prevents ever attempting more than 4 uploads in one firing (the old model once hit YouTube's `uploadLimitExceeded` by uploading ~11 videos in an hour).
-- `state/weekly_batch_progress.json` keeps its filename/schema for dashboard continuity, but its role changed — its `_comment` field documents this. It may hold a lightweight week-of day-slot skeleton, but content is only actually produced when that day arrives.
+- **PRODUCTION phase** (no daily cap): script/produce/gate the full week's items (21 shorts + 7 long-form) ahead of schedule, stopping at `ready_to_publish` — never actually uploading yet.
+- **PUBLISHING phase** (throttled, real quota awareness): uploads each `ready_to_publish` item with `privacyStatus=private` + `publishAt` set to its real scheduled time, so it actually goes live on the right day — but checks for `uploadLimitExceeded` after every single upload and **stops immediately, no retry**, the instant it occurs (a real 2026-07-27 incident: ~11 uploads in an hour tripped this, even with `publishAt` already spread across the week — the upload *call* is throttled, not just the public time). Remaining items stay `ready_to_publish` for the next firing.
+- `state/weekly_batch_progress.json` is the week-ahead production queue again (28 items, `pending` → `ready_to_publish` → `done`/`quarantined`).
+- This is orthogonal to the Growth Strategy's production-*allocation* decision (§5b below, `config/growth_strategy.json.current_production_allocation`) — that still governs shorts/long-form *counts* per day; this section only changed *when* production/publishing happen relative to each other.
 
 Two scheduled triggers drive this (external to the repo — see §9):
 1. **Daily content batch** (~06:00 UTC) — runs the production cycle above.
@@ -139,7 +140,7 @@ Both fire into a persistent session (not a fresh one) because a fresh session pe
 
 ## 10. Known stale docs — don't trust these over this file or `0_orchestrator.md`
 
-- `config/channel.json.publishing_schedule.weekly_batch_mode` — describes the **old** weekly-batch model in detail. Superseded by the Daily production cycle (§3) but never deleted/rewritten. `agents/0_orchestrator.md` is authoritative; this JSON blob is not.
+- `config/channel.json.publishing_schedule.weekly_batch_mode` — this is now **current again** (§3, restored 2026-08-03), not stale — it was briefly superseded 2026-08-02/03 by a daily-only model, but that in turn was superseded back to this. `agents/0_orchestrator.md`'s "Weekly batch cycle" section is still the authoritative version of the operating logic; this JSON blob is supporting config, not the source of truth for process.
 - `README.md` (repo root of `youtube-automation/`) — describes an early, mostly-unbuilt state (credentials "blocked", cron "not yet created", 48/58 clips). Wildly out of date; don't use it to judge project maturity.
 - `scripts/youtube_auth.py`'s `COMMENT_SCOPES` docstring, before this session's fixes, said comment posting wasn't granted yet — now corrected in `agents/0_orchestrator.md`, but double-check the script's own comment if reading it in isolation.
 
