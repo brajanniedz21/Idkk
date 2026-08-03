@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 youtube-automation/.venv/
 youtube-automation/assets/long-form/output/*_final.mp4
+.claude/worktrees/
