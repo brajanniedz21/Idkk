@@ -328,9 +328,9 @@
         "format": "long",
         "day": "2026-08-04",
         "local_slot": "20:00",
-        "status": "pending",
+        "status": "ready_to_publish",
         "scheduled_publish_at": "2026-08-04T19:00:00Z",
-        "candidate_id": null
+        "candidate_id": "lf_012"
       },
       {
         "index": 37,
@@ -355,9 +355,9 @@
         "format": "long",
         "day": "2026-08-04",
         "local_slot": "13:30",
-        "status": "pending",
+        "status": "ready_to_publish",
         "scheduled_publish_at": "2026-08-04T12:30:00Z",
-        "candidate_id": null
+        "candidate_id": "lf_013"
       },
       {
         "index": 40,
@@ -427,9 +427,9 @@
         "format": "short",
         "day": "2026-08-06",
         "local_slot": "09:00",
-        "status": "pending",
+        "status": "ready_to_publish",
         "scheduled_publish_at": "2026-08-06T08:00:00Z",
-        "candidate_id": null
+        "candidate_id": "sf_047"
       },
       {
         "index": 48,
