@@ -336,6 +336,31 @@
       "thumbnail_path": "assets/long-form/thumbnails/lf_009_thumb.jpg",
       "thumbnail_billboard_check_note": "Viewed the 120px billboard preview directly: the Porsche GT3 and superyacht are both instantly recognizable at that size, warm sunset color/mood reads clearly, no text/watermark artifacts. Passes content_quality_gate.thumbnail_strength.",
       "publish_verification_note": "Independently re-verified via a live videos.list API call (not just the upload script's stdout): item found, title matches exactly, privacyStatus=public, uploadStatus=uploaded, publishedAt=2026-08-02T06:45:39Z."
+    },
+    {
+      "id": "lf_010",
+      "status": "scouted",
+      "visual_theme": "Floor-to-ceiling glass-walled modern mountain lodge interior at first light: misty pine-forested peaks visible through the windows, a low modern stone-and-steel fireplace glowing faintly in the corner, a single tan leather lounge chair with a folded wool throw in the near foreground, pale golden dawn light spilling across polished wood floors. Calm, elevated, isolated-luxury-retreat feel -- no people, no faces, no on-screen text, no logos/watermarks.",
+      "mood": "Soft ambient piano with airy sustained strings and a faint high-altitude wind/nature-ambience layer underneath, no percussion, no vocals, sub-60bpm -- a crisp morning-clarity register, distinct from lf_009's warm nostalgic sunset mood and from the marina/rain-night moods used across lf_003/lf_004/lf_006/lf_008.",
+      "title": "This Is Your Quiet Now",
+      "seo_description": "Ninety minutes of still, golden morning light inside a glass-walled mountain retreat, mist settling over the peaks outside. Slow ambient piano and mountain-air ambience to help you focus, study, journal, or just sit with how far you have already come. A quiet reminder that peace is part of the life you are building. #ambience #manifestation #deepfocus #luxurylifestyle #studywithme #selfimprovement",
+      "tags": [
+        "luxury ambience",
+        "mountain retreat ambience",
+        "morning calm ambience",
+        "manifestation music",
+        "deep focus ambience",
+        "study with me",
+        "luxury lifestyle aesthetic",
+        "self improvement background",
+        "calm piano ambience",
+        "cinematic ambience"
+      ],
+      "target_length_minutes": 90,
+      "target_length_note": "Varied from the immediately preceding lf_009 (70min) for schedule variety, kept within the lower-to-middle portion of [60,600] since this remains a real single daily production/render/upload cycle rather than a max-length run.",
+      "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags/visual concept. No stock-photo-caption-style title (passes long_form_style_guidance.title_convention.banned_pattern check -- 'This Is Your Quiet Now' is an emotional statement, not a scene label like 'Mountain Lodge at Dawn' would be). Purely generic luxury-ambience content consistent with the rest of the channel and config/channel.json.content_exclusions.",
+      "scouted_at": "2026-08-03T20:00:00Z",
+      "source_notes": "state/performance_notes.json cycles[] most recent entry (analytics-2026-08-03-0715) has all long-form-relevant buckets (repeat/repeat_and_validate/deliberately_vary/reduce/retire_temporarily/explore) empty -- its only long-form attribute_finding is the format-reach-gap (Shorts vs long-form discovery), which is a format-allocation signal, not a visual-theme/mood signal, and explicitly not yet actionable (early_signal, no allocation change). state/channel_playbook.md 'Winning Long-Form Patterns'/'Visual Patterns'/'Audio Patterns'/'Audience Fatigue and Cooldowns' sections are all still unpopulated (n=8, no attribute-level winner at repeated_pattern confidence yet) -- no diversify flag exists to check against. Absent any specific analytics-driven directive, this pick is guided by (a) the required never-repeat-lf_009's-exact-visual_theme rule, and (b) a deliberate departure from the car/mansion-driveway/marina-yacht scene family that has dominated lf_003 through lf_009 (7 of the last 7 published candidates), introducing the mountain-view family named in agents/long_form/1.2_format_scout.md step 1 for the first time in this queue -- genuine visual variety rather than a repeated arbitrary night-luxury-vehicle scene, while staying inside the same brand_identity/title_convention guardrails."
     }
   ]
 }
