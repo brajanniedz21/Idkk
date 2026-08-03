@@ -4,12 +4,6 @@
   "catalog_note": "19 of the folder's 20 clips are catalogued below (cheap to re-list the folder directly to confirm the exact count/find the 20th before assuming this list is exhaustive).",
   "unused_pool": [
     {
-      "drive_file_id": "1_qPnz38EVcfCuzPIKK--krGIJ9i2iDHA",
-      "description": "Static tripod shot of luxury marina at night with yachts and skyscrapers. Marina water continuously ripples, bright moving reflections beneath yachts and illuminated towers.",
-      "duration_sec": 5.9,
-      "resolution": "1364x768"
-    },
-    {
       "drive_file_id": "1awkgvXc9DscB75_AMU2gF_2j9F7_sKtF",
       "description": "Static tripod shot of luxury garage at dusk with two supercars parked inside. Warm summer breeze continuously moves trees/bushes outside the garage, soft shadows shifting."
     },
@@ -89,6 +83,15 @@
       "description": "Static tripod shot. Soft, gentle snowflakes fall through night air against a snowy scene with a white sports car in a driveway; warm garage-light glow.",
       "consumed_by": "lf_013",
       "consumed_at": "2026-08-03T11:00:00Z"
+    },
+    {
+      "drive_file_id": "1_qPnz38EVcfCuzPIKK--krGIJ9i2iDHA",
+      "description": "Static tripod shot of luxury marina at night with yachts and skyscrapers. Marina water continuously ripples, bright moving reflections beneath yachts and illuminated towers.",
+      "duration_sec": 5.9,
+      "resolution": "1364x768",
+      "consumed_by": "lf_015",
+      "consumed_at": "2026-08-03T17:18:00Z",
+      "provenance_note": "Real 'EMAAR' and other legible real-estate/brand signage visible on the marina towers in the background (Dubai Marina skyline) -- same disclosed pattern as the legacy image folder's Dubai skyline shots (see agents/long_form/2.2_image_sourcer.md Path B note). Owner-supplied AI-generated clip (source=owner_ai_generated_clip, Path C), not a scraped photo/video, but the signage itself reads as real -- flagged here per the per-file visual-check discipline, no action needed unless a claim lands (see config/gates.json image_copyright_gate backstop)."
     }
   ]
 }

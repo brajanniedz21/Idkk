@@ -418,9 +418,9 @@
         "format": "long",
         "day": "2026-08-05",
         "local_slot": "20:30",
-        "status": "pending",
+        "status": "ready_to_publish",
         "scheduled_publish_at": "2026-08-05T19:30:00Z",
-        "candidate_id": null
+        "candidate_id": "lf_015"
       },
       {
         "index": 47,
