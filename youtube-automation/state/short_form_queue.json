@@ -2429,6 +2429,28 @@
         "32",
         "36"
       ]
+    },
+    {
+      "id": "sf_034",
+      "status": "scouted",
+      "scouted_at": "2026-08-03T09:00:00Z",
+      "angle": "Legacy/sacrifice/earned-over-time narrative: frame the luxury-lifestyle visuals (private jet interior, night skyline, supercar garage, yacht deck) as the visible payoff of an invisible, unglamorous price already paid — the viewer is meeting the result, not the years of quiet cost that produced it. This is a 'repeat' bucket pick of the channel's own best-supported pattern per state/performance_notes.json's most recent cycles[] entry (analytics-2026-08-03-0715): buckets.repeat = 'Legacy/sacrifice/earned-over-time narrative (Shorts) — unchanged, still the best-supported pattern,' consistent with the 2026-07-29 and 2026-08-01 cycles that first surfaced it and sf_031's most recent use of it (2026-08-02, 'Nobody Saw The Years It Took.'). Varies the specific wording/framing from sf_031 (which used a 'nobody saw' vantage) toward a first-person 'I already paid for this' vantage — same psychological mechanism, different angle of address, per the spec's 'vary surface details, don't near-duplicate' instruction for repeat-bucket picks.",
+      "title_pattern": "I Paid For This Before You Saw It.",
+      "caption_hooks": [
+        "This didn't cost what you think it cost.",
+        "You're seeing the payoff. Not the price.",
+        "Every quiet year led here."
+      ],
+      "trending_sound_style": "Upbeat but confident/driving mid-tempo, calmer end of the 'upbeat' range — not maximally aggressive phonk/hardtekk. Per config/channel.json.brand_identity's luxury/calm/quiet-confidence register and the 2026-07-29/2026-08-01 performance findings that the most aggressive phonk tracks were the bottom performers. A warmer, more reflective energy (closer to sf_031's pick than sf_032's more cinematic/building one) fits the 'the cost is already behind me' framing.",
+      "hashtags": [
+        "#luxury",
+        "#richmindset",
+        "#quietwealth",
+        "#manifestation",
+        "#success"
+      ],
+      "source_notes": "Bucket: repeat (per state/performance_notes.json's most recent cycles[] entry, run_id analytics-2026-08-03-0715, buckets.repeat: 'Legacy/sacrifice/earned-over-time narrative (Shorts) — unchanged, still the best-supported pattern' — the same pattern first flagged in the 2026-07-29 and 2026-08-01 cycles.entries, now 4 established uses: sf_013 'I'm The First. Not The Last.', sf_015 'Nobody Talks About What I Gave Up.', sf_017 'This Took Years. It Looks Like Luck.', sf_031 'Nobody Saw The Years It Took.'). This is today's first of 3 real Shorts (slot index 29, 09:00 local), a new production cycle, not a continuation of the 2026-08-02 test batch that already used sf_031 (repeat)/sf_032 (deliberately_vary)/sf_033 (explore) — restarting the 70/20/10 mix at 'repeat' for today's first slot is consistent with the spec's guidance since the current buckets object has no populated deliberately_vary/explore entries to draw from this cycle (both empty arrays this run). Title/wording deliberately distinct from sf_031's most recent use of the same pattern (first-person 'I paid' vantage vs. sf_031's 'nobody saw' vantage) so this doesn't read as a near-duplicate. Checked posted_history.json/short_form_queue.json's full title list (sf_001 through sf_033) — 'I Paid For This Before You Saw It.' is not a duplicate or near-duplicate of any prior title. Checked config/channel.json.short_form_style_guidance.title_convention's banned_pattern — this reads as an emotional/curiosity hook, not a stock-photo scene caption. Checked assets/short-form-clips/raw/README.md's content-scope note — this angle (private jet, skyline, supercar garage, yacht) is fully representable by the existing luxury-lifestyle-only footage pool, no gym/library material needed. Checked state/channel_playbook.md's 'Audience Fatigue and Cooldowns' section — not yet populated (no structured evidence on file), so no cooldown/retire constraint applies to this pattern. Live mandatory competitor RSS re-scan this cycle (state/performance_notes.json's new competitor_scan_2026_08_03_pt1, fresh pull of @Millionaire_Mentality_7's feed) found one genuinely new upload since the prior scan and reconfirmed (4th consecutive scan) the reference channel's generic hashtag-scene-label title pattern with no drift — no new attribute signal changes this pick, it's a freshness confirmation per the spec's mandatory-every-cycle requirement, not the primary driver (the repeat-bucket finding above is).",
+      "fatigue_status": "repeat-eligible, not yet in cooldown — state/channel_playbook.md's fatigue/cooldown section has no structured evidence yet (not populated), and this cycles[] entry's buckets.repeat explicitly still lists this pattern as current, not retired. This will be its 5th use overall and its most recent reuse since sf_031 (2 candidates ago in the queue, published 2026-08-02) — wording deliberately varied (first-person 'I paid' vantage vs. sf_031's 'nobody saw' vantage) to avoid a near-duplicate feel per the spec's repeat-bucket guidance, even though the underlying narrative mechanism is intentionally the same."
     }
   ]
 }

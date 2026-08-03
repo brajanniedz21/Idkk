@@ -1,5 +1,19 @@
 {
   "_comment": "Findings from the weekly analytics cycle, written by the routine described in agents/0_orchestrator.md's 'Weekly analytics cycle' section. Read by Agent 1.1/1.2 to weight future scouting toward what's working. Never used to adjust config/gates.json.",
+  "competitor_scan_2026_08_03_pt1": {
+    "scanned_at": "2026-08-03T09:00:00Z",
+    "context": "Agent 1.1 mandatory live competitor scan for today's real slot-29 candidate (sf_034, first of today's 3 real Shorts, 09:00 local slot). Prior scan on file (competitor_scan_2026_08_02_pt3) is now ~1 day stale; this is a genuinely fresh pull, not a re-read of cached data.",
+    "channel_scanned": "@Millionaire_Mentality_7 (config/channel.json.reference_examples.short_form), channel_id UCYHEg3xy4w-_1YzrmFbBUYQ",
+    "method": "Live RSS feed pull (https://www.youtube.com/feeds/videos.xml?channel_id=UCYHEg3xy4w-_1YzrmFbBUYQ), fetched fresh this cycle. Parsed the 15 most recent entries' titles, publish timestamps, and community view counts.",
+    "findings": {
+      "new_upload_since_last_scan": "One genuinely new video since pt3's newest entry (kuVLJHLGxE8, 2026-08-02T03:06Z): 'Rich Lifestyle 💰 #luxury #rich #money #motivation...' (TjS2Fw1xhmU), published 2026-08-03T03:00:29Z, 1055 views at scan time.",
+      "title_pattern_confirmed_again": "4th consecutive independent scan (pt-series 07-27 through 08-02, now 08-03) confirms the same generic hashtag-stuffed scene-label pattern with no drift: 'Rich Lifestyle', 'BMW', 'Rich Life', 'Luxury Lifestyle', 'Luxury Cars Vibes' — title text is a literal scene/subject label plus a fixed hashtag block, never an emotional hook. This continues to validate (by contrast) this channel's own emotional-title convention as differentiated, not something to imitate.",
+      "cadence_pattern": "Across the last 15 entries (2026-07-28 through 2026-08-03), publish times cluster around three loose windows: ~03:00-04:30 UTC, ~09:00-11:00 UTC, and ~15:00 UTC — roughly 3 uploads/day, consistent with prior scans. Not perfectly fixed-clock (e.g. 07-28's single upload was 11:00 UTC, 07-31's morning slot was 03:28 not 03:00), so read as an approximate 3x-daily cadence rather than an exact schedule.",
+      "recurring_car_subseries": "'BMW' sub-series recurs again (07-29, 07-31, 08-02 all include a same-titled 'BMW' entry) — 4th+ confirmation this is a genuine recurring sub-series, not a one-off.",
+      "view_count_spread_caveat": "View counts on the last 5 same-slot (~09:00 UTC) uploads are noisy, not a clean trend: 10399 (07-29) -> 25049 (07-30) -> 12886 (07-31) -> 4918 (08-01) -> 7962 (08-02). Flagging this honestly as unpredictable/noisy rather than reading a false trend line into it — explicitly not claiming a decline or recovery pattern from 5 noisy points."
+    },
+    "influenced_this_cycles_pick": "No new attribute signal that changes strategy — confirms (does not change) that this channel's emotional-title convention and luxury-lifestyle visual scope remain correctly differentiated from the generic-label competitor pattern. This scan's role this cycle is the mandatory freshness check per agents/short_form/1.1_trend_scout.md step 1, not the primary driver of sf_034's angle — that's the repeat-bucket finding in the most recent cycles[] entry (analytics-2026-08-03-0715), see sf_034's source_notes."
+  },
   "competitor_scan_2026_08_02_pt3": {
     "scanned_at": "2026-08-02T00:00:00Z",
     "context": "Owner-authorized real-production test of the daily-production-cycle changes (index 27, weekly_batch_progress.json, 19:00 slot for 2026-08-03) \u2014 scouting a third, genuinely different short after sf_031 (sacrifice/legacy, repeat bucket) and sf_032 (manifestation/alignment, deliberately_vary bucket), both already published this test run. This scan's purpose is to confirm no new competitor signal has appeared since pt1/pt2 before locking in a third distinct angle.",
