@@ -23,19 +23,20 @@
     "note": "GREEN >=90% of required pace to the next checkpoint, AMBER 70-89%, RED <70%. A RED classification must trigger a system-level diagnosis in the next analytics cycle, never an automatic volume increase (agents/0_orchestrator.md Growth Strategy section)."
   },
   "current_production_allocation": {
-    "model": "A",
-    "shorts_per_day": 3,
-    "long_form_per_day": 1,
-    "set_at": "2026-08-02T00:00:00Z",
-    "reason": "Starting allocation, unchanged from config/channel.json.publishing_schedule. Not yet evidence-justified to change — channel has ~1 week of real data (39 videos, 23 subscribers) as of this writing, insufficient for a medium/high-risk allocation change per the evidence-level requirements below."
+    "model": "F",
+    "shorts_per_day": 5,
+    "long_form_per_day": 2,
+    "set_at": "2026-08-03T00:00:00Z",
+    "reason": "Direct owner instruction, 2026-08-03 — not a system-diagnosed self-modification, so the evidence-level gating below does not apply to this specific change (it applies to changes Agent 0 initiates on its own from analytics; a direct owner instruction is always authoritative). Owner also directed: all of a week's content is produced once, on Monday, and scheduled via publishAt across the week — see config/channel.json.publishing_schedule.weekly_batch_mode and agents/0_orchestrator.md's Weekly batch cycle section."
   },
-  "previous_production_allocation": null,
+  "previous_production_allocation": {"model": "A", "shorts_per_day": 3, "long_form_per_day": 1, "retired_at": "2026-08-03T00:00:00Z"},
   "allowed_production_models": {
-    "A": {"shorts_per_day": 3, "long_form_per_day": 1, "description": "Current baseline."},
+    "A": {"shorts_per_day": 3, "long_form_per_day": 1, "description": "Original starting baseline. Retired 2026-08-03 in favor of F."},
     "B": {"shorts_per_day": 4, "long_form_per_day": 0, "description": "Shorts-only on selected days, long-form on selected days only — requires repeated_pattern evidence that Shorts materially outperform long-form on subscriber/engagement value."},
     "C": {"shorts_per_day": 2, "long_form_per_day": 1, "description": "One slot reserved for stronger experimentation or no publish — requires evidence that a lower-volume, higher-bar approach improves quality/conversion."},
     "D": {"shorts_per_day": "variable", "long_form_per_day": "variable", "description": "Weekday-dependent allocation based on verified cadence performance — requires repeated_pattern cadence evidence."},
-    "E": {"shorts_per_day": ">4", "long_form_per_day": "variable", "description": "Controlled expansion above 4 total daily uploads — requires verified quota headroom (real test, not assumption), strong_channel_pattern evidence of demand, and zero quality/fatigue degradation. Historical precedent: ~11 uploads in an hour triggered uploadLimitExceeded once — never assume >4/day works without a real, minimal, reversible test."}
+    "E": {"shorts_per_day": ">4", "long_form_per_day": "variable", "description": "Controlled expansion above 4 total daily uploads — requires verified quota headroom (real test, not assumption), strong_channel_pattern evidence of demand, and zero quality/fatigue degradation. Historical precedent: ~11 uploads in an hour triggered uploadLimitExceeded once — never assume >4/day works without a real, minimal, reversible test.", "superseded_by": "F"},
+    "F": {"shorts_per_day": 5, "long_form_per_day": 2, "description": "Current allocation (owner direction, 2026-08-03). All 7 total uploads/day still fall within the verified-safe ~4-11/day range only if the PUBLISHING phase stays throttled and spread across the day/week per publishAt scheduling — the per-upload uploadLimitExceeded check is unchanged and non-negotiable regardless of this allocation."}
   },
   "evidence_requirements": {
     "low_risk_change": "early_signal (n=2) sufficient",
@@ -61,7 +62,7 @@
   "quota_aware_limits": {
     "verified_safe_daily_uploads": 4,
     "verified_failure_point": "~11 uploads within about an hour of wall-clock time triggered HTTP 400 uploadLimitExceeded (2026-07-27) — publishAt scheduling does not protect against this, only the upload call's own timing matters.",
-    "note": "Do not assume more than 4/day is safe without a real, minimal, reversible test. Never retry a quota-blocked upload in a loop."
+    "note": "Do not assume more than 4/day is safe without a real, minimal, reversible test. Never retry a quota-blocked upload in a loop. Model F (7 uploads/day, owner direction 2026-08-03) is NOT yet in the verified-safe range (4) or the verified-failure range (~11) — it sits in an untested middle zone, so the PUBLISHING phase's per-upload uploadLimitExceeded check matters more, not less, under this allocation. If it trips, stop immediately and let the remaining items carry over to the next publishing window rather than treating 7/day as pre-cleared."
   },
   "rollback_policy": {
     "note": "Every medium/high-risk change must define its own rollback condition at implementation time (agents/0_orchestrator.md's Controlled Self-Modification Loop). This file's current_production_allocation.previous_production_allocation field is the mechanical rollback target for allocation changes specifically — set it to the outgoing allocation whenever current_production_allocation changes, never leave it stale.",
