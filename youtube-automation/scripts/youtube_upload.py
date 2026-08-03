@@ -35,9 +35,11 @@ SHORTS_CTA = CTA_VARIANTS[DEFAULT_VARIANT_ID]
 
 
 def append_shorts_cta(description, variant_id=DEFAULT_VARIANT_ID):
-    """Append a Shorts CTA variant as the final line of a description.
-    Idempotent and variant-aware — see scripts/cta_experiment.py's
-    apply_cta()/strip_known_cta() for the actual logic."""
+    """Prepend a Shorts CTA variant as the first line of a description
+    (owner direction, 2026-08-02 — Shorts only shows the first line in its
+    collapsed preview). Idempotent and variant-aware — see
+    scripts/cta_experiment.py's apply_cta()/strip_known_cta() for the
+    actual logic."""
     return apply_cta(description, variant_id)
 
 
@@ -125,8 +127,8 @@ if __name__ == "__main__":
                               "first). Uploaded via thumbnails().set after the video itself succeeds; a "
                               "thumbnail failure is logged as a warning but does not fail the publish.")
     parser.add_argument("--short", action="store_true",
-                         help="Mark this upload as a Shorts video. Appends a Shorts CTA (see --cta-variant) "
-                              "as the final line of the description. Never pass this for long-form uploads.")
+                         help="Mark this upload as a Shorts video. Prepends a Shorts CTA (see --cta-variant) "
+                              "as the first line of the description. Never pass this for long-form uploads.")
     parser.add_argument("--cta-variant", default=DEFAULT_VARIANT_ID, choices=list(CTA_VARIANTS),
                          help="Which CTA experiment variant to use (only meaningful with --short). Pass the "
                               "variant ID already assigned and stored on the candidate at scripting time "
