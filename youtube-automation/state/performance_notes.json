@@ -491,6 +491,125 @@
         "No production-allocation change \u2014 continue 3 Shorts + 1 long-form/day."
       ],
       "summary": "Analytics scope working (39 videos). Real subscriber count: 23. Trajectory status: RED (data_confidence=low, only 5 real days of subscriber data so far \u2014 genuinely too little for a reliable pace, reported honestly). Dominant candidate growth constraint: Shorts reach the discovery funnel far more than long-form so far (~20x age-normalized views gap), but this is only early_signal-level evidence given the format-discovery confound and lack of subscriber-attribution data \u2014 no allocation change made this cycle (insufficient evidence, current Model A retained). CTA experiment (cta-luxury-001) still gathering data, n=1 per variant, no 'Luxury' comments yet. Quarantine rate 9.3%, all historical, not a current constraint. No gates touched, no OAuth scopes merged, no allocation or Routine change made without evidence."
+    },
+    {
+      "run_id": "analytics-2026-08-03-0715",
+      "run_date": "2026-08-03",
+      "analytics_scope": {
+        "has_analytics_scope": true,
+        "note": "estimated_minutes_watched/avg_view_duration_sec/avg_view_percentage will be null until YouTube's Analytics reporting pipeline catches up (known lag, especially on a new channel \u2014 can be a day or two behind the public view counter). views/likes/comments are near-real-time."
+      },
+      "data_quality": {
+        "source": "YouTube Data API v3 + Analytics API (daily subscriber series) + channels.list + real comment text",
+        "window": "last 7 days (recent-upload cohort) for format baselines; real per-day subscriber series for trajectory (still only 5 real days available \u2014 no new day appeared since the prior cycle, consistent with the documented 1-2 day Analytics reporting lag)",
+        "window_type": "recent_upload_cohort",
+        "available_metrics": [
+          "views",
+          "likes",
+          "comments (organic/automated split)",
+          "subscribers_gained/lost (daily series, 5 real days, unchanged)",
+          "lifetime subscriber/view totals"
+        ],
+        "unavailable_metrics": [
+          "retention",
+          "traffic_sources_per_video",
+          "watch_time (lag-nulled for most recent uploads)",
+          "CTR/impressions (no API path, ever)",
+          "per-video subscriber attribution (not exposed by any API)"
+        ],
+        "limitation_note": "No new real subscriber-series day appeared since the 2026-08-03T00:19 cycle \u2014 the pace/trajectory numbers this cycle are identical to that cycle's, not re-estimated or smoothed to look different."
+      },
+      "format_baselines": {
+        "short": {
+          "n": 31,
+          "median_views": 269,
+          "median_age_normalized_views": 109.68551322236665,
+          "median_likes_per_1000_views": 6.962576153176675,
+          "median_comments_per_1000_views": 0.0
+        },
+        "long": {
+          "n": 8,
+          "median_views": 11.0,
+          "median_age_normalized_views": 3.9908022592432584,
+          "median_likes_per_1000_views": 0.0,
+          "median_comments_per_1000_views": 0.0
+        }
+      },
+      "trajectory": {
+        "current_subscribers": 23,
+        "target_subscribers": 100000,
+        "target_date": "2027-04-21",
+        "remaining_subscribers": 99977,
+        "remaining_days": 260,
+        "required_daily_pace": 384.5269230769231,
+        "required_weekly_pace": 2691.6884615384615,
+        "pace_7day_subscribers_per_day": 2.8,
+        "pace_7day_days_of_data": 5,
+        "pace_28day_subscribers_per_day": 2.8,
+        "pace_28day_days_of_data": 5,
+        "data_confidence": "low",
+        "projected_subscribers_at_target_date_7day_pace": 751.0,
+        "projected_subscribers_at_target_date_28day_pace": 751.0,
+        "percent_of_target_complete": 0.023,
+        "next_checkpoint": {
+          "date": "2026-08-31",
+          "subscribers": 250
+        },
+        "trajectory_status": "RED",
+        "note": "A stretch objective, not a guaranteed forecast. Pace/projection figures are arithmetic on real subscribers_daily_series data only (state/video_analytics.json, via the YouTube Analytics API's dimensions=day query) \u2014 never estimated. On a very new channel, data_confidence will genuinely be very_low/no_data for some time; treat any status derived from it as low-confidence, not a verdict."
+      },
+      "attribute_findings": [
+        {
+          "attribute": "Format reach gap: Shorts vs. long-form age-normalized views",
+          "direction": "unchanged from prior cycle \u2014 Shorts continue to reach the discovery funnel far more than long-form",
+          "metrics": "Short-form median age-normalized views ~109.7/day (n=31) vs. long-form ~4.0/day (n=8).",
+          "sample_size": 8,
+          "evidence_level": "early_signal",
+          "evidence_level_note": "No new long-form video published since the prior cycle (n unchanged at 8) \u2014 evidence level intentionally NOT upgraded; still confounded by format-discovery mechanics and the total absence of subscriber-attribution data, same reasoning as the prior cycle.",
+          "recommended_action": "Continue gathering data \u2014 same recommendation as the prior cycle, restated rather than re-derived from scratch."
+        }
+      ],
+      "previous_recommendations_evaluated": [
+        {
+          "prior_cycle": "analytics-2026-08-03-0019",
+          "recommendation": "Format reach gap flagged as dominant constraint candidate (early_signal); re-assess at larger sample; no allocation change.",
+          "outcome": "Reproduced exactly \u2014 no new data has arrived to either confirm or contradict it (no new long-form video, no new subscriber-series day). Still correctly early_signal, not upgraded."
+        },
+        {
+          "prior_cycle": "analytics-2026-08-03-0019",
+          "recommendation": "Continue legacy/sacrifice/earned-over-time narrative for Shorts (repeat bucket)",
+          "outcome": "No new Short published since the prior cycle to evaluate against \u2014 still gathering data, unchanged."
+        }
+      ],
+      "buckets": {
+        "repeat": [
+          "Legacy/sacrifice/earned-over-time narrative (Shorts) \u2014 unchanged, still the best-supported pattern"
+        ],
+        "repeat_and_validate": [],
+        "deliberately_vary": [],
+        "reduce": [],
+        "retire_temporarily": [],
+        "explore": []
+      },
+      "experiments": [
+        "cta-luxury-001"
+      ],
+      "quarantine_analysis": {
+        "quarantine_rate": "4/43 = 9.3%",
+        "note": "Unchanged from prior cycle \u2014 no new quarantines."
+      },
+      "growth_strategy": {
+        "dominant_constraint": "Unchanged from the 2026-08-03T00:19 cycle: format reach gap (Shorts vs. long-form), early_signal evidence, not yet actionable.",
+        "change_risk_decision": "insufficient_data \u2014 retain current allocation (Model A: 3 Shorts + 1 long-form/day). No change made this cycle either.",
+        "reasoning": "No new production occurred today's content-batch firing (all 4 of today's real slots were already done from yesterday's authorized test batch), so there is no new evidence of any kind this cycle beyond a routine data refresh. Nothing to act on. This is expected, not a gap in the process.",
+        "next_review": "Re-assess once new Shorts/long-form videos publish under the normal daily cycle and the subscriber-series lag catches up to more recent days."
+      },
+      "instructions_for_next_scouting_run": [
+        "Continue the legacy/sacrifice/earned-over-time angle for Shorts \u2014 unchanged.",
+        "No CTA variant preference yet \u2014 keep balanced rotation.",
+        "No production-allocation change."
+      ],
+      "summary": "Analytics scope working (39 videos, unchanged). Real subscriber count: 23 (unchanged since prior cycle). Trajectory status: RED (data_confidence=low, still only 5 real days of subscriber data \u2014 the Analytics reporting lag hasn't produced a new day since the prior cycle). Dominant growth-constraint candidate unchanged: Shorts reach ~20-27x further than long-form, early_signal evidence only, no allocation change made. No new production this cycle (today's 4 slots were already completed by yesterday's authorized test batch) so no new content-performance evidence exists to act on. No gates touched, no OAuth scopes merged, no unsupported change made."
     }
   ],
   "competitor_trend_research": {

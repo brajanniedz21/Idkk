@@ -1,7 +1,7 @@
 # Make It Manifest Channel Playbook
 
-Last updated: 2026-08-03T00:19:42.699379+00:00
-Generated from analytics runs: analytics-2026-08-03-0019 (plus 5 total cycle entries in state/performance_notes.json)
+Last updated: 2026-08-03T07:16:03.402514+00:00
+Generated from analytics runs: analytics-2026-08-03-0715 (plus 6 total cycle entries in state/performance_notes.json)
 
 _This file is a distilled operational summary, not the source of truth. `state/performance_notes.json` and `state/video_analytics.json` hold the full history and every underlying evidence entry — nothing here should be trusted over them, and nothing here is ever the only place a finding lives._
 
@@ -20,8 +20,8 @@ Aspirational luxury / manifestation / future-self motivation, cinematic lifestyl
 ## Strong Channel Patterns
 
 _None yet._ No finding has persisted across enough batches/dates/controlled variations to earn this tier — see `agents/0_orchestrator.md`'s evidence-level rules. Current same-format baselines, for reference:
-- **Shorts** — n=31, median views=269, median age-normalized views/day=123.7, median likes/1000 views=6.96, median comments/1000 views=0.0
-- **Long-form** — n=8, median views=11.0, median age-normalized views/day=5.6, median likes/1000 views=0.0, median comments/1000 views=0.0
+- **Shorts** — n=31, median views=269, median age-normalized views/day=109.7, median likes/1000 views=6.96, median comments/1000 views=0.0
+- **Long-form** — n=8, median views=11.0, median age-normalized views/day=4.0, median likes/1000 views=0.0, median comments/1000 views=0.0
 
 ## Promising Patterns to Validate
 
@@ -106,9 +106,9 @@ _Not yet populated — no analytics cycle has produced structured evidence for t
 
 ## Instructions for the Next Scouting Run
 
-- Continue the legacy/sacrifice/earned-over-time angle for Shorts — still the best-supported pattern, no change.
-- No CTA variant preference yet — keep balanced rotation, gather more data.
-- No production-allocation change — continue 3 Shorts + 1 long-form/day.
+- Continue the legacy/sacrifice/earned-over-time angle for Shorts — unchanged.
+- No CTA variant preference yet — keep balanced rotation.
+- No production-allocation change.
 
 ## Contradictions and Uncertainties
 
@@ -116,6 +116,7 @@ _Not yet populated — no analytics cycle has produced structured evidence for t
 
 ## Change Log
 
+- 2026-08-03T07:16:03.402514+00:00: regenerated from 6 cycle entries, 39 joined videos (18 missing attributes), 1 ledger experiments.
 - 2026-08-03T00:19:42.699379+00:00: regenerated from 5 cycle entries, 39 joined videos (18 missing attributes), 1 ledger experiments.
 - 2026-08-02T07:10:56.680753+00:00: regenerated from 4 cycle entries, 39 joined videos (18 missing attributes), 1 ledger experiments.
 - 2026-08-01T19:53:59.473735+00:00: regenerated from 3 cycle entries, 35 joined videos (17 missing attributes), 0 ledger experiments.

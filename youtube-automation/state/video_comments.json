@@ -1,6 +1,6 @@
 {
   "_comment": "Real comment TEXT (not just counts) for published videos, via youtube_auth.load_comment_credentials() — see scripts/pull_video_comments.py. organic_count excludes the pipeline's own automated pinned funnel comment; organic_comments_mentioning_luxury is a real signal for whether the Shorts CTA is working, not a guess from raw comment counts.",
-  "pulled_at": "2026-08-03T00:12:42.460642+00:00",
+  "pulled_at": "2026-08-03T07:15:05.778737+00:00",
   "has_comment_scope": true,
   "channel_id": "UCfTbwJxMPqL004V8Ssc5eWQ",
   "videos": {
