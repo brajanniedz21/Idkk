@@ -2813,6 +2813,70 @@
       "thumbnail_path": "assets/short-form-clips/processed/sf_039_thumb.jpg",
       "thumbnail_billboard_check_note": "Source frame: raw/36 (Huracan STO in villa driveway, dramatic orange/red sunset silhouette, ~0.8s into the rendered video, the opening shot). Considered and rejected an alternate candidate frame from raw/31 (3 supercars on a dusk driveway with lit house) at 4x-zoomed 120px inspection: the red car in that frame had clearer red-vs-dark-blue color separation but filled only ~25% of frame and the scene read as more subdued/less eye-catching overall. Chose the raw/36 sunset frame instead: at both the actual 120x68 billboard preview and a 4x-zoomed inspection of it, the car's silhouette (rear spoiler, sloped roofline, wheel arch) is clearly discernible as a sports car against the vivid orange/gold sunset glow, which itself is instantly eye-catching at small size. Composition is close to channel.json's thumbnail_guidance target (focal car filling roughly 35-40% of frame, one bright lighting accent - here the sunset itself plus the reflected warm light on the car's rear glass/spoiler). Passes the billboard-legibility check: car + dramatic sky both read clearly at 120px, not just claimed from the full-size version.",
       "gate_check_note": "Gates applied by Agent 0 directly: shared_gates.basic_qa PASS (ffprobe confirms 1080x1920 h264+aac, 10.000000s, non-corrupt 5,237,934-byte file). short_form_gates.copyright_gate mitigation PASS (reframed vertical, dark color grade applied, original audio replaced per transform_log). short_form_gates.audio_license_gate PASS (Love Nwantiti (Acoustic Ver.), named/identified track in state/trending_audio_library.json, non-consecutive reuse per rotation guidance). shared_gates.factual_controversy_screen/platform_policy_check PASS (no political/controversial content, no clickbait mismatch). content_quality_gate self-scored: luxury_aesthetic 9, emotional_impact 8, thumbnail_strength 9 (billboard-verified directly by Agent 0 at full + 120px size: STO badge and car silhouette instantly readable against the sunset, ~35-40% frame fill), title_strength 8, brand_consistency 9, manifestation_vibe 8. All gates PASS, no quarantine."
+    },
+    {
+      "id": "sf_041",
+      "status": "produced",
+      "scouted_at": "2026-08-03T23:46:00Z",
+      "angle": "Perpetual-ascension narrative: rejects the idea of a finish line -- the visuals (hot air balloons literally rising over Cappadocia, a rooftop infinity pool overlooking a skyscraper skyline, a yacht's sundeck, a supercar meet at night, a watch closeup as a symbol of disciplined time/momentum, jetski/canal travel) are framed as proof of continued climbing, not an arrival already reached. Distinct from the recent 'arrival'/'legacy'/'already-earned' framings (sf_033 quiet-arrival, sf_034 legacy/sacrifice, sf_037 generational-legacy, sf_039 invisible-effort) by explicitly contrasting against people who 'peaked' and stopped, rather than looking backward at what was earned.",
+      "title_pattern": "Some People Peak. I Keep Climbing.",
+      "caption_hooks": [
+        "There is no ceiling on this.",
+        "Peaking is a decision. I haven't made it.",
+        "Still climbing after they stopped."
+      ],
+      "trending_sound_style": "Confident, driving Brazilian phonk/montagem mid-tempo (~120 BPM) -- energetic enough to drive fast beat-locked cuts, not maximally aggressive.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation",
+        "#nolimits"
+      ],
+      "source_notes": "Repeat bucket per state/performance_notes.json cycles[] (analytics-2026-08-03-0715): 'Legacy/sacrifice/earned-over-time narrative -- unchanged, still the best-supported pattern' -- this candidate stays in the same broad register (ambition/luxury/quiet confidence, ties to config/channel.json.brand_identity) but varies the surface framing toward ongoing-momentum rather than a completed arrival, per the 'vary surface details, don't near-duplicate' guidance for a repeat pick. Fresh live competitor scan run this cycle (state/performance_notes.json.competitor_scan_2026_08_03_pt7, RSS pull against @Millionaire_Mentality_7, 7th consecutive scan today/this week) found no new upload and reconfirmed the same generic scene-label title pattern on the competitor side -- no new signal that changes this angle, continues to validate this channel's emotional-hook title convention as differentiated. channel_playbook.md's 'Audience Fatigue and Cooldowns' / 'Proven Title Structures' sections are not yet populated (no structured evidence exists there yet) -- diffed this candidate's angle/title directly against every sf_001-sf_039 entry in state/short_form_queue.json instead; no exact or near-duplicate title/angle exists.",
+      "repeat_vary_bucket": "repeat",
+      "fatigue_status": "not_yet_populated_in_playbook -- no structured fatigue finding exists yet for this pattern family; proceeding as a normal repeat pick, surface-varied per source_notes.",
+      "title": "Some People Peak. I Keep Climbing.",
+      "seo_description": "Some people call it arriving. I call it a checkpoint. Every version of this life -- the balloons still rising, the skyline still below the deck -- is proof there's no ceiling I've agreed to yet. Manifest the version of you that never stops moving. Want the full ambience experience? The 1-hour version is waiting on the channel.",
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "motivation",
+        "wealth mindset",
+        "success mindset",
+        "luxury ambience",
+        "rich lifestyle",
+        "millionaire mindset",
+        "discipline",
+        "self improvement",
+        "quiet confidence",
+        "aspirational",
+        "future self",
+        "keep going",
+        "no ceiling"
+      ],
+      "sound_direction": "Real trending track: 'Montagem Celestial Esperanza' (DJZRX/motty/rodricci/MC Novin), state/trending_audio_library.json named tracks -- genuinely identified via yt-dlp track/artist metadata from @millionaire_mentality_7's TikTok, Brazilian funk/phonk 'montagem' genre, ~120 BPM (per sf_028/sf_010's prior measured use of the same track), confident/driving rather than maximally aggressive -- fits config/channel.json.brand_identity's calmer-end-of-upbeat reconciliation. Checked rotation: last 8 scripted/produced candidates (sf_032 Tourner Dans Le Vide, sf_033 ion care cuz he did it first, sf_034 Danza Kuduro 2025, sf_035 gata only remix, sf_036 Gata Only NJ, sf_037 Love Nwantiti, sf_038 Gata Only NJ, sf_039 Love Nwantiti) did not use this track -- last use was sf_028/sf_029 (VEKI VEKI (Slowed) at sf_029, Montagem at sf_028), well outside the recent rotation window. Native duration 20.09s, looped via -stream_loop by scripts/short_form_transform.py to fill the target duration.",
+      "visual_direction": "8 distinct raw clips selected to fit the ascension/momentum angle, all confirmed clear of the current cooldown set (python3 scripts/clip_pool_status.py --cooldown-only run fresh this cycle -- last 5 published: sf_036/035/034/031/032 -> cooldown = [2,3,6,8,10,13,14,15,16,17,18,19,20,21,23,24,25,35,39,45,47,50,51,52,53,54,55,56,57,60,61,62,65,66,67,68,69,70]): raw/29.mp4 (hot air balloons rising over Cappadocia at dawn -- the clearest literal 'ascension' visual in the whole pool, never used before in any published/produced candidate), raw/63.mp4 (rooftop infinity pool overlooking a dense night skyscraper skyline, Dubai-style -- summit/vantage-point framing, 1x prior use), raw/7.mp4 (supercar meet at night, Lamborghini/Corvette/Audi/BMW lineup, 1x prior use), raw/58.mp4 (yacht sundeck with a putting green over open water, second-batch clip, no watermark concern, never used before), raw/9.mp4 (Venice canal boat travel, 2x prior use), raw/12.mp4 (luxury watch closeup, a literal time/momentum symbol fitting the 'keep climbing' angle, 1x prior use), raw/64.mp4 (jetski travel over turquoise water, never used before), raw/26.mp4 (beachfront luxury dinner setup at dusk, never used before). All 8 checked frame-by-frame via ffmpeg frame grabs before selection -- genuinely luxury-lifestyle content (cars/yachts/travel/wealth symbols), no off-theme footage (explicitly rejected raw/1.mp4 [flower field/tree landscape, no luxury content], raw/28.mp4 [motocross/dirt bike, extreme sport not luxury-lifestyle], raw/43.mp4 [paragliding over clouds, extreme sport not luxury-lifestyle], and raw/48.mp4 [romantic/intimate car-interior scene, off-brand and not matching the angle] from the initial never-used/lightly-used candidate list -- picked the 8 that actually fit the pool's real content scope). This gives 8 distinct clips for an expected 6-9 shot count at the 8-12s/1.5s-cap target -- one clip per cut with no forced reuse expected.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "scripted_at": "2026-08-03T23:50:00Z",
+      "produced_file": "assets/short-form-clips/processed/sf_041.mp4",
+      "clips_used": [
+        "29",
+        "63",
+        "7",
+        "58",
+        "9",
+        "12",
+        "64",
+        "26"
+      ],
+      "transform_log": "Cooldown re-verified fresh this session via `python3 scripts/clip_pool_status.py --cooldown-only` (.venv not required, ran with system python3): last 5 published (sf_036/035/034/031/032) -> cooldown set = [2,3,6,8,10,13,14,15,16,17,18,19,20,21,23,24,25,35,39,45,47,50,51,52,53,54,55,56,57,60,61,62,65,66,67,68,69,70]. None of the 8 selected clips (29,63,7,58,9,12,64,26) are in that set. Frame-by-frame content review (ffmpeg frame grabs from all 8 candidates plus 4 initially-considered-but-rejected clips) confirmed genuine luxury-lifestyle content matching visual_direction before selection -- rejected raw/1.mp4 (flower field/tree sunset landscape, no luxury content), raw/28.mp4 (motocross/dirt bike, extreme sport not luxury-lifestyle), raw/43.mp4 (paragliding over clouds, extreme sport not luxury-lifestyle), and raw/48.mp4 (romantic/intimate car-interior scene, off-brand and not matching the ascension angle). Ran `python3 scripts/short_form_transform.py --output assets/short-form-clips/processed/sf_041.mp4 --audio assets/audio/trending/montagem_celestial_esperanza.mp3 --duration 10 --clips raw/29.mp4 raw/63.mp4 raw/7.mp4 raw/58.mp4 raw/9.mp4 raw/12.mp4 raw/64.mp4 raw/26.mp4`. Script stdout: 'Transformed (beat-synced cuts, <=1.5s cap): 10 shots from 8 distinct clips, avg ~1.00s/shot (range 0.93s-1.07s, intro skipped: 0.00s, cut points from real beat detection on assets/audio/trending/montagem_celestial_esperanza.mp3) -> vertical, dark/low-exposure grade, no captions, audio-replaced'. Note: track's own energy ramp-up was detected as effectively immediate (0.00s intro skipped) -- this track opens high-energy rather than with a slow build, consistent with its prior use at sf_010/sf_028. Independently verified: `ffprobe` confirms 1080x1920 h264 video + aac audio, duration 10.000000s (within the 8-12s target). Full decode pass (`ffmpeg -v error -i file -f null -`) completed with zero errors. Extracted and viewed 5 frames across the full timeline (0.4s/2.5s/5.0s/7.5s/9.5s) via the Read tool: 0.4s shows the hot air balloons rising over Cappadocia (matches the literal 'ascension' angle exactly), 2.5s shows the supercar meet at night (Lamborghini/Corvette/Audi, bright headlight accents, dark grade clearly applied), 5.0s shows the Venice canal boats, 7.5s shows the beach dinner setup, 9.5s shows the rooftop pool overlooking the skyscraper skyline -- all genuinely match visual_direction, no off-theme footage, no watermark bleed from the crop, no on-screen text/captions anywhere in the file.",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_041_thumb.jpg",
+      "thumbnail_billboard_check_note": "Source frame extracted at 2.6s (supercar meet shot -- yellow Lamborghini Huracan in the foreground, bright white headlights as the lighting accent against a dark night background, roughly filling the frame per thumbnail_guidance's ~40%-fill target). Ran through scripts/thumbnail_optimize.py (defaults, no hand-tuning). Actually viewed both the full 1280x720 thumbnail and the 120px billboard preview via the Read tool: at 120px the yellow Lamborghini's headlight and the orange car's headlight are both still clearly visible and instantly readable as supercars against the dark background -- passes the billboard-legibility check. No on-screen text on the thumbnail image itself.",
+      "produced_at": "2026-08-03T23:58:00Z"
     }
   ]
 }
