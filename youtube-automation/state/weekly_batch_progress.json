@@ -436,9 +436,9 @@
         "format": "short",
         "day": "2026-08-06",
         "local_slot": "12:00",
-        "status": "pending",
+        "status": "ready_to_publish",
         "scheduled_publish_at": "2026-08-06T11:00:00Z",
-        "candidate_id": null
+        "candidate_id": "sf_046"
       },
       {
         "index": 49,
