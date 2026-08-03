@@ -255,6 +255,19 @@
         "cta_text": "Your future starts here. Comment \"Luxury\"."
       },
       "candidate_id": "sf_034"
+    },
+    {
+      "video_id": "x-0ODBpOcgM",
+      "url": "https://youtu.be/x-0ODBpOcgM",
+      "title": "You're Not Manifesting This. You're Remembering It.",
+      "published_at": "2026-08-03T08:55:04Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_control",
+        "cta_text": "Manifest it. Comment \"Luxury\" below."
+      },
+      "candidate_id": "sf_035"
     }
   ],
   "long_form": [
