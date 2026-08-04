@@ -4127,6 +4127,133 @@
       "published_at": "2026-08-08T11:00:00Z",
       "pinned_comment_status": "failed: 403 forbidden (commentThreads insufficient permissions) -- likely because the video is scheduled/private-until-publish-time, not yet actually public; non-fatal, video publish itself succeeded",
       "thumbnail_upload_status": "failed: 429 uploadRateLimitExceeded -- video live/scheduled with default thumbnail, tracked in state/weekly_batch_progress.json._pending_thumbnail_retries for retry"
+    },
+    {
+      "id": "sf_062",
+      "status": "produced",
+      "scouted_at": "2026-08-04T18:20:00Z",
+      "angle": "Certainty-from-day-one narrative: the outcome was never in doubt internally, even though nobody else could see that certainty at the time -- distinct from sf_045 (self-referential competition), sf_047 (self-set deadline beaten), sf_051 (no blueprint/self-taught), sf_058 (delayed-consumption/patience-in-spending), sf_059 (escape/reward-earned), sf_060 (presence/moment-claimed), and sf_061 (no-justification-owed) -- this is about the total absence of internal doubt from the start, not competition, deadlines, mentorship, spending restraint, earned reward, claiming a moment, or withholding explanation. Legacy/sacrifice/earned-over-time family per channel_playbook.md's repeat-bucket guidance.",
+      "title_pattern": "I Never Doubted This. Not Once.",
+      "title": "I Never Doubted This. Not Once.",
+      "caption_hooks": [
+        "I never once thought this wouldn't happen.",
+        "Certainty isn't loud. It's just quiet knowing.",
+        "I wasn't hoping. I was already sure."
+      ],
+      "trending_sound_style": "Gata Only NJ -- confident, warm, syncopated reggaeton/Latin groove (~81 BPM), genuine LRU pick (see sound_direction).",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation",
+        "#quietconfidence"
+      ],
+      "source_notes": "Angle grounded in state/channel_playbook.md's 'Instructions for the Next Scouting Run' (continue legacy/sacrifice/earned-over-time family, repeat bucket) and a direct scan of posted_history.json + the last ~15 queue entries (sf_045-sf_061) to confirm this specific unwavering-certainty mechanism hasn't been used.",
+      "seo_description": "This was never a hope or a maybe -- it was certainty from the very first day, long before anyone else could see it. That kind of quiet knowing is what manifestation actually feels like from the inside. Want the full ambience experience? Check the channel for the 1-hour long-form version.",
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "wealth mindset",
+        "quiet confidence",
+        "success mindset",
+        "luxury cars",
+        "supercar",
+        "superyacht",
+        "dream life",
+        "visualization",
+        "future self",
+        "discipline",
+        "ambition",
+        "hot air balloon",
+        "aspirational"
+      ],
+      "sound_direction": "Real trending track: Gata Only NJ (state/trending_audio_library.json's named tracks, reggaeton/Latin, ~81 BPM measured via librosa, ~23.09s native duration). Computed genuine LRU fresh this session: parsed every 'sound_direction'/'trending_sound_style' selection line across the full state/short_form_queue.json history (sf_001-sf_061, read fresh) against all 18 library tracks. Gata Only NJ's last actual use was sf_009 -- by a wide margin the single oldest last-use of any track in either library (all others selected within the last ~10-30 candidates, several within the last 5). Confident/warm/celebratory energy fits the 'already certain, already arrived' register per brand_identity's calm/quiet-confidence direction -- not slow/ambient, fast beat-locked cuts still apply, capped at 1.5s/shot.",
+      "visual_direction": "8 distinct clips from assets/short-form-clips/raw/, all verified via ffmpeg frame extraction before selection, all outside the cooldown set (python3 scripts/clip_pool_status.py --cooldown-only, re-checked after sf_061's publish): raw/17 (white supercar, Japan street crossing at night, neon underglow), raw/21 (cash counted inside a Rolls-Royce interior), raw/24 (green Lamborghini + black Mercedes SLS, dealer row), raw/29 (hot air balloons over Cappadocia at dawn), raw/35 (red Lamborghini in a tunnel), raw/38 (Burj Khalifa + fireworks over a lit Dubai skyline), raw/47 (Sea-Doo jetski POV over turquoise water), raw/55 (supercar garage row, red Ferrari visible). REAL LIVE COLLISION AVOIDED (2026-08-04, this session): while producing, a concurrent process sharing this exact working directory (later confirmed to be weekly_batch item 62's agent) independently claimed id 'sf_061' with a different candidate ('I Stopped Explaining Myself.', clips 13/14/15/18/19/39/56/64, track owner_provided_181240) and overwrote this candidate's original processed/sf_061.mp4 mid-render -- the exact same 'read next-free-id/LRU state before the other committed' race the owner flagged on 2026-08-04. Recovered this candidate's original render from git history (commit aa3d2f9), then discarded it and re-rendered entirely fresh clips (17/21/24/29/35/38/47/55, zero overlap with sf_061's final 13/14/15/18/19/39/56/64) under a new id (sf_062) to avoid any shared-clip/shared-audio collision, per the explicit re-check-before-finalizing instruction.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      },
+      "factual_controversy_self_check": "PASS -- no political figures/topics, no fabricated claims/quotes attributed to real people, no controversial social topics; title/description are generic aspirational motivational framing only.",
+      "produced_file_path": "assets/short-form-clips/processed/sf_062.mp4",
+      "transform_log": "7 shots, 8 distinct clips, avg ~1.43s/shot (range 1.11s-1.50s, intro skipped: 7.13s)",
+      "clips_used": [
+        "17",
+        "21",
+        "24",
+        "29",
+        "35",
+        "38",
+        "47",
+        "55"
+      ],
+      "thumbnail_path": "assets/short-form-clips/processed/sf_062_thumb.jpg",
+      "thumbnail_billboard_check_note": "White supercar w/ green-blue neon underglow crossing a night street, viewed at 120px -- car instantly recognizable, bright glow against dark street. Passes.",
+      "gate_check_note": "shared_gates.factual_controversy_screen: PASS - no political/factual claims. shared_gates.platform_policy_check: PASS - no policy violations, title/thumbnail match content. shared_gates.basic_qa: PASS - ffprobe 1080x1920/10.0s, decode clean, no black/silent stretches. short_form_gates.copyright_gate mitigation: PASS - cropped vertical, dark grade applied, audio replaced. short_form_gates.audio_license_gate: PASS - Gata Only NJ (genuinely identified derivative of viral hit), genuine LRU (last used sf_009), risk accepted. footage/theme match: PASS - all 8 clips visually verified via frame extraction, all luxury-lifestyle, zero overlap with sf_061 (collision avoided, see visual_direction). content_quality_gate (Curiosity Engine): luxury_aesthetic 9, emotional_impact 9, thumbnail_strength 9, title_strength 9, brand_consistency 9, manifestation_vibe 9 - all >=8, PASS."
+    },
+    {
+      "id": "sf_063",
+      "status": "published",
+      "scouted_at": "2026-08-04T18:00:00Z",
+      "angle": "Refusal-of-comfort narrative: the luxury result is framed not as endurance through hardship but as the compound effect of repeatedly refusing available shortcuts/comfort when they were on offer. Distinct mechanism from sf_058 (patience-in-spending), sf_059 (escape/reward-earned), sf_060 (presence/moment-claimed), sf_057 (private-failure-recovered), sf_053 (collapse-and-rebuild), sf_054 (identity-integration) -- see their own angle fields.",
+      "title_pattern": "I Kept Saying No To Easy.",
+      "caption_hooks": [
+        "Easy was always on the table.",
+        "I didn't take the shortcut. Not once.",
+        "This is what saying no looks like, later."
+      ],
+      "trending_sound_style": "Confident, driving mid-tempo, on the calmer-confident end of upbeat per brand_identity -- not maximally aggressive.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation",
+        "#quietluxury"
+      ],
+      "source_notes": "Legacy/sacrifice/earned-over-time family (repeat bucket per channel_playbook.md's Instructions for the Next Scouting Run -- best-supported pattern, n=34). Item 65 of weekly_batch_progress.json (Sat 2026-08-08, 21:00 local slot).",
+      "clips_used": [
+        "1",
+        "14",
+        "15",
+        "19",
+        "24",
+        "35",
+        "47",
+        "54",
+        "55"
+      ],
+      "transform_log": "8 shots from 9 distinct clips, avg ~1.25s/shot (range 0.66s-1.36s, intro skipped: 0.30s) -- all 9 clips verified via frame extraction before selection; none in the current cooldown set (sf_060/sf_059/sf_058/sf_037/sf_057's clips), 2 never-used (1,28->28 dropped as off-brand mountain biking) + low-usage clips favored per usage-skew guidance.",
+      "produced_at": "2026-08-04T18:09:00Z",
+      "gate_check_note": "shared_gates.factual_controversy_screen: PASS -- no political/factual claims, generic motivational framing only.\nshared_gates.platform_policy_check: PASS -- no hate/violence, title matches content, clips transformed (crop+grade+audio swap).\nshared_gates.basic_qa: PASS -- ffprobe 1080x1920/10.0s, full decode clean, no black/silent stretches.\nshort_form_gates.copyright_gate: PASS -- vertical crop applied, dark grade applied, audio fully replaced.\nshort_form_gates.audio_license_gate: PASS -- owner_provided_181240 from trending_audio_library.json, owner-accepted risk, upbeat 181.5 BPM.\ncontent_quality_gate: luxury_aesthetic 9, emotional_impact 8, thumbnail_strength 9, title_strength 8, brand_consistency 9, manifestation_vibe 8 -- all >=8, pass.\nJudgment check: clip 28 (mountain biking) and clip 48 (dim car interior, risky framing) were excluded from selection despite being outside cooldown -- off-brand/off-theme, not luxury-lifestyle establishing shots. Real production note, not a gate failure. [ID-collision note: produced as sf_061 in its own isolated worktree; another concurrent agent (item 62, different worktree/shared-checkout write) also independently produced a different candidate as sf_061, which merged first. Renamed to sf_063 at merge time -- title/content/gates unaffected, only id and filenames changed. The already-live YouTube video (5zCsYRp9tKA) is unaffected, this only changes internal bookkeeping.]",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_063_thumb.jpg",
+      "thumbnail_billboard_check_note": "Cruise ship (MSC Seascape) against teal water at t=4.5s, viewed at 120px -- ship silhouette and hull clearly discernible against bright water. Passes.",
+      "sound_direction": "Real trending track: owner_provided_181240 (unidentified, owner-supplied), state/trending_audio_library.json's unidentified_owner_provided_tracks -- ~181.5 BPM (measured via librosa per the library's own entry), native duration 25.27s. Computed genuine LRU before picking: parsed every 'Real trending track:'/'owner_provided_' selection line across the full state/short_form_queue.json history (sf_001-sf_060 read fresh at scripting time) and took the latest (most recent) matching queue position per track. owner_provided_181240's last actual selection was sf_030 -- by a wide margin the single oldest last-use of any of the 18 library tracks (identified + unidentified); every other track has been selected far more recently (within the last ~10-30 candidates, see sf_059/sf_060 for the two most recent picks: 181653/181757). This is a genuine, well-evidenced LRU pick. Its fast ~181.5 BPM tempo produced tight, energetic cuts in the actual render (avg ~1.25s/shot, max 1.36s, under the 1.5s cap) -- confident/driving, not slow ambient. NOT one of the aggressive named tracks flagged as bottom performers.",
+      "title": "I Kept Saying No To Easy.",
+      "seo_description": "Comfort was available the whole time. I kept choosing the harder road anyway, and this is what it built. Manifest with ambience -- want the full 1-hour version? Check the channel for the long-form catalog.",
+      "tags": [
+        "luxury mindset",
+        "quiet confidence",
+        "manifestation",
+        "wealth mindset",
+        "success habits",
+        "discipline",
+        "luxury lifestyle",
+        "future self",
+        "richmindset",
+        "abundance mindset",
+        "luxury motivation",
+        "self mastery",
+        "quiet luxury",
+        "aspirational lifestyle",
+        "earned not given"
+      ],
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "published_video_id": "5zCsYRp9tKA",
+      "published_url": "https://youtu.be/5zCsYRp9tKA",
+      "published_at": "2026-08-08T20:00:00Z",
+      "pinned_comment_status": "failed: 403 forbidden (commentThreads insufficient permissions -- likely video still private/scheduled, not yet public)"
     }
   ]
 }
