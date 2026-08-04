@@ -607,9 +607,9 @@
         "format": "long",
         "day": "2026-08-08",
         "local_slot": "20:30",
-        "status": "pending",
+        "status": "done",
         "scheduled_publish_at": "2026-08-08T19:30:00Z",
-        "candidate_id": null
+        "candidate_id": "lf_021"
       },
       {
         "index": 68,
@@ -816,6 +816,13 @@
       "video_id": "JaZ7b_svlts",
       "thumbnail_path": "assets/long-form/thumbnails/lf_020_thumb.jpg",
       "failed_at": "2026-08-04T23:10:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
+    },
+    {
+      "candidate_id": "lf_021",
+      "video_id": "jzrMAYLP1Uw",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_021_thumb.jpg",
+      "failed_at": "2026-08-04T23:45:00Z",
       "reason": "uploadRateLimitExceeded (429)"
     }
   ]

@@ -851,6 +851,59 @@
       "published_url": "https://youtu.be/JaZ7b_svlts",
       "published_at": "2026-08-08T12:30:00Z",
       "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry."
+    },
+    {
+      "id": "lf_021",
+      "status": "published",
+      "visual_theme": "Locked-off static night shot of a private villa driveway/garage: a maroon McLaren, a white Porsche 911 GT3, and a black Porsche Panamera parked side by side, all showing bright red LED taillight strips pulsing rhythmically; thin white exhaust smoke/haze builds and drifts across the scene over the clip's duration; warm under-eave garage lighting, a street lamp glowing in the background. No people, no faces. Sourced from state/animated_clip_pool.json (Path C) -- verified by downloading via the Google Drive MCP tool (direct curl/gdown both blocked by an auth redirect for this file) and inspecting actual frames/md5, since the pool's catalog descriptions have a known reliability problem (see catalog_reliability_warning_2026_08_04). Two other unused_pool candidates sampled this cycle (drive_file_id 1-81rq4YPIQaNlTwtnLX43dtrKrBwPp6r 'Koenigsegg Dubai Mall' and 1lfUP9kKTMPPLPfraMMwUgGTfsL35_gs3 'heat haze exhaust') both actually decoded to the same busy Downtown Dubai pedestrian street scene (visible person, legible hoodie text, legible plate, Burj Khalifa) rather than their catalogued static-locked-shot descriptions -- rejected, not used, noted back to the pool below.",
+      "mood": "Slow, sustained ambient pad/drone, minimal to no audible rhythm, warm but slightly cooler than a fireplace/rain track -- matches a still, watchful night-garage scene. Sub-60bpm register, no percussion, no vocals.",
+      "title": "Power Doesn't Need to Move",
+      "seo_description": "A calm, cinematic hour-plus of quiet-luxury ambience -- three parked supercars in a private night garage, pulsing taillights, drifting exhaust haze, and a slow ambient soundscape. Put this on to study, focus, work, or manifest the life you're building toward.",
+      "tags": [
+        "luxury ambience",
+        "supercar aesthetic",
+        "manifestation music",
+        "deep focus ambience",
+        "study with me",
+        "calm ambient pads",
+        "wealth mindset",
+        "quiet luxury",
+        "night garage aesthetic",
+        "cinematic ambience"
+      ],
+      "target_length_minutes": 140,
+      "source_notes": "Scouted per agents/long_form/1.2_format_scout.md: reviewed state/posted_history.json.long_form and lf_012-lf_019's visual themes to avoid a near-duplicate (no countryside fog/snowy driveway/marina/mansion-sunset/beach-lineup/harbor/cobblestone-scissor-door/pink-underglow repeat -- this is the first static three-car garage cinemagraph in the queue). Checked every existing title in state/long_form_queue.json plus config/channel.json.long_form_style_guidance.title_convention -- 'Power Doesn't Need to Move' does not repeat any of the 19 prior titles, avoids the banned scene-description pattern, and lands in the brand_identity register (quiet confidence/luxury) using a phrase ('power ... doesn't need to move') not used by any prior title. target_length_minutes=140 chosen as it doesn't repeat any of lf_001-019's actual_duration values (60,65,70,75,80,85,90,95,100,105,110,120,130,150 all already used).",
+      "image_path": "assets/long-form/images/source_pool/lf_021_source_clip.mp4",
+      "image_source": {
+        "source": "owner_ai_generated_clip",
+        "path_used": "Path C (state/animated_clip_pool.json)",
+        "drive_file_id": "1Mvk6083CSsZm6dLY-V6CeDNpy8ewodeQ",
+        "drive_folder_id": "1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6",
+        "verification_note": "Downloaded via the Google Drive MCP tool (fileId's actual title/description on Drive: 'Static shot, night scene with multiple sports cars -- all have bright red LED taillights dynamically pulsing/flashing with lens flares; visible smoke/haze'). Extracted and viewed frames at t=0/1.5/3s -- content matches its own catalogued/Drive-stored description exactly (unlike two other candidates sampled this cycle, see visual_theme above). md5 of the downloaded file (373b5bd9d698aab13b925a8290cce6ef) compared against every mp4 already in assets/long-form/images/source_pool/ and assets/long-form/images/ (lf_007/009/011-019) -- no match, confirming genuinely distinct content, not a re-served duplicate under a different fileId (the real bug found on lf_018/lf_019).",
+        "duration_sec": 5.875,
+        "resolution": "1364x768",
+        "legible_real_element_disclosure": "Legible but generic private vehicle plates (e.g. 'V 463', 'J') visible on all three cars -- same disclosure category as prior candidates' plate/signage disclosures (lf_015/lf_017/lf_019); no real-world brand signage or recognizable location, lower disclosure risk than most prior Path C picks. No people/faces present."
+      },
+      "animated_loop_path": "assets/long-form/animated_loops/lf_021_loop_segment.mp4",
+      "motion_decision": {
+        "loop_method": "reverse",
+        "confidence": 0.9,
+        "significant_subject_motion": false,
+        "camera_motion": false,
+        "motion_summary": "Locked-off static shot: three parked sports cars (McLaren, Porsche 911 GT3, black Panamera) in a villa garage driveway at night, pulsing red LED taillights and exhaust smoke/haze that thickens and drifts across the clip.",
+        "reason": "SWITCHED FROM crossfade AFTER EMPIRICAL CHECK FAILED: initial contact-sheet read (10-frame sheet, all static/ambient-only) suggested crossfade. Built the crossfade loop and inspected the actual blend-region mid frame (t=4.75-4.95s of the 5.208s segment) -- found visible ghosting/double-exposure on the McLaren's rear edges and a smeared duplicate smoke layer above the roofline, caused by the haze thickening asymmetrically across the clip's second half (the known asymmetric-ambient failure mode documented in agents/long_form/3.2_animator.md's Verification section). Rebuilt as reverse (ping-pong with speed ramp) instead -- both loop-point frames are literally identical captured frames (no blend), so the smoke's asymmetric build no longer needs to be hidden by a dissolve. Verified: frame-sampled start (t=0.03s) and the ping-pong cut point (t=6.55s) -- both sharp, no ghosting, no doubled edges."
+      },
+      "sound_source_notes": "Checked state/cc0_audio_library.json for ambient_quiet tier tracks per the 2026-08-04 energy-tiering standard (agents/long_form/4.2_sound_sourcer.md): Rain _ Sleep _ Meditation (beat_strength=0.883, last used lf_008/lf_004/lf_002 -- long ago), Cosmic Waves (0.826, used back-to-back on lf_018 AND lf_019 -- avoid a third consecutive use per the 'never reuse >3 consecutive' rule and to keep genuine variety), Too Brief a Time to be Anything (0.839, never yet used in the queue). Picked 'Too Brief a Time to be Anything' -- least-recently-used of the three ambient_quiet tracks (in fact unused), already verified CC0 1.0 (files.freemusicarchive.org CDN fileUrl, rel=license anchor -> creativecommons.org/publicdomain/zero/1.0/, ffprobe-confirmed real audio, 2700.12s/45min duration, local file present and playable). A concurrent worktree (item index 66) may independently pick from the same ambient_quiet shortlist -- expected and acceptable per current owner guidance. RE-FIX 2026-08-04: originally picked Too Brief a Time to be Anything, but discovered post-hoc (during item 63/sf_065 collision investigation) that sibling item 66 (lf_020) had independently picked the identical track for the same Saturday -- switched to Rain _ Sleep _ Meditation (0.883, ambient_quiet, last used lf_002/004/008, long stale) to keep same-day audio genuinely distinct.",
+      "audio_track_id": "Rain _ Sleep _ Meditation (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0, energy_profile.tier=ambient_quiet)",
+      "id_collision_note": "Originally drafted as lf_020, renamed to lf_021 before assembly completed: a concurrent worktree (item index 66) had already independently claimed lf_020 (title \"The Quiet Doesn't Hurry\", target_length_minutes=115, render process started 18:10 UTC, ~6min before this candidate's own render started at 18:16 UTC) -- discovered via `ps aux` while polling this candidate's own background render. Renamed proactively (state fields + asset filenames, safe to rename while ffmpeg has the loop segment open on Linux) rather than leaving a duplicate id for merge time to resolve, consistent with the lf_018->lf_019 precedent from item 59/60.",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_021_thumb.jpg",
+      "thumbnail_billboard_check_note": "Three parked supercars (McLaren, Porsche 911 GT3, Panamera) with glowing red LED taillight strips, clearly legible at small size against the dark garage -- passes.",
+      "final_video_path": "assets/long-form/final/lf_021_final.mp4",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1920x1080, 8400.000000s exact target, full decode pass clean zero errors).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, pure ambient luxury visualization).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content).\nlong_form audio_license_gate: PASS (Rain _ Sleep _ Meditation, HoliznaCC0, CC0 1.0, verified per agents/long_form/4.2_sound_sourcer.md, energy_profile.tier=ambient_quiet beat_strength=0.883). Re-sourced from Too Brief a Time to be Anything after discovering sibling item 66 (lf_020) picked the identical track -- see sound_source_notes RE-FIX note.\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=8, thumbnail_strength=9, title_strength=8, brand_consistency=9, manifestation_vibe=8 -- all >=8.\nLoop verified clean per motion_decision (reverse method, switched from crossfade after empirical ghosting check failed -- see motion_decision.reason): no seam/flash/duplicate-frame artifact.\nSibling-collision check: audio track cross-checked against lf_020 (this Saturday sibling) -- now distinct (Rain _ Sleep _ Meditation vs Too Brief a Time to be Anything). Visual theme (three-car static garage cinemagraph) distinct from lf_020 (two-car hillside driveway mist) and all prior queue entries per source_notes.",
+      "published_video_id": "jzrMAYLP1Uw",
+      "published_url": "https://youtu.be/jzrMAYLP1Uw",
+      "published_at": "2026-08-08T19:30:00Z",
+      "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry."
     }
   ]
 }
