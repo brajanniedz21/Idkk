@@ -519,7 +519,7 @@
         "local_slot": "18:00",
         "status": "done",
         "scheduled_publish_at": "2026-08-07T17:00:00Z",
-        "candidate_id": "sf_052"
+        "candidate_id": "sf_059"
       },
       {
         "index": 58,
@@ -528,7 +528,7 @@
         "local_slot": "21:00",
         "status": "done",
         "scheduled_publish_at": "2026-08-07T20:00:00Z",
-        "candidate_id": "sf_056"
+        "candidate_id": "sf_060"
       },
       {
         "index": 59,
@@ -771,6 +771,18 @@
       "thumbnail_path": "assets/long-form/thumbnails/lf_017_thumb.jpg",
       "noted_at": "2026-08-04T12:35:00Z",
       "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "rcGnQBMUfA4",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_059_thumb.jpg",
+      "noted_at": "2026-08-04T18:05:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429)"
+    },
+    {
+      "video_id": "fWu32uo6vC4",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_060_thumb.jpg",
+      "noted_at": "2026-08-04T18:05:00Z",
+      "reason": "youtube.thumbnail forbidden (403) -- retry, likely same underlying rate limit"
     }
   ]
 }

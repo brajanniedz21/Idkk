@@ -385,18 +385,6 @@
       "title": "I Lost It Once. I Built It Back Colder."
     },
     {
-      "candidate_id": "sf_052",
-      "video_id": "lYwYeuMy-_g",
-      "published_at": "2026-08-07T17:00:00Z",
-      "title": "I'm Still Paying A Debt You Can't See."
-    },
-    {
-      "candidate_id": "sf_056",
-      "video_id": "RjBy7L2lyCo",
-      "published_at": "2026-08-07T20:00:00Z",
-      "title": "Ten Years Of Silence Bought This."
-    },
-    {
       "candidate_id": "sf_058",
       "video_id": "lGlEoZ7fKJ4",
       "url": "https://youtu.be/lGlEoZ7fKJ4",
@@ -408,6 +396,18 @@
         "cta_variant_id": "cta_luxury_claim",
         "cta_text": "Type \"Luxury\" to claim it."
       }
+    },
+    {
+      "candidate_id": "sf_059",
+      "video_id": "rcGnQBMUfA4",
+      "published_at": "2026-08-07T17:00:00Z",
+      "title": "I Didn't Plan This Escape. I Earned It."
+    },
+    {
+      "candidate_id": "sf_060",
+      "video_id": "fWu32uo6vC4",
+      "published_at": "2026-08-07T20:00:00Z",
+      "title": "Monaco Doesn't Ask Twice."
     }
   ],
   "long_form": [
