@@ -4329,8 +4329,8 @@
       "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry."
     },
     {
-      "id": "sf_065",
-      "status": "published",
+      "id": "sf_065_QUARANTINED_ghost_entry",
+      "status": "quarantined",
       "scouted_at": "2026-08-04T18:00:00Z",
       "angle": "Promise-kept-to-past-self narrative (legacy/sacrifice/earned-over-time family, per state/channel_playbook.md's Promising Patterns to Validate). Distinct from sf_045 (self-referential-competition -- beating a former version, a rivalry/comparison frame): this candidate is not about competing with a past self but about a specific vow made at a low point now literally fulfilled, with the luxury result framed as proof the promise was kept, not proof of a race won. Distinct from sf_047 (self-set-deadline honored early -- a timing claim) and sf_058 (delayed-consumption/patience-in-spending -- a restraint-on-spending claim): this is about a vow's content being delivered, not about timing or restraint. Distinct from sf_050 (no-safety-net commitment -- a structural pre-commitment decision) and sf_051 (no-blueprint/self-taught -- about absence of guidance): this candidate's specific claim is a private promise, made to no one but self, now visibly kept.",
       "title_pattern": "I Kept A Promise Nobody Heard Me Make.",
@@ -4389,7 +4389,8 @@
       "published_url": "https://youtu.be/ROIR8mGVM3c",
       "published_at": "2026-08-08T14:00:00Z",
       "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry.",
-      "pinned_comment_status": "not attempted this pass"
+      "pinned_comment_status": "not attempted this pass",
+      "quarantine_note": "Discovered 2026-08-04 during Sunday scouting prep: this entry collided on id sf_065 with a genuinely-produced/published candidate (Nobody Announced This. It Just Arrived., video_id ROIR8mGVM3c). This entry's own published_video_id field (ROIR8mGVM3c) was incorrect -- that video belongs to the other sf_065 candidate. This entry's own gate_check_note claims a separate video qVJcAb9fQgc as its real upload, but that video_id does not exist on YouTube (videos.list returned nothing for it) -- it was never actually published, or was deleted, likely a leftover from the wt-short-63 worktree's earlier sf_062-collision self-fix attempt that never completed a real upload before being superseded. Quarantined rather than deleted to preserve the audit trail; the real, live, correctly-tracked sf_065 is the other entry (clips 3/5/6/7/9/10/12/23, Love Nwantiti Acoustic)."
     },
     {
       "id": "sf_065",
