@@ -122,6 +122,18 @@
       "added_at": "2026-08-04T00:00:00Z",
       "local_path": "assets/audio/holiznacc0_faded_in_the_sunlight.mp3",
       "mood_note": "Warm, nostalgic, dissolving/glowing lo-fi character (album described by the artist as 'perfect for a warm summer evening') — fits the neon-pink-underglow nocturnal-luxury visual theme's warm glow register without being tied to rain/snow/mist/water like the rest of the library. No percussion-forward beat, calm/slow, sub-60bpm register consistent with the rest of this library's calm entries."
+    },
+    {
+      "title": "Ease into Night (Lofi, Relax, Chill)",
+      "artist": "HoliznaCC0",
+      "album": "Public Domain Lofi",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/public-domain-lofi/ease-into-night-lofi-relax-chill/",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Sourced fresh for lf_019 (item index 60) -- checked audio usage across the full queue before picking: every existing calm/ambient track was already used within the last ~10 long-form posts, and 'Faded in the Sunlight' had just been claimed by a concurrent worktree's item-59 candidate (same cc0_audio_library.json, added_at 2026-08-04T00:00:00Z), so this is a second, distinct new track to avoid a same-batch collision. Checked directly on the track's own FMA page via raw curl HTML fetch (not WebFetch markdown summary, not a third-party aggregator claim): two rel=\"license\" anchors both point to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement (same 'Public Domain Lofi' album as Into The Mist/Peaceful Drift/Wetlands, same self-releasing-CC0 HoliznaCC0 netlabel artist already verified for every other track in this library). File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG ADTS layer III audio, 320kbps, 48kHz stereo, 151.872s duration, non-corrupt, 6,076,003 bytes matching the download.",
+      "added_at": "2026-08-04T06:20:00Z",
+      "local_path": "assets/audio/holiznacc0_ease_into_night.mp3",
+      "mood_note": "Calm lofi with a dusk-settling-into-night character (title literally 'Ease into Night') -- direct mood fit for the dusk/night driveway underglow visual, distinct register from the recent mist/snow/marina/sunset run."
     }
   ]
 }
