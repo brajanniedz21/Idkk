@@ -12,7 +12,7 @@ A fully autonomous, no-human-approval content pipeline that scouts, scripts, pro
 - **Branch**: `claude/youtube-automation-agents-ifqozb` — all work happens here.
 - **Niche**: motivational luxury background/ambience videos (`config/channel.json.niche`).
 - **Format mix**: 70% short-form (YouTube Shorts, 8-12s), 30% long-form (60-600 min ambient loops).
-- **Production cadence (current, owner direction 2026-08-03)**: 5 shorts + 2 long-form per day, all produced in one batch every Monday and scheduled via `publishAt` to actually post on their correct day/time across the week. See §3.
+- **Production cadence (current, owner direction 2026-08-04)**: 5 shorts + 2 long-form per day, produced AND published/scheduled via `publishAt` on the same day, not stockpiled ahead of time (retires the brief 2026-08-03 Monday-batch-the-whole-week model — owner feedback: it was "messing with the system"). See §3.
 - **As of this writing**: 39 real videos published (31 short, 8 long), 23 subscribers, 10,865 lifetime views (`state/channel_stats.json`). `publishing_mode: public`, `human_approval: disabled` (`config/channel.json`).
 
 ## 2. Repository map
@@ -42,17 +42,19 @@ youtube-automation/
 
 **Credit efficiency (owner direction, 2026-08-03)**: don't spawn a separate `Agent` tool call for every numbered pipeline stage of every video — this was tried and cost too much session credit for the benefit. One agent (Agent 0 itself, or one spawned agent per video) works straight through a video's full stage chain instead. See `agents/0_orchestrator.md`'s "Sub-agent invocation" section.
 
-## 3. Core operating model: the Weekly batch cycle (Monday production, owner direction 2026-08-03)
+## 3. Core operating model: the Daily content cycle (owner direction 2026-08-04, retires the 2026-08-03 Monday-batch model)
 
-Every Monday, produce and gate-check the **entire week's** content in one batch — **5 shorts + 2 long-form per day** (35 + 14 = 49 items/week, `config/growth_strategy.json.current_production_allocation` Model F) — then schedule it via `publishAt` so it actually goes live spread across the week at the right day/time, per `agents/0_orchestrator.md`'s "Weekly batch cycle" section:
+**5 shorts + 2 long-form per day** (same totals as before — `config/growth_strategy.json.current_production_allocation` Model F), but produced AND published on the same day they're meant to go out — not stockpiled a week ahead. Per `agents/0_orchestrator.md`'s "Daily content cycle" section:
 
-- **PRODUCTION phase** (Monday, no daily cap): script/produce/gate the full week's items ahead of schedule, stopping at `ready_to_publish` — never actually uploading yet.
-- **PUBLISHING phase** (throttled, real quota awareness, runs across the rest of the week): uploads each `ready_to_publish` item with `privacyStatus=private` + `publishAt` set to its real scheduled time, so it actually goes live on the right day — but checks for `uploadLimitExceeded` after every single upload and **stops immediately, no retry**, the instant it occurs (a real 2026-07-27 incident: ~11 uploads in an hour tripped this, even with `publishAt` already spread across the week — the upload *call* is throttled, not just the public time). Remaining items stay `ready_to_publish` for the next firing.
-- `state/weekly_batch_progress.json` is the week-ahead production queue (49 items, `pending` → `ready_to_publish` → `done`/`quarantined`).
-- 5+2/day is an owner-directed allocation, not yet a verified-safe upload rate (`verified_safe_daily_uploads` is still 4) — the PUBLISHING throttle above is what actually protects against a quota incident at this volume, not the allocation number itself.
+- One firing = one day's 7 items, straight through scout → script → produce → gate → **publish**, per item, in schedule order — publishing is part of the same pass, not a deferred phase.
+- Still throttled/quota-aware: check for `uploadLimitExceeded` after every single upload and **stop immediately, no retry**, the instant it occurs (a real 2026-07-27 incident: ~11 uploads in an hour tripped this even with `publishAt` spread across the week — the upload *call* is throttled, not just the public time). Remaining items for the day stay `ready_to_publish` and are the next firing's first job.
+- `state/weekly_batch_progress.json` (name predates the rename) is the day-slot production queue, `pending` → `ready_to_publish` → `done`/`quarantined`.
+- 5+2/day is an owner-directed allocation, not yet a verified-safe upload rate (`verified_safe_daily_uploads` is still 4) — the per-upload throttle above is what actually protects against a quota incident at this volume, not the allocation number itself.
+
+**Why this replaced Monday-batch production (2026-08-04 owner feedback: it was "messing with the system")**: producing a full week ahead of time via many parallel agents/worktrees caused real same-day id/title collisions and (more seriously) let production and publishing drift into two loosely-coupled phases — a full day's already-gated content sat unpublished for hours because "finish the week's production" and "actually upload today's items" kept getting treated as separable. Under the current model there's no such gap. The already-produced backlog for the rest of that week wasn't discarded — it still publishes on its own assigned day as that day arrives; only *future* production reverted to same-day.
 
 Two scheduled triggers drive this (external to the repo — see §9):
-1. **Daily content batch** (~06:00 UTC) — runs the production cycle on Monday, the publishing cycle other days.
+1. **Daily content batch** (~06:00 UTC) — runs today's 7-item produce-and-publish cycle every day, no Monday/other-days split anymore.
 2. **Daily analytics cycle** (~07:00 UTC) — runs the Self-Improvement Protocol below.
 
 ## 4. The Analytics Intelligence & Self-Improvement Protocol
@@ -127,7 +129,7 @@ First real cycle (2026-08-02): trajectory came back `RED` (honest — 5 real day
 - **Never modify `SCOPES` in `scripts/youtube_auth.py`** (the base list) — see §7.
 - **Never fabricate an unavailable metric** (retention/CTR/impressions/watch-time) — say plainly when data isn't available rather than estimating.
 - **`state/performance_notes.json`'s `cycles[]` is append-only** — use the safe writer, never hand-edit past entries.
-- **Production happens once a week (Monday) for the whole week** (§3) — this is the current model; don't reintroduce a "today only" constraint without checking `agents/0_orchestrator.md` first.
+- **Production happens same-day now, not a week ahead** (§3, owner direction 2026-08-04) — don't reintroduce Monday-batch-the-whole-week production without checking `agents/0_orchestrator.md` first; that model was tried and explicitly retired.
 - **Never rewrite an already-published video's live description/title** except to fix a real, current, owner-flagged bug (this has happened twice this session — always via a direct, verified API call, never blind).
 - **Single end-of-firing git push** — commit locally after each item (cheap, gives crash resilience), but push exactly once at the very end of a firing. Pushing needs an explicit approval click in this environment; per-item pushes would require babysitting an otherwise-unattended run.
 - **Background production sub-agents use `isolation: "worktree"`** (separate git worktree + branch) to avoid concurrent-write corruption of shared state files. Give them **relative paths from their own worktree root**, never the main checkout's absolute paths — a sub-agent given `/home/user/Idkk/...` paths will write directly into the main checkout and defeat the isolation. After a worktree agent finishes: verify independently (don't just trust its self-report — check the real YouTube API state), `git merge --ff-only` (or resolve simple append-only JSON-array conflicts by hand if the base diverged — this has happened when two worktree agents branch before the other's merge), then `git worktree remove --force` + `git branch -d`.
@@ -143,7 +145,7 @@ Both fire into a persistent session (not a fresh one) because a fresh session pe
 
 ## 10. Known stale docs — don't trust these over this file or `0_orchestrator.md`
 
-- `config/channel.json.publishing_schedule.weekly_batch_mode` — current (5 shorts + 2 long-form/day, Monday production, updated 2026-08-03). `agents/0_orchestrator.md`'s "Weekly batch cycle" section is still the authoritative version of the operating logic; this JSON blob is supporting config, not the source of truth for process.
+- `config/channel.json.publishing_schedule.daily_production_mode` — current (5 shorts + 2 long-form/day, produced and published same-day, updated 2026-08-04). `agents/0_orchestrator.md`'s "Daily content cycle" section is still the authoritative version of the operating logic; this JSON blob is supporting config, not the source of truth for process.
 - `README.md` (repo root of `youtube-automation/`) — describes an early, mostly-unbuilt state (credentials "blocked", cron "not yet created", 48/58 clips). Wildly out of date; don't use it to judge project maturity.
 - `scripts/youtube_auth.py`'s `COMMENT_SCOPES` docstring, before this session's fixes, said comment posting wasn't granted yet — now corrected in `agents/0_orchestrator.md`, but double-check the script's own comment if reading it in isolation.
 

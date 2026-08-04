@@ -27,7 +27,7 @@
     "shorts_per_day": 5,
     "long_form_per_day": 2,
     "set_at": "2026-08-03T00:00:00Z",
-    "reason": "Direct owner instruction, 2026-08-03 — not a system-diagnosed self-modification, so the evidence-level gating below does not apply to this specific change (it applies to changes Agent 0 initiates on its own from analytics; a direct owner instruction is always authoritative). Owner also directed: all of a week's content is produced once, on Monday, and scheduled via publishAt across the week — see config/channel.json.publishing_schedule.weekly_batch_mode and agents/0_orchestrator.md's Weekly batch cycle section."
+    "reason": "Direct owner instruction, 2026-08-03 — not a system-diagnosed self-modification, so the evidence-level gating below does not apply to this specific change (it applies to changes Agent 0 initiates on its own from analytics; a direct owner instruction is always authoritative). Cadence allocation (5 shorts + 2 long-form/day) is unchanged, but the PRODUCTION SCHEDULE was corrected 2026-08-04: owner reported the 'produce the whole week on Monday' batch model was 'messing with the system' (real concurrent-agent id/title collisions, and — the more serious problem — content sat gated in ready_to_publish without ever actually being published for days). Each day's 5 shorts + 2 long-form are now produced AND published/scheduled on that same day, not ahead of time — see config/channel.json.publishing_schedule.daily_production_mode and agents/0_orchestrator.md's 'Daily content cycle' section (renamed from 'Weekly batch cycle')."
   },
   "previous_production_allocation": {"model": "A", "shorts_per_day": 3, "long_form_per_day": 1, "retired_at": "2026-08-03T00:00:00Z"},
   "allowed_production_models": {
