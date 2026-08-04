@@ -1,5 +1,5 @@
 {
-  "_comment": "Verified CC0 / no-attribution-required audio tracks for long-form (ambient/phonk) and short-form (swap-in for reused clips). Agent 4.2 and Agent 3.1 only pull from entries where verified=true. verification_note must state what was checked (license tag AND source page), not just the platform label.",
+  "_comment": "Verified CC0 / no-attribution-required audio tracks for long-form (ambient/phonk) and short-form (swap-in for reused clips). Agent 4.2 and Agent 3.1 only pull from entries where verified=true. verification_note must state what was checked (license tag AND source page), not just the platform label. Energy tiering added 2026-08-04 (owner direction: long-form audio was reading too upbeat for the quiet-luxury aesthetic) -- every track now carries an energy_profile (beat_strength/rms via librosa, tier: ambient_quiet/calm_lofi/upbeat_rhythmic). Only Wetlands genuinely measures ambient_quiet as of 2026-08-04; searched FMA further the same day (HoliznaCC0 Ocean Memory album tracks measured upbeat_rhythmic/calm_lofi, blv8ion Cloud Stillness/Innerwave albums are genuinely ambient by ear/title but licensed CC-BY-NC-ND -- non-commercial-only, rejected) -- see agents/long_form/4.2_sound_sourcer.md for the full method and thresholds. Future sourcing should keep looking for more ambient_quiet options; do not default to calm_lofi/upbeat_rhythmic out of convenience.",
   "tracks": [
     {
       "title": "Phonk ish",
@@ -8,9 +8,16 @@
       "source_url": "https://freemusicarchive.org/music/holiznacc0/phonk-aura-farming/phonk-ish/",
       "license": "CC0 1.0 Universal (Public Domain Dedication)",
       "verified": true,
-      "verification_note": "Checked the license badge/link on the track's own FMA page (not a third-party aggregator claim): rel=\"license\" anchor points directly to https://creativecommons.org/publicdomain/zero/1.0/. Also confirmed via the site's own download-overlay modal (https://freemusicarchive.org/track/phonk-ish/downloadOverlay/) which explicitly states 'CC0/Public Domain' for this track. Direct file download via the standard /track/<slug>/download/ route requires an FMA login (302 to /login when unauthenticated), so the file was instead fetched from the same-page embedded data-track-info JSON's public 'fileUrl' field, which points to FMA's own CDN (files.freemusicarchive.org) and required no authentication. Downloaded file verified via `file` and `ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 145.56s duration, non-corrupt, non-zero size (5,823,523 bytes). Stylistic match note: FMA has no literal 'phonk' genre-CC0 catalog beyond this artist; HoliznaCC0 is a netlabel-style artist who explicitly self-releases all work as CC0 and this track is genre-tagged/titled 'Phonk ish' under album 'PHONK - AURA FARMING', a genuine bass-driven electronic instrumental — closest real CC0 match found to the requested slowed hardtekk/phonk direction (no lyrics, no recognizable sample).",
+      "verification_note": "Checked the license badge/link on the track's own FMA page (not a third-party aggregator claim): rel=\"license\" anchor points directly to https://creativecommons.org/publicdomain/zero/1.0/. Also confirmed via the site's own download-overlay modal (https://freemusicarchive.org/track/phonk-ish/downloadOverlay/) which explicitly states 'CC0/Public Domain' for this track. Direct file download via the standard /track/<slug>/download/ route requires an FMA login (302 to /login when unauthenticated), so the file was instead fetched from the same-page embedded data-track-info JSON's public 'fileUrl' field, which points to FMA's own CDN (files.freemusicarchive.org) and required no authentication. Downloaded file verified via `file` and `ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 145.56s duration, non-corrupt, non-zero size (5,823,523 bytes). Stylistic match note: FMA has no literal 'phonk' genre-CC0 catalog beyond this artist; HoliznaCC0 is a netlabel-style artist who explicitly self-releases all work as CC0 and this track is genre-tagged/titled 'Phonk ish' under album 'PHONK - AURA FARMING', a genuine bass-driven electronic instrumental \u2014 closest real CC0 match found to the requested slowed hardtekk/phonk direction (no lyrics, no recognizable sample).",
       "added_at": "2026-07-27T08:15:00Z",
-      "local_path": "assets/audio/holiznacc0_phonk_ish.mp3"
+      "local_path": "assets/audio/holiznacc0_phonk_ish.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.295,
+        "rms": 0.1245,
+        "tier": "calm_lofi"
+      }
     },
     {
       "title": "Rain _ Sleep _ Meditation",
@@ -21,7 +28,14 @@
       "verified": true,
       "verification_note": "Checked the license badge/link on the track's own FMA page directly via raw HTML fetch (not a third-party aggregator claim, not just the WebFetch text summary): two rel=\"license\" anchors on the page both point directly to https://creativecommons.org/publicdomain/zero/1.0/. Source page also states track title 'Rain _ Sleep _ Meditation', artist HoliznaCC0 (the same self-releasing-CC0 netlabel artist already verified for the phonk-ish track in this library), album 'Space - Sleep - Meditation', duration 14:35, Instrumental: Yes, AI Generated: No. File fetched from the page's own embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth required, same method as prior verified entry). Downloaded file verified via `file` and `ffprobe`: real MPEG ADTS layer III audio, 320kbps, 48kHz stereo, 875.976s (14:36) duration, non-corrupt, size 35,040,205 bytes matching the download. Mood match note: genre tags on the source page are Ambient/Ambient Electronic/Chill-out/Lo-fi Instrumental with an explicit 'Rain' + 'Sleep' + 'Meditation' title, which is a strong fit for the brief's 'slow ambient with light rain layer, no percussion, sub-60bpm' mood; the track was not able to be literally listened to end-to-end in this environment, so the tempo/instrumentation match is inferred from title, genre tags, and the artist's established ambient/meditation catalog rather than an audible waveform/BPM analysis.",
       "added_at": "2026-07-27T09:55:00Z",
-      "local_path": "assets/audio/holiznacc0_rain_sleep_meditation.mp3"
+      "local_path": "assets/audio/holiznacc0_rain_sleep_meditation.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 0.883,
+        "rms": 0.1087,
+        "tier": "calm_lofi"
+      }
     },
     {
       "title": "Phonk Remix",
@@ -30,9 +44,16 @@
       "source_url": "https://freemusicarchive.org/music/holiznacc0/phonk-aura-farming/phonk-remix/",
       "license": "CC0 1.0 Universal (Public Domain Dedication)",
       "verified": true,
-      "verification_note": "Checked directly on the track's own FMA page via raw HTML fetch (curl, not just WebFetch's markdown summary): rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement ('This music is completely Public Domain, so use it how you want!'). File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 169.49s duration, non-corrupt, 6,780,643 bytes. Real tempo check via librosa beat detection: ~92 BPM detected over a 30s sample (28 beats) — genuinely upbeat, confirmed not just by genre label. Third distinct track sourced specifically to stop reusing 'Phonk ish' for every short-form video (owner feedback 2026-07-27).",
+      "verification_note": "Checked directly on the track's own FMA page via raw HTML fetch (curl, not just WebFetch's markdown summary): rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement ('This music is completely Public Domain, so use it how you want!'). File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 169.49s duration, non-corrupt, 6,780,643 bytes. Real tempo check via librosa beat detection: ~92 BPM detected over a 30s sample (28 beats) \u2014 genuinely upbeat, confirmed not just by genre label. Third distinct track sourced specifically to stop reusing 'Phonk ish' for every short-form video (owner feedback 2026-07-27).",
       "added_at": "2026-07-27T16:20:00Z",
-      "local_path": "assets/audio/holiznacc0_phonk_remix.mp3"
+      "local_path": "assets/audio/holiznacc0_phonk_remix.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.287,
+        "rms": 0.1744,
+        "tier": "upbeat_rhythmic"
+      }
     },
     {
       "title": "ONLY HUMAN",
@@ -41,9 +62,16 @@
       "source_url": "https://freemusicarchive.org/music/holiznacc0/phonk-aura-farming/only-human/",
       "license": "CC0 1.0 Universal (Public Domain Dedication)",
       "verified": true,
-      "verification_note": "Checked directly on the track's own FMA page via raw HTML fetch: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement. File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 235.03s duration, non-corrupt, 9,402,403 bytes. Real tempo check via librosa beat detection: ~85 BPM detected over a 30s sample (37 beats) — genuinely upbeat. Fourth track, sourced alongside Phonk Remix specifically for short-form audio variety.",
+      "verification_note": "Checked directly on the track's own FMA page via raw HTML fetch: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement. File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 235.03s duration, non-corrupt, 9,402,403 bytes. Real tempo check via librosa beat detection: ~85 BPM detected over a 30s sample (37 beats) \u2014 genuinely upbeat. Fourth track, sourced alongside Phonk Remix specifically for short-form audio variety.",
       "added_at": "2026-07-27T16:20:00Z",
-      "local_path": "assets/audio/holiznacc0_only_human.mp3"
+      "local_path": "assets/audio/holiznacc0_only_human.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.585,
+        "rms": 0.175,
+        "tier": "upbeat_rhythmic"
+      }
     },
     {
       "title": "Fire Place",
@@ -52,9 +80,16 @@
       "source_url": "https://freemusicarchive.org/music/holiznacc0/winter-lofi/fire-place/",
       "license": "CC0 1.0 Universal (Public Domain Dedication)",
       "verified": true,
-      "verification_note": "Checked directly on the track's own FMA page via raw curl HTML fetch (not WebFetch summary, not a third-party aggregator claim): rel=\"license\" anchor appears twice, both pointing to https://creativecommons.org/publicdomain/zero/1.0/. Title confirmed as 'Fire Place', artist HoliznaCC0 (same self-releasing-CC0 netlabel artist already verified for three other tracks in this library), album 'Winter Lofi'. File fetched from the page's own embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG ADTS layer III audio, 320kbps, 48kHz stereo, 170.28s duration, non-corrupt, 6,812,365 bytes. Sourced specifically during the Agent 1.2 lf_003-lf_008 scouting cycle to stop forcing every long-form calm-ambient candidate onto the single 'Rain _ Sleep _ Meditation' track — it was the only verified calm/ambient (non-phonk) long-form track in the library before this addition. Mellow instrumental lofi with a warm, slow, cozy character per title/album/genre context; not literally listened to end-to-end in this environment (same limitation noted on the Rain/Sleep/Meditation entry), tempo/mood inferred from title, album ('Winter Lofi'), and the artist's established ambient/lofi catalog.",
+      "verification_note": "Checked directly on the track's own FMA page via raw curl HTML fetch (not WebFetch summary, not a third-party aggregator claim): rel=\"license\" anchor appears twice, both pointing to https://creativecommons.org/publicdomain/zero/1.0/. Title confirmed as 'Fire Place', artist HoliznaCC0 (same self-releasing-CC0 netlabel artist already verified for three other tracks in this library), album 'Winter Lofi'. File fetched from the page's own embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG ADTS layer III audio, 320kbps, 48kHz stereo, 170.28s duration, non-corrupt, 6,812,365 bytes. Sourced specifically during the Agent 1.2 lf_003-lf_008 scouting cycle to stop forcing every long-form calm-ambient candidate onto the single 'Rain _ Sleep _ Meditation' track \u2014 it was the only verified calm/ambient (non-phonk) long-form track in the library before this addition. Mellow instrumental lofi with a warm, slow, cozy character per title/album/genre context; not literally listened to end-to-end in this environment (same limitation noted on the Rain/Sleep/Meditation entry), tempo/mood inferred from title, album ('Winter Lofi'), and the artist's established ambient/lofi catalog.",
       "added_at": "2026-07-27T21:45:00Z",
-      "local_path": "assets/audio/holiznacc0_fire_place.mp3"
+      "local_path": "assets/audio/holiznacc0_fire_place.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.213,
+        "rms": 0.1114,
+        "tier": "calm_lofi"
+      }
     },
     {
       "title": "Into The Mist",
@@ -65,7 +100,14 @@
       "verified": true,
       "verification_note": "Checked directly on the track's own FMA page via raw curl HTML fetch: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement (album itself titled 'Public Domain Lofi'). File fetched from the page's embedded fileUrl JSON field (files.freemusicarchive.org CDN, no auth). 129.6s, 320kbps MP3, confirmed non-corrupt via ffprobe.",
       "local_path": "assets/audio/holiznacc0_into_the_mist.mp3",
-      "mood_note": "Calm/relaxed lofi, mist/fog-themed — good fit for foggy/misty visual_theme long-form candidates (e.g. countryside fog, night mist)."
+      "mood_note": "Calm/relaxed lofi, mist/fog-themed \u2014 good fit for foggy/misty visual_theme long-form candidates (e.g. countryside fog, night mist).",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.34,
+        "rms": 0.1694,
+        "tier": "upbeat_rhythmic"
+      }
     },
     {
       "title": "Peaceful Drift",
@@ -76,7 +118,14 @@
       "verified": true,
       "verification_note": "Checked directly on the track's own FMA page: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/. File fetched from the page's embedded fileUrl JSON field. 128.3s, 320kbps MP3, confirmed non-corrupt via ffprobe.",
       "local_path": "assets/audio/holiznacc0_peaceful_drift.mp3",
-      "mood_note": "Calm, nostalgic, unhurried — general-purpose calm long-form bed, not tied to a specific visual theme."
+      "mood_note": "Calm, nostalgic, unhurried \u2014 general-purpose calm long-form bed, not tied to a specific visual theme.",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.397,
+        "rms": 0.0974,
+        "tier": "upbeat_rhythmic"
+      }
     },
     {
       "title": "Wetlands",
@@ -87,7 +136,14 @@
       "verified": true,
       "verification_note": "Checked directly on the track's own FMA page: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/. File fetched from the page's embedded fileUrl JSON field. 164.0s, 320kbps MP3, confirmed non-corrupt via ffprobe.",
       "local_path": "assets/audio/holiznacc0_wetlands.mp3",
-      "mood_note": "Calm/relaxed, watery/organic texture — fits marina/ocean/waterfront visual themes as an alternative to reusing the same track every time."
+      "mood_note": "Calm/relaxed, watery/organic texture \u2014 fits marina/ocean/waterfront visual themes as an alternative to reusing the same track every time.",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.022,
+        "rms": 0.057,
+        "tier": "ambient_quiet"
+      }
     },
     {
       "title": "Snow Drift",
@@ -98,7 +154,14 @@
       "verified": true,
       "verification_note": "Same album as the already-verified 'Fire Place' track. Checked directly on the track's own FMA page: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/. File fetched from the page's embedded fileUrl JSON field. 173.6s, 320kbps MP3, confirmed non-corrupt via ffprobe.",
       "local_path": "assets/audio/holiznacc0_snow_drift.mp3",
-      "mood_note": "Winter/snow-themed calm lofi — direct fit for snow-scene long-form candidates (e.g. the snowy driveway animated clip in state/animated_clip_pool.json), instead of forcing Fire Place or Rain/Sleep/Meditation onto a mismatched season."
+      "mood_note": "Winter/snow-themed calm lofi \u2014 direct fit for snow-scene long-form candidates (e.g. the snowy driveway animated clip in state/animated_clip_pool.json), instead of forcing Fire Place or Rain/Sleep/Meditation onto a mismatched season.",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.297,
+        "rms": 0.2451,
+        "tier": "upbeat_rhythmic"
+      }
     },
     {
       "title": "Dreamscape",
@@ -107,9 +170,16 @@
       "source_url": "https://freemusicarchive.org/music/holiznacc0/space-sleep-meditation/dreamscape/",
       "license": "CC0 1.0 Universal (Public Domain Dedication)",
       "verified": true,
-      "verification_note": "Same album as the already-verified 'Rain / Sleep / Meditation' track. Checked directly on the track's own FMA page: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/. File fetched from the page's embedded fileUrl JSON field. 1319.976s (~22 minutes — notably longer than the library's other tracks), 320kbps MP3, confirmed non-corrupt via ffprobe.",
+      "verification_note": "Same album as the already-verified 'Rain / Sleep / Meditation' track. Checked directly on the track's own FMA page: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/. File fetched from the page's embedded fileUrl JSON field. 1319.976s (~22 minutes \u2014 notably longer than the library's other tracks), 320kbps MP3, confirmed non-corrupt via ffprobe.",
       "local_path": "assets/audio/holiznacc0_dreamscape.mp3",
-      "mood_note": "Slow ambient/meditative, longest track in the library — fewer loop iterations needed for a long-form video's full runtime, which may reduce any perceptible looping of the audio bed specifically."
+      "mood_note": "Slow ambient/meditative, longest track in the library \u2014 fewer loop iterations needed for a long-form video's full runtime, which may reduce any perceptible looping of the audio bed specifically.",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.052,
+        "rms": 0.2186,
+        "tier": "upbeat_rhythmic"
+      }
     },
     {
       "title": "Faded in the Sunlight",
@@ -121,7 +191,14 @@
       "verification_note": "Sourced fresh for lf_018 (item index 59) because every existing calm/ambient track in this library was already used within the last ~10 long-form posts (Rain/Sleep/Meditation, Fire Place, Peaceful Drift, Into The Mist, Wetlands x2, Snow Drift, Dreamscape all already assigned to prior candidates per state/long_form_queue.json). Checked directly on the track's own FMA page via raw curl HTML fetch (not a third-party aggregator/search-filter label, not just a WebFetch markdown summary): two rel=\"license\" anchors both point to https://creativecommons.org/publicdomain/zero/1.0/; page text states 'Faded in the Sunlight by HoliznaCC0 is licensed under a CC0 1.0 Universal License' and 'AI generated? No'. File fetched from the page's own embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth required, same method as every other entry in this library). Downloaded file verified via `file`/`ffprobe`: real MPEG ADTS layer III audio (ID3 v2.3.0), 320kbps, 48kHz stereo, 178.248s duration, non-corrupt, 7,453,669 bytes.",
       "added_at": "2026-08-04T00:00:00Z",
       "local_path": "assets/audio/holiznacc0_faded_in_the_sunlight.mp3",
-      "mood_note": "Warm, nostalgic, dissolving/glowing lo-fi character (album described by the artist as 'perfect for a warm summer evening') — fits the neon-pink-underglow nocturnal-luxury visual theme's warm glow register without being tied to rain/snow/mist/water like the rest of the library. No percussion-forward beat, calm/slow, sub-60bpm register consistent with the rest of this library's calm entries."
+      "mood_note": "Warm, nostalgic, dissolving/glowing lo-fi character (album described by the artist as 'perfect for a warm summer evening') \u2014 fits the neon-pink-underglow nocturnal-luxury visual theme's warm glow register without being tied to rain/snow/mist/water like the rest of the library. No percussion-forward beat, calm/slow, sub-60bpm register consistent with the rest of this library's calm entries.",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.239,
+        "rms": 0.095,
+        "tier": "calm_lofi"
+      }
     },
     {
       "title": "Ease into Night (Lofi, Relax, Chill)",
@@ -133,7 +210,15 @@
       "verification_note": "Sourced fresh for lf_019 (item index 60) -- checked audio usage across the full queue before picking: every existing calm/ambient track was already used within the last ~10 long-form posts, and 'Faded in the Sunlight' had just been claimed by a concurrent worktree's item-59 candidate (same cc0_audio_library.json, added_at 2026-08-04T00:00:00Z), so this is a second, distinct new track to avoid a same-batch collision. Checked directly on the track's own FMA page via raw curl HTML fetch (not WebFetch markdown summary, not a third-party aggregator claim): two rel=\"license\" anchors both point to https://creativecommons.org/publicdomain/zero/1.0/, matching the album-level CC0 statement (same 'Public Domain Lofi' album as Into The Mist/Peaceful Drift/Wetlands, same self-releasing-CC0 HoliznaCC0 netlabel artist already verified for every other track in this library). File fetched from the page's embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG ADTS layer III audio, 320kbps, 48kHz stereo, 151.872s duration, non-corrupt, 6,076,003 bytes matching the download.",
       "added_at": "2026-08-04T06:20:00Z",
       "local_path": "assets/audio/holiznacc0_ease_into_night.mp3",
-      "mood_note": "Calm lofi with a dusk-settling-into-night character (title literally 'Ease into Night') -- direct mood fit for the dusk/night driveway underglow visual, distinct register from the recent mist/snow/marina/sunset run."
+      "mood_note": "Calm lofi with a dusk-settling-into-night character (title literally 'Ease into Night') -- direct mood fit for the dusk/night driveway underglow visual, distinct register from the recent mist/snow/marina/sunset run.",
+      "energy_profile": {
+        "measured_at": "2026-08-04T12:20:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
+        "beat_strength": 1.427,
+        "rms": 0.0777,
+        "tier": "upbeat_rhythmic"
+      }
     }
-  ]
+  ],
+  "_gap_note_lf_017": "lf_017 (published 2026-08-04) used a track documented in its own long_form_queue.json entry as \"Tokyo Sunset (Lofi, Peaceful, Soft)\" from HoliznaCC0 Public Domain Lofi -- the sourcing agent verified CC0 and added it to this library, but that entry was lost during a worktree merge (the mp3 file was never copied into assets/audio/ on main either). The already-rendered/published video has the correct audio baked in from before the loss, so no action needed on the video itself -- documented here so a future re-verification attempt for that title doesn't start from a false \"already have it\" assumption."
 }
