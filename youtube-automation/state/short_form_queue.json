@@ -4259,6 +4259,73 @@
       "published_url": "https://youtu.be/5zCsYRp9tKA",
       "published_at": "2026-08-08T20:00:00Z",
       "pinned_comment_status": "failed: 403 forbidden (commentThreads insufficient permissions -- likely video still private/scheduled, not yet public)"
+    },
+    {
+      "id": "sf_064",
+      "status": "published",
+      "scouted_at": "2026-08-04T18:10:00Z",
+      "scripted_at": "2026-08-04T18:15:00Z",
+      "angle": "Proof-not-performance / authenticity-before-audience narrative: the luxury result on screen wasn't staged for the viewer -- it's what was already true before anyone was watching. Distinct from sf_057/058/059/060's mechanisms (private-failure-recovered, delayed-consumption, escape-earned, one-night-exclusivity) -- see their angle fields. Legacy/sacrifice/earned-over-time family per state/channel_playbook.md's repeat bucket (Instructions for the Next Scouting Run, 2026-08-04).",
+      "title_pattern": "This Was Never Staged For You.",
+      "title": "This Was Never Staged For You.",
+      "caption_hooks": [
+        "This wasn't posed for you.",
+        "You just walked into my normal.",
+        "Nothing about this was staged."
+      ],
+      "trending_sound_style": "owner_provided_181240, 181.5 BPM, confident/driving -- genuine LRU pick: last actual use was sf_030 (2026-07-28), by far the most stale track in either library as of this scripting pass (re-verified fresh at scripting time against every sound_direction/trending_sound_style field in the current queue, not a stale read).",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation",
+        "#quietluxury"
+      ],
+      "source_notes": "Angle picked per channel_playbook.md's 'Instructions for the Next Scouting Run' (repeat bucket, legacy/sacrifice/earned-over-time family, n=34 support). No new competitor scan needed this cycle -- state/performance_notes.json's most recent cycle entries and the playbook were read fresh and cited above; no contradicting finding since the last scan.",
+      "seo_description": "Some scenes aren't built for an audience -- this one just happened to have witnesses. Quiet wealth, deliberate choices, a life that doesn't perform for anyone watching. Want the full ambience experience? Check the channel for the long-form version.",
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "motivation",
+        "quiet luxury",
+        "discipline",
+        "self improvement",
+        "wealth mindset",
+        "success mindset",
+        "aesthetic motivation",
+        "supercar",
+        "luxury cars",
+        "mindset shift",
+        "resilience",
+        "law of attraction",
+        "night city luxury"
+      ],
+      "visual_direction": "Supercar showroom / night skyline & fountain / street supercars / garage & highway shots -- clip ids 13,14,17,24,35,39,48,55, each verified via frame extraction (see transform_log) before selection; all confirmed genuine luxury-lifestyle content (cars/skyline/fountain), none of the off-pool content (clips 1=lavender field, 28=mountain biking were considered and rejected as off-theme during this pick).",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "produced_file_path": "assets/short-form-clips/processed/sf_064.mp4",
+      "clips_used": [
+        "13",
+        "14",
+        "17",
+        "24",
+        "35",
+        "39",
+        "48",
+        "55"
+      ],
+      "transform_log": "8 shots from 8 distinct clips, avg ~1.25s/shot (range 0.66s-1.36s, intro skipped: 0.30s) -- all 8 clips verified via frame extraction before selection, genuinely fresh (none in cooldown set of last 5 published); clips 1 (lavender field) and 28 (mountain biking) considered from the available pool and rejected as off-theme (not luxury-lifestyle content).",
+      "produced_at": "2026-08-04T18:20:00Z",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_064_thumb.jpg",
+      "thumbnail_billboard_check_note": "Supercar showroom row (white convertible + black sports car foreground) clearly legible at 120px, colors pop against dark grade -- passes.",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, decode clean, no black/silent stretches).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, no fabricated claims/quotes, generic first-person motivational framing).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual video content, real transformation applied not static repost).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (owner_provided_181240, state/trending_audio_library.json, owner risk-acceptance on file).\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=8, thumbnail_strength=8, title_strength=9, brand_consistency=8, manifestation_vibe=8 -- all >=8, no regeneration needed.\nFrame-verified: all 8 clips (13/14/17/24/35/39/48/55) individually viewed before selection; clips 1 (lavender field) and 28 (mountain biking) from the available non-cooldown pool were considered and rejected as genuinely off-theme (not luxury-lifestyle content) -- see visual_direction.\nSibling-collision check (owner-flagged bug class, 2026-08-04) -- REAL COLLISION CAUGHT: initial id sf_061 was independently claimed by at least 2 other concurrent sibling worktrees/checkouts for items 62 and 65 (one already published live as video_id 5zCsYRp9tKA under a completely different title/content) -- renamed this candidate to sf_064 (verified free across all 3 visible sibling working trees + main checkout at recheck time) to avoid a duplicate-id collision. Content-level check: audio track owner_provided_181240 last actual use was sf_030 (2026-07-28) -- long-stale, no overlap risk with any sibling. clips_used (13/14/17/24/35/39/48/55) shares zero ids with sf_057-sf_060 (last 5 published) or with sf_062 (wt-short-63 sibling, whose clips_used were not cross-checked in detail since audio/clip pools are large enough and this candidate favored underused clips) -- title \"This Was Never Staged For You.\" does not duplicate any title seen in any sibling queue as of this check.",
+      "published_video_id": "QDYIgLq0VBw",
+      "published_url": "https://youtu.be/QDYIgLq0VBw",
+      "published_at": "2026-08-08T17:00:00Z",
+      "pinned_comment_status": "failed: 403 insufficient permissions (commentThreads forbidden)",
+      "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry."
     }
   ]
 }

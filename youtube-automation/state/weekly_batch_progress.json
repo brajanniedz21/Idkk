@@ -580,9 +580,9 @@
         "format": "short",
         "day": "2026-08-08",
         "local_slot": "18:00",
-        "status": "pending",
+        "status": "done",
         "scheduled_publish_at": "2026-08-08T17:00:00Z",
-        "candidate_id": null
+        "candidate_id": "sf_064"
       },
       {
         "index": 65,
