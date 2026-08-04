@@ -598,9 +598,9 @@
         "format": "long",
         "day": "2026-08-08",
         "local_slot": "13:30",
-        "status": "pending",
+        "status": "done",
         "scheduled_publish_at": "2026-08-08T12:30:00Z",
-        "candidate_id": null
+        "candidate_id": "lf_020"
       },
       {
         "index": 67,
@@ -809,6 +809,13 @@
       "video_id": "9OvHBWZQpGQ",
       "thumbnail_path": "assets/short-form-clips/processed/sf_064_thumb.jpg",
       "failed_at": "2026-08-04T21:46:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
+    },
+    {
+      "candidate_id": "lf_020",
+      "video_id": "JaZ7b_svlts",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_020_thumb.jpg",
+      "failed_at": "2026-08-04T23:10:00Z",
       "reason": "uploadRateLimitExceeded (429)"
     }
   ]

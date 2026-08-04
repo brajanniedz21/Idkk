@@ -796,6 +796,61 @@
       "thumbnail_billboard_check_note": "Frame at t=0.5s from source clip (two black supercars, red taillight accents, scissor door open). Viewed 120px billboard preview -- both taillight strips and the door silhouette clearly discernible against the dark driveway. Accepted.",
       "assembly_note": "ffmpeg render to completion, 130min/7800s target.",
       "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1920x1080 h264/aac, 7800.000000s exact, decode clean). long_form_gates.image_copyright_gate path C: PASS. long_form_gates.audio_license_gate: PASS (Cosmic Waves, CC0 1.0, ambient_quiet tier). long_form_gates.loop_length_gate: PASS (130min in [60,600]). content_quality_gate: all 6 categories >=8. Subscribe overlay frame-verified at t=1.5s (visible) and t=10s (gone, clean driveway scene)."
+    },
+    {
+      "id": "lf_020",
+      "status": "published",
+      "visual_theme": "Locked-off static night shot on a Hollywood-hills-style driveway: a black Rolls-Royce Cullinan and a black Ferrari 812 parked side by side, LA city skyline glittering below, a palm tree and warmly-lit modern house to the right, dark trees to the left. Thick white mist rolls in from the ground and thickens progressively across the clip, at its peak nearly obscuring both cars in a soft white-out before the loop's reverse half recedes it. Sourced from state/animated_clip_pool.json (Path C) -- see image_source.provenance_note for a real content/catalog mismatch discovered and disclosed during sourcing.",
+      "mood": "Calm, unhurried ambient pad, sub-60bpm, no percussion, no vocals -- ambient_quiet tier per the 2026-08-04 energy-tiering standard. Distinct visual mechanism/register from every immediately preceding candidate: lf_016 (mansion sunset), lf_014 (ocean sunset five-car lineup), lf_017 (harbor golden hour Porsche), lf_018 (cobblestone driveway, scissor door), lf_019 (pulsating pink underglow) -- this is the first rolling-mist-over-parked-supercars cinemagraph in the queue, and the first hillside/city-skyline vantage since lf_003.",
+      "title": "The Quiet Doesn't Hurry",
+      "seo_description": "Nearly two hours of calm, cinematic luxury ambience for deep focus, study, and manifestation -- two blacked-out supercars on a hillside driveway above the city, soft rolling night mist, slow ambient pads. Put this on to work, study, relax, or manifest the life you're building toward.",
+      "tags": [
+        "luxury ambience",
+        "manifestation music",
+        "study with me",
+        "deep focus",
+        "ambient music",
+        "supercar aesthetic",
+        "calm background music",
+        "wealth mindset",
+        "quiet luxury"
+      ],
+      "target_length_minutes": 115,
+      "target_length_note": "Not previously used in lf_001-019 (used values: 60,65,70,75,80,85,90,95,100,105,110,120,130,150).",
+      "content_exclusions_screen": "No political/controversial content; pure ambient luxury visualisation scene, screened clean against config/channel.json.content_exclusions.",
+      "scouted_at": "2026-08-04T18:00:00Z",
+      "source_notes": "Scouted per agents/long_form/1.2_format_scout.md. Reviewed all 19 prior queue entries' titles/visual_themes to avoid a repeat; reviewed state/posted_history.json.long_form for recent visual-theme adjacency (last 5 published: lf_014/lf_016/lf_017/lf_018/lf_019, all vehicle-focused but each a distinct pairing/location/effect). Title 'The Quiet Doesn't Hurry' checked against all 19 existing titles (no duplicate), avoids the banned scene-description pattern (config/channel.json.long_form_style_guidance.title_convention.banned_pattern), and lands in the brand_identity register (quiet confidence, patience/manifestation) via vocabulary not used by any prior title.",
+      "image_path": "assets/long-form/images/source_pool/lf_020_source_clip.mp4",
+      "image_source": {
+        "source": "owner_ai_generated_clip",
+        "path_used": "Path C (state/animated_clip_pool.json)",
+        "drive_file_id_requested": "1Bivbu3DH7SZuX7IOvklXfTGGSTpw3DZG",
+        "drive_folder_id": "1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6",
+        "provenance_note": "DISCLOSED CONTENT/CATALOG MISMATCH (found during this sourcing, not silently worked around): the pool's catalogued description for this fileId read 'thick night mist slowly drifts across a parking lot, tree branches/palm leaves sway' with no mention of any vehicle. The actual downloaded bytes (verified via stable md5=7f52b7b277b2954d259df4ae26ba0071 across repeated independent ffmpeg frame extractions, file size 918,669 bytes matching Drive metadata exactly via mcp__Google_Drive__get_file_metadata) decode to a completely different scene: a black Rolls-Royce Cullinan and black Ferrari 812 parked on a hillside driveway with LA skyline behind, with the mist effect present but the two supercars entirely omitted from the description. This is the third such mismatch found in this pool (after the lf_019/lf_018 sourcing cycle's two discoveries) -- state/animated_clip_pool.json's descriptions continue to not be trustworthy without an actual download+frame check, consistent with catalog_reliability_warning_2026_08_04.",
+        "duplicate_visual_check": "Explicit collision check per this cycle's task brief: verified this clip's actual content (Rolls-Royce Cullinan + Ferrari 812, hillside/LA-skyline vantage, progressive rolling mist) is NOT the same underlying footage as any already-consumed entry in state/animated_clip_pool.json's consumed[] list, including the two other known-mismatched entries (1awkgvXc9D... which actually decoded to lf_019's pink-underglow Rolls+Lambo scene, and 1CF19kKUG... which is that same pink-underglow scene's correctly-catalogued duplicate, never consumed/reserved). No legible plates or signage on either car in this clip (both plate areas are in shadow/motion-obscured mist at every sampled frame); no people, no watermark.",
+        "id_collision_note": "state/long_form_queue.json re-read for a fresh next-free id immediately before this write (lf_001-019 all present, lf_020 free); state/weekly_batch_progress.json confirmed item index 66 status still 'pending' at read time. Item 67 (this week's sibling long-form) may be sourcing concurrently from the same clip pool -- not yet visible as consumed at write time."
+      },
+      "animated_loop_path": "assets/long-form/animated_loops/lf_020_loop_segment.mp4",
+      "motion_decision": {
+        "loop_method": "reverse",
+        "confidence": 0.92,
+        "significant_subject_motion": false,
+        "camera_motion": false,
+        "motion_summary": "Locked static shot, two parked black supercars (Rolls-Royce Cullinan, Ferrari 812) on a hillside driveway at night with LA skyline behind. Camera and cars are fixed. The only movement is thick white mist that rises and thickens progressively/monotonically across the whole clip (near-clear at 0s, near white-out by 5.8s) -- never resets or oscillates.",
+        "reason": "Ambient motion here is diffuse (mist) but strongly asymmetric/progressive rather than symmetric or cyclical -- crossfading the near-clear opening frame against the near-white-out closing frame would blend two very different mist densities and produce visible ghosting/double-exposure. Reverse instead turns the one-way mist buildup into a natural rise-then-recede breathing cycle with an exact loop point (last frame of forward == first frame of reversed, and vice versa), no blending needed."
+      },
+      "animated_at": "2026-08-04T18:12:00Z",
+      "animation_verification_note": "10-frame contact sheet (scripts/loop_contact_sheet.py) confirmed monotonic mist buildup, no subject/camera motion. Built loop_segment.mp4 (13.167s, 1920x1080, h264) via scripts/loop_builder.py --method reverse. Frame-sampled start (t=0, clear, sharp), the internal cut/loop point (t~6.5s, near-peak mist, no flash/seam/duplicate-frame artifact), confirming clean loop.",
+      "audio_track_id": "Too Brief a Time to be Anything (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0, energy_profile.tier=ambient_quiet)",
+      "sound_sourced_at": "2026-08-04T18:15:00Z",
+      "sound_source_notes": "Checked state/cc0_audio_library.json per agents/long_form/4.2_sound_sourcer.md's energy-tiering guidance: ambient_quiet tier tracks are Rain _ Sleep _ Meditation (0.883, last used lf_008 -- outside the last-10 window), Cosmic Waves (0.826, used lf_018+lf_019 -- both very recent, avoid a third consecutive use), Too Brief a Time to be Anything (0.839, never yet used in the queue). Picked Too Brief a Time to be Anything as the least-recently-used ambient_quiet track and to leave Rain/Cosmic Waves available for the concurrent item-67 sibling. Already verified in the library (CC0 1.0, files.freemusicarchive.org CDN fileUrl, rel=license -> creativecommons.org/publicdomain/zero/1.0/, ffprobe-confirmed 2700.12s/256kbps/48kHz real audio, local file re-checked present and matching recorded byte size this cycle) -- not re-measured with librosa since the file is unmodified and already carries a full energy_profile record from its original 2026-08-04 sourcing, per agents/0_orchestrator.md's 'don't re-run a deterministic check that already ran on an unmodified file' guidance.",
+      "final_video_path": "assets/long-form/final/lf_020_final.mp4",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_020_thumb.jpg",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1920x1080, 6900.000000s exact target, full decode pass clean zero errors).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, pure ambient luxury visualization).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content).\nlong_form audio_license_gate: PASS (Too Brief a Time to be Anything, HoliznaCC0, CC0 1.0, verified per agents/long_form/4.2_sound_sourcer.md, energy_profile.tier=ambient_quiet beat_strength=0.839).\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=8, thumbnail_strength=8, title_strength=8, brand_consistency=9, manifestation_vibe=8 -- all >=8.\nLoop verified clean (see animation_verification_note): no seam/flash/duplicate-frame artifact at ping-pong cut point.\nThumbnail (lf_020_thumb.jpg) legible and strong: blacked-out Rolls-Royce Cullinan + Ferrari 812 on hillside driveway, LA skyline behind.\nRENDER NOTE: initial final render (produced pre-session-interruption) was corrupted (moov atom not found, truncated mid-write) -- re-assembled from scratch 2026-08-04 via scripts/ffmpeg_loop.sh using the same already-verified animated_loop_path and audio_track_id; new render passed full decode + duration checks.",
+      "published_video_id": "JaZ7b_svlts",
+      "published_url": "https://youtu.be/JaZ7b_svlts",
+      "published_at": "2026-08-08T12:30:00Z",
+      "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry."
     }
   ]
 }
