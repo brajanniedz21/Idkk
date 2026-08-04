@@ -4130,7 +4130,7 @@
     },
     {
       "id": "sf_062",
-      "status": "produced",
+      "status": "published",
       "scouted_at": "2026-08-04T18:20:00Z",
       "angle": "Certainty-from-day-one narrative: the outcome was never in doubt internally, even though nobody else could see that certainty at the time -- distinct from sf_045 (self-referential competition), sf_047 (self-set deadline beaten), sf_051 (no blueprint/self-taught), sf_058 (delayed-consumption/patience-in-spending), sf_059 (escape/reward-earned), sf_060 (presence/moment-claimed), and sf_061 (no-justification-owed) -- this is about the total absence of internal doubt from the start, not competition, deadlines, mentorship, spending restraint, earned reward, claiming a moment, or withholding explanation. Legacy/sacrifice/earned-over-time family per channel_playbook.md's repeat-bucket guidance.",
       "title_pattern": "I Never Doubted This. Not Once.",
@@ -4188,7 +4188,12 @@
       ],
       "thumbnail_path": "assets/short-form-clips/processed/sf_062_thumb.jpg",
       "thumbnail_billboard_check_note": "White supercar w/ green-blue neon underglow crossing a night street, viewed at 120px -- car instantly recognizable, bright glow against dark street. Passes.",
-      "gate_check_note": "shared_gates.factual_controversy_screen: PASS - no political/factual claims. shared_gates.platform_policy_check: PASS - no policy violations, title/thumbnail match content. shared_gates.basic_qa: PASS - ffprobe 1080x1920/10.0s, decode clean, no black/silent stretches. short_form_gates.copyright_gate mitigation: PASS - cropped vertical, dark grade applied, audio replaced. short_form_gates.audio_license_gate: PASS - Gata Only NJ (genuinely identified derivative of viral hit), genuine LRU (last used sf_009), risk accepted. footage/theme match: PASS - all 8 clips visually verified via frame extraction, all luxury-lifestyle, zero overlap with sf_061 (collision avoided, see visual_direction). content_quality_gate (Curiosity Engine): luxury_aesthetic 9, emotional_impact 9, thumbnail_strength 9, title_strength 9, brand_consistency 9, manifestation_vibe 9 - all >=8, PASS."
+      "gate_check_note": "shared_gates.factual_controversy_screen: PASS - no political/factual claims. shared_gates.platform_policy_check: PASS - no policy violations, title/thumbnail match content. shared_gates.basic_qa: PASS - ffprobe 1080x1920/10.0s, decode clean, no black/silent stretches. short_form_gates.copyright_gate mitigation: PASS - cropped vertical, dark grade applied, audio replaced. short_form_gates.audio_license_gate: PASS - Gata Only NJ (genuinely identified derivative of viral hit), genuine LRU (last used sf_009), risk accepted. footage/theme match: PASS - all 8 clips visually verified via frame extraction, all luxury-lifestyle, zero overlap with sf_061 (collision avoided, see visual_direction). content_quality_gate (Curiosity Engine): luxury_aesthetic 9, emotional_impact 9, thumbnail_strength 9, title_strength 9, brand_consistency 9, manifestation_vibe 9 - all >=8, PASS.",
+      "published_video_id": "H39DTyq4suU",
+      "published_url": "https://youtu.be/H39DTyq4suU",
+      "published_at": "2026-08-08T08:00:00Z",
+      "pinned_comment_status": "failed: 403 insufficient permissions (commentThreads forbidden)",
+      "thumbnail_upload_note": "thumbnail upload failed: 429 uploadRateLimitExceeded (transient, retried once, still rate-limited); video published successfully regardless per best-effort policy"
     },
     {
       "id": "sf_063",

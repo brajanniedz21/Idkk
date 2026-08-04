@@ -433,6 +433,18 @@
         "cta_variant_id": "cta_luxury_future",
         "cta_text": "Comment \"Luxury\" if this is your future."
       }
+    },
+    {
+      "video_id": "H39DTyq4suU",
+      "url": "https://youtu.be/H39DTyq4suU",
+      "title": "I Never Doubted This. Not Once.",
+      "published_at": "2026-08-08T08:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      }
     }
   ],
   "long_form": [
