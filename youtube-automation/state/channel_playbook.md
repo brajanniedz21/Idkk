@@ -1,6 +1,6 @@
 # Make It Manifest Channel Playbook
 
-Last updated: 2026-08-04T07:10:27.563781+00:00
+Last updated: 2026-08-04T11:53:08.680596+00:00
 Generated from analytics runs: analytics-2026-08-04-0710 (plus 7 total cycle entries in state/performance_notes.json)
 
 _This file is a distilled operational summary, not the source of truth. `state/performance_notes.json` and `state/video_analytics.json` hold the full history and every underlying evidence entry — nothing here should be trusted over them, and nothing here is ever the only place a finding lives._
@@ -13,15 +13,15 @@ Aspirational luxury / manifestation / future-self motivation, cinematic lifestyl
 
 - Analytics scope this generation: `has_analytics_scope=True` (Data API views/likes/comments are always available regardless; retention/watch-time need the Analytics scope and have a processing lag even when granted).
 - Retention, CTR, impressions, watch-time, and traffic-source data are not claimed anywhere in this file — CTR/impressions have no API path at all; the others are only ever included when a cycle explicitly pulled them.
-- 19 of 43 published videos currently don't join back to their scouted creative attributes (missing `published_video_id` linkage in the queue) — findings below are necessarily blind to those videos' angle/sound/title-pattern.
+- 26 of 50 published videos currently don't join back to their scouted creative attributes (missing `published_video_id` linkage in the queue) — findings below are necessarily blind to those videos' angle/sound/title-pattern.
 - No historical per-video snapshots exist yet, so all performance windows are recent-upload cohorts (current cumulative totals for recently-published videos), not true deltas — see `agents/0_orchestrator.md`'s Daily analytics cycle for the exact distinction.
-- Sample sizes are still small: 34 Shorts and 9 long-form videos published to date. Most findings below are `observation`/`early_signal`, not `repeated_pattern` or `strong_channel_pattern` — read every confidence label literally.
+- Sample sizes are still small: 39 Shorts and 11 long-form videos published to date. Most findings below are `observation`/`early_signal`, not `repeated_pattern` or `strong_channel_pattern` — read every confidence label literally.
 
 ## Strong Channel Patterns
 
 _None yet._ No finding has persisted across enough batches/dates/controlled variations to earn this tier — see `agents/0_orchestrator.md`'s evidence-level rules. Current same-format baselines, for reference:
-- **Shorts** — n=34, median views=309.0, median age-normalized views/day=89.8, median likes/1000 views=7.02, median comments/1000 views=0.0
-- **Long-form** — n=9, median views=12, median age-normalized views/day=4.9, median likes/1000 views=0.0, median comments/1000 views=0.0
+- **Shorts** — n=39, median views=256, median age-normalized views/day=56.7, median likes/1000 views=7.02, median comments/1000 views=0.0
+- **Long-form** — n=11, median views=5, median age-normalized views/day=2.5, median likes/1000 views=0.0, median comments/1000 views=0.0
 
 ## Promising Patterns to Validate
 
@@ -37,7 +37,7 @@ From the most recent narrative analytics finding (`2026-08-01T19:01:43.322871+00
 
 ## Winning Long-Form Patterns
 
-Baseline established (n=9) but no specific attribute-level winner has reached `repeated_pattern` confidence yet.
+Baseline established (n=11) but no specific attribute-level winner has reached `repeated_pattern` confidence yet.
 
 ## Underperforming Patterns
 
@@ -116,6 +116,7 @@ _Not yet populated — no analytics cycle has produced structured evidence for t
 
 ## Change Log
 
+- 2026-08-04T11:53:08.680596+00:00: regenerated from 7 cycle entries, 50 joined videos (26 missing attributes), 1 ledger experiments.
 - 2026-08-04T07:10:27.563781+00:00: regenerated from 7 cycle entries, 43 joined videos (19 missing attributes), 1 ledger experiments.
 - 2026-08-03T07:16:03.402514+00:00: regenerated from 6 cycle entries, 39 joined videos (18 missing attributes), 1 ledger experiments.
 - 2026-08-03T00:19:42.699379+00:00: regenerated from 5 cycle entries, 39 joined videos (18 missing attributes), 1 ledger experiments.
