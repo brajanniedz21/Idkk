@@ -4326,6 +4326,136 @@
       "published_at": "2026-08-08T17:00:00Z",
       "pinned_comment_status": "failed: 403 insufficient permissions (commentThreads forbidden)",
       "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry."
+    },
+    {
+      "id": "sf_065",
+      "status": "published",
+      "scouted_at": "2026-08-04T18:00:00Z",
+      "angle": "Promise-kept-to-past-self narrative (legacy/sacrifice/earned-over-time family, per state/channel_playbook.md's Promising Patterns to Validate). Distinct from sf_045 (self-referential-competition -- beating a former version, a rivalry/comparison frame): this candidate is not about competing with a past self but about a specific vow made at a low point now literally fulfilled, with the luxury result framed as proof the promise was kept, not proof of a race won. Distinct from sf_047 (self-set-deadline honored early -- a timing claim) and sf_058 (delayed-consumption/patience-in-spending -- a restraint-on-spending claim): this is about a vow's content being delivered, not about timing or restraint. Distinct from sf_050 (no-safety-net commitment -- a structural pre-commitment decision) and sf_051 (no-blueprint/self-taught -- about absence of guidance): this candidate's specific claim is a private promise, made to no one but self, now visibly kept.",
+      "title_pattern": "I Kept A Promise Nobody Heard Me Make.",
+      "title": "I Kept A Promise Nobody Heard Me Make.",
+      "caption_hooks": [
+        "Nobody witnessed the vow. Everyone sees the result.",
+        "The promise was private. The proof isn't.",
+        "I didn't say it out loud. I just did it."
+      ],
+      "trending_sound_style": "Confident, warm, mid-tempo (not maximally aggressive) -- matches the calmer/confident end of upbeat per brand_identity.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation"
+      ],
+      "tags": [
+        "luxury motivation",
+        "manifestation",
+        "wealth mindset",
+        "quiet confidence",
+        "discipline",
+        "success mindset",
+        "luxury lifestyle",
+        "self improvement",
+        "future self",
+        "aspirational luxury",
+        "manifest wealth",
+        "luxury shorts",
+        "motivation shorts",
+        "rich mindset"
+      ],
+      "seo_description": "A promise made when there was nothing to show for it -- kept quietly, with no audience and no announcement, until the result finally spoke for itself. This is what it looks like when a private vow becomes a visible life. Want the full ambience experience? The long-form version is on the channel.",
+      "source_notes": "Continues channel_playbook.md's repeat_and_validate direction for legacy/sacrifice/earned-over-time narratives with confident-not-aggressive audio (2026-08-04 playbook, 'Promising Patterns to Validate' section). Genuinely new specific mechanism (promise-kept) not previously used in sf_037-sf_060 -- see angle field for the specific distinctions checked against sf_045/047/050/051/058.",
+      "fatigue_status": "not in cooldown/retire_temporarily per channel_playbook.md (section not yet populated with structured findings); repeat_and_validate pick within the supported family.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "produced_file_path": "assets/short-form-clips/processed/sf_062.mp4",
+      "transform_log": "8 shots from 9 distinct clips, avg ~1.25s/shot (range 0.67s-1.45s, intro skipped: 0.12s). Audio: Love Nwantiti (Acoustic Ver.) [CKay], trending_audio_library.json, genuinely identified real song, ~91 BPM, warm/romantic-not-aggressive. Genuine LRU: joined every sound_direction/transform_log field across sf_001-sf_060 fresh at scripting time -- this track's last use was sf_043 (queue position 40 of 60), by far the single oldest last-use of any of the 18 library tracks (next-oldest cluster at positions 48-49); every unidentified owner-provided track was used far more recently (positions 55-59). ffprobe: 1080x1920, h264/aac, duration=10.000000s exact. Full decode pass (ffmpeg -v error -f null -): zero errors. Committed immediately after this verification, before thumbnail work.",
+      "clips_used": [
+        "13",
+        "18",
+        "19",
+        "21",
+        "35",
+        "38",
+        "39",
+        "47"
+      ],
+      "thumbnail_path": "assets/short-form-clips/processed/sf_065_thumb.jpg",
+      "thumbnail_billboard_check_note": "Orange Lamborghini full side profile, headlight glow, clearly recognizable against dark garage background at 120px; passes.",
+      "gate_check_note": "factual_controversy_screen: PASS, no political/controversial content, no fabricated claims. platform_policy_check: PASS, no hate/violence/self-harm, no clickbait mismatch, clip transformed (crop+grade+audio swap). basic_qa: PASS, 1080x1920, duration=10.000000s exact, aac audio present, zero decode errors, no black/silent stretches. copyright_gate: PASS, all clips reframed/cropped, dark grade applied, original audio replaced. audio_license_gate: PASS, Love Nwantiti (Acoustic Ver.) is genuinely identified (real CKay song, not generic 'original sound' label) in trending_audio_library.json. content_quality_gate (self-scored, threshold 8): luxury_aesthetic=9, emotional_impact=9, thumbnail_strength=9 (billboard-verified at 120px), title_strength=9 (curiosity-driven, not scene-descriptive), brand_consistency=9, manifestation_vibe=8. All categories clear threshold. sibling-collision check: clips_used [13,18,19,21,35,38,39,47] and audio (Love Nwantiti) checked against sf_059/sf_060 (most recent merged same-week shorts) -- zero clip overlap, different audio track; no other item-61/62/64/65 candidates merged into main as of this commit. [ID-collision note: produced as sf_062 in its own worktree; that id was independently claimed by two other concurrent worktrees (item 61's sf_062, already merged). Renamed to sf_065 at merge time -- title/content/gates unaffected, only id and filenames changed. Already-live YouTube video (qVJcAb9fQgc) unaffected, this only changes internal bookkeeping.]",
+      "published_video_id": "ROIR8mGVM3c",
+      "published_url": "https://youtu.be/ROIR8mGVM3c",
+      "published_at": "2026-08-08T14:00:00Z",
+      "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry.",
+      "pinned_comment_status": "not attempted this pass"
+    },
+    {
+      "id": "sf_065",
+      "status": "published",
+      "scouted_at": "2026-08-04T21:00:00Z",
+      "scripted_at": "2026-08-04T21:05:00Z",
+      "angle": "Arrival-without-announcement narrative: the convoy/yacht moves through its world without needing to prove anything to anyone watching. Built from scratch after wt-short-63's own fix attempt turned out to be a 100%-identical clips_used duplicate of sf_062 (item 61) -- see incident note in transform_log. Distinct from sf_061/062/063/064's mechanisms (no-justification-owed, proof-not-performance, no-easy-out, staged-for-no-one) -- see their angle fields.",
+      "title_pattern": "Nobody Announced This. It Just Arrived.",
+      "title": "Nobody Announced This. It Just Arrived.",
+      "caption_hooks": [
+        "No entrance. Just arrival.",
+        "This didn't need an announcement.",
+        "It just showed up already true."
+      ],
+      "trending_sound_style": "Love Nwantiti (Acoustic Ver.) by CKay -- warmer/gentler real trending track, genuinely distinct from owner_provided_181240 (used by sf_061/063/064, a separate unresolved same-day audio cluster) and from sf_062's Gata Only NJ.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation",
+        "#quietluxury"
+      ],
+      "source_notes": "No new competitor scan needed this cycle -- built as a direct bug-fix replacement for the sf_062-duplicate collision (owner-flagged bug class, 2026-08-04); angle chosen to be mechanically distinct from all 4 already-merged Saturday siblings (sf_061/062/063/064), verified via source_notes cross-check of each sibling's angle field.",
+      "seo_description": "No introduction needed -- it was already true before anyone was watching. Quiet wealth, deliberate motion, a life that doesn't perform for an audience. Want the full ambience experience? Check the channel for the long-form version.",
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "motivation",
+        "quiet luxury",
+        "discipline",
+        "self improvement",
+        "wealth mindset",
+        "success mindset",
+        "aesthetic motivation",
+        "supercar",
+        "luxury cars",
+        "mindset shift",
+        "resilience",
+        "law of attraction",
+        "night city luxury"
+      ],
+      "visual_direction": "Hillside village supercar convoy / yacht at dusk / watch macro / luxury details -- clip ids 3,5,6,7,9,10,12,23, each verified via frame extraction before selection; frames at t=3 (Porsche 911 convoy through a Spanish hillside village, terracotta roofs) and t=7 (superyacht with helipad at dusk, calm water, lit coastal town) individually viewed and confirmed genuine luxury-lifestyle content, zero overlap with any Saturday sibling's clips_used.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_control",
+        "cta_text": "Follow for more."
+      },
+      "produced_file_path": "assets/short-form-clips/processed/sf_065.mp4",
+      "clips_used": [
+        "3",
+        "5",
+        "6",
+        "7",
+        "9",
+        "10",
+        "12",
+        "23"
+      ],
+      "transform_log": "8 shots from 8 distinct clips, avg ~1.25s/shot (range 0.67s-1.45s, intro skipped: 0.12s) -- rebuilt from scratch after discovering wt-short-63's prior fix attempt (clips 21/35/38/47/17/24/29/55) was a 100% clips_used set match to the already-merged sf_062 (item 61); this candidate's clips (3/5/6/7/9/10/12/23) checked against all 4 merged Saturday siblings (sf_061: 13/14/15/18/19/39/56/64, sf_062: 17/21/24/29/35/38/47/55, sf_063: 1/14/15/19/24/35/47/54/55, sf_064: 13/14/17/24/35/39/48/55) -- zero overlap confirmed.",
+      "produced_at": "2026-08-04T21:25:00Z",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_065_thumb.jpg",
+      "thumbnail_billboard_check_note": "Porsche convoy descending hillside village street, clearly legible at 120px against warm sunlit stone -- passes.",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, decode clean, no black/silent stretches).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, no fabricated claims/quotes, generic first-person motivational framing).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual video content, real transformation applied not static repost).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (Love Nwantiti Acoustic Ver. by CKay, state/trending_audio_library.json, owner risk-acceptance on file for short-form real-track use).\ncontent_quality_gate: luxury_aesthetic=8, emotional_impact=8, thumbnail_strength=8, title_strength=8, brand_consistency=8, manifestation_vibe=8 -- all >=8, no regeneration needed.\nFrame-verified: all 8 clips (3/5/6/7/9/10/12/23) individually viewed before selection.\nSibling-collision check (owner-flagged bug class, 2026-08-04): clips_used and audio track cross-checked against all 4 already-merged Saturday siblings (sf_061/062/063/064) -- zero clip overlap, zero audio overlap. Root incident: wt-short-63's own prior fix attempt (rendered under id sf_062 after self-detecting a collision with sf_061) was itself a 100%-identical clips_used duplicate of the real merged sf_062 (item 61) -- caught before publish via explicit set-overlap comparison, discarded, this candidate built fully from scratch instead.",
+      "published_video_id": "ROIR8mGVM3c",
+      "published_url": "https://youtu.be/ROIR8mGVM3c",
+      "published_at": "2026-08-08T14:00:00Z",
+      "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry.",
+      "pinned_comment_status": "not attempted this pass"
     }
   ]
 }

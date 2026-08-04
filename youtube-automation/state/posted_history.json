@@ -458,6 +458,18 @@
         "cta_variant_id": "cta_luxury_future",
         "cta_text": "Comment \"Luxury\" if this is your future."
       }
+    },
+    {
+      "candidate_id": "sf_065",
+      "video_id": "ROIR8mGVM3c",
+      "published_at": "2026-08-08T14:00:00Z",
+      "title": "Nobody Announced This. It Just Arrived.",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_control",
+        "cta_text": "Follow for more."
+      }
     }
   ],
   "long_form": [

@@ -571,9 +571,9 @@
         "format": "short",
         "day": "2026-08-08",
         "local_slot": "15:00",
-        "status": "pending",
+        "status": "done",
         "scheduled_publish_at": "2026-08-08T14:00:00Z",
-        "candidate_id": null
+        "candidate_id": "sf_065"
       },
       {
         "index": 64,
@@ -789,6 +789,13 @@
       "thumbnail_path": "assets/short-form-clips/processed/sf_061_thumb.jpg",
       "noted_at": "2026-08-04T18:15:00Z",
       "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live/scheduled with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "candidate_id": "sf_065",
+      "video_id": "ROIR8mGVM3c",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_065_thumb.jpg",
+      "failed_at": "2026-08-04T21:30:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
     }
   ]
 }
