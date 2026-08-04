@@ -490,7 +490,7 @@
         "format": "short",
         "day": "2026-08-07",
         "local_slot": "09:00",
-        "status": "produced",
+        "status": "ready_to_publish",
         "scheduled_publish_at": "2026-08-07T08:00:00Z",
         "candidate_id": "sf_054"
       },
