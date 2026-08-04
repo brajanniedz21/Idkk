@@ -5,10 +5,6 @@
   "catalog_reliability_warning_2026_08_04": "Discovered while sourcing lf_019 (item index 60): at least 2 of 2 unused entries sampled this cycle had actual downloaded content that did NOT match their own catalogued description (or their own Drive-stored title/filename) -- 1awkgvXc9DscB75_AMU2gF_2j9F7_sKtF ('garage at dusk') actually decoded to the Rolls-Royce/Lamborghini pink-underglow scene catalogued under 1CF19kKUGblgdZc0L3z1XdcTDNFqAgL4Q, and 1RFB_r8ZzK_7mvpWods74GpobXGNwo67W ('fairy lights atrium') actually decoded to the person-loading-a-car-trunk-at-Waldorf-Astoria scene catalogued under 13TH_WSxeEYNPHTGQGIGaFAVfHrvBpbOA. Verified via stable md5 hash across repeated independent ffmpeg frame extractions -- not a download/caching artifact on this session's end. Do not select a Path C candidate by reading this pool's description alone; download and visually verify the actual frames before use, every time, until the owner confirms the Drive folder's file identities have been fixed.",
   "unused_pool": [
     {
-      "drive_file_id": "1SEUn0fXLgmyXGcwdbnr0xmV8DZOVWJna",
-      "description": "Static shot, two black supercars on cobblestone driveway at night. Gentle tropical breeze sways palm leaves/hanging vines continuously; Lamborghini scissor door slowly opens."
-    },
-    {
       "drive_file_id": "1Bivbu3DH7SZuX7IOvklXfTGGSTpw3DZG",
       "description": "Static shot. Thick night mist slowly drifts across a parking lot left to right. Tree branches/palm leaves sway gently in a light breeze."
     },
@@ -106,6 +102,15 @@
       "description": "Requested as 'garage at dusk with two supercars' per its own Drive-stored title, but actual downloaded content (verified via stable md5 across repeated ffmpeg extractions) is a white Rolls-Royce and orange Lamborghini Aventador on a villa driveway with pulsating pink/purple LED underglow -- see catalog_reliability_warning_2026_08_04 above. Used for lf_019 on this verified actual content, not the claimed description.",
       "consumed_by": "lf_019",
       "consumed_at": "2026-08-04T06:25:00Z"
+    },
+    {
+      "drive_file_id": "1SEUn0fXLgmyXGcwdbnr0xmV8DZOVWJna",
+      "description": "Static shot, two black supercars (Lamborghini + Porsche 911) on cobblestone driveway at night, tropical foliage lining the path. Lamborghini scissor door slowly opens across the clip; palm leaves/hanging vines sway continuously; string path-lights glow steadily; a third car (grey SUV) visible parked further up the driveway.",
+      "duration_sec": 5.875,
+      "resolution": "1364x768",
+      "consumed_by": "lf_018",
+      "consumed_at": "2026-08-04T16:10:00Z",
+      "provenance_note": "Chosen as lf_018's replacement source after the original pick (1CF19k..., see its unused_pool entry above) turned out to duplicate lf_019's actual footage. Verified by download (file size 1,524,117 bytes matches Drive metadata exactly) and a 10-frame contact sheet plus a tight taillight-area crop: no people/faces, no watermark/on-screen text, no legible plate text (too dark/motion-blurred to read on either car), genuinely distinct visual mechanism (subject motion -- scissor door opening -- rather than a static cinemagraph) from every other candidate used in the queue so far. Two prior rejects for this same slot: 1RFB_r8ZzK_7mvpWods74GpobXGNwo67W (fairy-lights atrium -- visible person + watermark, never consumed) and 1CF19kKUGblgdZc0L3z1XdcTDNFqAgL4Q (pink-underglow driveway -- de-consumed after the lf_019 content-duplicate discovery, see above)."
     }
   ]
 }

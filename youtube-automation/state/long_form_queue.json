@@ -747,6 +747,55 @@
       "published_scheduled_for": "2026-08-07T19:30:00Z",
       "actual_duration_minutes": 65.0,
       "assembled_at": "2026-08-04T16:36:00Z"
+    },
+    {
+      "id": "lf_018",
+      "status": "published",
+      "visual_theme": "Static locked-off tripod shot of two black supercars (a Lamborghini and a Porsche 911) parked on a cobblestone driveway at night, lined with tropical foliage (palm leaves/hanging vines) and warm string path-lighting. The Lamborghini's scissor door slowly opens across the clip; a third car (a grey SUV) sits further up the winding driveway. Red taillight strips glow on both foreground cars. No people, no faces, no on-screen text. Sourced from state/animated_clip_pool.json (Path C, PRIMARY source), drive_file_id 1SEUn0fXLgmyXGcwdbnr0xmV8DZOVWJna, folder 1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6. No legible plate text on either car (too dark/motion-blurred to read). Swapped in 2026-08-04 after discovering the originally-scouted clip (1CF19kKUGblgdZc0L3z1XdcTDNFqAgL4Q, pink-underglow Rolls-Royce/Lamborghini) is a byte-identical duplicate of the actual footage the concurrent item-index-60 worktree consumed for lf_019 (same publish day, 7 hours later) -- see state/animated_clip_pool.json's flagged_defects_note on that file id for the full discovery.",
+      "mood": "Genuinely quiet, sustained ambient pad/drone -- minimal to no audible rhythm, warm-dark tonal register matching a still night driveway. Re-sourced 2026-08-04 per the owner's real feedback that recent long-form audio was reading as 'too upbeat': the originally-picked track ('Faded in the Sunlight', a lo-fi HoliznaCC0 track) measured calm_lofi tier (beat_strength=1.239), not the required ambient_quiet tier -- see agents/long_form/4.2_sound_sourcer.md's Energy tiering section. Replaced with 'Cosmic Waves' (HoliznaCC0, Space - Sleep - Meditation album), ambient_quiet tier (beat_strength=0.826, the closest library match to the owner-supplied reference clip's beat_strength=0.508), never previously used anywhere in this queue.",
+      "title": "The Stillness You've Earned",
+      "seo_description": "Two hours and ten minutes of a quiet luxury driveway at night -- two black supercars resting beneath warm path-lighting and tropical foliage, a scissor door easing open in the stillness. Genuinely calm ambient background for deep focus, studying, journaling, or picturing the life you're building toward. #deepfocus #luxuryambience #manifestation",
+      "tags": [
+        "luxury ambience",
+        "night ambience",
+        "supercar ambience",
+        "manifestation music",
+        "deep focus ambience",
+        "study with me",
+        "luxury lifestyle aesthetic",
+        "calm ambient pads",
+        "cinematic ambience",
+        "driveway ambience"
+      ],
+      "target_length_minutes": 130,
+      "target_length_note": "Varied from the batch's recent picks (60,90,60,120,75,150,60,70,90,80,105,110,100,150,85,95 across lf_001-lf_017) -- 130 has not been used yet, mid-to-upper range, still a single reasonable continuous render/upload session.",
+      "content_exclusions_screen": "No political figures, parties, policy, or controversial social topics present in title/description/tags/visual concept. No stock-photo-caption-style title (checked against long_form_style_guidance.title_convention.banned_pattern -- title evokes an earned, arrived-at feeling, not a literal description of the driveway scene). Checked against every existing queue title (lf_001-lf_017, lf_019) for duplication/near-duplication -- 'The Stillness You've Earned' does not repeat any prior title's wording or structure, and avoids the overused 'This Is...'/'Some ___...' patterns already used 2x each. Purely generic luxury-ambience content consistent with the rest of the channel.",
+      "scouted_at": "2026-08-04T06:10:00Z",
+      "source_notes": "Scouted directly for weekly_batch_progress.json item index 59 (day 2026-08-07, local_slot 13:30, scheduled_publish_at 2026-08-07T12:30:00Z). Re-read state/long_form_queue.json fresh at start: highest existing id was lf_017, so this candidate is lf_018. Checked every existing title in the queue for a duplicate/near-duplicate before finalizing (per the lf_016/lf_017 'This Is What Arrival Feels Like' collision this session) -- 'The Glow You Were Meant to Chase' does not repeat any prior title's wording or structure, and avoids the overused 'This Is...'/'Some ___...'/'Quiet' patterns already used 2-3x each in the queue. Visual theme/mood/audio are all distinct from every recent entry (lf_011 water reflections, lf_012 misty countryside, lf_013 snowy driveway, lf_015 marina at night, lf_016 mansion sunset, lf_014 waterfront promenade, lf_017 harbor golden hour) -- no repeat mechanism or mood register.",
+      "image_source": "owner_ai_generated_clip (Path C, PRIMARY) -- Drive file 1SEUn0fXLgmyXGcwdbnr0xmV8DZOVWJna, folder 1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6 (state/animated_clip_pool.json), downloaded directly via Google Drive (mcp__Google_Drive__download_file_content, verified file size 1,524,117 bytes matches Drive metadata's fileSize field exactly) and inspected via a 10-frame contact sheet plus a tight taillight-area crop: real 1364x768 24fps h264 mp4, 5.875s, no people/faces, no watermark/ad text, no legible plate text on either car. Replaces the original pick for this candidate (1CF19kKUGblgdZc0L3z1XdcTDNFqAgL4Q, pink-underglow Rolls-Royce/Lamborghini cinemagraph) after discovering during this candidate's own production that it is a byte-identical duplicate (verified md5) of the actual footage the concurrent item-60 worktree independently consumed (under a different, mis-catalogued Drive file id) for lf_019, which publishes the same day 7 hours later -- shipping both would have put the same hero visual on the channel twice in one day. Marked consumed in state/animated_clip_pool.json; the de-consumed original id is left in unused_pool with a flagged_defects_note so a future candidate doesn't repeat the collision.",
+      "image_path": "assets/long-form/images/source_pool/lf_018_source_clip.mp4",
+      "image_sourced_at": "2026-08-04T16:10:00Z",
+      "animated_loop_path": "assets/long-form/animated_loops/lf_018_loop_segment.mp4",
+      "motion_decision": {
+        "loop_method": "reverse",
+        "confidence": 0.95,
+        "significant_subject_motion": true,
+        "camera_motion": false,
+        "motion_summary": "Locked-off static camera; two black supercars (Lamborghini with scissor door, Porsche 911) on a cobblestone driveway at night. The Lamborghini's scissor door visibly and continuously opens further across the clip's duration -- a real foreground-subject pose change, not ambient particle motion. Palm leaves/hanging vines sway gently in the background (ambient, secondary).",
+        "reason": "Per agents/long_form/3.2_animator.md's mixed-scene rule, major-subject motion (the door opening) always takes priority over any ambient movement present -- a crossfade would visibly ghost/double-expose the door across its open/closed positions. Reverse ping-pong is the correct method: the door opens forward then closes symmetrically on the reversed half with an exact loop point."
+      },
+      "animated_at": "2026-08-04T16:12:00Z",
+      "animation_verification_note": "Built via scripts/loop_builder.py --method reverse: 13.167s loop segment, 1920x1080, 24fps h264 (confirmed via ffprobe). Frame-sampled at t=0.02s (start), t=6.5s (mid, deep into the reversed half), and t=13.1s (near end, just before the wrap) and viewed all three via the Read tool: the start and end frames show the scissor door in an essentially identical position (confirming the exact reverse loop point -- forward tail and reversed head are the same ramped frame by construction), and the mid frame shows the door mid-close, consistent with the reverse ping-pong motion. No seam, no jump, no ghosting (reverse never blends frames, unlike crossfade).",
+      "audio_track_id": "Cosmic Waves (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0, energy_profile.tier=ambient_quiet)",
+      "sound_sourced_at": "2026-08-04T16:15:00Z",
+      "sound_source_notes": "Re-sourced 2026-08-04 after the owner's real feedback that long-form audio was reading as too upbeat (see agents/long_form/4.2_sound_sourcer.md's Energy tiering section, added the same day). This candidate's original pick ('Faded in the Sunlight') measures calm_lofi (beat_strength=1.239) per state/cc0_audio_library.json's energy_profile field, not the now-required ambient_quiet tier -- rejected for this use. Checked state/cc0_audio_library.json for ambient_quiet tracks unused in the last ~10 long-form posts: 3 exist (Rain _ Sleep _ Meditation, Cosmic Waves, Too Brief a Time to be Anything). Rain _ Sleep _ Meditation was used 4x early in the queue (lf_002/004/006/008) but not within the last 10 published entries, so it would have been eligible; picked 'Cosmic Waves' instead since it measures the closest beat_strength (0.826) to the owner-supplied reference clip's calibration target (0.508) of any track in the library, has never been used anywhere in the queue (zero repeat risk), and its long runtime (~33 min, ffprobe-confirmed 1984.56s) means very few loop repeats are needed to fill the 130-minute target. Already verified true/CC0 1.0 in state/cc0_audio_library.json (license checked directly on the track's own FMA page, file ffprobe-verified) -- no new license verification needed, just confirmed the local file (assets/audio/holiznacc0_cosmic_waves.mp3, copied into this worktree) matches the library entry's stated ffprobe result (1984.56s, 320kbps, 48kHz stereo).",
+      "final_video_path": "assets/long-form/output/lf_018_final.mp4",
+      "actual_duration_minutes": 130.0,
+      "assembled_at": "2026-08-04T17:05:00Z",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_018_thumb.jpg",
+      "thumbnail_billboard_check_note": "Frame at t=0.5s from source clip (two black supercars, red taillight accents, scissor door open). Viewed 120px billboard preview -- both taillight strips and the door silhouette clearly discernible against the dark driveway. Accepted.",
+      "assembly_note": "ffmpeg render to completion, 130min/7800s target.",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1920x1080 h264/aac, 7800.000000s exact, decode clean). long_form_gates.image_copyright_gate path C: PASS. long_form_gates.audio_license_gate: PASS (Cosmic Waves, CC0 1.0, ambient_quiet tier). long_form_gates.loop_length_gate: PASS (130min in [60,600]). content_quality_gate: all 6 categories >=8. Subscribe overlay frame-verified at t=1.5s (visible) and t=10s (gone, clean driveway scene)."
     }
   ]
 }

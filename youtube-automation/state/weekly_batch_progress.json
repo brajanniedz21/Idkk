@@ -535,9 +535,9 @@
         "format": "long",
         "day": "2026-08-07",
         "local_slot": "13:30",
-        "status": "pending",
+        "status": "done",
         "scheduled_publish_at": "2026-08-07T12:30:00Z",
-        "candidate_id": null
+        "candidate_id": "lf_018"
       },
       {
         "index": 60,
