@@ -365,6 +365,14 @@
       "published_at": "2026-08-03T19:00:00Z",
       "format": "long",
       "duration_minutes": 80
+    },
+    {
+      "candidate_id": "lf_013",
+      "video_id": "6PR4jRyLJUU",
+      "published_at": "2026-08-04T12:30:00Z",
+      "title": "The Quiet Kept Falling With The Snow",
+      "format": "long",
+      "duration_minutes": 110
     }
   ]
 }

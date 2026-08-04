@@ -355,7 +355,7 @@
         "format": "long",
         "day": "2026-08-04",
         "local_slot": "13:30",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-04T12:30:00Z",
         "candidate_id": "lf_013"
       },
