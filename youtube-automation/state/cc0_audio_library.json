@@ -1,5 +1,5 @@
 {
-  "_comment": "Verified CC0 / no-attribution-required audio tracks for long-form (ambient/phonk) and short-form (swap-in for reused clips). Agent 4.2 and Agent 3.1 only pull from entries where verified=true. verification_note must state what was checked (license tag AND source page), not just the platform label. Energy tiering added 2026-08-04 (owner direction: long-form audio was reading too upbeat for the quiet-luxury aesthetic) -- every track now carries an energy_profile (beat_strength/rms via librosa, tier: ambient_quiet/calm_lofi/upbeat_rhythmic). Only Wetlands genuinely measures ambient_quiet as of 2026-08-04; searched FMA further the same day (HoliznaCC0 Ocean Memory album tracks measured upbeat_rhythmic/calm_lofi, blv8ion Cloud Stillness/Innerwave albums are genuinely ambient by ear/title but licensed CC-BY-NC-ND -- non-commercial-only, rejected) -- see agents/long_form/4.2_sound_sourcer.md for the full method and thresholds. Future sourcing should keep looking for more ambient_quiet options; do not default to calm_lofi/upbeat_rhythmic out of convenience.",
+  "_comment": "Verified CC0 / no-attribution-required audio tracks for long-form (ambient/phonk) and short-form (swap-in for reused clips). Agent 4.2 and Agent 3.1 only pull from entries where verified=true. verification_note must state what was checked (license tag AND source page), not just the platform label. Energy tiering added 2026-08-04 (owner direction: long-form audio was reading too upbeat for the quiet-luxury aesthetic) -- every track now carries an energy_profile (beat_strength/rms via librosa, tier: ambient_quiet/calm_lofi/upbeat_rhythmic). Only Wetlands genuinely measures ambient_quiet as of 2026-08-04; searched FMA further the same day (HoliznaCC0 Ocean Memory album tracks measured upbeat_rhythmic/calm_lofi, blv8ion Cloud Stillness/Innerwave albums are genuinely ambient by ear/title but licensed CC-BY-NC-ND -- non-commercial-only, rejected) -- see agents/long_form/4.2_sound_sourcer.md for the full method and thresholds. Future sourcing should keep looking for more ambient_quiet options; do not default to calm_lofi/upbeat_rhythmic out of convenience. 2026-08-04 update: owner supplied a real reference clip (a competitor SansSylvna Short) and the energy tiering was recalibrated against its measured beat_strength=0.508 (see agents/long_form/4.2_sound_sourcer.md). Two new genuinely ambient_quiet tracks added (Cosmic Waves, Too Brief a Time to be Anything, both HoliznaCC0 Space-Sleep-Meditation album) plus Rain _ Sleep _ Meditation reclassified from calm_lofi to ambient_quiet under the corrected threshold -- 3 real ambient options now vs. 1 before. The reference clip itself is never used in any production (competitor copyrighted audio) -- calibration target only.",
   "tracks": [
     {
       "title": "Phonk ish",
@@ -16,7 +16,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.295,
         "rms": 0.1245,
-        "tier": "calm_lofi"
+        "tier": "calm_lofi",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -34,7 +36,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 0.883,
         "rms": 0.1087,
-        "tier": "calm_lofi"
+        "tier": "ambient_quiet",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -52,7 +56,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.287,
         "rms": 0.1744,
-        "tier": "upbeat_rhythmic"
+        "tier": "calm_lofi",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -70,7 +76,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.585,
         "rms": 0.175,
-        "tier": "upbeat_rhythmic"
+        "tier": "upbeat_rhythmic",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -88,7 +96,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.213,
         "rms": 0.1114,
-        "tier": "calm_lofi"
+        "tier": "calm_lofi",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -106,7 +116,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.34,
         "rms": 0.1694,
-        "tier": "upbeat_rhythmic"
+        "tier": "calm_lofi",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -124,7 +136,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.397,
         "rms": 0.0974,
-        "tier": "upbeat_rhythmic"
+        "tier": "upbeat_rhythmic",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -142,7 +156,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.022,
         "rms": 0.057,
-        "tier": "ambient_quiet"
+        "tier": "calm_lofi",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -160,7 +176,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.297,
         "rms": 0.2451,
-        "tier": "upbeat_rhythmic"
+        "tier": "calm_lofi",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -178,7 +196,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.052,
         "rms": 0.2186,
-        "tier": "upbeat_rhythmic"
+        "tier": "calm_lofi",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -197,7 +217,9 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.239,
         "rms": 0.095,
-        "tier": "calm_lofi"
+        "tier": "calm_lofi",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
       }
     },
     {
@@ -216,7 +238,47 @@
         "method": "librosa onset_strength mean (beat_strength) + rms mean over first 60s",
         "beat_strength": 1.427,
         "rms": 0.0777,
-        "tier": "upbeat_rhythmic"
+        "tier": "upbeat_rhythmic",
+        "tier_recalibrated_at": "2026-08-04T15:50:00Z",
+        "tier_recalibration_note": "Recalibrated against a real reference clip the owner provided (beat_strength=0.508) -- beat_strength is now the primary tier signal, rms is reported but not gating."
+      }
+    },
+    {
+      "title": "Cosmic Waves",
+      "artist": "HoliznaCC0",
+      "album": "Space - Sleep - Meditation",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/space-sleep-meditation/cosmic-waves/",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Checked the license badge on the track's own FMA page directly: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/. File fetched from the page's embedded data-track-info JSON fileUrl field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 320kbps, 48kHz stereo, 1984.56s (~33min), non-corrupt, 79,383,565 bytes. Sourced 2026-08-04 specifically to find a genuinely calmer alternative after the owner reported existing long-form tracks read as too upbeat -- measured against a real reference clip the owner provided (a competitor Short's background music, beat_strength=0.508): Cosmic Waves measures beat_strength=0.826, the closest match found in this library as of 2026-08-04 (better than the previous best, Wetlands at 1.022).",
+      "added_at": "2026-08-04T15:50:00Z",
+      "local_path": "assets/audio/holiznacc0_cosmic_waves.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-04T15:50:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean + spectral_centroid mean, first 90s",
+        "beat_strength": 0.826,
+        "rms": 0.098,
+        "spectral_centroid": 638.6,
+        "tier": "ambient_quiet"
+      }
+    },
+    {
+      "title": "Too Brief a Time to be Anything",
+      "artist": "HoliznaCC0",
+      "album": "Space - Sleep - Meditation",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/space-sleep-meditation/too-brief-a-time-to-be-anything/",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Checked the license badge on the track's own FMA page directly: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/. File fetched from the page's embedded data-track-info JSON fileUrl field (files.freemusicarchive.org CDN, no auth). Downloaded file verified via `file`/`ffprobe`: real MPEG audio, 256kbps, 48kHz stereo, 2700.12s (~45min), non-corrupt, 86,404,813 bytes. Sourced 2026-08-04 alongside Cosmic Waves for the same reason -- measured beat_strength=0.839 against the owner's real reference clip (beat_strength=0.508), the second-closest match found in this library as of 2026-08-04.",
+      "added_at": "2026-08-04T15:50:00Z",
+      "local_path": "assets/audio/holiznacc0_too_brief_a_time_to_be_anything.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-04T15:50:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean + spectral_centroid mean, first 90s",
+        "beat_strength": 0.839,
+        "rms": 0.1176,
+        "spectral_centroid": 601.2,
+        "tier": "ambient_quiet"
       }
     }
   ],
