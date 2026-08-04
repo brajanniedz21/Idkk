@@ -317,6 +317,48 @@
       "video_id": "8OEytPaZ_Vs",
       "published_at": "2026-08-05T11:00:00Z",
       "title": "No One's Checking. I Show Up Anyway."
+    },
+    {
+      "candidate_id": "sf_044",
+      "video_id": "UcnSLCbPKpg",
+      "published_at": "2026-08-05T14:00:00Z",
+      "title": "It Wasn't One Big Moment. It Was A Thousand Quiet Ones."
+    },
+    {
+      "candidate_id": "sf_045",
+      "video_id": "3xWHo2V-Y-U",
+      "published_at": "2026-08-05T17:00:00Z",
+      "title": "The Only Person I'm Trying To Beat Is Who I Used To Be."
+    },
+    {
+      "candidate_id": "sf_050",
+      "video_id": "ye0LHnyU65U",
+      "published_at": "2026-08-05T20:00:00Z",
+      "title": "There Was No Plan B. On Purpose."
+    },
+    {
+      "candidate_id": "sf_047",
+      "video_id": "x3tzghwp_aA",
+      "published_at": "2026-08-06T08:00:00Z",
+      "title": "I Never Told You The Deadline. I Just Beat It."
+    },
+    {
+      "candidate_id": "sf_046",
+      "video_id": "4kC9w6KDc4E",
+      "published_at": "2026-08-06T11:00:00Z",
+      "title": "I Never Rushed Any Of This."
+    },
+    {
+      "candidate_id": "sf_048",
+      "video_id": "bG4_apNGhxM",
+      "published_at": "2026-08-06T14:00:00Z",
+      "title": "I Said No So Many Times."
+    },
+    {
+      "candidate_id": "sf_049",
+      "video_id": "yBEg6ICBhs4",
+      "published_at": "2026-08-06T17:00:00Z",
+      "title": "You're Only Seeing This Because I Let You."
     }
   ],
   "long_form": [
@@ -405,6 +447,30 @@
       "title": "Some Mornings Ask For Nothing But Stillness",
       "format": "long",
       "duration_minutes": 90
+    },
+    {
+      "candidate_id": "lf_014",
+      "video_id": "_2kMSKmuJSs",
+      "published_at": "2026-08-05T12:30:00Z",
+      "title": "Where Success Comes to Rest",
+      "format": "long",
+      "duration_minutes": 150.0
+    },
+    {
+      "candidate_id": "lf_015",
+      "video_id": "Db-nx85nK0c",
+      "published_at": "2026-08-05T19:30:00Z",
+      "title": "Everything You Wanted Is Already Yours",
+      "format": "long",
+      "duration_minutes": 100
+    },
+    {
+      "candidate_id": "lf_016",
+      "video_id": "ttedgtMmUoM",
+      "published_at": "2026-08-06T12:30:00Z",
+      "title": "This Is What Arrival Feels Like",
+      "format": "long",
+      "duration_minutes": 85.0
     }
   ]
 }
