@@ -419,19 +419,20 @@
         "cta_experiment_id": "cta-luxury-001",
         "cta_variant_id": "cta_luxury_future",
         "cta_text": "Comment \"Luxury\" if this is your future."
-      }
+      },
+      "candidate_id": "sf_061"
     },
     {
       "candidate_id": "sf_063",
-      "video_id": "5zCsYRp9tKA",
-      "url": "https://youtu.be/5zCsYRp9tKA",
+      "video_id": "Djmk71SoLO0",
+      "url": "https://youtu.be/Djmk71SoLO0",
       "title": "I Kept Saying No To Easy.",
       "published_at": "2026-08-08T20:00:00Z",
       "format": "short",
       "cta_assignment": {
         "cta_experiment_id": "cta-luxury-001",
-        "cta_variant_id": "cta_luxury_future",
-        "cta_text": "Comment \"Luxury\" if this is your future."
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Comment \"Claim\" to lock this in."
       }
     },
     {
@@ -449,7 +450,7 @@
     },
     {
       "candidate_id": "sf_064",
-      "video_id": "QDYIgLq0VBw",
+      "video_id": "9OvHBWZQpGQ",
       "published_at": "2026-08-08T17:00:00Z",
       "title": "This Was Never Staged For You.",
       "format": "short",

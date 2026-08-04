@@ -796,6 +796,20 @@
       "thumbnail_path": "assets/short-form-clips/processed/sf_065_thumb.jpg",
       "failed_at": "2026-08-04T21:30:00Z",
       "reason": "uploadRateLimitExceeded (429)"
+    },
+    {
+      "candidate_id": "sf_063",
+      "video_id": "Djmk71SoLO0",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_063_thumb.jpg",
+      "failed_at": "2026-08-04T21:45:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
+    },
+    {
+      "candidate_id": "sf_064",
+      "video_id": "9OvHBWZQpGQ",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_064_thumb.jpg",
+      "failed_at": "2026-08-04T21:46:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
     }
   ]
 }
