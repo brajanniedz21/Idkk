@@ -3652,7 +3652,68 @@
         "38"
       ],
       "transform_log": "Counted existing cta_assignment entries in state/short_form_queue.json immediately before assigning: 21. scripts.cta_experiment.assign_variant_by_rotation(21) -> 'cta_luxury_future'. RENDER (run from assets/short-form-clips/ per the script's relative raw/ path convention): python3 ../../scripts/short_form_transform.py --output processed/sf_052.mp4 --audio ../audio/trending/owner_provided_182026.mp3 --duration 10 --clips raw/63.mp4 raw/37.mp4 raw/64.mp4 raw/7.mp4 raw/29.mp4 raw/5.mp4 raw/58.mp4 raw/38.mp4. Script stdout: \"Transformed (beat-synced cuts, <=1.5s cap): 10 shots from 8 distinct clips, avg ~1.00s/shot (range 0.79s-1.14s, intro skipped: 5.86s, cut points from real beat detection on ../audio/trending/owner_provided_182026.mp3)\" -> vertical, dark/low-exposure grade, no captions, audio-replaced -> assets/short-form-clips/processed/sf_052.mp4. Cap genuinely met (max 1.14s < 1.5s). Duration target 8-12s per current config/channel.json.short_form_style_guidance, rendered at exactly 10.0s. Independently verified immediately after render, before any thumbnail work: ffprobe confirms 1080x1920, codec h264, audio aac 48000Hz stereo, duration=10.000000s exactly; full decode pass (ffmpeg -v error -i ... -f null -) completed with zero errors/warnings (DECODE_OK). Extracted and viewed 9 frames across the full timeline (0.3/1.5/2.7/3.9/5.1/6.3/7.5/8.7/9.5s): 0.3s = raw/63 rooftop infinity pool edge over a lit night skyline; 1.5s = raw/37 private cash-counting machine, hundred-dollar bills fanned out; 2.7s = raw/29 jetski wake over turquoise water near mangroves; 3.9s = raw/7 night supercar meet (Huracan, Audi R8s, Corvette ZR1); 5.1s = raw/64 Brabus G-Wagen headlight/hood detail; 6.3s = raw/58 superyacht at anchor near a Mediterranean hillside; 7.5s = raw/38 Burj Khalifa fireworks display over the skyline; 8.7s = raw/63 rooftop pool recurring via the script's rotating-offset fallback (10 shots from 8 distinct clips, documented behavior); 9.5s = raw/37 cash count recurring. Dark/desaturated/vignetted gymcore grade visibly applied throughout every frame checked, zero on-screen text/captions burned in by the pipeline anywhere (the Burj frame's own real EMAAR building signage and the money frame's own real phone-screen UI are source-footage content, not pipeline-added text), no watermark bleed in any frame. Audio replaced with owner_provided_182026 per sound_direction. Committed the render immediately after this verification, before any thumbnail work, per agents/0_orchestrator.md's session-limit-loss lesson.",
-      "produced_at": "2026-08-04T06:17:57Z"
+      "produced_at": "2026-08-04T06:17:57Z",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_052_thumb.jpg",
+      "thumbnail_billboard_check_note": "Source frame: extracted directly from the produced sf_052.mp4 at 3.9s (ffmpeg -ss 3.9 -vframes 1), the night supercar-meet shot (raw/7.mp4) -- yellow Lamborghini Huracan, blue/orange Audi R8s, and a yellow Corvette ZR1, headlights lit against a dark parking-lot background. Dark gymcore grade and vertical crop already baked in from the render. Ran through scripts/thumbnail_optimize.py unmodified (brightness/contrast/sharpness/shadow-lift defaults). Actually viewed both outputs directly via the Read tool: at full size the four distinct supercars (yellow, blue, orange, yellow) with bright white headlight accents against near-black background read clearly and vividly; at the 120px billboard preview, the bright yellow Huracan headlight and the orange Audi's lit grille are still immediately legible as 'supercars at night' even though the exact makes blur together at that size -- passes the billboard-legibility check on color/light-accent recognition, per config/channel.json.short_form_style_guidance.thumbnail_guidance's 'one bright lighting accent against a darker background' composition target (a multi-car scene rather than a single car filling 40% of frame, a real minor tradeoff against that guidance's car-primarily preference, but the guidance itself is documented as an unverified tiebreaker, not a hard rule, and the actual legibility test still passes clearly). No on-screen text on the thumbnail image itself, consistent with the text_rule."
+    },
+    {
+      "id": "sf_056",
+      "status": "produced",
+      "scouted_at": "2026-08-04T06:00:00Z",
+      "angle": "Decade-of-silence narrative: distinct mechanism from every angle used sf_037-sf_052 (left-for-someone-unborn, peace-not-money, invisible-unwitnessed-effort, self-doubt-overcome, perpetual-ascension, presence/time, self-accountability, compounding-decisions, self-vs-past-self competition, patience/timing, self-set-deadline, boundary-protection, controlled-visibility, no-safety-net, no-blueprint/self-taught, invisible-debt-still-being-paid [sf_052, concurrent candidate]). This one is specifically about the deliberate choice NOT to narrate the plan out loud for a full decade -- not staying quiet because no one was watching (sf_039), not guarding a boundary (sf_048), not controlling who gets to see the result (sf_049), not an ongoing debt (sf_052) -- but choosing silence over explanation for ten years and letting the visible result (supercars, Burj Khalifa skyline, rooftop pool, cash, yacht, jetski, hot air balloon travel) answer for itself instead. Fits state/channel_playbook.md's 'legacy/sacrifice/earned-over-time narratives' repeat bucket while varying the surface mechanism per the diversify guidance in agents/0_orchestrator.md.",
+      "title_pattern": "Ten Years Of Silence Bought This.",
+      "caption_hooks": [
+        "I never once explained the plan.",
+        "Ten years. Not one update.",
+        "The result talks now. I don't have to."
+      ],
+      "trending_sound_style": "Confident, driving mid-tempo (not maximally aggressive) -- matches the calmer-confident end of 'upbeat' per config/channel.json.brand_identity/short_form_style_guidance.energy.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation"
+      ],
+      "source_notes": "Continues state/channel_playbook.md's 'Instructions for the Next Scouting Run' (legacy/sacrifice/earned-over-time repeat bucket, updated 2026-08-03) and the 2026-08-01 promising-pattern note (confident-not-aggressive mid-tempo audio, luxury/calm register) -- repeat bucket, varying the specific mechanism (silence-as-decade-long-choice) rather than reusing any of the mechanisms already produced/in-flight sf_037-sf_052. Checked posted_history.json and the full short_form_queue.json + long_form_queue.json title lists (re-checked at write time, after a concurrent agent had already taken id sf_052 with a different title -- confirmed no collision for this candidate's own title). Pre-existing note: 'This Is What Arrival Feels Like' already appears once in the short-form queue and once in the long-form queue (a real cross-format collision from earlier in this session) -- not introduced by this candidate, and this candidate's own title matches neither.",
+      "title": "Ten Years Of Silence Bought This.",
+      "seo_description": "Ten years of building without a single public update -- no countdown, no 'in progress' post, no explanation while it was happening. The result speaks now so the years don't have to. Want the full 1-hour ambience version for deep focus and manifestation? Check the channel for the long-form cut.",
+      "tags": [
+        "luxury motivation",
+        "manifestation",
+        "quiet discipline",
+        "wealth mindset",
+        "success mindset shorts",
+        "luxury lifestyle",
+        "self improvement",
+        "future self",
+        "discipline over motivation",
+        "aspirational luxury",
+        "silent grind",
+        "delayed gratification",
+        "abundance mindset",
+        "vision board energy"
+      ],
+      "sound_direction": "Real trending track: owner_provided_182026 (unidentified, owner-supplied), state/trending_audio_library.json unidentified_owner_provided_tracks -- ~104.2 BPM (measured via librosa per the library's own entry). Computed genuine least-recently-used rotation before picking: parsed every 'Real trending track:' selection line (not just any mention in comparison prose) across the full state/short_form_queue.json history (sf_012 through sf_051) and took the last actual selection per track. owner_provided_182026 was last actually selected at sf_019 (2026-07-27) -- by a wide margin the single oldest last-use of any track in either the identified (8 named tracks) or unidentified (10 owner-provided) lists; every other track in the library has been selected at least once since sf_037, most within the last 5-8 candidates (owner_provided_181830 was even reused twice in a row at sf_050/sf_051). This is a genuine, well-evidenced LRU pick, not a repeat of anything from this week's batch. Confident/driving mid-tempo per its measured BPM lands on the calmer-confident end of 'upbeat' per config/channel.json.brand_identity, not maximally aggressive phonk/hardtekk -- fits a composed, already-certain 'the result speaks for itself' register well. NOT a slow/ambient/piano track -- fast beat-locked cuts still apply, capped at 1.5s/shot per short_form_style_guidance; confirmed in the actual render (10 shots, avg ~1.00s/shot, range 0.79s-1.14s, well under the cap).",
+      "visual_direction": "Luxury-lifestyle raw pool clips only, verified via frame extraction before selection (rejected raw/1.mp4 [lavender field/tree, off-theme], raw/28.mp4 [motocross stunt, off-theme], raw/43.mp4 [paragliding, off-theme] -- all present-but-unused files that visually don't read as luxury-lifestyle despite being 'never-used' in the usage-count report). Selected 8 distinct clips, all confirmed via frame grab as genuine luxury-lifestyle content and outside the cooldown set current at production time (raw/2,3,6,8,10,13,14,15,16,17,18,19,20,21,23,24,25,35,39,45,47,50,51,52,53,54,55,56,57,60,61,62,65,66,67,68,69,70 -- from the last 5 published Shorts): raw/37 (cash counter close-up), raw/38 (Burj Khalifa fireworks/skyline), raw/48 (dark supercar detail/interior), raw/63 (Dubai skyline aerial, native vertical, no crop needed), raw/64 (jetski wake), raw/29 (Cappadocia hot air balloons at dawn), raw/58 (yacht with private putting green), raw/7 (supercar lineup at night, bright headlights). Deliberately favored never-used (raw/48) and 1x-used clips over the pool's most-repeated clips (raw/68 6x, raw/65 5x) per the usage-skew guidance in agents/short_form/3.1_producer.md.",
+      "clips_used": [
+        "37",
+        "38",
+        "48",
+        "63",
+        "64",
+        "29",
+        "58",
+        "7"
+      ],
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "produced_file": "assets/short-form-clips/processed/sf_056.mp4",
+      "transform_log": "Transformed (beat-synced cuts, <=1.5s cap): 10 shots from 8 distinct clips, avg ~1.00s/shot (range 0.79s-1.14s, intro skipped: 5.86s, cut points from real beat detection on assets/audio/trending/owner_provided_182026.mp3) -> vertical 1080x1920, dark/low-exposure 'gymcore' grade, no captions, audio fully replaced. ffprobe confirmed 1080x1920, duration 10.0s (within 8-12s target), both video and audio streams present. Full decode pass (ffmpeg -f null -) completed with no errors, re-verified after the file was renamed from sf_052 to sf_056 to resolve a mid-session id collision with a concurrently-produced candidate. Visually verified 6 extracted frames (0.5s, 2.0s, 4.0s, 6.0s, 8.0s, 9.5s): rooftop infinity pool over a lit night skyline, jetski wake over turquoise water, hot air balloons at dawn, dark supercar detail shot, Burj Khalifa fireworks display, cash being counted -- all genuinely luxury-lifestyle content matching visual_direction, watermark correctly excluded by the default center-crop on every landscape-source clip, dark grade visibly applied throughout.",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_056_thumb.jpg",
+      "thumbnail_billboard_check_note": "Source frame at t=1.0s (raw/7.mp4, supercar lineup: yellow Lamborghini + blue and orange Audi R8s + yellow Corvette, headlights lit, dark asphalt/night background) -- matches thumbnail_guidance's bright-lighting-accent-against-dark-background composition. Viewed both the full thumbnail and the 120px billboard preview via Read: at 120px the yellow Lamborghini (front-left, bright headlight) and the illuminated orange R8 grille remain clearly, instantly recognizable as exotic cars against the dark lot -- passes the billboard test.",
+      "audio_track_local_path": "assets/audio/trending/owner_provided_182026.mp3"
     }
   ]
 }
