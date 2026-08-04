@@ -4458,6 +4458,69 @@
       "published_at": "2026-08-08T14:00:00Z",
       "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry.",
       "pinned_comment_status": "not attempted this pass"
+    },
+    {
+      "id": "sf_066",
+      "status": "ready_to_publish",
+      "scouted_at": "2026-08-04T23:50:00Z",
+      "scripted_at": "2026-08-04T23:52:00Z",
+      "angle": "Witnessed-not-announced narrative (legacy/sacrifice/earned-over-time family per channel_playbook.md's repeat_and_validate direction, n=34 support): the life wasn't built for an audience, but the world noticed anyway -- distinct from sf_064 (proof-not-performance, the result as evidence a promise was kept) and sf_065 (arrival-without-announcement, motion through the world without needing to prove anything): this candidate's specific claim is that visibility was never the goal, it just happened as a side effect.",
+      "title_pattern": "I Never Asked To Be Seen.",
+      "title": "I Never Asked To Be Seen.",
+      "caption_hooks": [
+        "I wasn't building this for an audience.",
+        "Nobody had to notice. They just did.",
+        "Visibility was never the point."
+      ],
+      "trending_sound_style": "ion care cuz he did it first (Ice Spice) -- confident/defiant flex energy, ~77 BPM, calmer-confident end of upbeat per brand_identity, genuinely identified real sound bite.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation"
+      ],
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "motivation",
+        "quiet luxury",
+        "discipline",
+        "self improvement",
+        "wealth mindset",
+        "success mindset",
+        "aesthetic motivation",
+        "supercar",
+        "luxury travel",
+        "mindset shift",
+        "resilience",
+        "law of attraction",
+        "quiet confidence"
+      ],
+      "source_notes": "Continues channel_playbook.md's repeat_and_validate direction for legacy/sacrifice/earned-over-time narratives with confident-not-aggressive audio (2026-08-04 playbook). Genuinely new specific mechanism (witnessed-not-announced) distinct from sf_064/sf_065 -- see angle field.",
+      "fatigue_status": "not in cooldown/retire_temporarily; repeat_and_validate pick within the supported family.",
+      "seo_description": "None of this was built to be watched. It just happened to be visible. Quiet wealth, deliberate choices, a life that doesn't perform for an audience. Want the full ambience experience? Check the channel for the long-form version.",
+      "visual_direction": "Cappadocia hot air balloons at sunrise / private beach dinner cabana at dusk / grand estate grounds / Lambo STO under palm at sunset / balloon ride with vintage convertible / Eiffel Tower over Paris rooftops / Ferrari trio in Paris plaza / Amalfi Coast infinity pool -- clip ids 25,26,30,36,41,50,51,57, each verified via frame extraction before selection; genuinely fresh, zero overlap with the last 5 published Shorts' clips_used.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_begin",
+        "cta_text": "Comment \"Begin\" and manifest it."
+      },
+      "produced_file_path": "assets/short-form-clips/processed/sf_066.mp4",
+      "clips_used": [
+        "25",
+        "26",
+        "30",
+        "36",
+        "41",
+        "50",
+        "51",
+        "57"
+      ],
+      "transform_log": "11 shots from 8 distinct clips, avg ~0.91s/shot (range 0.47s-1.50s, intro skipped: 0.00s, cut points from real beat detection on ice_spice_sound.mp3) -- all 8 clips verified via frame extraction before selection (Cappadocia balloons, beach cabana, estate grounds, Lambo STO sunset, balloon+convertible, Eiffel Tower, Ferrari trio, Amalfi pool), zero overlap with sf_062/063/064/065's clips_used.",
+      "produced_at": "2026-08-05T00:05:00Z",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_066_thumb.jpg",
+      "thumbnail_billboard_check_note": "Lamborghini Huracan STO silhouetted under a palm tree against a vivid orange/red sunset, clearly legible and striking at 120px -- passes.",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, decode clean, no black/silent stretches).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, generic first-person motivational framing).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content, real transformation applied).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (ion care cuz he did it first, Ice Spice, state/trending_audio_library.json, genuinely identified real sound bite, owner risk-acceptance on file for short-form real-track use).\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=8, thumbnail_strength=9, title_strength=8, brand_consistency=9, manifestation_vibe=8 -- all >=8.\nFrame-verified: all 8 clips individually viewed before selection (25/26/30/36/41/50/51/57).\nSibling-collision check: first item of Sunday's batch, no same-day siblings yet -- clips_used and audio checked against the last 5 published Shorts (sf_061-sf_065), zero overlap on both.",
+      "publish_blocker": "uploadLimitExceeded (400) -- real YouTube daily upload cap hit, not a bug. Gate-checked and ready; needs retry once quota resets."
     }
   ]
 }
