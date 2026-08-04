@@ -1,6 +1,6 @@
 {
   "_comment": "Real comment TEXT (not just counts) for published videos, via youtube_auth.load_comment_credentials() — see scripts/pull_video_comments.py. organic_count excludes the pipeline's own automated pinned funnel comment; organic_comments_mentioning_luxury is a real signal for whether the Shorts CTA is working, not a guess from raw comment counts.",
-  "pulled_at": "2026-08-03T07:15:05.778737+00:00",
+  "pulled_at": "2026-08-04T07:07:54.347031+00:00",
   "has_comment_scope": true,
   "channel_id": "UCfTbwJxMPqL004V8Ssc5eWQ",
   "videos": {
@@ -229,6 +229,54 @@
       "organic_count": 0,
       "organic_comments_mentioning_luxury": 0
     },
+    "qdXepayAqc8": {
+      "comments": [
+        {
+          "comment_id": "UgwAYTBT1yI75O2LFS54AaABAg",
+          "author": "@makeitmanifest",
+          "author_is_channel_owner": true,
+          "text": "Manifest with ambience, full videos on my channel.",
+          "like_count": 0,
+          "published_at": "2026-08-03T08:33:04Z",
+          "is_automated_pinned_comment": true
+        }
+      ],
+      "automated_count": 1,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "x-0ODBpOcgM": {
+      "comments": [
+        {
+          "comment_id": "Ugyv7LIuBK6Lhh4tZPB4AaABAg",
+          "author": "@makeitmanifest",
+          "author_is_channel_owner": true,
+          "text": "Manifest with ambience, full videos on my channel.",
+          "like_count": 0,
+          "published_at": "2026-08-03T08:55:02Z",
+          "is_automated_pinned_comment": true
+        }
+      ],
+      "automated_count": 1,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "43DA6Uy08wI": {
+      "comments": [
+        {
+          "comment_id": "UgxsD_0Kz9umRL_l-YJ4AaABAg",
+          "author": "@makeitmanifest",
+          "author_is_channel_owner": true,
+          "text": "Manifest with ambience, full videos on my channel.",
+          "like_count": 0,
+          "published_at": "2026-08-03T09:10:00Z",
+          "is_automated_pinned_comment": true
+        }
+      ],
+      "automated_count": 1,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
     "J5o72mPmCzs": {
       "comments": [],
       "automated_count": 0,
@@ -272,6 +320,12 @@
       "organic_comments_mentioning_luxury": 0
     },
     "5WQYs1Sd_fA": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "IFbviopMBLU": {
       "comments": [],
       "automated_count": 0,
       "organic_count": 0,

@@ -636,6 +636,271 @@
         "No production-allocation change."
       ],
       "summary": "Analytics scope working (39 videos, unchanged). Real subscriber count: 23 (unchanged since prior cycle). Trajectory status: RED (data_confidence=low, still only 5 real days of subscriber data \u2014 the Analytics reporting lag hasn't produced a new day since the prior cycle). Dominant growth-constraint candidate unchanged: Shorts reach ~20-27x further than long-form, early_signal evidence only, no allocation change made. No new production this cycle (today's 4 slots were already completed by yesterday's authorized test batch) so no new content-performance evidence exists to act on. No gates touched, no OAuth scopes merged, no unsupported change made."
+    },
+    {
+      "run_id": "analytics-2026-08-04-0710",
+      "run_date": "2026-08-04",
+      "analytics_scope": {
+        "has_analytics_scope": true,
+        "note": "estimated_minutes_watched/avg_view_duration_sec/avg_view_percentage will be null until YouTube's Analytics reporting pipeline catches up (known lag, especially on a new channel \u2014 can be a day or two behind the public view counter). views/likes/comments are near-real-time."
+      },
+      "data_quality": {
+        "source": "YouTube Data API (views/likes/comments, near-real-time) + Analytics API (subscribersGained/Lost daily series, scope live)",
+        "window": "cumulative totals evaluated today, not a true 7-day delta",
+        "window_type": "recent_upload_cohort",
+        "available_metrics": [
+          "views",
+          "likes",
+          "comments",
+          "subscribers_gained",
+          "subscribers_lost (daily series)"
+        ],
+        "unavailable_metrics": [
+          "CTR",
+          "impressions (no API path at all)",
+          "avg_view_duration_sec/estimated_minutes_watched/avg_view_percentage (lag-nulled, not yet caught up)",
+          "traffic_sources (empty)",
+          "retention_curve (empty)"
+        ],
+        "n_videos_total": 43,
+        "n_missing_attributes": 19,
+        "missing_attributes_note": "19 of 43 published videos don't join back to a queue candidate_id (older/manually-published entries predating consistent candidate_id logging) -- findings below are necessarily attribute-blind for that subset."
+      },
+      "format_baselines": {
+        "short": {
+          "n": 34,
+          "median_views": 309.0,
+          "median_age_normalized_views": 89.83112128534381,
+          "median_likes_per_1000_views": 7.019023925644941,
+          "median_comments_per_1000_views": 0.0
+        },
+        "long": {
+          "n": 9,
+          "median_views": 12,
+          "median_age_normalized_views": 4.881042060391177,
+          "median_likes_per_1000_views": 0.0,
+          "median_comments_per_1000_views": 0.0
+        }
+      },
+      "trajectory": {
+        "current_subscribers": 27,
+        "target_subscribers": 100000,
+        "target_date": "2027-04-21",
+        "remaining_subscribers": 99973,
+        "remaining_days": 259,
+        "required_daily_pace": 385.996138996139,
+        "required_weekly_pace": 2701.972972972973,
+        "pace_7day_subscribers_per_day": 2.3333333333333335,
+        "pace_7day_days_of_data": 6,
+        "pace_28day_subscribers_per_day": 2.3333333333333335,
+        "pace_28day_days_of_data": 6,
+        "data_confidence": "low",
+        "projected_subscribers_at_target_date_7day_pace": 631.3333333333334,
+        "projected_subscribers_at_target_date_28day_pace": 631.3333333333334,
+        "percent_of_target_complete": 0.027,
+        "next_checkpoint": {
+          "date": "2026-08-31",
+          "subscribers": 250
+        },
+        "trajectory_status": "RED",
+        "note": "A stretch objective, not a guaranteed forecast. Pace/projection figures are arithmetic on real subscribers_daily_series data only (state/video_analytics.json, via the YouTube Analytics API's dimensions=day query) \u2014 never estimated. On a very new channel, data_confidence will genuinely be very_low/no_data for some time; treat any status derived from it as low-confidence, not a verdict."
+      },
+      "top_performers": {
+        "short": [
+          {
+            "video_id": "43DA6Uy08wI",
+            "views": 391,
+            "age_normalized_views": null,
+            "angle": "Sovereign-solitude/indifference-to-applause narrative: the luxury-lifestyle visuals (empty penthouse at night, solo supe"
+          },
+          {
+            "video_id": "x-0ODBpOcgM",
+            "views": 337,
+            "age_normalized_views": null,
+            "angle": "Manifestation-as-already-yours narrative: the luxury visuals (private aviation, penthouse skyline, garage of supercars, "
+          },
+          {
+            "video_id": "qdXepayAqc8",
+            "views": 1229,
+            "age_normalized_views": null,
+            "angle": "Legacy/sacrifice/earned-over-time narrative: frame the luxury-lifestyle visuals (private jet interior, night skyline, su"
+          },
+          {
+            "video_id": "qOWTFoI6YZA",
+            "views": 444,
+            "age_normalized_views": null,
+            "angle": ""
+          },
+          {
+            "video_id": "WmQr6bAwfpM",
+            "views": 1044,
+            "age_normalized_views": null,
+            "angle": ""
+          }
+        ],
+        "long": [
+          {
+            "video_id": "IFbviopMBLU",
+            "views": 3,
+            "age_normalized_views": null
+          },
+          {
+            "video_id": "e1XaX_meQlU",
+            "views": 1,
+            "age_normalized_views": null
+          },
+          {
+            "video_id": "5WQYs1Sd_fA",
+            "views": 12,
+            "age_normalized_views": null
+          }
+        ]
+      },
+      "underperformers": {
+        "short": [
+          {
+            "video_id": "43DA6Uy08wI",
+            "views": 391,
+            "age_normalized_views": null,
+            "published_at": "2026-08-03T09:10:03Z"
+          },
+          {
+            "video_id": "x-0ODBpOcgM",
+            "views": 337,
+            "age_normalized_views": null,
+            "published_at": "2026-08-03T08:55:04Z"
+          },
+          {
+            "video_id": "qdXepayAqc8",
+            "views": 1229,
+            "age_normalized_views": null,
+            "published_at": "2026-08-03T08:32:43Z"
+          },
+          {
+            "video_id": "qOWTFoI6YZA",
+            "views": 444,
+            "age_normalized_views": null,
+            "published_at": "2026-08-02T18:00:00Z"
+          },
+          {
+            "video_id": "WmQr6bAwfpM",
+            "views": 1044,
+            "age_normalized_views": null,
+            "published_at": "2026-08-02T13:00:00Z"
+          }
+        ]
+      },
+      "attribute_findings": [
+        {
+          "attribute": "format (Shorts vs. long-form reach)",
+          "direction": "Shorts strongly outperform long-form",
+          "supporting_videos_n": {
+            "short": 34,
+            "long": 9
+          },
+          "comparison_baseline": "same-format median age-normalized views",
+          "metrics": {
+            "short_median_age_norm_views": 89.83112128534381,
+            "long_median_age_norm_views": 4.881042060391177
+          },
+          "evidence_level": "repeated_pattern",
+          "alternative_explanations": [
+            "long-form videos are ambient/background content inherently watched passively with lower click-driven view counts even when actually playing",
+            "long-form upload volume/age skews earlier in the channel's life when total reach was smaller",
+            "YouTube's discovery algorithm favors Shorts surfaces disproportionately for very new channels regardless of content quality"
+          ],
+          "recommended_action": "Continue the current owner-directed 5+2 allocation (this finding does not itself justify changing it further -- it only reconfirms the same pattern the previous cycle already flagged with a smaller sample)."
+        },
+        {
+          "attribute": "publish recency (early-batch shorts vs. most recent batch)",
+          "direction": "The 4 highest age-normalized-view shorts were all published 2026-07-28/07-29 (the channel's first days); the lowest performers cluster on 2026-07-27 (the very first hours, likely still-tiny-audience effect) and 2026-07-30.",
+          "supporting_videos_n": {
+            "short": 10
+          },
+          "comparison_baseline": "within-format age-normalized views, ranked",
+          "evidence_level": "early_signal",
+          "alternative_explanations": [
+            "first-mover novelty on a brand-new channel's own subscriber base",
+            "early videos may have been algorithmically boosted as 'new channel' testing traffic independent of content quality",
+            "small absolute view counts (hundreds) make relative ranking noisy"
+          ],
+          "recommended_action": "No action -- too confounded by channel-age effects to attribute to any content property."
+        }
+      ],
+      "previous_recommendations_evaluated": [
+        {
+          "recommendation": "repeat: Legacy/sacrifice/earned-over-time narrative (Shorts)",
+          "source_cycle": "analytics-2026-08-03-0715",
+          "status": "still_gathering_data",
+          "note": "No newly-published video exists since the last cycle to evaluate this against -- the entire Wed-Sun weekly batch (sf_037-sf_057, lf_012-lf_019) is fully produced/gated but still sitting in ready_to_publish/produced state pending the PUBLISHING phase's throttled rollout. state/posted_history.json's most recent entries (sf_034/035/036, published 2026-08-03) were already included in the prior cycle's evaluation. Nothing new to confirm or contradict this cycle -- reproduction check remains pending until the next PUBLISHING phase actually publishes new videos using this angle family."
+        }
+      ],
+      "buckets": {
+        "repeat": [
+          "Legacy/sacrifice/earned-over-time narrative (Shorts) -- unchanged, still the best-supported pattern, now on a larger n=34 sample"
+        ],
+        "repeat_and_validate": [],
+        "deliberately_vary": [],
+        "reduce": [],
+        "retire_temporarily": [],
+        "explore": []
+      },
+      "experiments": [
+        "cta-luxury-001"
+      ],
+      "cta_analysis": {
+        "active_experiment_id": "cta-luxury-001",
+        "current_control": "cta_luxury_control",
+        "variant_results": {
+          "cta_luxury_control": {
+            "n": 2,
+            "organic_total": 0,
+            "video_ids": [
+              "lwp4uCkom6g",
+              "x-0ODBpOcgM"
+            ]
+          },
+          "cta_luxury_future": {
+            "n": 2,
+            "organic_total": 1,
+            "video_ids": [
+              "jpbqavO91xo",
+              "43DA6Uy08wI"
+            ]
+          },
+          "cta_luxury_claim": {
+            "n": 1,
+            "organic_total": 0,
+            "video_ids": [
+              "GrTxN_pY4CM"
+            ]
+          },
+          "cta_luxury_begin": {
+            "n": 1,
+            "organic_total": 0,
+            "video_ids": [
+              "qdXepayAqc8"
+            ]
+          }
+        },
+        "decision": "continue_gathering_data -- still below the 3-comparable-Shorts-per-variant minimum evaluation window (control n=2, future n=2, claim n=1, begin n=1); organic comment volume overall remains extremely sparse (1 total organic comment across all 6 tagged Shorts) so even the eventual comparison will start from a very thin signal."
+      },
+      "quarantine_analysis": {
+        "new_quarantine_items_this_cycle": 0,
+        "note": "No new quarantine entries since the last cycle; existing quarantine.json entries (sf_001 and others) are historical and already reviewed."
+      },
+      "instructions_for_next_scouting_run": [
+        "Continue the legacy/sacrifice/earned-over-time angle family for Shorts (repeat bucket) -- this remains the best-supported pattern on a larger sample (n=34).",
+        "No CTA variant preference yet -- keep the balanced rotation; do not promote any variant to control.",
+        "Do not increase Shorts:long-form ratio further based on today's reach-gap finding alone -- the current 5+2 allocation is a direct owner instruction, not an Agent-0-diagnosed change, and is not being revisited on this evidence."
+      ],
+      "growth_strategy": {
+        "dominant_constraint": "Format reach gap (Shorts vs. long-form), same as the prior cycle -- now on a stronger sample (34 Shorts vs. 9 long-form) but still only early_signal-to-repeated_pattern strength given both formats' small absolute view counts and the channel's very young age. A second, at-least-equally-important constraint: the channel is extremely early-stage (27 subscribers, 6 days of subscriber-series data) -- trajectory data_confidence is 'low' and the RED status is expected/uninformative at this stage rather than a diagnosable problem to fix today.",
+        "change_risk_decision": "insufficient_data -- no system-level change made this cycle. RED trajectory status is real but explicitly not grounds for an automatic volume increase per the Growth Strategy section; the reach-gap finding is a reconfirmation of an existing early_signal, not a new repeated_pattern/strong_channel_pattern that would justify a medium/high-risk allocation change on Agent 0's own initiative. The current 5+2 (Model F) allocation remains an owner-directed configuration, not something today's evidence argues for revising further.",
+        "reasoning": "No new videos have actually published since the last cycle (all new weekly-batch production is still pending the throttled PUBLISHING phase), so there is no new performance evidence beyond a refreshed data pull and a larger-sample reconfirmation of the same standing finding. 'Insufficient evidence, retain current configuration' is the correct outcome here, not a gap in the process.",
+        "next_review": "Re-assess once the PUBLISHING phase actually rolls out new Shorts/long-form videos from this week's batch and their view/engagement data accumulates for a few days."
+      },
+      "summary": "Analytics scope live (has_analytics_scope=true). Real subscriber count: 27 (up from prior cycle's count). Trajectory status RED with low data_confidence (6 days of subscriber-series data, ~2.3 subs/day pace vs. ~386/day required) -- expected on a very young channel, not a diagnosed problem. Dominant constraint remains the Shorts-vs-long-form reach gap (median age-normalized views 89.9 vs. 4.9), now on a larger sample but not yet strong enough evidence to justify any further allocation change beyond the owner's existing 5+2 direction. CTA experiment still gathering data (all variants below the 3-comparable-Shorts minimum). No new quarantine issues. No system-level change made this cycle -- insufficient evidence for anything beyond the status quo, which per the Growth Strategy section is a legitimate outcome, not a failure to act. CTR/impressions/retention/traffic-source remain unavailable via the API regardless of scope status."
     }
   ],
   "competitor_trend_research": {
