@@ -110,6 +110,18 @@
       "verification_note": "Same album as the already-verified 'Rain / Sleep / Meditation' track. Checked directly on the track's own FMA page: rel=\"license\" anchor points to https://creativecommons.org/publicdomain/zero/1.0/. File fetched from the page's embedded fileUrl JSON field. 1319.976s (~22 minutes — notably longer than the library's other tracks), 320kbps MP3, confirmed non-corrupt via ffprobe.",
       "local_path": "assets/audio/holiznacc0_dreamscape.mp3",
       "mood_note": "Slow ambient/meditative, longest track in the library — fewer loop iterations needed for a long-form video's full runtime, which may reduce any perceptible looping of the audio bed specifically."
+    },
+    {
+      "title": "Faded in the Sunlight",
+      "artist": "HoliznaCC0",
+      "album": "Summer Air (Lo-fi)",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/summer-air-lo-fi/faded-in-the-sunlight",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)",
+      "verified": true,
+      "verification_note": "Sourced fresh for lf_018 (item index 59) because every existing calm/ambient track in this library was already used within the last ~10 long-form posts (Rain/Sleep/Meditation, Fire Place, Peaceful Drift, Into The Mist, Wetlands x2, Snow Drift, Dreamscape all already assigned to prior candidates per state/long_form_queue.json). Checked directly on the track's own FMA page via raw curl HTML fetch (not a third-party aggregator/search-filter label, not just a WebFetch markdown summary): two rel=\"license\" anchors both point to https://creativecommons.org/publicdomain/zero/1.0/; page text states 'Faded in the Sunlight by HoliznaCC0 is licensed under a CC0 1.0 Universal License' and 'AI generated? No'. File fetched from the page's own embedded data-track-info JSON 'fileUrl' field (files.freemusicarchive.org CDN, no auth required, same method as every other entry in this library). Downloaded file verified via `file`/`ffprobe`: real MPEG ADTS layer III audio (ID3 v2.3.0), 320kbps, 48kHz stereo, 178.248s duration, non-corrupt, 7,453,669 bytes.",
+      "added_at": "2026-08-04T00:00:00Z",
+      "local_path": "assets/audio/holiznacc0_faded_in_the_sunlight.mp3",
+      "mood_note": "Warm, nostalgic, dissolving/glowing lo-fi character (album described by the artist as 'perfect for a warm summer evening') — fits the neon-pink-underglow nocturnal-luxury visual theme's warm glow register without being tied to rain/snow/mist/water like the rest of the library. No percussion-forward beat, calm/slow, sub-60bpm register consistent with the rest of this library's calm entries."
     }
   ]
 }
