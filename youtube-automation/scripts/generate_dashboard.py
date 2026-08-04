@@ -286,11 +286,17 @@ def main():
         and it["scheduled_publish_at"] <= publish_window_end
     ]
     nextrun_due.sort(key=lambda x: x.get("scheduled_publish_at") or "")
-    nextrun_due_shorts = [it for it in nextrun_due if it.get("format") == "short"]
-    nextrun_due_longs = [it for it in nextrun_due if it.get("format") == "long"]
-    nextrun_will_publish = nextrun_due_shorts[:3] + nextrun_due_longs[:1]
+    # Owner-confirmed 2026-08-04: the account is verified (YouTube's own public
+    # limits put verified accounts at ~50-100 uploads/day), and a real same-sitting
+    # test of all 7 of a day's items hit zero uploadLimitExceeded errors. No more
+    # artificial "first N will publish" slicing here -- everything due in the
+    # window is predicted to publish; deferred now only reflects a real recorded
+    # publish_blocker on a specific item, not a guessed daily cap.
+    nextrun_will_publish = list(nextrun_due)
     nextrun_will_publish_ids = {it["candidate_id"] for it in nextrun_will_publish}
-    nextrun_deferred = [it for it in nextrun_due if it["candidate_id"] not in nextrun_will_publish_ids]
+    nextrun_deferred = [it for it in nextrun_due if it.get("publish_blocker")]
+    nextrun_will_publish = [it for it in nextrun_will_publish if not it.get("publish_blocker")]
+    nextrun_will_publish_ids = {it["candidate_id"] for it in nextrun_will_publish}
 
     # Look-ahead: the next full day's worth of ready items after this
     # window, so a light day (e.g. only a carried-over long-form is due)
@@ -837,17 +843,17 @@ def main():
         )
         for it in nextrun_deferred
     )
-    short_count = len(nextrun_due_shorts[:3])
-    long_count = len(nextrun_due_longs[:1])
+    short_count = len([it for it in nextrun_will_publish if it.get("format") == "short"])
+    long_count = len([it for it in nextrun_will_publish if it.get("format") == "long"])
     if nextrun_will_publish:
         publish_note = (
-            f"Quota allows up to 3 shorts + 1 long-form per 24h window. "
-            f"This window has {short_count} short{'s' if short_count != 1 else ''} + {long_count} long-form due"
-            + (f"; {len(nextrun_deferred)} more due in that window will wait for a later firing." if nextrun_deferred else
-               " — the rest of this batch's day is either already published or not due yet, see below.")
+            f"Account is verified (~50-100 uploads/day per YouTube's own limits); the per-upload uploadLimitExceeded "
+            f"check is a real-time safety net, not a preemptive cap. "
+            f"This window has {short_count} short{'s' if short_count != 1 else ''} + {long_count} long-form due, all predicted to publish"
+            + (f"; {len(nextrun_deferred)} item(s) are quota-carried from a real prior publish_blocker." if nextrun_deferred else ".")
         )
     elif nextrun_deferred:
-        publish_note = "Items are due but quota-blocked from a prior firing — see the pill on each row."
+        publish_note = "Items are due but quota-blocked from a real prior publish_blocker — see the pill on each row."
     else:
         publish_note = "Nothing is due to publish in the next 24 hours — see the next full batch below."
     publish_section = section("Publishing window — next 24h", publish_rows, note=publish_note)
