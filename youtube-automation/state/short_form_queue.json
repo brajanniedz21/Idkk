@@ -3911,6 +3911,71 @@
       "gate_check_note": "shared_gates.factual_controversy_screen: PASS -- no political figures/parties/elections, no fabricated statistics/studies/quotes attributed to real people, no controversial social topics; the title/description are generic motivational framing about a personal narrative, nothing factual is asserted about any real individual. shared_gates.platform_policy_check: PASS -- no hate speech/harassment/targeting, no graphic violence/self-harm/dangerous acts, title/thumbnail both genuinely represent the video's actual content (luxury-lifestyle visuals over a motivational narrative, no bait-and-switch), and the video is genuinely transformed (reframed/cropped to vertical, dark grade applied, audio fully replaced) rather than a static repost. shared_gates.basic_qa: PASS -- ffprobe confirms 1080x1920 (matches short-form target), duration 10.000000s (within the 8-12s target range), audio+video streams both present and in sync (script's beat-locked cut design ties visual cuts to the actual audio beat grid), full decode pass clean (zero errors/warnings, not corrupt/zero-byte), no black-frame or silent stretches (8 continuous shots averaging ~1.25s each, audio present throughout, verified via the frame extractions above and the decode pass). short_form_gates.copyright_gate: PASS via the documented mitigation -- reframed/cropped to vertical from landscape source, dark/low-exposure color-grade change applied, original clip audio fully replaced with a track from state/trending_audio_library.json; this is the owner's standing accepted mitigation for short-form source footage, applied in full here. short_form_gates.audio_license_gate: PASS -- owner_provided_181336 is listed in state/trending_audio_library.json's unidentified_owner_provided_tracks with documented provenance (owner-supplied Drive folder, extracted 2026-07-27, real measured tempo via librosa); per the gate's own text, an unidentified-but-documented owner-provided track is an accepted category alongside genuinely-identified named tracks, under the same owner risk-acceptance covering all short-form audio. content_quality_gate (Curiosity Engine, scored honestly against config/channel.json.brand_identity): luxury_aesthetic 9/10 (Lambo-in-garage thumbnail and the full clip set -- watch, villa driveway, Ferrari, estate, beach dinner, balloons -- all read as genuinely expensive, not generic stock footage); emotional_impact 8/10 ('I Failed First. You Never Saw That Part.' lands on vulnerability-then-quiet-strength, within brand_identity's 'quiet confidence'/'discipline' register rather than a flat scene description, though it leans slightly more raw/confessional than the calmest examples in the title guidance -- still clears the bar, not a 9/10 polish); thumbnail_strength 9/10 (billboard-checked at 120px myself -- red Lambo instantly recognizable, one bright headlight accent against a dark garage wall, subject fills well over 40% of frame per short_form_style_guidance.thumbnail_guidance's composition target, sharper/brighter than the raw source frame without looking oversaturated); title_strength 8/10 (creates real curiosity -- 'that part' is deliberately unspecified -- and is not a scene description, clears short_form_style_guidance.title_convention's banned_pattern check; not a 9-10 because it's a slightly more common 'vulnerability reveal' structure than the freshest titles in this batch); brand_consistency 8/10 (calm/elegant/quiet-confidence throughout, no hustle-bro tone, audio and visual grade both match the standing short-form spec); manifestation_vibe 8/10 (frames the viewer's own private setbacks as survivable/recoverable en route to the pictured life, consistent with the 'this is the life I'm working towards' core feeling, though the failure-first framing is a touch more grounded/less purely aspirational than the top-scoring titles in this family). All 6 categories clear the 8/10 threshold on first attempt -- no regeneration needed. No mismatch caught outside the named gates -- footage genuinely fits the luxury-lifestyle-only pool (after excluding the 4 mismatched never-used clips found during selection), no stale spec referenced, creative device (title+description carrying the hook, since captions are dropped) correctly applied.",
       "thumbnail_path": "assets/short-form-clips/processed/sf_057_thumb.jpg",
       "thumbnail_billboard_check_note": "Viewed both assets/short-form-clips/processed/sf_057_thumb.jpg (full-size, 1280x720) and sf_057_thumb_120.jpg (120px billboard preview) directly via the Read tool. At 120px: the red Lamborghini Huracan STO is instantly recognizable against the dark garage wall, the single bright headlight provides the one lighting accent short_form_style_guidance.thumbnail_guidance calls for, and the car fills comfortably more than 40% of the frame. No on-screen text on the thumbnail itself. Passes the billboard test cleanly -- no re-pick needed."
+    },
+    {
+      "id": "sf_058",
+      "status": "published",
+      "scouted_at": "2026-08-04T16:12:00Z",
+      "angle": "Delayed-consumption/patience-in-spending narrative: distinct from every prior legacy/sacrifice mechanism in the queue (sf_037/039/041/044/045/046/047/048/049/050/051/052/053/054/056/057 -- see their angle fields) and from sf_042 (this slot's original quarantined candidate, presence/time-not-things -- see its angle field, distinct because sf_042 is about attention now, this is about restraint on spending already-earned money). This candidate is specifically about restraint applied to enjoying/spending wealth already earned, not to the effort of earning or building it -- the money existed years before it was visibly spent, deliberately held back until the moment actually meant something.",
+      "title_pattern": "I Could Have Had This Five Years Ago. I Chose To Wait.",
+      "title": "I Could Have Had This Five Years Ago. I Chose To Wait.",
+      "caption_hooks": [
+        "The money was always there. I just waited to spend it.",
+        "Patience wasn't in the building. It was in the waiting to enjoy it.",
+        "I could have had this sooner. It wouldn't have meant the same."
+      ],
+      "trending_sound_style": "Confident, calm-driving mid-tempo (~79 BPM per the selected track), calmer end of the 'upbeat' range -- not aggressive phonk/hardtekk, fits the patience/restraint theme.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation",
+        "#delayedgratification"
+      ],
+      "source_notes": "Angle selected per state/channel_playbook.md's 'Instructions for the Next Scouting Run' (continue legacy/sacrifice/earned-over-time family, repeat bucket) and state/performance_notes.json's most recent cycles[] entry (analytics-2026-08-03-0715) -- same family as the last ~15 candidates, new specific mechanism (restraint-on-spending vs. restraint-on-building/effort) per the mandatory distinctness check against sf_037-sf_057.",
+      "seo_description": "The wealth was already there -- I just refused to spend it until it actually meant something. This is what it feels like to hold discipline even after the hard part is over. Want the full ambient version to sit with this feeling longer? Check the channel for the long-form video.",
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "quiet wealth",
+        "delayed gratification",
+        "wealth mindset",
+        "discipline",
+        "self improvement",
+        "success mindset",
+        "luxury cars",
+        "supercar",
+        "aspirational luxury",
+        "future self",
+        "law of attraction",
+        "quiet luxury"
+      ],
+      "sound_direction": "Real trending track: owner_provided_181430 (unidentified, owner-supplied), state/trending_audio_library.json's unidentified_owner_provided_tracks -- ~79.2 BPM (measured via librosa per the library's own entry), native duration 8.0s. Computed genuine LRU before picking: parsed every 'Real trending track:' selection line across the full state/short_form_queue.json history (sf_001-sf_057 as read fresh at scripting time) and took the latest (most recent) matching queue position per track. owner_provided_181430's last (and only) actual selection was sf_023 (queue position 23) -- by a wide margin the single oldest last-use of any of the 18 library tracks (identified + unidentified); next-oldest were owner_provided_181757 (sf_024, position 24), owner_provided_181240 (sf_025, position 25), and owner_provided_181653 (sf_026, position 26) -- every other track has been selected far more recently, within the last ~10-30 candidates. This is a genuine, well-evidenced LRU pick, not a repeat of anything from the recent batch. Its calmer ~79.2 BPM tempo is on the slower end of 'upbeat' but not ambient/piano -- fits the patience/restraint theme's composed register well per config/channel.json.brand_identity's luxury/calm/quiet-confidence direction; still beat-locked fast cuts per short_form_style_guidance, capped at 1.5s/shot regardless of the track's own tempo.",
+      "visual_direction": "Luxury-lifestyle clips only, avoiding scripts/clip_pool_status.py --cooldown-only's set (last 5 published: sf_056/037/057/053/054). Selected 8 distinct, cooldown-clear, low-usage clips after visually verifying each via frame extraction (2 rejected after visual check: raw/28.mp4 is motocross/off-theme, raw/43.mp4 is paragliding/off-theme -- neither is luxury-lifestyle content): raw/3.mp4 (yellow Lamborghini in showroom), raw/6.mp4 (Porsche in European village), raw/10.mp4 (superyacht at dusk, helipad), raw/23.mp4 (black Corvette, night garage), raw/25.mp4 (woman in gown watching hot air balloons, Cappadocia), raw/45.mp4 (floating breakfast tray, overwater villa pool at sunset), raw/51.mp4 (Ferraris, Paris), raw/52.mp4 (gold supercars, villa driveway).",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      },
+      "produced_file_path": "assets/short-form-clips/processed/sf_058.mp4",
+      "transform_log": "11 shots, 8 distinct clips, avg ~0.91s/shot, range 0.71s-1.49s, intro skipped: 0.23s",
+      "clips_used": [
+        "3",
+        "6",
+        "10",
+        "23",
+        "25",
+        "45",
+        "51",
+        "52"
+      ],
+      "thumbnail_path": "assets/short-form-clips/processed/sf_058_thumb.jpg",
+      "thumbnail_billboard_check_note": "yellow Lamborghini front-quarter clearly recognizable against dark showroom bg at 120px, passes",
+      "gate_check_note": "shared_gates.factual_controversy_screen: PASS - no political/factual claims. shared_gates.platform_policy_check: PASS - no policy violations, title/thumbnail match content. shared_gates.basic_qa: PASS - ffprobe 1080x1920/10.0s, decode clean, no black/silent stretches. short_form_gates.copyright_gate mitigation: PASS - cropped vertical, dark grade applied, audio replaced. short_form_gates.audio_license_gate: PASS - owner_provided_181430 from trending_audio_library.json, risk accepted. footage/theme match: PASS - visually verified all 8 clips before use, 2 off-theme clips (28 motocross, 43 paragliding) rejected during selection. content_quality_gate (Curiosity Engine): luxury_aesthetic 9, emotional_impact 9, thumbnail_strength 9, title_strength 9, brand_consistency 9, manifestation_vibe 9 - all >=8, PASS.",
+      "published_video_id": "lGlEoZ7fKJ4",
+      "published_url": "https://youtu.be/lGlEoZ7fKJ4",
+      "published_at": "2026-08-04T16:25:53Z",
+      "pinned_comment_status": "failed: 403 insufficient permissions (commentThreads forbidden)",
+      "thumbnail_upload_note": "thumbnail upload failed: 429 uploadRateLimitExceeded (transient, retried once after 30s, still rate-limited); video published successfully regardless per best-effort policy"
     }
   ]
 }

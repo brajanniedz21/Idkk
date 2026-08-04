@@ -28,7 +28,9 @@
     {
       "id": "sf_042",
       "reason": "produced_file_path assets/short-form-clips/processed/sf_042.mp4 does not exist on disk and has no git history at all -- despite the candidate being marked ready_to_publish with a full gate_check_note. File was almost certainly lost during a worktree cleanup before the merge fully copied it in, or a session-limit interruption. Discovered 2026-08-04 while clearing the pre-daily-model publish backlog. Re-scout/re-produce this weekly_batch slot (index 40, 2026-08-05 09:00) from scratch.",
-      "detected_at": "2026-08-04T12:05:00Z"
+      "detected_at": "2026-08-04T12:05:00Z",
+      "resolved_at": "2026-08-04T16:26:00Z",
+      "resolution": "Slot (weekly_batch index 40) re-scouted/re-scripted/re-produced from scratch as sf_058, published lGlEoZ7fKJ4. sf_042 itself stays quarantined/unused."
     }
   ],
   "long_form": [

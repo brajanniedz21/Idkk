@@ -395,6 +395,19 @@
       "video_id": "RjBy7L2lyCo",
       "published_at": "2026-08-07T20:00:00Z",
       "title": "Ten Years Of Silence Bought This."
+    },
+    {
+      "candidate_id": "sf_058",
+      "video_id": "lGlEoZ7fKJ4",
+      "url": "https://youtu.be/lGlEoZ7fKJ4",
+      "title": "I Could Have Had This Five Years Ago. I Chose To Wait.",
+      "published_at": "2026-08-04T16:25:53Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      }
     }
   ],
   "long_form": [
