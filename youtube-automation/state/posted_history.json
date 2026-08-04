@@ -408,6 +408,18 @@
       "video_id": "fWu32uo6vC4",
       "published_at": "2026-08-07T20:00:00Z",
       "title": "Monaco Doesn't Ask Twice."
+    },
+    {
+      "video_id": "-4A4dL0F8Do",
+      "url": "https://youtu.be/-4A4dL0F8Do",
+      "title": "I Stopped Explaining Myself.",
+      "published_at": "2026-08-08T11:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      }
     }
   ],
   "long_form": [

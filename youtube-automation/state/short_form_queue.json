@@ -4061,7 +4061,7 @@
     },
     {
       "id": "sf_061",
-      "status": "produced",
+      "status": "published",
       "scouted_at": "2026-08-04T18:20:00Z",
       "scripted_at": "2026-08-04T18:20:00Z",
       "angle": "No-justification-owed narrative: the luxury result on screen needs no defense or explanation to anyone -- distinct from sf_048's boundary-setting-via-refusal mechanism and sf_049's controlled-disclosure mechanism (this is about withholding explanation entirely, not saying no or selectively revealing). Legacy/sacrifice/earned-over-time family per state/channel_playbook.md's repeat-bucket guidance.",
@@ -4121,7 +4121,12 @@
       "transform_log": "8 shots from 8 distinct clips, avg ~1.25s/shot (range 0.66s-1.36s, intro skipped: 0.30s) -- all 8 clips frame-verified before selection, none in cooldown set.",
       "thumbnail_path": "assets/short-form-clips/processed/sf_061_thumb.jpg",
       "thumbnail_billboard_check_note": "Teal-hulled superyacht (raw/18, t=4.3s), viewed at 120px -- clearly recognizable against bright blue sky, one dominant bright subject. Passes.",
-      "gate_check_note": "shared_gates.factual_controversy_screen: PASS (no political/controversial content, no fabricated claims). shared_gates.platform_policy_check: PASS (no misleading title/thumbnail mismatch, genuine transform applied). shared_gates.basic_qa: PASS (ffprobe 1080x1920/10.000000s h264/aac, full decode clean). short_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark/desaturated grade applied, original audio fully replaced). short_form_gates.audio_license_gate: PASS (owner_provided_181240, state/trending_audio_library.json unidentified_owner_provided_tracks, documented provenance). content_quality_gate: luxury_aesthetic 9, emotional_impact 9, thumbnail_strength 9, title_strength 9, brand_consistency 9, manifestation_vibe 8 -- all >=8, pass. Sibling-collision check (owner-flagged 2026-08-04 incident): re-read state/short_form_queue.json fresh immediately before finalizing -- weekly_batch items 61/63/64/65 (this Saturday's other shorts) all still status pending/candidate_id null, no merged sibling to compare clips/audio against; my own clips (13/14/15/18/19/39/56/64) and audio (owner_provided_181240) are both genuinely distinct from every other published/produced Saturday-week candidate checked."
+      "gate_check_note": "shared_gates.factual_controversy_screen: PASS (no political/controversial content, no fabricated claims). shared_gates.platform_policy_check: PASS (no misleading title/thumbnail mismatch, genuine transform applied). shared_gates.basic_qa: PASS (ffprobe 1080x1920/10.000000s h264/aac, full decode clean). short_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark/desaturated grade applied, original audio fully replaced). short_form_gates.audio_license_gate: PASS (owner_provided_181240, state/trending_audio_library.json unidentified_owner_provided_tracks, documented provenance). content_quality_gate: luxury_aesthetic 9, emotional_impact 9, thumbnail_strength 9, title_strength 9, brand_consistency 9, manifestation_vibe 8 -- all >=8, pass. Sibling-collision check (owner-flagged 2026-08-04 incident): re-read state/short_form_queue.json fresh immediately before finalizing -- weekly_batch items 61/63/64/65 (this Saturday's other shorts) all still status pending/candidate_id null, no merged sibling to compare clips/audio against; my own clips (13/14/15/18/19/39/56/64) and audio (owner_provided_181240) are both genuinely distinct from every other published/produced Saturday-week candidate checked.",
+      "published_video_id": "-4A4dL0F8Do",
+      "published_url": "https://youtu.be/-4A4dL0F8Do",
+      "published_at": "2026-08-08T11:00:00Z",
+      "pinned_comment_status": "failed: 403 forbidden (commentThreads insufficient permissions) -- likely because the video is scheduled/private-until-publish-time, not yet actually public; non-fatal, video publish itself succeeded",
+      "thumbnail_upload_status": "failed: 429 uploadRateLimitExceeded -- video live/scheduled with default thumbnail, tracked in state/weekly_batch_progress.json._pending_thumbnail_retries for retry"
     }
   ]
 }
