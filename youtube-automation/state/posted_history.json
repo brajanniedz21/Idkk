@@ -359,6 +359,42 @@
       "video_id": "yBEg6ICBhs4",
       "published_at": "2026-08-06T17:00:00Z",
       "title": "You're Only Seeing This Because I Let You."
+    },
+    {
+      "candidate_id": "sf_051",
+      "video_id": "TDWXpNz4PvQ",
+      "published_at": "2026-08-06T20:00:00Z",
+      "title": "I Had No One To Copy."
+    },
+    {
+      "candidate_id": "sf_054",
+      "video_id": "zsStjvwJeBY",
+      "published_at": "2026-08-07T08:00:00Z",
+      "title": "I Stopped Calling It Sacrifice."
+    },
+    {
+      "candidate_id": "sf_057",
+      "video_id": "LDlwn8yYzcA",
+      "published_at": "2026-08-07T11:00:00Z",
+      "title": "I Failed First. You Never Saw That Part."
+    },
+    {
+      "candidate_id": "sf_053",
+      "video_id": "Hf0LopC3Nzs",
+      "published_at": "2026-08-07T14:00:00Z",
+      "title": "I Lost It Once. I Built It Back Colder."
+    },
+    {
+      "candidate_id": "sf_052",
+      "video_id": "lYwYeuMy-_g",
+      "published_at": "2026-08-07T17:00:00Z",
+      "title": "I'm Still Paying A Debt You Can't See."
+    },
+    {
+      "candidate_id": "sf_056",
+      "video_id": "RjBy7L2lyCo",
+      "published_at": "2026-08-07T20:00:00Z",
+      "title": "Ten Years Of Silence Bought This."
     }
   ],
   "long_form": [
@@ -471,6 +507,14 @@
       "title": "This Is What Arrival Feels Like",
       "format": "long",
       "duration_minutes": 85.0
+    },
+    {
+      "candidate_id": "lf_017",
+      "video_id": "GoWydrsRf8w",
+      "published_at": "2026-08-06T19:30:00Z",
+      "title": "The Life I Was Building Toward",
+      "format": "long",
+      "duration_minutes": 95
     }
   ]
 }

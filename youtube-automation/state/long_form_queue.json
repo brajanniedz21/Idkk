@@ -651,7 +651,7 @@
     },
     {
       "id": "lf_017",
-      "status": "ready_to_publish",
+      "status": "published",
       "visual_theme": "Locked-off shot of a purple Porsche 911 GT3 parked at a Monaco-style harbor at golden hour, a large white superyacht moored in the background, illuminated hillside city buildings and mountains beyond, warm low sun glow on the water. Rear light bar/taillights slowly, subtly pulse. No people, no faces, no on-screen text. Sourced from state/animated_clip_pool.json (Path C, PRIMARY source), drive_file_id 1d77qlDQ7T27hlmMioKVFswrwrNV8_DXW, folder 1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6. Note: a real, legible French-format vehicle registration plate ('GV-703-VY') is visible on the car -- disclosed per the per-file visual-check discipline (same category as the EMAAR-signage disclosures on prior Dubai clips), not a blocker per the existing accepted-risk backstop in config/gates.json.image_copyright_gate.",
       "mood": "Calm, warm, golden-hour ambient bed -- soft sustained lofi pads with a peaceful, unhurried character evoking a sunset/arrival mood, no percussion-forward beat, no vocals, sub-60bpm register. Genuinely distinct from every immediately preceding candidate: lf_011 (water/skyline reflections, crystalline mood, Dreamscape), lf_012 (misty dawn countryside, Into The Mist), lf_013 (snowy night driveway, Snow Drift), lf_015 (marina at night, Wetlands) -- this is the first golden-hour/sunset-toned harbor scene in the queue and the first use of the newly-sourced Tokyo Sunset track.",
       "title": "The Life I Was Building Toward",

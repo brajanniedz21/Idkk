@@ -463,7 +463,7 @@
         "format": "short",
         "day": "2026-08-06",
         "local_slot": "21:00",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-06T20:00:00Z",
         "candidate_id": "sf_051"
       },
@@ -481,7 +481,7 @@
         "format": "long",
         "day": "2026-08-06",
         "local_slot": "20:30",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-06T19:30:00Z",
         "candidate_id": "lf_017"
       },
@@ -490,7 +490,7 @@
         "format": "short",
         "day": "2026-08-07",
         "local_slot": "09:00",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-07T08:00:00Z",
         "candidate_id": "sf_054"
       },
@@ -499,7 +499,7 @@
         "format": "short",
         "day": "2026-08-07",
         "local_slot": "12:00",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-07T11:00:00Z",
         "candidate_id": "sf_057"
       },
@@ -508,7 +508,7 @@
         "format": "short",
         "day": "2026-08-07",
         "local_slot": "15:00",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-07T14:00:00Z",
         "candidate_id": "sf_053"
       },
@@ -517,7 +517,7 @@
         "format": "short",
         "day": "2026-08-07",
         "local_slot": "18:00",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-07T17:00:00Z",
         "candidate_id": "sf_052"
       },
@@ -526,7 +526,7 @@
         "format": "short",
         "day": "2026-08-07",
         "local_slot": "21:00",
-        "status": "ready_to_publish",
+        "status": "done",
         "scheduled_publish_at": "2026-08-07T20:00:00Z",
         "candidate_id": "sf_056"
       },
@@ -680,5 +680,97 @@
     "upload_quota_reset_timing_note": "2026-07-28T06:33Z: retried lf_004 publish again (~23min after the 06:10Z retry). Still uploadLimitExceeded. Two consecutive retries ~23min apart both failed identically, confirming this is a sustained block, not transient. Combined with the 06:10Z data point (~9-10h after original block, still failing), the reset window is confirmed to be long (>10h) and not tied to a short interval. Will not retry again for at least several hours to avoid wasting upload attempts against what may itself count toward some quota; next retry should wait until a later firing (evening UTC or next UTC day) rather than the next ~20min safety-net tick.",
     "clip_pool_provenance_note": "2026-07-28T06:45Z: while spot-checking clip content for sf_022-024, discovered that the entire original raw clip pool (assets/short-form-clips/raw/1.mp4-60.mp4, used in every short published so far, sf_002 through sf_021) is sourced from a 'Download link in description' split-screen repost/scrape-compilation format \u2014 every source file is 1920x1080 landscape with a white sidebar and that text baked in. This was not previously caught because scripts/short_form_transform.py's center crop (crop='min(iw,ih*9/16)':'min(ih,iw*16/9)') happens to land almost exactly on the visible video content and excludes the white sidebars entirely \u2014 verified by cropping a sample frame: the watermark is fully removed in every published output, confirmed nothing has ever gone out visibly watermarked. This does NOT change technical viability of the existing pipeline, but it does mean the source footage itself is repost/scrape-provenance content (same category of copyright risk as the already-accepted 'unmitigated third-party clip reuse' risk in config/gates.json copyright_gate, just now known to apply to the whole 60-clip pool rather than assumed to be cleaner raw footage). The second-batch clips (61.mp4-70.mp4, Drive folder 19ZYbWZlya3_s_W4TpTbXHs1unUHW2wp7) are genuinely clean \u2014 already-vertical 720x1280, no watermark, no sidebar. Flagged to the channel owner directly; no change made to the existing accepted-risk framework since it's a discovery within an already-accepted risk category, not a new one."
   },
-  "history": []
+  "history": [],
+  "_pending_thumbnail_retries": [
+    {
+      "video_id": "3xWHo2V-Y-U",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_045_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "ye0LHnyU65U",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_050_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "x3tzghwp_aA",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_047_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "4kC9w6KDc4E",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_046_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "bG4_apNGhxM",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_048_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "yBEg6ICBhs4",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_049_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "TDWXpNz4PvQ",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_051_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "zsStjvwJeBY",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_054_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "LDlwn8yYzcA",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_057_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "Hf0LopC3Nzs",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_053_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "lYwYeuMy-_g",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_052_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "RjBy7L2lyCo",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_056_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "Db-nx85nK0c",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_015_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "ttedgtMmUoM",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_016_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "GoWydrsRf8w",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_017_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    }
+  ]
 }
