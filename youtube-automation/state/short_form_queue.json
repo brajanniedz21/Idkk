@@ -4058,6 +4058,54 @@
         "cta_variant_id": "cta_luxury_control",
         "cta_text": "Manifest it. Comment \"Luxury\" below."
       }
+    },
+    {
+      "id": "sf_061",
+      "status": "scripted",
+      "scouted_at": "2026-08-04T18:20:00Z",
+      "scripted_at": "2026-08-04T18:20:00Z",
+      "angle": "No-justification-owed narrative: the luxury result on screen needs no defense or explanation to anyone -- distinct from sf_048's boundary-setting-via-refusal mechanism and sf_049's controlled-disclosure mechanism (this is about withholding explanation entirely, not saying no or selectively revealing). Legacy/sacrifice/earned-over-time family per state/channel_playbook.md's repeat-bucket guidance.",
+      "title_pattern": "I Stopped Explaining Myself.",
+      "title": "I Stopped Explaining Myself.",
+      "caption_hooks": [
+        "Nobody's owed my reasons.",
+        "I don't perform the process for an audience.",
+        "The result speaks. I stay quiet."
+      ],
+      "trending_sound_style": "Confident, driving, fast-tempo (~181.5 BPM measured via librosa) -- on the calmer-confident end of upbeat per brand_identity despite the high raw tempo (no aggressive genre tags on this track), genuine LRU pick (see sound_direction).",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation",
+        "#quietluxury"
+      ],
+      "source_notes": "No new live competitor scan this cycle (single-item production, token-efficiency direction) -- angle selection grounded in state/channel_playbook.md's 'Instructions for the Next Scouting Run' (continue legacy/sacrifice/earned-over-time family) and a direct scan of the last 16 queue entries (sf_044-sf_060) to confirm this specific no-justification-owed mechanism hasn't been used.",
+      "seo_description": "Some things don't need to be explained -- they just need to be lived. This is what quiet, undeniable success looks like: no defense, no performance, just the result. Want the full ambience experience? Check the channel for the 1-hour long-form version.",
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "wealth mindset",
+        "quiet confidence",
+        "success mindset",
+        "luxury cars",
+        "supercar",
+        "superyacht",
+        "dream life",
+        "visualization",
+        "future self",
+        "discipline",
+        "ambition",
+        "night drive",
+        "aspirational"
+      ],
+      "sound_direction": "Real trending track: owner_provided_181240 (unidentified, owner-supplied), state/trending_audio_library.json's unidentified_owner_provided_tracks -- ~181.5 BPM (measured via librosa per the library's own entry), native duration 25.24s. Computed genuine LRU fresh this session: parsed every 'Real trending track:'/'trending_sound_style' selection across the full state/short_form_queue.json history (sf_001-sf_060, read fresh, not cached) and matched against all 18 library tracks (8 named + 10 unidentified), taking each track's latest real selection position. owner_provided_181240's last actual use was sf_025 (2026-07-28) -- by a wide margin the single oldest last-use of any track in either library; every other track has been selected at least once since sf_039, most within the last 5-10 candidates (owner_provided_181653/181757 were just used at sf_059/sf_060, owner_provided_182026 at the sf_052/054/056 incident). Cross-checked against weekly_batch_progress items 61/63/64/65 (this batch's other Saturday shorts) -- all still status:pending/candidate_id:null at read time, so no sibling collision risk to reconcile. Confident/driving energy despite the high raw BPM (no 'aggressive phonk' genre tag on this track, unlike the named Brazilian phonk tracks flagged as bottom performers) -- fits brand_identity's calm/quiet-confidence register. NOT slow/ambient -- fast beat-locked cuts still apply, capped at 1.5s/shot.",
+      "visual_direction": "8 distinct clips from assets/short-form-clips/raw/, all verified via ffmpeg frame extraction before selection, all outside the current cooldown set (fresh via python3 scripts/clip_pool_status.py --cooldown-only): raw/13 (hypercar showroom -- Bugatti/Pagani/Lamborghini row), raw/14 (Dubai fountain show against lit skyline, EMAAR towers), raw/15 (black convertible outside an ornate lit hotel entrance at night, woman in eveningwear), raw/18 (superyacht at anchor near a marina, tender boat alongside), raw/19 (aerial cruise-ship-at-tropical-island shot, turquoise water), raw/39 (orange Lamborghini driving at night), raw/56 (dark Porsche showroom, red taillight accents), raw/64 (jetski POV over turquoise water past a mangrove coastline). Rejected raw/1 (lavender flower field, off-theme -- not luxury-lifestyle), raw/28 (mountain biking, off-theme, matches the documented gym/library-style mismatch pattern), raw/43 (paragliding over clouds, off-theme/extreme-sports not luxury), raw/48 (dashcam-style interior shot with inappropriate framing of a passenger's bare legs, off-brand) after viewing frames -- all four were in the 'never-used-recently' pool but genuinely didn't fit the theme, consistent with sf_054's prior note about this exact pool.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "factual_controversy_self_check": "PASS -- no political figures/topics, no fabricated claims/quotes attributed to real people, no controversial social topics; title/description are generic aspirational motivational framing only."
     }
   ]
 }
