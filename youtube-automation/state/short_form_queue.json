@@ -4710,6 +4710,69 @@
       "thumbnail_billboard_check_note": "Teal superyacht docked in a marina under clear blue sky, clean and legible at 120px -- passes.",
       "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, decode clean, no black/silent stretches).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, generic first-person motivational framing).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content, real transformation applied).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (owner_provided_181430, state/trending_audio_library.json, owner risk-acceptance on file).\ncontent_quality_gate: luxury_aesthetic=8, emotional_impact=8, thumbnail_strength=9, title_strength=8, brand_consistency=9, manifestation_vibe=8 -- all >=8.\nFrame-verified: all 8 clips individually viewed before selection (16/18/24/27/39/47/54/70); clip 48 (dim car interior, risky framing) and clip 58 (visible face, golfer) considered from the available pool and rejected as off-brand/risky, consistent with prior productions' own exclusion notes.\nSibling-collision check: clips_used and audio checked against sf_066/067/068 (same-day siblings) and the last 5 published Shorts -- zero overlap on both.",
       "publish_blocker": "uploadLimitExceeded -- real YouTube daily upload cap hit earlier today. Gate-checked and ready; needs the upload retried once quota resets."
+    },
+    {
+      "id": "sf_070",
+      "status": "ready_to_publish",
+      "scouted_at": "2026-08-05T02:35:00Z",
+      "scripted_at": "2026-08-05T02:37:00Z",
+      "angle": "Found-my-people narrative (legacy/sacrifice/earned-over-time family per channel_playbook.md's repeat_and_validate direction, n=34 support): distinct from sf_066/067/068/069's mechanisms (witnessed-not-announced, no-permission-needed, landed-not-lucky, built-quietly) -- this candidate's specific claim is about arriving somewhere that finally matches the internal standard, closing out Sunday's batch on a belonging-not-performing note rather than another proving-something angle.",
+      "title_pattern": "I Finally Found Where I Fit.",
+      "title": "I Finally Found Where I Fit.",
+      "caption_hooks": [
+        "I finally found where I fit.",
+        "This is what belonging looks like now.",
+        "No performing here. Just fitting."
+      ],
+      "trending_sound_style": "owner_provided_181608, 93.8 BPM, calm-confident mid-tempo -- matches the calmer-confident end of upbeat per brand_identity, distinct from every other Sunday sibling's audio track.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation"
+      ],
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "motivation",
+        "quiet luxury",
+        "discipline",
+        "self improvement",
+        "wealth mindset",
+        "success mindset",
+        "aesthetic motivation",
+        "supercar",
+        "luxury travel",
+        "mindset shift",
+        "resilience",
+        "law of attraction",
+        "quiet confidence"
+      ],
+      "source_notes": "Continues channel_playbook.md's repeat_and_validate direction for legacy/sacrifice/earned-over-time narratives with confident-not-aggressive audio (2026-08-04 playbook). Genuinely new specific mechanism (belonging-not-proving) distinct from sf_066/067/068/069 -- see angle field. Closes out Sunday's 5-short arc on a settled note after 4 consecutive earned/proof-oriented angles.",
+      "fatigue_status": "not in cooldown/retire_temporarily; repeat_and_validate pick within the supported family.",
+      "seo_description": "Not performing for anyone anymore -- just finally somewhere that fits. Quiet wealth, real belonging, a life that doesn't need an audience to feel true. Want the full ambience experience? Check the channel for the long-form version.",
+      "visual_direction": "Vibrant night supercar meetup (yellow Lamborghini, orange/blue Audi R8s, yellow Corvette) / supercar showroom overhead view / woman walking past a car near a lit Monaco hotel / Lamborghini STO on a palm-lined driveway at sunset / LaFerrari at a Monaco plaza by day / Dubai rooftop infinity pool at dusk / jet-ski POV through turquoise mangrove channels / Dubai rooftop lounge overlooking the skyline -- clip ids 7,13,15,31,32,63,64,66, each verified via frame extraction before selection; zero overlap with sf_062/066/067/068/069's clips_used.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_begin",
+        "cta_text": "Comment \"Begin\" and manifest it."
+      },
+      "produced_file_path": "assets/short-form-clips/processed/sf_070.mp4",
+      "clips_used": [
+        "7",
+        "13",
+        "15",
+        "31",
+        "32",
+        "63",
+        "64",
+        "66"
+      ],
+      "transform_log": "8 shots from 8 distinct clips, avg ~1.25s/shot (range 1.01s-1.32s, intro skipped: 0.47s, cut points from real beat detection on owner_provided_181608.mp3) -- all 8 clips verified via frame extraction before selection, zero overlap with sf_062/066-069's clips_used.",
+      "produced_at": "2026-08-05T02:50:00Z",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_070_thumb.jpg",
+      "thumbnail_billboard_check_note": "Vibrant night supercar meetup (yellow, orange, blue cars) clearly legible and colorful at 120px -- passes.",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, decode clean, no black/silent stretches).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, generic first-person motivational framing).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content, real transformation applied).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (owner_provided_181608, state/trending_audio_library.json, owner risk-acceptance on file).\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=8, thumbnail_strength=9, title_strength=8, brand_consistency=8, manifestation_vibe=8 -- all >=8.\nFrame-verified: all 8 clips individually viewed before selection (7/13/15/31/32/63/64/66); clip 14 (Dubai Fountain, large identifiable tourist crowd) and clip 19 (MSC Seascape, already used in sf_063 within the extended lookback window) considered and rejected.\nSibling-collision check: clips_used and audio checked against sf_066/067/068/069 (same-day siblings) and sf_062 (still within extended lookback) -- zero overlap on both. Sunday's 5-short batch (sf_066-070) now complete: all 40 clips across the 5 candidates verified mutually distinct.",
+      "publish_blocker": "uploadLimitExceeded -- real YouTube daily upload cap hit earlier today. Gate-checked and ready; needs the upload retried once quota resets."
     }
   ]
 }
