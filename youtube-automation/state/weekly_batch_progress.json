@@ -678,7 +678,8 @@
         "local_slot": "20:30",
         "status": "pending",
         "scheduled_publish_at": "2026-08-09T19:30:00Z",
-        "candidate_id": null
+        "candidate_id": "lf_023",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap still in effect. Video fully produced/gate-checked/thumbnailed, needs upload retried once quota resets."
       }
     ],
     "upload_quota_blocker_note": "2026-07-27T23:55Z: YouTube returned uploadLimitExceeded on sf_019's publish attempt (and would affect any subsequent publish this same period \u2014 this is a per-channel daily cap, not per-video). 9 shorts and 2 long-form videos were already successfully published/scheduled today before this hit (sf_012-sf_018 published earlier in the session, sf_013-018+lf_002 reupload+lf_003 in this batch run = roughly 11 uploads today total). sf_019/sf_020/sf_021 are fully produced and gate-passed but blocked on this quota \u2014 see their publish_blocker notes in state/short_form_queue.json. Do not keep retrying the same upload in a tight loop; wait for the quota window to reset (next UTC day is the safest assumption) before attempting more publishes. Continuing to SCOUT/SCRIPT/PRODUCE further items is still fine and useful (keeps work ready to publish immediately once quota resets) but PUBLISHING is paused.",
