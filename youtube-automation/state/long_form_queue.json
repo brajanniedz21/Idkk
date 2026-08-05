@@ -907,7 +907,7 @@
     },
     {
       "id": "lf_022",
-      "status": "assembling",
+      "status": "ready_to_publish",
       "visual_theme": "Locked-off static night shot in a modern hillside driveway: a black Pagani, black Lamborghini Revuelto, and purple Nissan GT-R parked in a row, all with pulsing red LED taillight lens-flare, warm garage sconce lighting, a lit city skyscraper glowing in the distance. Sourced from state/animated_clip_pool.json (Path C) -- owner-added 2026-08-05, verified by download+frame-check (real content: three-supercar taillight cinemagraph, matches the pool's own truncated Drive title reasonably well).",
       "mood": "Calm, unhurried ambient pad, sub-60bpm, no percussion, no vocals -- ambient_quiet tier per the 2026-08-04 energy-tiering standard. Distinct visual mechanism from every immediately preceding candidate: lf_018 (cobblestone driveway, scissor door), lf_019 (pulsating pink underglow), lf_020 (rolling mist over two cars), lf_021 (three-car static garage, exhaust haze) -- this is the first pulsing-red-taillight-only cinemagraph (no smoke/mist/underglow) since lf_017's Porsche harbor scene.",
       "title": "The Glow Doesn't Need An Audience",
@@ -950,7 +950,11 @@
       },
       "sound_source_notes": "Checked state/cc0_audio_library.json for ambient_quiet tier tracks: all three existing ones (Cosmic Waves, Too Brief a Time to be Anything, Rain _ Sleep _ Meditation) had each been used within the immediately preceding 4 candidates (lf_018-021) -- sourced a genuinely new track instead. Pulled the FMA track listing for HoliznaCC0's 'Space - Sleep - Meditation' album (the same verified-CC0 netlabel artist/album already used successfully), picked '20 Minute Meditation 1' (previously unexplored in this pipeline). Verified: rel=license anchor on the track's own page -> creativecommons.org/publicdomain/zero/1.0/; downloaded via the embedded data-track-info JSON fileUrl (files.freemusicarchive.org, no login); ffprobe confirmed real 1279.968s/320kbps audio. Measured beat_strength=0.9134 (ambient_quiet tier, just under the 0.95 threshold).",
       "audio_track_id": "20 Minute Meditation 1 (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0, energy_profile.tier=ambient_quiet)",
-      "final_video_path": "assets/long-form/final/lf_022_final.mp4"
+      "final_video_path": "assets/long-form/final/lf_022_final.mp4",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_022_thumb.jpg",
+      "thumbnail_billboard_check_note": "Three blacked-out supercars (Pagani, Lamborghini Revuelto, GT-R) with pulsing red taillight glow against a dark driveway, clearly legible at 120px -- passes.",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1920x1080, 7500.000000s exact target, full decode pass clean zero errors).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, pure ambient luxury visualization).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content).\nlong_form audio_license_gate: PASS (20 Minute Meditation 1, HoliznaCC0, CC0 1.0, verified per agents/long_form/4.2_sound_sourcer.md, energy_profile.tier=ambient_quiet beat_strength=0.913).\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=8, thumbnail_strength=8, title_strength=8, brand_consistency=9, manifestation_vibe=8 -- all >=8.\nLoop verified clean (crossfade method): blend-region frame inspected directly, no ghosting/doubled edges -- see motion_decision.reason.\nSibling-collision check: audio track (20 Minute Meditation 1) cross-checked against lf_023 (same-day sibling, 20 Minute Meditation 2) -- distinct. Visual theme (three-car pulsing-taillight cinemagraph) distinct from lf_023 (two-car mist-building driveway) and all prior queue entries per source_notes.",
+      "publish_blocker": "uploadLimitExceeded -- real YouTube daily upload cap still in effect (retried, still blocked). Gate-checked and ready; needs the upload retried once quota resets."
     },
     {
       "id": "lf_023",
