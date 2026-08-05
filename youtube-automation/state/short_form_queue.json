@@ -3976,7 +3976,7 @@
       "published_video_id": "lGlEoZ7fKJ4",
       "published_url": "https://youtu.be/lGlEoZ7fKJ4",
       "published_at": "2026-08-04T16:25:53Z",
-      "pinned_comment_status": "failed: 403 insufficient permissions (commentThreads forbidden)",
+      "pinned_comment_status": "posted (retried after going public; comment_id=UgxWe9F__FdRImYhATp4AaABAg)",
       "thumbnail_upload_note": "thumbnail upload failed: 429 uploadRateLimitExceeded (transient, retried once after 30s, still rate-limited); video published successfully regardless per best-effort policy"
     },
     {

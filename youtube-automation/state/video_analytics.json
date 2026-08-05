@@ -1,16 +1,16 @@
 {
   "_comment": "Structured per-video stats, pulled daily. Consumed by the Analytics tab in dashboard/index.html (see scripts/generate_dashboard.py) and by agents/0_orchestrator.md's daily analytics cycle.",
-  "pulled_at": "2026-08-04T15:38:40.195964+00:00",
+  "pulled_at": "2026-08-05T07:12:33.932010+00:00",
   "has_analytics_scope": true,
   "analytics_data_note": "estimated_minutes_watched/avg_view_duration_sec/avg_view_percentage will be null until YouTube's Analytics reporting pipeline catches up (known lag, especially on a new channel \u2014 can be a day or two behind the public view counter). views/likes/comments are near-real-time.",
   "ctr_impressions_note": "Impressions and click-through rate are NOT available here \u2014 they're exclusive to the YouTube Studio UI and aren't exposed by the public YouTube Analytics API at all (not a scope/permission issue, confirmed by a live 400 'Unknown identifier (impressions)' test 2026-07-28). If you need exact CTR numbers, that means opening YouTube Studio directly; there's no API path to automate pulling it.",
   "videos": [
     {
-      "video_id": "RjBy7L2lyCo",
-      "title": "Ten Years Of Silence Bought This.",
+      "video_id": "Djmk71SoLO0",
+      "title": "I Kept Saying No To Easy.",
       "format": "short",
-      "url": "https://youtu.be/RjBy7L2lyCo",
-      "published_at": "2026-08-07T20:00:00Z",
+      "url": "https://youtu.be/Djmk71SoLO0",
+      "published_at": "2026-08-08T20:00:00Z",
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -19,12 +19,116 @@
       "avg_view_percentage": null
     },
     {
-      "video_id": "lYwYeuMy-_g",
-      "title": "I'm Still Paying A Debt You Can't See.",
+      "video_id": "jzrMAYLP1Uw",
+      "title": "Power Doesn't Need to Move",
+      "format": "long",
+      "url": "https://youtu.be/jzrMAYLP1Uw",
+      "published_at": "2026-08-08T19:30:00Z",
+      "views": 2,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "9OvHBWZQpGQ",
+      "title": "This Was Never Staged For You.",
       "format": "short",
-      "url": "https://youtu.be/lYwYeuMy-_g",
-      "published_at": "2026-08-07T17:00:00Z",
+      "url": "https://youtu.be/9OvHBWZQpGQ",
+      "published_at": "2026-08-08T17:00:00Z",
       "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "ROIR8mGVM3c",
+      "title": "Nobody Announced This. It Just Arrived.",
+      "format": "short",
+      "url": "https://youtu.be/ROIR8mGVM3c",
+      "published_at": "2026-08-08T14:00:00Z",
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "JaZ7b_svlts",
+      "title": "The Quiet Doesn't Hurry",
+      "format": "long",
+      "url": "https://youtu.be/JaZ7b_svlts",
+      "published_at": "2026-08-08T12:30:00Z",
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "-4A4dL0F8Do",
+      "title": "I Stopped Explaining Myself.",
+      "format": "short",
+      "url": "https://youtu.be/-4A4dL0F8Do",
+      "published_at": "2026-08-08T11:00:00Z",
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "H39DTyq4suU",
+      "title": "I Never Doubted This. Not Once.",
+      "format": "short",
+      "url": "https://youtu.be/H39DTyq4suU",
+      "published_at": "2026-08-08T08:00:00Z",
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "fWu32uo6vC4",
+      "title": "Monaco Doesn't Ask Twice.",
+      "format": "short",
+      "url": "https://youtu.be/fWu32uo6vC4",
+      "published_at": "2026-08-07T20:00:00Z",
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "mCmyY3Atfho",
+      "title": "You Stopped Needing Permission",
+      "format": "long",
+      "url": "https://youtu.be/mCmyY3Atfho",
+      "published_at": "2026-08-07T19:30:00Z",
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "rcGnQBMUfA4",
+      "title": "I Didn't Plan This Escape. I Earned It.",
+      "format": "short",
+      "url": "https://youtu.be/rcGnQBMUfA4",
+      "published_at": "2026-08-07T17:00:00Z",
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -37,7 +141,20 @@
       "format": "short",
       "url": "https://youtu.be/Hf0LopC3Nzs",
       "published_at": "2026-08-07T14:00:00Z",
-      "views": 0,
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "1E0C-Vt00U0",
+      "title": "The Stillness You've Earned",
+      "format": "long",
+      "url": "https://youtu.be/1E0C-Vt00U0",
+      "published_at": "2026-08-07T12:30:00Z",
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -50,7 +167,7 @@
       "format": "short",
       "url": "https://youtu.be/LDlwn8yYzcA",
       "published_at": "2026-08-07T11:00:00Z",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -63,7 +180,7 @@
       "format": "short",
       "url": "https://youtu.be/zsStjvwJeBY",
       "published_at": "2026-08-07T08:00:00Z",
-      "views": 0,
+      "views": 2,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -76,7 +193,7 @@
       "format": "short",
       "url": "https://youtu.be/TDWXpNz4PvQ",
       "published_at": "2026-08-06T20:00:00Z",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -102,7 +219,7 @@
       "format": "short",
       "url": "https://youtu.be/yBEg6ICBhs4",
       "published_at": "2026-08-06T17:00:00Z",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -115,7 +232,7 @@
       "format": "short",
       "url": "https://youtu.be/bG4_apNGhxM",
       "published_at": "2026-08-06T14:00:00Z",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -128,7 +245,7 @@
       "format": "long",
       "url": "https://youtu.be/ttedgtMmUoM",
       "published_at": "2026-08-06T12:30:00Z",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -141,7 +258,7 @@
       "format": "short",
       "url": "https://youtu.be/4kC9w6KDc4E",
       "published_at": "2026-08-06T11:00:00Z",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -180,7 +297,7 @@
       "format": "long",
       "url": "https://youtu.be/Db-nx85nK0c",
       "published_at": "2026-08-05T19:30:00Z",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -219,7 +336,7 @@
       "format": "long",
       "url": "https://youtu.be/_2kMSKmuJSs",
       "published_at": "2026-08-05T12:30:00Z",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -245,7 +362,7 @@
       "format": "short",
       "url": "https://youtu.be/vfITiOJDfZs",
       "published_at": "2026-08-04T20:00:00Z",
-      "views": 0,
+      "views": 265,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": null,
@@ -271,8 +388,21 @@
       "format": "short",
       "url": "https://youtu.be/JPdKU336Et8",
       "published_at": "2026-08-04T18:00:00Z",
-      "views": 0,
-      "likes": 0,
+      "views": 524,
+      "likes": 3,
+      "comments": 0,
+      "estimated_minutes_watched": null,
+      "avg_view_duration_sec": null,
+      "avg_view_percentage": null
+    },
+    {
+      "video_id": "lGlEoZ7fKJ4",
+      "title": "I Could Have Had This Five Years Ago. I Chose To Wait.",
+      "format": "short",
+      "url": "https://youtu.be/lGlEoZ7fKJ4",
+      "published_at": "2026-08-04T16:25:53Z",
+      "views": 61,
+      "likes": 1,
       "comments": 0,
       "estimated_minutes_watched": null,
       "avg_view_duration_sec": null,
@@ -284,8 +414,8 @@
       "format": "short",
       "url": "https://youtu.be/_a_wvOSQuG0",
       "published_at": "2026-08-04T13:00:00Z",
-      "views": 551,
-      "likes": 8,
+      "views": 705,
+      "likes": 5,
       "comments": 0,
       "estimated_minutes_watched": null,
       "avg_view_duration_sec": null,
@@ -310,8 +440,8 @@
       "format": "short",
       "url": "https://youtu.be/Wa3Xr6iQCk8",
       "published_at": "2026-08-04T11:45:00Z",
-      "views": 952,
-      "likes": 17,
+      "views": 1301,
+      "likes": 13,
       "comments": 0,
       "estimated_minutes_watched": null,
       "avg_view_duration_sec": null,
@@ -323,8 +453,8 @@
       "format": "short",
       "url": "https://youtu.be/osnAIJ4m9nA",
       "published_at": "2026-08-04T11:30:00Z",
-      "views": 722,
-      "likes": 14,
+      "views": 1357,
+      "likes": 19,
       "comments": 0,
       "estimated_minutes_watched": null,
       "avg_view_duration_sec": null,
@@ -349,7 +479,7 @@
       "format": "short",
       "url": "https://youtu.be/43DA6Uy08wI",
       "published_at": "2026-08-03T09:10:03Z",
-      "views": 391,
+      "views": 360,
       "likes": 4,
       "comments": 1,
       "estimated_minutes_watched": null,
@@ -362,7 +492,7 @@
       "format": "short",
       "url": "https://youtu.be/x-0ODBpOcgM",
       "published_at": "2026-08-03T08:55:04Z",
-      "views": 337,
+      "views": 309,
       "likes": 2,
       "comments": 1,
       "estimated_minutes_watched": null,
@@ -375,8 +505,8 @@
       "format": "short",
       "url": "https://youtu.be/qdXepayAqc8",
       "published_at": "2026-08-03T08:32:43Z",
-      "views": 1229,
-      "likes": 32,
+      "views": 1168,
+      "likes": 31,
       "comments": 1,
       "estimated_minutes_watched": null,
       "avg_view_duration_sec": null,
@@ -401,11 +531,11 @@
       "format": "short",
       "url": "https://youtu.be/qOWTFoI6YZA",
       "published_at": "2026-08-02T18:00:00Z",
-      "views": 444,
+      "views": 427,
       "likes": 0,
       "comments": 0,
-      "estimated_minutes_watched": 0,
-      "avg_view_duration_sec": 9,
+      "estimated_minutes_watched": 16,
+      "avg_view_duration_sec": 7,
       "avg_view_percentage": null
     },
     {
@@ -414,11 +544,11 @@
       "format": "short",
       "url": "https://youtu.be/WmQr6bAwfpM",
       "published_at": "2026-08-02T13:00:00Z",
-      "views": 1075,
-      "likes": 16,
+      "views": 1078,
+      "likes": 18,
       "comments": 0,
-      "estimated_minutes_watched": 0,
-      "avg_view_duration_sec": 0,
+      "estimated_minutes_watched": 86,
+      "avg_view_duration_sec": 14,
       "avg_view_percentage": null
     },
     {
@@ -427,11 +557,11 @@
       "format": "short",
       "url": "https://youtu.be/hyVZAT6aB58",
       "published_at": "2026-08-02T08:00:00Z",
-      "views": 418,
+      "views": 415,
       "likes": 3,
       "comments": 0,
-      "estimated_minutes_watched": 0,
-      "avg_view_duration_sec": 7,
+      "estimated_minutes_watched": 17,
+      "avg_view_duration_sec": 8,
       "avg_view_percentage": null
     },
     {
@@ -440,11 +570,11 @@
       "format": "long",
       "url": "https://youtu.be/5WQYs1Sd_fA",
       "published_at": "2026-08-02T06:45:39Z",
-      "views": 14,
+      "views": 19,
       "likes": 0,
       "comments": 0,
-      "estimated_minutes_watched": 0,
-      "avg_view_duration_sec": 11,
+      "estimated_minutes_watched": 3,
+      "avg_view_duration_sec": 44,
       "avg_view_percentage": null
     },
     {
@@ -453,10 +583,10 @@
       "format": "short",
       "url": "https://youtu.be/lwp4uCkom6g",
       "published_at": "2026-08-02T05:45:00Z",
-      "views": 1107,
-      "likes": 20,
+      "views": 1111,
+      "likes": 21,
       "comments": 1,
-      "estimated_minutes_watched": 0,
+      "estimated_minutes_watched": 78,
       "avg_view_duration_sec": 11,
       "avg_view_percentage": null
     },
@@ -466,11 +596,11 @@
       "format": "short",
       "url": "https://youtu.be/jpbqavO91xo",
       "published_at": "2026-08-02T00:00:00Z",
-      "views": 1227,
-      "likes": 27,
+      "views": 1231,
+      "likes": 29,
       "comments": 2,
-      "estimated_minutes_watched": 0,
-      "avg_view_duration_sec": 4,
+      "estimated_minutes_watched": 88,
+      "avg_view_duration_sec": 13,
       "avg_view_percentage": null
     },
     {
@@ -482,8 +612,8 @@
       "views": 233,
       "likes": 0,
       "comments": 1,
-      "estimated_minutes_watched": 0,
-      "avg_view_duration_sec": 1,
+      "estimated_minutes_watched": 9,
+      "avg_view_duration_sec": 10,
       "avg_view_percentage": null
     },
     {
@@ -509,7 +639,7 @@
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": 0,
-      "avg_view_duration_sec": 0,
+      "avg_view_duration_sec": 10,
       "avg_view_percentage": null
     },
     {
@@ -518,11 +648,11 @@
       "format": "short",
       "url": "https://youtu.be/H7xpqKYn-Hk",
       "published_at": "2026-08-01T13:00:00Z",
-      "views": 8,
+      "views": 9,
       "likes": 1,
       "comments": 0,
       "estimated_minutes_watched": 0,
-      "avg_view_duration_sec": 4,
+      "avg_view_duration_sec": 12,
       "avg_view_percentage": null
     },
     {
@@ -547,8 +677,8 @@
       "views": 64,
       "likes": 1,
       "comments": 0,
-      "estimated_minutes_watched": 386,
-      "avg_view_duration_sec": 380,
+      "estimated_minutes_watched": 387,
+      "avg_view_duration_sec": 362,
       "avg_view_percentage": null
     },
     {
@@ -557,11 +687,11 @@
       "format": "short",
       "url": "https://youtu.be/0glcqjWLhBU",
       "published_at": "2026-07-31T18:00:00Z",
-      "views": 281,
+      "views": 280,
       "likes": 4,
       "comments": 0,
-      "estimated_minutes_watched": 11,
-      "avg_view_duration_sec": 7,
+      "estimated_minutes_watched": 14,
+      "avg_view_duration_sec": 8,
       "avg_view_percentage": null
     },
     {
@@ -583,7 +713,7 @@
       "format": "short",
       "url": "https://youtu.be/ROZobyfbqBk",
       "published_at": "2026-07-31T08:00:00Z",
-      "views": 529,
+      "views": 530,
       "likes": 5,
       "comments": 0,
       "estimated_minutes_watched": 23,
@@ -622,7 +752,7 @@
       "format": "short",
       "url": "https://youtu.be/rcT5fayYojc",
       "published_at": "2026-07-30T13:00:00Z",
-      "views": 1123,
+      "views": 1124,
       "likes": 21,
       "comments": 0,
       "estimated_minutes_watched": 70,
@@ -661,7 +791,7 @@
       "format": "short",
       "url": "https://youtu.be/tvr7Pe99b2o",
       "published_at": "2026-07-29T18:00:00Z",
-      "views": 1316,
+      "views": 1322,
       "likes": 13,
       "comments": 0,
       "estimated_minutes_watched": 70,
@@ -674,7 +804,7 @@
       "format": "short",
       "url": "https://youtu.be/Ia2jWCbXAIs",
       "published_at": "2026-07-29T13:00:00Z",
-      "views": 1580,
+      "views": 1586,
       "likes": 49,
       "comments": 0,
       "estimated_minutes_watched": 112,
@@ -687,7 +817,7 @@
       "format": "short",
       "url": "https://youtu.be/-61RQDvyQtM",
       "published_at": "2026-07-29T08:00:00Z",
-      "views": 1149,
+      "views": 1150,
       "likes": 8,
       "comments": 0,
       "estimated_minutes_watched": 70,
@@ -713,7 +843,7 @@
       "format": "short",
       "url": "https://youtu.be/LE_thiHiqHM",
       "published_at": "2026-07-28T18:00:00Z",
-      "views": 1736,
+      "views": 1737,
       "likes": 36,
       "comments": 0,
       "estimated_minutes_watched": 121,
@@ -739,10 +869,10 @@
       "format": "short",
       "url": "https://youtu.be/jPadbAWbYsU",
       "published_at": "2026-07-28T08:00:00Z",
-      "views": 1829,
+      "views": 1830,
       "likes": 38,
       "comments": 0,
-      "estimated_minutes_watched": 125,
+      "estimated_minutes_watched": 126,
       "avg_view_duration_sec": 10,
       "avg_view_percentage": null
     },
@@ -752,7 +882,7 @@
       "format": "long",
       "url": "https://youtu.be/J5o72mPmCzs",
       "published_at": "2026-07-27T21:10:00Z",
-      "views": 6,
+      "views": 9,
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": 3,
@@ -782,7 +912,7 @@
       "likes": 0,
       "comments": 0,
       "estimated_minutes_watched": 1,
-      "avg_view_duration_sec": 21,
+      "avg_view_duration_sec": 23,
       "avg_view_percentage": null
     },
     {
@@ -869,10 +999,10 @@
       "format": "short",
       "url": "https://youtu.be/Bz7e8FgzL3A",
       "published_at": "2026-07-27T14:35:00Z",
-      "views": 918,
+      "views": 919,
       "likes": 5,
       "comments": 0,
-      "estimated_minutes_watched": 54,
+      "estimated_minutes_watched": 55,
       "avg_view_duration_sec": 11,
       "avg_view_percentage": null
     },
@@ -920,28 +1050,33 @@
       "date": "2026-08-01",
       "views": 359,
       "minutes_watched": 410
+    },
+    {
+      "date": "2026-08-02",
+      "views": 4447,
+      "minutes_watched": 304
     }
   ],
   "traffic_sources": [
     {
       "source": "SHORTS",
-      "views": 11672
-    },
-    {
-      "source": "YT_CHANNEL",
-      "views": 164
+      "views": 15849
     },
     {
       "source": "YT_SEARCH",
-      "views": 152
+      "views": 245
+    },
+    {
+      "source": "YT_CHANNEL",
+      "views": 219
     },
     {
       "source": "YT_OTHER_PAGE",
-      "views": 145
+      "views": 213
     },
     {
       "source": "RELATED_VIDEO",
-      "views": 103
+      "views": 105
     },
     {
       "source": "EXT_URL",
@@ -949,221 +1084,221 @@
     },
     {
       "source": "SUBSCRIBER",
-      "views": 9
-    },
-    {
-      "source": "NO_LINK_OTHER",
-      "views": 3
+      "views": 10
     },
     {
       "source": "SOUND_PAGE",
+      "views": 4
+    },
+    {
+      "source": "NO_LINK_OTHER",
       "views": 3
     }
   ],
   "retention_curve": [
     {
       "elapsed": 0.01,
-      "ratio": 1.2406
+      "ratio": 1.2402
     },
     {
       "elapsed": 0.02,
-      "ratio": 1.5918
+      "ratio": 1.5925
     },
     {
       "elapsed": 0.03,
-      "ratio": 1.5829
+      "ratio": 1.5836000000000001
     },
     {
       "elapsed": 0.04,
-      "ratio": 1.5668
+      "ratio": 1.5675999999999999
     },
     {
       "elapsed": 0.05,
-      "ratio": 1.5472
+      "ratio": 1.548
     },
     {
       "elapsed": 0.06,
-      "ratio": 1.5275999999999998
+      "ratio": 1.5285
     },
     {
       "elapsed": 0.07,
-      "ratio": 1.4990999999999999
+      "ratio": 1.5
     },
     {
       "elapsed": 0.08,
-      "ratio": 1.4777
+      "ratio": 1.4786000000000001
     },
     {
       "elapsed": 0.09,
-      "ratio": 1.4491999999999998
+      "ratio": 1.4502000000000002
     },
     {
       "elapsed": 0.1,
-      "ratio": 1.4225
+      "ratio": 1.4235
     },
     {
       "elapsed": 0.11,
-      "ratio": 1.3957
+      "ratio": 1.3968
     },
     {
       "elapsed": 0.12,
-      "ratio": 1.3797
+      "ratio": 1.3808
     },
     {
       "elapsed": 0.13,
-      "ratio": 1.3708
+      "ratio": 1.3719
     },
     {
       "elapsed": 0.14,
-      "ratio": 1.3565
+      "ratio": 1.3577000000000001
     },
     {
       "elapsed": 0.15,
-      "ratio": 1.3476
+      "ratio": 1.3488
     },
     {
       "elapsed": 0.16,
-      "ratio": 1.328
+      "ratio": 1.3292
     },
     {
       "elapsed": 0.17,
-      "ratio": 1.3209
+      "ratio": 1.3221
     },
     {
       "elapsed": 0.18,
-      "ratio": 1.3119
+      "ratio": 1.3132
     },
     {
       "elapsed": 0.19,
-      "ratio": 1.3048
+      "ratio": 1.306
     },
     {
       "elapsed": 0.2,
-      "ratio": 1.2977
+      "ratio": 1.2989
     },
     {
       "elapsed": 0.21,
-      "ratio": 1.2906
+      "ratio": 1.2918
     },
     {
       "elapsed": 0.22,
-      "ratio": 1.2816
+      "ratio": 1.2829
     },
     {
       "elapsed": 0.23,
-      "ratio": 1.2727
+      "ratio": 1.274
     },
     {
       "elapsed": 0.24,
-      "ratio": 1.2727
+      "ratio": 1.274
     },
     {
       "elapsed": 0.25,
-      "ratio": 1.2709000000000001
+      "ratio": 1.2722
     },
     {
       "elapsed": 0.26,
-      "ratio": 1.2656
+      "ratio": 1.2669
     },
     {
       "elapsed": 0.27,
-      "ratio": 1.2585
+      "ratio": 1.2598
     },
     {
       "elapsed": 0.28,
-      "ratio": 1.2585
+      "ratio": 1.2598
     },
     {
       "elapsed": 0.29,
-      "ratio": 1.2531
+      "ratio": 1.2544
     },
     {
       "elapsed": 0.3,
-      "ratio": 1.2531
+      "ratio": 1.2544
     },
     {
       "elapsed": 0.31,
-      "ratio": 1.2512999999999999
+      "ratio": 1.2527
     },
     {
       "elapsed": 0.32,
-      "ratio": 1.2512999999999999
+      "ratio": 1.2527
     },
     {
       "elapsed": 0.33,
-      "ratio": 1.2531
+      "ratio": 1.2544
     },
     {
       "elapsed": 0.34,
-      "ratio": 1.2496
+      "ratio": 1.2509000000000001
     },
     {
       "elapsed": 0.35,
-      "ratio": 1.2478
+      "ratio": 1.2490999999999999
     },
     {
       "elapsed": 0.36,
-      "ratio": 1.2424
+      "ratio": 1.2438
     },
     {
       "elapsed": 0.37,
-      "ratio": 1.2406
+      "ratio": 1.242
     },
     {
       "elapsed": 0.38,
-      "ratio": 1.2282
+      "ratio": 1.2295
     },
     {
       "elapsed": 0.39,
-      "ratio": 1.2068
+      "ratio": 1.2082
     },
     {
       "elapsed": 0.4,
-      "ratio": 1.1711
+      "ratio": 1.1726
     },
     {
       "elapsed": 0.41,
-      "ratio": 1.1337000000000002
+      "ratio": 1.1352
     },
     {
       "elapsed": 0.42,
-      "ratio": 1.1176000000000001
+      "ratio": 1.1192
     },
     {
       "elapsed": 0.43,
-      "ratio": 1.0998
+      "ratio": 1.1014
     },
     {
       "elapsed": 0.44,
-      "ratio": 1.0909
+      "ratio": 1.0925
     },
     {
       "elapsed": 0.45,
-      "ratio": 1.0784
+      "ratio": 1.0801
     },
     {
       "elapsed": 0.46,
-      "ratio": 1.0695000000000001
+      "ratio": 1.0712000000000002
     },
     {
       "elapsed": 0.47,
-      "ratio": 1.0624
+      "ratio": 1.0641
     },
     {
       "elapsed": 0.48,
-      "ratio": 1.0499
+      "ratio": 1.0515999999999999
     },
     {
       "elapsed": 0.49,
-      "ratio": 1.0392000000000001
+      "ratio": 1.0409
     },
     {
       "elapsed": 0.5,
-      "ratio": 1.0267
+      "ratio": 1.0285
     },
     {
       "elapsed": 0.51,
-      "ratio": 1.0018
+      "ratio": 1.0036
     },
     {
       "elapsed": 0.52,
@@ -1175,199 +1310,199 @@
     },
     {
       "elapsed": 0.54,
-      "ratio": 0.9697
+      "ratio": 0.9698
     },
     {
       "elapsed": 0.55,
-      "ratio": 0.9519
+      "ratio": 0.9520000000000001
     },
     {
       "elapsed": 0.56,
-      "ratio": 0.9376000000000001
+      "ratio": 0.9377
     },
     {
       "elapsed": 0.57,
-      "ratio": 0.9216
+      "ratio": 0.9217
     },
     {
       "elapsed": 0.58,
-      "ratio": 0.9073
+      "ratio": 0.9075
     },
     {
       "elapsed": 0.59,
-      "ratio": 0.8876999999999999
+      "ratio": 0.8879
     },
     {
       "elapsed": 0.6,
-      "ratio": 0.8752
+      "ratio": 0.8754000000000001
     },
     {
       "elapsed": 0.61,
-      "ratio": 0.8484999999999999
+      "ratio": 0.8488
     },
     {
       "elapsed": 0.62,
-      "ratio": 0.8431000000000001
+      "ratio": 0.8434
     },
     {
       "elapsed": 0.63,
-      "ratio": 0.8395999999999999
+      "ratio": 0.8399
     },
     {
       "elapsed": 0.64,
-      "ratio": 0.8342
+      "ratio": 0.8345
     },
     {
       "elapsed": 0.65,
-      "ratio": 0.8253
+      "ratio": 0.8256
     },
     {
       "elapsed": 0.66,
-      "ratio": 0.8164
+      "ratio": 0.8167
     },
     {
       "elapsed": 0.67,
-      "ratio": 0.8093
+      "ratio": 0.8096
     },
     {
       "elapsed": 0.68,
-      "ratio": 0.8039000000000001
+      "ratio": 0.8043
     },
     {
       "elapsed": 0.69,
-      "ratio": 0.7931999999999999
+      "ratio": 0.7936
     },
     {
       "elapsed": 0.7,
-      "ratio": 0.7807
+      "ratio": 0.7811
     },
     {
       "elapsed": 0.71,
-      "ratio": 0.7701
+      "ratio": 0.7705
     },
     {
       "elapsed": 0.72,
-      "ratio": 0.7629
+      "ratio": 0.7633
     },
     {
       "elapsed": 0.73,
-      "ratio": 0.7594
+      "ratio": 0.7598
     },
     {
       "elapsed": 0.74,
-      "ratio": 0.754
+      "ratio": 0.7544
     },
     {
       "elapsed": 0.75,
-      "ratio": 0.7433
+      "ratio": 0.7437999999999999
     },
     {
       "elapsed": 0.76,
-      "ratio": 0.738
+      "ratio": 0.7384000000000001
     },
     {
       "elapsed": 0.77,
-      "ratio": 0.7291
+      "ratio": 0.7295
     },
     {
       "elapsed": 0.78,
-      "ratio": 0.7184
+      "ratio": 0.7189
     },
     {
       "elapsed": 0.79,
-      "ratio": 0.7148
+      "ratio": 0.7153
     },
     {
       "elapsed": 0.8,
-      "ratio": 0.7077
+      "ratio": 0.7081999999999999
     },
     {
       "elapsed": 0.81,
-      "ratio": 0.7023
+      "ratio": 0.7028
     },
     {
       "elapsed": 0.82,
-      "ratio": 0.6988
+      "ratio": 0.6993
     },
     {
       "elapsed": 0.83,
-      "ratio": 0.6951999999999999
+      "ratio": 0.6957
     },
     {
       "elapsed": 0.84,
-      "ratio": 0.6916
+      "ratio": 0.6922
     },
     {
       "elapsed": 0.85,
-      "ratio": 0.6790999999999999
+      "ratio": 0.6797
     },
     {
       "elapsed": 0.86,
-      "ratio": 0.6701999999999999
+      "ratio": 0.6708
     },
     {
       "elapsed": 0.87,
-      "ratio": 0.6684
+      "ratio": 0.669
     },
     {
       "elapsed": 0.88,
-      "ratio": 0.6435
+      "ratio": 0.6441
     },
     {
       "elapsed": 0.89,
-      "ratio": 0.6381
+      "ratio": 0.6388
     },
     {
       "elapsed": 0.9,
-      "ratio": 0.5329999999999999
+      "ratio": 0.5338
     },
     {
       "elapsed": 0.91,
-      "ratio": 0.5205
+      "ratio": 0.5214
     },
     {
       "elapsed": 0.92,
-      "ratio": 0.49200000000000005
+      "ratio": 0.4929
     },
     {
       "elapsed": 0.93,
-      "ratio": 0.49200000000000005
+      "ratio": 0.4929
     },
     {
       "elapsed": 0.94,
-      "ratio": 0.4938
+      "ratio": 0.4947
     },
     {
       "elapsed": 0.95,
-      "ratio": 0.4955
+      "ratio": 0.4964
     },
     {
       "elapsed": 0.96,
-      "ratio": 0.4955
+      "ratio": 0.4964
     },
     {
       "elapsed": 0.97,
-      "ratio": 0.4938
+      "ratio": 0.4947
     },
     {
       "elapsed": 0.98,
-      "ratio": 0.4938
+      "ratio": 0.4947
     },
     {
       "elapsed": 0.99,
-      "ratio": 0.4938
+      "ratio": 0.4947
     },
     {
       "elapsed": 1,
-      "ratio": 0.4938
+      "ratio": 0.4947
     }
   ],
   "retention_video": {
     "video_id": "jPadbAWbYsU",
     "title": "I'm The First. Not The Last."
   },
-  "subscribers_gained": 22,
-  "subscribers_lost": 8,
+  "subscribers_gained": 34,
+  "subscribers_lost": 11,
   "subscribers_daily_series": [
     {
       "date": "2026-07-27",
@@ -1404,6 +1539,12 @@
       "subscribers_gained": 0,
       "subscribers_lost": 0,
       "net": 0
+    },
+    {
+      "date": "2026-08-02",
+      "subscribers_gained": 12,
+      "subscribers_lost": 3,
+      "net": 9
     }
   ]
 }

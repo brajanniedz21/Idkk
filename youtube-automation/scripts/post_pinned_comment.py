@@ -37,7 +37,7 @@ import sys
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-from youtube_auth import load_comment_credentials
+from youtube_auth import load_comment_credentials, load_credentials
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "state")
@@ -73,7 +73,35 @@ def build_funnel_text(posted_history_path=None):
     return FUNNEL_TEXT
 
 
+def video_is_public(video_id):
+    """Check the video's actual current privacyStatus via the base (already
+    -verified) publish credentials, not the comment-scope ones. Real bug
+    found 2026-08-05 (analytics cycle diagnosis): every pinned-comment
+    attempt on a scheduled upload (privacyStatus=private, publishAt in the
+    future) was hitting a guaranteed commentThreads.insert 403 — YouTube
+    does not allow commenting on a not-yet-public video regardless of the
+    channel owner's own permissions. 12 consecutive attempts since
+    2026-08-04 failed/were skipped this way, vs. 6/6 successes before that
+    (when every publish in that window happened to be immediate/already-
+    public). Checking first turns a guaranteed, noisy 403 into an honest
+    'deferred' status instead."""
+    creds = load_credentials()
+    youtube = build("youtube", "v3", credentials=creds)
+    resp = youtube.videos().list(part="status", id=video_id).execute()
+    items = resp.get("items", [])
+    if not items:
+        return None  # video not found/not yet indexed -- treat as unknown, not a hard false
+    return items[0]["status"].get("privacyStatus") == "public"
+
+
 def post_and_pin(video_id, text):
+    is_public = video_is_public(video_id)
+    if is_public is False:
+        print(f"DEFERRED: video {video_id} is not public yet (still private/scheduled) -- "
+              "commentThreads.insert always fails 403 on a non-public video, so not attempting "
+              "it now. Retry this same call once the video's scheduled publishAt has passed.")
+        return "deferred_until_public"
+
     creds = load_comment_credentials()
     if creds is None:
         print("SKIPPED: comment-posting credentials unavailable (youtube.force-ssl scope not "

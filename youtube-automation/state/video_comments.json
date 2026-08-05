@@ -1,6 +1,6 @@
 {
   "_comment": "Real comment TEXT (not just counts) for published videos, via youtube_auth.load_comment_credentials() — see scripts/pull_video_comments.py. organic_count excludes the pipeline's own automated pinned funnel comment; organic_comments_mentioning_luxury is a real signal for whether the Shorts CTA is working, not a guess from raw comment counts.",
-  "pulled_at": "2026-08-04T07:07:54.347031+00:00",
+  "pulled_at": "2026-08-05T07:13:09.964330+00:00",
   "has_comment_scope": true,
   "channel_id": "UCfTbwJxMPqL004V8Ssc5eWQ",
   "videos": {
@@ -277,6 +277,175 @@
       "organic_count": 0,
       "organic_comments_mentioning_luxury": 0
     },
+    "osnAIJ4m9nA": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "Wa3Xr6iQCk8": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "_a_wvOSQuG0": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "JPdKU336Et8": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "vfITiOJDfZs": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "8OEytPaZ_Vs": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=8OEytPaZ_Vs&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "UcnSLCbPKpg": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=UcnSLCbPKpg&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "3xWHo2V-Y-U": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=3xWHo2V-Y-U&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "ye0LHnyU65U": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=ye0LHnyU65U&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "x3tzghwp_aA": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=x3tzghwp_aA&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "4kC9w6KDc4E": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=4kC9w6KDc4E&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "bG4_apNGhxM": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=bG4_apNGhxM&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "yBEg6ICBhs4": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=yBEg6ICBhs4&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "TDWXpNz4PvQ": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=TDWXpNz4PvQ&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "zsStjvwJeBY": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=zsStjvwJeBY&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "LDlwn8yYzcA": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=LDlwn8yYzcA&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "Hf0LopC3Nzs": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=Hf0LopC3Nzs&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "lGlEoZ7fKJ4": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "rcGnQBMUfA4": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=rcGnQBMUfA4&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "fWu32uo6vC4": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=fWu32uo6vC4&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "-4A4dL0F8Do": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=-4A4dL0F8Do&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "Djmk71SoLO0": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=Djmk71SoLO0&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "H39DTyq4suU": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=H39DTyq4suU&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "9OvHBWZQpGQ": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=9OvHBWZQpGQ&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "ROIR8mGVM3c": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=ROIR8mGVM3c&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
     "J5o72mPmCzs": {
       "comments": [],
       "automated_count": 0,
@@ -326,6 +495,74 @@
       "organic_comments_mentioning_luxury": 0
     },
     "IFbviopMBLU": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "6PR4jRyLJUU": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "3o07Y6m66Oc": {
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "_2kMSKmuJSs": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=_2kMSKmuJSs&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "Db-nx85nK0c": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=Db-nx85nK0c&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "ttedgtMmUoM": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=ttedgtMmUoM&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "GoWydrsRf8w": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=GoWydrsRf8w&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "mCmyY3Atfho": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=mCmyY3Atfho&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "1E0C-Vt00U0": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=1E0C-Vt00U0&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "JaZ7b_svlts": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=JaZ7b_svlts&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
+      "comments": [],
+      "automated_count": 0,
+      "organic_count": 0,
+      "organic_comments_mentioning_luxury": 0
+    },
+    "jzrMAYLP1Uw": {
+      "error": "comments unavailable: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=jzrMAYLP1Uw&maxResults=100&order=time&alt=json returned \"The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.\". Details: \"[{'message': 'The video identified by the <code><a href=\"/youtube/v3/docs/commentThreads/list#videoId\">videoId</a></code> parameter has disabled comments.', 'domain': 'youtube.commentThread', 'reason': 'commentsDisabled', 'location': 'videoId', 'locationType': 'parameter'}]\">",
       "comments": [],
       "automated_count": 0,
       "organic_count": 0,
