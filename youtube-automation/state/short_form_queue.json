@@ -4647,6 +4647,69 @@
       "thumbnail_billboard_check_note": "Two black Rolls-Royce Cullinans with a private jet behind under warm hangar lighting at night, dramatic and legible at 120px -- passes.",
       "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, decode clean, no black/silent stretches).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, generic first-person motivational framing).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content, real transformation applied).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (gata only remix, state/trending_audio_library.json, genuinely identified real derivative track, owner risk-acceptance on file for short-form real-track use).\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=8, thumbnail_strength=9, title_strength=8, brand_consistency=8, manifestation_vibe=8 -- all >=8.\nFrame-verified: all 8 clips individually viewed before selection (43/60/61/62/65/67/68/69).\nSibling-collision check: clips_used and audio checked against sf_066/sf_067 (same-day siblings) and the last 5 published Shorts (sf_062-sf_065) -- zero overlap on both.",
       "publish_blocker": "uploadLimitExceeded -- real YouTube daily upload cap hit earlier today. Gate-checked and ready; needs the upload retried once quota resets."
+    },
+    {
+      "id": "sf_069",
+      "status": "ready_to_publish",
+      "scouted_at": "2026-08-05T02:00:00Z",
+      "scripted_at": "2026-08-05T02:02:00Z",
+      "angle": "Built-quietly-not-loudly narrative (legacy/sacrifice/earned-over-time family per channel_playbook.md's repeat_and_validate direction, n=34 support): distinct from sf_066/067/068's mechanisms (witnessed-not-announced, no-permission-needed, landed-not-lucky) -- this candidate's specific claim is that the work happened in ordinary, unglamorous moments (traffic, a parking lot) before it ever looked like this, using the daytime/ordinary-setting clips as a deliberate contrast to the luxury payoff shots.",
+      "title_pattern": "Nobody Saw The Boring Part.",
+      "title": "Nobody Saw The Boring Part.",
+      "caption_hooks": [
+        "Nobody saw the boring part.",
+        "This started in traffic, not a spotlight.",
+        "The unglamorous part is why this exists."
+      ],
+      "trending_sound_style": "owner_provided_181430, 79.2 BPM, calm-confident mid-tempo -- matches the calmer-confident end of upbeat per brand_identity, distinct from every other Sunday sibling's audio track.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation"
+      ],
+      "tags": [
+        "luxury lifestyle",
+        "manifestation",
+        "motivation",
+        "quiet luxury",
+        "discipline",
+        "self improvement",
+        "wealth mindset",
+        "success mindset",
+        "aesthetic motivation",
+        "supercar",
+        "luxury travel",
+        "mindset shift",
+        "resilience",
+        "law of attraction",
+        "quiet confidence"
+      ],
+      "source_notes": "Continues channel_playbook.md's repeat_and_validate direction for legacy/sacrifice/earned-over-time narratives with confident-not-aggressive audio (2026-08-04 playbook). Genuinely new specific mechanism (ordinary-moments-before-the-payoff contrast) distinct from sf_066/067/068 -- see angle field. Note: initial audio pick (Montagem Celestial Esperanza) was rejected mid-production as too aggressive/phonk for brand_identity's calmer-confident guidance -- re-rendered with owner_provided_181430 instead.",
+      "fatigue_status": "not in cooldown/retire_temporarily; repeat_and_validate pick within the supported family.",
+      "seo_description": "Nobody saw the traffic, the waiting, the ordinary days before this. Quiet wealth, deliberate work, a life that doesn't skip to the highlight reel. Want the full ambience experience? Check the channel for the long-form version.",
+      "visual_direction": "Monaco night car meet outside a grand hotel / teal superyacht docked in a marina / daytime supercar traffic (Mercedes SLS, green Lamborghini) / Lamborghini STO on a highway at night / turquoise-water jet-ski POV / overhead cash-counting close-up / Dubai Ain wheel from a yacht at dusk -- clip ids 16,18,24,27,39,47,54,70, each verified via frame extraction before selection; zero overlap with sf_062-sf_068's clips_used.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      },
+      "produced_file_path": "assets/short-form-clips/processed/sf_069.mp4",
+      "clips_used": [
+        "16",
+        "18",
+        "24",
+        "27",
+        "39",
+        "47",
+        "54",
+        "70"
+      ],
+      "transform_log": "11 shots from 8 distinct clips, avg ~0.91s/shot (range 0.71s-1.49s, intro skipped: 0.23s, cut points from real beat detection on owner_provided_181430.mp3) -- all 8 clips verified via frame extraction before selection, zero overlap with sf_062-sf_068's clips_used. First render attempt (Montagem Celestial Esperanza audio) discarded before commit -- too aggressive/phonk energy for brand_identity's calmer-confident guidance; re-rendered with owner_provided_181430 (79.2 BPM, calmer) instead.",
+      "produced_at": "2026-08-05T02:20:00Z",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_069_thumb.jpg",
+      "thumbnail_billboard_check_note": "Teal superyacht docked in a marina under clear blue sky, clean and legible at 120px -- passes.",
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, decode clean, no black/silent stretches).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, generic first-person motivational framing).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content, real transformation applied).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (owner_provided_181430, state/trending_audio_library.json, owner risk-acceptance on file).\ncontent_quality_gate: luxury_aesthetic=8, emotional_impact=8, thumbnail_strength=9, title_strength=8, brand_consistency=9, manifestation_vibe=8 -- all >=8.\nFrame-verified: all 8 clips individually viewed before selection (16/18/24/27/39/47/54/70); clip 48 (dim car interior, risky framing) and clip 58 (visible face, golfer) considered from the available pool and rejected as off-brand/risky, consistent with prior productions' own exclusion notes.\nSibling-collision check: clips_used and audio checked against sf_066/067/068 (same-day siblings) and the last 5 published Shorts -- zero overlap on both.",
+      "publish_blocker": "uploadLimitExceeded -- real YouTube daily upload cap hit earlier today. Gate-checked and ready; needs the upload retried once quota resets."
     }
   ]
 }

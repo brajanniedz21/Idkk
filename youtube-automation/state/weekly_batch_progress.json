@@ -648,7 +648,8 @@
         "local_slot": "18:00",
         "status": "pending",
         "scheduled_publish_at": "2026-08-09T17:00:00Z",
-        "candidate_id": null
+        "candidate_id": "sf_069",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap still in effect. Video fully produced/gate-checked/thumbnailed, needs upload retried once quota resets."
       },
       {
         "index": 72,
