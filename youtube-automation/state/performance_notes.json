@@ -864,6 +864,406 @@
         "next_review": "Re-assess once the PUBLISHING phase actually rolls out new Shorts/long-form videos from this week's batch and their view/engagement data accumulates for a few days."
       },
       "summary": "Analytics scope live (has_analytics_scope=true). Real subscriber count: 27 (up from prior cycle's count). Trajectory status RED with low data_confidence (6 days of subscriber-series data, ~2.3 subs/day pace vs. ~386/day required) -- expected on a very young channel, not a diagnosed problem. Dominant constraint remains the Shorts-vs-long-form reach gap (median age-normalized views 89.9 vs. 4.9), now on a larger sample but not yet strong enough evidence to justify any further allocation change beyond the owner's existing 5+2 direction. CTA experiment still gathering data (all variants below the 3-comparable-Shorts minimum). No new quarantine issues. No system-level change made this cycle -- insufficient evidence for anything beyond the status quo, which per the Growth Strategy section is a legitimate outcome, not a failure to act. CTR/impressions/retention/traffic-source remain unavailable via the API regardless of scope status."
+    },
+    {
+      "run_id": "analytics-2026-08-05-0731",
+      "run_date": "2026-08-05",
+      "analytics_scope": {
+        "has_analytics_scope": true,
+        "note": "estimated_minutes_watched/avg_view_duration_sec/avg_view_percentage will be null until YouTube's Analytics reporting pipeline catches up (known lag, especially on a new channel \u2014 can be a day or two behind the public view counter). views/likes/comments are near-real-time."
+      },
+      "data_quality": {
+        "source": "YouTube Data API (views/likes/comments, near-real-time) + Analytics API (subscribersGained/Lost daily series, scope live) + real comment text via load_comment_credentials()",
+        "window": "cumulative totals evaluated today for genuinely-live (published_at <= now) videos only",
+        "window_type": "recent_upload_cohort",
+        "available_metrics": [
+          "views",
+          "likes",
+          "comments",
+          "subscribers_gained",
+          "subscribers_lost (daily series)"
+        ],
+        "unavailable_metrics": [
+          "CTR",
+          "impressions (no API path at all)",
+          "avg_view_duration_sec/estimated_minutes_watched/avg_view_percentage (lag-nulled, not yet caught up)",
+          "traffic_sources (empty)",
+          "retention_curve (empty)"
+        ],
+        "n_videos_total_live": 51,
+        "n_videos_total_including_future_scheduled": 78,
+        "n_missing_attributes_live": 26,
+        "missing_attributes_note": "26 of 51 genuinely-live videos don't join back to a queue candidate_id (older/manually-published entries predating consistent candidate_id logging) -- findings below are necessarily attribute-blind for that subset.",
+        "future_scheduled_exclusion_note": "27 videos in video_analytics.json are already uploaded but still private/scheduled for a future publishAt (the pre-2026-08-04 weekly-batch backlog, days 2026-08-05 through 2026-08-09) -- excluded from every baseline/finding below since their near-zero view counts reflect not-yet-public status, not real performance. This exclusion is new this cycle; prior cycles did not have this backlog and did not need it."
+      },
+      "format_baselines": {
+        "short": {
+          "n": 40,
+          "median_views": 334.5,
+          "median_age_normalized_views": 105.99024444371659,
+          "median_likes_per_1000_views": 7.160557122105443,
+          "median_comments_per_1000_views": 0.0
+        },
+        "long": {
+          "n": 11,
+          "median_views": 9,
+          "median_age_normalized_views": 1.9712013241656354,
+          "median_likes_per_1000_views": 0.0,
+          "median_comments_per_1000_views": 0.0
+        }
+      },
+      "trajectory": {
+        "current_subscribers": 33,
+        "target_subscribers": 100000,
+        "target_date": "2027-04-21",
+        "remaining_subscribers": 99967,
+        "remaining_days": 258,
+        "required_daily_pace": 387.468992248062,
+        "required_weekly_pace": 2712.282945736434,
+        "pace_7day_subscribers_per_day": 3.2857142857142856,
+        "pace_7day_days_of_data": 7,
+        "pace_28day_subscribers_per_day": 3.2857142857142856,
+        "pace_28day_days_of_data": 7,
+        "data_confidence": "moderate",
+        "projected_subscribers_at_target_date_7day_pace": 880.7142857142857,
+        "projected_subscribers_at_target_date_28day_pace": 880.7142857142857,
+        "percent_of_target_complete": 0.033,
+        "next_checkpoint": {
+          "date": "2026-08-31",
+          "subscribers": 250
+        },
+        "trajectory_status": "RED",
+        "note": "A stretch objective, not a guaranteed forecast. Pace/projection figures are arithmetic on real subscribers_daily_series data only (state/video_analytics.json, via the YouTube Analytics API's dimensions=day query) \u2014 never estimated. On a very new channel, data_confidence will genuinely be very_low/no_data for some time; treat any status derived from it as low-confidence, not a verdict."
+      },
+      "top_performers": {
+        "short": [
+          {
+            "video_id": "jPadbAWbYsU",
+            "views": 1830,
+            "angle": "Generational-legacy narrative: luxury visuals reframed not as personal indulgence but as proof that a new baseline has b"
+          },
+          {
+            "video_id": "LE_thiHiqHM",
+            "views": 1737,
+            "angle": "Sacrifice/cost narrative: explicitly names what was given up for the current lifestyle (nights out, people who fell away"
+          },
+          {
+            "video_id": "Ia2jWCbXAIs",
+            "views": 1586,
+            "angle": "Patience/compounding narrative: directly counters the 'overnight success' read of luxury visuals by naming the actual ti"
+          },
+          {
+            "video_id": "osnAIJ4m9nA",
+            "views": 1357,
+            "angle": ""
+          },
+          {
+            "video_id": "tvr7Pe99b2o",
+            "views": 1322,
+            "angle": "Retrospective self-comparison narrative: looks backward at a specific past version of self (a year or more ago) and hold"
+          }
+        ],
+        "long": [
+          {
+            "video_id": "uZ4s9P3zJ3U",
+            "views": 64,
+            "angle": ""
+          },
+          {
+            "video_id": "LZU2LFX2d7c",
+            "views": 28,
+            "angle": ""
+          },
+          {
+            "video_id": "2BSTpvwWQcU",
+            "views": 22,
+            "angle": ""
+          }
+        ]
+      },
+      "underperformers": {
+        "short": [
+          {
+            "video_id": "5pv__ZadiaI",
+            "views": 3,
+            "published_at": "2026-07-27T17:06:31Z"
+          },
+          {
+            "video_id": "O3YSNtfh9rs",
+            "views": 3,
+            "published_at": "2026-07-27T16:05:00Z"
+          },
+          {
+            "video_id": "akiZmSPevaw",
+            "views": 4,
+            "published_at": "2026-07-30T08:00:00Z"
+          },
+          {
+            "video_id": "C36aOyXkBFs",
+            "views": 5,
+            "published_at": "2026-08-01T18:00:00Z"
+          },
+          {
+            "video_id": "UXnA8OJeZjI",
+            "views": 5,
+            "published_at": "2026-07-27T20:50:00Z"
+          }
+        ],
+        "long": [
+          {
+            "video_id": "3o07Y6m66Oc",
+            "views": 1,
+            "published_at": "2026-08-04T19:00:00Z"
+          },
+          {
+            "video_id": "6PR4jRyLJUU",
+            "views": 1,
+            "published_at": "2026-08-04T12:30:00Z"
+          },
+          {
+            "video_id": "e1XaX_meQlU",
+            "views": 1,
+            "published_at": "2026-08-02T19:00:00Z"
+          }
+        ]
+      },
+      "attribute_findings": [
+        {
+          "attribute": "format (Shorts vs. long-form reach)",
+          "direction": "Shorts strongly outperform long-form, gap is larger than previously measured once future-scheduled (not-yet-public) videos are correctly excluded",
+          "supporting_videos_n": {
+            "short": 40,
+            "long": 11
+          },
+          "comparison_baseline": "same-format median age-normalized views, live videos only",
+          "metrics": {
+            "short_median_age_norm_views": 105.99024444371659,
+            "long_median_age_norm_views": 1.9712013241656354
+          },
+          "evidence_level": "repeated_pattern",
+          "alternative_explanations": [
+            "long-form ambient/background content is inherently browse/search-discovered, and a brand-new channel has near-zero search/suggested authority yet -- this may be a channel-age effect that improves over months regardless of content quality, not a content problem",
+            "long-form videos are much longer, so raw view-count comparisons undercount actual watch-time delivered per video even though age-normalized views still shows a real gap"
+          ],
+          "action_note": "NOT actionable via reallocation this cycle -- the 5+2 allocation is a direct owner instruction (config/growth_strategy.json.current_production_allocation), not a system-diagnosed change, and is explicitly not being revisited on this evidence per this cycle's own instructions."
+        },
+        {
+          "attribute": "Shorts->long-form pinned-comment funnel reliability",
+          "direction": "Real regression found and fixed this cycle: 0/12 successful pinned comments since 2026-08-04 (all deferred-or-failed because the video was still private/scheduled at attempt time) vs 6/6 successes on 2026-08-02/03",
+          "supporting_videos_n": {
+            "short": 18
+          },
+          "comparison_baseline": "own prior-period success rate (pre- vs post-2026-08-04)",
+          "metrics": {
+            "pre_fix_success_rate": "6/6 (100%)",
+            "broken_window_success_rate": "0/12 (0%)"
+          },
+          "evidence_level": "repeated_pattern",
+          "alternative_explanations": [
+            "could have been a credential/scope regression rather than a timing issue -- ruled out: the fix's first real retry (sf_058) succeeded using the same load_comment_credentials() path, confirming scope still works and timing was the actual mechanism"
+          ],
+          "action_note": "System change implemented this cycle (see experiment_ledger pinned-comment-privacy-fix-001) -- scripts/post_pinned_comment.py now checks privacyStatus before attempting; scripts/retry_deferred_pinned_comments.py sweeps and retries deferred entries. This directly strengthens the one mechanism this pipeline has for driving Shorts' much larger reach toward long-form's much smaller reach, which is relevant to (but does not resolve on its own) the format reach-gap finding above."
+        },
+        {
+          "attribute": "angle family: legacy/sacrifice/earned-over-time (Shorts)",
+          "direction": "Reproduces the prior cycle's recommendation -- still outperforms the overall Shorts baseline, but the most recent instance (sf_058) is a marked step down from earlier instances in the same family, and the fatigue_assessment() helper now flags fatigue_detected (4 of the last 10 live Shorts share this pattern, with a declining trend)",
+          "supporting_videos_n": {
+            "short": 10
+          },
+          "comparison_baseline": "same-format median age-normalized views, live videos only",
+          "metrics": {
+            "family_median_age_norm_views": 215.36530540072783,
+            "overall_short_median_age_norm_views": 105.99024444371659,
+            "ratio": 2.0319351703645903
+          },
+          "evidence_level": "repeated_pattern",
+          "alternative_explanations": [
+            "sf_058's lower views could simply reflect its more recent publish date having less time to accumulate views rather than genuine fatigue -- age_normalized_views already adjusts for this, so the decline is real net of age, but a single low instance is still weak evidence for a trend on its own; the fatigue_assessment() helper's declining-trend read is what actually triggers fatigue_detected here, not this one video alone"
+          ],
+          "action_note": "Per the audience-fatigue framework: preserve the mechanism (legacy/sacrifice/earned-over-time), diversify the surface execution (car/location/camera/sound/wording) rather than reducing or retiring the pattern outright -- it is still comfortably above baseline."
+        },
+        {
+          "attribute": "cadence: local time-of-day block (Shorts)",
+          "direction": "Evening-published Shorts (17:00-21:59 Europe/London) underperform morning and afternoon blocks",
+          "supporting_videos_n": {
+            "evening": 15,
+            "afternoon": 13,
+            "morning": 10
+          },
+          "comparison_baseline": "same-format median age-normalized views by time block",
+          "metrics": {
+            "evening": {
+              "n": 15,
+              "median_views": 61,
+              "median_age_normalized_views": 48.35015105872948,
+              "median_likes_per_1000_views": 0.0,
+              "median_comments_per_1000_views": 0.0
+            },
+            "afternoon": {
+              "n": 13,
+              "median_views": 705,
+              "median_age_normalized_views": 105.56008165796439,
+              "median_likes_per_1000_views": 9.992313604919293,
+              "median_comments_per_1000_views": 0.0
+            },
+            "morning": {
+              "n": 10,
+              "median_views": 472.5,
+              "median_age_normalized_views": 161.9321545391985,
+              "median_likes_per_1000_views": 9.221485636579976,
+              "median_comments_per_1000_views": 0.0
+            },
+            "late_night": {
+              "n": 2,
+              "median_views": 732.0,
+              "median_age_normalized_views": 220.90901550905437,
+              "median_likes_per_1000_views": 11.779041429731926,
+              "median_comments_per_1000_views": 2.958270431590214
+            }
+          },
+          "evidence_level": "repeated_pattern",
+          "alternative_explanations": [
+            "may be confounded by topic/execution rather than genuinely time-of-day -- the current 5 daily slots (09:00/12:00/15:00/18:00/21:00) are fixed by config, not randomly assigned, so whatever content happens to land in the evening slots isn't a randomized sample; late_night (n=2) is too small to read at all"
+          ],
+          "action_note": "Early/promising cadence signal, not implemented this cycle -- an upload-time change across the week is a medium-risk change per config/growth_strategy.json.change_risk_examples, and this cycle already made one system-level change (the pinned-comment fix); recording this as instructions_for_next_scouting_run instead of stacking a second medium-risk change in the same sitting."
+        }
+      ],
+      "previous_recommendations_evaluated": [
+        {
+          "recommendation": "Continue the legacy/sacrifice/earned-over-time angle family for Shorts (repeat bucket)",
+          "from_run_id": "analytics-2026-08-04-0710",
+          "outcome": "Reproduced -- family still outperforms baseline (see attribute_findings above) -- but the most recent instance is markedly weaker and the pattern is now flagged fatigue_detected (high repetition + declining trend). Downgrading from a plain 'repeat' to 'repeat_and_validate with mandatory diversification' this cycle."
+        },
+        {
+          "recommendation": "No CTA variant preference yet -- keep the balanced rotation; do not promote any variant to control.",
+          "from_run_id": "analytics-2026-08-04-0710",
+          "outcome": "Unchanged -- still correct. Total organic comments across all 78 videos is 1 (channel-wide), nowhere near the 3-comparable-Shorts-per-variant minimum. Experiment status remains gathering_data."
+        },
+        {
+          "recommendation": "Do not increase Shorts:long-form ratio further based on the reach-gap finding alone -- the 5+2 allocation is a direct owner instruction.",
+          "from_run_id": "analytics-2026-08-04-0710",
+          "outcome": "Unchanged -- still correct, and explicitly reaffirmed by this cycle's own instructions (not up for revision on ordinary evidence)."
+        }
+      ],
+      "repeat": [
+        "legacy/sacrifice/earned-over-time angle family for Shorts (n=10 live instances, 2.03x baseline age-normalized views) -- but see repeat_and_validate note on mandatory diversification"
+      ],
+      "repeat_and_validate": [
+        "legacy/sacrifice/earned-over-time family: keep the core mechanism, but the next 2-3 uses must genuinely vary the surface execution (car/location/camera/sound/specific wording) given fatigue_detected -- this is a reconsideration/diversification test, not a plain repeat"
+      ],
+      "deliberately_vary": [],
+      "reduce": [],
+      "retire_temporarily": [],
+      "explore": [],
+      "experiments": [
+        "cta-luxury-001",
+        "pinned-comment-privacy-fix-001"
+      ],
+      "instructions_for_next_scouting_run": [
+        "Continue the legacy/sacrifice/earned-over-time family (still 2.03x baseline) but genuinely vary car/location/camera/sound/wording on the next 2-3 uses -- do not near-duplicate sf_031-036/058's specific execution.",
+        "No CTA variant preference yet -- keep the balanced rotation.",
+        "Do not increase Shorts:long-form ratio -- 5+2 is a direct owner instruction, not up for revision on this cycle's evidence.",
+        "Cadence early signal (not yet acted on): evening-slot (18:00/21:00) Shorts underperform morning/afternoon slots (09:00/12:00/15:00) by roughly 2-3x on age-normalized views -- worth a controlled test in a future cycle (hold topic/execution comparable, compare one evening slot's swap against its own recent history) rather than a blanket schedule change.",
+        "The Shorts->long-form pinned-comment funnel was fixed this cycle (see experiment pinned-comment-privacy-fix-001) -- run scripts/retry_deferred_pinned_comments.py once per daily firing going forward so previously-scheduled Shorts get their funnel comment once they actually go public."
+      ],
+      "audience_fatigue": {
+        "healthy_patterns": [],
+        "repeat_carefully": [],
+        "diversify": [
+          "legacy/sacrifice/earned-over-time (Shorts) -- fatigue_detected: 4/10 of last 10 live Shorts, declining trend, still above baseline"
+        ],
+        "cooldowns": [],
+        "reduce": [],
+        "retire_temporarily": []
+      },
+      "cadence_analysis": {
+        "timezone": "Europe/London",
+        "baselines": {
+          "evening": {
+            "n": 15,
+            "median_views": 61,
+            "median_age_normalized_views": 48.35015105872948,
+            "median_likes_per_1000_views": 0.0,
+            "median_comments_per_1000_views": 0.0
+          },
+          "afternoon": {
+            "n": 13,
+            "median_views": 705,
+            "median_age_normalized_views": 105.56008165796439,
+            "median_likes_per_1000_views": 9.992313604919293,
+            "median_comments_per_1000_views": 0.0
+          },
+          "morning": {
+            "n": 10,
+            "median_views": 472.5,
+            "median_age_normalized_views": 161.9321545391985,
+            "median_likes_per_1000_views": 9.221485636579976,
+            "median_comments_per_1000_views": 0.0
+          },
+          "late_night": {
+            "n": 2,
+            "median_views": 732.0,
+            "median_age_normalized_views": 220.90901550905437,
+            "median_likes_per_1000_views": 11.779041429731926,
+            "median_comments_per_1000_views": 2.958270431590214
+          }
+        },
+        "time_block_findings": [
+          "Evening (17:00-21:59) Shorts median age-normalized views is roughly 2-3x lower than morning/afternoon -- repeated_pattern (n=15 evening, n=13 afternoon, n=10 morning), but not yet confirmed as a genuine time-of-day effect vs. topic/execution confound since slot assignment isn't randomized."
+        ],
+        "weekday_findings": [
+          "Not analyzed this cycle -- insufficient distinct-weekday sample with the current live-video count to separate from time-of-day."
+        ],
+        "spacing_findings": [],
+        "recommendations": [
+          "Test one evening slot's content quality/execution held comparable to a morning/afternoon slot before concluding time-of-day itself is the driver."
+        ],
+        "active_experiments": []
+      },
+      "cta_analysis": {
+        "active_experiment_id": "cta-luxury-001",
+        "current_control": "cta_luxury_control",
+        "variant_results": {
+          "cta_luxury_control": {
+            "n": 3,
+            "views": 1420,
+            "organic_comments": 0
+          },
+          "cta_luxury_future": {
+            "n": 5,
+            "views": 1592,
+            "organic_comments": 1
+          },
+          "cta_luxury_claim": {
+            "n": 4,
+            "views": 295,
+            "organic_comments": 0
+          },
+          "cta_luxury_begin": {
+            "n": 1,
+            "views": 1168,
+            "organic_comments": 0
+          }
+        },
+        "decision": "gathering_data -- 1 total organic comment channel-wide is far below the 3-comparable-Shorts-per-variant minimum; no variant can be evaluated yet."
+      },
+      "channel_playbook_update": {
+        "updated": true,
+        "sections_changed": [
+          "Promising Patterns",
+          "Audience Fatigue and Cooldowns",
+          "Instructions for the Next Scouting Run"
+        ],
+        "new_findings": [
+          "Shorts->long-form pinned-comment funnel fix",
+          "legacy family fatigue_detected"
+        ],
+        "downgraded_findings": [
+          "legacy/sacrifice/earned-over-time family: repeat -> repeat_and_validate with mandatory diversification"
+        ],
+        "contradictions": []
+      },
+      "summary": "Analytics scope live (has_analytics_scope=true). Real subscriber count: 33 (lifetime views 20562, 51 videos). Trajectory status RED with moderate data_confidence (7 real days of subscriber-series data, ~3.29 subs/day pace vs. ~387.5/day required to the 100k target). Dominant constraint diagnosed this cycle: the Shorts->long-form pinned-comment funnel (the pipeline's only lever connecting Shorts' strong reach to long-form's near-zero reach) had a real 0/12 success rate since 2026-08-04 because it was attempting comments on still-private scheduled videos -- fixed and verified this cycle (1 real successful retry, more pending as scheduled videos go public). The underlying Shorts-vs-long-form reach gap itself (repeated_pattern, now measured correctly excluding not-yet-public backlog videos) remains real and large, but is not actionable via reallocation this cycle per direct owner instruction. Legacy/sacrifice/earned-over-time angle family reproduced the prior cycle's recommendation (2.03x baseline) but is now flagged fatigue_detected -- downgraded to repeat_and_validate with mandatory diversification. CTA experiment still gathering data (1 organic comment channel-wide). New early cadence signal (evening Shorts underperform morning/afternoon) recorded for a future controlled test, not acted on this cycle to avoid stacking two medium-risk changes in one sitting. CTR/impressions/retention/traffic-source remain unavailable via the API regardless of scope status."
     }
   ],
   "experiment_ledger": [
@@ -894,6 +1294,31 @@
       "current_evidence": "n=1 per variant; comment counts currently unusable (see 2026-08-02 cycle entry data_quality.cta_comment_count_caveat \u2014 each shows exactly 1 comment, which is the automated pinned funnel comment, not organic engagement).",
       "result": null,
       "next_decision": "Re-evaluate once each variant has 3+ Shorts with organic (pinned-comment-corrected) comment data."
+    },
+    {
+      "experiment_id": "pinned-comment-privacy-fix-001",
+      "created_at": "2026-08-05T07:30:00Z",
+      "hypothesis": "The Shorts->long-form pinned-comment funnel has a near-0% success rate on scheduled uploads specifically because commentThreads.insert is attempted while the video is still private (guaranteed 403); checking privacyStatus first and deferring the attempt until the video is actually public should restore something close to the pre-2026-08-04 100% success rate (6/6) for eligible videos.",
+      "target_format": "short",
+      "attribute_tested": "pinned-comment funnel timing (attempt-immediately vs defer-until-public)",
+      "controlled_attributes": [
+        "funnel comment text (unchanged, still build_funnel_text() fixed string)",
+        "which videos get a funnel comment at all (still every published Short)"
+      ],
+      "planned_variation": "scripts/post_pinned_comment.py checks real privacyStatus via videos.list before attempting commentThreads.insert; new scripts/retry_deferred_pinned_comments.py sweeps deferred/failed-because-not-public entries and retries once the video goes public. Run the sweep once per daily firing (agents/0_orchestrator.md Daily content cycle, new step 8).",
+      "success_metrics": [
+        "pinned_comment_status success rate among Shorts whose scheduled publish time has passed (primary)",
+        "no increase in duplicate comments or credential errors (guardrail)"
+      ],
+      "comparison_cohort": "Shorts published on/after 2026-08-04 (the window where the bug was active) vs. the 2026-08-02/03 pre-bug baseline (6/6 success)",
+      "minimum_evaluation_window": "next 2-3 daily firings, enough scheduled Shorts to actually go public and get swept",
+      "status": "published",
+      "videos": [
+        "sf_058 (retried successfully same day as the fix -- comment_id UgxWe9F__FdRImYhATp4AaABAg, independently verified via commentThreads.list)"
+      ],
+      "current_evidence": "n=1 successful retry so far (sf_058, the only candidate whose scheduled time had already passed at fix time). Baseline being fixed: 0/12 real-world failures/skips since 2026-08-04 vs 6/6 successes before -- repeated_pattern evidence that the timing-based 403 was the actual mechanism, not a scope regression (scope itself still confirmed working, since the retry succeeded with the same load_comment_credentials() path).",
+      "result": "Promising but n=1 on the actual fix -- the remaining 5 candidates deferred at fix time (sf_061/062/063/064/065) are all scheduled for 2026-08-08/09 and have not gone public yet; their outcome is the real test of whether this reproduces beyond one video.",
+      "next_decision": "Keep running the sweep each firing. If the next 3-5 candidates that go public also post successfully, promote this to keep/confirmed. If a genuinely-public video still fails to get a comment, that would point to a real scope/credential issue distinct from the timing bug diagnosed here -- investigate separately, do not conflate with this fix."
     }
   ]
 }

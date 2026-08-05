@@ -256,6 +256,32 @@ def test_real_state_files_readable():
     check("long baseline n matches joined long count", long_baseline["n"] == len(longs))
 
 
+def test_is_live_video():
+    print("is_live_video / filter_live_videos")
+    now = datetime(2026, 8, 5, 7, 0, tzinfo=timezone.utc)
+    live = {"published_at": "2026-08-04T16:25:53Z", "views": 61}
+    scheduled = {"published_at": "2026-08-08T11:00:00Z", "views": 1}
+    missing = {"views": 5}
+    bad_format = {"published_at": "not-a-date", "views": 5}
+    check("a past published_at is live", ai.is_live_video(live, now=now) is True)
+    check("a future published_at is not live", ai.is_live_video(scheduled, now=now) is False)
+    check("no published_at is not live", ai.is_live_video(missing, now=now) is False)
+    check("unparseable published_at is not live", ai.is_live_video(bad_format, now=now) is False)
+
+    videos = [live, scheduled, missing, bad_format]
+    filtered = ai.filter_live_videos(videos, now=now)
+    check("filter_live_videos keeps only the genuinely live entry", filtered == [live])
+
+    # Real regression this guards against: a future-published (still-private,
+    # scheduled) video must not silently inflate/dilute a performance baseline.
+    baseline_all = ai.format_baseline(videos, now=now)
+    baseline_live = ai.format_baseline(filtered, now=now)
+    check(
+        "baseline over live-only videos differs from baseline over all videos when a future-scheduled one is mixed in",
+        baseline_all["n"] != baseline_live["n"],
+    )
+
+
 def main():
     test_safe_math()
     test_age_normalized_views()
@@ -267,6 +293,7 @@ def main():
     test_cadence_spacing()
     test_group_baseline_by_key()
     test_fatigue_assessment()
+    test_is_live_video()
     test_real_state_files_readable()
 
     print(f"\n{PASS} passed, {FAIL} failed")

@@ -95,11 +95,17 @@ def build_playbook(now=None):
     posted_history = _load("posted_history.json", {"short_form": [], "long_form": []})
 
     joined = ai.join_video_attributes(video_analytics, short_queue, long_queue)
-    shorts = [v for v in joined if v.get("format") == "short"]
-    longs = [v for v in joined if v.get("format") == "long"]
+    # Real bug fixed 2026-08-05: exclude videos already uploaded but still
+    # private/scheduled for a future publishAt (the pre-2026-08-04 weekly-
+    # batch backlog) -- their near-zero view counts reflect not-yet-public
+    # status, not real performance, and were silently diluting every
+    # baseline below. See analytics_intelligence.is_live_video()'s docstring.
+    joined_live = ai.filter_live_videos(joined, now=now)
+    shorts = [v for v in joined_live if v.get("format") == "short"]
+    longs = [v for v in joined_live if v.get("format") == "long"]
     short_baseline = ai.format_baseline(shorts, now=now)
     long_baseline = ai.format_baseline(longs, now=now)
-    missing_attr_count = sum(1 for v in joined if v.get("missing_attributes"))
+    missing_attr_count = sum(1 for v in joined_live if v.get("missing_attributes"))
 
     cycles = performance_notes.get("cycles", [])
     latest_cycle = cycles[-1] if cycles else None
@@ -143,7 +149,7 @@ def build_playbook(now=None):
     has_scope = video_analytics.get("has_analytics_scope")
     lines.append(f"- Analytics scope this generation: `has_analytics_scope={has_scope}` (Data API views/likes/comments are always available regardless; retention/watch-time need the Analytics scope and have a processing lag even when granted).")
     lines.append("- Retention, CTR, impressions, watch-time, and traffic-source data are not claimed anywhere in this file — CTR/impressions have no API path at all; the others are only ever included when a cycle explicitly pulled them.")
-    lines.append(f"- {missing_attr_count} of {len(joined)} published videos currently don't join back to their scouted creative attributes (missing `published_video_id` linkage in the queue) — findings below are necessarily blind to those videos' angle/sound/title-pattern.")
+    lines.append(f"- {missing_attr_count} of {len(joined_live)} genuinely-live published videos currently don't join back to their scouted creative attributes (missing `published_video_id` linkage in the queue) — findings below are necessarily blind to those videos' angle/sound/title-pattern. ({len(joined) - len(joined_live)} additional videos are already uploaded but still private/scheduled for a future date and are excluded entirely from this file's numbers, not just this count.)")
     lines.append("- No historical per-video snapshots exist yet, so all performance windows are recent-upload cohorts (current cumulative totals for recently-published videos), not true deltas — see `agents/0_orchestrator.md`'s Daily analytics cycle for the exact distinction.")
     lines.append(f"- Sample sizes are still small: {n_shorts_published} Shorts and {n_long_published} long-form videos published to date. Most findings below are `observation`/`early_signal`, not `repeated_pattern` or `strong_channel_pattern` — read every confidence label literally.")
     lines.append("")
@@ -283,7 +289,7 @@ def build_playbook(now=None):
     lines.append("## Change Log")
     lines.append("")
     existing_log = _read_existing_change_log()
-    new_entry = f"- {now.isoformat()}: regenerated from {len(cycles)} cycle entries, {len(joined)} joined videos ({missing_attr_count} missing attributes), {len(experiment_ledger)} ledger experiments."
+    new_entry = f"- {now.isoformat()}: regenerated from {len(cycles)} cycle entries, {len(joined_live)} live joined videos ({missing_attr_count} missing attributes, {len(joined) - len(joined_live)} future-scheduled excluded), {len(experiment_ledger)} ledger experiments."
     combined_log = ([new_entry] + existing_log)[:MAX_CHANGE_LOG_ENTRIES]
     lines.extend(combined_log)
     lines.append("")

@@ -91,6 +91,42 @@ def age_days(published_at, now=None):
     return max(delta, 0.05)
 
 
+def is_live_video(v, now=None):
+    """True only if this video's published_at is a real, past timestamp --
+    i.e. it has actually gone public. Real bug found 2026-08-05 (analytics
+    cycle diagnosis): state/video_analytics.json can contain videos already
+    uploaded via the API but still privacyStatus=private with a future
+    publishAt (the pre-2026-08-04 weekly-batch backlog, scheduled for days
+    still to come). Their view counts are near-zero because nobody has been
+    able to watch them yet, not because they underperformed -- age_days()'s
+    own floor clamp (0.05 days) means a future-dated video doesn't error
+    out, it just silently produces a small-but-nonzero age_normalized_views
+    figure that looks like real (bad) performance data if it's mixed into a
+    baseline. Every baseline/finding that judges *performance* must filter
+    to is_live_video() first; a caller that specifically wants to know what
+    unpublished/scheduled inventory exists should say so explicitly rather
+    than silently including it in a performance number."""
+    published_at = v.get("published_at")
+    if not published_at:
+        return False
+    try:
+        pub = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    now = now or datetime.now(timezone.utc)
+    if pub.tzinfo is None:
+        pub = pub.replace(tzinfo=timezone.utc)
+    return pub <= now
+
+
+def filter_live_videos(videos, now=None):
+    """videos filtered to is_live_video() only -- see its docstring. Use
+    this before format_baseline()/fatigue_assessment()/group_baseline_by_key()
+    whenever the caller is judging real performance, not just enumerating
+    inventory."""
+    return [v for v in videos if is_live_video(v, now)]
+
+
 def age_normalized_views(views, published_at, now=None):
     """views / days_since_publish. None if either input is unusable. This
     is a recent-upload-cohort normalization, not a true 7-day delta — it
