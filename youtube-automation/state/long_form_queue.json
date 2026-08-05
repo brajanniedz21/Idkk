@@ -904,6 +904,101 @@
       "published_url": "https://youtu.be/jzrMAYLP1Uw",
       "published_at": "2026-08-08T19:30:00Z",
       "thumbnail_upload_note": "thumbnail upload failed: uploadRateLimitExceeded (429); video live with YouTube default thumbnail; queued in weekly_batch_progress.json._pending_thumbnail_retries for later retry."
+    },
+    {
+      "id": "lf_022",
+      "status": "assembling",
+      "visual_theme": "Locked-off static night shot in a modern hillside driveway: a black Pagani, black Lamborghini Revuelto, and purple Nissan GT-R parked in a row, all with pulsing red LED taillight lens-flare, warm garage sconce lighting, a lit city skyscraper glowing in the distance. Sourced from state/animated_clip_pool.json (Path C) -- owner-added 2026-08-05, verified by download+frame-check (real content: three-supercar taillight cinemagraph, matches the pool's own truncated Drive title reasonably well).",
+      "mood": "Calm, unhurried ambient pad, sub-60bpm, no percussion, no vocals -- ambient_quiet tier per the 2026-08-04 energy-tiering standard. Distinct visual mechanism from every immediately preceding candidate: lf_018 (cobblestone driveway, scissor door), lf_019 (pulsating pink underglow), lf_020 (rolling mist over two cars), lf_021 (three-car static garage, exhaust haze) -- this is the first pulsing-red-taillight-only cinemagraph (no smoke/mist/underglow) since lf_017's Porsche harbor scene.",
+      "title": "The Glow Doesn't Need An Audience",
+      "seo_description": "Just over two hours of calm, cinematic luxury ambience for deep focus, study, and manifestation -- three blacked-out supercars catching a slow pulse of red light on a hillside driveway, a city skyline glowing behind them. Put this on to work, study, relax, or manifest the life you're building toward.",
+      "tags": [
+        "luxury ambience",
+        "manifestation music",
+        "study with me",
+        "deep focus",
+        "ambient music",
+        "supercar aesthetic",
+        "calm background music",
+        "wealth mindset",
+        "quiet luxury"
+      ],
+      "target_length_minutes": 125,
+      "target_length_note": "Not previously used in lf_001-021 (used values: 60,65,70,75,80,85,90,95,100,105,110,115,120,130,140,150).",
+      "content_exclusions_screen": "No political/controversial content; pure ambient luxury visualisation scene, screened clean against config/channel.json.content_exclusions.",
+      "scouted_at": "2026-08-05T02:55:00Z",
+      "source_notes": "Scouted per agents/long_form/1.2_format_scout.md. Reviewed all 21 prior queue entries' titles/visual_themes to avoid a repeat; reviewed state/posted_history.json.long_form for recent visual-theme adjacency (last 5 published: lf_016/017/018/019/020/021, all vehicle-focused but each a distinct pairing/location/effect). Sourced from a batch of 12 new clips the owner added to the Drive folder 2026-08-05 -- downloaded and frame-verified this one directly (real content matches a three-car pulsing-taillight cinemagraph), distinct md5 from every other source_pool clip.",
+      "image_path": "assets/long-form/images/source_pool/lf_022_source_clip.mp4",
+      "image_source": {
+        "source": "owner_ai_generated_clip",
+        "path_used": "Path C (state/animated_clip_pool.json)",
+        "drive_file_id": "1OU7OCbcgmmr0qPlBnVyEzgrtmBRMRrcI",
+        "drive_folder_id": "1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6",
+        "verification_note": "Downloaded via mcp__Google_Drive__download_file_content, decoded from base64, frame-checked at t=1s and t=4s -- both show the same locked-off three-supercar (Pagani/Lamborghini/GT-R) driveway scene with pulsing red taillight lens flares, matches the pool's own (truncated) Drive title. md5=7bb9e54cbcb747906e32ff183bd99a61, compared against every other source_pool clip -- no match, genuinely distinct content.",
+        "duration_sec": 5.875,
+        "resolution": "1364x768",
+        "legible_real_element_disclosure": "No legible plates or real-world signage visible; the distant skyscraper is generic/unidentifiable. No people/faces present."
+      },
+      "animated_loop_path": "assets/long-form/animated_loops/lf_022_loop_segment.mp4",
+      "motion_decision": {
+        "loop_method": "crossfade",
+        "confidence": 0.85,
+        "significant_subject_motion": false,
+        "camera_motion": false,
+        "motion_summary": "Locked-off static shot: three parked supercars, only the red taillight lens-flare/glow pulses in intensity across the clip -- no subject or camera motion.",
+        "reason": "Contact sheet (10-frame) showed a purely cyclic/periodic light-intensity pulse with no directional buildup (unlike lf_019's asymmetric smoke, which caused crossfade ghosting) -- crossfade built and the blend-region frame (t~4.9s of the 5.208s segment) inspected directly: sharp, no doubled edges, no ghosting. Safe to use crossfade here specifically because the ambient element is cyclic, not monotonically accumulating."
+      },
+      "sound_source_notes": "Checked state/cc0_audio_library.json for ambient_quiet tier tracks: all three existing ones (Cosmic Waves, Too Brief a Time to be Anything, Rain _ Sleep _ Meditation) had each been used within the immediately preceding 4 candidates (lf_018-021) -- sourced a genuinely new track instead. Pulled the FMA track listing for HoliznaCC0's 'Space - Sleep - Meditation' album (the same verified-CC0 netlabel artist/album already used successfully), picked '20 Minute Meditation 1' (previously unexplored in this pipeline). Verified: rel=license anchor on the track's own page -> creativecommons.org/publicdomain/zero/1.0/; downloaded via the embedded data-track-info JSON fileUrl (files.freemusicarchive.org, no login); ffprobe confirmed real 1279.968s/320kbps audio. Measured beat_strength=0.9134 (ambient_quiet tier, just under the 0.95 threshold).",
+      "audio_track_id": "20 Minute Meditation 1 (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0, energy_profile.tier=ambient_quiet)",
+      "final_video_path": "assets/long-form/final/lf_022_final.mp4"
+    },
+    {
+      "id": "lf_023",
+      "status": "assembling",
+      "visual_theme": "Locked-off static night shot in a tropical modern driveway: a black Porsche 911 and a black Lamborghini Urus parked side by side, red LED taillight glow, warm garage sconce lighting, palm trees framing both sides, faint white mist building near the garage door over the clip's duration. Sourced from state/animated_clip_pool.json (Path C) -- owner-added 2026-08-05, verified by download+frame-check.",
+      "mood": "Slow, sustained ambient pad/drone, minimal to no audible rhythm, warm -- matches a still, watchful tropical-night driveway scene. Sub-60bpm register, no percussion, no vocals.",
+      "title": "It Was Never About Being Watched",
+      "seo_description": "Two and a quarter hours of calm, cinematic luxury ambience -- two blacked-out cars in a tropical driveway at night, soft red taillight glow, faint drifting mist, slow ambient pads. Put this on to study, focus, work, or manifest the life you're building toward.",
+      "tags": [
+        "luxury ambience",
+        "supercar aesthetic",
+        "manifestation music",
+        "deep focus ambience",
+        "study with me",
+        "calm ambient pads",
+        "wealth mindset",
+        "quiet luxury",
+        "night driveway aesthetic",
+        "cinematic ambience"
+      ],
+      "target_length_minutes": 135,
+      "target_length_note": "Not previously used in lf_001-022 (used values: 60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,140,150).",
+      "content_exclusions_screen": "No political/controversial content; pure ambient luxury visualisation scene, screened clean against config/channel.json.content_exclusions.",
+      "scouted_at": "2026-08-05T03:05:00Z",
+      "source_notes": "Scouted per agents/long_form/1.2_format_scout.md. Reviewed all 22 prior queue entries' titles/visual_themes to avoid a repeat -- this is the first tropical-palm-framed two-car driveway cinemagraph in the queue (distinct from lf_022's hillside three-car scene, sourced from the same new owner-added batch but a genuinely different clip, md5-verified distinct). Closes out the current weekly batch (item 74, final entry).",
+      "image_path": "assets/long-form/images/source_pool/lf_023_source_clip.mp4",
+      "image_source": {
+        "source": "owner_ai_generated_clip",
+        "path_used": "Path C (state/animated_clip_pool.json)",
+        "drive_file_id": "1udarlUKtYM59rE7FZpHXeQ5MAY4p_gwE",
+        "drive_folder_id": "1ZXfCyRnuWrTMYKKYeAjDCMSvhGOTa3G6",
+        "verification_note": "Downloaded via mcp__Google_Drive__download_file_content, decoded from base64, frame-checked at t=1s and t=4s -- both show the same locked-off two-car tropical driveway scene, matches the pool's own (truncated) Drive title. md5=fd5486f2b3e6a8e4810bb7ae7958b1d2, compared against every other source_pool clip including lf_022's own new download -- no match, genuinely distinct content.",
+        "duration_sec": 5.875,
+        "resolution": "1364x768",
+        "legible_real_element_disclosure": "Legible generic private vehicle plate ('SDA IVY') visible on the foreground car -- same disclosure category as prior candidates' plate disclosures. No real-world brand signage, no people/faces present."
+      },
+      "animated_loop_path": "assets/long-form/animated_loops/lf_023_loop_segment.mp4",
+      "motion_decision": {
+        "loop_method": "reverse",
+        "confidence": 0.9,
+        "significant_subject_motion": false,
+        "camera_motion": false,
+        "motion_summary": "Locked-off static shot: two parked cars, red taillight glow, and a thin white mist/haze that visibly thickens near the garage door across the clip's second half.",
+        "reason": "Contact sheet (10-frame) showed the same asymmetric-thickening-ambient pattern that caused visible crossfade ghosting on a prior candidate (lf_019's incident, documented in agents/long_form/3.2_animator.md) -- built reverse (ping-pong with speed ramp) instead of even attempting crossfade, since both loop-point frames are literally identical captured frames (no blend needed). Verified: frame-sampled start (t=0.03s) and the ping-pong cut point (t=6.55s) of the 13.167s segment -- both sharp, no ghosting, no doubled edges."
+      },
+      "sound_source_notes": "Checked state/cc0_audio_library.json for ambient_quiet tier tracks: same shortage as lf_022 (all 3 existing ambient_quiet tracks used within the last 4-5 candidates, and '20 Minute Meditation 1' was just used by same-day sibling lf_022). Pulled the same FMA HoliznaCC0 'Space - Sleep - Meditation' album listing, picked '20 Minute Meditation 2' (also previously unexplored, genuinely distinct from lf_022's track). Verified: rel=license anchor on the track's own page -> creativecommons.org/publicdomain/zero/1.0/; downloaded via the embedded data-track-info JSON fileUrl; ffprobe confirmed real 1202.976s/320kbps audio. Measured beat_strength=0.8666 (ambient_quiet tier).",
+      "audio_track_id": "20 Minute Meditation 2 (HoliznaCC0, state/cc0_audio_library.json, CC0 1.0, energy_profile.tier=ambient_quiet)",
+      "final_video_path": "assets/long-form/final/lf_023_final.mp4"
     }
   ]
 }

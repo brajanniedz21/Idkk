@@ -14,18 +14,6 @@
       "description": "Locked shot, black Koenigsegg supercar at night in Dubai. Pulsating glow on red taillights and on 'DUBAI MALL' sign lights in the background; faint heat haze."
     },
     {
-      "drive_file_id": "1OU7OCbcgmmr0qPlBnVyEzgrtmBRMRrcI",
-      "description": "Keep the camera completely locked with no camera movement whatsoever. Keep [scene continues -- title truncated by Drive, description inferred from title prefix only, verify actual content before use].",
-      "added_at": "2026-08-05T00:46:00Z",
-      "provenance_note": "Owner uploaded/added this file to the Drive source folder 2026-08-05. Description is the Drive filename/title as given (Drive truncates long titles) -- NOT yet independently verified against actual decoded frame content. Per catalog_reliability_warning_2026_08_04, do not trust this description at face value -- download and frame-check before use, same as every other pool entry."
-    },
-    {
-      "drive_file_id": "1udarlUKtYM59rE7FZpHXeQ5MAY4p_gwE",
-      "description": "A locked-camera cinematic night scene of two parked cars in a driveway [title truncated by Drive, verify actual content before use].",
-      "added_at": "2026-08-05T00:46:00Z",
-      "provenance_note": "Owner uploaded/added this file to the Drive source folder 2026-08-05. Description is the Drive filename/title as given (Drive truncates long titles) -- NOT yet independently verified against actual decoded frame content. Per catalog_reliability_warning_2026_08_04, do not trust this description at face value -- download and frame-check before use, same as every other pool entry."
-    },
-    {
       "drive_file_id": "1NU8YiThTTPBVZ7213LTYNX9DDP4UJgNV",
       "description": "A locked-camera garage scene with two parked cars and a completely stationary [title truncated by Drive, verify actual content before use].",
       "added_at": "2026-08-05T00:46:00Z",
@@ -163,6 +151,16 @@
       "drive_file_id": "1Mvk6083CSsZm6dLY-V6CeDNpy8ewodeQ",
       "consumed_by": "lf_021",
       "consumed_at": "2026-08-04T18:16:00Z"
+    },
+    {
+      "drive_file_id": "1OU7OCbcgmmr0qPlBnVyEzgrtmBRMRrcI",
+      "consumed_by": "lf_022",
+      "consumed_at": "2026-08-05T03:20:00Z"
+    },
+    {
+      "drive_file_id": "1udarlUKtYM59rE7FZpHXeQ5MAY4p_gwE",
+      "consumed_by": "lf_023",
+      "consumed_at": "2026-08-05T03:20:00Z"
     }
   ]
 }

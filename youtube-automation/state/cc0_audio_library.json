@@ -280,6 +280,44 @@
         "spectral_centroid": 601.2,
         "tier": "ambient_quiet"
       }
+    },
+    {
+      "title": "20 Minute Meditation 1",
+      "artist": "HoliznaCC0",
+      "album": "Space - Sleep - Meditation",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/space-sleep-meditation/20-minute-meditation-1/",
+      "license": "CC0 1.0",
+      "verified": true,
+      "verification_note": "Confirmed rel=license anchor -> creativecommons.org/publicdomain/zero/1.0/ on the track page itself. Downloaded via embedded data-track-info JSON fileUrl (files.freemusicarchive.org CDN, no login required). ffprobe confirmed real MPEG audio, 1279.968s duration, 320kbps, non-truncated.",
+      "added_at": "2026-08-05T03:00:00Z",
+      "local_path": "assets/audio/holiznacc0_20_minute_meditation_1.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-05T03:00:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 90s",
+        "beat_strength": 0.9134,
+        "rms": 0.181,
+        "spectral_centroid": 911.49,
+        "tier": "ambient_quiet"
+      }
+    },
+    {
+      "title": "20 Minute Meditation 2",
+      "artist": "HoliznaCC0",
+      "album": "Space - Sleep - Meditation",
+      "source_url": "https://freemusicarchive.org/music/holiznacc0/space-sleep-meditation/20-minute-meditation-2/",
+      "license": "CC0 1.0",
+      "verified": true,
+      "verification_note": "Confirmed rel=license anchor -> creativecommons.org/publicdomain/zero/1.0/ on the track page itself. Downloaded via embedded data-track-info JSON fileUrl (files.freemusicarchive.org CDN, no login required). ffprobe confirmed real MPEG audio, 1202.976s duration, 320kbps, non-truncated.",
+      "added_at": "2026-08-05T03:15:00Z",
+      "local_path": "assets/audio/holiznacc0_20_minute_meditation_2.mp3",
+      "energy_profile": {
+        "measured_at": "2026-08-05T03:15:00Z",
+        "method": "librosa onset_strength mean (beat_strength) + rms mean over first 90s",
+        "beat_strength": 0.8666,
+        "rms": 0.1955,
+        "spectral_centroid": 1692.13,
+        "tier": "ambient_quiet"
+      }
     }
   ],
   "_gap_note_lf_017": "lf_017 (published 2026-08-04) used a track documented in its own long_form_queue.json entry as \"Tokyo Sunset (Lofi, Peaceful, Soft)\" from HoliznaCC0 Public Domain Lofi -- the sourcing agent verified CC0 and added it to this library, but that entry was lost during a worktree merge (the mp3 file was never copied into assets/audio/ on main either). The already-rendered/published video has the correct audio baked in from before the loss, so no action needed on the video itself -- documented here so a future re-verification attempt for that title doesn't start from a false \"already have it\" assumption."
