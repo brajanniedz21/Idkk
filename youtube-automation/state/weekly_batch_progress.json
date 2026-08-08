@@ -832,5 +832,96 @@
       "failed_at": "2026-08-04T23:45:00Z",
       "reason": "uploadRateLimitExceeded (429)"
     }
-  ]
+  ],
+  "2026-08-08": {
+    "date": "2026-08-08",
+    "items": [
+      {
+        "index": 0,
+        "format": "short",
+        "local_slot": "09:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 1,
+        "format": "short",
+        "local_slot": "12:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 2,
+        "format": "short",
+        "local_slot": "15:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 3,
+        "format": "short",
+        "local_slot": "18:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 4,
+        "format": "short",
+        "local_slot": "21:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 5,
+        "format": "long",
+        "local_slot": "13:30",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 6,
+        "format": "long",
+        "local_slot": "20:30",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      }
+    ],
+    "completed_count": 0,
+    "failed_count": 0
+  }
 }
