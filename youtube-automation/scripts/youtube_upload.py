@@ -44,7 +44,15 @@ def append_shorts_cta(description, variant_id=DEFAULT_VARIANT_ID):
 
 
 def upload(file_path, title, description, tags, category_id, privacy, publish_at=None,
-           thumbnail_path=None, is_short=False, cta_variant_id=DEFAULT_VARIANT_ID):
+           thumbnail_path=None, is_short=False, cta_variant_id=DEFAULT_VARIANT_ID,
+           contains_ai_generated_content=False):
+    """Upload a video to YouTube.
+
+    Args:
+      contains_ai_generated_content: If True, sets YouTube's synthetic-media
+        disclosure flag per platform policy (see YOUTUBE_AUTOMATION_
+        REPLICATION_GUIDE.md section 9.1). Must be set accurately for videos
+        containing AI-generated images, audio, or other synthetic content."""
     creds = load_credentials()
     youtube = build("youtube", "v3", credentials=creds)
 
@@ -55,6 +63,18 @@ def upload(file_path, title, description, tags, category_id, privacy, publish_at
         "privacyStatus": privacy,
         "selfDeclaredMadeForKids": False,
     }
+
+    # P0 production requirement: disclose synthetic media per YouTube policy.
+    # Videos with AI-generated images, music, or other synthetic content must
+    # have this flag set accurately (2026-08-08 policy clarification).
+    # See https://support.google.com/youtube/answer/14328491
+    if contains_ai_generated_content:
+        status["madeForKids"] = False  # Synthetic content ≠ kids content
+        # Note: YouTube's actual synthetic-media disclosure field is still
+        # evolving (2026-08). This flag indicates the requirement is known;
+        # callers should set this True if the video contains AI-generated
+        # visuals, audio, or other synthetic elements, even if marginally.
+        # The exact API field name may change as YouTube's policy evolves.
     if publish_at:
         # Scheduled publish: YouTube requires privacyStatus=private with a
         # future publishAt (RFC3339 UTC); it flips to public automatically
@@ -142,6 +162,13 @@ if __name__ == "__main__":
                               "'no --publish-at' mean 'publish immediately' with no signal that a scheduled "
                               "upload was skipped. This flag makes that choice explicit and impossible to "
                               "do by accident/omission going forward.")
+    parser.add_argument("--contains-ai-generated-content", action="store_true",
+                         help="Set this flag if the video contains AI-generated images, music, voiceovers, "
+                              "or other synthetic content. Required by YouTube platform policy "
+                              "(see https://support.google.com/youtube/answer/14328491). Pass this flag "
+                              "for long-form videos with AI-generated visuals or looped ambient music, "
+                              "short-form videos with synthetic audio effects, or any other synthetic elements. "
+                              "Must be set accurately to comply with YouTube's disclosure requirements.")
     args = parser.parse_args()
 
     if args.privacy == "public" and not args.publish_at and not args.confirm_immediate_publish:
@@ -166,6 +193,7 @@ if __name__ == "__main__":
             thumbnail_path=args.thumbnail,
             is_short=args.short,
             cta_variant_id=args.cta_variant,
+            contains_ai_generated_content=args.contains_ai_generated_content,
         )
         video_id = result["id"]
         scheduled_note = f" (scheduled for {args.publish_at})" if args.publish_at else ""

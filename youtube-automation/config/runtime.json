@@ -22,7 +22,11 @@
     "minimum_processing_lead_minutes": 15,
     "upload_timeout_seconds": 3600,
     "uploadLimitExceeded_circuit_breaker_hours": 24,
-    "retry_failed_upload_after_reconciliation_only": true
+    "retry_failed_upload_after_reconciliation_only": true,
+    "synthetic_media_disclosure": {
+      "enabled": true,
+      "note": "P0 production requirement: videos with AI-generated images, music, or other synthetic content must disclose this per YouTube policy (https://support.google.com/youtube/answer/14328491). Set contains_ai_generated_content=True for long-form videos with AI-generated visuals or ambient music, short-form videos with synthetic audio effects, etc."
+    }
   },
   "state_management": {
     "hot_state_archive_after_days": 7,
