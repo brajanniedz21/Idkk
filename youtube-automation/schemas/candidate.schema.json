@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Content Candidate",
+  "description": "Immutable candidate record tracking a single video from scout through publish. Shared between short-form and long-form but with format-specific optional fields.",
+  "type": "object",
+  "required": ["id", "format", "status", "slot_id", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique candidate ID: YYYYMMDD-<format>-<short_random_suffix>"
+    },
+    "format": {
+      "type": "string",
+      "enum": ["short", "long"],
+      "description": "Video format"
+    },
+    "slot_id": {
+      "type": "string",
+      "description": "Immutable slot reservation: YYYYMMDD-<format>-<HH:MM>"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "reserved",
+        "scouted",
+        "scripted",
+        "producing",
+        "produced",
+        "gated",
+        "upload_started",
+        "uploaded_private",
+        "scheduled",
+        "live_verified",
+        "completed",
+        "quarantined",
+        "blocked"
+      ],
+      "description": "Lifecycle stage"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of creation"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the video actually went public on YouTube"
+    },
+    "scheduled_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the video is scheduled to publish"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "seo_description": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "youtube_video_id": {
+      "type": "string",
+      "description": "YouTube video ID once uploaded"
+    },
+    "render_sha256": {
+      "type": "string",
+      "description": "SHA256 hash of final rendered file"
+    },
+    "content_fingerprint": {
+      "type": "string",
+      "description": "Hash of title concept + source assets + audio to detect duplicates"
+    },
+    "quarantine_reason": {
+      "type": "string",
+      "description": "If status=quarantined, the specific reason (policy, rights, quality, etc.)"
+    },
+    "blocked_reason": {
+      "type": "string",
+      "description": "If status=blocked, the infrastructure blocker (disk, API quota, auth, etc.)"
+    },
+    "attempt_count": {
+      "type": "integer",
+      "description": "How many times this candidate has been attempted"
+    },
+    "attempt_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attempt_number": { "type": "integer" },
+          "stage": { "type": "string" },
+          "outcome": { "type": "string" },
+          "error": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      },
+      "description": "Record of each attempt"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text notes about this candidate"
+    },
+    "short_form_only": {
+      "type": "object",
+      "properties": {
+        "angle": { "type": "string" },
+        "trending_sound_style": { "type": "string" },
+        "clips_used": { "type": "array", "items": { "type": "string" } },
+        "transform_log": { "type": "string" },
+        "cta_assignment": { "type": "string" }
+      }
+    },
+    "long_form_only": {
+      "type": "object",
+      "properties": {
+        "visual_theme": { "type": "string" },
+        "mood": { "type": "string" },
+        "target_length_minutes": { "type": "integer" },
+        "duration_minutes": { "type": "number" },
+        "source_asset_path": { "type": "string" },
+        "motion_decision": {
+          "type": "object",
+          "properties": {
+            "loop_method": { "enum": ["reverse", "crossfade"] },
+            "confidence": { "type": "string" },
+            "motion_summary": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

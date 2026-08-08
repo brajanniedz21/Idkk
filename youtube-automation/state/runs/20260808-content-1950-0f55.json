@@ -1,0 +1,29 @@
+{
+  "run_id": "20260808-content-1950-0f55",
+  "run_type": "content",
+  "status": "created",
+  "run_date": "2026-08-08",
+  "timezone": "Europe/London",
+  "started_at": "2026-08-08T19:50:20.904441+00:00",
+  "pipeline_version": "1.0.0",
+  "git_commit": "5b647894266667e0070c7c7a601e2676658bee7b",
+  "spec_manifest_hash": "placeholder",
+  "preflight": {
+    "status": null,
+    "checks": {},
+    "blockers": []
+  },
+  "slots_requested": 0,
+  "slots_completed": {
+    "published": 0,
+    "scheduled": 0,
+    "quarantined": 0,
+    "blocked": 0
+  },
+  "candidates": [],
+  "current_stage": "preflight",
+  "current_slot_index": 0,
+  "token_usage": {},
+  "notes": "",
+  "errors": []
+}
