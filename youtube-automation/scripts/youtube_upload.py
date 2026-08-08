@@ -27,6 +27,7 @@ from googleapiclient.http import MediaFileUpload
 
 from youtube_auth import load_credentials
 from cta_experiment import apply_cta, DEFAULT_VARIANT_ID, CTA_VARIANTS
+from verify_upload import verify_upload
 
 # Kept for backward compatibility with any existing caller/import that still
 # references the pre-experiment constant/helper directly — both now just
@@ -126,6 +127,21 @@ def upload(file_path, title, description, tags, category_id, privacy, publish_at
             youtube.thumbnails().set(videoId=video_id, media_body=MediaFileUpload(thumbnail_path)).execute()
         except Exception as e:
             print(f"WARNING: video published but thumbnail upload failed: {e}", file=sys.stderr)
+
+    # P0 production requirement: verify remote state matches expected.
+    # Never blindly trust an upload — the API can return a video_id even when
+    # YouTube silently rejects (e.g. account verification limits). See
+    # verify_upload.py for full reconciliation logic.
+    verification = verify_upload(
+        video_id,
+        expected_publish_at=publish_at,
+        expected_title=title,
+    )
+    if not verification.get("verified"):
+        issues = verification.get("issues", [])
+        raise RuntimeError(
+            f"Upload verification failed for {video_id}. Issues: {'; '.join(issues)}"
+        )
 
     return response
 
