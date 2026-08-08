@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 """
-Post (and attempt to pin) a comment on a video — used for the Shorts ->
-long-form funnel (owner direction 2026-07-30): every published Short gets a
-pinned comment pointing viewers to the long-form catalog.
+Post a top-level comment on a video (non-blocking, best-effort only) — used
+for the Shorts -> long-form funnel (owner direction 2026-07-30): every
+published Short gets a comment pointing viewers to the long-form catalog.
 
-This is graceful-degradation by design: as of 2026-07-30 the OAuth token
-does not yet carry the youtube.force-ssl scope this needs (see
-youtube_auth.py's COMMENT_SCOPES comment), so this script exits 0 with a
-clear "skipped" message rather than failing the calling publish step. A
-Short publishing successfully must never be blocked by the comment step —
-the video itself is the win condition, the pinned comment is a bonus.
+IMPORTANT: This script posts a comment, it does NOT pin it. YouTube's Data
+API has no direct pin endpoint as of 2026-08 (see post_and_pin() comments).
+Actual pinning requires manual Studio action by the channel owner, or relies
+on YouTube's auto-pin affordance for the channel owner's own comments. Report
+accurately as 'posted_unpinned', not 'pinned' (P0 production requirement).
+
+This is graceful-degradation by design: the OAuth token may not yet carry the
+youtube.force-ssl scope this needs (see youtube_auth.py's COMMENT_SCOPES
+comment), so this script exits 0 with a clear "skipped" message rather than
+failing the calling publish step. A Short publishing successfully must never
+be blocked by the comment step — the video itself is the win condition, the
+comment is a non-blocking bonus.
 
 Fixed 2026-08-02 (real bug, owner-reported): the funnel comment must
 contain an actual clickable link to a real, recently-published, public
@@ -24,6 +30,12 @@ general rather than one specific video. build_funnel_text() now returns
 this fixed string; latest_long_form_url() is kept only because
 build_funnel_text() still accepts a posted_history_path override for
 testability, not because it's used to build the text anymore.
+
+Return values (post_and_pin function):
+  - 'deferred_until_public': video is not public yet, retry later
+  - comment_id (string): comment was posted successfully; YouTube will
+      auto-pin if appropriate for channel owner, else requires manual Studio pin
+  - None: comment scope not available, skipped gracefully (not a failure)
 
 Usage:
     python3 post_pinned_comment.py --video-id <id> [--text "custom text"]
@@ -119,21 +131,23 @@ def post_and_pin(video_id, text):
     thread = youtube.commentThreads().insert(part="snippet", body=body).execute()
     comment_id = thread["snippet"]["topLevelComment"]["id"]
 
-    # Pinning a comment isn't a first-class Data API field — YouTube exposes
-    # it via comments().setModerationStatus with moderationStatus="published"
+    # Posting a top-level comment via Data API — YouTube exposes moderation
+    # via comments().setModerationStatus with moderationStatus="published"
     # plus the channel owner's own comment gets a "pin" affordance in Studio,
     # but the Data API itself has no direct "pin" endpoint as of this API
     # version. Best-effort: mark it heldForReview=False / published so it's
     # visible; actual pinning may require the channel owner to pin manually
-    # in Studio if the API path isn't available. Report this plainly rather
-    # than claiming a pin that didn't happen.
+    # in Studio if the API path isn't available. Report this accurately as
+    # 'posted_unpinned' per P0 production requirement, never as 'pinned'.
     try:
         youtube.comments().setModerationStatus(id=comment_id, moderationStatus="published").execute()
-        pinned_note = "posted (top-level comment; YouTube Data API has no direct 'pin' endpoint — pin manually in Studio if it doesn't auto-pin as the channel owner's own comment)"
+        comment_status = "posted_unpinned"
+        note = "top-level comment posted; YouTube Data API has no direct 'pin' endpoint — manual pin in Studio or auto-pin as channel owner's comment may apply"
     except HttpError as e:
-        pinned_note = f"posted, but moderation-status call failed (non-fatal): {e}"
+        comment_status = "posted_unpinned"
+        note = f"posted, but moderation-status call failed (non-fatal): {e}"
 
-    print(f"COMMENT_POSTED comment_id={comment_id} video_id={video_id} note={pinned_note}")
+    print(f"COMMENT_POSTED comment_id={comment_id} video_id={video_id} status={comment_status} note={note}")
     return comment_id
 
 
