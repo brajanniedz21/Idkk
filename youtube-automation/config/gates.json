@@ -28,6 +28,18 @@
       ],
       "on_fail": "quarantine; log which QA check failed; do not retry-publish without regenerating"
     },
+    "originality_gate": {
+      "added_at": "2026-08-08T00:00:00Z",
+      "status": "P0 production-readiness requirement: channel-level originality/inauthentic-content gate (see YOUTUBE_AUTOMATION_REPLICATION_GUIDE.md section 9.3 and section 0 Production decision summary). YouTube's monetization policy assesses inauthentic/repetitive content at channel level; each upload must add clear creative variation and viewer value.",
+      "checks": [
+        "Not a mass-produced near-duplicate of another recent upload: title, visual theme, and audio mood show meaningful variation from the last 5 published same-format items (not identical template + swapped background/clip, not same clip-sequence with minor speed changes, not same soundtrack + generic clip rotation)",
+        "Creative transformation beyond mechanical asset-swapping: for shorts, the transform checklist (cut rate, depth of visual/audio changes, angle/narrative variation) shows genuine production effort, not cookie-cutter reuse; for long-form, the loop source and mood/duration combination are meaningfully different from recent uploads",
+        "Viewer value is added: the piece presents a distinct angle/hook/theme, not a low-effort remix of existing channel content with zero novel creative direction"
+      ],
+      "on_fail": "quarantine with specific reason (e.g., 'identical hook/audio combo to sf_042', 'mass-produced static-background template', 'zero transformation vs. source asset'); agent 0 selects next candidate instead",
+      "evaluation_method": "Deterministic uniqueness checks (title fingerprint, clip/audio hash overlap, visual-theme classifier) followed by a brief creative-variation judgment: compare the candidate's concept/execution against the last 5 same-format uploads and ask 'does this piece add anything a viewer wouldn't see in yesterday's uploads?' If the answer is 'no', quarantine rather than publish.",
+      "context": "This gate is separate from and enforces stricter real-world policy than platform_policy_check's 'no purely static/looping with zero transformation' clause — that clause is a minimum floor; originality_gate ensures the channel doesn't become a mass-produced template farm even if each individual video technically meets the policy floor."
+    },
     "content_quality_gate": {
       "added_at": "2026-07-30T00:00:00Z",
       "status": "The 'Curiosity Engine' (owner direction, 2026-07-30). Runs on every candidate (short and long-form) after title + thumbnail exist, before publish. This is a self-scored judgment gate — Agent 0 (or the sub-agent handed this step) evaluates its own output against the categories below, same 'trust mechanics, verify judgment' discipline used everywhere else in this pipeline (actually look at the thumbnail/title, don't just assume they're good). No human reviewer is involved at any point — this stays fully automated.",
