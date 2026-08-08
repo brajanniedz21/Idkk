@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "deployment_status": "beta",
+  "notes": "Production-hardening configuration. See YOUTUBE_AUTOMATION_REPLICATION_GUIDE.md section 12 for compliance mode behavior.",
+  "scheduling": {
+    "timezone": "Europe/London",
+    "analytics_job_time_local": "05:00",
+    "content_job_time_local": "06:00",
+    "minimum_scheduling_lead_minutes": 15,
+    "daylight_saving_aware": true
+  },
+  "youtube_api": {
+    "youtube_api_derived_metrics_authorized": false,
+    "research_mode": "official_or_owner_supplied",
+    "api_data_retention_review_days": 30,
+    "compliance_notes": "When youtube_api_derived_metrics_authorized is false, analytics functions must store and display raw API metrics only. Derived metrics (like rate, comment_rate, age_normalised_views, trajectory pace, medians, composite scores) are disabled by policy mode until explicit owner permission + audit status confirmation. See scripts/analytics_intelligence.py for feature flags."
+  },
+  "upload_behavior": {
+    "privacy_upload_mode": "private",
+    "enforce_future_publishat": true,
+    "confirm_immediate_publish_flag_required": true,
+    "minimum_processing_lead_minutes": 15,
+    "upload_timeout_seconds": 3600,
+    "uploadLimitExceeded_circuit_breaker_hours": 24,
+    "retry_failed_upload_after_reconciliation_only": true
+  },
+  "state_management": {
+    "hot_state_archive_after_days": 7,
+    "keep_daily_snapshots": 14,
+    "keep_weekly_snapshots": 8,
+    "render_artifact_retention_days": 7,
+    "event_log_format": "jsonl"
+  },
+  "content_production": {
+    "daily_production_mode": true,
+    "shorts_per_day": 5,
+    "long_form_per_day": 2,
+    "render_concurrency_limit": 2,
+    "serialize_uploads": true,
+    "max_model_retries_per_item": 3,
+    "max_gate_regeneration_per_item": 3
+  },
+  "quota_and_limits": {
+    "estimated_daily_api_units_per_upload": 1600,
+    "daily_api_quota_headroom_units": 500,
+    "channel_upload_limit_check": true
+  },
+  "safety": {
+    "confirm_authenticated_channel_id": true,
+    "reject_channel_id_mismatch": true,
+    "redact_secrets_from_logs": true,
+    "never_pass_secrets_to_models": true,
+    "git_ignore_secrets_directory": true
+  }
+}

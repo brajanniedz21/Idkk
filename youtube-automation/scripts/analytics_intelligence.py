@@ -40,6 +40,26 @@ CHANNEL_TIMEZONE = "Europe/London"  # matches config/channel.json.publishing_sch
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "state")
+CONFIG = os.path.join(ROOT, "config")
+
+
+def load_compliance_mode():
+    """Load youtube_api_derived_metrics_authorized from config/runtime.json.
+    Returns False by default (compliance mode: derived metrics disabled).
+    When False, all derived metrics (rate_per_1000, age_normalized_views,
+    format_baseline, fatigue_assessment) return None or disabled markers.
+    See YOUTUBE_AUTOMATION_REPLICATION_GUIDE.md section 12."""
+    try:
+        runtime_path = os.path.join(CONFIG, "runtime.json")
+        with open(runtime_path) as f:
+            config = json.load(f)
+        return config.get("youtube_api", {}).get("youtube_api_derived_metrics_authorized", False)
+    except (FileNotFoundError, json.JSONDecodeError, KeyError):
+        return False  # Fail closed: default to compliance mode
+
+
+# Load once at module import time
+_DERIVED_METRICS_AUTHORIZED = load_compliance_mode()
 
 # Evidence-level thresholds (guidance, not proof — see module docstring and
 # agents/0_orchestrator.md: sample *quality*, not just count, still matters).
@@ -66,7 +86,13 @@ def safe_div(numerator, denominator):
 
 def rate_per_1000(count, views):
     """e.g. likes_per_1000_views, comments_per_1000_views. None if views is
-    falsy/zero — never fabricate a rate off zero views."""
+    falsy/zero — never fabricate a rate off zero views.
+
+    [COMPLIANCE MODE] Returns None when youtube_api_derived_metrics_authorized
+    is False (see config/runtime.json). Derived rates require explicit API
+    permission per YouTube Developer Policies."""
+    if not _DERIVED_METRICS_AUTHORIZED:
+        return None
     if count is None or views is None:
         return None
     r = safe_div(count, views)
@@ -132,7 +158,13 @@ def age_normalized_views(views, published_at, now=None):
     is a recent-upload-cohort normalization, not a true 7-day delta — it
     does not require historical snapshots, but it also doesn't produce one;
     label it as such wherever it's surfaced (see the orchestrator doc's
-    data_quality.window_type field)."""
+    data_quality.window_type field).
+
+    [COMPLIANCE MODE] Returns None when youtube_api_derived_metrics_authorized
+    is False (see config/runtime.json). Age-normalized analysis is a derived
+    metric requiring explicit API permission per YouTube Developer Policies."""
+    if not _DERIVED_METRICS_AUTHORIZED:
+        return None
     if views is None:
         return None
     a = age_days(published_at, now)
@@ -157,7 +189,11 @@ def format_baseline(videos, now=None):
     and comment-rate for that group — the same-format baseline every
     individual video should be compared against, never against the other
     format. Also returns n (sample size) so callers can label thin samples
-    honestly."""
+    honestly.
+
+    [COMPLIANCE MODE] When youtube_api_derived_metrics_authorized is False
+    (see config/runtime.json), age_normalized_views and rate_* fields return
+    None. Derived baselines require explicit API permission."""
     views_list = [v.get("views") for v in videos]
     age_norm_list = [age_normalized_views(v.get("views"), v.get("published_at"), now) for v in videos]
     like_rate_list = [rate_per_1000(v.get("likes"), v.get("views")) for v in videos]
@@ -168,6 +204,7 @@ def format_baseline(videos, now=None):
         "median_age_normalized_views": median(age_norm_list),
         "median_likes_per_1000_views": median(like_rate_list),
         "median_comments_per_1000_views": median(comment_rate_list),
+        "compliance_mode_active": not _DERIVED_METRICS_AUTHORIZED,
     }
 
 
