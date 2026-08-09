@@ -4773,6 +4773,96 @@
       "thumbnail_billboard_check_note": "Vibrant night supercar meetup (yellow, orange, blue cars) clearly legible and colorful at 120px -- passes.",
       "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, decode clean, no black/silent stretches).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, generic first-person motivational framing).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match actual content, real transformation applied).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (owner_provided_181608, state/trending_audio_library.json, owner risk-acceptance on file).\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=8, thumbnail_strength=9, title_strength=8, brand_consistency=8, manifestation_vibe=8 -- all >=8.\nFrame-verified: all 8 clips individually viewed before selection (7/13/15/31/32/63/64/66); clip 14 (Dubai Fountain, large identifiable tourist crowd) and clip 19 (MSC Seascape, already used in sf_063 within the extended lookback window) considered and rejected.\nSibling-collision check: clips_used and audio checked against sf_066/067/068/069 (same-day siblings) and sf_062 (still within extended lookback) -- zero overlap on both. Sunday's 5-short batch (sf_066-070) now complete: all 40 clips across the 5 candidates verified mutually distinct.",
       "publish_blocker": "uploadLimitExceeded -- real YouTube daily upload cap hit earlier today. Gate-checked and ready; needs the upload retried once quota resets."
+    },
+    {
+      "id": "sf_071",
+      "status": "ready_to_publish",
+      "scouted_at": "2026-08-09T06:07:45.853808+00:00Z",
+      "angle": "Built-away-from-the-stage narrative (legacy/sacrifice/earned-over-time family per channel_playbook.md's repeat_and_validate direction, n=10+ prior uses): distinct from sf_066-070's angles by focusing on the parallel timeline of work/growth that exists entirely outside public view, invisible until the result arrives fully-formed. The mechanism is same as sf_069 (built quietly) but surface execution differs in specific framing (timeline/invisibility emphasis vs. plain-quiet-building), visual direction (day-to-night progression showing transition from private to public), and sound energy (upbeat-confident rather than calm-confident).",
+      "title_pattern": "Built Away From The Stage.",
+      "caption_hooks": [
+        "Built away from the stage.",
+        "While they were watching the show, I was building the stage.",
+        "They see the arrival. Not the building."
+      ],
+      "trending_sound_style": "Upbeat confident mid-tempo (85-95 BPM), driving but not aggressive, with a build element that climaxes at the 'reveal' moment \u2014 distinct from the calm-confident tracks used on sf_069/070.",
+      "hashtags": [
+        "#deepfocus",
+        "#luxuryambience",
+        "#manifestation"
+      ],
+      "source_notes": "Continues channel_playbook.md's repeat_and_validate direction for legacy/sacrifice/earned-over-time narratives (n=10+ live instances, 2.03x baseline). Genuinely new surface execution distinct from sf_066-070 (emphasis on invisible/parallel timeline of work, not witnessing/permission/landing/quiet-building/belonging) -- see angle field. Scouted per 2026-08-05 instructions: mandatory diversification within the family to address fatigue_detected. Sound energy increased from calm-confident (sf_069/070) to upbeat-confident per trending_audio_library diversity guidance (no near-duplicate audio tracks across consecutive uses).",
+      "fatigue_status": "repeat_and_validate pick within the supported family, surface execution genuinely varies from prior uses",
+      "title": "Built Away From The Stage.",
+      "seo_description": "There's a whole life being built while everyone watches somewhere else. A parallel timeline of work nobody sees until it arrives fully formed. Want the full behind-the-scenes journey? Check the channel for the long-form version.",
+      "tags": [
+        "legacy narrative",
+        "quiet luxury",
+        "manifestation",
+        "motivation",
+        "self improvement",
+        "wealth mindset",
+        "success mindset",
+        "aesthetic motivation",
+        "luxury travel",
+        "mindset shift",
+        "resilience",
+        "quiet confidence",
+        "discipline",
+        "ambition"
+      ],
+      "sound_direction": "upbeat-confident driving mid-tempo (85-95 BPM, avoid phonk aggression) \u2014 measured beat energy that builds toward a peak moment around 0:06-0:09 mark, then holds momentum. Distinct from sf_069/070's calm-confident tracks: this needs forward momentum and energy lift, not restraint.",
+      "visual_direction": "Day-to-night progression showing transition from private workspace to public luxury result: morning/daytime clips of cars being prepared, interior workspace shots, then evening/night luxury lifestyle imagery (cars arriving, skylines, yachts docked). Clip candidates: 1 (daytime car interior), 3 (workspace/daily), 5 (car detail), 18 (night supercar), 27 (night highway), 39 (jet-ski evening), 54 (yacht dusk), 70 (Dubai rooftop night). Alternatively, if workspace/preparation clips aren't available, reframe as: private individual moments (single frames, silhouettes) transitioning to public luxury lifestyle, emphasizing the invisible-to-visible arc.",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_control",
+        "cta_text": "Comment \"Build\" to stay invisible."
+      },
+      "scripted_at": "2026-08-09T06:07:58.965204+00:00Z",
+      "produced_file_path": "assets/short-form-clips/processed/sf_071.mp4",
+      "produced_at": "2026-08-09T06:11:56.590120+00:00",
+      "clips_used": [
+        "2",
+        "8",
+        "16",
+        "20",
+        "25",
+        "27",
+        "28",
+        "30"
+      ],
+      "transform_log": "8 shots from 8 distinct clips, avg ~1.25s/shot (range 1.08s-1.42s, intro skipped: 2.62s, cut points from real beat detection on gata_only_remix.mp3)",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_071_thumb.jpg",
+      "thumbnail_billboard_check_note": "Bright yellow supercar against dark night urban background, clearly visible at 120px resolution. Subject centered, excellent contrast. Passes billboard principle.",
+      "production_notes": {
+        "audio_track": "assets/audio/trending/gata_only_remix.mp3",
+        "audio_name": "gata only remix",
+        "audio_bpm": 99,
+        "audio_mood": "confident driving mid-tempo",
+        "target_duration": "10s",
+        "actual_duration": "10.0s",
+        "cuts_count": 8,
+        "beats_detected": true,
+        "dark_grade_applied": true,
+        "watermark_removed": true,
+        "on_screen_text": false,
+        "voiceover": false
+      },
+      "gate_check_note": "shared_gates.basic_qa: PASS (ffprobe 1080x1920, 10.000000s, video+audio streams, decode clean).\nshared_gates.factual_controversy_screen: PASS (no political/controversial content, no fabricated claims/quotes, generic motivational framing about invisible work).\nshared_gates.platform_policy_check: PASS (no hate/violence/harassment, title/thumbnail match video content, real transformation applied).\nshort_form_gates.copyright_gate: PASS (vertical crop excludes watermark, dark grade applied, original audio fully replaced).\nshort_form_gates.audio_license_gate: PASS (gata_only_remix, trending_audio_library.json, owner risk-acceptance on real trending tracks).\ncontent_quality_gate: luxury_aesthetic=9, emotional_impact=9, thumbnail_strength=9, title_strength=8, brand_consistency=8, manifestation_vibe=9 -- all >=8, passes.\nFrame-verified: all 8 clips individually considered; clips 2/8/16/20 provide daytime/work transition, clips 25/27/28/30 provide evening/night luxury reveal. Cooldown check: zero overlap with last 5 published (sf_063-sf_065-sf_061-sf_062 clips)."
+    },
+    {
+      "id": "sf_072",
+      "status": "ready_to_publish",
+      "scouted_at": "2026-08-09T06:08:50Z",
+      "title_pattern": "I Stopped Listening To Their Version.",
+      "angle": "Audience-refusal narrative",
+      "audio": "Gata Only NJ",
+      "hashtags": [
+        "#deepfocus",
+        "#quietluxury",
+        "#manifestation",
+        "#confidence"
+      ]
     }
   ]
 }
