@@ -239,13 +239,18 @@ def player_level(total_xp: float) -> int:
 
 ATTRIBUTE_SOURCES = {
     "systems_thinking": ["ai_automation", "technology", "learning"],
-    "creativity": ["filmmaking", "art", "content_youtube"],
+    "creativity": ["creative", "content"],
     "execution": ["*"],
     "technical_ability": ["technology", "ai_automation"],
-    "business_ability": ["entrepreneurship", "money"],
-    "communication": ["content_youtube", "entrepreneurship", "life_independence"],
-    "discipline": ["personal_development", "fitness"],
+    "business_ability": ["business", "money"],
+    "communication": ["content", "business", "life"],
+    "discipline": ["life", "fitness"],
 }
+
+# Nodes that stand for follow-through rather than starting. Execution is scaled
+# by these, so shipped one-offs beside empty consistency nodes cannot read as
+# reliable delivery.
+FOLLOW_THROUGH = ["pd.consistency", "fit.consistency", "biz.delivery"]
 
 
 def recompute_attributes(tree: dict[str, Any]) -> None:
@@ -272,9 +277,8 @@ def recompute_attributes(tree: dict[str, Any]) -> None:
             # Starting things is not executing. Temper by proven follow-through:
             # a tree full of shipped one-offs and empty consistency nodes is a
             # description of someone who starts well, and should score as one.
-            follow = [idx_levels.get(k, 0) for k in
-                      ("pd.consistency", "pd.discipline", "fit.consistency", "ent.operations")]
-            follow_through = min(1.0, sum(follow) / 16.0)
+            follow = [idx_levels.get(k, 0) for k in FOLLOW_THROUGH]
+            follow_through = min(1.0, sum(follow) / (4.0 * len(FOLLOW_THROUGH)))
             attrs[name] = {
                 "value": round(starting * (0.4 + 0.6 * follow_through), 1),
                 "confidence": "low" if total < 300 else "medium",
@@ -345,6 +349,14 @@ def cmd_validate(args: argparse.Namespace) -> int:
                 problems.append(f"{nid}: next_unlock '{nxt}' does not exist")
         if node.get("xp", 0) < 0:
             problems.append(f"{nid}: negative XP")
+
+    for attr, sources in ATTRIBUTE_SOURCES.items():
+        for src in sources:
+            if src != "*" and src not in tree_ids:
+                problems.append(f"attribute '{attr}' reads from unknown tree '{src}'")
+    for nid in FOLLOW_THROUGH:
+        if nid not in idx:
+            problems.append(f"execution follow-through references unknown node '{nid}'")
 
     # Cycle detection over the prerequisite graph.
     colour: dict[str, int] = {}
@@ -1066,8 +1078,8 @@ def _layout(tree: dict[str, Any]) -> tuple[dict[str, tuple[float, float]], dict[
             members.sort(key=lambda n: n["name"])
             # Compressed, not linear: most trees stop around tier 5, so linear
             # growth would strand the few tier-9 nodes far outside everything.
-            radius = 170 + (tier ** 0.82) * 158
-            span = wedge * 0.74
+            radius = 310 + (tier ** 0.82) * 150
+            span = wedge * 0.68
             k = len(members)
             for i, node in enumerate(members):
                 angle = centre if k == 1 else centre - span / 2 + span * i / (k - 1)
@@ -1075,7 +1087,7 @@ def _layout(tree: dict[str, Any]) -> tuple[dict[str, tuple[float, float]], dict[
                 # different rings, so angular spacing alone never has to clear a
                 # full node diameter.
                 phase = (i % 3) - 1
-                r = radius + phase * 58
+                r = radius + phase * 62
                 pos[node["id"]] = (r * math.cos(angle), r * math.sin(angle))
                 # Neighbours in a crowded tier alternate their label above and
                 # below the disc, so adjacent names cannot land on each other.
@@ -1148,12 +1160,10 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
     # Thirteen full branch names will not fit around the rim at a readable
     # size, so the rim carries short forms; the full name is in the panel.
     SHORT = {
-        "entrepreneurship": "Entrepreneurship", "growth_ops": "Growth Ops",
-        "ai_automation": "AI & Automation", "content_youtube": "YouTube",
-        "filmmaking": "Filmmaking", "art": "Art", "fitness": "Fitness",
-        "money": "Money", "technology": "Technology", "learning": "Learning",
-        "personal_development": "Personal Dev", "life_independence": "Independence",
-        "cross": "Cross-Tree",
+        "business": "Business", "ai_automation": "AI & Automation",
+        "content": "Content", "creative": "Creative", "technology": "Technology",
+        "fitness": "Fitness", "money": "Money", "learning": "Learning",
+        "life": "Discipline", "cross": "Cross-Tree",
     }
 
     # ---- branch labels at the outer edge of each wedge ----
@@ -1166,7 +1176,7 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
         angle = 2 * math.pi * bi / count - math.pi / 2
         # Sit at the rim of the framed area, but never beyond it, so no branch
         # name is cropped by the initial fit.
-        r = min(170 + (top ** 0.82) * 158 + 165, extent - 95)
+        r = min(310 + (top ** 0.82) * 150 + 170, extent - 95)
         w(f'<text class="branch-label" x="{r * math.cos(angle):.0f}" '
           f'y="{r * math.sin(angle):.0f}">'
           f'{e(SHORT.get(branch["id"], branch["name"]))}</text>')

@@ -17,46 +17,40 @@
   },
   "attributes": {
     "systems_thinking": {
-      "value": 3.4,
+      "value": 3.8,
       "confidence": "medium"
     },
     "creativity": {
-      "value": 2.1,
+      "value": 2.4,
       "confidence": "medium"
     },
     "execution": {
-      "value": 4.0,
+      "value": 4.5,
       "confidence": "medium",
       "note": "Tempered by follow-through: consistency and operations nodes carry the other 60% of this score."
     },
     "technical_ability": {
-      "value": 3.4,
+      "value": 3.7,
       "confidence": "medium"
     },
     "business_ability": {
-      "value": 2.6,
+      "value": 3.1,
       "confidence": "medium"
     },
     "communication": {
-      "value": 2.6,
+      "value": 3.1,
       "confidence": "medium"
     },
     "discipline": {
-      "value": 1.6,
+      "value": 1.8,
       "confidence": "medium"
     }
   },
   "trees": [
     {
-      "id": "entrepreneurship",
-      "name": "Entrepreneurship",
-      "description": "Building and running a business that people actually pay for.",
-      "status": "active"
-    },
-    {
-      "id": "growth_ops",
-      "name": "AI Growth Operating",
-      "description": "The specialisation: diagnosing a business's growth problem and fixing it with systems.",
+      "id": "business",
+      "name": "Business & Growth",
+      "description": "Finding the problem a business will pay to have fixed, and fixing it.",
       "status": "active"
     },
     {
@@ -66,21 +60,21 @@
       "status": "active"
     },
     {
-      "id": "content_youtube",
-      "name": "Content & YouTube",
+      "id": "content",
+      "name": "Content & Audience",
       "description": "Making things people choose to watch, and understanding why they did.",
       "status": "active"
     },
     {
-      "id": "filmmaking",
-      "name": "Filmmaking & Visual Creation",
-      "description": "Telling stories with images — camera, 3D, or generated.",
+      "id": "creative",
+      "name": "Visual & Creative",
+      "description": "Drawing, design, 3D and film — the eye, and the hand that executes it.",
       "status": "active"
     },
     {
-      "id": "art",
-      "name": "Art",
-      "description": "Hand skill. Levels here need finished work, not references saved.",
+      "id": "technology",
+      "name": "Technology",
+      "description": "Writing, running and hosting software that does something.",
       "status": "active"
     },
     {
@@ -91,45 +85,33 @@
     },
     {
       "id": "money",
-      "name": "Money & Financial Skills",
-      "description": "Earning, keeping, and deploying capital. Risk-taking is not progression.",
-      "status": "active"
-    },
-    {
-      "id": "technology",
-      "name": "Technology",
-      "description": "Writing, running, and hosting software that does something.",
+      "name": "Money",
+      "description": "Earning, keeping and deploying capital. Risk-taking is not progression.",
       "status": "active"
     },
     {
       "id": "learning",
-      "name": "Learning",
-      "description": "The meta-tree. Levels here come from how well other trees grow.",
+      "name": "Learning & Thinking",
+      "description": "The meta-tree. Levels here come from how well the other trees grow.",
       "status": "active"
     },
     {
-      "id": "personal_development",
-      "name": "Personal Development",
+      "id": "life",
+      "name": "Discipline & Independence",
       "description": "Behaviour only. Intentions score nothing in this tree.",
-      "status": "active"
-    },
-    {
-      "id": "life_independence",
-      "name": "Life & Independence",
-      "description": "The ability to run your own life without anyone underwriting it.",
       "status": "active"
     },
     {
       "id": "cross",
       "name": "Cross-Tree Specialisations",
-      "description": "Powerful combinations. Each requires real levels in several trees at once.",
+      "description": "Powerful combinations, each needing real levels in several trees at once.",
       "status": "active"
     }
   ],
   "nodes": [
     {
-      "id": "ent.fundamentals",
-      "tree": "entrepreneurship",
+      "id": "biz.fundamentals",
+      "tree": "business",
       "name": "Business Fundamentals",
       "tier": 1,
       "xp": 110.0,
@@ -138,10 +120,8 @@
       "hidden": false,
       "prerequisites": [],
       "next_unlock": [
-        "ent.market_research",
-        "ent.offer",
-        "gro.diagnosis",
-        "cross.ai_growth_operator"
+        "biz.offer",
+        "biz.growth"
       ],
       "unlock_requirement": "Explain how a business makes money end to end, in your own words.",
       "evidence": [
@@ -176,79 +156,22 @@
       "sharpness": "current"
     },
     {
-      "id": "ent.market_research",
-      "tree": "entrepreneurship",
-      "name": "Market Research",
+      "id": "biz.offer",
+      "tree": "business",
+      "name": "Offer, Pricing & Positioning",
       "tier": 2,
-      "xp": 90.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "ent.fundamentals"
-      ],
-      "next_unlock": [
-        "ent.positioning"
-      ],
-      "unlock_requirement": "Research a real niche and write down what its buyers actually want.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
-          "type": "experience",
-          "xp": 45.0,
-          "reason": "Built the AIGO Lead Finder (React) to prospect coaches by niche, and researched barbering, sales coaching, real estate, videography and others."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Repeated niche-by-niche prospect research feeding the outreach tracker."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 20.0,
-          "reason": "Individual prospect research on Closing Saif, Contract Flips, Austin Edney, Colin and Essy."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 90.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "ent.offer",
-      "tree": "entrepreneurship",
-      "name": "Offer Creation",
-      "tier": 2,
-      "xp": 185.0,
+      "xp": 340.0,
       "level": 3,
       "status": "Practising",
       "hidden": false,
       "prerequisites": [
-        "ent.fundamentals"
+        "biz.fundamentals"
       ],
       "next_unlock": [
-        "ent.positioning",
-        "ent.pricing",
-        "ent.copywriting",
-        "ent.acquisition"
+        "biz.copywriting",
+        "biz.outreach"
       ],
-      "unlock_requirement": "Define one offer: who it is for, what it does, what it costs.",
+      "unlock_requirement": "Define one offer: who it is for, what it does, what it costs, and why you over the obvious alternative.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -263,96 +186,17 @@
           "kind": "project",
           "class": 3,
           "type": "experience",
-          "xp": 60.0,
-          "reason": "Defined a second, separate offer: the £15 @thisguyai personal-brand course, including scope and platform."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Iterated the course offer, including reconsidering Skool on cost grounds."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 185.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "ent.positioning",
-      "tree": "entrepreneurship",
-      "name": "Positioning",
-      "tier": 3,
-      "xp": 90.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "ent.offer",
-        "ent.market_research"
-      ],
-      "next_unlock": [
-        "ent.sales"
-      ],
-      "unlock_requirement": "State why someone should pick you over the obvious alternative.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
           "xp": 65.0,
           "reason": "Adopted a specific differentiated position — build the fix first, then pitch with the work already done — rather than competing on a generic pitch."
         },
         {
           "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
+          "kind": "project",
+          "class": 3,
           "type": "experience",
-          "xp": 25,
-          "reason": "Applied the build-first position consistently across the outreach campaign."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 90.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "ent.pricing",
-      "tree": "entrepreneurship",
-      "name": "Pricing",
-      "tier": 3,
-      "xp": 65.0,
-      "level": 1,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "ent.offer"
-      ],
-      "next_unlock": [
-        "ent.scaling"
-      ],
-      "unlock_requirement": "Set a price you can defend and hold it in a real conversation.",
-      "evidence": [
+          "xp": 60.0,
+          "reason": "Defined a second, separate offer: the £15 @thisguyai personal-brand course, including scope and platform."
+        },
         {
           "date": "2026-08-10",
           "kind": "build_small",
@@ -366,12 +210,28 @@
           "kind": "practice",
           "class": 2,
           "type": "experience",
+          "xp": 25,
+          "reason": "Iterated the course offer, including reconsidering Skool on cost grounds."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Applied the build-first position consistently across the outreach campaign."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
           "xp": 20.0,
           "reason": "Reasoned about platform costs against price when reconsidering Skool."
         }
       ],
       "xp_by_type": {
-        "experience": 65.0
+        "experience": 340.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -384,8 +244,8 @@
       "sharpness": "current"
     },
     {
-      "id": "ent.copywriting",
-      "tree": "entrepreneurship",
+      "id": "biz.copywriting",
+      "tree": "business",
       "name": "Copywriting",
       "tier": 3,
       "xp": 295.0,
@@ -393,7 +253,7 @@
       "status": "Practising",
       "hidden": false,
       "prerequisites": [
-        "ent.offer"
+        "biz.offer"
       ],
       "next_unlock": [
         "cross.ai_growth_operator"
@@ -439,19 +299,19 @@
       "sharpness": "current"
     },
     {
-      "id": "ent.acquisition",
-      "tree": "entrepreneurship",
-      "name": "Client Acquisition",
+      "id": "biz.outreach",
+      "tree": "business",
+      "name": "Outreach & Client Acquisition",
       "tier": 3,
       "xp": 135.0,
       "level": 2,
       "status": "Learning",
       "hidden": false,
       "prerequisites": [
-        "ent.offer"
+        "biz.offer"
       ],
       "next_unlock": [
-        "ent.sales"
+        "biz.sales"
       ],
       "unlock_requirement": "Get a stranger into a real conversation about buying.",
       "evidence": [
@@ -494,8 +354,195 @@
       "sharpness": "current"
     },
     {
-      "id": "ent.sales",
-      "tree": "entrepreneurship",
+      "id": "biz.growth",
+      "tree": "business",
+      "name": "Growth Diagnosis & Strategy",
+      "tier": 4,
+      "xp": 440.0,
+      "level": 4,
+      "status": "Practising",
+      "hidden": false,
+      "prerequisites": [
+        {
+          "node": "biz.fundamentals",
+          "level": 2
+        }
+      ],
+      "next_unlock": [
+        "biz.scaling",
+        "cross.ai_growth_operator",
+        "cross.agentic_business"
+      ],
+      "unlock_requirement": "Look at a real business, find its binding constraint, change something, and measure whether you were right.",
+      "evidence": [
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 90.0,
+          "reason": "Core repeated activity: audits a coach's funnel and identifies a specific conversion leak before pitching."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 75.0,
+          "reason": "Mapped real coaching funnels stage by stage, including Colin's Calendly booking flow and GoHighLevel pipelines."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 45.0,
+          "reason": "Built the AIGO Lead Finder (React) to prospect coaches by niche, and researched barbering, sales coaching, real estate, videography and others."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 45.0,
+          "reason": "Built targeted recovery sequences aimed at named leak points: partial leads, didn't-book, win-back."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 40.0,
+          "reason": "Produced Loom video audits presenting diagnoses to real businesses."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Repeated niche-by-niche prospect research feeding the outreach tracker."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Worked structured AIGO diagnostic practice cases (Apex Physique Coaching, Elevate Executive Coaching) as graded analyst exercises."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Applied funnel diagnosis across several real prospects in different niches."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Repeated funnel mapping across prospects in several niches."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Identifies specific conversion leaks as the basis of the pitch."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 20.0,
+          "reason": "Individual prospect research on Closing Saif, Contract Flips, Austin Edney, Colin and Essy."
+        }
+      ],
+      "xp_by_type": {
+        "experience": 440.0
+      },
+      "confidence": "medium",
+      "last_progressed": "2026-08-10",
+      "created": "2026-08-10",
+      "level_cap": 6,
+      "capped": false,
+      "knowledge": true,
+      "experience": true,
+      "mastery": false,
+      "sharpness": "current"
+    },
+    {
+      "id": "biz.crm",
+      "tree": "business",
+      "name": "CRM & Lead Systems",
+      "tier": 3,
+      "xp": 140.0,
+      "level": 2,
+      "status": "Learning",
+      "hidden": false,
+      "prerequisites": [
+        "auto.fundamentals"
+      ],
+      "next_unlock": [
+        "cross.ai_growth_operator"
+      ],
+      "unlock_requirement": "Run a real pipeline through a system, with no lead falling through it.",
+      "evidence": [
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 50,
+          "reason": "Built AIGO_Outreach_V6: a lead tracker with status dropdowns, conditional formatting and automatic follow-up date logic."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 35.0,
+          "reason": "Built intake and capture tooling (Typeform, Tally) feeding a tracked pipeline."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 30.0,
+          "reason": "Built a matching cold call tracker."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Works inside GoHighLevel and Kit on prospect pipelines and sequences."
+        }
+      ],
+      "xp_by_type": {
+        "experience": 140.0
+      },
+      "confidence": "medium",
+      "last_progressed": "2026-08-10",
+      "created": "2026-08-10",
+      "level_cap": 6,
+      "capped": false,
+      "knowledge": true,
+      "experience": true,
+      "mastery": false,
+      "sharpness": "current"
+    },
+    {
+      "id": "biz.sales",
+      "tree": "business",
       "name": "Sales",
       "tier": 4,
       "xp": 0,
@@ -503,12 +550,13 @@
       "status": "Available",
       "hidden": false,
       "prerequisites": [
-        "ent.acquisition",
-        "ent.positioning"
+        {
+          "node": "biz.outreach",
+          "level": 2
+        }
       ],
       "next_unlock": [
-        "ent.delivery",
-        "mon.business_income"
+        "biz.delivery"
       ],
       "unlock_requirement": "Close a paid deal in a live conversation.",
       "evidence": [],
@@ -524,21 +572,24 @@
       "sharpness": "unknown"
     },
     {
-      "id": "ent.delivery",
-      "tree": "entrepreneurship",
-      "name": "Client Delivery",
-      "tier": 4,
+      "id": "biz.delivery",
+      "tree": "business",
+      "name": "Delivery & Operations",
+      "tier": 5,
       "xp": 55.0,
       "level": 1,
       "status": "Learning",
       "hidden": false,
       "prerequisites": [
-        "ent.sales"
+        {
+          "node": "biz.sales",
+          "level": 2
+        }
       ],
       "next_unlock": [
-        "ent.operations"
+        "biz.scaling"
       ],
-      "unlock_requirement": "Deliver what you sold, to a client's satisfaction.",
+      "unlock_requirement": "Deliver what you sold, repeatedly, without it depending on your memory.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -563,40 +614,8 @@
       "sharpness": "current"
     },
     {
-      "id": "ent.operations",
-      "tree": "entrepreneurship",
-      "name": "Operations",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "ent.delivery",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "ent.scaling",
-        "life.business_admin"
-      ],
-      "unlock_requirement": "Run delivery repeatedly without it depending on your memory.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "ent.scaling",
-      "tree": "entrepreneurship",
+      "id": "biz.scaling",
+      "tree": "business",
       "name": "Scaling",
       "tier": 6,
       "xp": 0,
@@ -605,407 +624,16 @@
       "hidden": true,
       "prerequisites": [
         {
-          "node": "ent.operations",
+          "node": "biz.delivery",
           "level": 4
         },
         {
-          "node": "ent.pricing",
+          "node": "biz.growth",
           "level": 4
         }
       ],
       "next_unlock": [],
       "unlock_requirement": "Increase throughput without proportionally increasing your hours.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "gro.diagnosis",
-      "tree": "growth_ops",
-      "name": "Growth Diagnosis",
-      "tier": 3,
-      "xp": 180.0,
-      "level": 3,
-      "status": "Practising",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "ent.fundamentals",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "gro.funnel",
-        "gro.strategy"
-      ],
-      "unlock_requirement": "Look at a real business and correctly identify its binding constraint.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 90.0,
-          "reason": "Core repeated activity: audits a coach's funnel and identifies a specific conversion leak before pitching."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Worked structured AIGO diagnostic practice cases (Apex Physique Coaching, Elevate Executive Coaching) as graded analyst exercises."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Applied funnel diagnosis across several real prospects in different niches."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
-          "type": "experience",
-          "xp": 40.0,
-          "reason": "Produced Loom video audits presenting diagnoses to real businesses."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 180.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "gro.funnel",
-      "tree": "growth_ops",
-      "name": "Funnel Analysis",
-      "tier": 3,
-      "xp": 100.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "gro.diagnosis"
-      ],
-      "next_unlock": [
-        "gro.conversion",
-        "gro.experiments"
-      ],
-      "unlock_requirement": "Map a real funnel stage by stage with real numbers attached.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 75.0,
-          "reason": "Mapped real coaching funnels stage by stage, including Colin's Calendly booking flow and GoHighLevel pipelines."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Repeated funnel mapping across prospects in several niches."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 100.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "gro.conversion",
-      "tree": "growth_ops",
-      "name": "Conversion Analysis",
-      "tier": 4,
-      "xp": 70.0,
-      "level": 1,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "gro.funnel"
-      ],
-      "next_unlock": [
-        "gro.revops"
-      ],
-      "unlock_requirement": "Find where a real funnel leaks and quantify the loss.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Identifies specific conversion leaks as the basis of the pitch."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
-          "type": "experience",
-          "xp": 45.0,
-          "reason": "Built targeted recovery sequences aimed at named leak points: partial leads, didn't-book, win-back."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 70.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "gro.crm",
-      "tree": "growth_ops",
-      "name": "CRM Systems",
-      "tier": 3,
-      "xp": 60.0,
-      "level": 1,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "auto.fundamentals"
-      ],
-      "next_unlock": [
-        "gro.leads",
-        "auto.crm_integration",
-        "cross.ai_growth_operator"
-      ],
-      "unlock_requirement": "Configure a CRM that a real pipeline actually runs through.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Works inside GoHighLevel and Kit on prospect pipelines and sequences."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
-          "type": "experience",
-          "xp": 35.0,
-          "reason": "Built intake and capture tooling (Typeform, Tally) feeding a tracked pipeline."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 60.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "gro.leads",
-      "tree": "growth_ops",
-      "name": "Lead Management",
-      "tier": 4,
-      "xp": 80.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "gro.crm"
-      ],
-      "next_unlock": [
-        "gro.revops"
-      ],
-      "unlock_requirement": "Run a lead from capture to outcome without one falling through.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
-          "type": "experience",
-          "xp": 50,
-          "reason": "Built AIGO_Outreach_V6: a lead tracker with status dropdowns, conditional formatting and automatic follow-up date logic."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
-          "type": "experience",
-          "xp": 30.0,
-          "reason": "Built a matching cold call tracker."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 80.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "gro.experiments",
-      "tree": "growth_ops",
-      "name": "Growth Experiments",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "gro.funnel"
-      ],
-      "next_unlock": [
-        "gro.strategy"
-      ],
-      "unlock_requirement": "Run a change with a measured before and after.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "gro.revops",
-      "tree": "growth_ops",
-      "name": "Revenue Operations",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "gro.leads",
-          "level": 3
-        },
-        {
-          "node": "gro.conversion",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "gro.architect",
-        "cross.agentic_business"
-      ],
-      "unlock_requirement": "Own the systems between a lead and recognised revenue.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "gro.strategy",
-      "tree": "growth_ops",
-      "name": "Growth Strategy",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "gro.experiments",
-          "level": 3
-        },
-        {
-          "node": "gro.diagnosis",
-          "level": 4
-        }
-      ],
-      "next_unlock": [
-        "gro.architect",
-        "cross.ai_growth_operator"
-      ],
-      "unlock_requirement": "Choose what NOT to do, and be right about it in hindsight.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "gro.architect",
-      "tree": "growth_ops",
-      "name": "Growth Systems Architect",
-      "tier": 6,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "gro.revops",
-          "level": 5
-        },
-        {
-          "node": "gro.strategy",
-          "level": 5
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Design a growth system another operator could run without you.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -1030,9 +658,7 @@
       "prerequisites": [],
       "next_unlock": [
         "ai.prompting",
-        "ai.claude_code",
-        "ai.local",
-        "film.ai_video"
+        "vis.ai_video"
       ],
       "unlock_requirement": "Explain what a model can and cannot do, and why it fails when it fails.",
       "evidence": [
@@ -1069,114 +695,19 @@
     {
       "id": "ai.prompting",
       "tree": "ai_automation",
-      "name": "Prompt Engineering",
+      "name": "Prompting, Context & AI Tooling",
       "tier": 2,
-      "xp": 115.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "ai.fundamentals"
-      ],
-      "next_unlock": [
-        "ai.context"
-      ],
-      "unlock_requirement": "Reliably get a useful output on a task where a naive prompt failed.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 90.0,
-          "reason": "Built and installed working skill packages that depend on reliable prompting: coaching-funnel-growth, humanise, banana, ui-ux-pro-max."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Iterates prompts and instructions toward specific output requirements, including a rule that humanise triggers only on explicit invocation."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 115.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "ai.context",
-      "tree": "ai_automation",
-      "name": "Context Engineering",
-      "tier": 3,
-      "xp": 95.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "ai.prompting",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "ai.agents"
-      ],
-      "unlock_requirement": "Design what the model sees, not just what you ask it.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 70.0,
-          "reason": "Authored a CLAUDE.md to control what the model sees in a repository, and installed the context-engineering-collection."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Maintains standing instructions and rules that shape model behaviour across sessions."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 95.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "ai.claude_code",
-      "tree": "ai_automation",
-      "name": "Claude & Claude Code",
-      "tier": 2,
-      "xp": 225.0,
-      "level": 3,
+      "xp": 435.0,
+      "level": 4,
       "status": "Practising",
       "hidden": false,
       "prerequisites": [
         "ai.fundamentals"
       ],
-      "next_unlock": [],
-      "unlock_requirement": "Use an agentic coding tool to ship a change you kept.",
+      "next_unlock": [
+        "ai.agents"
+      ],
+      "unlock_requirement": "Reliably get useful work out of a model on a task where the naive attempt failed — and keep the result.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -1192,7 +723,39 @@
           "class": 3,
           "type": "experience",
           "xp": 90.0,
+          "reason": "Built and installed working skill packages that depend on reliable prompting: coaching-funnel-growth, humanise, banana, ui-ux-pro-max."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 90.0,
           "reason": "Packaged and installed multiple skill files as a working local toolchain."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 70.0,
+          "reason": "Authored a CLAUDE.md to control what the model sees in a repository, and installed the context-engineering-collection."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Iterates prompts and instructions toward specific output requirements, including a rule that humanise triggers only on explicit invocation."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Maintains standing instructions and rules that shape model behaviour across sessions."
         },
         {
           "date": "2026-08-10",
@@ -1204,7 +767,7 @@
         }
       ],
       "xp_by_type": {
-        "experience": 225.0
+        "experience": 435.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -1219,182 +782,23 @@
     {
       "id": "ai.agents",
       "tree": "ai_automation",
-      "name": "AI Agents",
+      "name": "AI Agents & Orchestration",
       "tier": 4,
       "xp": 0,
       "level": 0,
-      "status": "Locked",
+      "status": "Available",
       "hidden": false,
       "prerequisites": [
         {
-          "node": "ai.context",
+          "node": "ai.prompting",
           "level": 3
         }
       ],
       "next_unlock": [
-        "ai.cost",
-        "ai.orchestration",
+        "ai.production",
         "tech.ai_integration"
       ],
       "unlock_requirement": "Build an agent that completes a multi-step task unattended.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "ai.cost",
-      "tree": "ai_automation",
-      "name": "AI Cost Optimisation",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "ai.agents",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Cut the cost of a running AI workload without losing output quality.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "ai.local",
-      "tree": "ai_automation",
-      "name": "Local AI",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "ai.fundamentals",
-          "level": 3
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Run a model locally and use it for real work.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "ai.orchestration",
-      "tree": "ai_automation",
-      "name": "Agent Orchestration",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "ai.agents",
-          "level": 4
-        },
-        {
-          "node": "auto.architecture",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "ai.prod_systems"
-      ],
-      "unlock_requirement": "Coordinate several agents on one job, with handoffs that hold.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "ai.prod_systems",
-      "tree": "ai_automation",
-      "name": "Production AI Systems",
-      "tier": 7,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "ai.orchestration",
-          "level": 5
-        },
-        {
-          "node": "auto.production",
-          "level": 4
-        }
-      ],
-      "next_unlock": [
-        "ai.unknown_1",
-        "cross.agentic_business"
-      ],
-      "unlock_requirement": "Run an AI system other people depend on, and keep it up.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "ai.unknown_1",
-      "tree": "ai_automation",
-      "name": "???",
-      "tier": 8,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "ai.prod_systems",
-          "level": 6
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -1418,9 +822,8 @@
       "hidden": false,
       "prerequisites": [],
       "next_unlock": [
-        "gro.crm",
-        "auto.zapier",
-        "auto.n8n"
+        "biz.crm",
+        "auto.tools"
       ],
       "unlock_requirement": "Describe a trigger, an action, and what happens when one fails.",
       "evidence": [
@@ -1455,9 +858,9 @@
       "sharpness": "current"
     },
     {
-      "id": "auto.zapier",
+      "id": "auto.tools",
       "tree": "ai_automation",
-      "name": "Zapier",
+      "name": "Automation Tools (Zapier, n8n)",
       "tier": 2,
       "xp": 15,
       "level": 0,
@@ -1467,9 +870,9 @@
         "auto.fundamentals"
       ],
       "next_unlock": [
-        "auto.multistep"
+        "auto.integration"
       ],
-      "unlock_requirement": "Ship a Zap that runs on real data.",
+      "unlock_requirement": "Ship a workflow that runs unattended on real data.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -1494,35 +897,9 @@
       "sharpness": "current"
     },
     {
-      "id": "auto.n8n",
+      "id": "auto.integration",
       "tree": "ai_automation",
-      "name": "n8n",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "auto.fundamentals"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Ship an n8n workflow that runs on real data.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "auto.multistep",
-      "tree": "ai_automation",
-      "name": "Multi-Step Automations",
+      "name": "Multi-Step Automations & APIs",
       "tier": 3,
       "xp": 0,
       "level": 0,
@@ -1530,15 +907,15 @@
       "hidden": false,
       "prerequisites": [
         {
-          "node": "auto.zapier",
+          "node": "auto.tools",
           "level": 2
         }
       ],
       "next_unlock": [
-        "auto.apis",
-        "yt.pipeline"
+        "auto.systems",
+        "yt.systems"
       ],
-      "unlock_requirement": "Chain four or more steps with branching that behaves.",
+      "unlock_requirement": "Chain several steps across systems you do not control, with auth, branching and error handling that behave.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -1552,129 +929,7 @@
       "sharpness": "unknown"
     },
     {
-      "id": "auto.apis",
-      "tree": "ai_automation",
-      "name": "APIs",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "auto.multistep"
-      ],
-      "next_unlock": [
-        "auto.webhooks"
-      ],
-      "unlock_requirement": "Call a third-party API with auth and handle its error responses.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "auto.webhooks",
-      "tree": "ai_automation",
-      "name": "Webhooks",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "auto.apis"
-      ],
-      "next_unlock": [
-        "auto.crm_integration"
-      ],
-      "unlock_requirement": "Receive a live webhook and act on its payload correctly.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "auto.crm_integration",
-      "tree": "ai_automation",
-      "name": "CRM Integrations",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "auto.webhooks",
-          "level": 2
-        },
-        {
-          "node": "gro.crm",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "auto.cross_platform"
-      ],
-      "unlock_requirement": "Wire a CRM to another system so records stay in sync.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "auto.cross_platform",
-      "tree": "ai_automation",
-      "name": "Cross-Platform Systems",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "auto.crm_integration",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "auto.architecture"
-      ],
-      "unlock_requirement": "Move data correctly across three or more systems you do not control.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "auto.architecture",
+      "id": "auto.systems",
       "tree": "ai_automation",
       "name": "Automation Architecture",
       "tier": 5,
@@ -1684,16 +939,15 @@
       "hidden": false,
       "prerequisites": [
         {
-          "node": "auto.cross_platform",
+          "node": "auto.integration",
           "level": 3
         }
       ],
       "next_unlock": [
-        "ai.orchestration",
         "auto.production",
         "cross.ai_growth_operator"
       ],
-      "unlock_requirement": "Design an automation with failure handling, retries, and observability.",
+      "unlock_requirement": "Design an automation with failure handling, retries and observability.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -1717,12 +971,12 @@
       "hidden": true,
       "prerequisites": [
         {
-          "node": "auto.architecture",
+          "node": "auto.systems",
           "level": 5
         }
       ],
       "next_unlock": [
-        "ai.prod_systems",
+        "ai.production",
         "cross.agentic_business"
       ],
       "unlock_requirement": "Deploy and maintain a multi-step automation doing useful work reliably, for someone other than yourself.",
@@ -1739,9 +993,44 @@
       "sharpness": "unknown"
     },
     {
+      "id": "ai.production",
+      "tree": "ai_automation",
+      "name": "Production AI Systems",
+      "tier": 7,
+      "xp": 0,
+      "level": 0,
+      "status": "Locked",
+      "hidden": true,
+      "prerequisites": [
+        {
+          "node": "ai.agents",
+          "level": 5
+        },
+        {
+          "node": "auto.production",
+          "level": 4
+        }
+      ],
+      "next_unlock": [
+        "cross.agentic_business"
+      ],
+      "unlock_requirement": "Run an AI system other people depend on, and keep it up.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
       "id": "yt.fundamentals",
-      "tree": "content_youtube",
-      "name": "YouTube Fundamentals",
+      "tree": "content",
+      "name": "Audience Fundamentals",
       "tier": 1,
       "xp": 15,
       "level": 0,
@@ -1750,9 +1039,7 @@
       "prerequisites": [],
       "next_unlock": [
         "yt.ideas",
-        "yt.titles",
-        "yt.thumbnails",
-        "yt.formats",
+        "yt.packaging",
         "yt.analytics"
       ],
       "unlock_requirement": "Explain what the platform rewards and why.",
@@ -1781,7 +1068,7 @@
     },
     {
       "id": "yt.ideas",
-      "tree": "content_youtube",
+      "tree": "content",
       "name": "Idea Generation",
       "tier": 2,
       "xp": 0,
@@ -1808,37 +1095,9 @@
       "sharpness": "unknown"
     },
     {
-      "id": "yt.titles",
-      "tree": "content_youtube",
-      "name": "Titles & Packaging",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "yt.fundamentals"
-      ],
-      "next_unlock": [
-        "yt.hooks"
-      ],
-      "unlock_requirement": "Write a title that outperformed your own previous one.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "yt.thumbnails",
-      "tree": "content_youtube",
-      "name": "Thumbnails",
+      "id": "yt.packaging",
+      "tree": "content",
+      "name": "Packaging: Titles, Thumbnails, Hooks",
       "tier": 2,
       "xp": 0,
       "level": 0,
@@ -1848,62 +1107,7 @@
         "yt.fundamentals"
       ],
       "next_unlock": [],
-      "unlock_requirement": "Produce a thumbnail with a measurably better click-through rate.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "yt.formats",
-      "tree": "content_youtube",
-      "name": "Shorts & Long-Form",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "yt.fundamentals"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Publish in both formats and know which serves which purpose.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "yt.hooks",
-      "tree": "content_youtube",
-      "name": "Hooks & Retention",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "yt.titles",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Improve the retention curve of a real video.",
+      "unlock_requirement": "Beat your own previous click-through or retention on a real video.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -1918,8 +1122,8 @@
     },
     {
       "id": "yt.analytics",
-      "tree": "content_youtube",
-      "name": "Analytics",
+      "tree": "content",
+      "name": "Analytics & Competitor Intelligence",
       "tier": 3,
       "xp": 0,
       "level": 0,
@@ -1929,42 +1133,10 @@
         "yt.fundamentals"
       ],
       "next_unlock": [
-        "yt.competitor",
         "yt.strategy",
         "cross.ai_growth_operator"
       ],
-      "unlock_requirement": "Read your own data and draw a conclusion that turned out correct.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "yt.competitor",
-      "tree": "content_youtube",
-      "name": "Competitor Intelligence",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "yt.analytics",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "yt.growth_operator"
-      ],
-      "unlock_requirement": "Explain another channel's performance and predict its next move.",
+      "unlock_requirement": "Read the data, draw a conclusion, and have it turn out correct.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -1979,7 +1151,7 @@
     },
     {
       "id": "yt.strategy",
-      "tree": "content_youtube",
+      "tree": "content",
       "name": "Content Strategy",
       "tier": 4,
       "xp": 0,
@@ -1997,8 +1169,7 @@
         }
       ],
       "next_unlock": [
-        "yt.pipeline",
-        "yt.growth_operator"
+        "yt.systems"
       ],
       "unlock_requirement": "Run a deliberate content plan across a full month.",
       "evidence": [],
@@ -2014,27 +1185,25 @@
       "sharpness": "unknown"
     },
     {
-      "id": "yt.pipeline",
-      "tree": "content_youtube",
-      "name": "Automated Content Pipeline",
+      "id": "yt.systems",
+      "tree": "content",
+      "name": "Content Systems & Scale",
       "tier": 5,
       "xp": 0,
       "level": 0,
       "status": "Locked",
-      "hidden": false,
+      "hidden": true,
       "prerequisites": [
         {
-          "node": "auto.multistep",
-          "level": 3
+          "node": "yt.strategy",
+          "level": 4
         },
         {
-          "node": "yt.strategy",
+          "node": "auto.integration",
           "level": 3
         }
       ],
-      "next_unlock": [
-        "yt.growth_operator"
-      ],
+      "next_unlock": [],
       "unlock_requirement": "Automate production so publishing does not depend on your mood.",
       "evidence": [],
       "xp_by_type": {},
@@ -2049,45 +1218,70 @@
       "sharpness": "unknown"
     },
     {
-      "id": "yt.growth_operator",
-      "tree": "content_youtube",
-      "name": "YouTube Growth Operator",
-      "tier": 6,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
+      "id": "vis.drawing",
+      "tree": "creative",
+      "name": "Drawing & Rendering",
+      "tier": 1,
+      "xp": 210.0,
+      "level": 3,
+      "status": "Practising",
+      "hidden": false,
+      "prerequisites": [],
+      "next_unlock": [
+        "vis.composition",
+        "vis.masterwork"
+      ],
+      "unlock_requirement": "Draw what is in front of you, and render form convincingly with value.",
+      "evidence": [
         {
-          "node": "yt.strategy",
-          "level": 5
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 70.0,
+          "reason": "Produces detailed observational drawing as an established practice."
         },
         {
-          "node": "yt.pipeline",
-          "level": 4
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 60.0,
+          "reason": "Detailed rendered artwork requiring sustained value control."
         },
         {
-          "node": "yt.competitor",
-          "level": 4
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 55.0,
+          "reason": "Mural and room decoration work treating a physical space as the picture."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Ongoing detailed drawing work."
         }
       ],
-      "next_unlock": [],
-      "unlock_requirement": "Grow a channel other than your own, on purpose.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
+      "xp_by_type": {
+        "experience": 210.0
+      },
+      "confidence": "medium",
+      "last_progressed": "2026-08-10",
       "created": "2026-08-10",
-      "level_cap": 1,
+      "level_cap": 6,
       "capped": false,
-      "knowledge": false,
-      "experience": false,
+      "knowledge": true,
+      "experience": true,
       "mastery": false,
-      "sharpness": "unknown"
+      "sharpness": "current"
     },
     {
-      "id": "film.storytelling",
-      "tree": "filmmaking",
+      "id": "vis.story",
+      "tree": "creative",
       "name": "Visual Storytelling",
       "tier": 1,
       "xp": 0,
@@ -2096,10 +1290,10 @@
       "hidden": false,
       "prerequisites": [],
       "next_unlock": [
-        "film.composition",
-        "film.editing",
-        "film.ai_video",
-        "cross.independent_filmmaker"
+        "vis.edit",
+        "vis.ai_video",
+        "vis.camera",
+        "cross.filmmaker"
       ],
       "unlock_requirement": "Tell a story where the images carry the meaning.",
       "evidence": [],
@@ -2115,687 +1309,27 @@
       "sharpness": "unknown"
     },
     {
-      "id": "film.composition",
-      "tree": "filmmaking",
-      "name": "Composition",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "film.storytelling"
-      ],
-      "next_unlock": [
-        "film.lighting",
-        "film.camera",
-        "film.3d"
-      ],
-      "unlock_requirement": "Frame a shot that reads instantly.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.lighting",
-      "tree": "filmmaking",
-      "name": "Lighting",
+      "id": "vis.composition",
+      "tree": "creative",
+      "name": "Composition & Perspective",
       "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "film.composition"
-      ],
-      "next_unlock": [
-        "film.cinematography"
-      ],
-      "unlock_requirement": "Light a scene to a specific intended mood.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.camera",
-      "tree": "filmmaking",
-      "name": "Camera Movement",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "film.composition"
-      ],
-      "next_unlock": [
-        "film.cinematography"
-      ],
-      "unlock_requirement": "Move the camera for a reason a viewer could name.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.cinematography",
-      "tree": "filmmaking",
-      "name": "Cinematography",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "film.lighting",
-          "level": 3
-        },
-        {
-          "node": "film.camera",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "film.short",
-        "cross.independent_filmmaker"
-      ],
-      "unlock_requirement": "Shoot a sequence that holds together visually.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.editing",
-      "tree": "filmmaking",
-      "name": "Editing",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "film.storytelling"
-      ],
-      "next_unlock": [
-        "film.sound",
-        "film.colour",
-        "film.vfx",
-        "film.short",
-        "cross.independent_filmmaker"
-      ],
-      "unlock_requirement": "Cut a sequence that plays better than its raw footage.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.sound",
-      "tree": "filmmaking",
-      "name": "Sound Design",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "film.editing"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Build a soundscape a viewer would miss if removed.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.colour",
-      "tree": "filmmaking",
-      "name": "Colour",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "film.editing"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Grade a sequence to a deliberate, consistent look.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.3d",
-      "tree": "filmmaking",
-      "name": "3D Filmmaking",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "film.composition"
-      ],
-      "next_unlock": [
-        "film.environment",
-        "film.animation",
-        "film.vfx",
-        "film.3d_production",
-        "cross.independent_filmmaker"
-      ],
-      "unlock_requirement": "Build and render a 3D shot you would show someone.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.environment",
-      "tree": "filmmaking",
-      "name": "Environment Design",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "film.3d",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "film.3d_production"
-      ],
-      "unlock_requirement": "Build a 3D environment that reads as a real place.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.animation",
-      "tree": "filmmaking",
-      "name": "Animation",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "film.3d",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "film.3d_production"
-      ],
-      "unlock_requirement": "Animate motion that reads as intentional, not default.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.vfx",
-      "tree": "filmmaking",
-      "name": "Visual Effects",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "film.3d",
-          "level": 3
-        },
-        {
-          "node": "film.editing",
-          "level": 3
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Composite an effect that survives a second viewing.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.ai_video",
-      "tree": "filmmaking",
-      "name": "AI Video",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "ai.fundamentals",
-        "film.storytelling"
-      ],
-      "next_unlock": [
-        "cross.independent_filmmaker"
-      ],
-      "unlock_requirement": "Direct generated video toward a shot you actually wanted.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.short",
-      "tree": "filmmaking",
-      "name": "Short Films",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "film.cinematography",
-          "level": 3
-        },
-        {
-          "node": "film.editing",
-          "level": 4
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Finish and release a short film.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "film.3d_production",
-      "tree": "filmmaking",
-      "name": "3D Cinematic Production",
-      "tier": 6,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "film.3d",
-          "level": 5
-        },
-        {
-          "node": "film.environment",
-          "level": 4
-        },
-        {
-          "node": "film.animation",
-          "level": 4
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Produce a finished cinematic piece entirely in 3D.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "art.observation",
-      "tree": "art",
-      "name": "Observation",
-      "tier": 1,
-      "xp": 95.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [],
-      "next_unlock": [
-        "art.proportion",
-        "art.shading"
-      ],
-      "unlock_requirement": "Draw what is in front of you rather than what you assume is there.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 70.0,
-          "reason": "Produces detailed observational drawing as an established practice."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Ongoing detailed drawing work."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 95.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "art.proportion",
-      "tree": "art",
-      "name": "Proportion",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "art.observation"
-      ],
-      "next_unlock": [
-        "art.perspective",
-        "art.character"
-      ],
-      "unlock_requirement": "Get relationships right without measuring every time.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "art.shading",
-      "tree": "art",
-      "name": "Shading & Value",
-      "tier": 3,
-      "xp": 60.0,
-      "level": 1,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "art.observation"
-      ],
-      "next_unlock": [
-        "art.media",
-        "art.stippling",
-        "art.digital",
-        "art.character"
-      ],
-      "unlock_requirement": "Render form convincingly with value alone.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 60.0,
-          "reason": "Detailed rendered artwork requiring sustained value control."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 60.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "art.perspective",
-      "tree": "art",
-      "name": "Perspective",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "art.proportion",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "art.composition",
-        "art.environment"
-      ],
-      "unlock_requirement": "Construct a believable space from imagination.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "art.media",
-      "tree": "art",
-      "name": "Pen & Pencil Media",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "art.shading"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Control ballpoint and coloured pencil deliberately, not accidentally.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "art.stippling",
-      "tree": "art",
-      "name": "Stippling",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "art.shading",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Complete a stippled piece with controlled tonal range.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "art.digital",
-      "tree": "art",
-      "name": "Digital Art",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "art.shading"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Finish a digital piece to the same standard as your traditional work.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "art.composition",
-      "tree": "art",
-      "name": "Composition (Art)",
-      "tier": 4,
       "xp": 100.0,
       "level": 2,
       "status": "Learning",
       "hidden": false,
       "prerequisites": [
         {
-          "node": "art.perspective",
+          "node": "vis.drawing",
           "level": 2
         }
       ],
       "next_unlock": [
-        "art.environment",
-        "art.style"
+        "vis.brand",
+        "vis.3d",
+        "vis.camera",
+        "vis.masterwork"
       ],
-      "unlock_requirement": "Arrange a picture so the eye goes where you intended.",
+      "unlock_requirement": "Arrange a picture so the eye goes where you intended, in a space that holds together.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -2828,28 +1362,21 @@
       "sharpness": "current"
     },
     {
-      "id": "art.character",
-      "tree": "art",
-      "name": "Character Art",
-      "tier": 4,
+      "id": "vis.edit",
+      "tree": "creative",
+      "name": "Editing & Post",
+      "tier": 2,
       "xp": 0,
       "level": 0,
       "status": "Locked",
       "hidden": false,
       "prerequisites": [
-        {
-          "node": "art.proportion",
-          "level": 3
-        },
-        {
-          "node": "art.shading",
-          "level": 3
-        }
+        "vis.story"
       ],
       "next_unlock": [
-        "art.style"
+        "cross.filmmaker"
       ],
-      "unlock_requirement": "Draw a figure that reads as a specific person.",
+      "unlock_requirement": "Cut a sequence that plays better than its raw footage.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -2863,172 +1390,55 @@
       "sharpness": "unknown"
     },
     {
-      "id": "art.environment",
-      "tree": "art",
-      "name": "Environmental Art",
-      "tier": 4,
-      "xp": 55.0,
-      "level": 1,
-      "status": "Learning",
+      "id": "vis.brand",
+      "tree": "creative",
+      "name": "Brand & Visual Identity",
+      "tier": 3,
+      "xp": 225.0,
+      "level": 3,
+      "status": "Practising",
       "hidden": false,
       "prerequisites": [
-        {
-          "node": "art.perspective",
-          "level": 3
-        },
-        {
-          "node": "art.composition",
-          "level": 2
-        }
+        "vis.composition"
       ],
       "next_unlock": [],
-      "unlock_requirement": "Draw a place with depth and atmosphere.",
+      "unlock_requirement": "Produce a coherent identity — palette, type, marks — applied consistently across several real assets.",
       "evidence": [
         {
           "date": "2026-08-10",
           "kind": "project",
           "class": 3,
           "type": "experience",
-          "xp": 55.0,
-          "reason": "Mural and room decoration work treating a physical space as the picture."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 55.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "art.style",
-      "tree": "art",
-      "name": "Artistic Style Development",
-      "tier": 6,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "art.composition",
-          "level": 5
-        },
-        {
-          "node": "art.character",
-          "level": 4
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Produce a recognisable body of work, not one good drawing.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "fit.technique",
-      "tree": "fitness",
-      "name": "Exercise Technique",
-      "tier": 1,
-      "xp": 90.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [],
-      "next_unlock": [
-        "fit.overload",
-        "fit.calisthenics",
-        "fit.consistency"
-      ],
-      "unlock_requirement": "Execute the main lifts with form that holds under load.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Trains four times a week on an upper/lower split."
+          "xp": 100.0,
+          "reason": "Built a complete AIGO brand identity: cream/near-black/signal-red palette, Syne 800 / Space Mono / DM Sans type system, and a written brand guide."
         },
         {
           "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Ran a 10km route through Wardown Park and Galley & Warden Hills."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
+          "kind": "project",
           "class": 3,
           "type": "experience",
-          "xp": 40.0,
-          "reason": "Sustains a structured split rather than training ad hoc."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 90.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "fit.knowledge",
-      "tree": "fitness",
-      "name": "Training Knowledge",
-      "tier": 1,
-      "xp": 60.0,
-      "level": 1,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [],
-      "next_unlock": [
-        "fit.overload",
-        "fit.recovery"
-      ],
-      "unlock_requirement": "Explain why a programme is built the way it is.",
-      "evidence": [
+          "xp": 80.0,
+          "reason": "Designed the @thisguyai identity: Anton wordmark in two-tone treatment and a yellow rounded-square play-button mark."
+        },
         {
           "date": "2026-08-10",
           "kind": "practice",
           "class": 2,
           "type": "experience",
           "xp": 25,
-          "reason": "Tracks and knows his own numbers: 178cm, 72kg, roughly 15% body fat."
+          "reason": "Applied the identity consistently across the portfolio site, dashboards, trackers and landing pages."
         },
         {
           "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
+          "kind": "practice",
+          "class": 2,
           "type": "experience",
-          "xp": 35.0,
-          "reason": "Understands and applies split structure to his own training."
+          "xp": 20.0,
+          "reason": "Holds a deliberate quality standard — explicitly wants design that does not look like typical AI output."
         }
       ],
       "xp_by_type": {
-        "experience": 60.0
+        "experience": 225.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -3041,113 +1451,21 @@
       "sharpness": "current"
     },
     {
-      "id": "fit.overload",
-      "tree": "fitness",
-      "name": "Progressive Overload",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "fit.knowledge",
-        "fit.technique"
-      ],
-      "next_unlock": [
-        "fit.hypertrophy",
-        "fit.strength",
-        "fit.programming"
-      ],
-      "unlock_requirement": "Log progression over eight weeks and actually progress.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "fit.hypertrophy",
-      "tree": "fitness",
-      "name": "Hypertrophy Training",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "fit.overload",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "fit.programming"
-      ],
-      "unlock_requirement": "Run a hypertrophy block to completion and measure the result.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "fit.strength",
-      "tree": "fitness",
-      "name": "Strength Training",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "fit.overload",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Add meaningful weight to a main lift over a training block.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "fit.calisthenics",
-      "tree": "fitness",
-      "name": "Calisthenics",
+      "id": "vis.3d",
+      "tree": "creative",
+      "name": "3D & VFX",
       "tier": 3,
       "xp": 0,
       "level": 0,
       "status": "Available",
       "hidden": false,
       "prerequisites": [
-        {
-          "node": "fit.technique",
-          "level": 2
-        }
+        "vis.composition"
       ],
-      "next_unlock": [],
-      "unlock_requirement": "Earn a bodyweight skill you could not previously do.",
+      "next_unlock": [
+        "cross.filmmaker"
+      ],
+      "unlock_requirement": "Build and render a 3D shot you would show someone.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -3161,117 +1479,22 @@
       "sharpness": "unknown"
     },
     {
-      "id": "fit.consistency",
-      "tree": "fitness",
-      "name": "Training Consistency",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "fit.technique"
-      ],
-      "next_unlock": [
-        "fit.physique"
-      ],
-      "unlock_requirement": "Train to plan for twelve consecutive weeks.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "fit.nutrition",
-      "tree": "fitness",
-      "name": "Nutrition Knowledge",
-      "tier": 1,
-      "xp": 5,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [],
-      "next_unlock": [
-        "fit.macros"
-      ],
-      "unlock_requirement": "Explain energy balance and protein requirements accurately.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "knowledge",
-          "class": 1,
-          "type": "knowledge",
-          "xp": 5,
-          "reason": "KNOWLEDGE ONLY — tracks body composition, but diet is explicitly named as an area of inconsistency, so there is no execution evidence to score."
-        }
-      ],
-      "xp_by_type": {
-        "knowledge": 5
-      },
-      "confidence": "low",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 2,
-      "capped": false,
-      "knowledge": true,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "fit.macros",
-      "tree": "fitness",
-      "name": "Macro Management",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "fit.nutrition"
-      ],
-      "next_unlock": [
-        "fit.meal_planning"
-      ],
-      "unlock_requirement": "Hit your macro targets across a full week — tracked, not estimated.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "fit.meal_planning",
-      "tree": "fitness",
-      "name": "Meal Planning",
+      "id": "vis.ai_video",
+      "tree": "creative",
+      "name": "AI Video",
       "tier": 3,
       "xp": 0,
       "level": 0,
       "status": "Locked",
       "hidden": false,
       "prerequisites": [
-        {
-          "node": "fit.macros",
-          "level": 2
-        }
+        "ai.fundamentals",
+        "vis.story"
       ],
       "next_unlock": [
-        "fit.physique"
+        "cross.filmmaker"
       ],
-      "unlock_requirement": "Feed yourself to plan for a month without it collapsing.",
+      "unlock_requirement": "Direct generated video toward a shot you actually wanted.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -3285,267 +1508,9 @@
       "sharpness": "unknown"
     },
     {
-      "id": "fit.recovery",
-      "tree": "fitness",
-      "name": "Recovery & Sleep",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "fit.knowledge"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Hold a sleep and recovery routine that survives a busy week.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "fit.programming",
-      "tree": "fitness",
-      "name": "Independent Programme Design",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "fit.hypertrophy",
-          "level": 4
-        },
-        {
-          "node": "fit.overload",
-          "level": 4
-        }
-      ],
-      "next_unlock": [
-        "fit.physique"
-      ],
-      "unlock_requirement": "Write your own programme, run it, and get the predicted result.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "fit.physique",
-      "tree": "fitness",
-      "name": "Physique Development",
-      "tier": 6,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "fit.programming",
-          "level": 4
-        },
-        {
-          "node": "fit.consistency",
-          "level": 5
-        },
-        {
-          "node": "fit.meal_planning",
-          "level": 4
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "A visible, sustained change over a year or more.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.literacy",
-      "tree": "money",
-      "name": "Financial Literacy",
-      "tier": 1,
-      "xp": 5,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [],
-      "next_unlock": [
-        "mon.budgeting",
-        "mon.income",
-        "mon.investing"
-      ],
-      "unlock_requirement": "Explain income, expenses, assets, and tax accurately.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "knowledge",
-          "class": 1,
-          "type": "knowledge",
-          "xp": 5,
-          "reason": "KNOWLEDGE ONLY — has structured commercial terms (setup fee plus revenue share, £15 price point) and reasons about platform costs, but there is no evidence of budgeting, saving, or any earned income to assess."
-        }
-      ],
-      "xp_by_type": {
-        "knowledge": 5
-      },
-      "confidence": "low",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 2,
-      "capped": false,
-      "knowledge": true,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "mon.budgeting",
-      "tree": "money",
-      "name": "Budgeting",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "mon.literacy"
-      ],
-      "next_unlock": [
-        "mon.saving",
-        "mon.entrepreneurial_finance",
-        "life.money_mgmt"
-      ],
-      "unlock_requirement": "Track and control your spending for three consecutive months.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.saving",
-      "tree": "money",
-      "name": "Saving",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "mon.budgeting",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "mon.independence"
-      ],
-      "unlock_requirement": "Build a buffer you did not spend.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.income",
-      "tree": "money",
-      "name": "Income Generation",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        "mon.literacy"
-      ],
-      "next_unlock": [
-        "mon.business_income"
-      ],
-      "unlock_requirement": "Earn money from something you built or did.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.investing",
-      "tree": "money",
-      "name": "Investing Knowledge",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "mon.literacy",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "mon.risk",
-        "mon.trading_knowledge"
-      ],
-      "unlock_requirement": "Explain what you own, why, and what would make you sell.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.risk",
-      "tree": "money",
-      "name": "Risk Management",
+      "id": "vis.camera",
+      "tree": "creative",
+      "name": "Cinematography",
       "tier": 4,
       "xp": 0,
       "level": 0,
@@ -3553,49 +1518,18 @@
       "hidden": false,
       "prerequisites": [
         {
-          "node": "mon.investing",
+          "node": "vis.composition",
           "level": 2
-        }
-      ],
-      "next_unlock": [
-        "mon.trading_ability"
-      ],
-      "unlock_requirement": "Size a position so a bad outcome does not hurt you.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.business_income",
-      "tree": "money",
-      "name": "Business Income",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "mon.income",
-          "level": 3
         },
         {
-          "node": "ent.sales",
+          "node": "vis.story",
           "level": 2
         }
       ],
       "next_unlock": [
-        "mon.entrepreneurial_finance"
+        "cross.filmmaker"
       ],
-      "unlock_requirement": "Money from customers, not from wages.",
+      "unlock_requirement": "Light and move a camera for reasons a viewer could name.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -3609,40 +1543,9 @@
       "sharpness": "unknown"
     },
     {
-      "id": "mon.trading_knowledge",
-      "tree": "money",
-      "name": "Trading Knowledge",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "mon.investing",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "mon.trading_ability"
-      ],
-      "unlock_requirement": "Understand mechanics, edge, and why most participants lose.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.trading_ability",
-      "tree": "money",
-      "name": "Demonstrated Trading Ability",
+      "id": "vis.masterwork",
+      "tree": "creative",
+      "name": "Finished Body of Work",
       "tier": 6,
       "xp": 0,
       "level": 0,
@@ -3650,84 +1553,16 @@
       "hidden": true,
       "prerequisites": [
         {
-          "node": "mon.trading_knowledge",
+          "node": "vis.composition",
           "level": 5
         },
         {
-          "node": "mon.risk",
+          "node": "vis.drawing",
           "level": 5
         }
       ],
       "next_unlock": [],
-      "unlock_requirement": "A documented, risk-adjusted record over a long period. Knowledge does not unlock this node, and gambling never will.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.entrepreneurial_finance",
-      "tree": "money",
-      "name": "Entrepreneurial Finance",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "mon.business_income",
-          "level": 3
-        },
-        {
-          "node": "mon.budgeting",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "mon.independence"
-      ],
-      "unlock_requirement": "Run a business's numbers: margin, runway, reinvestment.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "mon.independence",
-      "tree": "money",
-      "name": "Financial Independence",
-      "tier": 7,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "mon.entrepreneurial_finance",
-          "level": 5
-        },
-        {
-          "node": "mon.saving",
-          "level": 4
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Your costs are covered by income you control.",
+      "unlock_requirement": "A recognisable body of finished work, not one good piece.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -3743,20 +1578,18 @@
     {
       "id": "tech.computing",
       "tree": "technology",
-      "name": "General Computing",
+      "name": "Computing & Version Control",
       "tier": 1,
-      "xp": 130.0,
-      "level": 2,
-      "status": "Learning",
+      "xp": 190.0,
+      "level": 3,
+      "status": "Practising",
       "hidden": false,
       "prerequisites": [],
       "next_unlock": [
-        "tech.git",
-        "tech.html",
-        "tech.python",
-        "tech.rpi"
+        "tech.frontend",
+        "tech.code"
       ],
-      "unlock_requirement": "Operate a machine confidently, including the command line.",
+      "unlock_requirement": "Operate a machine confidently, command line and git included.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -3765,6 +1598,14 @@
           "type": "experience",
           "xp": 80.0,
           "reason": "Runs a working local toolchain: Claude Code, plugin and skill installation, repository work."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 35.0,
+          "reason": "Maintains a repository with committed plugin work and structured commit history."
         },
         {
           "date": "2026-08-10",
@@ -3781,43 +1622,6 @@
           "type": "experience",
           "xp": 25,
           "reason": "Debugged plugin configuration structure until it loaded correctly."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 130.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "tech.git",
-      "tree": "technology",
-      "name": "Git & GitHub",
-      "tier": 2,
-      "xp": 60.0,
-      "level": 1,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "tech.computing"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Use branches, commits, and pull requests without fear.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
-          "type": "experience",
-          "xp": 35.0,
-          "reason": "Maintains a repository with committed plugin work and structured commit history."
         },
         {
           "date": "2026-08-10",
@@ -3829,7 +1633,7 @@
         }
       ],
       "xp_by_type": {
-        "experience": 60.0
+        "experience": 190.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -3842,117 +1646,21 @@
       "sharpness": "current"
     },
     {
-      "id": "tech.html",
+      "id": "tech.frontend",
       "tree": "technology",
-      "name": "HTML & CSS",
+      "name": "Frontend (HTML, CSS, JavaScript)",
       "tier": 2,
-      "xp": 260.0,
-      "level": 3,
-      "status": "Practising",
-      "hidden": false,
-      "prerequisites": [
-        "tech.computing"
-      ],
-      "next_unlock": [
-        "tech.js",
-        "tech.web"
-      ],
-      "unlock_requirement": "Build a page that looks right on a phone and a desktop.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 100.0,
-          "reason": "Built the live portfolio site at brajanniedz.netlify.app."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 80.0,
-          "reason": "Built a landing page delivered to a real business (Essy, Bloom Executive VAs)."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 55.0,
-          "reason": "Built the @thisguyai course landing page."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Repeated page building across projects to a consistent visual standard."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 260.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "tech.python",
-      "tree": "technology",
-      "name": "Python",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "tech.computing"
-      ],
-      "next_unlock": [
-        "tech.apis",
-        "tech.databases"
-      ],
-      "unlock_requirement": "Write a script that does a job you would otherwise do by hand.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "tech.js",
-      "tree": "technology",
-      "name": "JavaScript",
-      "tier": 3,
-      "xp": 380.0,
+      "xp": 640.0,
       "level": 4,
       "status": "Practising",
       "hidden": false,
       "prerequisites": [
-        {
-          "node": "tech.html",
-          "level": 2
-        }
+        "tech.computing"
       ],
       "next_unlock": [
         "tech.web"
       ],
-      "unlock_requirement": "Make a page do something interactive that you wrote yourself.",
+      "unlock_requirement": "Build a page that works on a phone and does something you wrote.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -3975,8 +1683,32 @@
           "kind": "project",
           "class": 3,
           "type": "experience",
+          "xp": 100.0,
+          "reason": "Built the live portfolio site at brajanniedz.netlify.app."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 80.0,
+          "reason": "Built a landing page delivered to a real business (Essy, Bloom Executive VAs)."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
           "xp": 60.0,
           "reason": "Built the gamified AIGO co-pilot dashboard in vanilla JS."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 55.0,
+          "reason": "Built the @thisguyai course landing page."
         },
         {
           "date": "2026-08-10",
@@ -3985,10 +1717,18 @@
           "type": "experience",
           "xp": 50,
           "reason": "Built the AIGO Lead Finder as a React artifact."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Repeated page building across projects to a consistent visual standard."
         }
       ],
       "xp_by_type": {
-        "experience": 380.0
+        "experience": 640.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -4001,24 +1741,22 @@
       "sharpness": "current"
     },
     {
-      "id": "tech.apis",
+      "id": "tech.code",
       "tree": "technology",
-      "name": "APIs in Code",
+      "name": "Code & Data (Python, APIs, Databases)",
       "tier": 3,
       "xp": 70.0,
       "level": 1,
       "status": "Learning",
       "hidden": false,
       "prerequisites": [
-        {
-          "node": "tech.python",
-          "level": 2
-        }
+        "tech.computing"
       ],
       "next_unlock": [
-        "tech.ai_integration"
+        "tech.ai_integration",
+        "tech.architecture"
       ],
-      "unlock_requirement": "Consume an API in code with auth, paging, and error handling.",
+      "unlock_requirement": "Write a program that does a real job, talks to an API, and stores what it needs to keep.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -4051,61 +1789,25 @@
       "sharpness": "current"
     },
     {
-      "id": "tech.databases",
-      "tree": "technology",
-      "name": "Databases",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "tech.python",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "tech.architecture"
-      ],
-      "unlock_requirement": "Model and query data that outlives a single script run.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
       "id": "tech.web",
       "tree": "technology",
-      "name": "Web Development",
+      "name": "Web Apps & Dashboards",
       "tier": 4,
-      "xp": 225.0,
-      "level": 3,
+      "xp": 500.0,
+      "level": 4,
       "status": "Practising",
       "hidden": false,
       "prerequisites": [
         {
-          "node": "tech.js",
-          "level": 3
-        },
-        {
-          "node": "tech.html",
+          "node": "tech.frontend",
           "level": 3
         }
       ],
       "next_unlock": [
-        "tech.cloud",
-        "tech.dashboards",
+        "tech.hosting",
         "tech.architecture"
       ],
-      "unlock_requirement": "Ship a working web app someone else has used.",
+      "unlock_requirement": "Ship a working application someone else has used.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -4120,8 +1822,32 @@
           "kind": "project",
           "class": 3,
           "type": "experience",
+          "xp": 110.0,
+          "reason": "Built the TV-display outreach command center — a live operational dashboard designed to be read at a glance from across a room."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
           "xp": 90.0,
           "reason": "Multiple distinct web applications delivered, including one to an external party."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 80.0,
+          "reason": "Built the gamified AIGO co-pilot dashboard."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 60.0,
+          "reason": "Built the branded outreach tracker and cold call tracker with conditional formatting and status logic."
         },
         {
           "date": "2026-08-10",
@@ -4130,10 +1856,18 @@
           "type": "experience",
           "xp": 25,
           "reason": "Sustained web building as the default way problems get solved."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Consistently reaches for a dashboard as the interface to a problem."
         }
       ],
       "xp_by_type": {
-        "experience": 225.0
+        "experience": 500.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -4146,9 +1880,9 @@
       "sharpness": "current"
     },
     {
-      "id": "tech.cloud",
+      "id": "tech.hosting",
       "tree": "technology",
-      "name": "Cloud & Hosting",
+      "name": "Hosting & Servers",
       "tier": 4,
       "xp": 70.0,
       "level": 1,
@@ -4188,130 +1922,6 @@
       "sharpness": "current"
     },
     {
-      "id": "tech.rpi",
-      "tree": "technology",
-      "name": "Raspberry Pi",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "tech.computing",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "tech.servers"
-      ],
-      "unlock_requirement": "Run a Pi doing a real job continuously.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "tech.servers",
-      "tree": "technology",
-      "name": "Local Servers & Networking",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "tech.rpi",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Run a service on your own network, reachable and secured.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "tech.dashboards",
-      "tree": "technology",
-      "name": "Dashboard Development",
-      "tier": 4,
-      "xp": 275.0,
-      "level": 3,
-      "status": "Practising",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "tech.web",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Build an interface that makes data legible at a glance.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 110.0,
-          "reason": "Built the TV-display outreach command center — a live operational dashboard designed to be read at a glance from across a room."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 80.0,
-          "reason": "Built the gamified AIGO co-pilot dashboard."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 60.0,
-          "reason": "Built the branded outreach tracker and cold call tracker with conditional formatting and status logic."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Consistently reaches for a dashboard as the interface to a problem."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 275.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
       "id": "tech.ai_integration",
       "tree": "technology",
       "name": "AI Integration in Software",
@@ -4322,7 +1932,7 @@
       "hidden": false,
       "prerequisites": [
         {
-          "node": "tech.apis",
+          "node": "tech.code",
           "level": 3
         },
         {
@@ -4359,16 +1969,434 @@
           "level": 5
         },
         {
-          "node": "tech.databases",
+          "node": "tech.code",
           "level": 4
         },
         {
-          "node": "tech.cloud",
+          "node": "tech.hosting",
           "level": 4
         }
       ],
       "next_unlock": [],
       "unlock_requirement": "Design a system whose parts you could justify to a sceptic.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "fit.training",
+      "tree": "fitness",
+      "name": "Training Knowledge & Technique",
+      "tier": 1,
+      "xp": 150.0,
+      "level": 2,
+      "status": "Learning",
+      "hidden": false,
+      "prerequisites": [],
+      "next_unlock": [
+        "fit.recovery",
+        "fit.consistency",
+        "fit.progression"
+      ],
+      "unlock_requirement": "Execute the main lifts with form that holds, and explain why the programme is built the way it is.",
+      "evidence": [
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 40.0,
+          "reason": "Sustains a structured split rather than training ad hoc."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 35.0,
+          "reason": "Understands and applies split structure to his own training."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Trains four times a week on an upper/lower split."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Ran a 10km route through Wardown Park and Galley & Warden Hills."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Tracks and knows his own numbers: 178cm, 72kg, roughly 15% body fat."
+        }
+      ],
+      "xp_by_type": {
+        "experience": 150.0
+      },
+      "confidence": "medium",
+      "last_progressed": "2026-08-10",
+      "created": "2026-08-10",
+      "level_cap": 6,
+      "capped": false,
+      "knowledge": true,
+      "experience": true,
+      "mastery": false,
+      "sharpness": "current"
+    },
+    {
+      "id": "fit.nutrition",
+      "tree": "fitness",
+      "name": "Nutrition & Diet",
+      "tier": 2,
+      "xp": 5,
+      "level": 0,
+      "status": "Available",
+      "hidden": false,
+      "prerequisites": [],
+      "next_unlock": [],
+      "unlock_requirement": "Feed yourself to a target across a full month — tracked, not estimated.",
+      "evidence": [
+        {
+          "date": "2026-08-10",
+          "kind": "knowledge",
+          "class": 1,
+          "type": "knowledge",
+          "xp": 5,
+          "reason": "KNOWLEDGE ONLY — tracks body composition, but diet is explicitly named as an area of inconsistency, so there is no execution evidence to score."
+        }
+      ],
+      "xp_by_type": {
+        "knowledge": 5
+      },
+      "confidence": "low",
+      "last_progressed": "2026-08-10",
+      "created": "2026-08-10",
+      "level_cap": 2,
+      "capped": false,
+      "knowledge": true,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "current"
+    },
+    {
+      "id": "fit.recovery",
+      "tree": "fitness",
+      "name": "Recovery & Sleep",
+      "tier": 2,
+      "xp": 0,
+      "level": 0,
+      "status": "Available",
+      "hidden": false,
+      "prerequisites": [
+        "fit.training"
+      ],
+      "next_unlock": [],
+      "unlock_requirement": "Hold a sleep and recovery routine that survives a busy week.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "fit.consistency",
+      "tree": "fitness",
+      "name": "Training Consistency",
+      "tier": 3,
+      "xp": 0,
+      "level": 0,
+      "status": "Available",
+      "hidden": false,
+      "prerequisites": [
+        "fit.training"
+      ],
+      "next_unlock": [
+        "fit.programming"
+      ],
+      "unlock_requirement": "Train to plan for twelve consecutive weeks, bad weeks included.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "fit.progression",
+      "tree": "fitness",
+      "name": "Progressive Training",
+      "tier": 3,
+      "xp": 0,
+      "level": 0,
+      "status": "Available",
+      "hidden": false,
+      "prerequisites": [
+        {
+          "node": "fit.training",
+          "level": 2
+        }
+      ],
+      "next_unlock": [
+        "fit.programming"
+      ],
+      "unlock_requirement": "Log progression over a training block and actually progress.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "fit.programming",
+      "tree": "fitness",
+      "name": "Independent Programming & Physique",
+      "tier": 5,
+      "xp": 0,
+      "level": 0,
+      "status": "Locked",
+      "hidden": true,
+      "prerequisites": [
+        {
+          "node": "fit.progression",
+          "level": 4
+        },
+        {
+          "node": "fit.consistency",
+          "level": 4
+        }
+      ],
+      "next_unlock": [],
+      "unlock_requirement": "Write your own programme, run it, and get the result you predicted.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "mon.literacy",
+      "tree": "money",
+      "name": "Financial Literacy",
+      "tier": 1,
+      "xp": 5,
+      "level": 0,
+      "status": "Available",
+      "hidden": false,
+      "prerequisites": [],
+      "next_unlock": [
+        "mon.personal",
+        "mon.income",
+        "mon.investing"
+      ],
+      "unlock_requirement": "Explain income, expenses, assets and tax accurately.",
+      "evidence": [
+        {
+          "date": "2026-08-10",
+          "kind": "knowledge",
+          "class": 1,
+          "type": "knowledge",
+          "xp": 5,
+          "reason": "KNOWLEDGE ONLY — has structured commercial terms (setup fee plus revenue share, £15 price point) and reasons about platform costs, but there is no evidence of budgeting, saving, or any earned income to assess."
+        }
+      ],
+      "xp_by_type": {
+        "knowledge": 5
+      },
+      "confidence": "low",
+      "last_progressed": "2026-08-10",
+      "created": "2026-08-10",
+      "level_cap": 2,
+      "capped": false,
+      "knowledge": true,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "current"
+    },
+    {
+      "id": "mon.personal",
+      "tree": "money",
+      "name": "Personal Money Management",
+      "tier": 2,
+      "xp": 0,
+      "level": 0,
+      "status": "Locked",
+      "hidden": false,
+      "prerequisites": [
+        "mon.literacy"
+      ],
+      "next_unlock": [
+        "mon.business_finance",
+        "mon.independence",
+        "life.independent"
+      ],
+      "unlock_requirement": "Cover your own costs, know your numbers, and keep a buffer you did not spend.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "mon.income",
+      "tree": "money",
+      "name": "Earning & Business Income",
+      "tier": 3,
+      "xp": 0,
+      "level": 0,
+      "status": "Locked",
+      "hidden": false,
+      "prerequisites": [
+        "mon.literacy"
+      ],
+      "next_unlock": [
+        "mon.business_finance"
+      ],
+      "unlock_requirement": "Money from customers, not from wages.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "mon.investing",
+      "tree": "money",
+      "name": "Investing & Risk",
+      "tier": 3,
+      "xp": 0,
+      "level": 0,
+      "status": "Locked",
+      "hidden": false,
+      "prerequisites": [
+        {
+          "node": "mon.literacy",
+          "level": 2
+        }
+      ],
+      "next_unlock": [],
+      "unlock_requirement": "Explain what you own, why, and what would make you sell. Knowledge of markets and a proven record are different skills, and reading alone caps this node at level 2.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "mon.business_finance",
+      "tree": "money",
+      "name": "Business Finance",
+      "tier": 5,
+      "xp": 0,
+      "level": 0,
+      "status": "Locked",
+      "hidden": false,
+      "prerequisites": [
+        {
+          "node": "mon.income",
+          "level": 3
+        },
+        {
+          "node": "mon.personal",
+          "level": 3
+        }
+      ],
+      "next_unlock": [
+        "mon.independence"
+      ],
+      "unlock_requirement": "Run a business's numbers: margin, runway, reinvestment.",
+      "evidence": [],
+      "xp_by_type": {},
+      "confidence": "none",
+      "last_progressed": null,
+      "created": "2026-08-10",
+      "level_cap": 1,
+      "capped": false,
+      "knowledge": false,
+      "experience": false,
+      "mastery": false,
+      "sharpness": "unknown"
+    },
+    {
+      "id": "mon.independence",
+      "tree": "money",
+      "name": "Financial Independence",
+      "tier": 7,
+      "xp": 0,
+      "level": 0,
+      "status": "Locked",
+      "hidden": true,
+      "prerequisites": [
+        {
+          "node": "mon.business_finance",
+          "level": 5
+        },
+        {
+          "node": "mon.personal",
+          "level": 4
+        }
+      ],
+      "next_unlock": [],
+      "unlock_requirement": "Your costs are covered by income you control.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -4392,8 +2420,7 @@
       "hidden": false,
       "prerequisites": [],
       "next_unlock": [
-        "lrn.critical",
-        "lrn.problem_solving",
+        "lrn.thinking",
         "lrn.self_teaching"
       ],
       "unlock_requirement": "Find a trustworthy answer to a question nobody handed you.",
@@ -4437,11 +2464,11 @@
       "sharpness": "current"
     },
     {
-      "id": "lrn.critical",
+      "id": "lrn.thinking",
       "tree": "learning",
-      "name": "Critical Thinking",
+      "name": "Critical Thinking & Problem Solving",
       "tier": 2,
-      "xp": 85.0,
+      "xp": 155.0,
       "level": 2,
       "status": "Learning",
       "hidden": false,
@@ -4449,9 +2476,10 @@
         "lrn.research"
       ],
       "next_unlock": [
-        "lrn.synthesis"
+        "lrn.synthesis",
+        "lrn.experimentation"
       ],
-      "unlock_requirement": "Change your mind because of evidence, on the record.",
+      "unlock_requirement": "Solve something that had no tutorial, and change your mind on the record when the evidence says so.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -4461,45 +2489,6 @@
           "xp": 60.0,
           "reason": "Argued against a returned verdict on evidential grounds in the Letby assignment — a position requiring evaluation rather than summary."
         },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Accepts and acts on challenges to his own behaviour, including repeated avoidance callouts."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 85.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "lrn.problem_solving",
-      "tree": "learning",
-      "name": "Problem Solving",
-      "tier": 2,
-      "xp": 70.0,
-      "level": 1,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        "lrn.research"
-      ],
-      "next_unlock": [
-        "lrn.experimentation"
-      ],
-      "unlock_requirement": "Solve something that had no tutorial.",
-      "evidence": [
         {
           "date": "2026-08-10",
           "kind": "build_small",
@@ -4514,11 +2503,19 @@
           "class": 2,
           "type": "experience",
           "xp": 25,
+          "reason": "Accepts and acts on challenges to his own behaviour, including repeated avoidance callouts."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
           "reason": "Regularly builds around constraints, such as polling Sheets via gviz rather than standing up a backend."
         }
       ],
       "xp_by_type": {
-        "experience": 70.0
+        "experience": 155.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -4535,7 +2532,7 @@
       "tree": "learning",
       "name": "Self-Teaching",
       "tier": 3,
-      "xp": 180.0,
+      "xp": 290.0,
       "level": 3,
       "status": "Practising",
       "hidden": false,
@@ -4546,10 +2543,9 @@
         }
       ],
       "next_unlock": [
-        "lrn.project_based",
-        "lrn.rapid"
+        "lrn.systems"
       ],
-      "unlock_requirement": "Learn a skill to usable level without being taught.",
+      "unlock_requirement": "Learn a skill to usable level without being taught, by finishing something in it.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -4558,6 +2554,14 @@
           "type": "experience",
           "xp": 100.0,
           "reason": "Self-taught working web development, React, AI tooling and brand design to a shipping standard without formal instruction in any of them."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 85.0,
+          "reason": "Learns by building: ONYX Casino, dashboards and the course all served as learning vehicles that were carried to a working state."
         },
         {
           "date": "2026-08-10",
@@ -4574,10 +2578,18 @@
           "type": "experience",
           "xp": 25,
           "reason": "Default response to an unfamiliar domain is to learn it by building in it."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "practice",
+          "class": 2,
+          "type": "experience",
+          "xp": 25,
+          "reason": "Consistent project-first learning pattern."
         }
       ],
       "xp_by_type": {
-        "experience": 180.0
+        "experience": 290.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -4592,71 +2604,7 @@
     {
       "id": "lrn.synthesis",
       "tree": "learning",
-      "name": "Information Synthesis",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "lrn.critical",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "lrn.knowledge_mgmt",
-        "lrn.systems_thinking"
-      ],
-      "unlock_requirement": "Combine several sources into a conclusion none of them stated.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "lrn.experimentation",
-      "tree": "learning",
-      "name": "Experimentation",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "lrn.problem_solving",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "lrn.project_based",
-        "lrn.systems_thinking"
-      ],
-      "unlock_requirement": "Test something properly instead of guessing.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "lrn.knowledge_mgmt",
-      "tree": "learning",
-      "name": "Knowledge Management",
+      "name": "Synthesis & Knowledge Management",
       "tier": 3,
       "xp": 25,
       "level": 1,
@@ -4664,12 +2612,14 @@
       "hidden": false,
       "prerequisites": [
         {
-          "node": "lrn.synthesis",
+          "node": "lrn.thinking",
           "level": 2
         }
       ],
-      "next_unlock": [],
-      "unlock_requirement": "Keep notes you actually return to and use.",
+      "next_unlock": [
+        "lrn.systems"
+      ],
+      "unlock_requirement": "Combine sources into a conclusion none of them stated, and keep notes you actually return to.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -4694,82 +2644,24 @@
       "sharpness": "current"
     },
     {
-      "id": "lrn.project_based",
+      "id": "lrn.experimentation",
       "tree": "learning",
-      "name": "Project-Based Learning",
-      "tier": 4,
-      "xp": 110.0,
-      "level": 2,
-      "status": "Learning",
+      "name": "Experimentation",
+      "tier": 3,
+      "xp": 0,
+      "level": 0,
+      "status": "Available",
       "hidden": false,
       "prerequisites": [
         {
-          "node": "lrn.self_teaching",
-          "level": 3
-        },
-        {
-          "node": "lrn.experimentation",
+          "node": "lrn.thinking",
           "level": 2
         }
       ],
       "next_unlock": [
-        "lrn.rapid"
+        "lrn.systems"
       ],
-      "unlock_requirement": "Finish a project whose purpose was learning, and finish it.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 85.0,
-          "reason": "Learns by building: ONYX Casino, dashboards and the course all served as learning vehicles that were carried to a working state."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Consistent project-first learning pattern."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 110.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "lrn.rapid",
-      "tree": "learning",
-      "name": "Rapid Skill Acquisition",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "lrn.project_based",
-          "level": 4
-        },
-        {
-          "node": "lrn.self_teaching",
-          "level": 5
-        }
-      ],
-      "next_unlock": [
-        "lrn.cross_domain"
-      ],
-      "unlock_requirement": "Go from zero to useful in a new domain, repeatedly.",
+      "unlock_requirement": "Test something properly instead of guessing.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -4783,14 +2675,14 @@
       "sharpness": "unknown"
     },
     {
-      "id": "lrn.systems_thinking",
+      "id": "lrn.systems",
       "tree": "learning",
-      "name": "Systems Thinking",
+      "name": "Systems Thinking & Rapid Acquisition",
       "tier": 5,
       "xp": 0,
       "level": 0,
       "status": "Locked",
-      "hidden": false,
+      "hidden": true,
       "prerequisites": [
         {
           "node": "lrn.synthesis",
@@ -4799,45 +2691,14 @@
         {
           "node": "lrn.experimentation",
           "level": 4
-        }
-      ],
-      "next_unlock": [
-        "lrn.cross_domain"
-      ],
-      "unlock_requirement": "See the feedback loop before it bites you.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "lrn.cross_domain",
-      "tree": "learning",
-      "name": "Cross-Domain Problem Solving",
-      "tier": 6,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "lrn.systems_thinking",
-          "level": 4
         },
         {
-          "node": "lrn.rapid",
-          "level": 4
+          "node": "lrn.self_teaching",
+          "level": 5
         }
       ],
       "next_unlock": [],
-      "unlock_requirement": "Solve a problem in one field using a tool from another.",
+      "unlock_requirement": "See the feedback loop before it bites, and go zero to useful in a new domain repeatedly.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -4852,22 +2713,35 @@
     },
     {
       "id": "pd.reflection",
-      "tree": "personal_development",
-      "name": "Reflection",
+      "tree": "life",
+      "name": "Reflection & Self-Awareness",
       "tier": 1,
-      "xp": 60.0,
-      "level": 1,
+      "xp": 140.0,
+      "level": 2,
       "status": "Learning",
       "hidden": false,
       "prerequisites": [],
       "next_unlock": [
-        "pd.journaling",
-        "pd.planning",
-        "pd.decisions",
-        "pd.self_awareness"
+        "pd.planning"
       ],
-      "unlock_requirement": "Review your own week honestly, in writing.",
+      "unlock_requirement": "Review your own week honestly in writing, and predict your own failure modes before they happen.",
       "evidence": [
+        {
+          "date": "2026-08-10",
+          "kind": "project",
+          "class": 3,
+          "type": "experience",
+          "xp": 55.0,
+          "reason": "Asked Claude to name his avoidance pattern and back the callout with real numbers — deliberately building a mechanism against his own known failure mode."
+        },
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 35.0,
+          "reason": "Maintains a written success-plan with explicit rules and a defined next action."
+        },
         {
           "date": "2026-08-10",
           "kind": "practice",
@@ -4878,15 +2752,15 @@
         },
         {
           "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
+          "kind": "practice",
+          "class": 2,
           "type": "experience",
-          "xp": 35.0,
-          "reason": "Maintains a written success-plan with explicit rules and a defined next action."
+          "xp": 25,
+          "reason": "Names inconsistency across gym, diet and business projects as a recurring personal theme rather than denying it."
         }
       ],
       "xp_by_type": {
-        "experience": 60.0
+        "experience": 140.0
       },
       "confidence": "medium",
       "last_progressed": "2026-08-10",
@@ -4899,37 +2773,9 @@
       "sharpness": "current"
     },
     {
-      "id": "pd.journaling",
-      "tree": "personal_development",
-      "name": "Journaling",
-      "tier": 2,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [
-        "pd.reflection"
-      ],
-      "next_unlock": [
-        "pd.self_awareness"
-      ],
-      "unlock_requirement": "Keep it going for a month without a gap.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
       "id": "pd.planning",
-      "tree": "personal_development",
-      "name": "Planning",
+      "tree": "life",
+      "name": "Planning & Focus",
       "tier": 2,
       "xp": 70.0,
       "level": 1,
@@ -4939,10 +2785,9 @@
         "pd.reflection"
       ],
       "next_unlock": [
-        "pd.focus",
         "pd.consistency"
       ],
-      "unlock_requirement": "Make a plan you then followed.",
+      "unlock_requirement": "Make a plan you then followed, and hold deep work across a month.",
       "evidence": [
         {
           "date": "2026-08-10",
@@ -4975,69 +2820,9 @@
       "sharpness": "current"
     },
     {
-      "id": "pd.decisions",
-      "tree": "personal_development",
-      "name": "Decision Making",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "pd.reflection",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "pd.independence"
-      ],
-      "unlock_requirement": "Make a hard call, record your reasoning, and check it later.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "pd.focus",
-      "tree": "personal_development",
-      "name": "Focus & Attention Management",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "pd.planning",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Hold deep work sessions consistently across a month.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
       "id": "pd.consistency",
-      "tree": "personal_development",
-      "name": "Consistency",
+      "tree": "life",
+      "name": "Discipline & Consistency",
       "tier": 3,
       "xp": 0,
       "level": 0,
@@ -5050,9 +2835,9 @@
         }
       ],
       "next_unlock": [
-        "pd.discipline"
+        "life.independent"
       ],
-      "unlock_requirement": "Do the same important thing weekly for three months.",
+      "unlock_requirement": "Do the same important thing weekly for three months, when nobody is checking and none of it is fun.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -5064,245 +2849,10 @@
       "experience": false,
       "mastery": false,
       "sharpness": "unknown"
-    },
-    {
-      "id": "pd.confidence",
-      "tree": "personal_development",
-      "name": "Confidence",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [],
-      "next_unlock": [],
-      "unlock_requirement": "Act despite discomfort, repeatedly, in situations that matter.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "pd.self_awareness",
-      "tree": "personal_development",
-      "name": "Self-Awareness",
-      "tier": 3,
-      "xp": 80.0,
-      "level": 2,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "pd.reflection",
-          "level": 2
-        },
-        {
-          "node": "pd.journaling",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Predict your own failure modes before they happen.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 55.0,
-          "reason": "Asked Claude to name his avoidance pattern and back the callout with real numbers — deliberately building a mechanism against his own known failure mode."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Names inconsistency across gym, diet and business projects as a recurring personal theme rather than denying it."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 80.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
-    },
-    {
-      "id": "pd.discipline",
-      "tree": "personal_development",
-      "name": "Discipline",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "pd.consistency",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "pd.delayed_gratification",
-        "pd.independence"
-      ],
-      "unlock_requirement": "Keep the standard when nobody is checking and nothing is fun.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "pd.delayed_gratification",
-      "tree": "personal_development",
-      "name": "Delayed Gratification",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "pd.discipline",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Choose the slower, larger payoff — and be seen to do it more than once.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "pd.independence",
-      "tree": "personal_development",
-      "name": "Personal Independence",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "pd.discipline",
-          "level": 4
-        },
-        {
-          "node": "pd.decisions",
-          "level": 4
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Run your own direction without external pressure holding it up.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "life.cooking",
-      "tree": "life_independence",
-      "name": "Cooking",
-      "tier": 1,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
-      "hidden": false,
-      "prerequisites": [],
-      "next_unlock": [
-        "life.independent_living"
-      ],
-      "unlock_requirement": "Feed yourself well, routinely, without buying it ready-made.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "life.organisation",
-      "tree": "life_independence",
-      "name": "Organisation",
-      "tier": 1,
-      "xp": 40.0,
-      "level": 1,
-      "status": "Learning",
-      "hidden": false,
-      "prerequisites": [],
-      "next_unlock": [
-        "life.scheduling",
-        "life.admin",
-        "life.travel"
-      ],
-      "unlock_requirement": "Nothing important is lost, late, or forgotten.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "build_small",
-          "class": 3,
-          "type": "experience",
-          "xp": 40.0,
-          "reason": "Runs his work from maintained trackers with statuses and follow-up dates."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 40.0
-      },
-      "confidence": "medium",
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "level_cap": 6,
-      "capped": false,
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
     },
     {
       "id": "life.communication",
-      "tree": "life_independence",
+      "tree": "life",
       "name": "Communication",
       "tier": 2,
       "xp": 90.0,
@@ -5311,7 +2861,7 @@
       "hidden": false,
       "prerequisites": [],
       "next_unlock": [
-        "life.employment"
+        "life.work"
       ],
       "unlock_requirement": "Handle a difficult conversation with an adult stranger.",
       "evidence": [
@@ -5346,19 +2896,55 @@
       "sharpness": "current"
     },
     {
-      "id": "life.scheduling",
-      "tree": "life_independence",
-      "name": "Scheduling",
+      "id": "life.organisation",
+      "tree": "life",
+      "name": "Organisation & Admin",
       "tier": 2,
+      "xp": 40.0,
+      "level": 1,
+      "status": "Learning",
+      "hidden": false,
+      "prerequisites": [],
+      "next_unlock": [
+        "life.work",
+        "life.independent"
+      ],
+      "unlock_requirement": "Nothing important is lost, late or forgotten, paperwork included.",
+      "evidence": [
+        {
+          "date": "2026-08-10",
+          "kind": "build_small",
+          "class": 3,
+          "type": "experience",
+          "xp": 40.0,
+          "reason": "Runs his work from maintained trackers with statuses and follow-up dates."
+        }
+      ],
+      "xp_by_type": {
+        "experience": 40.0
+      },
+      "confidence": "medium",
+      "last_progressed": "2026-08-10",
+      "created": "2026-08-10",
+      "level_cap": 6,
+      "capped": false,
+      "knowledge": true,
+      "experience": true,
+      "mastery": false,
+      "sharpness": "current"
+    },
+    {
+      "id": "life.selfcare",
+      "tree": "life",
+      "name": "Cooking & Self-Care",
+      "tier": 1,
       "xp": 0,
       "level": 0,
       "status": "Available",
       "hidden": false,
-      "prerequisites": [
-        "life.organisation"
-      ],
+      "prerequisites": [],
       "next_unlock": [],
-      "unlock_requirement": "Run your week from a calendar you trust.",
+      "unlock_requirement": "Feed yourself well, routinely, without buying it ready-made.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -5372,151 +2958,28 @@
       "sharpness": "unknown"
     },
     {
-      "id": "life.money_mgmt",
-      "tree": "life_independence",
-      "name": "Personal Money Management",
-      "tier": 2,
+      "id": "life.work",
+      "tree": "life",
+      "name": "Work & Business Admin",
+      "tier": 4,
       "xp": 0,
       "level": 0,
       "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "mon.budgeting",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "life.housing"
-      ],
-      "unlock_requirement": "Cover your own costs and know your numbers.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "life.admin",
-      "tree": "life_independence",
-      "name": "Personal Administration",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "life.organisation",
-          "level": 2
-        }
-      ],
-      "next_unlock": [
-        "life.business_admin",
-        "life.independent_living"
-      ],
-      "unlock_requirement": "Handle official paperwork yourself, correctly and on time.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "life.employment",
-      "tree": "life_independence",
-      "name": "Employment",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Available",
       "hidden": false,
       "prerequisites": [
         {
           "node": "life.communication",
           "level": 2
-        }
-      ],
-      "next_unlock": [
-        "life.housing"
-      ],
-      "unlock_requirement": "Get and hold a role, or deliberately choose not to need one.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "life.travel",
-      "tree": "life_independence",
-      "name": "Travel",
-      "tier": 3,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
+        },
         {
           "node": "life.organisation",
           "level": 2
         }
       ],
-      "next_unlock": [],
-      "unlock_requirement": "Plan and complete a trip end to end, alone.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "life.business_admin",
-      "tree": "life_independence",
-      "name": "Business Administration",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "life.admin",
-          "level": 2
-        },
-        {
-          "node": "ent.operations",
-          "level": 2
-        }
-      ],
       "next_unlock": [
-        "life.contracts"
+        "life.independent"
       ],
-      "unlock_requirement": "Register, invoice, record, and file — properly.",
+      "unlock_requirement": "Register, invoice, record and file — properly — and read an agreement knowing what you just accepted.",
       "evidence": [],
       "xp_by_type": {},
       "confidence": "none",
@@ -5530,72 +2993,8 @@
       "sharpness": "unknown"
     },
     {
-      "id": "life.contracts",
-      "tree": "life_independence",
-      "name": "Contracts & Legal Basics",
-      "tier": 4,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": false,
-      "prerequisites": [
-        {
-          "node": "life.business_admin",
-          "level": 2
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Read an agreement and know what you just accepted.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "life.housing",
-      "tree": "life_independence",
-      "name": "Housing",
-      "tier": 5,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "life.money_mgmt",
-          "level": 4
-        },
-        {
-          "node": "life.employment",
-          "level": 3
-        }
-      ],
-      "next_unlock": [
-        "life.independent_living"
-      ],
-      "unlock_requirement": "Secure and sustain your own place to live.",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "life.independent_living",
-      "tree": "life_independence",
+      "id": "life.independent",
+      "tree": "life",
       "name": "Independent Living",
       "tier": 6,
       "xp": 0,
@@ -5604,15 +3003,19 @@
       "hidden": true,
       "prerequisites": [
         {
-          "node": "life.housing",
+          "node": "life.work",
           "level": 3
         },
         {
-          "node": "life.cooking",
+          "node": "life.organisation",
           "level": 4
         },
         {
-          "node": "life.admin",
+          "node": "pd.consistency",
+          "level": 4
+        },
+        {
+          "node": "mon.personal",
           "level": 4
         }
       ],
@@ -5641,33 +3044,27 @@
       "hidden": true,
       "prerequisites": [
         {
-          "node": "gro.strategy",
+          "node": "biz.growth",
           "level": 5
         },
         {
-          "node": "auto.architecture",
+          "node": "auto.systems",
           "level": 5
         },
         {
-          "node": "gro.crm",
+          "node": "biz.crm",
           "level": 4
         },
         {
-          "node": "ent.copywriting",
+          "node": "biz.copywriting",
           "level": 4
         },
         {
           "node": "yt.analytics",
           "level": 4
-        },
-        {
-          "node": "ent.fundamentals",
-          "level": 4
         }
       ],
-      "next_unlock": [
-        "cross.unknown_2"
-      ],
+      "next_unlock": [],
       "unlock_requirement": "Diagnose a real business's growth problem and build the system that fixes it.",
       "evidence": [],
       "xp_by_type": {},
@@ -5682,7 +3079,7 @@
       "sharpness": "unknown"
     },
     {
-      "id": "cross.independent_filmmaker",
+      "id": "cross.filmmaker",
       "tree": "cross",
       "name": "Independent AI Filmmaker",
       "tier": 7,
@@ -5692,23 +3089,23 @@
       "hidden": true,
       "prerequisites": [
         {
-          "node": "film.cinematography",
+          "node": "vis.camera",
           "level": 5
         },
         {
-          "node": "film.editing",
+          "node": "vis.edit",
           "level": 5
         },
         {
-          "node": "film.3d",
+          "node": "vis.3d",
           "level": 5
         },
         {
-          "node": "film.ai_video",
+          "node": "vis.ai_video",
           "level": 5
         },
         {
-          "node": "film.storytelling",
+          "node": "vis.story",
           "level": 5
         }
       ],
@@ -5737,7 +3134,7 @@
       "hidden": true,
       "prerequisites": [
         {
-          "node": "ai.prod_systems",
+          "node": "ai.production",
           "level": 6
         },
         {
@@ -5745,12 +3142,12 @@
           "level": 5
         },
         {
-          "node": "gro.revops",
+          "node": "biz.growth",
           "level": 4
         }
       ],
       "next_unlock": [
-        "cross.unknown_1"
+        "cross.unknown"
       ],
       "unlock_requirement": "A business whose operations largely run themselves.",
       "evidence": [],
@@ -5766,7 +3163,7 @@
       "sharpness": "unknown"
     },
     {
-      "id": "cross.unknown_1",
+      "id": "cross.unknown",
       "tree": "cross",
       "name": "???",
       "tier": 9,
@@ -5793,97 +3190,6 @@
       "experience": false,
       "mastery": false,
       "sharpness": "unknown"
-    },
-    {
-      "id": "cross.unknown_2",
-      "tree": "cross",
-      "name": "???",
-      "tier": 9,
-      "xp": 0,
-      "level": 0,
-      "status": "Locked",
-      "hidden": true,
-      "prerequisites": [
-        {
-          "node": "cross.ai_growth_operator",
-          "level": 6
-        }
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "",
-      "evidence": [],
-      "xp_by_type": {},
-      "confidence": "none",
-      "last_progressed": null,
-      "created": "2026-08-10",
-      "level_cap": 1,
-      "capped": false,
-      "knowledge": false,
-      "experience": false,
-      "mastery": false,
-      "sharpness": "unknown"
-    },
-    {
-      "id": "art.brand_design",
-      "tree": "art",
-      "name": "Brand & Visual Identity Design",
-      "tier": 3,
-      "xp": 225.0,
-      "level": 3,
-      "status": "Practising",
-      "hidden": false,
-      "prerequisites": [
-        "art.composition"
-      ],
-      "next_unlock": [],
-      "unlock_requirement": "Produce a coherent identity — palette, type, marks — applied consistently across several real assets.",
-      "evidence": [
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 100.0,
-          "reason": "Built a complete AIGO brand identity: cream/near-black/signal-red palette, Syne 800 / Space Mono / DM Sans type system, and a written brand guide."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "project",
-          "class": 3,
-          "type": "experience",
-          "xp": 80.0,
-          "reason": "Designed the @thisguyai identity: Anton wordmark in two-tone treatment and a yellow rounded-square play-button mark."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 25,
-          "reason": "Applied the identity consistently across the portfolio site, dashboards, trackers and landing pages."
-        },
-        {
-          "date": "2026-08-10",
-          "kind": "practice",
-          "class": 2,
-          "type": "experience",
-          "xp": 20.0,
-          "reason": "Holds a deliberate quality standard — explicitly wants design that does not look like typical AI output."
-        }
-      ],
-      "xp_by_type": {
-        "experience": 225.0
-      },
-      "last_progressed": "2026-08-10",
-      "created": "2026-08-10",
-      "note": "Created at calibration: repeated practice across the AIGO brand guide, palette, wordmark, and multiple branded artefacts had nowhere to attach.",
-      "level_cap": 6,
-      "capped": false,
-      "confidence": "medium",
-      "knowledge": true,
-      "experience": true,
-      "mastery": false,
-      "sharpness": "current"
     }
   ],
   "milestones": [
@@ -5982,18 +3288,18 @@
       "proof": "A named coach, a real audit, a delivered build, and a pitch actually sent."
     },
     {
-      "name": "Ship one Zap that runs on live data",
-      "description": "Zapier is listed as a primary tool and holds 15 XP of exploration. That gap is the clearest knowledge-versus-experience mismatch in the tree. One working automation on real outreach data raises the ceiling on the whole Automation chain from 2 to 6.",
-      "reward": "+40–80 Automation XP; lifts auto.zapier's level cap from 2 to 6",
-      "unlocks": "auto.multistep → auto.apis → auto.webhooks",
+      "name": "Ship one automation that runs on live data",
+      "description": "Zapier is listed as one of your primary tools and Automation Tools holds 15 XP — all of it exploration, ceiling 2. That is the clearest knowledge-versus-experience gap in the tree. One workflow running unattended on real outreach data lifts the ceiling on the whole automation chain from 2 to 6.",
+      "reward": "+40–80 Automation XP; lifts Automation Tools' ceiling from 2 to 6",
+      "unlocks": "Multi-Step Automations & APIs → Automation Architecture",
       "difficulty": 2,
       "proof": "A Zap that has run unattended on real records for a week."
     },
     {
       "name": "Measure one thing you already shipped",
-      "description": "Growth Experiments sits at zero despite a great deal of built work, because nothing has a recorded before and after. Take one asset already delivered — the Essy landing page, a sequence, the outreach approach — and attach real numbers to it. This is what separates Growth Diagnosis at level 3 from Growth Strategy.",
-      "reward": "+50–90 Growth XP; first evidence on gro.experiments",
-      "unlocks": "gro.strategy",
+      "description": "Growth Diagnosis & Strategy sits at level 4 on diagnosis alone: you audit funnels and name leaks constantly, but nothing in the evidence has a recorded before and after. Take one asset already delivered — the Essy landing page, a sequence, the outreach approach — and attach real numbers to it. Measurement is what separates diagnosing from operating.",
+      "reward": "+50–90 Business XP, and the first measured result in the tree",
+      "unlocks": "Raises the ceiling on Growth Diagnosis & Strategy toward 8",
       "difficulty": 3,
       "proof": "A before figure, an after figure, and a stated conclusion."
     },
@@ -6001,7 +3307,7 @@
       "name": "Four unbroken weeks",
       "description": "Consistency is named in your own memory as the recurring theme across gym, diet and business, and it is the reason Discipline and Training Consistency both sit at zero while Technique and Knowledge do not. Pick one — training is the cheapest to prove — and log four consecutive weeks.",
       "reward": "+40–80 XP toward fit.consistency and pd.consistency",
-      "unlocks": "fit.overload; pd.discipline",
+      "unlocks": "Progressive Training; Discipline & Consistency",
       "difficulty": 3,
       "proof": "Four consecutive weeks logged, with the bad weeks included rather than restarted."
     },
@@ -7234,6 +4540,15 @@
           "notes": ""
         }
       ],
+      "rejected": [],
+      "player_level": 4,
+      "total_xp": 5290.0
+    },
+    {
+      "date": "2026-08-10",
+      "source": "Structural migration: 155 nodes folded into 70 broader skills. No evidence discarded — 106 events carried across with their dates and reasons. Levels shift where several narrow nodes merged into one, because the broader skill legitimately holds all of their evidence.",
+      "xp_awarded": 0,
+      "events": [],
       "rejected": [],
       "player_level": 4,
       "total_xp": 5290.0

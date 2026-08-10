@@ -17,7 +17,9 @@ whether you feel productive.
 skills/personal-skill-tree/SKILL.md   how Claude runs an update
 commands/skill-tree.md                /skill-tree slash command
 scripts/skilltree.py                  the engine — all scoring lives here
+scripts/structure.py                  the shape: trees, nodes, prerequisites
 scripts/seed.py                       one-time bootstrap (destroys history if re-run)
+scripts/generalise.py                 the 155 -> 70 node migration, kept as a record
 data/PERSONAL_SKILL_TREE.json         source of truth
 data/PERSONAL_SKILL_TREE.md           generated, human-readable
 dashboard/index.html                  generated, self-contained
@@ -79,8 +81,15 @@ traceable to the specific things that produced it.
 
 ## Current state
 
-155 nodes across 13 trees. Calibrated 2026-08-10 from an exported Claude memory
-file: 48 nodes carry evidence, 107 do not. Player level 4, 5,290 XP.
+70 nodes across 10 trees. Calibrated 2026-08-10 from an exported Claude memory
+file: 31 nodes carry evidence, 39 do not. Player level 4, 5,290 XP.
+
+The tree originally had 155 nodes, which was too fine-grained to assess honestly
+— "Stippling" and "Recovery & Sleep" were separate skills. It was folded down to
+70 broader ones by `scripts/generalise.py`, which carried all 106 evidence
+events across with their dates and reasons intact and preserved the XP total
+exactly. Levels moved only where several narrow nodes genuinely merged; nothing
+that mapped one-to-one changed.
 
 The seed itself ships at all zeros — structure, no claims. Every level in the
 file was produced by `apply`, from an auditable event with a stated reason. The
@@ -89,18 +98,18 @@ level can be traced back to the specific thing that earned it.
 
 What the calibration found, without being told to look for it:
 
-- **Entrepreneurship is populated up to level 3 and Sales is at zero.** Offer
-  Creation 3, Copywriting 3, Client Acquisition 2, Positioning 2 — and no
+- **The Business tree is populated and Sales is at zero.** Growth Diagnosis &
+  Strategy 4, Offer/Pricing/Positioning 3, Copywriting 3, Outreach 2 — and no
   evidence of a close, because there are no paying clients yet. The tree cannot
   round that up, so it doesn't.
 - **The evidenced build and the declared direction disagree.** The evidence
   supports Builder (Technical Generalist); the stated direction is AI Growth
   Operator. Both are recorded, and the gap between them is the point.
-- **Execution scores 4.0/10 on 5,290 XP** of almost entirely action-class
-  evidence, because the consistency and operations nodes are empty. Starting is
+- **Execution scores 4.5/10 on 5,290 XP** of almost entirely action-class
+  evidence, because the consistency and delivery nodes are empty. Starting is
   not finishing, and the attribute is built to say so.
-- **Zapier is a listed primary tool sitting at 15 XP of exploration**, capped at
-  level 2 until something ships.
+- **Automation Tools sits at 15 XP of pure exploration**, ceiling 2, despite
+  Zapier being one of your listed primary tools.
 
 `build` is set at medium confidence with the mismatch recorded in a note. That
 field is meant to be set rarely and deliberately, not refreshed after a good week.
@@ -141,7 +150,7 @@ Live at **https://claude.ai/code/artifact/e5f9054b-fa47-4787-acaf-a31c8a355d77**
 (private to your account). The daily Routine republishes to that same URL, so
 the link stays stable — bookmark it.
 
-It is the tree and nothing else: 155 nodes as a constellation, one radial wedge
+It is the tree and nothing else: 70 nodes as a constellation, one radial wedge
 per branch, tier driving distance from the centre, prerequisite edges drawn
 between them. Drag to pan, scroll to zoom, click any node.
 

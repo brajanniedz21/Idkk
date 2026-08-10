@@ -6,7 +6,7 @@
 
 - **Player level:** 4
 - **Total XP:** 5290
-- **Nodes with evidence:** 48 of 155
+- **Nodes with evidence:** 31 of 70
 
 ## Current build
 
@@ -19,48 +19,31 @@
 
 | Attribute | | Value | Confidence |
 |---|---|---|---|
-| Systems Thinking | `███░░░░░░░` | 3.4/10 | medium |
-| Creativity | `██░░░░░░░░` | 2.1/10 | medium |
-| Execution | `████░░░░░░` | 4.0/10 | medium |
-| Technical Ability | `███░░░░░░░` | 3.4/10 | medium |
-| Business Ability | `███░░░░░░░` | 2.6/10 | medium |
-| Communication | `███░░░░░░░` | 2.6/10 | medium |
-| Discipline | `██░░░░░░░░` | 1.6/10 | medium |
+| Systems Thinking | `████░░░░░░` | 3.8/10 | medium |
+| Creativity | `██░░░░░░░░` | 2.4/10 | medium |
+| Execution | `████░░░░░░` | 4.5/10 | medium |
+| Technical Ability | `████░░░░░░` | 3.7/10 | medium |
+| Business Ability | `███░░░░░░░` | 3.1/10 | medium |
+| Communication | `███░░░░░░░` | 3.1/10 | medium |
+| Discipline | `██░░░░░░░░` | 1.8/10 | medium |
 
 ## Skill trees
 
-### Entrepreneurship
+### Business & Growth
 
-*Building and running a business that people actually pay for.*
+*Finding the problem a business will pay to have fixed, and fixing it.*
 
 | Skill | Level | Status | XP | Confidence | Note |
 |---|---|---|---|---|---|
+| Growth Diagnosis & Strategy | 4 — Functional | Practising | 440/650 | medium |  |
 | Copywriting | 3 — Developing | Practising | 295/350 | medium |  |
-| Offer Creation | 3 — Developing | Practising | 185/350 | medium |  |
+| Offer, Pricing & Positioning | 3 — Developing | Practising | 340/350 | medium |  |
 | Business Fundamentals | 2 — Beginner | Learning | 110/175 | medium |  |
-| Client Acquisition | 2 — Beginner | Learning | 135/175 | medium |  |
-| Market Research | 2 — Beginner | Learning | 90/175 | medium |  |
-| Positioning | 2 — Beginner | Learning | 90/175 | medium |  |
-| Client Delivery | 1 — Awareness | Learning | 55/75 | medium |  |
-| Pricing | 1 — Awareness | Learning | 65/75 | medium |  |
+| CRM & Lead Systems | 2 — Beginner | Learning | 140/175 | medium |  |
+| Outreach & Client Acquisition | 2 — Beginner | Learning | 135/175 | medium |  |
+| Delivery & Operations | 1 — Awareness | Learning | 55/75 | medium |  |
 
-<sub>2 further nodes in this tree hold no evidence yet.</sub>
-
-<sub>??? — 1 hidden node(s) beyond this branch.</sub>
-
-### AI Growth Operating
-
-*The specialisation: diagnosing a business's growth problem and fixing it with systems.*
-
-| Skill | Level | Status | XP | Confidence | Note |
-|---|---|---|---|---|---|
-| Growth Diagnosis | 3 — Developing | Practising | 180/350 | medium |  |
-| Funnel Analysis | 2 — Beginner | Learning | 100/175 | medium |  |
-| Lead Management | 2 — Beginner | Learning | 80/175 | medium |  |
-| CRM Systems | 1 — Awareness | Learning | 60/75 | medium |  |
-| Conversion Analysis | 1 — Awareness | Learning | 70/75 | medium |  |
-
-<sub>3 further nodes in this tree hold no evidence yet.</sub>
+<sub>1 further nodes in this tree hold no evidence yet.</sub>
 
 <sub>??? — 1 hidden node(s) beyond this branch.</sub>
 
@@ -70,50 +53,54 @@
 
 | Skill | Level | Status | XP | Confidence | Note |
 |---|---|---|---|---|---|
-| Claude & Claude Code | 3 — Developing | Practising | 225/350 | medium |  |
+| Prompting, Context & AI Tooling | 4 — Functional | Practising | 435/650 | medium |  |
 | AI Fundamentals | 2 — Beginner | Learning | 115/175 | medium |  |
-| Context Engineering | 2 — Beginner | Learning | 95/175 | medium |  |
-| Prompt Engineering | 2 — Beginner | Learning | 115/175 | medium |  |
 | Automation Fundamentals | 1 — Awareness | Learning | 60/75 | medium |  |
-| Zapier | 0 — Unknown | Available | 15/25 | low |  |
+| Automation Tools (Zapier, n8n) | 0 — Unknown | Available | 15/25 | low |  |
 
-<sub>11 further nodes in this tree hold no evidence yet.</sub>
+<sub>3 further nodes in this tree hold no evidence yet.</sub>
 
-<sub>??? — 3 hidden node(s) beyond this branch.</sub>
+<sub>??? — 2 hidden node(s) beyond this branch.</sub>
 
-### Content & YouTube
+### Content & Audience
 
 *Making things people choose to watch, and understanding why they did.*
 
 | Skill | Level | Status | XP | Confidence | Note |
 |---|---|---|---|---|---|
-| YouTube Fundamentals | 0 — Unknown | Available | 15/25 | low |  |
+| Audience Fundamentals | 0 — Unknown | Available | 15/25 | low |  |
 
-<sub>9 further nodes in this tree hold no evidence yet.</sub>
-
-<sub>??? — 1 hidden node(s) beyond this branch.</sub>
-
-### Filmmaking & Visual Creation
-
-*Telling stories with images — camera, 3D, or generated.*
-
-No evidence recorded yet — 14 nodes awaiting assessment.
+<sub>4 further nodes in this tree hold no evidence yet.</sub>
 
 <sub>??? — 1 hidden node(s) beyond this branch.</sub>
 
-### Art
+### Visual & Creative
 
-*Hand skill. Levels here need finished work, not references saved.*
+*Drawing, design, 3D and film — the eye, and the hand that executes it.*
 
 | Skill | Level | Status | XP | Confidence | Note |
 |---|---|---|---|---|---|
-| Brand & Visual Identity Design | 3 — Developing | Practising | 225/350 | medium |  |
-| Composition (Art) | 2 — Beginner | Learning | 100/175 | medium |  |
-| Observation | 2 — Beginner | Learning | 95/175 | medium |  |
-| Environmental Art | 1 — Awareness | Learning | 55/75 | medium |  |
-| Shading & Value | 1 — Awareness | Learning | 60/75 | medium |  |
+| Brand & Visual Identity | 3 — Developing | Practising | 225/350 | medium |  |
+| Drawing & Rendering | 3 — Developing | Practising | 210/350 | medium |  |
+| Composition & Perspective | 2 — Beginner | Learning | 100/175 | medium |  |
 
-<sub>6 further nodes in this tree hold no evidence yet.</sub>
+<sub>5 further nodes in this tree hold no evidence yet.</sub>
+
+<sub>??? — 1 hidden node(s) beyond this branch.</sub>
+
+### Technology
+
+*Writing, running and hosting software that does something.*
+
+| Skill | Level | Status | XP | Confidence | Note |
+|---|---|---|---|---|---|
+| Frontend (HTML, CSS, JavaScript) | 4 — Functional | Practising | 640/650 | medium |  |
+| Web Apps & Dashboards | 4 — Functional | Practising | 500/650 | medium |  |
+| Computing & Version Control | 3 — Developing | Practising | 190/350 | medium |  |
+| Code & Data (Python, APIs, Databases) | 1 — Awareness | Learning | 70/75 | medium |  |
+| Hosting & Servers | 1 — Awareness | Learning | 70/75 | medium |  |
+
+<sub>1 further nodes in this tree hold no evidence yet.</sub>
 
 <sub>??? — 1 hidden node(s) beyond this branch.</sub>
 
@@ -123,113 +110,79 @@ No evidence recorded yet — 14 nodes awaiting assessment.
 
 | Skill | Level | Status | XP | Confidence | Note |
 |---|---|---|---|---|---|
-| Exercise Technique | 2 — Beginner | Learning | 90/175 | medium |  |
-| Training Knowledge | 1 — Awareness | Learning | 60/75 | medium |  |
-| Nutrition Knowledge | 0 — Unknown | Available | 5/25 | low |  |
+| Training Knowledge & Technique | 2 — Beginner | Learning | 150/175 | medium |  |
+| Nutrition & Diet | 0 — Unknown | Available | 5/25 | low |  |
 
-<sub>9 further nodes in this tree hold no evidence yet.</sub>
+<sub>3 further nodes in this tree hold no evidence yet.</sub>
 
 <sub>??? — 1 hidden node(s) beyond this branch.</sub>
 
-### Money & Financial Skills
+### Money
 
-*Earning, keeping, and deploying capital. Risk-taking is not progression.*
+*Earning, keeping and deploying capital. Risk-taking is not progression.*
 
 | Skill | Level | Status | XP | Confidence | Note |
 |---|---|---|---|---|---|
 | Financial Literacy | 0 — Unknown | Available | 5/25 | low |  |
 
-<sub>8 further nodes in this tree hold no evidence yet.</sub>
-
-<sub>??? — 2 hidden node(s) beyond this branch.</sub>
-
-### Technology
-
-*Writing, running, and hosting software that does something.*
-
-| Skill | Level | Status | XP | Confidence | Note |
-|---|---|---|---|---|---|
-| JavaScript | 4 — Functional | Practising | 380/650 | medium |  |
-| Dashboard Development | 3 — Developing | Practising | 275/350 | medium |  |
-| HTML & CSS | 3 — Developing | Practising | 260/350 | medium |  |
-| Web Development | 3 — Developing | Practising | 225/350 | medium |  |
-| General Computing | 2 — Beginner | Learning | 130/175 | medium |  |
-| APIs in Code | 1 — Awareness | Learning | 70/75 | medium |  |
-| Cloud & Hosting | 1 — Awareness | Learning | 70/75 | medium |  |
-| Git & GitHub | 1 — Awareness | Learning | 60/75 | medium |  |
-
-<sub>5 further nodes in this tree hold no evidence yet.</sub>
-
-<sub>??? — 1 hidden node(s) beyond this branch.</sub>
-
-### Learning
-
-*The meta-tree. Levels here come from how well other trees grow.*
-
-| Skill | Level | Status | XP | Confidence | Note |
-|---|---|---|---|---|---|
-| Self-Teaching | 3 — Developing | Practising | 180/350 | medium |  |
-| Critical Thinking | 2 — Beginner | Learning | 85/175 | medium |  |
-| Project-Based Learning | 2 — Beginner | Learning | 110/175 | medium |  |
-| Research | 2 — Beginner | Learning | 160/175 | medium |  |
-| Knowledge Management | 1 — Awareness | Learning | 25/75 | low |  |
-| Problem Solving | 1 — Awareness | Learning | 70/75 | medium |  |
-
 <sub>4 further nodes in this tree hold no evidence yet.</sub>
 
 <sub>??? — 1 hidden node(s) beyond this branch.</sub>
 
-### Personal Development
+### Learning & Thinking
+
+*The meta-tree. Levels here come from how well the other trees grow.*
+
+| Skill | Level | Status | XP | Confidence | Note |
+|---|---|---|---|---|---|
+| Self-Teaching | 3 — Developing | Practising | 290/350 | medium |  |
+| Critical Thinking & Problem Solving | 2 — Beginner | Learning | 155/175 | medium |  |
+| Research | 2 — Beginner | Learning | 160/175 | medium |  |
+| Synthesis & Knowledge Management | 1 — Awareness | Learning | 25/75 | low |  |
+
+<sub>1 further nodes in this tree hold no evidence yet.</sub>
+
+<sub>??? — 1 hidden node(s) beyond this branch.</sub>
+
+### Discipline & Independence
 
 *Behaviour only. Intentions score nothing in this tree.*
 
 | Skill | Level | Status | XP | Confidence | Note |
 |---|---|---|---|---|---|
-| Self-Awareness | 2 — Beginner | Learning | 80/175 | medium |  |
-| Planning | 1 — Awareness | Learning | 70/75 | medium |  |
-| Reflection | 1 — Awareness | Learning | 60/75 | medium |  |
+| Communication | 2 — Beginner | Learning | 90/175 | medium |  |
+| Reflection & Self-Awareness | 2 — Beginner | Learning | 140/175 | medium |  |
+| Organisation & Admin | 1 — Awareness | Learning | 40/75 | medium |  |
+| Planning & Focus | 1 — Awareness | Learning | 70/75 | medium |  |
 
-<sub>7 further nodes in this tree hold no evidence yet.</sub>
+<sub>3 further nodes in this tree hold no evidence yet.</sub>
 
 <sub>??? — 1 hidden node(s) beyond this branch.</sub>
 
-### Life & Independence
-
-*The ability to run your own life without anyone underwriting it.*
-
-| Skill | Level | Status | XP | Confidence | Note |
-|---|---|---|---|---|---|
-| Communication | 2 — Beginner | Learning | 90/175 | medium |  |
-| Organisation | 1 — Awareness | Learning | 40/75 | medium |  |
-
-<sub>8 further nodes in this tree hold no evidence yet.</sub>
-
-<sub>??? — 2 hidden node(s) beyond this branch.</sub>
-
 ### Cross-Tree Specialisations
 
-*Powerful combinations. Each requires real levels in several trees at once.*
+*Powerful combinations, each needing real levels in several trees at once.*
 
 No evidence recorded yet — 0 nodes awaiting assessment.
 
-<sub>??? — 5 hidden node(s) beyond this branch.</sub>
+<sub>??? — 4 hidden node(s) beyond this branch.</sub>
 
 ## Nearest unlocks
 
-- **n8n** — ready now — prerequisites met, no evidence yet
-  - Requirement: Ship an n8n workflow that runs on real data.
-- **Proportion** — ready now — prerequisites met, no evidence yet
-  - Requirement: Get relationships right without measuring every time.
-- **Progressive Overload** — ready now — prerequisites met, no evidence yet
-  - Requirement: Log progression over eight weeks and actually progress.
 - **Recovery & Sleep** — ready now — prerequisites met, no evidence yet
   - Requirement: Hold a sleep and recovery routine that survives a busy week.
-- **Python** — ready now — prerequisites met, no evidence yet
-  - Requirement: Write a script that does a job you would otherwise do by hand.
-- **Journaling** — ready now — prerequisites met, no evidence yet
-  - Requirement: Keep it going for a month without a gap.
-- **Scheduling** — ready now — prerequisites met, no evidence yet
-  - Requirement: Run your week from a calendar you trust.
+- **3D & VFX** — ready now — prerequisites met, no evidence yet
+  - Requirement: Build and render a 3D shot you would show someone.
+- **Training Consistency** — ready now — prerequisites met, no evidence yet
+  - Requirement: Train to plan for twelve consecutive weeks, bad weeks included.
+- **Progressive Training** — ready now — prerequisites met, no evidence yet
+  - Requirement: Log progression over a training block and actually progress.
+- **Experimentation** — ready now — prerequisites met, no evidence yet
+  - Requirement: Test something properly instead of guessing.
+- **Sales** — ready now — prerequisites met, no evidence yet
+  - Requirement: Close a paid deal in a live conversation.
+- **AI Agents & Orchestration** — ready now — prerequisites met, no evidence yet
+  - Requirement: Build an agent that completes a multi-step task unattended.
 
 ## Current quests
 
@@ -242,21 +195,21 @@ The action already agreed and not yet done. Pick one specific coach, audit their
 - **Difficulty:** ★★★★☆
 - **Proof required:** A named coach, a real audit, a delivered build, and a pitch actually sent.
 
-### Ship one Zap that runs on live data
+### Ship one automation that runs on live data
 
-Zapier is listed as a primary tool and holds 15 XP of exploration. That gap is the clearest knowledge-versus-experience mismatch in the tree. One working automation on real outreach data raises the ceiling on the whole Automation chain from 2 to 6.
+Zapier is listed as one of your primary tools and Automation Tools holds 15 XP — all of it exploration, ceiling 2. That is the clearest knowledge-versus-experience gap in the tree. One workflow running unattended on real outreach data lifts the ceiling on the whole automation chain from 2 to 6.
 
-- **Reward:** +40–80 Automation XP; lifts auto.zapier's level cap from 2 to 6
-- **Unlocks:** auto.multistep → auto.apis → auto.webhooks
+- **Reward:** +40–80 Automation XP; lifts Automation Tools' ceiling from 2 to 6
+- **Unlocks:** Multi-Step Automations & APIs → Automation Architecture
 - **Difficulty:** ★★☆☆☆
 - **Proof required:** A Zap that has run unattended on real records for a week.
 
 ### Measure one thing you already shipped
 
-Growth Experiments sits at zero despite a great deal of built work, because nothing has a recorded before and after. Take one asset already delivered — the Essy landing page, a sequence, the outreach approach — and attach real numbers to it. This is what separates Growth Diagnosis at level 3 from Growth Strategy.
+Growth Diagnosis & Strategy sits at level 4 on diagnosis alone: you audit funnels and name leaks constantly, but nothing in the evidence has a recorded before and after. Take one asset already delivered — the Essy landing page, a sequence, the outreach approach — and attach real numbers to it. Measurement is what separates diagnosing from operating.
 
-- **Reward:** +50–90 Growth XP; first evidence on gro.experiments
-- **Unlocks:** gro.strategy
+- **Reward:** +50–90 Business XP, and the first measured result in the tree
+- **Unlocks:** Raises the ceiling on Growth Diagnosis & Strategy toward 8
 - **Difficulty:** ★★★☆☆
 - **Proof required:** A before figure, an after figure, and a stated conclusion.
 
@@ -265,7 +218,7 @@ Growth Experiments sits at zero despite a great deal of built work, because noth
 Consistency is named in your own memory as the recurring theme across gym, diet and business, and it is the reason Discipline and Training Consistency both sit at zero while Technique and Knowledge do not. Pick one — training is the cheapest to prove — and log four consecutive weeks.
 
 - **Reward:** +40–80 XP toward fit.consistency and pd.consistency
-- **Unlocks:** fit.overload; pd.discipline
+- **Unlocks:** Progressive Training; Discipline & Consistency
 - **Difficulty:** ★★★☆☆
 - **Proof required:** Four consecutive weeks logged, with the bad weeks included rather than restarted.
 
@@ -304,6 +257,9 @@ An inverted quest, and the hardest one here. The tree's own evidence says tool-b
 | Game development | 2 | emerging | 2026-08-10 |
 
 ## Recent updates
+
+### 2026-08-10 — +0 XP
+
 
 ### 2026-08-10 — +5290 XP
 
