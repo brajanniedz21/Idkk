@@ -776,56 +776,172 @@ def nearest_unlocks(tree: dict[str, Any], idx: dict[str, dict[str, Any]], limit:
 # --------------------------------------------------------------------------
 # dashboard
 # --------------------------------------------------------------------------
-
 DASH_CSS = """
-:root{--bg:#f6f7f9;--panel:#fff;--ink:#14161a;--muted:#5f6773;--line:#e2e5ea;
---accent:#3b6ef5;--gold:#b8860b;--lock:#aab1bb;--rust:#b45309;--track:#e8ebf0}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1115;--panel:#171a20;
---ink:#e8eaee;--muted:#98a1af;--line:#262b33;--accent:#7aa2ff;--gold:#e3b341;--lock:#4c545f;
---rust:#e0a458;--track:#232830}}
-:root[data-theme=dark]{--bg:#0f1115;--panel:#171a20;--ink:#e8eaee;--muted:#98a1af;
---line:#262b33;--accent:#7aa2ff;--gold:#e3b341;--lock:#4c545f;--rust:#e0a458;--track:#232830}
+/* Palette from Brajan's own AIGO brand guide: cream, near-black, signal red.
+   Neutrals are warm — biased toward the accent — rather than pure grey.
+   Signal red is the accent and is spent only on progress. Rust and cap
+   warnings use ochre so semantic state never collides with the accent. */
+:root{
+  --ground:#F7F6F2; --panel:#FFFFFF; --sunken:#EFEDE6;
+  --ink:#131311; --ink-2:#5A5751; --ink-3:#8B877E;
+  --line:#E2DFD5; --line-2:#D3CFC2;
+  --accent:#FF4D3D; --accent-soft:#FFE3DF;
+  --warn:#B8792B; --warn-soft:#F6E8D2;
+  --blocked:#CFCABB;
+  --seg-empty:#E4E1D7;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#131311; --panel:#1B1A17; --sunken:#100F0E;
+    --ink:#F7F6F2; --ink-2:#A8A399; --ink-3:#736F66;
+    --line:#2B2924; --line-2:#3A372F;
+    --accent:#FF5C4C; --accent-soft:#3A211C;
+    --warn:#D9A05B; --warn-soft:#33260F;
+    --blocked:#3D3A32;
+    --seg-empty:#26241F;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#131311; --panel:#1B1A17; --sunken:#100F0E;
+  --ink:#F7F6F2; --ink-2:#A8A399; --ink-3:#736F66;
+  --line:#2B2924; --line-2:#3A372F;
+  --accent:#FF5C4C; --accent-soft:#3A211C;
+  --warn:#D9A05B; --warn-soft:#33260F;
+  --blocked:#3D3A32;
+  --seg-empty:#26241F;
+}
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-font:15px/1.5 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;padding:32px 20px 80px}
-.wrap{max-width:1120px;margin:0 auto}
-h1{font-size:26px;letter-spacing:.08em;margin:0 0 4px}
-.sub{color:var(--muted);font-size:13px;margin-bottom:28px}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-bottom:28px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
-.card h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
-.big{font-size:34px;font-weight:650;line-height:1}
-.attr{display:grid;grid-template-columns:1fr 90px 34px;gap:8px;align-items:center;
-font-size:13px;margin-bottom:7px}
-.track{height:7px;background:var(--track);border-radius:99px;overflow:hidden}
-.fill{height:100%;background:var(--accent);border-radius:99px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
-.branch{background:var(--panel);border:1px solid var(--line);border-radius:12px;
-padding:16px;margin-bottom:14px}
-.branch>h3{margin:0 0 2px;font-size:15px}
-.branch .desc{color:var(--muted);font-size:12.5px;margin-bottom:12px}
-.node{border-top:1px solid var(--line);padding:10px 0;display:grid;
-grid-template-columns:1fr 130px 66px;gap:10px;align-items:center}
-.node:first-of-type{border-top:0}
-.node .nm{font-weight:550}
-.node .meta{color:var(--muted);font-size:12px}
-.node.locked .nm,.node.locked .meta{color:var(--lock)}
-.node .lv{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
-.empty{color:var(--muted);font-size:13px;font-style:italic}
-.tag{display:inline-block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
-border:1px solid var(--line);border-radius:99px;padding:1px 7px;margin-left:6px;color:var(--muted)}
-.tag.rust{color:var(--rust);border-color:var(--rust)}
-.tag.cap{color:var(--gold);border-color:var(--gold)}
-.ms{display:flex;justify-content:space-between;gap:12px;padding:8px 0;
-border-top:1px solid var(--line);font-size:13.5px}
-.ms:first-of-type{border-top:0}
-.ms.locked{color:var(--lock)}
-.quest{border-top:1px solid var(--line);padding:12px 0}
-.quest:first-of-type{border-top:0}
-.quest .qn{font-weight:600;margin-bottom:3px}
-.quest .qd{color:var(--muted);font-size:13px}
-.stars{color:var(--gold);font-size:12px;letter-spacing:2px}
-.cols{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding:34px 20px 90px;
+}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+
+.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---- masthead ---- */
+.mast{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px;
+  padding-bottom:18px;border-bottom:2px solid var(--ink)}
+.mast h1{margin:0;font-size:clamp(22px,3.4vw,32px);font-weight:800;letter-spacing:-.02em;
+  text-wrap:balance;line-height:1.05}
+.mast h1 .dot{color:var(--accent)}
+.mast .stamp{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ---- readout strip ---- */
+.readout{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.cell{background:var(--panel);padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+.cell .k{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+.cell .v{font-size:27px;font-weight:750;line-height:1;letter-spacing:-.02em}
+.cell .v small{font-size:14px;font-weight:500;color:var(--ink-3)}
+.cell .v.txt{font-size:16px;font-weight:650;line-height:1.25;letter-spacing:0}
+
+/* ---- the finding ---- */
+.finding{border:1px solid var(--line-2);border-left:3px solid var(--accent);
+  background:var(--panel);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.finding .eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.finding .pair{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:15px}
+.finding .pair b{font-weight:700}
+.finding .vs{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.finding p{margin:0;color:var(--ink-2);font-size:14px;max-width:74ch}
+
+/* ---- section ---- */
+.sec{display:flex;flex-direction:column;gap:12px}
+.sec>h2{margin:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  padding-bottom:7px;border-bottom:1px solid var(--line)}
+
+/* ---- attributes ---- */
+.attrs{display:grid;gap:10px 26px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.attr{display:grid;grid-template-columns:1fr 96px 30px;gap:11px;align-items:center;font-size:13.5px}
+.meter{height:6px;background:var(--seg-empty);position:relative;overflow:hidden}
+.meter i{position:absolute;inset:0 auto 0 0;background:var(--accent);display:block}
+.attr .n{text-align:right;color:var(--ink-2);font-size:12px}
+
+/* ---- trees ---- */
+.trees{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.branch{background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column}
+.branch>header{padding:13px 16px;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.branch h3{margin:0;font-size:14.5px;font-weight:700;letter-spacing:-.01em}
+.branch .count{font-size:11px;color:var(--ink-3);white-space:nowrap}
+.branch .desc{padding:10px 16px 0;margin:0;font-size:12.5px;color:var(--ink-3);max-width:60ch}
+.rows{display:flex;flex-direction:column;padding:6px 0 4px}
+.row{display:grid;grid-template-columns:1fr auto;gap:3px 12px;padding:8px 16px;align-items:center}
+.row .nm{font-size:13.5px;font-weight:550;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.row .lv{font-size:11px;color:var(--ink-3);white-space:nowrap;letter-spacing:.04em}
+.row .segs{grid-column:1/-1}
+.row.idle .nm{color:var(--ink-3);font-weight:500}
+
+/* Level as 10 segments. Everything above the evidence cap is drawn blocked —
+   the ceiling is the point of the system, so it is shown, not annotated. */
+.segs{display:flex;gap:2px;height:9px;margin-top:2px}
+.segs span{flex:1;background:var(--seg-empty)}
+.segs span.on{background:var(--accent)}
+.segs span.cap{background:repeating-linear-gradient(135deg,var(--blocked) 0 2px,transparent 2px 4px)}
+.segs span.tip{position:relative;overflow:hidden}
+.segs span.tip::after{content:"";position:absolute;inset:0 auto 0 0;background:var(--accent);width:var(--p,0%)}
+
+.chip{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;padding:2px 6px;
+  border:1px solid currentColor;color:var(--ink-3);white-space:nowrap;line-height:1.4}
+.chip.warn{color:var(--warn);background:var(--warn-soft)}
+.chip.cap{color:var(--warn)}
+.chip.ready{color:var(--accent);background:var(--accent-soft)}
+.hidden-row{padding:9px 16px;border-top:1px dashed var(--line);
+  font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;gap:10px}
+.locked-row{padding:9px 16px;font-size:12px;color:var(--ink-3);border-top:1px solid var(--line)}
+
+/* ---- quests ---- */
+.quests{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.quest{background:var(--panel);border:1px solid var(--line);padding:15px 17px;
+  display:flex;flex-direction:column;gap:8px}
+.quest.main{border-color:var(--accent);border-top:3px solid var(--accent)}
+.quest h4{margin:0;font-size:14.5px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.quest p{margin:0;font-size:13px;color:var(--ink-2);max-width:62ch}
+.quest dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12px}
+.quest dt{color:var(--ink-3);letter-spacing:.09em;text-transform:uppercase;font-size:9.5px;padding-top:2px}
+.quest dd{margin:0;color:var(--ink-2)}
+.diff{color:var(--accent);letter-spacing:3px;font-size:11px}
+
+/* ---- lists ---- */
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.panel{background:var(--panel);border:1px solid var(--line);padding:6px 0}
+.li{display:flex;justify-content:space-between;gap:12px;padding:9px 16px;font-size:13.5px;
+  border-top:1px solid var(--line);align-items:baseline}
+.li:first-child{border-top:0}
+.li .r{font-size:11px;color:var(--ink-3);white-space:nowrap}
+.li.off{color:var(--ink-3)}
+.li .sub{display:block;font-size:11.5px;color:var(--ink-3);margin-top:3px}
+
+.foot{font-size:11px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px;
+  max-width:74ch}
+@media (max-width:560px){
+  body{padding:24px 14px 70px}
+  .attr{grid-template-columns:1fr 70px 28px}
+}
 """
+
+
+def _segments(node: dict[str, Any]) -> str:
+    """Ten level segments, with the evidence ceiling drawn as blocked-out."""
+    level = node.get("level", 0)
+    cap = node.get("level_cap", 10)
+    lo, hi = xp_span_for_level(level)
+    pct = 0 if hi <= lo else max(0, min(100, 100 * (node.get("xp", 0) - lo) / (hi - lo)))
+    out = []
+    for i in range(1, 11):
+        if i <= level:
+            out.append('<span class="on"></span>')
+        elif i > cap:
+            out.append('<span class="cap"></span>')
+        elif i == level + 1:
+            out.append(f'<span class="tip" style="--p:{pct:.0f}%"></span>')
+        else:
+            out.append("<span></span>")
+    return '<div class="segs" aria-hidden="true">' + "".join(out) + "</div>"
 
 
 def cmd_dashboard(args: argparse.Namespace) -> int:
@@ -837,100 +953,145 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
     p: list[str] = []
     w = p.append
 
+    evidenced = [n for n in tree["nodes"] if n.get("xp", 0) > 0]
+
     w(f"<title>{e(player['name'])} — Personal Skill Tree</title>")
     w(f"<style>{DASH_CSS}</style>")
     w('<div class="wrap">')
-    w(f"<h1>{e(player['name'].upper())} — PERSONAL SKILL TREE</h1>")
-    w(f'<div class="sub">Last updated {e(player.get("last_update") or "never")} · '
-      f'{sum(1 for n in tree["nodes"] if n.get("xp",0)>0)} of {len(tree["nodes"])} nodes carry evidence</div>')
 
-    w('<div class="grid">')
-    w(f'<div class="card"><h2>Player level</h2><div class="big">{player["player_level"]}</div></div>')
-    w(f'<div class="card"><h2>Total XP</h2><div class="big">{player["total_xp"]:.0f}</div></div>')
-    build = tree.get("build", {})
-    build_txt = e(build.get("primary_class") or "Undetermined")
-    w(f'<div class="card"><h2>Primary class</h2><div class="big" style="font-size:20px">{build_txt}</div>'
-      f'<div class="meta" style="color:var(--muted);font-size:12px;margin-top:6px">'
-      f'confidence: {e(build.get("confidence","none"))}</div></div>')
+    # ---- masthead ----
+    w('<header class="mast">')
+    w(f'<h1>{e(player["name"].upper())} — PERSONAL SKILL TREE<span class="dot">.</span></h1>')
+    w(f'<div class="stamp mono">Calibrated {e(player.get("last_update") or "never")} · '
+      f'{len(evidenced)}/{len(tree["nodes"])} nodes evidenced</div>')
+    w("</header>")
+
+    # ---- readout ----
     unlocked = sum(1 for m in tree.get("milestones", []) if m.get("unlocked"))
-    w(f'<div class="card"><h2>Milestones</h2><div class="big">{unlocked}'
-      f'<span style="font-size:16px;color:var(--muted)">/{len(tree.get("milestones", []))}</span></div></div>')
+    build = tree.get("build", {})
+    w('<div class="readout">')
+    w(f'<div class="cell"><span class="k mono">Player level</span>'
+      f'<span class="v num mono">{player["player_level"]}</span></div>')
+    w(f'<div class="cell"><span class="k mono">Total XP</span>'
+      f'<span class="v num mono">{player["total_xp"]:,.0f}</span></div>')
+    w(f'<div class="cell"><span class="k mono">Milestones</span>'
+      f'<span class="v num mono">{unlocked}<small>/{len(tree.get("milestones", []))}</small></span></div>')
+    w(f'<div class="cell"><span class="k mono">Evidenced build</span>'
+      f'<span class="v txt">{e(build.get("primary_class") or "Undetermined")}</span></div>')
     w("</div>")
 
-    w('<div class="card" style="margin-bottom:28px"><h2>Core attributes</h2>')
+    # ---- the finding: evidenced build vs declared direction ----
+    declared = build.get("declared_direction")
+    if declared and build.get("primary_class") and declared != build["primary_class"]:
+        w('<section class="finding">')
+        w('<span class="eyebrow mono">What the evidence says</span>')
+        w('<div class="pair"><b>' + e(build["primary_class"]) + '</b>'
+          '<span class="vs mono">evidenced &nbsp;/&nbsp; declared</span>'
+          '<b>' + e(declared) + "</b></div>")
+        if build.get("note"):
+            w(f"<p>{e(build['note'])}</p>")
+        w("</section>")
+
+    # ---- attributes ----
+    w('<section class="sec"><h2>Core attributes</h2><div class="attrs">')
     for name, data in tree.get("attributes", {}).items():
-        pct = 10 * data["value"]
-        w(f'<div class="attr"><span>{e(name.replace("_"," ").title())}</span>'
-          f'<span class="track"><span class="fill" style="width:{pct}%"></span></span>'
-          f'<span style="text-align:right;color:var(--muted);font-size:12px">{data["value"]}</span></div>')
-    w("</div>")
+        w(f'<div class="attr"><span>{e(name.replace("_", " ").title())}</span>'
+          f'<span class="meter"><i style="width:{10 * data["value"]:.0f}%"></i></span>'
+          f'<span class="n num mono">{data["value"]}</span></div>')
+    w("</div></section>")
 
+    # ---- trees ----
+    w('<section class="sec"><h2>Skill trees</h2><div class="trees">')
     for branch in tree["trees"]:
         nodes = [n for n in tree["nodes"] if n.get("tree") == branch["id"]]
-        visible = sorted([n for n in nodes if not n.get("hidden")],
-                         key=lambda n: (n.get("tier", 1), n["name"]))
+        visible = [n for n in nodes if not n.get("hidden")]
         hidden = [n for n in nodes if n.get("hidden")]
-        w('<div class="branch">')
-        w(f"<h3>{e(branch['name'])}</h3>")
+        active = sorted([n for n in visible if n.get("xp", 0) > 0],
+                        key=lambda n: (-n.get("level", 0), -n.get("xp", 0)))
+        ready = [n for n in visible if n.get("xp", 0) == 0 and n.get("status") != "Locked"]
+        locked = [n for n in visible if n.get("xp", 0) == 0 and n.get("status") == "Locked"]
+
+        w('<article class="branch">')
+        w(f'<header><h3>{e(branch["name"])}</h3>'
+          f'<span class="count mono num">{len(active)}/{len(visible)}</span></header>')
         if branch.get("description"):
-            w(f'<div class="desc">{e(branch["description"])}</div>')
-        for node in visible:
-            locked = node.get("status") == "Locked"
-            tags = ""
+            w(f'<p class="desc">{e(branch["description"])}</p>')
+        w('<div class="rows">')
+        for node in active:
+            chips = ""
             if node.get("capped"):
-                tags += f'<span class="tag cap">cap {node["level_cap"]}</span>'
+                chips += f'<span class="chip cap mono">cap {node["level_cap"]}</span>'
             if node.get("sharpness") in ("rusting", "dormant"):
-                tags += f'<span class="tag rust">{node["sharpness"]}</span>'
-            lo, hi = xp_span_for_level(node["level"])
-            pct = 0 if hi <= lo else 100 * (node["xp"] - lo) / (hi - lo)
-            pct = max(0, min(100, pct))
-            w(f'<div class="node{" locked" if locked else ""}">')
-            w(f'<div><div class="nm">{e(node["name"])}{tags}</div>'
-              f'<div class="meta">{e(node["status"])} · {e(LEVEL_NAMES[node["level"]])} · '
-              f'confidence {e(node.get("confidence","none"))}</div></div>')
-            w(f'<span class="track"><span class="fill" style="width:{pct:.0f}%"></span></span>')
-            w(f'<div class="lv">Lv {node["level"]}</div>')
+                days = node.get("days_since_progress")
+                label = f'{node["sharpness"]} {days}d' if days is not None else node["sharpness"]
+                chips += f'<span class="chip warn mono">{e(label)}</span>'
+            w('<div class="row">')
+            w(f'<span class="nm">{e(node["name"])}{chips}</span>')
+            w(f'<span class="lv mono num">Lv {node["level"]} · {e(LEVEL_NAMES[node["level"]])}</span>')
+            w(_segments(node))
             w("</div>")
+        for node in ready[:4]:
+            w('<div class="row idle">')
+            w(f'<span class="nm">{e(node["name"])}'
+              f'<span class="chip ready mono">ready</span></span>')
+            w('<span class="lv mono">no evidence</span>')
+            w("</div>")
+        if len(ready) > 4:
+            w(f'<div class="locked-row mono">+{len(ready) - 4} more available, no evidence yet</div>')
+        w("</div>")
+        if locked:
+            w(f'<div class="locked-row mono">{len(locked)} locked behind prerequisites</div>')
         if hidden:
-            w(f'<div class="node locked"><div><div class="nm">???</div>'
-              f'<div class="meta">{len(hidden)} node(s) hidden until prerequisites are met</div></div>'
-              f'<span class="track"></span><div class="lv">—</div></div>')
-        w("</div>")
+            w(f'<div class="hidden-row mono"><span>???</span>'
+              f'<span>{len(hidden)} hidden</span></div>')
+        w("</article>")
+    w("</div></section>")
 
-    w('<div class="cols">')
-    w('<div class="card"><h2>Current quests</h2>')
-    for quest in tree.get("quests", []) or []:
-        stars = "★" * quest.get("difficulty", 3) + "☆" * (5 - quest.get("difficulty", 3))
-        w(f'<div class="quest"><div class="qn">{e(quest["name"])}</div>'
-          f'<div class="qd">{e(quest.get("description",""))}</div>'
-          f'<div class="qd" style="margin-top:6px">Reward: {e(quest.get("reward",""))}</div>'
-          f'<div class="qd">Proof: {e(quest.get("proof",""))}</div>'
-          f'<div class="stars">{stars}</div></div>')
-    if not tree.get("quests"):
-        w('<div class="empty">No quests set.</div>')
-    w("</div>")
+    # ---- quests ----
+    quests = tree.get("quests", []) or []
+    if quests:
+        w('<section class="sec"><h2>Current quests</h2><div class="quests">')
+        for i, quest in enumerate(quests):
+            cls = "quest main" if i == 0 else "quest"
+            stars = "★" * quest.get("difficulty", 3) + "☆" * (5 - quest.get("difficulty", 3))
+            w(f'<article class="{cls}">')
+            w(f'<h4>{e(quest["name"])}</h4>')
+            w(f'<p>{e(quest.get("description", ""))}</p>')
+            w("<dl>")
+            w(f'<dt class="mono">Reward</dt><dd>{e(quest.get("reward", "—"))}</dd>')
+            w(f'<dt class="mono">Proof</dt><dd>{e(quest.get("proof", "—"))}</dd>')
+            w("</dl>")
+            w(f'<span class="diff" title="Difficulty">{stars}</span>')
+            w("</article>")
+        w("</div></section>")
 
-    w('<div class="card"><h2>Milestones</h2>')
-    for milestone in tree.get("milestones", []):
-        cls = "" if milestone.get("unlocked") else " locked"
-        mark = "✅" if milestone.get("unlocked") else "🔒"
-        right = milestone.get("date", "") if milestone.get("unlocked") else "locked"
-        w(f'<div class="ms{cls}"><span>{mark} {e(milestone["name"])}</span>'
-          f'<span style="color:var(--muted);font-size:12px;white-space:nowrap">{e(right)}</span></div>')
-    w("</div>")
-    w("</div>")
-
+    # ---- nearest unlocks + milestones ----
+    w('<div class="two">')
     near = nearest_unlocks(tree, idx)
+    w('<section class="sec"><h2>Nearest unlocks</h2><div class="panel">')
     if near:
-        w('<div class="card" style="margin-top:16px"><h2>Nearest unlocks</h2>')
         for item in near:
-            w(f'<div class="attr"><span>{e(item["name"])}</span>'
-              f'<span class="track"><span class="fill" style="width:{item["pct"]}%"></span></span>'
-              f'<span style="text-align:right;color:var(--muted);font-size:12px">{item["pct"]}%</span></div>')
-            if item["missing"]:
-                w(f'<div class="empty" style="margin:-2px 0 10px">Missing: {e("; ".join(item["missing"]))}</div>')
-        w("</div>")
+            right = "ready" if item["ready"] else f'{item["pct"]}%'
+            sub = "" if not item["missing"] else \
+                f'<span class="sub">Missing: {e("; ".join(item["missing"]))}</span>'
+            w(f'<div class="li"><span>{e(item["name"])}{sub}</span>'
+              f'<span class="r mono">{right}</span></div>')
+    else:
+        w('<div class="li off">Nothing close yet.</div>')
+    w("</div></section>")
 
+    w('<section class="sec"><h2>Milestones</h2><div class="panel">')
+    for milestone in tree.get("milestones", []):
+        got = milestone.get("unlocked")
+        right = e(milestone.get("date") or "") if got else "locked"
+        w(f'<div class="li{"" if got else " off"}"><span>{"✓ " if got else ""}'
+          f'{e(milestone["name"])}</span><span class="r mono">{right}</span></div>')
+    w("</div></section>")
+    w("</div>")
+
+    w('<footer class="foot">Generated from PERSONAL_SKILL_TREE.json by '
+      'scripts/skilltree.py. Levels are capped by the class of evidence behind them — '
+      'hatched segments mark a ceiling that reading cannot lift, only doing.</footer>')
     w("</div>")
 
     path = args.out or DASH_PATH

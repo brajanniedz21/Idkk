@@ -137,7 +137,19 @@ Routine directly.
 
 ## Dashboard
 
-`dashboard/index.html` is self-contained, theme-aware, and regenerated from the
-JSON — XP bars, locked nodes greyed, `???` for hidden branches, milestone and
-quest panels. Regenerate it after every update so it never disagrees with the
-data.
+Live at **https://claude.ai/code/artifact/e5f9054b-fa47-4787-acaf-a31c8a355d77**
+(private to your account). The daily Routine republishes to that same URL, so
+the link stays stable — bookmark it.
+
+`dashboard/index.html` is generated from the JSON and is self-contained and
+theme-aware. GitHub renders it as source, which is why it is published as an
+artifact rather than linked from the repo.
+
+Design uses your own AIGO brand: cream, near-black, signal red, with ochre kept
+separate for rust and cap warnings so semantic state never collides with the
+accent. Levels render as ten segments and **everything above a node's evidence
+cap is drawn hatched** — the ceiling is the point of the system, so it is shown
+rather than annotated.
+
+Regenerate with `python3 scripts/skilltree.py dashboard` after every update, and
+republish with the URL above so it never mints a second page.
