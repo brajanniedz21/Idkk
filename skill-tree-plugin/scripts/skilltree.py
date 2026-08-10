@@ -119,8 +119,19 @@ def load_tree(path: str = TREE_PATH) -> dict[str, Any]:
 
 
 def save_tree(tree: dict[str, Any], path: str = TREE_PATH) -> None:
+    """Persist the tree, minus anything derived from today's date.
+
+    `days_since_progress` changes every single day on every node, which would
+    make the file churn daily and bury real evidence in noise. It is computed
+    for display and dropped on the way to disk. `sharpness` is kept, because it
+    only moves when a node crosses the 45- or 120-day threshold — so a diff on
+    this file always means something actually happened.
+    """
+    snapshot = json.loads(json.dumps(tree))
+    for node in snapshot.get("nodes", []):
+        node.pop("days_since_progress", None)
     with open(path, "w", encoding="utf-8") as fh:
-        json.dump(tree, fh, indent=2, ensure_ascii=False)
+        json.dump(snapshot, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
 
 
