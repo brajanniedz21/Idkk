@@ -100,13 +100,14 @@ button{font-family:inherit}
 
 /* ---------- board ---------- */
 #viewport{
-  position:fixed;inset:0;z-index:10;overflow:auto;
-  padding:132px 24px 60px;-webkit-overflow-scrolling:touch;
-  /* Allows one-finger scrolling but reserves two-finger pinch for us. */
-  touch-action:pan-x pan-y;
+  position:fixed;inset:0;z-index:10;overflow:hidden;
+  cursor:grab;
+  /* Every gesture is handled in JS, so hand none of them to the browser. */
+  touch-action:none;
 }
-#wrap{margin:0 auto;position:relative}
-#stage{position:absolute;top:0;left:0;transform-origin:top left}
+#viewport.grabbing{cursor:grabbing}
+#wrap{position:absolute;inset:0}
+#stage{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
 #lines{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
 
 .edge{fill:none;stroke:#242739;stroke-width:2.5;transition:stroke .3s ease,stroke-width .3s ease}
@@ -218,6 +219,14 @@ button{font-family:inherit}
   25%{transform:translate(calc(-50% - 7px),-50%)}
   75%{transform:translate(calc(-50% + 7px),-50%)}
 }
+
+#navhint{
+  position:fixed;left:20px;bottom:22px;z-index:45;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim);
+  pointer-events:none;transition:opacity 1s ease;
+}
+#navhint.gone{opacity:0}
+@media (max-width:760px){#navhint{left:14px;bottom:16px;font-size:9.5px}}
 
 /* ---------- zoom controls ---------- */
 #zoomctl{
@@ -339,6 +348,8 @@ button{font-family:inherit}
     </div>
   </div>
 </div>
+
+<div id="navhint">Drag to pan · scroll to move · ⌘/Ctrl + scroll to zoom</div>
 
 <div id="zoomctl">
   <button id="zIn"  title="Zoom in (+)"  aria-label="Zoom in">+</button>
@@ -564,6 +575,7 @@ function toggle(n){
 }
 
 layer.addEventListener("click",ev=>{
+  if(NAV.moved > 6) return;              // that was a pan, not a pick
   const el = ev.target.closest(".node");
   if(el) toggle(BY_ID[+el.dataset.id]);
 });
@@ -612,7 +624,7 @@ layer.addEventListener("focusin",ev=>{
   if(el) showTip(BY_ID[+el.dataset.id],el);
 });
 layer.addEventListener("focusout",()=>tip.classList.remove("on"));
-document.getElementById("viewport").addEventListener("scroll",()=>tip.classList.remove("on"));
+
 
 /* ---- reset ---- */
 document.getElementById("reset").addEventListener("click",()=>{
@@ -710,73 +722,78 @@ seed();
 if(REDUCED){ ctx.clearRect(0,0,innerWidth,innerHeight); for(const d of dots){ ctx.beginPath(); ctx.fillStyle=`rgba(${d.c},${d.a})`; ctx.arc(d.x,d.y,d.r,0,6.284); ctx.fill(); } }
 else drift();
 
-function toBottom(){
-  const v = document.getElementById("viewport");
-  v.scrollTop = v.scrollHeight;            // start where the open moves are
-  v.scrollLeft = (v.scrollWidth - v.clientWidth)/2;
-}
-
-/* ---- scale, zoom and pinch ---- */
-const vp = document.getElementById("viewport");
+/* ============================ NAVIGATION ============================ */
+/* A free canvas, not a scroll box. The board is translated and scaled; nothing
+   ever scrolls. Drag anywhere to pan, two-finger scroll to move, pinch or
+   ctrl/cmd+wheel to zoom — the same model as a whiteboard tool. */
+const vp   = document.getElementById("viewport");
 const zLvl = document.getElementById("zLvl");
-let scale = 1, fitScale = 1;
+const hud  = document.getElementById("hud");
+const NAV  = {moved:0};
+
+let tx = 0, ty = 0, scale = 1, fitScale = 1;
 const MAX_S = 2.6;
-/* The scale at which the whole board would fit on screen, both axes. */
+
 function wholeBoard(){
-  const availW = vp.clientWidth - 48, availH = vp.clientHeight - 200;
-  return Math.min(availW/BW, availH/BH);
+  const top = hud.offsetHeight + 16;
+  return Math.min((vp.clientWidth-56)/BW,(vp.clientHeight-top-70)/BH);
 }
-/* Let you pull back to half again beyond the whole board, so "everything at
-   once" is a comfortable stop rather than the hard limit. */
 const minScale = ()=>Math.max(0.09, wholeBoard()*0.5);
 
+/* Keep a grip on the board: you can throw it around freely, but never
+   completely off screen. */
+function clampPan(){
+  const w = vp.clientWidth, h = vp.clientHeight;
+  const bw = BW*scale, bh = BH*scale, keep = 160;
+  tx = Math.min(Math.max(tx, keep-bw), w-keep);
+  ty = Math.min(Math.max(ty, hud.offsetHeight-bh+50), h-keep);
+}
 function paint(){
-  stage.style.transform = `scale(${scale})`;
-  wrap.style.width  = (BW*scale)+"px";
-  wrap.style.height = (BH*scale)+"px";
+  stage.style.transform = `translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${scale})`;
   zLvl.textContent = Math.round(scale/fitScale*100)+"%";
 }
 
-/* Zoom about a fixed screen point. Measuring the wrapper before and after
-   means centring, padding and scrollbars are all accounted for, instead of
-   being re-derived and got subtly wrong. */
+/* Zoom about a point: hold whatever is under the cursor or the fingers still. */
 function zoomTo(next,fx,fy){
   next = Math.max(minScale(),Math.min(MAX_S,next));
   if(Math.abs(next-scale) < 0.0005) return;
-  const before = wrap.getBoundingClientRect();
-  const bx = (fx-before.left)/scale, by = (fy-before.top)/scale;
+  const r  = vp.getBoundingClientRect();
+  const cx = fx-r.left, cy = fy-r.top;
+  const bx = (cx-tx)/scale, by = (cy-ty)/scale;
   scale = next;
-  paint();
-  const after = wrap.getBoundingClientRect();
-  vp.scrollLeft += (after.left + bx*scale) - fx;
-  vp.scrollTop  += (after.top  + by*scale) - fy;
+  tx = cx - bx*scale;
+  ty = cy - by*scale;
+  clampPan(); paint();
 }
-const centreOfView = ()=>{
+const viewCentre = ()=>{
   const r = vp.getBoundingClientRect();
-  return [r.left+r.width/2, r.top+r.height/2];
+  return [r.left + r.width/2, r.top + (hud.offsetHeight + r.height)/2];
 };
-const nudge = f => zoomTo(scale*f,...centreOfView());
+const nudge = f => zoomTo(scale*f, ...viewCentre());
+const panBy = (dx,dy)=>{ tx+=dx; ty+=dy; clampPan(); paint(); };
 
-function fit(keepZoom){
-  const ratio = keepZoom ? scale/fitScale : 1;
-  const availW = vp.clientWidth - 48;
-  fitScale = Math.min(1,availW/BW);
+function fitWidth(){
+  const w = vp.clientWidth, h = vp.clientHeight;
+  fitScale = Math.min(1,(w-56)/BW);
   if(innerWidth < 760) fitScale = Math.max(fitScale,0.55);
-  scale = fitScale*ratio;
-  paint();
+  scale = fitScale;
+  tx = (w - BW*scale)/2;
+  ty = h - BH*scale - 46;              // open on the moves you can actually make
+  clampPan(); paint();
+}
+function fitWhole(){
+  const top = hud.offsetHeight;
+  scale = Math.max(minScale(), Math.min(1, wholeBoard()));
+  tx = (vp.clientWidth - BW*scale)/2;
+  ty = top + (vp.clientHeight - top - BH*scale)/2;
+  clampPan(); paint();
 }
 
+/* ---- zoom controls ---- */
 document.getElementById("zIn").addEventListener("click",()=>nudge(1.28));
 document.getElementById("zOut").addEventListener("click",()=>nudge(1/1.28));
-/* One button, two useful stops: the whole tree, or a readable width. */
 const zFit = document.getElementById("zFit");
 let fitMode = "width";
-function fitWhole(){
-  scale = Math.max(minScale(), Math.min(1, wholeBoard()));
-  paint();
-  vp.scrollTop  = (vp.scrollHeight - vp.clientHeight)/2;
-  vp.scrollLeft = (vp.scrollWidth - vp.clientWidth)/2;
-}
 function markFit(){
   const whole = fitMode === "all";
   zFit.textContent = whole ? "⤡" : "⤢";
@@ -785,68 +802,103 @@ function markFit(){
 }
 zFit.addEventListener("click",()=>{
   if(fitMode === "width"){ fitWhole(); fitMode = "all"; }
-  else { fit(false); toBottom(); fitMode = "width"; }
+  else { fitWidth(); fitMode = "width"; }
   markFit();
 });
 markFit();
 
-/* Trackpad pinch and ctrl+wheel zoom; a plain wheel keeps scrolling, because
-   climbing the tree is the main way you move around it. */
+/* ---- wheel: scroll pans, ctrl/cmd (and trackpad pinch) zooms ---- */
 vp.addEventListener("wheel",e=>{
-  if(!(e.ctrlKey || e.metaKey)) return;
   e.preventDefault();
-  zoomTo(scale*(e.deltaY>0 ? 0.90 : 1.11), e.clientX, e.clientY);
+  tip.classList.remove("on");
+  if(e.ctrlKey || e.metaKey) zoomTo(scale*(e.deltaY>0 ? 0.90 : 1.11), e.clientX, e.clientY);
+  else panBy(-e.deltaX, -e.deltaY);
 },{passive:false});
 
-/* Two-finger pinch. */
+/* ---- pointer: one to pan, two to pinch ---- */
+const pts = new Map();
 let pinch = null;
-const gap = t => Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY);
-const mid = t => [(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2];
-vp.addEventListener("touchstart",e=>{
-  if(e.touches.length===2){
-    const t=[e.touches[0],e.touches[1]];
-    pinch={d:gap(t),s:scale};
-    tip.classList.remove("on");
+const spread = ()=>{
+  const [a,b] = [...pts.values()];
+  return {d:Math.hypot(a.x-b.x,a.y-b.y), x:(a.x+b.x)/2, y:(a.y+b.y)/2};
+};
+vp.addEventListener("pointerdown",e=>{
+  if(e.target.closest("#zoomctl")) return;
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size === 1){ NAV.moved = 0; vp.classList.add("grabbing"); }
+  if(pts.size === 2){ pinch = spread(); vp.classList.remove("grabbing"); }
+  tip.classList.remove("on");
+});
+addEventListener("pointermove",e=>{
+  const p = pts.get(e.pointerId);
+  if(!p) return;
+  const dx = e.clientX-p.x, dy = e.clientY-p.y;
+  p.x = e.clientX; p.y = e.clientY;
+  if(pts.size >= 2){
+    const now = spread();
+    if(pinch && pinch.d > 8 && now.d > 8) zoomTo(scale*(now.d/pinch.d), now.x, now.y);
+    pinch = now; NAV.moved = 999;
+    return;
   }
-},{passive:true});
-vp.addEventListener("touchmove",e=>{
-  if(e.touches.length===2 && pinch){
-    e.preventDefault();
-    const t=[e.touches[0],e.touches[1]];
-    const d=gap(t);
-    if(d>8) zoomTo(pinch.s*(d/pinch.d), ...mid(t));
-  }
-},{passive:false});
-const endPinch = e =>{ if(!e.touches || e.touches.length<2) pinch=null; };
-vp.addEventListener("touchend",endPinch);
-vp.addEventListener("touchcancel",endPinch);
+  NAV.moved += Math.abs(dx)+Math.abs(dy);
+  panBy(dx,dy);
+});
+function release(e){
+  pts.delete(e.pointerId);
+  if(pts.size < 2) pinch = null;
+  if(!pts.size) vp.classList.remove("grabbing");
+}
+addEventListener("pointerup",release);
+addEventListener("pointercancel",release);
 
-/* Double-tap the background to zoom in — never a node, since a double tap
-   there would complete and immediately un-complete it. */
+/* ---- double-tap the background to zoom (never a node: a double tap there
+       would complete it and instantly un-complete it) ---- */
 let lastTap = 0, lastX = 0, lastY = 0;
-vp.addEventListener("touchend",e=>{
-  if(e.touches.length || e.changedTouches.length!==1) return;
-  const t = e.changedTouches[0];
-  if(t.target.closest && t.target.closest(".node")){ lastTap=0; return; }
+vp.addEventListener("pointerup",e=>{
+  if(e.pointerType === "mouse" || NAV.moved > 6) return;
+  if(e.target.closest(".node")){ lastTap = 0; return; }
   const now = Date.now();
-  if(now-lastTap < 300 && Math.hypot(t.clientX-lastX,t.clientY-lastY) < 34){
-    zoomTo(scale > fitScale*1.4 ? fitScale : scale*1.7, t.clientX, t.clientY);
+  if(now-lastTap < 300 && Math.hypot(e.clientX-lastX,e.clientY-lastY) < 34){
+    zoomTo(scale > fitScale*1.4 ? fitScale : scale*1.7, e.clientX, e.clientY);
     lastTap = 0;
-  } else { lastTap=now; lastX=t.clientX; lastY=t.clientY; }
-},{passive:true});
+  } else { lastTap = now; lastX = e.clientX; lastY = e.clientY; }
+});
 
+/* ---- keyboard ---- */
 addEventListener("keydown",e=>{
   if(e.target.matches("input,textarea")) return;
+  const step = e.shiftKey ? 220 : 90;
   if(e.key==="+"||e.key==="="){ e.preventDefault(); nudge(1.28); }
   else if(e.key==="-"||e.key==="_"){ e.preventDefault(); nudge(1/1.28); }
   else if(e.key==="0"){ e.preventDefault(); zFit.click(); }
+  else if(e.key==="ArrowLeft"){ e.preventDefault(); panBy(step,0); }
+  else if(e.key==="ArrowRight"){ e.preventDefault(); panBy(-step,0); }
+  else if(e.key==="ArrowUp"){ e.preventDefault(); panBy(0,step); }
+  else if(e.key==="ArrowDown"){ e.preventDefault(); panBy(0,-step); }
 });
 
-function layout(){ fit(true); }
-addEventListener("resize",()=>{ seed(); layout(); });
-layout();
+/* ---- bring a node into view (used after a reset) ---- */
+function centreOn(id){
+  const n = BY_ID[id]; if(!n) return;
+  const p = px(n), r = vp.getBoundingClientRect();
+  tx = r.width/2 - p.x*scale;
+  ty = (hud.offsetHeight + r.height)/2 - p.y*scale;
+  clampPan(); paint();
+}
+
+addEventListener("resize",()=>{
+  seed();
+  const w = vp.clientWidth;
+  fitScale = Math.min(1,(w-56)/BW);
+  if(innerWidth < 760) fitScale = Math.max(fitScale,0.55);
+  clampPan(); paint();
+});
+
+const hint = document.getElementById("navhint");
+setTimeout(()=>hint.classList.add("gone"),6500);
+
+fitWidth();
 render();
-toBottom();
 </script>
 </body>
 </html>
