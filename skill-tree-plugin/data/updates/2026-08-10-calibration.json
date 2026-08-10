@@ -1,0 +1,223 @@
+{
+  "date": "2026-08-10",
+  "source": "Calibration intake from exported Claude memory (claudememory.md, exported 2026-08-10). Retrospective bulk evidence — accepted once, at calibration only. All events dated to the export date because the memory carries no reliable per-item dates; rust tracking therefore starts from here.",
+  "build": {
+    "primary_class": "Builder (Technical Generalist)",
+    "secondary_class": "Copywriter / Outreach Operator",
+    "creative_class": "Visual & Brand Designer",
+    "declared_direction": "AI Growth Operator",
+    "confidence": "medium",
+    "note": "The evidenced build and the declared direction do not match, and that gap is the single most important thing in this tree. Sustained, repeated, high-quality evidence exists for building tools, dashboards, spreadsheets, brand assets and copy. The AIGO identity is real as an intention and as a body of unpaid work, but the nodes that would validate it — Sales, Growth Experiments, Business Income — hold zero evidence. Claude has repeatedly named tool-building as avoidance of outreach; the tree independently reproduces that finding from evidence alone."
+  },
+  "new_nodes": [
+    {
+      "id": "art.brand_design",
+      "tree": "art",
+      "name": "Brand & Visual Identity Design",
+      "tier": 3,
+      "prerequisites": ["art.composition"],
+      "unlock_requirement": "Produce a coherent identity — palette, type, marks — applied consistently across several real assets.",
+      "note": "Created at calibration: repeated practice across the AIGO brand guide, palette, wordmark, and multiple branded artefacts had nowhere to attach."
+    }
+  ],
+  "events": [
+    {"node": "ent.fundamentals", "kind": "project", "xp": 85, "reason": "Operates a defined solo business (AIGO): named target market of high-ticket coaches, a stated model of setup fee plus revenue share, and a documented success-plan with an explicit constraint rule (no new infrastructure before a signed client)."},
+    {"node": "ent.fundamentals", "kind": "practice", "xp": 25, "reason": "Runs the business day to day across prospecting, deliverables and tooling."},
+
+    {"node": "ent.market_research", "kind": "build_small", "xp": 45, "reason": "Built the AIGO Lead Finder (React) to prospect coaches by niche, and researched barbering, sales coaching, real estate, videography and others."},
+    {"node": "ent.market_research", "kind": "practice", "xp": 25, "reason": "Repeated niche-by-niche prospect research feeding the outreach tracker."},
+    {"node": "ent.market_research", "kind": "practice", "xp": 20, "reason": "Individual prospect research on Closing Saif, Contract Flips, Austin Edney, Colin and Essy."},
+
+    {"node": "ent.offer", "kind": "project", "xp": 100, "reason": "Defined the AIGO offer end to end: audience, deliverables (email sequences, landing pages, Loom audits, CRM setup, funnel rebuilds) and commercial terms."},
+    {"node": "ent.offer", "kind": "project", "xp": 60, "reason": "Defined a second, separate offer: the £15 @thisguyai personal-brand course, including scope and platform."},
+    {"node": "ent.offer", "kind": "practice", "xp": 25, "reason": "Iterated the course offer, including reconsidering Skool on cost grounds."},
+
+    {"node": "ent.positioning", "kind": "project", "xp": 65, "reason": "Adopted a specific differentiated position — build the fix first, then pitch with the work already done — rather than competing on a generic pitch."},
+    {"node": "ent.positioning", "kind": "practice", "xp": 25, "reason": "Applied the build-first position consistently across the outreach campaign."},
+
+    {"node": "ent.pricing", "kind": "build_small", "xp": 45, "reason": "Set and held a £15 one-time price on the course, and structured AIGO as setup fee plus revenue share."},
+    {"node": "ent.pricing", "kind": "practice", "xp": 20, "reason": "Reasoned about platform costs against price when reconsidering Skool."},
+
+    {"node": "ent.copywriting", "kind": "project", "xp": 150, "reason": "Wrote four complete email sequences (Call Booked Nurture, Partial Lead Recovery, Didn't Book Recovery, Win-Back) for Closing Saif."},
+    {"node": "ent.copywriting", "kind": "project", "xp": 120, "reason": "Wrote four complete email sequences for Contract Flips on GoHighLevel."},
+    {"node": "ent.copywriting", "kind": "practice", "xp": 25, "reason": "Extensive prior cold outreach copy across many niches (Glowithgia, Jewellers Academy, Michael Tracey, Mr. Bubbles and others), plus a self-imposed style discipline: sign in full, no em dashes, informal register for Instagram DMs."},
+
+    {"node": "ent.acquisition", "kind": "project", "xp": 80, "reason": "Ran a live multi-niche cold outreach campaign against real named prospects, with a Loom build-first approach."},
+    {"node": "ent.acquisition", "kind": "build_small", "xp": 30, "reason": "Built the intake path: Tally form plus tracked follow-up logic."},
+    {"node": "ent.acquisition", "kind": "practice", "xp": 25, "reason": "Sustained outreach activity across multiple channels including Instagram DMs."},
+
+    {"node": "ent.delivery", "kind": "project", "xp": 55, "reason": "Built and delivered a real landing page to Essy (Bloom Executive VAs) as an actual asset, not a mock."},
+
+    {"node": "gro.diagnosis", "kind": "project", "xp": 90, "reason": "Core repeated activity: audits a coach's funnel and identifies a specific conversion leak before pitching."},
+    {"node": "gro.diagnosis", "kind": "practice", "xp": 25, "reason": "Worked structured AIGO diagnostic practice cases (Apex Physique Coaching, Elevate Executive Coaching) as graded analyst exercises."},
+    {"node": "gro.diagnosis", "kind": "practice", "xp": 25, "reason": "Applied funnel diagnosis across several real prospects in different niches."},
+    {"node": "gro.diagnosis", "kind": "build_small", "xp": 40, "reason": "Produced Loom video audits presenting diagnoses to real businesses."},
+
+    {"node": "gro.funnel", "kind": "project", "xp": 75, "reason": "Mapped real coaching funnels stage by stage, including Colin's Calendly booking flow and GoHighLevel pipelines."},
+    {"node": "gro.funnel", "kind": "practice", "xp": 25, "reason": "Repeated funnel mapping across prospects in several niches."},
+
+    {"node": "gro.conversion", "kind": "practice", "xp": 25, "reason": "Identifies specific conversion leaks as the basis of the pitch."},
+    {"node": "gro.conversion", "kind": "build_small", "xp": 45, "reason": "Built targeted recovery sequences aimed at named leak points: partial leads, didn't-book, win-back."},
+
+    {"node": "gro.crm", "kind": "practice", "xp": 25, "reason": "Works inside GoHighLevel and Kit on prospect pipelines and sequences."},
+    {"node": "gro.crm", "kind": "build_small", "xp": 35, "reason": "Built intake and capture tooling (Typeform, Tally) feeding a tracked pipeline."},
+
+    {"node": "gro.leads", "kind": "build_small", "xp": 50, "reason": "Built AIGO_Outreach_V6: a lead tracker with status dropdowns, conditional formatting and automatic follow-up date logic."},
+    {"node": "gro.leads", "kind": "build_small", "xp": 30, "reason": "Built a matching cold call tracker."},
+
+    {"node": "ai.fundamentals", "kind": "project", "xp": 90, "reason": "Sustained, practical use of AI as production tooling across business, design and code work."},
+    {"node": "ai.fundamentals", "kind": "practice", "xp": 25, "reason": "Selects and combines tools deliberately (Claude, Claude Code, Gemini image generation via the banana skill)."},
+
+    {"node": "ai.prompting", "kind": "project", "xp": 90, "reason": "Built and installed working skill packages that depend on reliable prompting: coaching-funnel-growth, humanise, banana, ui-ux-pro-max."},
+    {"node": "ai.prompting", "kind": "practice", "xp": 25, "reason": "Iterates prompts and instructions toward specific output requirements, including a rule that humanise triggers only on explicit invocation."},
+
+    {"node": "ai.context", "kind": "project", "xp": 70, "reason": "Authored a CLAUDE.md to control what the model sees in a repository, and installed the context-engineering-collection."},
+    {"node": "ai.context", "kind": "practice", "xp": 25, "reason": "Maintains standing instructions and rules that shape model behaviour across sessions."},
+
+    {"node": "ai.claude_code", "kind": "project", "xp": 110, "reason": "Built and installed a working Claude Code plugin, with .mcp.json structure debugged until the plugin loader accepted it."},
+    {"node": "ai.claude_code", "kind": "project", "xp": 90, "reason": "Packaged and installed multiple skill files as a working local toolchain."},
+    {"node": "ai.claude_code", "kind": "practice", "xp": 25, "reason": "Uses Claude Code as a routine build tool rather than experimentally."},
+
+    {"node": "auto.fundamentals", "kind": "build_small", "xp": 40, "reason": "Built automatic follow-up date logic in the outreach tracker — a real trigger-and-action rule doing useful work."},
+    {"node": "auto.fundamentals", "kind": "practice", "xp": 20, "reason": "Reasons about outreach as a workflow with stages and triggers."},
+
+    {"node": "auto.zapier", "kind": "study", "xp": 15, "reason": "EXPLORING ONLY — considering Zapier for the outreach workflow. Zapier is listed as a primary tool, but the memory contains no evidence of a Zap built and running on live data."},
+
+    {"node": "yt.fundamentals", "kind": "study", "xp": 15, "reason": "KNOWLEDGE ONLY — the £15 course teaches content creation, clip editing and scripting, but there is no evidence of a channel, published videos or audience data of his own."},
+
+    {"node": "art.observation", "kind": "project", "xp": 70, "reason": "Produces detailed observational drawing as an established practice."},
+    {"node": "art.observation", "kind": "practice", "xp": 25, "reason": "Ongoing detailed drawing work."},
+    {"node": "art.shading", "kind": "project", "xp": 60, "reason": "Detailed rendered artwork requiring sustained value control."},
+    {"node": "art.composition", "kind": "project", "xp": 75, "reason": "Painted murals — composition at architectural scale, resolved and finished."},
+    {"node": "art.composition", "kind": "practice", "xp": 25, "reason": "Room decoration work requiring composition decisions in a real space."},
+    {"node": "art.environment", "kind": "project", "xp": 55, "reason": "Mural and room decoration work treating a physical space as the picture."},
+
+    {"node": "art.brand_design", "kind": "project", "xp": 100, "reason": "Built a complete AIGO brand identity: cream/near-black/signal-red palette, Syne 800 / Space Mono / DM Sans type system, and a written brand guide."},
+    {"node": "art.brand_design", "kind": "project", "xp": 80, "reason": "Designed the @thisguyai identity: Anton wordmark in two-tone treatment and a yellow rounded-square play-button mark."},
+    {"node": "art.brand_design", "kind": "practice", "xp": 25, "reason": "Applied the identity consistently across the portfolio site, dashboards, trackers and landing pages."},
+    {"node": "art.brand_design", "kind": "practice", "xp": 20, "reason": "Holds a deliberate quality standard — explicitly wants design that does not look like typical AI output."},
+
+    {"node": "tech.computing", "kind": "project", "xp": 80, "reason": "Runs a working local toolchain: Claude Code, plugin and skill installation, repository work."},
+    {"node": "tech.computing", "kind": "practice", "xp": 25, "reason": "Comfortable operating across files, configs and tooling."},
+    {"node": "tech.computing", "kind": "practice", "xp": 25, "reason": "Debugged plugin configuration structure until it loaded correctly."},
+
+    {"node": "tech.git", "kind": "build_small", "xp": 35, "reason": "Maintains a repository with committed plugin work and structured commit history."},
+    {"node": "tech.git", "kind": "practice", "xp": 25, "reason": "Uses version control as part of the normal build loop."},
+
+    {"node": "tech.html", "kind": "project", "xp": 100, "reason": "Built the live portfolio site at brajanniedz.netlify.app."},
+    {"node": "tech.html", "kind": "project", "xp": 80, "reason": "Built a landing page delivered to a real business (Essy, Bloom Executive VAs)."},
+    {"node": "tech.html", "kind": "project", "xp": 55, "reason": "Built the @thisguyai course landing page."},
+    {"node": "tech.html", "kind": "practice", "xp": 25, "reason": "Repeated page building across projects to a consistent visual standard."},
+
+    {"node": "tech.js", "kind": "project", "xp": 150, "reason": "Built ONYX Casino: a single-file vanilla React browser casino with Crash, Mines, Plinko, Cases, Case Battles, Item Upgrader, Dragon Tower, HiLo, Blackjack, Roulette, Baccarat and Video Poker, plus per-game Evil Mode cheat mechanics. Substantial stateful game logic with no build step."},
+    {"node": "tech.js", "kind": "project", "xp": 120, "reason": "Built the TV-display outreach command center: vanilla HTML/JS polling Google Sheets via the gviz CSV endpoint on a 90-second cycle."},
+    {"node": "tech.js", "kind": "project", "xp": 60, "reason": "Built the gamified AIGO co-pilot dashboard in vanilla JS."},
+    {"node": "tech.js", "kind": "build_small", "xp": 50, "reason": "Built the AIGO Lead Finder as a React artifact."},
+
+    {"node": "tech.web", "kind": "project", "xp": 110, "reason": "Ships complete working web projects end to end, from markup through interactive behaviour to a live URL."},
+    {"node": "tech.web", "kind": "project", "xp": 90, "reason": "Multiple distinct web applications delivered, including one to an external party."},
+    {"node": "tech.web", "kind": "practice", "xp": 25, "reason": "Sustained web building as the default way problems get solved."},
+
+    {"node": "tech.cloud", "kind": "project", "xp": 70, "reason": "Deployed and maintains a live public site on Netlify."},
+
+    {"node": "tech.apis", "kind": "build_small", "xp": 45, "reason": "Consumes the Google Sheets gviz CSV endpoint on a polling loop, parsing the response into a live dashboard."},
+    {"node": "tech.apis", "kind": "practice", "xp": 25, "reason": "Wires third-party services together across Tally, Typeform, Sheets and Kit."},
+
+    {"node": "tech.dashboards", "kind": "project", "xp": 110, "reason": "Built the TV-display outreach command center — a live operational dashboard designed to be read at a glance from across a room."},
+    {"node": "tech.dashboards", "kind": "project", "xp": 80, "reason": "Built the gamified AIGO co-pilot dashboard."},
+    {"node": "tech.dashboards", "kind": "project", "xp": 60, "reason": "Built the branded outreach tracker and cold call tracker with conditional formatting and status logic."},
+    {"node": "tech.dashboards", "kind": "practice", "xp": 25, "reason": "Consistently reaches for a dashboard as the interface to a problem."},
+
+    {"node": "lrn.research", "kind": "project", "xp": 80, "reason": "Completed a WJEC Criminology Unit 3 assignment on R v Lucy Letby, arguing a potentially unsafe conviction — sourced, structured argument on contested evidence."},
+    {"node": "lrn.research", "kind": "project", "xp": 55, "reason": "Completed a BTEC IT Project Management Unit 9 assignment covering Agile, RAD and PRINCE2."},
+    {"node": "lrn.research", "kind": "practice", "xp": 25, "reason": "Routine prospect and niche research as part of outreach."},
+
+    {"node": "lrn.critical", "kind": "project", "xp": 60, "reason": "Argued against a returned verdict on evidential grounds in the Letby assignment — a position requiring evaluation rather than summary."},
+    {"node": "lrn.critical", "kind": "practice", "xp": 25, "reason": "Accepts and acts on challenges to his own behaviour, including repeated avoidance callouts."},
+
+    {"node": "lrn.problem_solving", "kind": "build_small", "xp": 45, "reason": "Solved the plugin loader configuration problem by working out the required flat-map structure."},
+    {"node": "lrn.problem_solving", "kind": "practice", "xp": 25, "reason": "Regularly builds around constraints, such as polling Sheets via gviz rather than standing up a backend."},
+
+    {"node": "lrn.self_teaching", "kind": "project", "xp": 100, "reason": "Self-taught working web development, React, AI tooling and brand design to a shipping standard without formal instruction in any of them."},
+    {"node": "lrn.self_teaching", "kind": "project", "xp": 55, "reason": "Self-taught the AI Growth Operating domain: funnels, CRM, email sequences, conversion diagnosis."},
+    {"node": "lrn.self_teaching", "kind": "practice", "xp": 25, "reason": "Default response to an unfamiliar domain is to learn it by building in it."},
+
+    {"node": "lrn.project_based", "kind": "project", "xp": 85, "reason": "Learns by building: ONYX Casino, dashboards and the course all served as learning vehicles that were carried to a working state."},
+    {"node": "lrn.project_based", "kind": "practice", "xp": 25, "reason": "Consistent project-first learning pattern."},
+
+    {"node": "lrn.knowledge_mgmt", "kind": "practice", "xp": 25, "reason": "Set up an Obsidian second-brain vault. Scored low deliberately: it was diagnosed as an unhealthy archive — bulk-imported chat logs, isolated clusters, no meaningful cross-linking — so this is evidence of attempting the skill, not holding it."},
+
+    {"node": "fit.technique", "kind": "practice", "xp": 25, "reason": "Trains four times a week on an upper/lower split."},
+    {"node": "fit.technique", "kind": "practice", "xp": 25, "reason": "Ran a 10km route through Wardown Park and Galley & Warden Hills."},
+    {"node": "fit.technique", "kind": "build_small", "xp": 40, "reason": "Sustains a structured split rather than training ad hoc."},
+
+    {"node": "fit.knowledge", "kind": "practice", "xp": 25, "reason": "Tracks and knows his own numbers: 178cm, 72kg, roughly 15% body fat."},
+    {"node": "fit.knowledge", "kind": "build_small", "xp": 35, "reason": "Understands and applies split structure to his own training."},
+
+    {"node": "fit.nutrition", "kind": "knowledge", "xp": 5, "reason": "KNOWLEDGE ONLY — tracks body composition, but diet is explicitly named as an area of inconsistency, so there is no execution evidence to score."},
+
+    {"node": "pd.reflection", "kind": "practice", "xp": 25, "reason": "Engages with an accountability framework and asked to be confronted when he deflects."},
+    {"node": "pd.reflection", "kind": "build_small", "xp": 35, "reason": "Maintains a written success-plan with explicit rules and a defined next action."},
+
+    {"node": "pd.planning", "kind": "build_small", "xp": 45, "reason": "Wrote success-plan.md with a hard constraint (no new infrastructure before a signed client) and a single defined next action ('chapter one')."},
+    {"node": "pd.planning", "kind": "practice", "xp": 25, "reason": "Plans campaigns and projects in structured stages."},
+
+    {"node": "pd.self_awareness", "kind": "project", "xp": 55, "reason": "Asked Claude to name his avoidance pattern and back the callout with real numbers — deliberately building a mechanism against his own known failure mode."},
+    {"node": "pd.self_awareness", "kind": "practice", "xp": 25, "reason": "Names inconsistency across gym, diet and business projects as a recurring personal theme rather than denying it."},
+
+    {"node": "life.communication", "kind": "project", "xp": 65, "reason": "Initiates contact with strangers professionally at volume: cold email, Instagram DMs and recorded Loom audits, adapting register per channel."},
+    {"node": "life.communication", "kind": "practice", "xp": 25, "reason": "Sustained outreach conversation across multiple niches."},
+
+    {"node": "life.organisation", "kind": "build_small", "xp": 40, "reason": "Runs his work from maintained trackers with statuses and follow-up dates."},
+
+    {"node": "mon.literacy", "kind": "knowledge", "xp": 5, "reason": "KNOWLEDGE ONLY — has structured commercial terms (setup fee plus revenue share, £15 price point) and reasons about platform costs, but there is no evidence of budgeting, saving, or any earned income to assess."}
+  ],
+  "interest_signals": [
+    {"topic": "Brand & visual identity design", "weight": 4, "note": "Recurring across AIGO brand guide, @thisguyai marks, palette and type systems, applied consistently to every artefact. Promoted to a skill node at calibration."},
+    {"topic": "Game development", "weight": 2, "note": "ONYX Casino — 13+ games with per-game cheat mechanics. Substantial but currently a single project; watch whether a second appears before creating a branch."},
+    {"topic": "Gamification of his own work", "weight": 3, "note": "Gamified co-pilot dashboard, ONYX, and this skill tree itself. A consistent pattern of turning work into progression systems."},
+    {"topic": "Dashboards as an interface habit", "weight": 4, "note": "TV command center, co-pilot, two trackers, portfolio. Reaches for a dashboard reflexively — already covered by tech.dashboards."}
+  ],
+  "quests": [
+    {
+      "name": "Chapter One: one coach, one real fix, one pitch",
+      "description": "The action already agreed and not yet done. Pick one specific coach, audit their funnel for real, build the actual fix, and pitch with the work in hand. Sales sits at zero and it is the only node standing between an evidenced Builder and a validated AI Growth Operator. Nothing else in this tree unlocks what this unlocks.",
+      "reward": "First evidence on ent.sales; opens the path to Business Income and First Real Client",
+      "unlocks": "ent.sales → ent.delivery → ent.operations; milestone ms.first_client",
+      "difficulty": 4,
+      "proof": "A named coach, a real audit, a delivered build, and a pitch actually sent."
+    },
+    {
+      "name": "Ship one Zap that runs on live data",
+      "description": "Zapier is listed as a primary tool and holds 15 XP of exploration. That gap is the clearest knowledge-versus-experience mismatch in the tree. One working automation on real outreach data raises the ceiling on the whole Automation chain from 2 to 6.",
+      "reward": "+40–80 Automation XP; lifts auto.zapier's level cap from 2 to 6",
+      "unlocks": "auto.multistep → auto.apis → auto.webhooks",
+      "difficulty": 2,
+      "proof": "A Zap that has run unattended on real records for a week."
+    },
+    {
+      "name": "Measure one thing you already shipped",
+      "description": "Growth Experiments sits at zero despite a great deal of built work, because nothing has a recorded before and after. Take one asset already delivered — the Essy landing page, a sequence, the outreach approach — and attach real numbers to it. This is what separates Growth Diagnosis at level 3 from Growth Strategy.",
+      "reward": "+50–90 Growth XP; first evidence on gro.experiments",
+      "unlocks": "gro.strategy",
+      "difficulty": 3,
+      "proof": "A before figure, an after figure, and a stated conclusion."
+    },
+    {
+      "name": "Four unbroken weeks",
+      "description": "Consistency is named in your own memory as the recurring theme across gym, diet and business, and it is the reason Discipline and Training Consistency both sit at zero while Technique and Knowledge do not. Pick one — training is the cheapest to prove — and log four consecutive weeks.",
+      "reward": "+40–80 XP toward fit.consistency and pd.consistency",
+      "unlocks": "fit.overload; pd.discipline",
+      "difficulty": 3,
+      "proof": "Four consecutive weeks logged, with the bad weeks included rather than restarted."
+    },
+    {
+      "name": "Do not build the next tool",
+      "description": "An inverted quest, and the hardest one here. The tree's own evidence says tool-building is your strongest skill and your most reliable avoidance mechanism — your success-plan already bans new infrastructure before a signed client. This skill tree is itself infrastructure. Use it once a week and do not extend it until Chapter One is done.",
+      "reward": "Protects every other quest on this list",
+      "unlocks": "Nothing. That is the point.",
+      "difficulty": 5,
+      "proof": "Chapter One is complete and no new tool was built in the meantime."
+    }
+  ]
+}

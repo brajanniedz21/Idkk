@@ -1,0 +1,836 @@
+<title>Brajan — Personal Skill Tree</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#14161a;--muted:#5f6773;--line:#e2e5ea;
+--accent:#3b6ef5;--gold:#b8860b;--lock:#aab1bb;--rust:#b45309;--track:#e8ebf0}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1115;--panel:#171a20;
+--ink:#e8eaee;--muted:#98a1af;--line:#262b33;--accent:#7aa2ff;--gold:#e3b341;--lock:#4c545f;
+--rust:#e0a458;--track:#232830}}
+:root[data-theme=dark]{--bg:#0f1115;--panel:#171a20;--ink:#e8eaee;--muted:#98a1af;
+--line:#262b33;--accent:#7aa2ff;--gold:#e3b341;--lock:#4c545f;--rust:#e0a458;--track:#232830}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:15px/1.5 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;padding:32px 20px 80px}
+.wrap{max-width:1120px;margin:0 auto}
+h1{font-size:26px;letter-spacing:.08em;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:28px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-bottom:28px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.big{font-size:34px;font-weight:650;line-height:1}
+.attr{display:grid;grid-template-columns:1fr 90px 34px;gap:8px;align-items:center;
+font-size:13px;margin-bottom:7px}
+.track{height:7px;background:var(--track);border-radius:99px;overflow:hidden}
+.fill{height:100%;background:var(--accent);border-radius:99px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.branch{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+padding:16px;margin-bottom:14px}
+.branch>h3{margin:0 0 2px;font-size:15px}
+.branch .desc{color:var(--muted);font-size:12.5px;margin-bottom:12px}
+.node{border-top:1px solid var(--line);padding:10px 0;display:grid;
+grid-template-columns:1fr 130px 66px;gap:10px;align-items:center}
+.node:first-of-type{border-top:0}
+.node .nm{font-weight:550}
+.node .meta{color:var(--muted);font-size:12px}
+.node.locked .nm,.node.locked .meta{color:var(--lock)}
+.node .lv{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.empty{color:var(--muted);font-size:13px;font-style:italic}
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+border:1px solid var(--line);border-radius:99px;padding:1px 7px;margin-left:6px;color:var(--muted)}
+.tag.rust{color:var(--rust);border-color:var(--rust)}
+.tag.cap{color:var(--gold);border-color:var(--gold)}
+.ms{display:flex;justify-content:space-between;gap:12px;padding:8px 0;
+border-top:1px solid var(--line);font-size:13.5px}
+.ms:first-of-type{border-top:0}
+.ms.locked{color:var(--lock)}
+.quest{border-top:1px solid var(--line);padding:12px 0}
+.quest:first-of-type{border-top:0}
+.quest .qn{font-weight:600;margin-bottom:3px}
+.quest .qd{color:var(--muted);font-size:13px}
+.stars{color:var(--gold);font-size:12px;letter-spacing:2px}
+.cols{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+</style>
+<div class="wrap">
+<h1>BRAJAN — PERSONAL SKILL TREE</h1>
+<div class="sub">Last updated 2026-08-10 · 48 of 155 nodes carry evidence</div>
+<div class="grid">
+<div class="card"><h2>Player level</h2><div class="big">4</div></div>
+<div class="card"><h2>Total XP</h2><div class="big">5290</div></div>
+<div class="card"><h2>Primary class</h2><div class="big" style="font-size:20px">Builder (Technical Generalist)</div><div class="meta" style="color:var(--muted);font-size:12px;margin-top:6px">confidence: medium</div></div>
+<div class="card"><h2>Milestones</h2><div class="big">0<span style="font-size:16px;color:var(--muted)">/12</span></div></div>
+</div>
+<div class="card" style="margin-bottom:28px"><h2>Core attributes</h2>
+<div class="attr"><span>Systems Thinking</span><span class="track"><span class="fill" style="width:34.0%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">3.4</span></div>
+<div class="attr"><span>Creativity</span><span class="track"><span class="fill" style="width:21.0%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">2.1</span></div>
+<div class="attr"><span>Execution</span><span class="track"><span class="fill" style="width:40.0%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">4.0</span></div>
+<div class="attr"><span>Technical Ability</span><span class="track"><span class="fill" style="width:34.0%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">3.4</span></div>
+<div class="attr"><span>Business Ability</span><span class="track"><span class="fill" style="width:26.0%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">2.6</span></div>
+<div class="attr"><span>Communication</span><span class="track"><span class="fill" style="width:26.0%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">2.6</span></div>
+<div class="attr"><span>Discipline</span><span class="track"><span class="fill" style="width:16.0%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">1.6</span></div>
+</div>
+<div class="branch">
+<h3>Entrepreneurship</h3>
+<div class="desc">Building and running a business that people actually pay for.</div>
+<div class="node">
+<div><div class="nm">Business Fundamentals</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:35%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Market Research</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:15%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Offer Creation</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:6%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node">
+<div><div class="nm">Client Acquisition</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:60%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Copywriting</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:69%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node">
+<div><div class="nm">Positioning</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:15%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Pricing</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:80%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Client Delivery</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:60%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Sales</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Operations</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>AI Growth Operating</h3>
+<div class="desc">The specialisation: diagnosing a business&#x27;s growth problem and fixing it with systems.</div>
+<div class="node">
+<div><div class="nm">CRM Systems</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:70%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Funnel Analysis</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:25%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Growth Diagnosis</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:3%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node">
+<div><div class="nm">Conversion Analysis</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:90%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Growth Experiments</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Lead Management</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:5%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Growth Strategy</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Revenue Operations</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>AI &amp; Automation</h3>
+<div class="desc">Making machines do the work reliably, without supervision.</div>
+<div class="node">
+<div><div class="nm">AI Fundamentals</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:40%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Automation Fundamentals</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:70%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Claude &amp; Claude Code</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:29%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node">
+<div><div class="nm">Prompt Engineering</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:40%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Zapier</div><div class="meta">Available · Unknown · confidence low</div></div>
+<span class="track"><span class="fill" style="width:60%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">n8n</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">APIs</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Context Engineering</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:20%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Multi-Step Automations</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">AI Agents</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">AI Cost Optimisation</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">CRM Integrations</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Local AI</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Webhooks</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Agent Orchestration</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Automation Architecture</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Cross-Platform Systems</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">3 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Content &amp; YouTube</h3>
+<div class="desc">Making things people choose to watch, and understanding why they did.</div>
+<div class="node">
+<div><div class="nm">YouTube Fundamentals</div><div class="meta">Available · Unknown · confidence low</div></div>
+<span class="track"><span class="fill" style="width:60%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Idea Generation</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Shorts &amp; Long-Form</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Thumbnails</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Titles &amp; Packaging</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Analytics</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Hooks &amp; Retention</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Competitor Intelligence</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Content Strategy</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Automated Content Pipeline</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Filmmaking &amp; Visual Creation</h3>
+<div class="desc">Telling stories with images — camera, 3D, or generated.</div>
+<div class="node">
+<div><div class="nm">Visual Storytelling</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Composition</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Editing</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">3D Filmmaking</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">AI Video</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Camera Movement</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Colour</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Lighting</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Sound Design</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Animation</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Cinematography</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Environment Design</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Short Films</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Visual Effects</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Art</h3>
+<div class="desc">Hand skill. Levels here need finished work, not references saved.</div>
+<div class="node">
+<div><div class="nm">Observation</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:20%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Proportion</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Brand &amp; Visual Identity Design</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:29%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node">
+<div><div class="nm">Digital Art</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Pen &amp; Pencil Media</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Perspective</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Shading &amp; Value</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:70%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Stippling</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Character Art</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Composition (Art)</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:25%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Environmental Art</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:60%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Fitness</h3>
+<div class="desc">Knowing how training works versus actually training.</div>
+<div class="node">
+<div><div class="nm">Exercise Technique</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:15%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Nutrition Knowledge</div><div class="meta">Available · Unknown · confidence low</div></div>
+<span class="track"><span class="fill" style="width:20%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Training Knowledge</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:70%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Macro Management</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Progressive Overload</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Recovery &amp; Sleep</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Calisthenics</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Hypertrophy Training</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Meal Planning</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Strength Training</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Training Consistency</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Independent Programme Design</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Money &amp; Financial Skills</h3>
+<div class="desc">Earning, keeping, and deploying capital. Risk-taking is not progression.</div>
+<div class="node">
+<div><div class="nm">Financial Literacy</div><div class="meta">Available · Unknown · confidence low</div></div>
+<span class="track"><span class="fill" style="width:20%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Budgeting</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Saving</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Income Generation</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Investing Knowledge</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Trading Knowledge</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Business Income</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Risk Management</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Entrepreneurial Finance</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">2 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Technology</h3>
+<div class="desc">Writing, running, and hosting software that does something.</div>
+<div class="node">
+<div><div class="nm">General Computing</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:55%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Git &amp; GitHub</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:70%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">HTML &amp; CSS</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:49%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node">
+<div><div class="nm">Python</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">APIs in Code</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:90%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">JavaScript</div><div class="meta">Practising · Functional · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:10%"></span></span>
+<div class="lv">Lv 4</div>
+</div>
+<div class="node">
+<div><div class="nm">Raspberry Pi</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Cloud &amp; Hosting</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:90%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Dashboard Development</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:57%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Databases</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Local Servers &amp; Networking</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Web Development</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:29%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node locked">
+<div><div class="nm">AI Integration in Software</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Learning</h3>
+<div class="desc">The meta-tree. Levels here come from how well other trees grow.</div>
+<div class="node">
+<div><div class="nm">Research</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:85%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Critical Thinking</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:10%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node">
+<div><div class="nm">Problem Solving</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:90%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Experimentation</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Information Synthesis</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Knowledge Management</div><div class="meta">Learning · Awareness · confidence low</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Self-Teaching</div><div class="meta">Practising · Developing · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:3%"></span></span>
+<div class="lv">Lv 3</div>
+</div>
+<div class="node">
+<div><div class="nm">Project-Based Learning</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:35%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Rapid Skill Acquisition</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Systems Thinking</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Personal Development</h3>
+<div class="desc">Behaviour only. Intentions score nothing in this tree.</div>
+<div class="node">
+<div><div class="nm">Reflection</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:70%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Journaling</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Planning</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:90%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Confidence</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Consistency</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Decision Making</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Focus &amp; Attention Management</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Self-Awareness</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:5%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Delayed Gratification</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Discipline</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">1 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Life &amp; Independence</h3>
+<div class="desc">The ability to run your own life without anyone underwriting it.</div>
+<div class="node">
+<div><div class="nm">Cooking</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Organisation</div><div class="meta">Learning · Awareness · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:30%"></span></span>
+<div class="lv">Lv 1</div>
+</div>
+<div class="node">
+<div><div class="nm">Communication</div><div class="meta">Learning · Beginner · confidence medium</div></div>
+<span class="track"><span class="fill" style="width:15%"></span></span>
+<div class="lv">Lv 2</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Personal Money Management</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Scheduling</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node">
+<div><div class="nm">Employment</div><div class="meta">Available · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Personal Administration</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Travel</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Business Administration</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked">
+<div><div class="nm">Contracts &amp; Legal Basics</div><div class="meta">Locked · Unknown · confidence none</div></div>
+<span class="track"><span class="fill" style="width:0%"></span></span>
+<div class="lv">Lv 0</div>
+</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">2 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="branch">
+<h3>Cross-Tree Specialisations</h3>
+<div class="desc">Powerful combinations. Each requires real levels in several trees at once.</div>
+<div class="node locked"><div><div class="nm">???</div><div class="meta">5 node(s) hidden until prerequisites are met</div></div><span class="track"></span><div class="lv">—</div></div>
+</div>
+<div class="cols">
+<div class="card"><h2>Current quests</h2>
+<div class="quest"><div class="qn">Chapter One: one coach, one real fix, one pitch</div><div class="qd">The action already agreed and not yet done. Pick one specific coach, audit their funnel for real, build the actual fix, and pitch with the work in hand. Sales sits at zero and it is the only node standing between an evidenced Builder and a validated AI Growth Operator. Nothing else in this tree unlocks what this unlocks.</div><div class="qd" style="margin-top:6px">Reward: First evidence on ent.sales; opens the path to Business Income and First Real Client</div><div class="qd">Proof: A named coach, a real audit, a delivered build, and a pitch actually sent.</div><div class="stars">★★★★☆</div></div>
+<div class="quest"><div class="qn">Ship one Zap that runs on live data</div><div class="qd">Zapier is listed as a primary tool and holds 15 XP of exploration. That gap is the clearest knowledge-versus-experience mismatch in the tree. One working automation on real outreach data raises the ceiling on the whole Automation chain from 2 to 6.</div><div class="qd" style="margin-top:6px">Reward: +40–80 Automation XP; lifts auto.zapier&#x27;s level cap from 2 to 6</div><div class="qd">Proof: A Zap that has run unattended on real records for a week.</div><div class="stars">★★☆☆☆</div></div>
+<div class="quest"><div class="qn">Measure one thing you already shipped</div><div class="qd">Growth Experiments sits at zero despite a great deal of built work, because nothing has a recorded before and after. Take one asset already delivered — the Essy landing page, a sequence, the outreach approach — and attach real numbers to it. This is what separates Growth Diagnosis at level 3 from Growth Strategy.</div><div class="qd" style="margin-top:6px">Reward: +50–90 Growth XP; first evidence on gro.experiments</div><div class="qd">Proof: A before figure, an after figure, and a stated conclusion.</div><div class="stars">★★★☆☆</div></div>
+<div class="quest"><div class="qn">Four unbroken weeks</div><div class="qd">Consistency is named in your own memory as the recurring theme across gym, diet and business, and it is the reason Discipline and Training Consistency both sit at zero while Technique and Knowledge do not. Pick one — training is the cheapest to prove — and log four consecutive weeks.</div><div class="qd" style="margin-top:6px">Reward: +40–80 XP toward fit.consistency and pd.consistency</div><div class="qd">Proof: Four consecutive weeks logged, with the bad weeks included rather than restarted.</div><div class="stars">★★★☆☆</div></div>
+<div class="quest"><div class="qn">Do not build the next tool</div><div class="qd">An inverted quest, and the hardest one here. The tree&#x27;s own evidence says tool-building is your strongest skill and your most reliable avoidance mechanism — your success-plan already bans new infrastructure before a signed client. This skill tree is itself infrastructure. Use it once a week and do not extend it until Chapter One is done.</div><div class="qd" style="margin-top:6px">Reward: Protects every other quest on this list</div><div class="qd">Proof: Chapter One is complete and no new tool was built in the meantime.</div><div class="stars">★★★★★</div></div>
+</div>
+<div class="card"><h2>Milestones</h2>
+<div class="ms locked"><span>🔒 First Real Client</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First £1,000 Earned</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First Paid Automation Build</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First Business System Deployed</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First Fully Autonomous Automation</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First Published Short Film</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First Successful 3D Film</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First 1,000 Subscribers</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First 100k-View Video</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First Profitable Business</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First £10k Month</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+<div class="ms locked"><span>🔒 First Year of Consistent Training</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">locked</span></div>
+</div>
+</div>
+<div class="card" style="margin-top:16px"><h2>Nearest unlocks</h2>
+<div class="attr"><span>n8n</span><span class="track"><span class="fill" style="width:100%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">100%</span></div>
+<div class="attr"><span>Proportion</span><span class="track"><span class="fill" style="width:100%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">100%</span></div>
+<div class="attr"><span>Progressive Overload</span><span class="track"><span class="fill" style="width:100%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">100%</span></div>
+<div class="attr"><span>Recovery &amp; Sleep</span><span class="track"><span class="fill" style="width:100%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">100%</span></div>
+<div class="attr"><span>Python</span><span class="track"><span class="fill" style="width:100%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">100%</span></div>
+<div class="attr"><span>Journaling</span><span class="track"><span class="fill" style="width:100%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">100%</span></div>
+<div class="attr"><span>Scheduling</span><span class="track"><span class="fill" style="width:100%"></span></span><span style="text-align:right;color:var(--muted);font-size:12px">100%</span></div>
+</div>
+</div>

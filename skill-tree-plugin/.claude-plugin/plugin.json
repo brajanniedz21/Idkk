@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "skill-tree-plugin",
+  "displayName": "Personal Skill Tree",
+  "description": "An evidence-weighted RPG progression system for real-world skills. Tracks levels, XP, prerequisites, milestones and skill decay across 13 trees, with a deterministic scoring engine that refuses to inflate levels from conversation alone.",
+  "version": "1.0.0",
+  "author": {
+    "name": "brajanniedz21"
+  },
+  "license": "MIT",
+  "keywords": ["skill-tree", "rpg", "progression", "habits", "personal-development", "dashboard"],
+  "defaultEnabled": true
+}
