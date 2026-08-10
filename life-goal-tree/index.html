@@ -327,7 +327,7 @@ button{font-family:inherit}
       <b>765<span>LT</span></b>
       <i>Life Skill Tree</i>
     </div>
-    <div class="stat">NODES <b id="nCount">0</b> / 25</div>
+    <div class="stat">NODES <b id="nCount">0</b> / <span id="nAll">0</span></div>
     <div class="stat">XP <b class="gold" id="xpNow">0</b> / <span id="xpAll">0</span></div>
     <div class="stat">COMPLETE <b id="pct">0%</b></div>
     <button id="reset" title="Wipe all progress">Reset</button>
@@ -428,15 +428,45 @@ const NODES = [
    d:"Mind, money and body all holding at the same time."},
 
   // ---- CONVERGENCE ----
-  {id:23, t:"apex",  n:"First Luxury Purchase",   xp:500, x:4.7,  y:7, req:[12,22],
+  {id:23, t:"apex",  n:"First Luxury Purchase",   xp:500, x:5.2,  y:7, req:[12,22],
    d:"A watch or experience that proves the standard you're building for."},
-  {id:24, t:"apex",  n:"£500k Net Worth",         xp:750, x:4.7,  y:8, req:[23],
+  {id:24, t:"apex",  n:"£500k Net Worth",         xp:750, x:5.2,  y:8, req:[23],
    d:"Half a million held — the last checkpoint before the machine."},
-  {id:25, t:"boss",  n:"McLaren 765LT",           xp:2000,x:4.7,  y:9.35,req:[24],
-   d:"The machine. The proof. The reason."}
+  {id:25, t:"boss",  n:"McLaren 765LT",           xp:2000,x:5.2,  y:13.4,req:[38],
+   d:"The machine. The proof. The reason."},
+
+  // ---- DEEPER TRACKS ----
+  {id:26, t:"money", n:"First £1M Year",          xp:1200,x:0.6,  y:6, req:[6],
+   d:"Twelve months, seven figures collected."},
+  {id:27, t:"skill", n:"First Hire",              xp:250, x:3.5,  y:3, req:[11],
+   d:"Someone else's hands on the work for the first time."},
+  {id:28, t:"skill", n:"Team of Five",            xp:450, x:2.9,  y:7, req:[27,12],
+   d:"Enough people that the bottleneck stops being you."},
+  {id:29, t:"skill", n:"Business Runs Without You 90 Days",xp:700,x:2.9,y:8,req:[28],
+   d:"Ninety days away and the numbers held."},
+  {id:30, t:"mind",  n:"Mentor Someone to a Win", xp:250, x:8.5,  y:5, req:[22],
+   d:"Somebody else got there using what you worked out."},
+  {id:31, t:"body",  n:"Two Years Injury-Free",   xp:350, x:5.9,  y:4, req:[17],
+   d:"Long enough that it is who you are, not what you did."},
+
+  // ---- THE RUN-UP ----
+  {id:32, t:"drive", n:"Full Licence & Advanced Driving",xp:350,x:9.8,y:0,req:[],
+   d:"Be able to drive it properly before you can afford it."},
+  {id:33, t:"drive", n:"Supercar Track Day",      xp:400, x:9.8,  y:1, req:[32],
+   d:"Six hundred horsepower on a circuit, once, legally."},
+  {id:34, t:"apex",  n:"£1M Net Worth",           xp:1200,x:5.2,  y:9, req:[24,26],
+   d:"Seven figures held, not projected."},
+  {id:35, t:"apex",  n:"Running Costs Covered",   xp:700, x:6.4,  y:10,req:[34],
+   d:"Insurance, servicing and tyres funded out of profit, not hope."},
+  {id:36, t:"apex",  n:"Secure Garage Sorted",    xp:450, x:6.4,  y:11,req:[35],
+   d:"Somewhere to keep it that you are not anxious about."},
+  {id:37, t:"apex",  n:"£300k Liquid, Ringfenced",xp:1500,x:4.0,  y:10,req:[34,29],
+   d:"The actual money, in actual cash, untouched by the business."},
+  {id:38, t:"apex",  n:"765LT Spec'd, Deposit Placed",xp:900,x:5.2,y:12,req:[36,37,33],
+   d:"Configuration signed off and the deposit gone."}
 ];
 
-const ICON = {money:"💰",skill:"🧠",body:"💪",mind:"🧘",apex:"🏆",boss:"🏎️"};
+const ICON = {money:"💰",skill:"🧠",body:"💪",mind:"🧘",drive:"🏁",apex:"🏆",boss:"🏎️"};
 const BY_ID = Object.fromEntries(NODES.map(n=>[n.id,n]));
 const TOTAL_XP = NODES.reduce((s,n)=>s+n.xp,0);
 const KEY = "mclaren765lt.tree.v1";
@@ -454,6 +484,19 @@ try{
 
 const save = ()=>{ try{ localStorage.setItem(KEY,JSON.stringify([...done])); }catch(e){} };
 const unlocked = n => n.req.every(r=>done.has(r));
+
+/* Saved progress is only as valid as the tree it was saved against. If nodes
+   or prerequisites have changed since, drop anything now standing on nothing —
+   otherwise the board could show a state its own rules forbid. */
+(function prune(){
+  let changed = true;
+  while(changed){
+    changed = false;
+    for(const n of NODES){
+      if(done.has(n.id) && !n.req.every(r=>done.has(r))){ done.delete(n.id); changed = true; }
+    }
+  }
+})();
 
 /* ============================ BUILD ============================ */
 const maxX = Math.max(...NODES.map(n=>n.x));
@@ -545,6 +588,7 @@ function render(){
   document.getElementById("nCount").textContent = done.size;
 }
 document.getElementById("xpAll").textContent = TOTAL_XP.toLocaleString();
+document.getElementById("nAll").textContent = NODES.length;
 
 /* ============================ INTERACTION ============================ */
 function cascade(id){
