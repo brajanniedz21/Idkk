@@ -721,7 +721,14 @@ const vp = document.getElementById("viewport");
 const zLvl = document.getElementById("zLvl");
 let scale = 1, fitScale = 1;
 const MAX_S = 2.6;
-const minScale = ()=>Math.min(fitScale*0.55,0.34);
+/* The scale at which the whole board would fit on screen, both axes. */
+function wholeBoard(){
+  const availW = vp.clientWidth - 48, availH = vp.clientHeight - 200;
+  return Math.min(availW/BW, availH/BH);
+}
+/* Let you pull back to half again beyond the whole board, so "everything at
+   once" is a comfortable stop rather than the hard limit. */
+const minScale = ()=>Math.max(0.09, wholeBoard()*0.5);
 
 function paint(){
   stage.style.transform = `scale(${scale})`;
@@ -761,7 +768,27 @@ function fit(keepZoom){
 
 document.getElementById("zIn").addEventListener("click",()=>nudge(1.28));
 document.getElementById("zOut").addEventListener("click",()=>nudge(1/1.28));
-document.getElementById("zFit").addEventListener("click",()=>{ fit(false); toBottom(); });
+/* One button, two useful stops: the whole tree, or a readable width. */
+const zFit = document.getElementById("zFit");
+let fitMode = "width";
+function fitWhole(){
+  scale = Math.max(minScale(), Math.min(1, wholeBoard()));
+  paint();
+  vp.scrollTop  = (vp.scrollHeight - vp.clientHeight)/2;
+  vp.scrollLeft = (vp.scrollWidth - vp.clientWidth)/2;
+}
+function markFit(){
+  const whole = fitMode === "all";
+  zFit.textContent = whole ? "⤡" : "⤢";
+  zFit.title = whole ? "Back to readable size (0)" : "See the whole tree (0)";
+  zFit.setAttribute("aria-label", zFit.title);
+}
+zFit.addEventListener("click",()=>{
+  if(fitMode === "width"){ fitWhole(); fitMode = "all"; }
+  else { fit(false); toBottom(); fitMode = "width"; }
+  markFit();
+});
+markFit();
 
 /* Trackpad pinch and ctrl+wheel zoom; a plain wheel keeps scrolling, because
    climbing the tree is the main way you move around it. */
@@ -812,7 +839,7 @@ addEventListener("keydown",e=>{
   if(e.target.matches("input,textarea")) return;
   if(e.key==="+"||e.key==="="){ e.preventDefault(); nudge(1.28); }
   else if(e.key==="-"||e.key==="_"){ e.preventDefault(); nudge(1/1.28); }
-  else if(e.key==="0"){ e.preventDefault(); fit(false); toBottom(); }
+  else if(e.key==="0"){ e.preventDefault(); zFit.click(); }
 });
 
 function layout(){ fit(true); }
