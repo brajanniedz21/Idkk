@@ -141,15 +141,36 @@ Live at **https://claude.ai/code/artifact/e5f9054b-fa47-4787-acaf-a31c8a355d77**
 (private to your account). The daily Routine republishes to that same URL, so
 the link stays stable — bookmark it.
 
-`dashboard/index.html` is generated from the JSON and is self-contained and
-theme-aware. GitHub renders it as source, which is why it is published as an
-artifact rather than linked from the repo.
+It is the tree and nothing else: 155 nodes as a constellation, one radial wedge
+per branch, tier driving distance from the centre, prerequisite edges drawn
+between them. Drag to pan, scroll to zoom, click any node.
 
-Design uses your own AIGO brand: cream, near-black, signal red, with ochre kept
-separate for rust and cap warnings so semantic state never collides with the
-accent. Levels render as ten segments and **everything above a node's evidence
-cap is drawn hatched** — the ceiling is the point of the system, so it is shown
-rather than annotated.
+Selecting a node dims the rest of the graph, lights its chain, and opens a panel
+with its level and XP, what it would take to reach the next level, what it
+requires, what it leads to, and every dated piece of evidence behind it with the
+reason recorded. Prerequisites and unlocks in the panel are clickable, so you
+can walk a chain node by node.
+
+Reading the marks:
+
+- **Ring** around a disc is level, out of ten.
+- **Ochre arc** is the evidence ceiling — the part of the ring that current
+  evidence cannot reach. It is drawn *before* you hit it, and the panel names
+  the class of evidence that would lift it ("practising this lifts the ceiling
+  to 4"). This is the whole system in one graphic.
+- **Filled red discs** carry evidence; hollow ones are available; dim ones are
+  locked; dashed `???` are hidden until their prerequisites are met.
+- **Ochre dot** on a disc means rusting.
+- **Dashed edges** cross between branches — those are the cross-tree
+  specialisations.
+
+Layout is computed in Python at generation time, not in the browser, so node
+positions are identical on every regeneration. A tree that rearranged itself
+daily would be unreadable.
+
+The page commits to a single dark treatment rather than shipping a light
+variant — a constellation on a cream ground is not worth having — and paints
+every colour explicitly so it holds on any host background.
 
 Regenerate with `python3 scripts/skilltree.py dashboard` after every update, and
 republish with the URL above so it never mints a second page.

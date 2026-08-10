@@ -776,328 +776,453 @@ def nearest_unlocks(tree: dict[str, Any], idx: dict[str, dict[str, Any]], limit:
 # --------------------------------------------------------------------------
 # dashboard
 # --------------------------------------------------------------------------
-DASH_CSS = """
-/* Palette from Brajan's own AIGO brand guide: cream, near-black, signal red.
-   Neutrals are warm — biased toward the accent — rather than pure grey.
-   Signal red is the accent and is spent only on progress. Rust and cap
-   warnings use ochre so semantic state never collides with the accent. */
+TREE_CSS = """
+/* A constellation reads on a dark ground, so this view commits to one
+   visual world rather than shipping a washed-out light variant. Every
+   colour is painted explicitly so the page holds on any host background.
+   Palette is Brajan's AIGO brand: near-black, cream, signal red, with
+   ochre reserved for evidence ceilings so it never fights the accent. */
 :root{
-  --ground:#F7F6F2; --panel:#FFFFFF; --sunken:#EFEDE6;
-  --ink:#131311; --ink-2:#5A5751; --ink-3:#8B877E;
-  --line:#E2DFD5; --line-2:#D3CFC2;
-  --accent:#FF4D3D; --accent-soft:#FFE3DF;
-  --warn:#B8792B; --warn-soft:#F6E8D2;
-  --blocked:#CFCABB;
-  --seg-empty:#E4E1D7;
+  --void:#0E0D0C; --void-2:#151311;
+  --cream:#F7F6F2; --muted:#A9A296; --faint:#7C7568;
+  --accent:#FF5C4C; --accent-dim:#B03A2C;
+  --ochre:#D9A05B;
+  --edge:#403B32; --edge-lit:#FF6A5A;
+  --node:#1E1B17; --node-line:#4E483D;
+  --panel:#131110;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --ground:#131311; --panel:#1B1A17; --sunken:#100F0E;
-    --ink:#F7F6F2; --ink-2:#A8A399; --ink-3:#736F66;
-    --line:#2B2924; --line-2:#3A372F;
-    --accent:#FF5C4C; --accent-soft:#3A211C;
-    --warn:#D9A05B; --warn-soft:#33260F;
-    --blocked:#3D3A32;
-    --seg-empty:#26241F;
-  }
-}
-:root[data-theme="dark"]{
-  --ground:#131311; --panel:#1B1A17; --sunken:#100F0E;
-  --ink:#F7F6F2; --ink-2:#A8A399; --ink-3:#736F66;
-  --line:#2B2924; --line-2:#3A372F;
-  --accent:#FF5C4C; --accent-soft:#3A211C;
-  --warn:#D9A05B; --warn-soft:#33260F;
-  --blocked:#3D3A32;
-  --seg-empty:#26241F;
-}
-
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html,body{height:100%}
 body{
-  margin:0; background:var(--ground); color:var(--ink);
-  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  padding:34px 20px 90px;
+  margin:0;background:var(--void);color:var(--cream);overflow:hidden;
+  font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
-.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
-
 .mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace}
-.num{font-variant-numeric:tabular-nums}
+#stage{position:fixed;inset:0;background:
+  radial-gradient(ellipse at 50% 45%,#1A1714 0%,var(--void) 62%,#080807 100%);
+  cursor:grab;touch-action:none}
+#stage.drag{cursor:grabbing}
+svg{width:100%;height:100%;display:block}
 
-/* ---- masthead ---- */
-.mast{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px;
-  padding-bottom:18px;border-bottom:2px solid var(--ink)}
-.mast h1{margin:0;font-size:clamp(22px,3.4vw,32px);font-weight:800;letter-spacing:-.02em;
-  text-wrap:balance;line-height:1.05}
-.mast h1 .dot{color:var(--accent)}
-.mast .stamp{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.edge{stroke:var(--edge);stroke-width:2.6;fill:none}
+.edge.cross{stroke-dasharray:8 9;stroke:#3A352C}
+.edge.done{stroke:var(--accent-dim);stroke-width:3.4}
+.edge.lit{stroke:var(--edge-lit);stroke-width:4.5}
+/* With something selected, everything unrelated recedes so the one
+   chain you are reading is the only thing lit. */
+#cam.focus .edge:not(.lit){opacity:.1}
 
-/* ---- readout strip ---- */
-.readout{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-.cell{background:var(--panel);padding:14px 16px;display:flex;flex-direction:column;gap:5px}
-.cell .k{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
-.cell .v{font-size:27px;font-weight:750;line-height:1;letter-spacing:-.02em}
-.cell .v small{font-size:14px;font-weight:500;color:var(--ink-3)}
-.cell .v.txt{font-size:16px;font-weight:650;line-height:1.25;letter-spacing:0}
+.node{cursor:pointer}
+.node .disc{fill:var(--node);stroke:var(--node-line);stroke-width:3}
+.node.avail .disc{stroke:var(--faint)}
+.node.has .disc{fill:#2A1712;stroke:var(--accent);stroke-width:3.5}
+.node.hidden .disc{stroke-dasharray:4 5;stroke:#2E2B25;fill:#111}
+.node .ring{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:butt;
+  transform:rotate(-90deg);transform-box:fill-box;transform-origin:center}
+.node .cap{fill:none;stroke:var(--ochre);stroke-width:3;opacity:.85;
+  transform:rotate(-90deg);transform-box:fill-box;transform-origin:center}
+.node .lv{fill:var(--cream);font-size:30px;font-weight:700;text-anchor:middle;
+  dominant-baseline:central;pointer-events:none}
+.node.idle .lv{fill:var(--faint)}
+.node .lbl{fill:var(--faint);font-size:21px;opacity:.62;transition:opacity .15s;text-anchor:middle;pointer-events:none;
+  paint-order:stroke;stroke:var(--void);stroke-width:7px;stroke-linejoin:round}
+.node.has .lbl{fill:#E4DDD0;font-weight:600}
+.node.has .lbl{opacity:1}
+.node:hover .lbl,.node.sel .lbl,.node:focus .lbl{fill:var(--cream);opacity:1}
+.node.sel .disc{stroke:var(--accent);stroke-width:3}
+.node.dim{opacity:.13}
+.node .halo{fill:var(--accent);opacity:0;transition:opacity .18s}
+.node.sel .halo{opacity:.13}
+.node:focus{outline:none}
+.node:focus .disc{stroke:var(--cream)}
+.rust{fill:var(--ochre)}
 
-/* ---- the finding ---- */
-.finding{border:1px solid var(--line-2);border-left:3px solid var(--accent);
-  background:var(--panel);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
-.finding .eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-.finding .pair{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:15px}
-.finding .pair b{font-weight:700}
-.finding .vs{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-.finding p{margin:0;color:var(--ink-2);font-size:14px;max-width:74ch}
+.branch-label{fill:#9A9182;font-size:30px;letter-spacing:.2em;text-anchor:middle;
+  text-transform:uppercase;pointer-events:none;font-weight:600}
 
-/* ---- section ---- */
-.sec{display:flex;flex-direction:column;gap:12px}
-.sec>h2{margin:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
-  padding-bottom:7px;border-bottom:1px solid var(--line)}
-
-/* ---- attributes ---- */
-.attrs{display:grid;gap:10px 26px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
-.attr{display:grid;grid-template-columns:1fr 96px 30px;gap:11px;align-items:center;font-size:13.5px}
-.meter{height:6px;background:var(--seg-empty);position:relative;overflow:hidden}
-.meter i{position:absolute;inset:0 auto 0 0;background:var(--accent);display:block}
-.attr .n{text-align:right;color:var(--ink-2);font-size:12px}
-
-/* ---- trees ---- */
-.trees{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
-.branch{background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column}
-.branch>header{padding:13px 16px;border-bottom:1px solid var(--line);
-  display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.branch h3{margin:0;font-size:14.5px;font-weight:700;letter-spacing:-.01em}
-.branch .count{font-size:11px;color:var(--ink-3);white-space:nowrap}
-.branch .desc{padding:10px 16px 0;margin:0;font-size:12.5px;color:var(--ink-3);max-width:60ch}
-.rows{display:flex;flex-direction:column;padding:6px 0 4px}
-.row{display:grid;grid-template-columns:1fr auto;gap:3px 12px;padding:8px 16px;align-items:center}
-.row .nm{font-size:13.5px;font-weight:550;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.row .lv{font-size:11px;color:var(--ink-3);white-space:nowrap;letter-spacing:.04em}
-.row .segs{grid-column:1/-1}
-.row.idle .nm{color:var(--ink-3);font-weight:500}
-
-/* Level as 10 segments. Everything above the evidence cap is drawn blocked —
-   the ceiling is the point of the system, so it is shown, not annotated. */
-.segs{display:flex;gap:2px;height:9px;margin-top:2px}
-.segs span{flex:1;background:var(--seg-empty)}
+/* ---- detail panel ---- */
+#panel{position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);background:var(--panel);
+  border-left:1px solid #26231E;transform:translateX(101%);transition:transform .26s cubic-bezier(.2,.8,.2,1);
+  overflow-y:auto;padding:24px 24px 60px;display:flex;flex-direction:column;gap:16px}
+#panel.open{transform:none}
+#panel .eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+#panel h2{margin:0;font-size:23px;font-weight:750;letter-spacing:-.02em;line-height:1.15}
+#panel .state{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+#close{position:absolute;top:14px;right:14px;background:none;border:1px solid #2E2A24;
+  color:var(--muted);width:30px;height:30px;cursor:pointer;font-size:15px;line-height:1}
+#close:hover{color:var(--cream);border-color:var(--faint)}
+.pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;
+  border:1px solid currentColor;color:var(--muted);white-space:nowrap}
+.pill.on{color:var(--accent)}
+.pill.warn{color:var(--ochre)}
+.segs{display:flex;gap:2px;height:10px}
+.segs span{flex:1;background:#24211C}
 .segs span.on{background:var(--accent)}
-.segs span.cap{background:repeating-linear-gradient(135deg,var(--blocked) 0 2px,transparent 2px 4px)}
-.segs span.tip{position:relative;overflow:hidden}
-.segs span.tip::after{content:"";position:absolute;inset:0 auto 0 0;background:var(--accent);width:var(--p,0%)}
+.segs span.blocked{background:repeating-linear-gradient(135deg,#3A362E 0 2px,transparent 2px 4px)}
+.xp{font-size:12px;color:var(--muted)}
+#panel h3{margin:0;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+  border-bottom:1px solid #221F1A;padding-bottom:6px}
+#panel section{display:flex;flex-direction:column;gap:9px}
+#panel p{margin:0;font-size:13.5px;color:#B8B1A5}
+.req{display:flex;gap:9px;align-items:baseline;font-size:13px;cursor:pointer;
+  background:none;border:0;color:inherit;padding:0;text-align:left;width:100%;font-family:inherit}
+.req:hover .rn{color:var(--accent)}
+.req .mk{width:13px;flex:none;font-size:12px}
+.req .mk.ok{color:var(--accent)}
+.req .mk.no{color:var(--faint)}
+.req .rn{color:#C9C2B6}
+.req .rs{color:var(--faint);font-size:11.5px;margin-left:auto;white-space:nowrap;padding-left:8px}
+.ev{border-left:2px solid #2A2620;padding:2px 0 2px 11px;display:flex;flex-direction:column;gap:3px}
+.ev .top{display:flex;gap:8px;font-size:10.5px;color:var(--faint);letter-spacing:.06em;
+  text-transform:uppercase}
+.ev .top b{color:var(--ochre);font-weight:600}
+.ev p{font-size:12.5px;color:#A8A196}
+.none{font-size:13px;color:var(--faint);font-style:italic}
 
-.chip{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;padding:2px 6px;
-  border:1px solid currentColor;color:var(--ink-3);white-space:nowrap;line-height:1.4}
-.chip.warn{color:var(--warn);background:var(--warn-soft)}
-.chip.cap{color:var(--warn)}
-.chip.ready{color:var(--accent);background:var(--accent-soft)}
-.hidden-row{padding:9px 16px;border-top:1px dashed var(--line);
-  font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;gap:10px}
-.locked-row{padding:9px 16px;font-size:12px;color:var(--ink-3);border-top:1px solid var(--line)}
+/* ---- controls ---- */
+#zoom{position:fixed;left:18px;bottom:18px;display:flex;flex-direction:column;gap:1px;background:#26231E}
+#zoom button{width:34px;height:34px;background:var(--void-2);border:0;color:var(--muted);
+  font-size:16px;cursor:pointer;font-family:inherit}
+#zoom button:hover{color:var(--cream);background:#221F1B}
+#legend{position:fixed;left:64px;bottom:18px;display:flex;gap:14px;flex-wrap:wrap;
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);
+  align-items:center;max-width:min(560px,60vw)}
+#legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;
+  vertical-align:-1px;border:1.5px solid var(--node-line);background:var(--node)}
+#legend i.has{border-color:var(--accent-dim);background:#211512}
+#legend i.av{border-color:var(--faint)}
+#legend i.cap{border-color:var(--ochre);background:none}
+#hint{position:fixed;top:18px;left:18px;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint)}
+@media (max-width:640px){#legend{display:none}}
+"""
 
-/* ---- quests ---- */
-.quests{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.quest{background:var(--panel);border:1px solid var(--line);padding:15px 17px;
-  display:flex;flex-direction:column;gap:8px}
-.quest.main{border-color:var(--accent);border-top:3px solid var(--accent)}
-.quest h4{margin:0;font-size:14.5px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
-.quest p{margin:0;font-size:13px;color:var(--ink-2);max-width:62ch}
-.quest dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12px}
-.quest dt{color:var(--ink-3);letter-spacing:.09em;text-transform:uppercase;font-size:9.5px;padding-top:2px}
-.quest dd{margin:0;color:var(--ink-2)}
-.diff{color:var(--accent);letter-spacing:3px;font-size:11px}
-
-/* ---- lists ---- */
-.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-.panel{background:var(--panel);border:1px solid var(--line);padding:6px 0}
-.li{display:flex;justify-content:space-between;gap:12px;padding:9px 16px;font-size:13.5px;
-  border-top:1px solid var(--line);align-items:baseline}
-.li:first-child{border-top:0}
-.li .r{font-size:11px;color:var(--ink-3);white-space:nowrap}
-.li.off{color:var(--ink-3)}
-.li .sub{display:block;font-size:11.5px;color:var(--ink-3);margin-top:3px}
-
-.foot{font-size:11px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px;
-  max-width:74ch}
-@media (max-width:560px){
-  body{padding:24px 14px 70px}
-  .attr{grid-template-columns:1fr 70px 28px}
+TREE_JS = r"""
+const S=document.getElementById('stage'),SVG=document.getElementById('svg'),
+      G=document.getElementById('cam'),P=document.getElementById('panel');
+let vb={x:VB0.x,y:VB0.y,w:VB0.w,h:VB0.h};
+function apply(){SVG.setAttribute('viewBox',`${vb.x} ${vb.y} ${vb.w} ${vb.h}`)}
+function fit(){
+  const r=S.getBoundingClientRect(), a=r.width/r.height, size=VB0.w;
+  if(a>=1){vb.h=size;vb.w=size*a}else{vb.w=size;vb.h=size/a}
+  vb.x=VB0.cx-vb.w/2; vb.y=VB0.cy-vb.h/2; apply();
 }
+fit(); addEventListener('resize',fit);
+
+/* pan */
+let dragging=false,sx=0,sy=0,moved=0;
+S.addEventListener('pointerdown',e=>{dragging=true;moved=0;sx=e.clientX;sy=e.clientY;
+  S.classList.add('drag');S.setPointerCapture(e.pointerId)});
+S.addEventListener('pointermove',e=>{if(!dragging)return;
+  const r=S.getBoundingClientRect(),k=vb.w/r.width;
+  const dx=e.clientX-sx,dy=e.clientY-sy;moved+=Math.abs(dx)+Math.abs(dy);
+  vb.x-=dx*k;vb.y-=dy*k;sx=e.clientX;sy=e.clientY;apply()});
+addEventListener('pointerup',()=>{dragging=false;S.classList.remove('drag')});
+
+/* zoom */
+function zoom(f,cx,cy){
+  const nw=Math.max(320,Math.min(7000,vb.w*f));f=nw/vb.w;
+  vb.x=cx-(cx-vb.x)*f; vb.y=cy-(cy-vb.y)*f; vb.w=nw; vb.h*=f; apply();
+}
+S.addEventListener('wheel',e=>{e.preventDefault();
+  const r=S.getBoundingClientRect(),k=vb.w/r.width;
+  zoom(e.deltaY>0?1.12:0.89, vb.x+(e.clientX-r.left)*k, vb.y+(e.clientY-r.top)*k);
+},{passive:false});
+document.getElementById('zin').onclick=()=>zoom(0.8,vb.x+vb.w/2,vb.y+vb.h/2);
+document.getElementById('zout').onclick=()=>zoom(1.25,vb.x+vb.w/2,vb.y+vb.h/2);
+document.getElementById('zfit').onclick=()=>{fit();deselect()};
+
+/* selection */
+const els={},edges=[...document.querySelectorAll('.edge')];
+document.querySelectorAll('.node').forEach(n=>els[n.dataset.id]=n);
+let cur=null;
+function deselect(){cur=null;P.classList.remove('open');G.classList.remove('focus');
+  Object.values(els).forEach(n=>n.classList.remove('sel','dim'));
+  edges.forEach(e=>e.classList.remove('lit'))}
+function seg(level,cap){let h='';for(let i=1;i<=10;i++){
+  h+= i<=level?'<span class="on"></span>': i>cap?'<span class="blocked"></span>':'<span></span>'}
+  return `<div class="segs">${h}</div>`}
+function reqRow(id,need){const n=DATA[id];if(!n)return'';
+  const ok=n.level>=need;
+  return `<button class="req" data-go="${id}"><span class="mk ${ok?'ok':'no'}">${ok?'✓':'○'}</span>`+
+    `<span class="rn">${n.name}</span><span class="rs">${ok?`Lv ${n.level}`:`needs Lv ${need}, at ${n.level}`}</span></button>`}
+function show(id){
+  const n=DATA[id];if(!n)return;
+  cur=id;
+  Object.values(els).forEach(e=>e.classList.remove('sel'));
+  const near=new Set([id,...n.prereq.map(p=>p[0]),...n.unlocks]);
+  Object.values(els).forEach(e=>e.classList.toggle('dim',!near.has(e.dataset.id)));
+  edges.forEach(e=>e.classList.toggle('lit',e.dataset.a===id||e.dataset.b===id));
+  els[id].classList.add('sel');G.classList.add('focus');
+  const pills=[`<span class="pill ${n.xp>0?'on':''}">${n.status}</span>`,
+    `<span class="pill">${n.levelName}</span>`,
+    n.cap<10?`<span class="pill warn">ceiling ${n.cap}</span>`:'',
+    n.rust?`<span class="pill warn">${n.rust}</span>`:'',
+    `<span class="pill">confidence ${n.conf}</span>`].join('');
+  P.innerHTML=`<button id="close" aria-label="Close">✕</button>
+    <div class="eyebrow">${n.treeName}</div>
+    <h2>${n.name}</h2>
+    <div class="state">${pills}</div>
+    ${seg(n.level,n.cap)}
+    <div class="xp mono">Level ${n.level} · ${n.xp} XP${n.next?` · ${n.next} XP to level ${n.level+1}`:''}</div>
+    ${n.cap<10?`<p><b style="color:var(--ochre)">${n.capped?'Ceiling reached — XP alone will not move this.':'Ceiling at level '+n.cap+'.'}</b> ${n.capNote}</p>`:''}
+    <section><h3>How to unlock the next level</h3>
+      <p>${n.req||'No requirement recorded.'}</p></section>
+    <section><h3>Requires</h3>
+      ${n.prereq.length?n.prereq.map(p=>reqRow(p[0],p[1])).join(''):'<span class="none">Nothing — this is a root node.</span>'}</section>
+    <section><h3>Leads to</h3>
+      ${n.unlocks.length?n.unlocks.map(u=>reqRow(u,1)).join(''):'<span class="none">Nothing further yet.</span>'}</section>
+    <section><h3>Evidence${n.ev.length?` · ${n.ev.length}`:''}</h3>
+      ${n.ev.length?n.ev.map(e=>`<div class="ev"><div class="top mono"><span>${e.d}</span><b>${e.k}</b><span>+${e.x} XP</span></div><p>${e.r}</p></div>`).join(''):'<span class="none">No evidence recorded. Nothing here has been earned yet.</span>'}</section>`;
+  P.classList.add('open');
+  P.querySelector('#close').onclick=deselect;
+  P.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{show(b.dataset.go);centre(b.dataset.go)});
+  P.scrollTop=0;
+}
+function centre(id){const p=POS[id];if(!p)return;
+  vb.x=p[0]-vb.w/2; vb.y=p[1]-vb.h/2; apply()}
+Object.values(els).forEach(n=>{
+  n.addEventListener('click',e=>{e.stopPropagation();if(moved>6)return;show(n.dataset.id)});
+  n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(n.dataset.id)}});
+});
+S.addEventListener('click',()=>{if(moved<=6)deselect()});
+addEventListener('keydown',e=>{if(e.key==='Escape')deselect()});
 """
 
 
-def _segments(node: dict[str, Any]) -> str:
-    """Ten level segments, with the evidence ceiling drawn as blocked-out."""
-    level = node.get("level", 0)
-    cap = node.get("level_cap", 10)
-    lo, hi = xp_span_for_level(level)
-    pct = 0 if hi <= lo else max(0, min(100, 100 * (node.get("xp", 0) - lo) / (hi - lo)))
-    out = []
-    for i in range(1, 11):
-        if i <= level:
-            out.append('<span class="on"></span>')
-        elif i > cap:
-            out.append('<span class="cap"></span>')
-        elif i == level + 1:
-            out.append(f'<span class="tip" style="--p:{pct:.0f}%"></span>')
-        else:
-            out.append("<span></span>")
-    return '<div class="segs" aria-hidden="true">' + "".join(out) + "</div>"
+def _layout(tree: dict[str, Any]) -> tuple[dict[str, tuple[float, float]], dict[str, int]]:
+    """Radial wedge layout: one wedge per tree, tier drives distance from centre.
+
+    Computed here rather than in the browser so positions are identical every
+    time the file is regenerated — a tree that rearranged itself daily would be
+    unreadable.
+    """
+    branches = tree["trees"]
+    grouped: dict[str, list[dict[str, Any]]] = {b["id"]: [] for b in branches}
+    for node in tree["nodes"]:
+        grouped.setdefault(node.get("tree", "misc"), []).append(node)
+
+    pos: dict[str, tuple[float, float]] = {}
+    side: dict[str, int] = {}
+    count = len(branches)
+    for bi, branch in enumerate(branches):
+        centre = 2 * math.pi * bi / count - math.pi / 2
+        wedge = 2 * math.pi / count
+        tiers: dict[int, list[dict[str, Any]]] = {}
+        for node in grouped.get(branch["id"], []):
+            tiers.setdefault(node.get("tier", 1), []).append(node)
+        for tier, members in sorted(tiers.items()):
+            members.sort(key=lambda n: n["name"])
+            # Compressed, not linear: most trees stop around tier 5, so linear
+            # growth would strand the few tier-9 nodes far outside everything.
+            radius = 300 + (tier ** 0.82) * 165
+            span = wedge * 0.74
+            k = len(members)
+            for i, node in enumerate(members):
+                angle = centre if k == 1 else centre - span / 2 + span * i / (k - 1)
+                # Three-phase radial stagger: neighbours in a crowded tier sit on
+                # different rings, so angular spacing alone never has to clear a
+                # full node diameter.
+                phase = (i % 3) - 1
+                r = radius + phase * 58
+                pos[node["id"]] = (r * math.cos(angle), r * math.sin(angle))
+                # Neighbours in a crowded tier alternate their label above and
+                # below the disc, so adjacent names cannot land on each other.
+                side[node["id"]] = -1 if phase == 0 else 1
+    return pos, side
+
+
+# What it takes to lift each ceiling. The tree is only useful if it names the
+# next kind of evidence, not just the number it is stuck on.
+CAP_NOTE = {
+    1: "Only questions are recorded here. Studying it properly lifts this to 2; "
+       "practising it lifts it to 4.",
+    2: "Reading and study top out at level 2. Practising this — actually doing it, "
+       "however badly — lifts the ceiling to 4.",
+    4: "Practice tops out at level 4. Building or shipping something with it lifts "
+       "the ceiling to 6.",
+    6: "Shipped work tops out at level 6. Using it for real — paid, delivered, or "
+       "relied on by someone else — lifts the ceiling to 8.",
+    8: "Real-world use tops out at level 8. Levels 9 and 10 need repeated success: "
+       "three or more real results spanning at least six months.",
+}
 
 
 def cmd_dashboard(args: argparse.Namespace) -> int:
     tree = load_tree(args.tree)
     recompute_all(tree)
-    player = tree["player"]
     idx = node_index(tree)
+    pos, side = _layout(tree)
     e = html.escape
+    branches = {b["id"]: b for b in tree["trees"]}
+
+    # Frame the dense core rather than the handful of tier-9 outliers: fitting
+    # the absolute extent would shrink the readable body of the tree to nothing.
+    radii = sorted(math.hypot(x, y) for x, y in pos.values())
+    core = radii[int(len(radii) * 0.93)] if radii else 800
+    extent = core + 210
+
     p: list[str] = []
     w = p.append
+    w(f"<title>{e(tree['player']['name'])} — Skill Tree</title>")
+    w(f"<style>{TREE_CSS}</style>")
+    w('<div id="stage"><svg id="svg" preserveAspectRatio="xMidYMid meet" '
+      'role="application" aria-label="Personal skill tree"><g id="cam">')
 
-    evidenced = [n for n in tree["nodes"] if n.get("xp", 0) > 0]
+    # ---- edges, drawn first so nodes sit on top ----
+    for node in tree["nodes"]:
+        if node["id"] not in pos:
+            continue
+        x2, y2 = pos[node["id"]]
+        for req in node.get("prerequisites", []):
+            target, need = (req.get("node"), req.get("level", 1)) if isinstance(req, dict) \
+                else (req, 1)
+            if target not in pos:
+                continue
+            x1, y1 = pos[target]
+            parent = idx[target]
+            cls = "edge"
+            if parent.get("tree") != node.get("tree"):
+                cls += " cross"
+            if parent.get("level", 0) >= need:
+                cls += " done"
+            # Curve toward the centre so long cross-tree links stay legible.
+            mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+            w(f'<path class="{cls}" data-a="{e(target)}" data-b="{e(node["id"])}" '
+              f'd="M{x1:.0f} {y1:.0f} Q{mx * 0.82:.0f} {my * 0.82:.0f} {x2:.0f} {y2:.0f}"/>')
 
-    w(f"<title>{e(player['name'])} — Personal Skill Tree</title>")
-    w(f"<style>{DASH_CSS}</style>")
-    w('<div class="wrap">')
+    # Thirteen full branch names will not fit around the rim at a readable
+    # size, so the rim carries short forms; the full name is in the panel.
+    SHORT = {
+        "entrepreneurship": "Entrepreneurship", "growth_ops": "Growth Ops",
+        "ai_automation": "AI & Automation", "content_youtube": "YouTube",
+        "filmmaking": "Filmmaking", "art": "Art", "fitness": "Fitness",
+        "money": "Money", "technology": "Technology", "learning": "Learning",
+        "personal_development": "Personal Dev", "life_independence": "Independence",
+        "cross": "Cross-Tree",
+    }
 
-    # ---- masthead ----
-    w('<header class="mast">')
-    w(f'<h1>{e(player["name"].upper())} — PERSONAL SKILL TREE<span class="dot">.</span></h1>')
-    w(f'<div class="stamp mono">Calibrated {e(player.get("last_update") or "never")} · '
-      f'{len(evidenced)}/{len(tree["nodes"])} nodes evidenced</div>')
-    w("</header>")
+    # ---- branch labels at the outer edge of each wedge ----
+    count = len(tree["trees"])
+    for bi, branch in enumerate(tree["trees"]):
+        members = [n for n in tree["nodes"] if n.get("tree") == branch["id"] and n["id"] in pos]
+        if not members:
+            continue
+        top = max(n.get("tier", 1) for n in members)
+        angle = 2 * math.pi * bi / count - math.pi / 2
+        # Sit at the rim of the framed area, but never beyond it, so no branch
+        # name is cropped by the initial fit.
+        r = min(300 + (top ** 0.82) * 165 + 175, extent - 95)
+        w(f'<text class="branch-label" x="{r * math.cos(angle):.0f}" '
+          f'y="{r * math.sin(angle):.0f}">'
+          f'{e(SHORT.get(branch["id"], branch["name"]))}</text>')
 
-    # ---- readout ----
-    unlocked = sum(1 for m in tree.get("milestones", []) if m.get("unlocked"))
-    build = tree.get("build", {})
-    w('<div class="readout">')
-    w(f'<div class="cell"><span class="k mono">Player level</span>'
-      f'<span class="v num mono">{player["player_level"]}</span></div>')
-    w(f'<div class="cell"><span class="k mono">Total XP</span>'
-      f'<span class="v num mono">{player["total_xp"]:,.0f}</span></div>')
-    w(f'<div class="cell"><span class="k mono">Milestones</span>'
-      f'<span class="v num mono">{unlocked}<small>/{len(tree.get("milestones", []))}</small></span></div>')
-    w(f'<div class="cell"><span class="k mono">Evidenced build</span>'
-      f'<span class="v txt">{e(build.get("primary_class") or "Undetermined")}</span></div>')
-    w("</div>")
+    # ---- nodes ----
+    R = 27
+    circ = 2 * math.pi * (R + 7)
+    for node in tree["nodes"]:
+        if node["id"] not in pos:
+            continue
+        x, y = pos[node["id"]]
+        has = node.get("xp", 0) > 0
+        cls = "node"
+        cls += " has" if has else (" avail" if node.get("status") != "Locked" else " idle")
+        if not has:
+            cls += " idle"
+        if node.get("hidden"):
+            cls += " hidden"
+        label = "???" if node.get("hidden") and not has else node["name"]
+        w(f'<g class="{cls}" data-id="{e(node["id"])}" tabindex="0" role="button" '
+          f'transform="translate({x:.0f},{y:.0f})">')
+        w(f'<title>{e(label)} — level {node["level"]}</title>')
+        w(f'<circle class="halo" r="{R + 20}"/>')
+        w(f'<circle class="disc" r="{R}"/>')
+        if node.get("level", 0) > 0:
+            on = circ * node["level"] / 10
+            w(f'<circle class="ring" r="{R + 7}" stroke-dasharray="{on:.1f} {circ - on:.1f}"/>')
+        if node.get("level_cap", 10) < 10 and node.get("xp", 0) > 0:
+            blocked = circ * (10 - node["level_cap"]) / 10
+            w(f'<circle class="cap" r="{R + 13}" stroke-dasharray="0 {circ - blocked:.1f} '
+              f'{blocked:.1f}" stroke-dashoffset="0"/>')
+        w(f'<text class="lv mono">{node["level"] if has else "·"}</text>')
+        if node.get("sharpness") in ("rusting", "dormant"):
+            w(f'<circle class="rust" cx="{R - 4}" cy="{-R + 6}" r="4.5"/>')
+        # Two-line label so long names stay inside the node spacing.
+        words = label.split()
+        line1, line2 = label, ""
+        if len(label) > 17 and len(words) > 1:
+            half = len(label) / 2
+            best, run = 0, 0
+            for i, word in enumerate(words[:-1]):
+                run += len(word) + 1
+                if abs(run - half) < abs(best - half):
+                    best, split = run, i + 1
+            line1 = " ".join(words[:split])
+            line2 = " ".join(words[split:])
+        if side.get(node["id"], 1) < 0:
+            top_y = -R - 16 - (17 if line2 else 0)
+            w(f'<text class="lbl" y="{top_y}">{e(line1)}</text>')
+            if line2:
+                w(f'<text class="lbl" y="{top_y + 17}">{e(line2)}</text>')
+        else:
+            w(f'<text class="lbl" y="{R + 21}">{e(line1)}</text>')
+            if line2:
+                w(f'<text class="lbl" y="{R + 38}">{e(line2)}</text>')
+        w("</g>")
 
-    # ---- the finding: evidenced build vs declared direction ----
-    declared = build.get("declared_direction")
-    if declared and build.get("primary_class") and declared != build["primary_class"]:
-        w('<section class="finding">')
-        w('<span class="eyebrow mono">What the evidence says</span>')
-        w('<div class="pair"><b>' + e(build["primary_class"]) + '</b>'
-          '<span class="vs mono">evidenced &nbsp;/&nbsp; declared</span>'
-          '<b>' + e(declared) + "</b></div>")
-        if build.get("note"):
-            w(f"<p>{e(build['note'])}</p>")
-        w("</section>")
+    w("</g></svg></div>")
 
-    # ---- attributes ----
-    w('<section class="sec"><h2>Core attributes</h2><div class="attrs">')
-    for name, data in tree.get("attributes", {}).items():
-        w(f'<div class="attr"><span>{e(name.replace("_", " ").title())}</span>'
-          f'<span class="meter"><i style="width:{10 * data["value"]:.0f}%"></i></span>'
-          f'<span class="n num mono">{data["value"]}</span></div>')
-    w("</div></section>")
+    # ---- detail panel + chrome ----
+    w('<aside id="panel" aria-live="polite"></aside>')
+    w('<div id="hint" class="mono">Drag to pan · scroll to zoom · click a node</div>')
+    w('<div id="zoom"><button id="zin" aria-label="Zoom in">+</button>'
+      '<button id="zout" aria-label="Zoom out">−</button>'
+      '<button id="zfit" aria-label="Fit tree">⤢</button></div>')
+    w('<div id="legend">'
+      '<span><i class="has"></i>evidenced</span>'
+      '<span><i class="av"></i>available</span>'
+      '<span><i></i>locked</span>'
+      '<span><i class="cap"></i>ochre arc = evidence ceiling</span>'
+      '<span>ring = level</span></div>')
 
-    # ---- trees ----
-    w('<section class="sec"><h2>Skill trees</h2><div class="trees">')
-    for branch in tree["trees"]:
-        nodes = [n for n in tree["nodes"] if n.get("tree") == branch["id"]]
-        visible = [n for n in nodes if not n.get("hidden")]
-        hidden = [n for n in nodes if n.get("hidden")]
-        active = sorted([n for n in visible if n.get("xp", 0) > 0],
-                        key=lambda n: (-n.get("level", 0), -n.get("xp", 0)))
-        ready = [n for n in visible if n.get("xp", 0) == 0 and n.get("status") != "Locked"]
-        locked = [n for n in visible if n.get("xp", 0) == 0 and n.get("status") == "Locked"]
-
-        w('<article class="branch">')
-        w(f'<header><h3>{e(branch["name"])}</h3>'
-          f'<span class="count mono num">{len(active)}/{len(visible)}</span></header>')
-        if branch.get("description"):
-            w(f'<p class="desc">{e(branch["description"])}</p>')
-        w('<div class="rows">')
-        for node in active:
-            chips = ""
-            if node.get("capped"):
-                chips += f'<span class="chip cap mono">cap {node["level_cap"]}</span>'
-            if node.get("sharpness") in ("rusting", "dormant"):
-                days = node.get("days_since_progress")
-                label = f'{node["sharpness"]} {days}d' if days is not None else node["sharpness"]
-                chips += f'<span class="chip warn mono">{e(label)}</span>'
-            w('<div class="row">')
-            w(f'<span class="nm">{e(node["name"])}{chips}</span>')
-            w(f'<span class="lv mono num">Lv {node["level"]} · {e(LEVEL_NAMES[node["level"]])}</span>')
-            w(_segments(node))
-            w("</div>")
-        for node in ready[:4]:
-            w('<div class="row idle">')
-            w(f'<span class="nm">{e(node["name"])}'
-              f'<span class="chip ready mono">ready</span></span>')
-            w('<span class="lv mono">no evidence</span>')
-            w("</div>")
-        if len(ready) > 4:
-            w(f'<div class="locked-row mono">+{len(ready) - 4} more available, no evidence yet</div>')
-        w("</div>")
-        if locked:
-            w(f'<div class="locked-row mono">{len(locked)} locked behind prerequisites</div>')
-        if hidden:
-            w(f'<div class="hidden-row mono"><span>???</span>'
-              f'<span>{len(hidden)} hidden</span></div>')
-        w("</article>")
-    w("</div></section>")
-
-    # ---- quests ----
-    quests = tree.get("quests", []) or []
-    if quests:
-        w('<section class="sec"><h2>Current quests</h2><div class="quests">')
-        for i, quest in enumerate(quests):
-            cls = "quest main" if i == 0 else "quest"
-            stars = "★" * quest.get("difficulty", 3) + "☆" * (5 - quest.get("difficulty", 3))
-            w(f'<article class="{cls}">')
-            w(f'<h4>{e(quest["name"])}</h4>')
-            w(f'<p>{e(quest.get("description", ""))}</p>')
-            w("<dl>")
-            w(f'<dt class="mono">Reward</dt><dd>{e(quest.get("reward", "—"))}</dd>')
-            w(f'<dt class="mono">Proof</dt><dd>{e(quest.get("proof", "—"))}</dd>')
-            w("</dl>")
-            w(f'<span class="diff" title="Difficulty">{stars}</span>')
-            w("</article>")
-        w("</div></section>")
-
-    # ---- nearest unlocks + milestones ----
-    w('<div class="two">')
-    near = nearest_unlocks(tree, idx)
-    w('<section class="sec"><h2>Nearest unlocks</h2><div class="panel">')
-    if near:
-        for item in near:
-            right = "ready" if item["ready"] else f'{item["pct"]}%'
-            sub = "" if not item["missing"] else \
-                f'<span class="sub">Missing: {e("; ".join(item["missing"]))}</span>'
-            w(f'<div class="li"><span>{e(item["name"])}{sub}</span>'
-              f'<span class="r mono">{right}</span></div>')
-    else:
-        w('<div class="li off">Nothing close yet.</div>')
-    w("</div></section>")
-
-    w('<section class="sec"><h2>Milestones</h2><div class="panel">')
-    for milestone in tree.get("milestones", []):
-        got = milestone.get("unlocked")
-        right = e(milestone.get("date") or "") if got else "locked"
-        w(f'<div class="li{"" if got else " off"}"><span>{"✓ " if got else ""}'
-          f'{e(milestone["name"])}</span><span class="r mono">{right}</span></div>')
-    w("</div></section>")
-    w("</div>")
-
-    w('<footer class="foot">Generated from PERSONAL_SKILL_TREE.json by '
-      'scripts/skilltree.py. Levels are capped by the class of evidence behind them — '
-      'hatched segments mark a ceiling that reading cannot lift, only doing.</footer>')
-    w("</div>")
+    # ---- data ----
+    payload = {}
+    for node in tree["nodes"]:
+        if node["id"] not in pos:
+            continue
+        lo, hi = xp_span_for_level(node["level"])
+        payload[node["id"]] = {
+            "name": "???" if node.get("hidden") and node.get("xp", 0) <= 0 else node["name"],
+            "treeName": branches.get(node.get("tree"), {}).get("name", ""),
+            "level": node["level"],
+            "levelName": LEVEL_NAMES[node["level"]],
+            "status": node.get("status", ""),
+            "xp": round(node.get("xp", 0)),
+            "next": 0 if node["level"] >= 10 else round(hi - node.get("xp", 0)),
+            "cap": node.get("level_cap", 10),
+            "capped": bool(node.get("capped")),
+            "capNote": CAP_NOTE.get(node.get("level_cap", 10), ""),
+            "conf": node.get("confidence", "none"),
+            "rust": node["sharpness"] if node.get("sharpness") in ("rusting", "dormant") else "",
+            "req": node.get("unlock_requirement", ""),
+            "prereq": [[r["node"], r.get("level", 1)] if isinstance(r, dict) else [r, 1]
+                       for r in node.get("prerequisites", [])],
+            "unlocks": node.get("next_unlock", []),
+            "ev": [{"d": ev.get("date", ""), "k": ev.get("kind", ""),
+                    "x": round(ev.get("xp", 0)), "r": ev.get("reason", "")}
+                   for ev in node.get("evidence", [])],
+        }
+    w("<script>")
+    w("const DATA=" + json.dumps(payload, ensure_ascii=False) + ";")
+    w("const POS=" + json.dumps({k: [round(v[0]), round(v[1])] for k, v in pos.items()}) + ";")
+    w(f"const VB0={{x:{-extent},y:{-extent},w:{2 * extent},h:{2 * extent},cx:0,cy:0}};")
+    w(TREE_JS)
+    w("</script>")
 
     path = args.out or DASH_PATH
     with open(path, "w", encoding="utf-8") as fh:
         fh.write("\n".join(p))
-    print(f"Wrote {path}")
+    print(f"Wrote {path} — {len(payload)} nodes")
     return 0
 
 
