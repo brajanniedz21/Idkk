@@ -831,7 +831,7 @@ svg{width:100%;height:100%;display:block}
 .node:hover .lbl,.node.sel .lbl,.node:focus .lbl{fill:var(--cream);opacity:1}
 .node.sel .disc{stroke:var(--accent);stroke-width:3}
 .node.dim{opacity:.13}
-.node .halo{fill:var(--accent);opacity:0;transition:opacity .18s}
+.node .halo{fill:var(--accent);opacity:0;transition:opacity .18s;pointer-events:all}
 .node.sel .halo{opacity:.13}
 .node:focus{outline:none}
 .node:focus .disc{stroke:var(--cream)}
@@ -881,7 +881,7 @@ svg{width:100%;height:100%;display:block}
 
 /* ---- controls ---- */
 #zoom{position:fixed;left:18px;bottom:18px;display:flex;flex-direction:column;gap:1px;background:#26231E}
-#zoom button{width:34px;height:34px;background:var(--void-2);border:0;color:var(--muted);
+#zoom button{width:44px;height:44px;background:var(--void-2);border:0;color:var(--muted);
   font-size:16px;cursor:pointer;font-family:inherit}
 #zoom button:hover{color:var(--cream);background:#221F1B}
 #legend{position:fixed;left:64px;bottom:18px;display:flex;gap:14px;flex-wrap:wrap;
@@ -894,43 +894,94 @@ svg{width:100%;height:100%;display:block}
 #legend i.cap{border-color:var(--ochre);background:none}
 #hint{position:fixed;top:18px;left:18px;font-size:11px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--faint)}
-@media (max-width:640px){#legend{display:none}}
+@media (max-width:640px){
+  #legend{display:none}
+  #hint{font-size:10px;letter-spacing:.06em}
+  #zoom{left:12px;bottom:12px}
+  #zoom button{width:50px;height:50px;font-size:20px}
+}
 """
 
 TREE_JS = r"""
 const S=document.getElementById('stage'),SVG=document.getElementById('svg'),
       G=document.getElementById('cam'),P=document.getElementById('panel');
-let vb={x:VB0.x,y:VB0.y,w:VB0.w,h:VB0.h};
+let vb={x:0,y:0,w:VB0.w,h:VB0.h};
 function apply(){SVG.setAttribute('viewBox',`${vb.x} ${vb.y} ${vb.w} ${vb.h}`)}
+function toSvg(cx,cy){const r=S.getBoundingClientRect();
+  return [vb.x+(cx-r.left)*vb.w/r.width, vb.y+(cy-r.top)*vb.h/r.height]}
 function fit(){
   const r=S.getBoundingClientRect(), a=r.width/r.height, size=VB0.w;
-  if(a>=1){vb.h=size;vb.w=size*a}else{vb.w=size;vb.h=size/a}
-  vb.x=VB0.cx-vb.w/2; vb.y=VB0.cy-vb.h/2; apply();
+  let w,h;
+  if(a>=1){h=size;w=size*a}else{w=size;h=size/a}
+  /* Never open so far out that the nodes stop being legible. On a phone this
+     starts you inside the graph rather than showing an unreadable map of it. */
+  const maxW=r.width*3.4;
+  if(w>maxW){w=maxW;h=w/a}
+  vb.w=w;vb.h=h;vb.x=VB0.cx-w/2;vb.y=VB0.cy-h/2;apply();
 }
 fit(); addEventListener('resize',fit);
 
-/* pan */
-let dragging=false,sx=0,sy=0,moved=0;
-S.addEventListener('pointerdown',e=>{dragging=true;moved=0;sx=e.clientX;sy=e.clientY;
-  S.classList.add('drag');S.setPointerCapture(e.pointerId)});
-S.addEventListener('pointermove',e=>{if(!dragging)return;
-  const r=S.getBoundingClientRect(),k=vb.w/r.width;
-  const dx=e.clientX-sx,dy=e.clientY-sy;moved+=Math.abs(dx)+Math.abs(dy);
-  vb.x-=dx*k;vb.y-=dy*k;sx=e.clientX;sy=e.clientY;apply()});
-addEventListener('pointerup',()=>{dragging=false;S.classList.remove('drag')});
-
-/* zoom */
-function zoom(f,cx,cy){
-  const nw=Math.max(320,Math.min(7000,vb.w*f));f=nw/vb.w;
+function zoomAt(f,cx,cy){
+  const nw=Math.max(300,Math.min(9000,vb.w*f));f=nw/vb.w;
   vb.x=cx-(cx-vb.x)*f; vb.y=cy-(cy-vb.y)*f; vb.w=nw; vb.h*=f; apply();
 }
+function zoomMid(f){zoomAt(f,vb.x+vb.w/2,vb.y+vb.h/2)}
+
+/* Pointer handling covers mouse drag, one-finger pan and two-finger pinch from
+   the same code path. touch-action is none, so pinch has to be built here —
+   without it a phone is stuck at whatever zoom the page opened at. */
+const pts=new Map(); let last=null, moved=0;
+function spread(){const [a,b]=[...pts.values()];
+  return {d:Math.hypot(a.x-b.x,a.y-b.y), x:(a.x+b.x)/2, y:(a.y+b.y)/2}}
+/* Deliberately no setPointerCapture: capturing on the stage retargets the
+   pointer stream and swallows the click before it reaches a node, which breaks
+   the primary interaction. Window-level listeners give drag-outside-the-element
+   behaviour without touching hit testing. */
+S.addEventListener('pointerdown',e=>{
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===1){moved=0;S.classList.add('drag')}
+  if(pts.size===2){last=spread();S.classList.remove('drag')}
+});
+addEventListener('pointermove',e=>{
+  const p=pts.get(e.pointerId); if(!p)return;
+  const dx=e.clientX-p.x, dy=e.clientY-p.y;
+  p.x=e.clientX; p.y=e.clientY;
+  if(pts.size>=2){
+    const now=spread();
+    if(last&&last.d>4&&now.d>4){
+      const [mx,my]=toSvg(now.x,now.y);
+      zoomAt(last.d/now.d,mx,my);
+    }
+    last=now; moved=999; return;
+  }
+  moved+=Math.abs(dx)+Math.abs(dy);
+  const r=S.getBoundingClientRect();
+  vb.x-=dx*vb.w/r.width; vb.y-=dy*vb.h/r.height; apply();
+});
+function release(e){pts.delete(e.pointerId); if(pts.size<2)last=null;
+  if(!pts.size)S.classList.remove('drag')}
+addEventListener('pointerup',release);
+addEventListener('pointercancel',release);
+
 S.addEventListener('wheel',e=>{e.preventDefault();
-  const r=S.getBoundingClientRect(),k=vb.w/r.width;
-  zoom(e.deltaY>0?1.12:0.89, vb.x+(e.clientX-r.left)*k, vb.y+(e.clientY-r.top)*k);
+  const [mx,my]=toSvg(e.clientX,e.clientY);
+  zoomAt(e.deltaY>0?1.12:0.89,mx,my);
 },{passive:false});
-document.getElementById('zin').onclick=()=>zoom(0.8,vb.x+vb.w/2,vb.y+vb.h/2);
-document.getElementById('zout').onclick=()=>zoom(1.25,vb.x+vb.w/2,vb.y+vb.h/2);
+document.getElementById('zin').onclick=()=>zoomMid(0.7);
+document.getElementById('zout').onclick=()=>zoomMid(1.43);
 document.getElementById('zfit').onclick=()=>{fit();deselect()};
+
+/* Double tap zooms in on the spot you tapped. */
+let tapT=0,tapX=0,tapY=0;
+addEventListener('pointerup',e=>{
+  const t=Date.now();
+  if(t-tapT<300 && Math.hypot(e.clientX-tapX,e.clientY-tapY)<30){
+    const [mx,my]=toSvg(e.clientX,e.clientY); zoomAt(0.55,mx,my); tapT=0; moved=999;
+  } else {tapT=t;tapX=e.clientX;tapY=e.clientY}
+});
+
+if(matchMedia('(pointer:coarse)').matches)
+  document.getElementById('hint').textContent='Drag to pan · pinch to zoom · tap a node';
 
 /* selection */
 const els={},edges=[...document.querySelectorAll('.edge')];
@@ -1015,7 +1066,7 @@ def _layout(tree: dict[str, Any]) -> tuple[dict[str, tuple[float, float]], dict[
             members.sort(key=lambda n: n["name"])
             # Compressed, not linear: most trees stop around tier 5, so linear
             # growth would strand the few tier-9 nodes far outside everything.
-            radius = 300 + (tier ** 0.82) * 165
+            radius = 170 + (tier ** 0.82) * 158
             span = wedge * 0.74
             k = len(members)
             for i, node in enumerate(members):
@@ -1061,6 +1112,9 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
     radii = sorted(math.hypot(x, y) for x, y in pos.values())
     core = radii[int(len(radii) * 0.93)] if radii else 800
     extent = core + 210
+    earned = [pos[n["id"]] for n in tree["nodes"] if n.get("xp", 0) > 0 and n["id"] in pos]
+    focus = (sum(x for x, _ in earned) / len(earned),
+             sum(y for _, y in earned) / len(earned)) if earned else (0.0, 0.0)
 
     p: list[str] = []
     w = p.append
@@ -1112,7 +1166,7 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
         angle = 2 * math.pi * bi / count - math.pi / 2
         # Sit at the rim of the framed area, but never beyond it, so no branch
         # name is cropped by the initial fit.
-        r = min(300 + (top ** 0.82) * 165 + 175, extent - 95)
+        r = min(170 + (top ** 0.82) * 158 + 165, extent - 95)
         w(f'<text class="branch-label" x="{r * math.cos(angle):.0f}" '
           f'y="{r * math.sin(angle):.0f}">'
           f'{e(SHORT.get(branch["id"], branch["name"]))}</text>')
@@ -1135,7 +1189,7 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
         w(f'<g class="{cls}" data-id="{e(node["id"])}" tabindex="0" role="button" '
           f'transform="translate({x:.0f},{y:.0f})">')
         w(f'<title>{e(label)} — level {node["level"]}</title>')
-        w(f'<circle class="halo" r="{R + 20}"/>')
+        w(f'<circle class="halo" r="{R + 26}"/>')
         w(f'<circle class="disc" r="{R}"/>')
         if node.get("level", 0) > 0:
             on = circ * node["level"] / 10
@@ -1215,7 +1269,7 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
     w("<script>")
     w("const DATA=" + json.dumps(payload, ensure_ascii=False) + ";")
     w("const POS=" + json.dumps({k: [round(v[0]), round(v[1])] for k, v in pos.items()}) + ";")
-    w(f"const VB0={{x:{-extent},y:{-extent},w:{2 * extent},h:{2 * extent},cx:0,cy:0}};")
+    w(f"const VB0={{w:{2 * extent},h:{2 * extent},cx:{focus[0]:.0f},cy:{focus[1]:.0f}}};")
     w(TREE_JS)
     w("</script>")
 
