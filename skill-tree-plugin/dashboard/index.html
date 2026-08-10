@@ -28,7 +28,11 @@ body{
 svg{width:100%;height:100%;display:block}
 
 .edge{stroke:var(--edge);stroke-width:2.6;fill:none}
-.edge.cross{stroke-dasharray:8 9;stroke:#3A352C}
+.card{fill:#151311;stroke:#282520;stroke-width:2}
+.card-name{fill:#CFC7B8;font-size:28px;font-weight:700;letter-spacing:.01em}
+.card-count{fill:var(--faint);font-size:22px;text-anchor:end}
+.card-desc{fill:var(--faint);font-size:18px}
+.edge.cross{stroke-dasharray:8 9;stroke:#332E26;opacity:.45;stroke-width:2}
 .edge.done{stroke:var(--accent-dim);stroke-width:3.4}
 .edge.lit{stroke:var(--edge-lit);stroke-width:4.5}
 /* With something selected, everything unrelated recedes so the one
@@ -44,7 +48,7 @@ svg{width:100%;height:100%;display:block}
   transform:rotate(-90deg);transform-box:fill-box;transform-origin:center}
 .node .cap{fill:none;stroke:var(--ochre);stroke-width:3;opacity:.85;
   transform:rotate(-90deg);transform-box:fill-box;transform-origin:center}
-.node .lv{fill:var(--cream);font-size:30px;font-weight:700;text-anchor:middle;
+.node .lv{fill:var(--cream);font-weight:700;text-anchor:middle;
   dominant-baseline:central;pointer-events:none}
 .node.idle .lv{fill:var(--faint)}
 .node .lbl{fill:var(--faint);font-size:21px;opacity:.62;transition:opacity .15s;text-anchor:middle;pointer-events:none;
@@ -60,8 +64,6 @@ svg{width:100%;height:100%;display:block}
 .node:focus .disc{stroke:var(--cream)}
 .rust{fill:var(--ochre)}
 
-.branch-label{fill:#9A9182;font-size:30px;letter-spacing:.2em;text-anchor:middle;
-  text-transform:uppercase;pointer-events:none;font-weight:600}
 
 /* ---- detail panel ---- */
 #panel{position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);background:var(--panel);
@@ -125,684 +127,712 @@ svg{width:100%;height:100%;display:block}
 }
 </style>
 <div id="stage"><svg id="svg" preserveAspectRatio="xMidYMid meet" role="application" aria-label="Personal skill tree"><g id="cam">
-<path class="edge done" data-a="biz.fundamentals" data-b="biz.offer" d="M0 -398 Q0 -373 0 -513"/>
-<path class="edge done" data-a="biz.offer" data-b="biz.copywriting" d="M0 -513 Q0 -489 0 -679"/>
-<path class="edge done" data-a="biz.offer" data-b="biz.outreach" d="M0 -513 Q64 -507 157 -724"/>
-<path class="edge done" data-a="biz.fundamentals" data-b="biz.growth" d="M0 -398 Q-62 -450 -152 -699"/>
-<path class="edge cross done" data-a="auto.fundamentals" data-b="biz.crm" d="M343 -306 Q87 -373 -131 -603"/>
-<path class="edge done" data-a="biz.outreach" data-b="biz.sales" d="M157 -724 Q132 -609 165 -760"/>
-<path class="edge" data-a="biz.sales" data-b="biz.delivery" d="M165 -760 Q68 -643 0 -809"/>
-<path class="edge" data-a="biz.delivery" data-b="biz.scaling" d="M0 -809 Q0 -701 0 -900"/>
-<path class="edge done" data-a="biz.growth" data-b="biz.scaling" d="M-152 -699 Q-62 -656 0 -900"/>
-<path class="edge done" data-a="ai.fundamentals" data-b="ai.prompting" d="M160 -364 Q242 -306 429 -383"/>
-<path class="edge done" data-a="ai.prompting" data-b="ai.agents" d="M429 -383 Q348 -394 421 -579"/>
-<path class="edge done" data-a="auto.fundamentals" data-b="auto.tools" d="M343 -306 Q225 -318 207 -469"/>
-<path class="edge" data-a="auto.tools" data-b="auto.integration" d="M207 -469 Q233 -397 363 -499"/>
-<path class="edge" data-a="auto.integration" data-b="auto.systems" d="M363 -499 Q344 -473 476 -655"/>
-<path class="edge" data-a="auto.systems" data-b="auto.production" d="M476 -655 Q412 -567 529 -728"/>
-<path class="edge" data-a="ai.agents" data-b="ai.production" d="M421 -579 Q410 -565 581 -799"/>
-<path class="edge" data-a="auto.production" data-b="ai.production" d="M529 -728 Q455 -626 581 -799"/>
-<path class="edge" data-a="yt.fundamentals" data-b="yt.ideas" d="M379 -123 Q337 -156 443 -258"/>
-<path class="edge" data-a="yt.fundamentals" data-b="yt.packaging" d="M379 -123 Q390 -74 572 -58"/>
-<path class="edge" data-a="yt.fundamentals" data-b="yt.analytics" d="M379 -123 Q396 -129 587 -191"/>
-<path class="edge" data-a="yt.analytics" data-b="yt.strategy" d="M587 -191 Q520 -169 680 -221"/>
-<path class="edge" data-a="yt.ideas" data-b="yt.strategy" d="M443 -258 Q461 -197 680 -221"/>
-<path class="edge" data-a="yt.strategy" data-b="yt.systems" d="M680 -221 Q595 -193 770 -250"/>
-<path class="edge cross" data-a="auto.integration" data-b="yt.systems" d="M363 -499 Q464 -307 770 -250"/>
-<path class="edge done" data-a="vis.drawing" data-b="vis.composition" d="M396 40 Q381 144 533 311"/>
-<path class="edge" data-a="vis.story" data-b="vis.edit" d="M397 232 Q363 160 488 158"/>
-<path class="edge done" data-a="vis.composition" data-b="vis.brand" d="M533 311 Q500 242 687 279"/>
-<path class="edge done" data-a="vis.composition" data-b="vis.3d" d="M533 311 Q470 153 614 62"/>
-<path class="edge cross done" data-a="ai.fundamentals" data-b="vis.ai_video" d="M160 -364 Q336 -82 659 163"/>
-<path class="edge" data-a="vis.story" data-b="vis.ai_video" d="M397 232 Q433 162 659 163"/>
-<path class="edge done" data-a="vis.composition" data-b="vis.camera" d="M533 311 Q498 218 680 221"/>
-<path class="edge" data-a="vis.story" data-b="vis.camera" d="M397 232 Q442 186 680 221"/>
-<path class="edge" data-a="vis.composition" data-b="vis.masterwork" d="M533 311 Q570 241 856 278"/>
-<path class="edge" data-a="vis.drawing" data-b="vis.masterwork" d="M396 40 Q513 130 856 278"/>
-<path class="edge done" data-a="tech.computing" data-b="tech.frontend" d="M234 322 Q219 302 301 415"/>
-<path class="edge done" data-a="tech.computing" data-b="tech.code" d="M234 322 Q245 337 363 499"/>
-<path class="edge done" data-a="tech.frontend" data-b="tech.web" d="M301 415 Q252 462 313 712"/>
-<path class="edge done" data-a="tech.web" data-b="tech.hosting" d="M313 712 Q347 487 534 477"/>
-<path class="edge" data-a="tech.code" data-b="tech.ai_integration" d="M363 499 Q344 473 476 655"/>
-<path class="edge cross" data-a="ai.agents" data-b="tech.ai_integration" d="M421 -579 Q367 31 476 655"/>
-<path class="edge" data-a="tech.web" data-b="tech.architecture" d="M313 712 Q345 590 529 728"/>
-<path class="edge" data-a="tech.code" data-b="tech.architecture" d="M363 499 Q366 503 529 728"/>
-<path class="edge" data-a="tech.hosting" data-b="tech.architecture" d="M534 477 Q436 494 529 728"/>
-<path class="edge done" data-a="fit.training" data-b="fit.recovery" d="M0 398 Q-50 393 -122 562"/>
-<path class="edge done" data-a="fit.training" data-b="fit.consistency" d="M0 398 Q-59 435 -144 664"/>
-<path class="edge done" data-a="fit.training" data-b="fit.progression" d="M0 398 Q54 411 131 603"/>
-<path class="edge" data-a="fit.progression" data-b="fit.programming" d="M131 603 Q54 579 0 809"/>
-<path class="edge" data-a="fit.consistency" data-b="fit.programming" d="M-144 664 Q-59 604 0 809"/>
-<path class="edge" data-a="mon.literacy" data-b="mon.personal" d="M-234 322 Q-219 302 -301 415"/>
-<path class="edge" data-a="mon.literacy" data-b="mon.income" d="M-234 322 Q-198 364 -249 565"/>
-<path class="edge" data-a="mon.literacy" data-b="mon.investing" d="M-234 322 Q-304 317 -507 452"/>
-<path class="edge" data-a="mon.income" data-b="mon.business_finance" d="M-249 565 Q-297 500 -476 655"/>
-<path class="edge" data-a="mon.personal" data-b="mon.business_finance" d="M-301 415 Q-319 439 -476 655"/>
-<path class="edge" data-a="mon.business_finance" data-b="mon.independence" d="M-476 655 Q-433 596 -581 799"/>
-<path class="edge" data-a="mon.personal" data-b="mon.independence" d="M-301 415 Q-362 498 -581 799"/>
-<path class="edge done" data-a="lrn.research" data-b="lrn.thinking" d="M-379 123 Q-355 115 -488 158"/>
-<path class="edge done" data-a="lrn.research" data-b="lrn.self_teaching" d="M-379 123 Q-420 136 -646 210"/>
-<path class="edge done" data-a="lrn.thinking" data-b="lrn.synthesis" d="M-488 158 Q-502 95 -738 74"/>
-<path class="edge done" data-a="lrn.thinking" data-b="lrn.experimentation" d="M-488 158 Q-419 192 -533 311"/>
-<path class="edge" data-a="lrn.synthesis" data-b="lrn.systems" d="M-738 74 Q-618 133 -770 250"/>
-<path class="edge" data-a="lrn.experimentation" data-b="lrn.systems" d="M-533 311 Q-534 230 -770 250"/>
-<path class="edge" data-a="lrn.self_teaching" data-b="lrn.systems" d="M-646 210 Q-580 189 -770 250"/>
-<path class="edge done" data-a="pd.reflection" data-b="pd.planning" d="M-397 -232 Q-388 -226 -550 -321"/>
-<path class="edge" data-a="pd.planning" data-b="pd.consistency" d="M-550 -321 Q-466 -210 -587 -191"/>
-<path class="edge done" data-a="life.communication" data-b="life.work" d="M-510 -51 Q-488 -112 -680 -221"/>
-<path class="edge" data-a="life.organisation" data-b="life.work" d="M-547 -178 Q-503 -163 -680 -221"/>
-<path class="edge" data-a="life.work" data-b="life.independent" d="M-680 -221 Q-630 -205 -856 -278"/>
-<path class="edge" data-a="life.organisation" data-b="life.independent" d="M-547 -178 Q-575 -187 -856 -278"/>
-<path class="edge" data-a="pd.consistency" data-b="life.independent" d="M-587 -191 Q-592 -192 -856 -278"/>
-<path class="edge cross" data-a="mon.personal" data-b="life.independent" d="M-301 415 Q-474 56 -856 -278"/>
-<path class="edge cross" data-a="biz.growth" data-b="cross.ai_growth_operator" d="M-152 -699 Q-364 -556 -737 -658"/>
-<path class="edge cross" data-a="auto.systems" data-b="cross.ai_growth_operator" d="M476 -655 Q-107 -538 -737 -658"/>
-<path class="edge cross" data-a="biz.crm" data-b="cross.ai_growth_operator" d="M-131 -603 Q-356 -517 -737 -658"/>
-<path class="edge cross" data-a="biz.copywriting" data-b="cross.ai_growth_operator" d="M0 -679 Q-302 -548 -737 -658"/>
-<path class="edge cross" data-a="yt.analytics" data-b="cross.ai_growth_operator" d="M587 -191 Q-61 -348 -737 -658"/>
-<path class="edge cross" data-a="vis.camera" data-b="cross.filmmaker" d="M680 221 Q106 -303 -423 -961"/>
-<path class="edge cross" data-a="vis.edit" data-b="cross.filmmaker" d="M488 158 Q27 -329 -423 -961"/>
-<path class="edge cross" data-a="vis.3d" data-b="cross.filmmaker" d="M614 62 Q78 -369 -423 -961"/>
-<path class="edge cross" data-a="vis.ai_video" data-b="cross.filmmaker" d="M659 163 Q97 -327 -423 -961"/>
-<path class="edge cross" data-a="vis.story" data-b="cross.filmmaker" d="M397 232 Q-10 -299 -423 -961"/>
-<path class="edge cross" data-a="ai.production" data-b="cross.agentic_business" d="M581 -799 Q-21 -684 -631 -868"/>
-<path class="edge cross" data-a="auto.production" data-b="cross.agentic_business" d="M529 -728 Q-42 -655 -631 -868"/>
-<path class="edge cross done" data-a="biz.growth" data-b="cross.agentic_business" d="M-152 -699 Q-321 -643 -631 -868"/>
-<path class="edge" data-a="cross.agentic_business" data-b="cross.unknown" d="M-631 -868 Q-537 -740 -680 -936"/>
-<text class="branch-label" x="0" y="-1103">Business</text>
-<text class="branch-label" x="648" y="-892">AI &amp; Automation</text>
-<text class="branch-label" x="990" y="-322">Content</text>
-<text class="branch-label" x="1049" y="341">Creative</text>
-<text class="branch-label" x="648" y="892">Technology</text>
-<text class="branch-label" x="0" y="1041">Fitness</text>
-<text class="branch-label" x="-648" y="892">Money</text>
-<text class="branch-label" x="-990" y="322">Learning</text>
-<text class="branch-label" x="-1049" y="-341">Discipline</text>
-<text class="branch-label" x="-648" y="-892">Cross-Tree</text>
-<g class="node has" data-id="biz.fundamentals" tabindex="0" role="button" transform="translate(0,-398)">
+<rect class="card" x="-1828" y="-1420" width="705" height="1345" rx="26"/>
+<text class="card-name" x="-1794" y="-1362">Business &amp; Growth</text>
+<text class="card-count mono" x="-1156" y="-1362">7/9</text>
+<text class="card-desc" x="-1794" y="-1332">Finding the problem a business will pay to have fixed, and f…</text>
+<rect class="card" x="-972" y="-1420" width="470" height="1550" rx="26"/>
+<text class="card-name" x="-938" y="-1362">AI &amp; Automation</text>
+<text class="card-count mono" x="-536" y="-1362">4/9</text>
+<text class="card-desc" x="-938" y="-1332">Making machines do the work reliably…</text>
+<rect class="card" x="-352" y="-1420" width="470" height="1140" rx="26"/>
+<text class="card-name" x="-318" y="-1362">Content &amp; Audience</text>
+<text class="card-count mono" x="84" y="-1362">1/6</text>
+<text class="card-desc" x="-318" y="-1332">Making things people choose to watch…</text>
+<rect class="card" x="268" y="-1420" width="940" height="1140" rx="26"/>
+<text class="card-name" x="302" y="-1362">Visual &amp; Creative</text>
+<text class="card-count mono" x="1174" y="-1362">3/9</text>
+<text class="card-desc" x="302" y="-1332">Drawing, design, 3D and film — the eye, and the hand that executes it.</text>
+<rect class="card" x="1358" y="-1420" width="470" height="1345" rx="26"/>
+<text class="card-name" x="1392" y="-1362">Technology</text>
+<text class="card-count mono" x="1794" y="-1362">5/7</text>
+<text class="card-desc" x="1392" y="-1332">Writing, running and hosting softwar…</text>
+<rect class="card" x="-1710" y="280" width="470" height="935" rx="26"/>
+<text class="card-name" x="-1676" y="338">Fitness</text>
+<text class="card-count mono" x="-1274" y="338">2/6</text>
+<text class="card-desc" x="-1676" y="368">Knowing how training works versus ac…</text>
+<rect class="card" x="-1090" y="280" width="470" height="1140" rx="26"/>
+<text class="card-name" x="-1056" y="338">Money</text>
+<text class="card-count mono" x="-654" y="338">1/6</text>
+<text class="card-desc" x="-1056" y="368">Earning, keeping and deploying capit…</text>
+<rect class="card" x="-470" y="280" width="705" height="935" rx="26"/>
+<text class="card-name" x="-436" y="338">Learning &amp; Thinking</text>
+<text class="card-count mono" x="201" y="338">4/6</text>
+<text class="card-desc" x="-436" y="368">The meta-tree. Levels here come from how well the other tree…</text>
+<rect class="card" x="385" y="280" width="705" height="1140" rx="26"/>
+<text class="card-name" x="419" y="338">Discipline &amp; Independence</text>
+<text class="card-count mono" x="1056" y="338">4/8</text>
+<text class="card-desc" x="419" y="368">Behaviour only. Intentions score nothing in this tree.</text>
+<rect class="card" x="1240" y="280" width="470" height="730" rx="26"/>
+<text class="card-name" x="1274" y="338">Cross-Tree Specialisati…</text>
+<text class="card-count mono" x="1676" y="338">0/4</text>
+<text class="card-desc" x="1274" y="368">Powerful combinations, each needing…</text>
+<path class="edge done" data-a="biz.fundamentals" data-b="biz.offer" d="M-1475 -1219 C-1475 -1116 -1475 -1116 -1475 -1014"/>
+<path class="edge done" data-a="biz.offer" data-b="biz.copywriting" d="M-1475 -1014 C-1475 -911 -1475 -911 -1475 -809"/>
+<path class="edge done" data-a="biz.offer" data-b="biz.outreach" d="M-1475 -1014 C-1475 -911 -1240 -911 -1240 -809"/>
+<path class="edge done" data-a="biz.fundamentals" data-b="biz.growth" d="M-1475 -1219 C-1475 -911 -1651 -911 -1651 -604"/>
+<path class="edge cross done" data-a="auto.fundamentals" data-b="biz.crm" d="M-620 -1219 Q-1165 -1174 -1710 -809"/>
+<path class="edge done" data-a="biz.outreach" data-b="biz.sales" d="M-1240 -809 C-1240 -706 -1299 -706 -1299 -604"/>
+<path class="edge" data-a="biz.sales" data-b="biz.delivery" d="M-1299 -604 C-1299 -501 -1475 -501 -1475 -399"/>
+<path class="edge" data-a="biz.delivery" data-b="biz.scaling" d="M-1475 -399 C-1475 -296 -1475 -296 -1475 -194"/>
+<path class="edge done" data-a="biz.growth" data-b="biz.scaling" d="M-1651 -604 C-1651 -399 -1475 -399 -1475 -194"/>
+<path class="edge done" data-a="ai.fundamentals" data-b="ai.prompting" d="M-855 -1219 C-855 -1116 -620 -1116 -620 -1014"/>
+<path class="edge done" data-a="ai.prompting" data-b="ai.agents" d="M-620 -1014 C-620 -809 -738 -809 -738 -604"/>
+<path class="edge done" data-a="auto.fundamentals" data-b="auto.tools" d="M-620 -1219 C-620 -1116 -855 -1116 -855 -1014"/>
+<path class="edge" data-a="auto.tools" data-b="auto.integration" d="M-855 -1014 C-855 -911 -738 -911 -738 -809"/>
+<path class="edge" data-a="auto.integration" data-b="auto.systems" d="M-738 -809 C-738 -604 -738 -604 -738 -399"/>
+<path class="edge" data-a="auto.systems" data-b="auto.production" d="M-738 -399 C-738 -296 -738 -296 -738 -194"/>
+<path class="edge" data-a="ai.agents" data-b="ai.production" d="M-738 -604 C-738 -296 -738 -296 -738 11"/>
+<path class="edge" data-a="auto.production" data-b="ai.production" d="M-738 -194 C-738 -91 -738 -91 -738 11"/>
+<path class="edge" data-a="yt.fundamentals" data-b="yt.ideas" d="M-118 -1219 C-118 -1116 -235 -1116 -235 -1014"/>
+<path class="edge" data-a="yt.fundamentals" data-b="yt.packaging" d="M-118 -1219 C-118 -1116 0 -1116 0 -1014"/>
+<path class="edge" data-a="yt.fundamentals" data-b="yt.analytics" d="M-118 -1219 C-118 -1014 -118 -1014 -118 -809"/>
+<path class="edge" data-a="yt.analytics" data-b="yt.strategy" d="M-118 -809 C-118 -706 -118 -706 -118 -604"/>
+<path class="edge" data-a="yt.ideas" data-b="yt.strategy" d="M-235 -1014 C-235 -809 -118 -809 -118 -604"/>
+<path class="edge" data-a="yt.strategy" data-b="yt.systems" d="M-118 -604 C-118 -501 -118 -501 -118 -399"/>
+<path class="edge cross" data-a="auto.integration" data-b="yt.systems" d="M-738 -809 Q-428 -764 -118 -399"/>
+<path class="edge done" data-a="vis.drawing" data-b="vis.composition" d="M502 -1219 C502 -1014 1090 -1014 1090 -809"/>
+<path class="edge" data-a="vis.story" data-b="vis.edit" d="M972 -1219 C972 -1116 738 -1116 738 -1014"/>
+<path class="edge done" data-a="vis.composition" data-b="vis.brand" d="M1090 -809 C1090 -809 855 -809 855 -809"/>
+<path class="edge done" data-a="vis.composition" data-b="vis.3d" d="M1090 -809 C1090 -809 385 -809 385 -809"/>
+<path class="edge cross done" data-a="ai.fundamentals" data-b="vis.ai_video" d="M-855 -1219 Q-118 -1174 620 -809"/>
+<path class="edge" data-a="vis.story" data-b="vis.ai_video" d="M972 -1219 C972 -1014 620 -1014 620 -809"/>
+<path class="edge done" data-a="vis.composition" data-b="vis.camera" d="M1090 -809 C1090 -706 738 -706 738 -604"/>
+<path class="edge" data-a="vis.story" data-b="vis.camera" d="M972 -1219 C972 -911 738 -911 738 -604"/>
+<path class="edge" data-a="vis.composition" data-b="vis.masterwork" d="M1090 -809 C1090 -604 738 -604 738 -399"/>
+<path class="edge" data-a="vis.drawing" data-b="vis.masterwork" d="M502 -1219 C502 -809 738 -809 738 -399"/>
+<path class="edge done" data-a="tech.computing" data-b="tech.frontend" d="M1592 -1219 C1592 -1116 1592 -1116 1592 -1014"/>
+<path class="edge done" data-a="tech.computing" data-b="tech.code" d="M1592 -1219 C1592 -1014 1592 -1014 1592 -809"/>
+<path class="edge done" data-a="tech.frontend" data-b="tech.web" d="M1592 -1014 C1592 -809 1710 -809 1710 -604"/>
+<path class="edge done" data-a="tech.web" data-b="tech.hosting" d="M1710 -604 C1710 -604 1475 -604 1475 -604"/>
+<path class="edge" data-a="tech.code" data-b="tech.ai_integration" d="M1592 -809 C1592 -604 1592 -604 1592 -399"/>
+<path class="edge cross" data-a="ai.agents" data-b="tech.ai_integration" d="M-738 -604 Q428 -661 1592 -399"/>
+<path class="edge" data-a="tech.web" data-b="tech.architecture" d="M1710 -604 C1710 -399 1592 -399 1592 -194"/>
+<path class="edge" data-a="tech.code" data-b="tech.architecture" d="M1592 -809 C1592 -501 1592 -501 1592 -194"/>
+<path class="edge" data-a="tech.hosting" data-b="tech.architecture" d="M1475 -604 C1475 -399 1592 -399 1592 -194"/>
+<path class="edge done" data-a="fit.training" data-b="fit.recovery" d="M-1475 481 C-1475 584 -1358 584 -1358 686"/>
+<path class="edge done" data-a="fit.training" data-b="fit.consistency" d="M-1475 481 C-1475 686 -1358 686 -1358 891"/>
+<path class="edge done" data-a="fit.training" data-b="fit.progression" d="M-1475 481 C-1475 686 -1592 686 -1592 891"/>
+<path class="edge" data-a="fit.progression" data-b="fit.programming" d="M-1592 891 C-1592 994 -1475 994 -1475 1096"/>
+<path class="edge" data-a="fit.consistency" data-b="fit.programming" d="M-1358 891 C-1358 994 -1475 994 -1475 1096"/>
+<path class="edge" data-a="mon.literacy" data-b="mon.personal" d="M-855 481 C-855 584 -855 584 -855 686"/>
+<path class="edge" data-a="mon.literacy" data-b="mon.income" d="M-855 481 C-855 686 -972 686 -972 891"/>
+<path class="edge" data-a="mon.literacy" data-b="mon.investing" d="M-855 481 C-855 686 -738 686 -738 891"/>
+<path class="edge" data-a="mon.income" data-b="mon.business_finance" d="M-972 891 C-972 994 -855 994 -855 1096"/>
+<path class="edge" data-a="mon.personal" data-b="mon.business_finance" d="M-855 686 C-855 891 -855 891 -855 1096"/>
+<path class="edge" data-a="mon.business_finance" data-b="mon.independence" d="M-855 1096 C-855 1199 -855 1199 -855 1301"/>
+<path class="edge" data-a="mon.personal" data-b="mon.independence" d="M-855 686 C-855 994 -855 994 -855 1301"/>
+<path class="edge done" data-a="lrn.research" data-b="lrn.thinking" d="M-118 481 C-118 584 -118 584 -118 686"/>
+<path class="edge done" data-a="lrn.research" data-b="lrn.self_teaching" d="M-118 481 C-118 686 -118 686 -118 891"/>
+<path class="edge done" data-a="lrn.thinking" data-b="lrn.synthesis" d="M-118 686 C-118 789 118 789 118 891"/>
+<path class="edge done" data-a="lrn.thinking" data-b="lrn.experimentation" d="M-118 686 C-118 789 -352 789 -352 891"/>
+<path class="edge" data-a="lrn.synthesis" data-b="lrn.systems" d="M118 891 C118 994 -118 994 -118 1096"/>
+<path class="edge" data-a="lrn.experimentation" data-b="lrn.systems" d="M-352 891 C-352 994 -118 994 -118 1096"/>
+<path class="edge" data-a="lrn.self_teaching" data-b="lrn.systems" d="M-118 891 C-118 994 -118 994 -118 1096"/>
+<path class="edge done" data-a="pd.reflection" data-b="pd.planning" d="M914 481 C914 584 972 584 972 686"/>
+<path class="edge" data-a="pd.planning" data-b="pd.consistency" d="M972 686 C972 789 738 789 738 891"/>
+<path class="edge done" data-a="life.communication" data-b="life.work" d="M502 686 C502 891 738 891 738 1096"/>
+<path class="edge" data-a="life.organisation" data-b="life.work" d="M738 686 C738 891 738 891 738 1096"/>
+<path class="edge" data-a="life.work" data-b="life.independent" d="M738 1096 C738 1199 738 1199 738 1301"/>
+<path class="edge" data-a="life.organisation" data-b="life.independent" d="M738 686 C738 994 738 994 738 1301"/>
+<path class="edge" data-a="pd.consistency" data-b="life.independent" d="M738 891 C738 1096 738 1096 738 1301"/>
+<path class="edge cross" data-a="mon.personal" data-b="life.independent" d="M-855 686 Q-59 834 738 1301"/>
+<path class="edge cross" data-a="biz.growth" data-b="cross.ai_growth_operator" d="M-1651 -604 Q-147 -221 1358 481"/>
+<path class="edge cross" data-a="auto.systems" data-b="cross.ai_growth_operator" d="M-738 -399 Q310 -119 1358 481"/>
+<path class="edge cross" data-a="biz.crm" data-b="cross.ai_growth_operator" d="M-1710 -809 Q-176 -324 1358 481"/>
+<path class="edge cross" data-a="biz.copywriting" data-b="cross.ai_growth_operator" d="M-1475 -809 Q-59 -324 1358 481"/>
+<path class="edge cross" data-a="yt.analytics" data-b="cross.ai_growth_operator" d="M-118 -809 Q620 -324 1358 481"/>
+<path class="edge cross" data-a="vis.camera" data-b="cross.filmmaker" d="M738 -604 Q1165 -221 1592 481"/>
+<path class="edge cross" data-a="vis.edit" data-b="cross.filmmaker" d="M738 -1014 Q1165 -426 1592 481"/>
+<path class="edge cross" data-a="vis.3d" data-b="cross.filmmaker" d="M385 -809 Q989 -324 1592 481"/>
+<path class="edge cross" data-a="vis.ai_video" data-b="cross.filmmaker" d="M620 -809 Q1106 -324 1592 481"/>
+<path class="edge cross" data-a="vis.story" data-b="cross.filmmaker" d="M972 -1219 Q1282 -529 1592 481"/>
+<path class="edge cross" data-a="ai.production" data-b="cross.agentic_business" d="M-738 11 Q369 189 1475 686"/>
+<path class="edge cross" data-a="auto.production" data-b="cross.agentic_business" d="M-738 -194 Q369 86 1475 686"/>
+<path class="edge cross done" data-a="biz.growth" data-b="cross.agentic_business" d="M-1651 -604 Q-88 -119 1475 686"/>
+<path class="edge" data-a="cross.agentic_business" data-b="cross.unknown" d="M1475 686 C1475 789 1475 789 1475 891"/>
+<g class="node has" data-id="biz.fundamentals" tabindex="0" role="button" transform="translate(-1475,-1219)">
 <title>Business Fundamentals — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">Business</text>
-<text class="lbl" y="65">Fundamentals</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="ring" r="53" stroke-dasharray="66.6 266.4"/>
+<circle class="cap" r="60" stroke-dasharray="0 199.8 133.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">2</text>
+<text class="lbl" y="72">Business</text>
+<text class="lbl" y="92">Fundamentals</text>
 </g>
-<g class="node has" data-id="biz.offer" tabindex="0" role="button" transform="translate(0,-513)">
+<g class="node has" data-id="biz.offer" tabindex="0" role="button" transform="translate(-1475,-1014)">
 <title>Offer, Pricing &amp; Positioning — level 3</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="64.1 149.5"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">3</text>
-<text class="lbl" y="48">Offer, Pricing</text>
-<text class="lbl" y="65">&amp; Positioning</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="ring" r="47" stroke-dasharray="88.6 206.7"/>
+<circle class="cap" r="54" stroke-dasharray="0 177.2 118.1" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">3</text>
+<text class="lbl" y="66">Offer, Pricing</text>
+<text class="lbl" y="86">&amp; Positioning</text>
 </g>
-<g class="node has" data-id="biz.copywriting" tabindex="0" role="button" transform="translate(0,-679)">
+<g class="node has" data-id="biz.copywriting" tabindex="0" role="button" transform="translate(-1475,-809)">
 <title>Copywriting — level 3</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="64.1 149.5"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">3</text>
-<text class="lbl" y="-43">Copywriting</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<circle class="ring" r="42" stroke-dasharray="79.2 184.7"/>
+<circle class="cap" r="49" stroke-dasharray="0 158.3 105.6" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:26px">3</text>
+<text class="lbl" y="61">Copywriting</text>
 </g>
-<g class="node has" data-id="biz.outreach" tabindex="0" role="button" transform="translate(157,-724)">
+<g class="node has" data-id="biz.outreach" tabindex="0" role="button" transform="translate(-1240,-809)">
 <title>Outreach &amp; Client Acquisition — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">Outreach &amp;</text>
-<text class="lbl" y="65">Client Acquisition</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<circle class="ring" r="42" stroke-dasharray="52.8 211.1"/>
+<circle class="cap" r="49" stroke-dasharray="0 158.3 105.6" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:26px">2</text>
+<text class="lbl" y="61">Outreach &amp;</text>
+<text class="lbl" y="81">Client Acquisition</text>
 </g>
-<g class="node has" data-id="biz.growth" tabindex="0" role="button" transform="translate(-152,-699)">
+<g class="node has" data-id="biz.growth" tabindex="0" role="button" transform="translate(-1651,-604)">
 <title>Growth Diagnosis &amp; Strategy — level 4</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="85.5 128.2"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">4</text>
-<text class="lbl" y="48">Growth Diagnosis</text>
-<text class="lbl" y="65">&amp; Strategy</text>
+<circle class="halo" r="58"/>
+<circle class="disc" r="32"/>
+<circle class="ring" r="39" stroke-dasharray="98.0 147.0"/>
+<circle class="cap" r="46" stroke-dasharray="0 147.0 98.0" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:24px">4</text>
+<text class="lbl" y="58">Growth Diagnosis</text>
+<text class="lbl" y="78">&amp; Strategy</text>
 </g>
-<g class="node has" data-id="biz.crm" tabindex="0" role="button" transform="translate(-131,-603)">
+<g class="node has" data-id="biz.crm" tabindex="0" role="button" transform="translate(-1710,-809)">
 <title>CRM &amp; Lead Systems — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">CRM &amp; Lead</text>
-<text class="lbl" y="65">Systems</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<circle class="ring" r="42" stroke-dasharray="52.8 211.1"/>
+<circle class="cap" r="49" stroke-dasharray="0 158.3 105.6" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:26px">2</text>
+<text class="lbl" y="61">CRM &amp; Lead Systems</text>
 </g>
-<g class="node avail idle" data-id="biz.sales" tabindex="0" role="button" transform="translate(165,-760)">
+<g class="node avail idle" data-id="biz.sales" tabindex="0" role="button" transform="translate(-1299,-604)">
 <title>Sales — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="-43">Sales</text>
+<circle class="halo" r="58"/>
+<circle class="disc" r="32"/>
+<text class="lv mono" style="font-size:24px">·</text>
+<text class="lbl" y="58">Sales</text>
 </g>
-<g class="node has" data-id="biz.delivery" tabindex="0" role="button" transform="translate(0,-809)">
+<g class="node has" data-id="biz.delivery" tabindex="0" role="button" transform="translate(-1475,-399)">
 <title>Delivery &amp; Operations — level 1</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="21.4 192.3"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">1</text>
-<text class="lbl" y="48">Delivery &amp;</text>
-<text class="lbl" y="65">Operations</text>
+<circle class="halo" r="55"/>
+<circle class="disc" r="29"/>
+<circle class="ring" r="36" stroke-dasharray="22.6 203.6"/>
+<circle class="cap" r="43" stroke-dasharray="0 135.7 90.5" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:21px">1</text>
+<text class="lbl" y="55">Delivery &amp;</text>
+<text class="lbl" y="75">Operations</text>
 </g>
-<g class="node idle idle hidden" data-id="biz.scaling" tabindex="0" role="button" transform="translate(0,-900)">
+<g class="node idle idle hidden" data-id="biz.scaling" tabindex="0" role="button" transform="translate(-1475,-194)">
 <title>??? — level 0</title>
 <circle class="halo" r="53"/>
 <circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<text class="lv mono" style="font-size:20px">·</text>
+<text class="lbl" y="53">???</text>
 </g>
-<g class="node has" data-id="ai.fundamentals" tabindex="0" role="button" transform="translate(160,-364)">
+<g class="node has" data-id="ai.fundamentals" tabindex="0" role="button" transform="translate(-855,-1219)">
 <title>AI Fundamentals — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">AI Fundamentals</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="ring" r="53" stroke-dasharray="66.6 266.4"/>
+<circle class="cap" r="60" stroke-dasharray="0 199.8 133.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">2</text>
+<text class="lbl" y="72">AI Fundamentals</text>
 </g>
-<g class="node has" data-id="ai.prompting" tabindex="0" role="button" transform="translate(429,-383)">
+<g class="node has" data-id="ai.prompting" tabindex="0" role="button" transform="translate(-620,-1014)">
 <title>Prompting, Context &amp; AI Tooling — level 4</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="85.5 128.2"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">4</text>
-<text class="lbl" y="-60">Prompting, Context</text>
-<text class="lbl" y="-43">&amp; AI Tooling</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="ring" r="47" stroke-dasharray="118.1 177.2"/>
+<circle class="cap" r="54" stroke-dasharray="0 177.2 118.1" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">4</text>
+<text class="lbl" y="66">Prompting, Context</text>
+<text class="lbl" y="86">&amp; AI Tooling</text>
 </g>
-<g class="node avail idle" data-id="ai.agents" tabindex="0" role="button" transform="translate(421,-579)">
+<g class="node avail idle" data-id="ai.agents" tabindex="0" role="button" transform="translate(-738,-604)">
 <title>AI Agents &amp; Orchestration — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">AI Agents &amp;</text>
-<text class="lbl" y="65">Orchestration</text>
+<circle class="halo" r="58"/>
+<circle class="disc" r="32"/>
+<text class="lv mono" style="font-size:24px">·</text>
+<text class="lbl" y="58">AI Agents &amp;</text>
+<text class="lbl" y="78">Orchestration</text>
 </g>
-<g class="node has" data-id="auto.fundamentals" tabindex="0" role="button" transform="translate(343,-306)">
+<g class="node has" data-id="auto.fundamentals" tabindex="0" role="button" transform="translate(-620,-1219)">
 <title>Automation Fundamentals — level 1</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="21.4 192.3"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">1</text>
-<text class="lbl" y="-60">Automation</text>
-<text class="lbl" y="-43">Fundamentals</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="ring" r="53" stroke-dasharray="33.3 299.7"/>
+<circle class="cap" r="60" stroke-dasharray="0 199.8 133.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">1</text>
+<text class="lbl" y="72">Automation</text>
+<text class="lbl" y="92">Fundamentals</text>
 </g>
-<g class="node has" data-id="auto.tools" tabindex="0" role="button" transform="translate(207,-469)">
+<g class="node has" data-id="auto.tools" tabindex="0" role="button" transform="translate(-855,-1014)">
 <title>Automation Tools (Zapier, n8n) — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="cap" r="40" stroke-dasharray="0 42.7 170.9" stroke-dashoffset="0"/>
-<text class="lv mono">0</text>
-<text class="lbl" y="48">Automation Tools</text>
-<text class="lbl" y="65">(Zapier, n8n)</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="cap" r="54" stroke-dasharray="0 59.1 236.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">0</text>
+<text class="lbl" y="66">Automation Tools</text>
+<text class="lbl" y="86">(Zapier, n8n)</text>
 </g>
-<g class="node idle idle" data-id="auto.integration" tabindex="0" role="button" transform="translate(363,-499)">
+<g class="node idle idle" data-id="auto.integration" tabindex="0" role="button" transform="translate(-738,-809)">
 <title>Multi-Step Automations &amp; APIs — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Multi-Step</text>
-<text class="lbl" y="65">Automations &amp; APIs</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">Multi-Step</text>
+<text class="lbl" y="81">Automations &amp; APIs</text>
 </g>
-<g class="node idle idle" data-id="auto.systems" tabindex="0" role="button" transform="translate(476,-655)">
+<g class="node idle idle" data-id="auto.systems" tabindex="0" role="button" transform="translate(-738,-399)">
 <title>Automation Architecture — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Automation</text>
-<text class="lbl" y="65">Architecture</text>
+<circle class="halo" r="55"/>
+<circle class="disc" r="29"/>
+<text class="lv mono" style="font-size:21px">·</text>
+<text class="lbl" y="55">Automation</text>
+<text class="lbl" y="75">Architecture</text>
 </g>
-<g class="node idle idle hidden" data-id="auto.production" tabindex="0" role="button" transform="translate(529,-728)">
+<g class="node idle idle hidden" data-id="auto.production" tabindex="0" role="button" transform="translate(-738,-194)">
 <title>??? — level 0</title>
 <circle class="halo" r="53"/>
 <circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<text class="lv mono" style="font-size:20px">·</text>
+<text class="lbl" y="53">???</text>
 </g>
-<g class="node idle idle hidden" data-id="ai.production" tabindex="0" role="button" transform="translate(581,-799)">
+<g class="node idle idle hidden" data-id="ai.production" tabindex="0" role="button" transform="translate(-738,11)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<circle class="halo" r="52"/>
+<circle class="disc" r="26"/>
+<text class="lv mono" style="font-size:19px">·</text>
+<text class="lbl" y="52">???</text>
 </g>
-<g class="node has" data-id="yt.fundamentals" tabindex="0" role="button" transform="translate(379,-123)">
+<g class="node has" data-id="yt.fundamentals" tabindex="0" role="button" transform="translate(-118,-1219)">
 <title>Audience Fundamentals — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="cap" r="40" stroke-dasharray="0 42.7 170.9" stroke-dashoffset="0"/>
-<text class="lv mono">0</text>
-<text class="lbl" y="48">Audience</text>
-<text class="lbl" y="65">Fundamentals</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="cap" r="60" stroke-dasharray="0 66.6 266.4" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">0</text>
+<text class="lbl" y="72">Audience</text>
+<text class="lbl" y="92">Fundamentals</text>
 </g>
-<g class="node idle idle" data-id="yt.ideas" tabindex="0" role="button" transform="translate(443,-258)">
+<g class="node idle idle" data-id="yt.ideas" tabindex="0" role="button" transform="translate(-235,-1014)">
 <title>Idea Generation — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Idea Generation</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<text class="lv mono" style="font-size:30px">·</text>
+<text class="lbl" y="66">Idea Generation</text>
 </g>
-<g class="node idle idle" data-id="yt.packaging" tabindex="0" role="button" transform="translate(572,-58)">
+<g class="node idle idle" data-id="yt.packaging" tabindex="0" role="button" transform="translate(0,-1014)">
 <title>Packaging: Titles, Thumbnails, Hooks — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="-60">Packaging: Titles,</text>
-<text class="lbl" y="-43">Thumbnails, Hooks</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<text class="lv mono" style="font-size:30px">·</text>
+<text class="lbl" y="66">Packaging: Titles,</text>
+<text class="lbl" y="86">Thumbnails, Hooks</text>
 </g>
-<g class="node idle idle" data-id="yt.analytics" tabindex="0" role="button" transform="translate(587,-191)">
+<g class="node idle idle" data-id="yt.analytics" tabindex="0" role="button" transform="translate(-118,-809)">
 <title>Analytics &amp; Competitor Intelligence — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Analytics &amp;</text>
-<text class="lbl" y="65">Competitor Intelligence</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">Analytics &amp;</text>
+<text class="lbl" y="81">Competitor Intelligence</text>
 </g>
-<g class="node idle idle" data-id="yt.strategy" tabindex="0" role="button" transform="translate(680,-221)">
+<g class="node idle idle" data-id="yt.strategy" tabindex="0" role="button" transform="translate(-118,-604)">
 <title>Content Strategy — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Content Strategy</text>
+<circle class="halo" r="58"/>
+<circle class="disc" r="32"/>
+<text class="lv mono" style="font-size:24px">·</text>
+<text class="lbl" y="58">Content Strategy</text>
 </g>
-<g class="node idle idle hidden" data-id="yt.systems" tabindex="0" role="button" transform="translate(770,-250)">
+<g class="node idle idle hidden" data-id="yt.systems" tabindex="0" role="button" transform="translate(-118,-399)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<circle class="halo" r="55"/>
+<circle class="disc" r="29"/>
+<text class="lv mono" style="font-size:21px">·</text>
+<text class="lbl" y="55">???</text>
 </g>
-<g class="node has" data-id="vis.drawing" tabindex="0" role="button" transform="translate(396,40)">
+<g class="node has" data-id="vis.drawing" tabindex="0" role="button" transform="translate(502,-1219)">
 <title>Drawing &amp; Rendering — level 3</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="64.1 149.5"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">3</text>
-<text class="lbl" y="48">Drawing &amp;</text>
-<text class="lbl" y="65">Rendering</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="ring" r="53" stroke-dasharray="99.9 233.1"/>
+<circle class="cap" r="60" stroke-dasharray="0 199.8 133.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">3</text>
+<text class="lbl" y="72">Drawing &amp;</text>
+<text class="lbl" y="92">Rendering</text>
 </g>
-<g class="node avail idle" data-id="vis.story" tabindex="0" role="button" transform="translate(397,232)">
+<g class="node avail idle" data-id="vis.story" tabindex="0" role="button" transform="translate(972,-1219)">
 <title>Visual Storytelling — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="-60">Visual</text>
-<text class="lbl" y="-43">Storytelling</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<text class="lv mono" style="font-size:34px">·</text>
+<text class="lbl" y="72">Visual</text>
+<text class="lbl" y="92">Storytelling</text>
 </g>
-<g class="node has" data-id="vis.composition" tabindex="0" role="button" transform="translate(533,311)">
+<g class="node has" data-id="vis.composition" tabindex="0" role="button" transform="translate(1090,-809)">
 <title>Composition &amp; Perspective — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">Composition</text>
-<text class="lbl" y="65">&amp; Perspective</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<circle class="ring" r="42" stroke-dasharray="52.8 211.1"/>
+<circle class="cap" r="49" stroke-dasharray="0 158.3 105.6" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:26px">2</text>
+<text class="lbl" y="61">Composition</text>
+<text class="lbl" y="81">&amp; Perspective</text>
 </g>
-<g class="node idle idle" data-id="vis.edit" tabindex="0" role="button" transform="translate(488,158)">
+<g class="node idle idle" data-id="vis.edit" tabindex="0" role="button" transform="translate(738,-1014)">
 <title>Editing &amp; Post — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Editing &amp; Post</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<text class="lv mono" style="font-size:30px">·</text>
+<text class="lbl" y="66">Editing &amp; Post</text>
 </g>
-<g class="node has" data-id="vis.brand" tabindex="0" role="button" transform="translate(687,279)">
+<g class="node has" data-id="vis.brand" tabindex="0" role="button" transform="translate(855,-809)">
 <title>Brand &amp; Visual Identity — level 3</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="64.1 149.5"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">3</text>
-<text class="lbl" y="48">Brand &amp;</text>
-<text class="lbl" y="65">Visual Identity</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<circle class="ring" r="42" stroke-dasharray="79.2 184.7"/>
+<circle class="cap" r="49" stroke-dasharray="0 158.3 105.6" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:26px">3</text>
+<text class="lbl" y="61">Brand &amp;</text>
+<text class="lbl" y="81">Visual Identity</text>
 </g>
-<g class="node avail idle" data-id="vis.3d" tabindex="0" role="button" transform="translate(614,62)">
+<g class="node avail idle" data-id="vis.3d" tabindex="0" role="button" transform="translate(385,-809)">
 <title>3D &amp; VFX — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">3D &amp; VFX</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">3D &amp; VFX</text>
 </g>
-<g class="node idle idle" data-id="vis.ai_video" tabindex="0" role="button" transform="translate(659,163)">
+<g class="node idle idle" data-id="vis.ai_video" tabindex="0" role="button" transform="translate(620,-809)">
 <title>AI Video — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="-43">AI Video</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">AI Video</text>
 </g>
-<g class="node idle idle" data-id="vis.camera" tabindex="0" role="button" transform="translate(680,221)">
+<g class="node idle idle" data-id="vis.camera" tabindex="0" role="button" transform="translate(738,-604)">
 <title>Cinematography — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Cinematography</text>
+<circle class="halo" r="58"/>
+<circle class="disc" r="32"/>
+<text class="lv mono" style="font-size:24px">·</text>
+<text class="lbl" y="58">Cinematography</text>
 </g>
-<g class="node idle idle hidden" data-id="vis.masterwork" tabindex="0" role="button" transform="translate(856,278)">
+<g class="node idle idle hidden" data-id="vis.masterwork" tabindex="0" role="button" transform="translate(738,-399)">
 <title>??? — level 0</title>
 <circle class="halo" r="53"/>
 <circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<text class="lv mono" style="font-size:20px">·</text>
+<text class="lbl" y="53">???</text>
 </g>
-<g class="node has" data-id="tech.computing" tabindex="0" role="button" transform="translate(234,322)">
+<g class="node has" data-id="tech.computing" tabindex="0" role="button" transform="translate(1592,-1219)">
 <title>Computing &amp; Version Control — level 3</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="64.1 149.5"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">3</text>
-<text class="lbl" y="48">Computing &amp;</text>
-<text class="lbl" y="65">Version Control</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="ring" r="53" stroke-dasharray="99.9 233.1"/>
+<circle class="cap" r="60" stroke-dasharray="0 199.8 133.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">3</text>
+<text class="lbl" y="72">Computing &amp;</text>
+<text class="lbl" y="92">Version Control</text>
 </g>
-<g class="node has" data-id="tech.frontend" tabindex="0" role="button" transform="translate(301,415)">
+<g class="node has" data-id="tech.frontend" tabindex="0" role="button" transform="translate(1592,-1014)">
 <title>Frontend (HTML, CSS, JavaScript) — level 4</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="85.5 128.2"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">4</text>
-<text class="lbl" y="48">Frontend (HTML,</text>
-<text class="lbl" y="65">CSS, JavaScript)</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="ring" r="47" stroke-dasharray="118.1 177.2"/>
+<circle class="cap" r="54" stroke-dasharray="0 177.2 118.1" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">4</text>
+<text class="lbl" y="66">Frontend (HTML,</text>
+<text class="lbl" y="86">CSS, JavaScript)</text>
 </g>
-<g class="node has" data-id="tech.code" tabindex="0" role="button" transform="translate(363,499)">
+<g class="node has" data-id="tech.code" tabindex="0" role="button" transform="translate(1592,-809)">
 <title>Code &amp; Data (Python, APIs, Databases) — level 1</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="21.4 192.3"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">1</text>
-<text class="lbl" y="48">Code &amp; Data (Python,</text>
-<text class="lbl" y="65">APIs, Databases)</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<circle class="ring" r="42" stroke-dasharray="26.4 237.5"/>
+<circle class="cap" r="49" stroke-dasharray="0 158.3 105.6" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:26px">1</text>
+<text class="lbl" y="61">Code &amp; Data (Python,</text>
+<text class="lbl" y="81">APIs, Databases)</text>
 </g>
-<g class="node has" data-id="tech.web" tabindex="0" role="button" transform="translate(313,712)">
+<g class="node has" data-id="tech.web" tabindex="0" role="button" transform="translate(1710,-604)">
 <title>Web Apps &amp; Dashboards — level 4</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="85.5 128.2"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">4</text>
-<text class="lbl" y="-60">Web Apps &amp;</text>
-<text class="lbl" y="-43">Dashboards</text>
+<circle class="halo" r="58"/>
+<circle class="disc" r="32"/>
+<circle class="ring" r="39" stroke-dasharray="98.0 147.0"/>
+<circle class="cap" r="46" stroke-dasharray="0 147.0 98.0" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:24px">4</text>
+<text class="lbl" y="58">Web Apps &amp;</text>
+<text class="lbl" y="78">Dashboards</text>
 </g>
-<g class="node has" data-id="tech.hosting" tabindex="0" role="button" transform="translate(534,477)">
+<g class="node has" data-id="tech.hosting" tabindex="0" role="button" transform="translate(1475,-604)">
 <title>Hosting &amp; Servers — level 1</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="21.4 192.3"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">1</text>
-<text class="lbl" y="48">Hosting &amp; Servers</text>
+<circle class="halo" r="58"/>
+<circle class="disc" r="32"/>
+<circle class="ring" r="39" stroke-dasharray="24.5 220.5"/>
+<circle class="cap" r="46" stroke-dasharray="0 147.0 98.0" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:24px">1</text>
+<text class="lbl" y="58">Hosting &amp; Servers</text>
 </g>
-<g class="node idle idle" data-id="tech.ai_integration" tabindex="0" role="button" transform="translate(476,655)">
+<g class="node idle idle" data-id="tech.ai_integration" tabindex="0" role="button" transform="translate(1592,-399)">
 <title>AI Integration in Software — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">AI Integration</text>
-<text class="lbl" y="65">in Software</text>
+<circle class="halo" r="55"/>
+<circle class="disc" r="29"/>
+<text class="lv mono" style="font-size:21px">·</text>
+<text class="lbl" y="55">AI Integration</text>
+<text class="lbl" y="75">in Software</text>
 </g>
-<g class="node idle idle hidden" data-id="tech.architecture" tabindex="0" role="button" transform="translate(529,728)">
+<g class="node idle idle hidden" data-id="tech.architecture" tabindex="0" role="button" transform="translate(1592,-194)">
 <title>??? — level 0</title>
 <circle class="halo" r="53"/>
 <circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<text class="lv mono" style="font-size:20px">·</text>
+<text class="lbl" y="53">???</text>
 </g>
-<g class="node has" data-id="fit.training" tabindex="0" role="button" transform="translate(0,398)">
+<g class="node has" data-id="fit.training" tabindex="0" role="button" transform="translate(-1475,481)">
 <title>Training Knowledge &amp; Technique — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">Training Knowledge</text>
-<text class="lbl" y="65">&amp; Technique</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="ring" r="53" stroke-dasharray="66.6 266.4"/>
+<circle class="cap" r="60" stroke-dasharray="0 199.8 133.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">2</text>
+<text class="lbl" y="72">Training Knowledge</text>
+<text class="lbl" y="92">&amp; Technique</text>
 </g>
-<g class="node has" data-id="fit.nutrition" tabindex="0" role="button" transform="translate(109,501)">
+<g class="node has" data-id="fit.nutrition" tabindex="0" role="button" transform="translate(-1592,686)">
 <title>Nutrition &amp; Diet — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="cap" r="40" stroke-dasharray="0 42.7 170.9" stroke-dashoffset="0"/>
-<text class="lv mono">0</text>
-<text class="lbl" y="48">Nutrition &amp; Diet</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="cap" r="54" stroke-dasharray="0 59.1 236.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">0</text>
+<text class="lbl" y="66">Nutrition &amp; Diet</text>
 </g>
-<g class="node avail idle" data-id="fit.recovery" tabindex="0" role="button" transform="translate(-122,562)">
+<g class="node avail idle" data-id="fit.recovery" tabindex="0" role="button" transform="translate(-1358,686)">
 <title>Recovery &amp; Sleep — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="-43">Recovery &amp; Sleep</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<text class="lv mono" style="font-size:30px">·</text>
+<text class="lbl" y="66">Recovery &amp; Sleep</text>
 </g>
-<g class="node avail idle" data-id="fit.consistency" tabindex="0" role="button" transform="translate(-144,664)">
+<g class="node avail idle" data-id="fit.consistency" tabindex="0" role="button" transform="translate(-1358,891)">
 <title>Training Consistency — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="-60">Training</text>
-<text class="lbl" y="-43">Consistency</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">Training</text>
+<text class="lbl" y="81">Consistency</text>
 </g>
-<g class="node avail idle" data-id="fit.progression" tabindex="0" role="button" transform="translate(131,603)">
+<g class="node avail idle" data-id="fit.progression" tabindex="0" role="button" transform="translate(-1592,891)">
 <title>Progressive Training — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Progressive</text>
-<text class="lbl" y="65">Training</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">Progressive</text>
+<text class="lbl" y="81">Training</text>
 </g>
-<g class="node idle idle hidden" data-id="fit.programming" tabindex="0" role="button" transform="translate(0,809)">
+<g class="node idle idle hidden" data-id="fit.programming" tabindex="0" role="button" transform="translate(-1475,1096)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<circle class="halo" r="55"/>
+<circle class="disc" r="29"/>
+<text class="lv mono" style="font-size:21px">·</text>
+<text class="lbl" y="55">???</text>
 </g>
-<g class="node has" data-id="mon.literacy" tabindex="0" role="button" transform="translate(-234,322)">
+<g class="node has" data-id="mon.literacy" tabindex="0" role="button" transform="translate(-855,481)">
 <title>Financial Literacy — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="cap" r="40" stroke-dasharray="0 42.7 170.9" stroke-dashoffset="0"/>
-<text class="lv mono">0</text>
-<text class="lbl" y="48">Financial</text>
-<text class="lbl" y="65">Literacy</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="cap" r="60" stroke-dasharray="0 66.6 266.4" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">0</text>
+<text class="lbl" y="72">Financial Literacy</text>
 </g>
-<g class="node idle idle" data-id="mon.personal" tabindex="0" role="button" transform="translate(-301,415)">
+<g class="node idle idle" data-id="mon.personal" tabindex="0" role="button" transform="translate(-855,686)">
 <title>Personal Money Management — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Personal Money</text>
-<text class="lbl" y="65">Management</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<text class="lv mono" style="font-size:30px">·</text>
+<text class="lbl" y="66">Personal Money</text>
+<text class="lbl" y="86">Management</text>
 </g>
-<g class="node idle idle" data-id="mon.income" tabindex="0" role="button" transform="translate(-249,565)">
+<g class="node idle idle" data-id="mon.income" tabindex="0" role="button" transform="translate(-972,891)">
 <title>Earning &amp; Business Income — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Earning &amp;</text>
-<text class="lbl" y="65">Business Income</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">Earning &amp;</text>
+<text class="lbl" y="81">Business Income</text>
 </g>
-<g class="node idle idle" data-id="mon.investing" tabindex="0" role="button" transform="translate(-507,452)">
+<g class="node idle idle" data-id="mon.investing" tabindex="0" role="button" transform="translate(-738,891)">
 <title>Investing &amp; Risk — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="-43">Investing &amp; Risk</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">Investing &amp; Risk</text>
 </g>
-<g class="node idle idle" data-id="mon.business_finance" tabindex="0" role="button" transform="translate(-476,655)">
+<g class="node idle idle" data-id="mon.business_finance" tabindex="0" role="button" transform="translate(-855,1096)">
 <title>Business Finance — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Business Finance</text>
+<circle class="halo" r="55"/>
+<circle class="disc" r="29"/>
+<text class="lv mono" style="font-size:21px">·</text>
+<text class="lbl" y="55">Business Finance</text>
 </g>
-<g class="node idle idle hidden" data-id="mon.independence" tabindex="0" role="button" transform="translate(-581,799)">
+<g class="node idle idle hidden" data-id="mon.independence" tabindex="0" role="button" transform="translate(-855,1301)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<circle class="halo" r="52"/>
+<circle class="disc" r="26"/>
+<text class="lv mono" style="font-size:19px">·</text>
+<text class="lbl" y="52">???</text>
 </g>
-<g class="node has" data-id="lrn.research" tabindex="0" role="button" transform="translate(-379,123)">
+<g class="node has" data-id="lrn.research" tabindex="0" role="button" transform="translate(-118,481)">
 <title>Research — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">Research</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="ring" r="53" stroke-dasharray="66.6 266.4"/>
+<circle class="cap" r="60" stroke-dasharray="0 199.8 133.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">2</text>
+<text class="lbl" y="72">Research</text>
 </g>
-<g class="node has" data-id="lrn.thinking" tabindex="0" role="button" transform="translate(-488,158)">
+<g class="node has" data-id="lrn.thinking" tabindex="0" role="button" transform="translate(-118,686)">
 <title>Critical Thinking &amp; Problem Solving — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">Critical Thinking</text>
-<text class="lbl" y="65">&amp; Problem Solving</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="ring" r="47" stroke-dasharray="59.1 236.2"/>
+<circle class="cap" r="54" stroke-dasharray="0 177.2 118.1" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">2</text>
+<text class="lbl" y="66">Critical Thinking</text>
+<text class="lbl" y="86">&amp; Problem Solving</text>
 </g>
-<g class="node has" data-id="lrn.self_teaching" tabindex="0" role="button" transform="translate(-646,210)">
+<g class="node has" data-id="lrn.self_teaching" tabindex="0" role="button" transform="translate(-118,891)">
 <title>Self-Teaching — level 3</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="64.1 149.5"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">3</text>
-<text class="lbl" y="-43">Self-Teaching</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<circle class="ring" r="42" stroke-dasharray="79.2 184.7"/>
+<circle class="cap" r="49" stroke-dasharray="0 158.3 105.6" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:26px">3</text>
+<text class="lbl" y="61">Self-Teaching</text>
 </g>
-<g class="node has" data-id="lrn.synthesis" tabindex="0" role="button" transform="translate(-738,74)">
+<g class="node has" data-id="lrn.synthesis" tabindex="0" role="button" transform="translate(118,891)">
 <title>Synthesis &amp; Knowledge Management — level 1</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="21.4 192.3"/>
-<circle class="cap" r="40" stroke-dasharray="0 85.5 128.2" stroke-dashoffset="0"/>
-<text class="lv mono">1</text>
-<text class="lbl" y="48">Synthesis &amp;</text>
-<text class="lbl" y="65">Knowledge Management</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<circle class="ring" r="42" stroke-dasharray="26.4 237.5"/>
+<circle class="cap" r="49" stroke-dasharray="0 105.6 158.3" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:26px">1</text>
+<text class="lbl" y="61">Synthesis &amp;</text>
+<text class="lbl" y="81">Knowledge Management</text>
 </g>
-<g class="node avail idle" data-id="lrn.experimentation" tabindex="0" role="button" transform="translate(-533,311)">
+<g class="node avail idle" data-id="lrn.experimentation" tabindex="0" role="button" transform="translate(-352,891)">
 <title>Experimentation — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Experimentation</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">Experimentation</text>
 </g>
-<g class="node idle idle hidden" data-id="lrn.systems" tabindex="0" role="button" transform="translate(-770,250)">
+<g class="node idle idle hidden" data-id="lrn.systems" tabindex="0" role="button" transform="translate(-118,1096)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<circle class="halo" r="55"/>
+<circle class="disc" r="29"/>
+<text class="lv mono" style="font-size:21px">·</text>
+<text class="lbl" y="55">???</text>
 </g>
-<g class="node has" data-id="pd.reflection" tabindex="0" role="button" transform="translate(-397,-232)">
+<g class="node has" data-id="pd.reflection" tabindex="0" role="button" transform="translate(914,481)">
 <title>Reflection &amp; Self-Awareness — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="-60">Reflection &amp;</text>
-<text class="lbl" y="-43">Self-Awareness</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<circle class="ring" r="53" stroke-dasharray="66.6 266.4"/>
+<circle class="cap" r="60" stroke-dasharray="0 199.8 133.2" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:34px">2</text>
+<text class="lbl" y="72">Reflection &amp;</text>
+<text class="lbl" y="92">Self-Awareness</text>
 </g>
-<g class="node has" data-id="pd.planning" tabindex="0" role="button" transform="translate(-550,-321)">
+<g class="node has" data-id="pd.planning" tabindex="0" role="button" transform="translate(972,686)">
 <title>Planning &amp; Focus — level 1</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="21.4 192.3"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">1</text>
-<text class="lbl" y="48">Planning &amp; Focus</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="ring" r="47" stroke-dasharray="29.5 265.8"/>
+<circle class="cap" r="54" stroke-dasharray="0 177.2 118.1" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">1</text>
+<text class="lbl" y="66">Planning &amp; Focus</text>
 </g>
-<g class="node idle idle" data-id="pd.consistency" tabindex="0" role="button" transform="translate(-587,-191)">
+<g class="node idle idle" data-id="pd.consistency" tabindex="0" role="button" transform="translate(738,891)">
 <title>Discipline &amp; Consistency — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Discipline</text>
-<text class="lbl" y="65">&amp; Consistency</text>
+<circle class="halo" r="61"/>
+<circle class="disc" r="35"/>
+<text class="lv mono" style="font-size:26px">·</text>
+<text class="lbl" y="61">Discipline</text>
+<text class="lbl" y="81">&amp; Consistency</text>
 </g>
-<g class="node has" data-id="life.communication" tabindex="0" role="button" transform="translate(-510,-51)">
+<g class="node has" data-id="life.communication" tabindex="0" role="button" transform="translate(502,686)">
 <title>Communication — level 2</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="42.7 170.9"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">2</text>
-<text class="lbl" y="48">Communication</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="ring" r="47" stroke-dasharray="59.1 236.2"/>
+<circle class="cap" r="54" stroke-dasharray="0 177.2 118.1" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">2</text>
+<text class="lbl" y="66">Communication</text>
 </g>
-<g class="node has" data-id="life.organisation" tabindex="0" role="button" transform="translate(-547,-178)">
+<g class="node has" data-id="life.organisation" tabindex="0" role="button" transform="translate(738,686)">
 <title>Organisation &amp; Admin — level 1</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<circle class="ring" r="34" stroke-dasharray="21.4 192.3"/>
-<circle class="cap" r="40" stroke-dasharray="0 128.2 85.5" stroke-dashoffset="0"/>
-<text class="lv mono">1</text>
-<text class="lbl" y="-60">Organisation</text>
-<text class="lbl" y="-43">&amp; Admin</text>
+<circle class="halo" r="66"/>
+<circle class="disc" r="40"/>
+<circle class="ring" r="47" stroke-dasharray="29.5 265.8"/>
+<circle class="cap" r="54" stroke-dasharray="0 177.2 118.1" stroke-dashoffset="0"/>
+<text class="lv mono" style="font-size:30px">1</text>
+<text class="lbl" y="66">Organisation</text>
+<text class="lbl" y="86">&amp; Admin</text>
 </g>
-<g class="node avail idle" data-id="life.selfcare" tabindex="0" role="button" transform="translate(-396,-40)">
+<g class="node avail idle" data-id="life.selfcare" tabindex="0" role="button" transform="translate(561,481)">
 <title>Cooking &amp; Self-Care — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Cooking &amp;</text>
-<text class="lbl" y="65">Self-Care</text>
+<circle class="halo" r="72"/>
+<circle class="disc" r="46"/>
+<text class="lv mono" style="font-size:34px">·</text>
+<text class="lbl" y="72">Cooking &amp;</text>
+<text class="lbl" y="92">Self-Care</text>
 </g>
-<g class="node idle idle" data-id="life.work" tabindex="0" role="button" transform="translate(-680,-221)">
+<g class="node idle idle" data-id="life.work" tabindex="0" role="button" transform="translate(738,1096)">
 <title>Work &amp; Business Admin — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">Work &amp;</text>
-<text class="lbl" y="65">Business Admin</text>
+<circle class="halo" r="58"/>
+<circle class="disc" r="32"/>
+<text class="lv mono" style="font-size:24px">·</text>
+<text class="lbl" y="58">Work &amp;</text>
+<text class="lbl" y="78">Business Admin</text>
 </g>
-<g class="node idle idle hidden" data-id="life.independent" tabindex="0" role="button" transform="translate(-856,-278)">
+<g class="node idle idle hidden" data-id="life.independent" tabindex="0" role="button" transform="translate(738,1301)">
 <title>??? — level 0</title>
 <circle class="halo" r="53"/>
 <circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<text class="lv mono" style="font-size:20px">·</text>
+<text class="lbl" y="53">???</text>
 </g>
-<g class="node idle idle hidden" data-id="cross.ai_growth_operator" tabindex="0" role="button" transform="translate(-737,-658)">
+<g class="node idle idle hidden" data-id="cross.ai_growth_operator" tabindex="0" role="button" transform="translate(1358,481)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<circle class="halo" r="52"/>
+<circle class="disc" r="26"/>
+<text class="lv mono" style="font-size:19px">·</text>
+<text class="lbl" y="52">???</text>
 </g>
-<g class="node idle idle hidden" data-id="cross.filmmaker" tabindex="0" role="button" transform="translate(-423,-961)">
+<g class="node idle idle hidden" data-id="cross.filmmaker" tabindex="0" role="button" transform="translate(1592,481)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="-43">???</text>
+<circle class="halo" r="52"/>
+<circle class="disc" r="26"/>
+<text class="lv mono" style="font-size:19px">·</text>
+<text class="lbl" y="52">???</text>
 </g>
-<g class="node idle idle hidden" data-id="cross.agentic_business" tabindex="0" role="button" transform="translate(-631,-868)">
+<g class="node idle idle hidden" data-id="cross.agentic_business" tabindex="0" role="button" transform="translate(1475,686)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<circle class="halo" r="51"/>
+<circle class="disc" r="25"/>
+<text class="lv mono" style="font-size:18px">·</text>
+<text class="lbl" y="51">???</text>
 </g>
-<g class="node idle idle hidden" data-id="cross.unknown" tabindex="0" role="button" transform="translate(-680,-936)">
+<g class="node idle idle hidden" data-id="cross.unknown" tabindex="0" role="button" transform="translate(1475,891)">
 <title>??? — level 0</title>
-<circle class="halo" r="53"/>
-<circle class="disc" r="27"/>
-<text class="lv mono">·</text>
-<text class="lbl" y="48">???</text>
+<circle class="halo" r="50"/>
+<circle class="disc" r="24"/>
+<text class="lv mono" style="font-size:18px">·</text>
+<text class="lbl" y="50">???</text>
 </g>
 </g></svg></div>
 <aside id="panel" aria-live="polite"></aside>
@@ -811,8 +841,8 @@ svg{width:100%;height:100%;display:block}
 <div id="legend"><span><i class="has"></i>evidenced</span><span><i class="av"></i>available</span><span><i></i>locked</span><span><i class="cap"></i>ochre arc = evidence ceiling</span><span>ring = level</span></div>
 <script>
 const DATA={"biz.fundamentals": {"name": "Business Fundamentals", "treeName": "Business & Growth", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 110, "next": 65, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Explain how a business makes money end to end, in your own words.", "prereq": [], "unlocks": ["biz.offer", "biz.growth"], "ev": [{"d": "2026-08-10", "k": "project", "x": 85, "r": "Operates a defined solo business (AIGO): named target market of high-ticket coaches, a stated model of setup fee plus revenue share, and a documented success-plan with an explicit constraint rule (no new infrastructure before a signed client)."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Runs the business day to day across prospecting, deliverables and tooling."}]}, "biz.offer": {"name": "Offer, Pricing & Positioning", "treeName": "Business & Growth", "level": 3, "levelName": "Developing", "status": "Practising", "xp": 340, "next": 10, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Define one offer: who it is for, what it does, what it costs, and why you over the obvious alternative.", "prereq": [["biz.fundamentals", 1]], "unlocks": ["biz.copywriting", "biz.outreach"], "ev": [{"d": "2026-08-10", "k": "project", "x": 100, "r": "Defined the AIGO offer end to end: audience, deliverables (email sequences, landing pages, Loom audits, CRM setup, funnel rebuilds) and commercial terms."}, {"d": "2026-08-10", "k": "project", "x": 65, "r": "Adopted a specific differentiated position — build the fix first, then pitch with the work already done — rather than competing on a generic pitch."}, {"d": "2026-08-10", "k": "project", "x": 60, "r": "Defined a second, separate offer: the £15 @thisguyai personal-brand course, including scope and platform."}, {"d": "2026-08-10", "k": "build_small", "x": 45, "r": "Set and held a £15 one-time price on the course, and structured AIGO as setup fee plus revenue share."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Iterated the course offer, including reconsidering Skool on cost grounds."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Applied the build-first position consistently across the outreach campaign."}, {"d": "2026-08-10", "k": "practice", "x": 20, "r": "Reasoned about platform costs against price when reconsidering Skool."}]}, "biz.copywriting": {"name": "Copywriting", "treeName": "Business & Growth", "level": 3, "levelName": "Developing", "status": "Practising", "xp": 295, "next": 55, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Write copy that produced a measurable response from a real audience.", "prereq": [["biz.offer", 1]], "unlocks": ["cross.ai_growth_operator"], "ev": [{"d": "2026-08-10", "k": "project", "x": 150, "r": "Wrote four complete email sequences (Call Booked Nurture, Partial Lead Recovery, Didn't Book Recovery, Win-Back) for Closing Saif."}, {"d": "2026-08-10", "k": "project", "x": 120, "r": "Wrote four complete email sequences for Contract Flips on GoHighLevel."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Extensive prior cold outreach copy across many niches (Glowithgia, Jewellers Academy, Michael Tracey, Mr. Bubbles and others), plus a self-imposed style discipline: sign in full, no em dashes, informal register for Instagram DMs."}]}, "biz.outreach": {"name": "Outreach & Client Acquisition", "treeName": "Business & Growth", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 135, "next": 40, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Get a stranger into a real conversation about buying.", "prereq": [["biz.offer", 1]], "unlocks": ["biz.sales"], "ev": [{"d": "2026-08-10", "k": "project", "x": 80, "r": "Ran a live multi-niche cold outreach campaign against real named prospects, with a Loom build-first approach."}, {"d": "2026-08-10", "k": "build_small", "x": 30, "r": "Built the intake path: Tally form plus tracked follow-up logic."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Sustained outreach activity across multiple channels including Instagram DMs."}]}, "biz.growth": {"name": "Growth Diagnosis & Strategy", "treeName": "Business & Growth", "level": 4, "levelName": "Functional", "status": "Practising", "xp": 440, "next": 210, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Look at a real business, find its binding constraint, change something, and measure whether you were right.", "prereq": [["biz.fundamentals", 2]], "unlocks": ["biz.scaling", "cross.ai_growth_operator", "cross.agentic_business"], "ev": [{"d": "2026-08-10", "k": "project", "x": 90, "r": "Core repeated activity: audits a coach's funnel and identifies a specific conversion leak before pitching."}, {"d": "2026-08-10", "k": "project", "x": 75, "r": "Mapped real coaching funnels stage by stage, including Colin's Calendly booking flow and GoHighLevel pipelines."}, {"d": "2026-08-10", "k": "build_small", "x": 45, "r": "Built the AIGO Lead Finder (React) to prospect coaches by niche, and researched barbering, sales coaching, real estate, videography and others."}, {"d": "2026-08-10", "k": "build_small", "x": 45, "r": "Built targeted recovery sequences aimed at named leak points: partial leads, didn't-book, win-back."}, {"d": "2026-08-10", "k": "build_small", "x": 40, "r": "Produced Loom video audits presenting diagnoses to real businesses."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Repeated niche-by-niche prospect research feeding the outreach tracker."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Worked structured AIGO diagnostic practice cases (Apex Physique Coaching, Elevate Executive Coaching) as graded analyst exercises."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Applied funnel diagnosis across several real prospects in different niches."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Repeated funnel mapping across prospects in several niches."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Identifies specific conversion leaks as the basis of the pitch."}, {"d": "2026-08-10", "k": "practice", "x": 20, "r": "Individual prospect research on Closing Saif, Contract Flips, Austin Edney, Colin and Essy."}]}, "biz.crm": {"name": "CRM & Lead Systems", "treeName": "Business & Growth", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 140, "next": 35, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Run a real pipeline through a system, with no lead falling through it.", "prereq": [["auto.fundamentals", 1]], "unlocks": ["cross.ai_growth_operator"], "ev": [{"d": "2026-08-10", "k": "build_small", "x": 50, "r": "Built AIGO_Outreach_V6: a lead tracker with status dropdowns, conditional formatting and automatic follow-up date logic."}, {"d": "2026-08-10", "k": "build_small", "x": 35, "r": "Built intake and capture tooling (Typeform, Tally) feeding a tracked pipeline."}, {"d": "2026-08-10", "k": "build_small", "x": 30, "r": "Built a matching cold call tracker."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Works inside GoHighLevel and Kit on prospect pipelines and sequences."}]}, "biz.sales": {"name": "Sales", "treeName": "Business & Growth", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Close a paid deal in a live conversation.", "prereq": [["biz.outreach", 2]], "unlocks": ["biz.delivery"], "ev": []}, "biz.delivery": {"name": "Delivery & Operations", "treeName": "Business & Growth", "level": 1, "levelName": "Awareness", "status": "Learning", "xp": 55, "next": 20, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Deliver what you sold, repeatedly, without it depending on your memory.", "prereq": [["biz.sales", 2]], "unlocks": ["biz.scaling"], "ev": [{"d": "2026-08-10", "k": "project", "x": 55, "r": "Built and delivered a real landing page to Essy (Bloom Executive VAs) as an actual asset, not a mock."}]}, "biz.scaling": {"name": "???", "treeName": "Business & Growth", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Increase throughput without proportionally increasing your hours.", "prereq": [["biz.delivery", 4], ["biz.growth", 4]], "unlocks": [], "ev": []}, "ai.fundamentals": {"name": "AI Fundamentals", "treeName": "AI & Automation", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 115, "next": 60, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Explain what a model can and cannot do, and why it fails when it fails.", "prereq": [], "unlocks": ["ai.prompting", "vis.ai_video"], "ev": [{"d": "2026-08-10", "k": "project", "x": 90, "r": "Sustained, practical use of AI as production tooling across business, design and code work."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Selects and combines tools deliberately (Claude, Claude Code, Gemini image generation via the banana skill)."}]}, "ai.prompting": {"name": "Prompting, Context & AI Tooling", "treeName": "AI & Automation", "level": 4, "levelName": "Functional", "status": "Practising", "xp": 435, "next": 215, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Reliably get useful work out of a model on a task where the naive attempt failed — and keep the result.", "prereq": [["ai.fundamentals", 1]], "unlocks": ["ai.agents"], "ev": [{"d": "2026-08-10", "k": "project", "x": 110, "r": "Built and installed a working Claude Code plugin, with .mcp.json structure debugged until the plugin loader accepted it."}, {"d": "2026-08-10", "k": "project", "x": 90, "r": "Built and installed working skill packages that depend on reliable prompting: coaching-funnel-growth, humanise, banana, ui-ux-pro-max."}, {"d": "2026-08-10", "k": "project", "x": 90, "r": "Packaged and installed multiple skill files as a working local toolchain."}, {"d": "2026-08-10", "k": "project", "x": 70, "r": "Authored a CLAUDE.md to control what the model sees in a repository, and installed the context-engineering-collection."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Iterates prompts and instructions toward specific output requirements, including a rule that humanise triggers only on explicit invocation."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Maintains standing instructions and rules that shape model behaviour across sessions."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Uses Claude Code as a routine build tool rather than experimentally."}]}, "ai.agents": {"name": "AI Agents & Orchestration", "treeName": "AI & Automation", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Build an agent that completes a multi-step task unattended.", "prereq": [["ai.prompting", 3]], "unlocks": ["ai.production", "tech.ai_integration"], "ev": []}, "auto.fundamentals": {"name": "Automation Fundamentals", "treeName": "AI & Automation", "level": 1, "levelName": "Awareness", "status": "Learning", "xp": 60, "next": 15, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Describe a trigger, an action, and what happens when one fails.", "prereq": [], "unlocks": ["biz.crm", "auto.tools"], "ev": [{"d": "2026-08-10", "k": "build_small", "x": 40, "r": "Built automatic follow-up date logic in the outreach tracker — a real trigger-and-action rule doing useful work."}, {"d": "2026-08-10", "k": "practice", "x": 20, "r": "Reasons about outreach as a workflow with stages and triggers."}]}, "auto.tools": {"name": "Automation Tools (Zapier, n8n)", "treeName": "AI & Automation", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 15, "next": 10, "cap": 2, "capped": false, "capNote": "Reading and study top out at level 2. Practising this — actually doing it, however badly — lifts the ceiling to 4.", "conf": "low", "rust": "", "req": "Ship a workflow that runs unattended on real data.", "prereq": [["auto.fundamentals", 1]], "unlocks": ["auto.integration"], "ev": [{"d": "2026-08-10", "k": "study", "x": 15, "r": "EXPLORING ONLY — considering Zapier for the outreach workflow. Zapier is listed as a primary tool, but the memory contains no evidence of a Zap built and running on live data."}]}, "auto.integration": {"name": "Multi-Step Automations & APIs", "treeName": "AI & Automation", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Chain several steps across systems you do not control, with auth, branching and error handling that behave.", "prereq": [["auto.tools", 2]], "unlocks": ["auto.systems", "yt.systems"], "ev": []}, "auto.systems": {"name": "Automation Architecture", "treeName": "AI & Automation", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Design an automation with failure handling, retries and observability.", "prereq": [["auto.integration", 3]], "unlocks": ["auto.production", "cross.ai_growth_operator"], "ev": []}, "auto.production": {"name": "???", "treeName": "AI & Automation", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Deploy and maintain a multi-step automation doing useful work reliably, for someone other than yourself.", "prereq": [["auto.systems", 5]], "unlocks": ["ai.production", "cross.agentic_business"], "ev": []}, "ai.production": {"name": "???", "treeName": "AI & Automation", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Run an AI system other people depend on, and keep it up.", "prereq": [["ai.agents", 5], ["auto.production", 4]], "unlocks": ["cross.agentic_business"], "ev": []}, "yt.fundamentals": {"name": "Audience Fundamentals", "treeName": "Content & Audience", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 15, "next": 10, "cap": 2, "capped": false, "capNote": "Reading and study top out at level 2. Practising this — actually doing it, however badly — lifts the ceiling to 4.", "conf": "low", "rust": "", "req": "Explain what the platform rewards and why.", "prereq": [], "unlocks": ["yt.ideas", "yt.packaging", "yt.analytics"], "ev": [{"d": "2026-08-10", "k": "study", "x": 15, "r": "KNOWLEDGE ONLY — the £15 course teaches content creation, clip editing and scripting, but there is no evidence of a channel, published videos or audience data of his own."}]}, "yt.ideas": {"name": "Idea Generation", "treeName": "Content & Audience", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Generate ideas that survive contact with an audience.", "prereq": [["yt.fundamentals", 1]], "unlocks": ["yt.strategy"], "ev": []}, "yt.packaging": {"name": "Packaging: Titles, Thumbnails, Hooks", "treeName": "Content & Audience", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Beat your own previous click-through or retention on a real video.", "prereq": [["yt.fundamentals", 1]], "unlocks": [], "ev": []}, "yt.analytics": {"name": "Analytics & Competitor Intelligence", "treeName": "Content & Audience", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Read the data, draw a conclusion, and have it turn out correct.", "prereq": [["yt.fundamentals", 1]], "unlocks": ["yt.strategy", "cross.ai_growth_operator"], "ev": []}, "yt.strategy": {"name": "Content Strategy", "treeName": "Content & Audience", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Run a deliberate content plan across a full month.", "prereq": [["yt.analytics", 3], ["yt.ideas", 3]], "unlocks": ["yt.systems"], "ev": []}, "yt.systems": {"name": "???", "treeName": "Content & Audience", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Automate production so publishing does not depend on your mood.", "prereq": [["yt.strategy", 4], ["auto.integration", 3]], "unlocks": [], "ev": []}, "vis.drawing": {"name": "Drawing & Rendering", "treeName": "Visual & Creative", "level": 3, "levelName": "Developing", "status": "Practising", "xp": 210, "next": 140, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Draw what is in front of you, and render form convincingly with value.", "prereq": [], "unlocks": ["vis.composition", "vis.masterwork"], "ev": [{"d": "2026-08-10", "k": "project", "x": 70, "r": "Produces detailed observational drawing as an established practice."}, {"d": "2026-08-10", "k": "project", "x": 60, "r": "Detailed rendered artwork requiring sustained value control."}, {"d": "2026-08-10", "k": "project", "x": 55, "r": "Mural and room decoration work treating a physical space as the picture."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Ongoing detailed drawing work."}]}, "vis.story": {"name": "Visual Storytelling", "treeName": "Visual & Creative", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Tell a story where the images carry the meaning.", "prereq": [], "unlocks": ["vis.edit", "vis.ai_video", "vis.camera", "cross.filmmaker"], "ev": []}, "vis.composition": {"name": "Composition & Perspective", "treeName": "Visual & Creative", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 100, "next": 75, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Arrange a picture so the eye goes where you intended, in a space that holds together.", "prereq": [["vis.drawing", 2]], "unlocks": ["vis.brand", "vis.3d", "vis.camera", "vis.masterwork"], "ev": [{"d": "2026-08-10", "k": "project", "x": 75, "r": "Painted murals — composition at architectural scale, resolved and finished."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Room decoration work requiring composition decisions in a real space."}]}, "vis.edit": {"name": "Editing & Post", "treeName": "Visual & Creative", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Cut a sequence that plays better than its raw footage.", "prereq": [["vis.story", 1]], "unlocks": ["cross.filmmaker"], "ev": []}, "vis.brand": {"name": "Brand & Visual Identity", "treeName": "Visual & Creative", "level": 3, "levelName": "Developing", "status": "Practising", "xp": 225, "next": 125, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Produce a coherent identity — palette, type, marks — applied consistently across several real assets.", "prereq": [["vis.composition", 1]], "unlocks": [], "ev": [{"d": "2026-08-10", "k": "project", "x": 100, "r": "Built a complete AIGO brand identity: cream/near-black/signal-red palette, Syne 800 / Space Mono / DM Sans type system, and a written brand guide."}, {"d": "2026-08-10", "k": "project", "x": 80, "r": "Designed the @thisguyai identity: Anton wordmark in two-tone treatment and a yellow rounded-square play-button mark."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Applied the identity consistently across the portfolio site, dashboards, trackers and landing pages."}, {"d": "2026-08-10", "k": "practice", "x": 20, "r": "Holds a deliberate quality standard — explicitly wants design that does not look like typical AI output."}]}, "vis.3d": {"name": "3D & VFX", "treeName": "Visual & Creative", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Build and render a 3D shot you would show someone.", "prereq": [["vis.composition", 1]], "unlocks": ["cross.filmmaker"], "ev": []}, "vis.ai_video": {"name": "AI Video", "treeName": "Visual & Creative", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Direct generated video toward a shot you actually wanted.", "prereq": [["ai.fundamentals", 1], ["vis.story", 1]], "unlocks": ["cross.filmmaker"], "ev": []}, "vis.camera": {"name": "Cinematography", "treeName": "Visual & Creative", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Light and move a camera for reasons a viewer could name.", "prereq": [["vis.composition", 2], ["vis.story", 2]], "unlocks": ["cross.filmmaker"], "ev": []}, "vis.masterwork": {"name": "???", "treeName": "Visual & Creative", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "A recognisable body of finished work, not one good piece.", "prereq": [["vis.composition", 5], ["vis.drawing", 5]], "unlocks": [], "ev": []}, "tech.computing": {"name": "Computing & Version Control", "treeName": "Technology", "level": 3, "levelName": "Developing", "status": "Practising", "xp": 190, "next": 160, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Operate a machine confidently, command line and git included.", "prereq": [], "unlocks": ["tech.frontend", "tech.code"], "ev": [{"d": "2026-08-10", "k": "project", "x": 80, "r": "Runs a working local toolchain: Claude Code, plugin and skill installation, repository work."}, {"d": "2026-08-10", "k": "build_small", "x": 35, "r": "Maintains a repository with committed plugin work and structured commit history."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Comfortable operating across files, configs and tooling."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Debugged plugin configuration structure until it loaded correctly."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Uses version control as part of the normal build loop."}]}, "tech.frontend": {"name": "Frontend (HTML, CSS, JavaScript)", "treeName": "Technology", "level": 4, "levelName": "Functional", "status": "Practising", "xp": 640, "next": 10, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Build a page that works on a phone and does something you wrote.", "prereq": [["tech.computing", 1]], "unlocks": ["tech.web"], "ev": [{"d": "2026-08-10", "k": "project", "x": 150, "r": "Built ONYX Casino: a single-file vanilla React browser casino with Crash, Mines, Plinko, Cases, Case Battles, Item Upgrader, Dragon Tower, HiLo, Blackjack, Roulette, Baccarat and Video Poker, plus per-game Evil Mode cheat mechanics. Substantial stateful game logic with no build step."}, {"d": "2026-08-10", "k": "project", "x": 120, "r": "Built the TV-display outreach command center: vanilla HTML/JS polling Google Sheets via the gviz CSV endpoint on a 90-second cycle."}, {"d": "2026-08-10", "k": "project", "x": 100, "r": "Built the live portfolio site at brajanniedz.netlify.app."}, {"d": "2026-08-10", "k": "project", "x": 80, "r": "Built a landing page delivered to a real business (Essy, Bloom Executive VAs)."}, {"d": "2026-08-10", "k": "project", "x": 60, "r": "Built the gamified AIGO co-pilot dashboard in vanilla JS."}, {"d": "2026-08-10", "k": "project", "x": 55, "r": "Built the @thisguyai course landing page."}, {"d": "2026-08-10", "k": "build_small", "x": 50, "r": "Built the AIGO Lead Finder as a React artifact."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Repeated page building across projects to a consistent visual standard."}]}, "tech.code": {"name": "Code & Data (Python, APIs, Databases)", "treeName": "Technology", "level": 1, "levelName": "Awareness", "status": "Learning", "xp": 70, "next": 5, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Write a program that does a real job, talks to an API, and stores what it needs to keep.", "prereq": [["tech.computing", 1]], "unlocks": ["tech.ai_integration", "tech.architecture"], "ev": [{"d": "2026-08-10", "k": "build_small", "x": 45, "r": "Consumes the Google Sheets gviz CSV endpoint on a polling loop, parsing the response into a live dashboard."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Wires third-party services together across Tally, Typeform, Sheets and Kit."}]}, "tech.web": {"name": "Web Apps & Dashboards", "treeName": "Technology", "level": 4, "levelName": "Functional", "status": "Practising", "xp": 500, "next": 150, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Ship a working application someone else has used.", "prereq": [["tech.frontend", 3]], "unlocks": ["tech.hosting", "tech.architecture"], "ev": [{"d": "2026-08-10", "k": "project", "x": 110, "r": "Ships complete working web projects end to end, from markup through interactive behaviour to a live URL."}, {"d": "2026-08-10", "k": "project", "x": 110, "r": "Built the TV-display outreach command center — a live operational dashboard designed to be read at a glance from across a room."}, {"d": "2026-08-10", "k": "project", "x": 90, "r": "Multiple distinct web applications delivered, including one to an external party."}, {"d": "2026-08-10", "k": "project", "x": 80, "r": "Built the gamified AIGO co-pilot dashboard."}, {"d": "2026-08-10", "k": "project", "x": 60, "r": "Built the branded outreach tracker and cold call tracker with conditional formatting and status logic."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Sustained web building as the default way problems get solved."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Consistently reaches for a dashboard as the interface to a problem."}]}, "tech.hosting": {"name": "Hosting & Servers", "treeName": "Technology", "level": 1, "levelName": "Awareness", "status": "Learning", "xp": 70, "next": 5, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Deploy something and keep it running.", "prereq": [["tech.web", 2]], "unlocks": ["tech.architecture"], "ev": [{"d": "2026-08-10", "k": "project", "x": 70, "r": "Deployed and maintains a live public site on Netlify."}]}, "tech.ai_integration": {"name": "AI Integration in Software", "treeName": "Technology", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Put a model inside an application and handle it failing.", "prereq": [["tech.code", 3], ["ai.agents", 2]], "unlocks": [], "ev": []}, "tech.architecture": {"name": "???", "treeName": "Technology", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Design a system whose parts you could justify to a sceptic.", "prereq": [["tech.web", 5], ["tech.code", 4], ["tech.hosting", 4]], "unlocks": [], "ev": []}, "fit.training": {"name": "Training Knowledge & Technique", "treeName": "Fitness", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 150, "next": 25, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Execute the main lifts with form that holds, and explain why the programme is built the way it is.", "prereq": [], "unlocks": ["fit.recovery", "fit.consistency", "fit.progression"], "ev": [{"d": "2026-08-10", "k": "build_small", "x": 40, "r": "Sustains a structured split rather than training ad hoc."}, {"d": "2026-08-10", "k": "build_small", "x": 35, "r": "Understands and applies split structure to his own training."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Trains four times a week on an upper/lower split."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Ran a 10km route through Wardown Park and Galley & Warden Hills."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Tracks and knows his own numbers: 178cm, 72kg, roughly 15% body fat."}]}, "fit.nutrition": {"name": "Nutrition & Diet", "treeName": "Fitness", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 5, "next": 20, "cap": 2, "capped": false, "capNote": "Reading and study top out at level 2. Practising this — actually doing it, however badly — lifts the ceiling to 4.", "conf": "low", "rust": "", "req": "Feed yourself to a target across a full month — tracked, not estimated.", "prereq": [], "unlocks": [], "ev": [{"d": "2026-08-10", "k": "knowledge", "x": 5, "r": "KNOWLEDGE ONLY — tracks body composition, but diet is explicitly named as an area of inconsistency, so there is no execution evidence to score."}]}, "fit.recovery": {"name": "Recovery & Sleep", "treeName": "Fitness", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Hold a sleep and recovery routine that survives a busy week.", "prereq": [["fit.training", 1]], "unlocks": [], "ev": []}, "fit.consistency": {"name": "Training Consistency", "treeName": "Fitness", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Train to plan for twelve consecutive weeks, bad weeks included.", "prereq": [["fit.training", 1]], "unlocks": ["fit.programming"], "ev": []}, "fit.progression": {"name": "Progressive Training", "treeName": "Fitness", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Log progression over a training block and actually progress.", "prereq": [["fit.training", 2]], "unlocks": ["fit.programming"], "ev": []}, "fit.programming": {"name": "???", "treeName": "Fitness", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Write your own programme, run it, and get the result you predicted.", "prereq": [["fit.progression", 4], ["fit.consistency", 4]], "unlocks": [], "ev": []}, "mon.literacy": {"name": "Financial Literacy", "treeName": "Money", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 5, "next": 20, "cap": 2, "capped": false, "capNote": "Reading and study top out at level 2. Practising this — actually doing it, however badly — lifts the ceiling to 4.", "conf": "low", "rust": "", "req": "Explain income, expenses, assets and tax accurately.", "prereq": [], "unlocks": ["mon.personal", "mon.income", "mon.investing"], "ev": [{"d": "2026-08-10", "k": "knowledge", "x": 5, "r": "KNOWLEDGE ONLY — has structured commercial terms (setup fee plus revenue share, £15 price point) and reasons about platform costs, but there is no evidence of budgeting, saving, or any earned income to assess."}]}, "mon.personal": {"name": "Personal Money Management", "treeName": "Money", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Cover your own costs, know your numbers, and keep a buffer you did not spend.", "prereq": [["mon.literacy", 1]], "unlocks": ["mon.business_finance", "mon.independence", "life.independent"], "ev": []}, "mon.income": {"name": "Earning & Business Income", "treeName": "Money", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Money from customers, not from wages.", "prereq": [["mon.literacy", 1]], "unlocks": ["mon.business_finance"], "ev": []}, "mon.investing": {"name": "Investing & Risk", "treeName": "Money", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Explain what you own, why, and what would make you sell. Knowledge of markets and a proven record are different skills, and reading alone caps this node at level 2.", "prereq": [["mon.literacy", 2]], "unlocks": [], "ev": []}, "mon.business_finance": {"name": "Business Finance", "treeName": "Money", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Run a business's numbers: margin, runway, reinvestment.", "prereq": [["mon.income", 3], ["mon.personal", 3]], "unlocks": ["mon.independence"], "ev": []}, "mon.independence": {"name": "???", "treeName": "Money", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Your costs are covered by income you control.", "prereq": [["mon.business_finance", 5], ["mon.personal", 4]], "unlocks": [], "ev": []}, "lrn.research": {"name": "Research", "treeName": "Learning & Thinking", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 160, "next": 15, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Find a trustworthy answer to a question nobody handed you.", "prereq": [], "unlocks": ["lrn.thinking", "lrn.self_teaching"], "ev": [{"d": "2026-08-10", "k": "project", "x": 80, "r": "Completed a WJEC Criminology Unit 3 assignment on R v Lucy Letby, arguing a potentially unsafe conviction — sourced, structured argument on contested evidence."}, {"d": "2026-08-10", "k": "project", "x": 55, "r": "Completed a BTEC IT Project Management Unit 9 assignment covering Agile, RAD and PRINCE2."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Routine prospect and niche research as part of outreach."}]}, "lrn.thinking": {"name": "Critical Thinking & Problem Solving", "treeName": "Learning & Thinking", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 155, "next": 20, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Solve something that had no tutorial, and change your mind on the record when the evidence says so.", "prereq": [["lrn.research", 1]], "unlocks": ["lrn.synthesis", "lrn.experimentation"], "ev": [{"d": "2026-08-10", "k": "project", "x": 60, "r": "Argued against a returned verdict on evidential grounds in the Letby assignment — a position requiring evaluation rather than summary."}, {"d": "2026-08-10", "k": "build_small", "x": 45, "r": "Solved the plugin loader configuration problem by working out the required flat-map structure."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Accepts and acts on challenges to his own behaviour, including repeated avoidance callouts."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Regularly builds around constraints, such as polling Sheets via gviz rather than standing up a backend."}]}, "lrn.self_teaching": {"name": "Self-Teaching", "treeName": "Learning & Thinking", "level": 3, "levelName": "Developing", "status": "Practising", "xp": 290, "next": 60, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Learn a skill to usable level without being taught, by finishing something in it.", "prereq": [["lrn.research", 2]], "unlocks": ["lrn.systems"], "ev": [{"d": "2026-08-10", "k": "project", "x": 100, "r": "Self-taught working web development, React, AI tooling and brand design to a shipping standard without formal instruction in any of them."}, {"d": "2026-08-10", "k": "project", "x": 85, "r": "Learns by building: ONYX Casino, dashboards and the course all served as learning vehicles that were carried to a working state."}, {"d": "2026-08-10", "k": "project", "x": 55, "r": "Self-taught the AI Growth Operating domain: funnels, CRM, email sequences, conversion diagnosis."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Default response to an unfamiliar domain is to learn it by building in it."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Consistent project-first learning pattern."}]}, "lrn.synthesis": {"name": "Synthesis & Knowledge Management", "treeName": "Learning & Thinking", "level": 1, "levelName": "Awareness", "status": "Learning", "xp": 25, "next": 50, "cap": 4, "capped": false, "capNote": "Practice tops out at level 4. Building or shipping something with it lifts the ceiling to 6.", "conf": "low", "rust": "", "req": "Combine sources into a conclusion none of them stated, and keep notes you actually return to.", "prereq": [["lrn.thinking", 2]], "unlocks": ["lrn.systems"], "ev": [{"d": "2026-08-10", "k": "practice", "x": 25, "r": "Set up an Obsidian second-brain vault. Scored low deliberately: it was diagnosed as an unhealthy archive — bulk-imported chat logs, isolated clusters, no meaningful cross-linking — so this is evidence of attempting the skill, not holding it."}]}, "lrn.experimentation": {"name": "Experimentation", "treeName": "Learning & Thinking", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Test something properly instead of guessing.", "prereq": [["lrn.thinking", 2]], "unlocks": ["lrn.systems"], "ev": []}, "lrn.systems": {"name": "???", "treeName": "Learning & Thinking", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "See the feedback loop before it bites, and go zero to useful in a new domain repeatedly.", "prereq": [["lrn.synthesis", 4], ["lrn.experimentation", 4], ["lrn.self_teaching", 5]], "unlocks": [], "ev": []}, "pd.reflection": {"name": "Reflection & Self-Awareness", "treeName": "Discipline & Independence", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 140, "next": 35, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Review your own week honestly in writing, and predict your own failure modes before they happen.", "prereq": [], "unlocks": ["pd.planning"], "ev": [{"d": "2026-08-10", "k": "project", "x": 55, "r": "Asked Claude to name his avoidance pattern and back the callout with real numbers — deliberately building a mechanism against his own known failure mode."}, {"d": "2026-08-10", "k": "build_small", "x": 35, "r": "Maintains a written success-plan with explicit rules and a defined next action."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Engages with an accountability framework and asked to be confronted when he deflects."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Names inconsistency across gym, diet and business projects as a recurring personal theme rather than denying it."}]}, "pd.planning": {"name": "Planning & Focus", "treeName": "Discipline & Independence", "level": 1, "levelName": "Awareness", "status": "Learning", "xp": 70, "next": 5, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Make a plan you then followed, and hold deep work across a month.", "prereq": [["pd.reflection", 1]], "unlocks": ["pd.consistency"], "ev": [{"d": "2026-08-10", "k": "build_small", "x": 45, "r": "Wrote success-plan.md with a hard constraint (no new infrastructure before a signed client) and a single defined next action ('chapter one')."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Plans campaigns and projects in structured stages."}]}, "pd.consistency": {"name": "Discipline & Consistency", "treeName": "Discipline & Independence", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Do the same important thing weekly for three months, when nobody is checking and none of it is fun.", "prereq": [["pd.planning", 2]], "unlocks": ["life.independent"], "ev": []}, "life.communication": {"name": "Communication", "treeName": "Discipline & Independence", "level": 2, "levelName": "Beginner", "status": "Learning", "xp": 90, "next": 85, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Handle a difficult conversation with an adult stranger.", "prereq": [], "unlocks": ["life.work"], "ev": [{"d": "2026-08-10", "k": "project", "x": 65, "r": "Initiates contact with strangers professionally at volume: cold email, Instagram DMs and recorded Loom audits, adapting register per channel."}, {"d": "2026-08-10", "k": "practice", "x": 25, "r": "Sustained outreach conversation across multiple niches."}]}, "life.organisation": {"name": "Organisation & Admin", "treeName": "Discipline & Independence", "level": 1, "levelName": "Awareness", "status": "Learning", "xp": 40, "next": 35, "cap": 6, "capped": false, "capNote": "Shipped work tops out at level 6. Using it for real — paid, delivered, or relied on by someone else — lifts the ceiling to 8.", "conf": "medium", "rust": "", "req": "Nothing important is lost, late or forgotten, paperwork included.", "prereq": [], "unlocks": ["life.work", "life.independent"], "ev": [{"d": "2026-08-10", "k": "build_small", "x": 40, "r": "Runs his work from maintained trackers with statuses and follow-up dates."}]}, "life.selfcare": {"name": "Cooking & Self-Care", "treeName": "Discipline & Independence", "level": 0, "levelName": "Unknown", "status": "Available", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Feed yourself well, routinely, without buying it ready-made.", "prereq": [], "unlocks": [], "ev": []}, "life.work": {"name": "Work & Business Admin", "treeName": "Discipline & Independence", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Register, invoice, record and file — properly — and read an agreement knowing what you just accepted.", "prereq": [["life.communication", 2], ["life.organisation", 2]], "unlocks": ["life.independent"], "ev": []}, "life.independent": {"name": "???", "treeName": "Discipline & Independence", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "The whole machine runs without anyone underwriting it.", "prereq": [["life.work", 3], ["life.organisation", 4], ["pd.consistency", 4], ["mon.personal", 4]], "unlocks": [], "ev": []}, "cross.ai_growth_operator": {"name": "???", "treeName": "Cross-Tree Specialisations", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Diagnose a real business's growth problem and build the system that fixes it.", "prereq": [["biz.growth", 5], ["auto.systems", 5], ["biz.crm", 4], ["biz.copywriting", 4], ["yt.analytics", 4]], "unlocks": [], "ev": []}, "cross.filmmaker": {"name": "???", "treeName": "Cross-Tree Specialisations", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "Make a film alone that an audience chooses to finish.", "prereq": [["vis.camera", 5], ["vis.edit", 5], ["vis.3d", 5], ["vis.ai_video", 5], ["vis.story", 5]], "unlocks": [], "ev": []}, "cross.agentic_business": {"name": "???", "treeName": "Cross-Tree Specialisations", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "A business whose operations largely run themselves.", "prereq": [["ai.production", 6], ["auto.production", 5], ["biz.growth", 4]], "unlocks": ["cross.unknown"], "ev": []}, "cross.unknown": {"name": "???", "treeName": "Cross-Tree Specialisations", "level": 0, "levelName": "Unknown", "status": "Locked", "xp": 0, "next": 25, "cap": 1, "capped": false, "capNote": "Only questions are recorded here. Studying it properly lifts this to 2; practising it lifts it to 4.", "conf": "none", "rust": "", "req": "", "prereq": [["cross.agentic_business", 5]], "unlocks": [], "ev": []}};
-const POS={"biz.fundamentals": [0, -398], "biz.offer": [0, -513], "biz.crm": [-131, -603], "biz.copywriting": [0, -679], "biz.outreach": [157, -724], "biz.growth": [-152, -699], "biz.sales": [165, -760], "biz.delivery": [0, -809], "biz.scaling": [0, -900], "ai.fundamentals": [160, -364], "auto.fundamentals": [343, -306], "auto.tools": [207, -469], "ai.prompting": [429, -383], "auto.integration": [363, -499], "ai.agents": [421, -579], "auto.systems": [476, -655], "auto.production": [529, -728], "ai.production": [581, -799], "yt.fundamentals": [379, -123], "yt.ideas": [443, -258], "yt.packaging": [572, -58], "yt.analytics": [587, -191], "yt.strategy": [680, -221], "yt.systems": [770, -250], "vis.drawing": [396, 40], "vis.story": [397, 232], "vis.edit": [488, 158], "vis.3d": [614, 62], "vis.ai_video": [659, 163], "vis.brand": [687, 279], "vis.composition": [533, 311], "vis.camera": [680, 221], "vis.masterwork": [856, 278], "tech.computing": [234, 322], "tech.frontend": [301, 415], "tech.code": [363, 499], "tech.hosting": [534, 477], "tech.web": [313, 712], "tech.ai_integration": [476, 655], "tech.architecture": [529, 728], "fit.training": [0, 398], "fit.nutrition": [109, 501], "fit.recovery": [-122, 562], "fit.progression": [131, 603], "fit.consistency": [-144, 664], "fit.programming": [0, 809], "mon.literacy": [-234, 322], "mon.personal": [-301, 415], "mon.income": [-249, 565], "mon.investing": [-507, 452], "mon.business_finance": [-476, 655], "mon.independence": [-581, 799], "lrn.research": [-379, 123], "lrn.thinking": [-488, 158], "lrn.experimentation": [-533, 311], "lrn.self_teaching": [-646, 210], "lrn.synthesis": [-738, 74], "lrn.systems": [-770, 250], "life.selfcare": [-396, -40], "pd.reflection": [-397, -232], "life.communication": [-510, -51], "life.organisation": [-547, -178], "pd.planning": [-550, -321], "pd.consistency": [-587, -191], "life.work": [-680, -221], "life.independent": [-856, -278], "cross.ai_growth_operator": [-737, -658], "cross.filmmaker": [-423, -961], "cross.agentic_business": [-631, -868], "cross.unknown": [-680, -936]};
-const VB0={w:2395.454617094657,h:2395.454617094657,cx:12,cy:-65};
+const POS={"biz.fundamentals": [-1475, -1219], "biz.offer": [-1475, -1014], "biz.crm": [-1710, -809], "biz.copywriting": [-1475, -809], "biz.outreach": [-1240, -809], "biz.growth": [-1651, -604], "biz.sales": [-1299, -604], "biz.delivery": [-1475, -399], "biz.scaling": [-1475, -194], "ai.fundamentals": [-855, -1219], "auto.fundamentals": [-620, -1219], "auto.tools": [-855, -1014], "ai.prompting": [-620, -1014], "auto.integration": [-738, -809], "ai.agents": [-738, -604], "auto.systems": [-738, -399], "auto.production": [-738, -194], "ai.production": [-738, 11], "yt.fundamentals": [-118, -1219], "yt.ideas": [-235, -1014], "yt.packaging": [0, -1014], "yt.analytics": [-118, -809], "yt.strategy": [-118, -604], "yt.systems": [-118, -399], "vis.drawing": [502, -1219], "vis.story": [972, -1219], "vis.edit": [738, -1014], "vis.3d": [385, -809], "vis.ai_video": [620, -809], "vis.brand": [855, -809], "vis.composition": [1090, -809], "vis.camera": [738, -604], "vis.masterwork": [738, -399], "tech.computing": [1592, -1219], "tech.frontend": [1592, -1014], "tech.code": [1592, -809], "tech.hosting": [1475, -604], "tech.web": [1710, -604], "tech.ai_integration": [1592, -399], "tech.architecture": [1592, -194], "fit.training": [-1475, 481], "fit.nutrition": [-1592, 686], "fit.recovery": [-1358, 686], "fit.progression": [-1592, 891], "fit.consistency": [-1358, 891], "fit.programming": [-1475, 1096], "mon.literacy": [-855, 481], "mon.personal": [-855, 686], "mon.income": [-972, 891], "mon.investing": [-738, 891], "mon.business_finance": [-855, 1096], "mon.independence": [-855, 1301], "lrn.research": [-118, 481], "lrn.thinking": [-118, 686], "lrn.experimentation": [-352, 891], "lrn.self_teaching": [-118, 891], "lrn.synthesis": [118, 891], "lrn.systems": [-118, 1096], "life.selfcare": [561, 481], "pd.reflection": [914, 481], "life.communication": [502, 686], "life.organisation": [738, 686], "pd.planning": [972, 686], "pd.consistency": [738, 891], "life.work": [738, 1096], "life.independent": [738, 1301], "cross.ai_growth_operator": [1358, 481], "cross.filmmaker": [1592, 481], "cross.agentic_business": [1475, 686], "cross.unknown": [1475, 891]};
+const VB0={w:3915,h:3100,cx:-135,cy:-364};
 
 const S=document.getElementById('stage'),SVG=document.getElementById('svg'),
       G=document.getElementById('cam'),P=document.getElementById('panel');
@@ -827,8 +857,8 @@ function fit(){
   /* Never open so far out that the nodes stop being legible. On a phone this
      starts you inside the graph rather than showing an unreadable map of it. */
   const maxW=r.width*3.4;
-  if(w>maxW){w=maxW;h=w/a}
-  vb.w=w;vb.h=h;vb.x=VB0.cx-w/2;vb.y=VB0.cy-h/2;apply();
+  if(vb.w>maxW){vb.w=maxW;vb.h=maxW/a}
+  vb.x=VB0.cx-vb.w/2;vb.y=VB0.cy-vb.h/2;apply();
 }
 fit(); addEventListener('resize',fit);
 

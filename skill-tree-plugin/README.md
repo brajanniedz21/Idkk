@@ -150,11 +150,19 @@ Live at **https://claude.ai/code/artifact/e5f9054b-fa47-4787-acaf-a31c8a355d77**
 (private to your account). The daily Routine republishes to that same URL, so
 the link stays stable — bookmark it.
 
-It is the tree and nothing else: 70 nodes as a constellation, one radial wedge
-per branch, tier driving distance from the centre, prerequisite edges drawn
-between them. Drag to pan, scroll to zoom, click any node.
+It is the tree and nothing else: ten branch cards, each stacking its skills from
+foundations at the top down to specialisations at the bottom. Drag to pan,
+scroll or pinch to zoom, click any node.
 
-Selecting a node dims the rest of the graph, lights its chain, and opens a panel
+An earlier version fanned all the nodes out radially. It photographed well and
+read badly — sectors at different angles put multi-word labels on collision
+courses, and three rounds of tuning did not fix it. Cards give every node a
+fixed slot, so a label can never land on its neighbour, and depth is just
+"further down the card". Card headers carry the branch name and how many of its
+skills carry evidence, so the shape of what you have and have not done is
+readable before you click anything.
+
+Selecting a node dims the rest of the board, lights its chain, and opens a panel
 with its level and XP, what it would take to reach the next level, what it
 requires, what it leads to, and every dated piece of evidence behind it with the
 reason recorded. Prerequisites and unlocks in the panel are clickable, so you
@@ -162,24 +170,24 @@ can walk a chain node by node.
 
 Reading the marks:
 
+- **Disc size** is depth: foundations are the big dots, specialisations taper.
 - **Ring** around a disc is level, out of ten.
 - **Ochre arc** is the evidence ceiling — the part of the ring that current
   evidence cannot reach. It is drawn *before* you hit it, and the panel names
   the class of evidence that would lift it ("practising this lifts the ceiling
   to 4"). This is the whole system in one graphic.
 - **Filled red discs** carry evidence; hollow ones are available; dim ones are
-  locked; dashed `???` are hidden until their prerequisites are met.
+  locked; `???` are hidden until their prerequisites are met.
 - **Ochre dot** on a disc means rusting.
-- **Dashed edges** cross between branches — those are the cross-tree
-  specialisations.
+- **Dashed links** arc between cards — those are the cross-tree specialisations,
+  kept quiet until you select one.
 
 Layout is computed in Python at generation time, not in the browser, so node
-positions are identical on every regeneration. A tree that rearranged itself
-daily would be unreadable.
+positions are identical on every regeneration. The card packing picks whichever
+row count lands the board closest to a screen's proportions.
 
 The page commits to a single dark treatment rather than shipping a light
-variant — a constellation on a cream ground is not worth having — and paints
-every colour explicitly so it holds on any host background.
+variant, and paints every colour explicitly so it holds on any host background.
 
 Regenerate with `python3 scripts/skilltree.py dashboard` after every update, and
 republish with the URL above so it never mints a second page.

@@ -817,7 +817,11 @@ body{
 svg{width:100%;height:100%;display:block}
 
 .edge{stroke:var(--edge);stroke-width:2.6;fill:none}
-.edge.cross{stroke-dasharray:8 9;stroke:#3A352C}
+.card{fill:#151311;stroke:#282520;stroke-width:2}
+.card-name{fill:#CFC7B8;font-size:28px;font-weight:700;letter-spacing:.01em}
+.card-count{fill:var(--faint);font-size:22px;text-anchor:end}
+.card-desc{fill:var(--faint);font-size:18px}
+.edge.cross{stroke-dasharray:8 9;stroke:#332E26;opacity:.45;stroke-width:2}
 .edge.done{stroke:var(--accent-dim);stroke-width:3.4}
 .edge.lit{stroke:var(--edge-lit);stroke-width:4.5}
 /* With something selected, everything unrelated recedes so the one
@@ -833,7 +837,7 @@ svg{width:100%;height:100%;display:block}
   transform:rotate(-90deg);transform-box:fill-box;transform-origin:center}
 .node .cap{fill:none;stroke:var(--ochre);stroke-width:3;opacity:.85;
   transform:rotate(-90deg);transform-box:fill-box;transform-origin:center}
-.node .lv{fill:var(--cream);font-size:30px;font-weight:700;text-anchor:middle;
+.node .lv{fill:var(--cream);font-weight:700;text-anchor:middle;
   dominant-baseline:central;pointer-events:none}
 .node.idle .lv{fill:var(--faint)}
 .node .lbl{fill:var(--faint);font-size:21px;opacity:.62;transition:opacity .15s;text-anchor:middle;pointer-events:none;
@@ -849,8 +853,6 @@ svg{width:100%;height:100%;display:block}
 .node:focus .disc{stroke:var(--cream)}
 .rust{fill:var(--ochre)}
 
-.branch-label{fill:#9A9182;font-size:30px;letter-spacing:.2em;text-anchor:middle;
-  text-transform:uppercase;pointer-events:none;font-weight:600}
 
 /* ---- detail panel ---- */
 #panel{position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);background:var(--panel);
@@ -928,8 +930,8 @@ function fit(){
   /* Never open so far out that the nodes stop being legible. On a phone this
      starts you inside the graph rather than showing an unreadable map of it. */
   const maxW=r.width*3.4;
-  if(w>maxW){w=maxW;h=w/a}
-  vb.w=w;vb.h=h;vb.x=VB0.cx-w/2;vb.y=VB0.cy-h/2;apply();
+  if(vb.w>maxW){vb.w=maxW;vb.h=maxW/a}
+  vb.x=VB0.cx-vb.w/2;vb.y=VB0.cy-vb.h/2;apply();
 }
 fit(); addEventListener('resize',fit);
 
@@ -1053,46 +1055,107 @@ addEventListener('keydown',e=>{if(e.key==='Escape')deselect()});
 """
 
 
-def _layout(tree: dict[str, Any]) -> tuple[dict[str, tuple[float, float]], dict[str, int]]:
-    """Radial wedge layout: one wedge per tree, tier drives distance from centre.
+# Foundations read as the main dots; specialisations taper off toward the rim.
+TIER_R = {1: 46, 2: 40, 3: 35, 4: 32, 5: 29, 6: 27, 7: 26, 8: 25, 9: 24}
+SLOT = 235      # horizontal room per node in a row
+ROW_H = 205     # vertical distance between tiers
+HEADER = 115    # room for the branch name at the top of a card
+GUTTER = 150
 
-    Computed here rather than in the browser so positions are identical every
-    time the file is regenerated — a tree that rearranged itself daily would be
-    unreadable.
+
+def node_r(node: dict[str, Any]) -> int:
+    return TIER_R.get(node.get("tier", 1), 24)
+
+
+def _layout(tree: dict[str, Any]) -> tuple[dict, list, tuple]:
+    """One card per branch; tiers stack downward inside it.
+
+    An earlier version fanned all 70 nodes radially. It looked like a
+    constellation and read like one too — sectors at different angles put
+    multi-word labels on collision courses, and no amount of tuning fixed it.
+    Cards give every node a fixed slot, so a label can never land on its
+    neighbour, and depth is simply "further down the card".
+
+    Computed here rather than in the browser so positions are identical on every
+    regeneration; a tree that rearranged itself daily would be unreadable.
     """
-    branches = tree["trees"]
-    grouped: dict[str, list[dict[str, Any]]] = {b["id"]: [] for b in branches}
+    grouped: dict[str, dict[int, list[dict[str, Any]]]] = {}
     for node in tree["nodes"]:
-        grouped.setdefault(node.get("tree", "misc"), []).append(node)
+        grouped.setdefault(node.get("tree", "misc"), {}) \
+               .setdefault(node.get("tier", 1), []).append(node)
+
+    cards = []
+    for branch in tree["trees"]:
+        tiers = grouped.get(branch["id"], {})
+        if not tiers:
+            continue
+        # Rows are the tiers actually used, compacted — no empty bands.
+        rows = [tiers[t] for t in sorted(tiers)]
+        for row in rows:
+            row.sort(key=lambda n: n["name"])
+        width = max(len(r) for r in rows) * SLOT
+        cards.append({
+            "branch": branch, "rows": rows,
+            "w": max(width, 2 * SLOT),
+            "h": HEADER + len(rows) * ROW_H,
+        })
+
+    # Try every plausible number of rows and keep whichever lands the board
+    # closest to a screen's proportions. One long strip or one tall stack both
+    # force endless panning; something near 3:2 does not.
+    def pack(row_count: int) -> list[list[dict]]:
+        target = sum(c["w"] + GUTTER for c in cards) / row_count
+        lines: list[list[dict]] = []
+        line: list[dict] = []
+        used = 0.0
+        for card in cards:
+            if line and used + card["w"] + GUTTER > target * 1.06:
+                lines.append(line)
+                line, used = [], 0.0
+            line.append(card)
+            used += card["w"] + GUTTER
+        if line:
+            lines.append(line)
+        return lines
+
+    best, best_score = None, None
+    for count in range(1, min(5, len(cards)) + 1):
+        trial = pack(count)
+        width = max(sum(c["w"] for c in ln) + GUTTER * (len(ln) - 1) for ln in trial)
+        height = sum(max(c["h"] for c in ln) for ln in trial) + GUTTER * (len(trial) - 1)
+        score = abs((width / height) - 1.5)
+        if best_score is None or score < best_score:
+            best, best_score = trial, score
+    lines = best
 
     pos: dict[str, tuple[float, float]] = {}
-    side: dict[str, int] = {}
-    count = len(branches)
-    for bi, branch in enumerate(branches):
-        centre = 2 * math.pi * bi / count - math.pi / 2
-        wedge = 2 * math.pi / count
-        tiers: dict[int, list[dict[str, Any]]] = {}
-        for node in grouped.get(branch["id"], []):
-            tiers.setdefault(node.get("tier", 1), []).append(node)
-        for tier, members in sorted(tiers.items()):
-            members.sort(key=lambda n: n["name"])
-            # Compressed, not linear: most trees stop around tier 5, so linear
-            # growth would strand the few tier-9 nodes far outside everything.
-            radius = 310 + (tier ** 0.82) * 150
-            span = wedge * 0.68
-            k = len(members)
-            for i, node in enumerate(members):
-                angle = centre if k == 1 else centre - span / 2 + span * i / (k - 1)
-                # Three-phase radial stagger: neighbours in a crowded tier sit on
-                # different rings, so angular spacing alone never has to clear a
-                # full node diameter.
-                phase = (i % 3) - 1
-                r = radius + phase * 62
-                pos[node["id"]] = (r * math.cos(angle), r * math.sin(angle))
-                # Neighbours in a crowded tier alternate their label above and
-                # below the disc, so adjacent names cannot land on each other.
-                side[node["id"]] = -1 if phase == 0 else 1
-    return pos, side
+    y = 0.0
+    for line in lines:
+        line_w = sum(c["w"] for c in line) + GUTTER * (len(line) - 1)
+        x = -line_w / 2
+        for card in line:
+            card["x"], card["y"] = x, y
+            for ri, row in enumerate(card["rows"]):
+                cy = y + HEADER + ri * ROW_H + ROW_H * 0.42
+                for i, node in enumerate(row):
+                    pos[node["id"]] = (x + card["w"] * (i + 0.5) / len(row), cy)
+            x += card["w"] + GUTTER
+        y += max(c["h"] for c in line) + GUTTER
+    total_h = y - GUTTER
+
+    # Centre the board on its own bounding box.
+    for nid, (px, py) in pos.items():
+        pos[nid] = (px, py - total_h / 2)
+    for line in lines:
+        for card in line:
+            card["y"] -= total_h / 2
+
+    left = min(c["x"] for ln in lines for c in ln)
+    right = max(c["x"] + c["w"] for ln in lines for c in ln)
+    top = min(c["y"] for ln in lines for c in ln)
+    bottom = max(c["y"] + c["h"] for ln in lines for c in ln)
+    box = (right - left + 260, bottom - top + 260)
+    return pos, [c for line in lines for c in line], box
 
 
 # What it takes to lift each ceiling. The tree is only useful if it names the
@@ -1114,19 +1177,9 @@ CAP_NOTE = {
 def cmd_dashboard(args: argparse.Namespace) -> int:
     tree = load_tree(args.tree)
     recompute_all(tree)
-    idx = node_index(tree)
-    pos, side = _layout(tree)
+    pos, cards, box = _layout(tree)
     e = html.escape
     branches = {b["id"]: b for b in tree["trees"]}
-
-    # Frame the dense core rather than the handful of tier-9 outliers: fitting
-    # the absolute extent would shrink the readable body of the tree to nothing.
-    radii = sorted(math.hypot(x, y) for x, y in pos.values())
-    core = radii[int(len(radii) * 0.93)] if radii else 800
-    extent = core + 210
-    earned = [pos[n["id"]] for n in tree["nodes"] if n.get("xp", 0) > 0 and n["id"] in pos]
-    focus = (sum(x for x, _ in earned) / len(earned),
-             sum(y for _, y in earned) / len(earned)) if earned else (0.0, 0.0)
 
     p: list[str] = []
     w = p.append
@@ -1135,7 +1188,27 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
     w('<div id="stage"><svg id="svg" preserveAspectRatio="xMidYMid meet" '
       'role="application" aria-label="Personal skill tree"><g id="cam">')
 
-    # ---- edges, drawn first so nodes sit on top ----
+    # ---- branch cards, drawn first so everything sits on top ----
+    def fit_text(text: str, width: float, size: float) -> str:
+        room = max(4, int((width - 100) / (size * 0.55)))
+        return text if len(text) <= room else text[:room - 1].rstrip(" ,") + "\u2026"
+
+    for card in cards:
+        branch = card["branch"]
+        done = sum(1 for row in card["rows"] for n in row if n.get("xp", 0) > 0)
+        total = sum(len(row) for row in card["rows"])
+        w(f'<rect class="card" x="{card["x"]:.0f}" y="{card["y"]:.0f}" '
+          f'width="{card["w"]:.0f}" height="{card["h"]:.0f}" rx="26"/>')
+        w(f'<text class="card-name" x="{card["x"] + 34:.0f}" '
+          f'y="{card["y"] + 58:.0f}">{e(fit_text(branch["name"], card["w"], 28))}</text>')
+        w(f'<text class="card-count mono" x="{card["x"] + card["w"] - 34:.0f}" '
+          f'y="{card["y"] + 58:.0f}">{done}/{total}</text>')
+        w(f'<text class="card-desc" x="{card["x"] + 34:.0f}" '
+          f'y="{card["y"] + 88:.0f}">'
+          f'{e(fit_text(branch.get("description", ""), card["w"], 18))}</text>')
+
+    # ---- edges ----
+    idx = node_index(tree)
     for node in tree["nodes"]:
         if node["id"] not in pos:
             continue
@@ -1148,46 +1221,29 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
             x1, y1 = pos[target]
             parent = idx[target]
             cls = "edge"
-            if parent.get("tree") != node.get("tree"):
+            same = parent.get("tree") == node.get("tree")
+            if not same:
                 cls += " cross"
             if parent.get("level", 0) >= need:
                 cls += " done"
-            # Curve toward the centre so long cross-tree links stay legible.
-            mx, my = (x1 + x2) / 2, (y1 + y2) / 2
-            w(f'<path class="{cls}" data-a="{e(target)}" data-b="{e(node["id"])}" '
-              f'd="M{x1:.0f} {y1:.0f} Q{mx * 0.82:.0f} {my * 0.82:.0f} {x2:.0f} {y2:.0f}"/>')
-
-    # Thirteen full branch names will not fit around the rim at a readable
-    # size, so the rim carries short forms; the full name is in the panel.
-    SHORT = {
-        "business": "Business", "ai_automation": "AI & Automation",
-        "content": "Content", "creative": "Creative", "technology": "Technology",
-        "fitness": "Fitness", "money": "Money", "learning": "Learning",
-        "life": "Discipline", "cross": "Cross-Tree",
-    }
-
-    # ---- branch labels at the outer edge of each wedge ----
-    count = len(tree["trees"])
-    for bi, branch in enumerate(tree["trees"]):
-        members = [n for n in tree["nodes"] if n.get("tree") == branch["id"] and n["id"] in pos]
-        if not members:
-            continue
-        top = max(n.get("tier", 1) for n in members)
-        angle = 2 * math.pi * bi / count - math.pi / 2
-        # Sit at the rim of the framed area, but never beyond it, so no branch
-        # name is cropped by the initial fit.
-        r = min(310 + (top ** 0.82) * 150 + 170, extent - 95)
-        w(f'<text class="branch-label" x="{r * math.cos(angle):.0f}" '
-          f'y="{r * math.sin(angle):.0f}">'
-          f'{e(SHORT.get(branch["id"], branch["name"]))}</text>')
+            if same:
+                # Inside a card the link is a short vertical hop; a slight S
+                # keeps parallel runs from merging into one blur.
+                my = (y1 + y2) / 2
+                d = f"M{x1:.0f} {y1:.0f} C{x1:.0f} {my:.0f} {x2:.0f} {my:.0f} {x2:.0f} {y2:.0f}"
+            else:
+                # Between cards, bow the link outward so it reads as a jump.
+                mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+                d = f"M{x1:.0f} {y1:.0f} Q{mx:.0f} {my - 160:.0f} {x2:.0f} {y2:.0f}"
+            w(f'<path class="{cls}" data-a="{e(target)}" data-b="{e(node["id"])}" d="{d}"/>')
 
     # ---- nodes ----
-    R = 27
-    circ = 2 * math.pi * (R + 7)
     for node in tree["nodes"]:
         if node["id"] not in pos:
             continue
         x, y = pos[node["id"]]
+        R = node_r(node)
+        circ = 2 * math.pi * (R + 7)
         has = node.get("xp", 0) > 0
         cls = "node"
         cls += " has" if has else (" avail" if node.get("status") != "Locked" else " idle")
@@ -1206,32 +1262,27 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
             w(f'<circle class="ring" r="{R + 7}" stroke-dasharray="{on:.1f} {circ - on:.1f}"/>')
         if node.get("level_cap", 10) < 10 and node.get("xp", 0) > 0:
             blocked = circ * (10 - node["level_cap"]) / 10
-            w(f'<circle class="cap" r="{R + 13}" stroke-dasharray="0 {circ - blocked:.1f} '
+            w(f'<circle class="cap" r="{R + 14}" stroke-dasharray="0 {circ - blocked:.1f} '
               f'{blocked:.1f}" stroke-dashoffset="0"/>')
-        w(f'<text class="lv mono">{node["level"] if has else "·"}</text>')
+        w(f'<text class="lv mono" style="font-size:{R * 0.74:.0f}px">'
+          f'{node["level"] if has else "·"}</text>')
         if node.get("sharpness") in ("rusting", "dormant"):
-            w(f'<circle class="rust" cx="{R - 4}" cy="{-R + 6}" r="4.5"/>')
-        # Two-line label so long names stay inside the node spacing.
+            w(f'<circle class="rust" cx="{R - 4}" cy="{-R + 6}" r="5"/>')
+        # Two lines keeps every name inside its slot, so labels never collide.
         words = label.split()
         line1, line2 = label, ""
-        if len(label) > 17 and len(words) > 1:
-            half = len(label) / 2
-            best, run = 0, 0
+        if len(label) > 18 and len(words) > 1:
+            half, best, split = len(label) / 2, 0, 1
+            run = 0
             for i, word in enumerate(words[:-1]):
                 run += len(word) + 1
                 if abs(run - half) < abs(best - half):
                     best, split = run, i + 1
             line1 = " ".join(words[:split])
             line2 = " ".join(words[split:])
-        if side.get(node["id"], 1) < 0:
-            top_y = -R - 16 - (17 if line2 else 0)
-            w(f'<text class="lbl" y="{top_y}">{e(line1)}</text>')
-            if line2:
-                w(f'<text class="lbl" y="{top_y + 17}">{e(line2)}</text>')
-        else:
-            w(f'<text class="lbl" y="{R + 21}">{e(line1)}</text>')
-            if line2:
-                w(f'<text class="lbl" y="{R + 38}">{e(line2)}</text>')
+        w(f'<text class="lbl" y="{R + 26}">{e(line1)}</text>')
+        if line2:
+            w(f'<text class="lbl" y="{R + 46}">{e(line2)}</text>')
         w("</g>")
 
     w("</g></svg></div>")
@@ -1279,7 +1330,12 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
     w("<script>")
     w("const DATA=" + json.dumps(payload, ensure_ascii=False) + ";")
     w("const POS=" + json.dumps({k: [round(v[0]), round(v[1])] for k, v in pos.items()}) + ";")
-    w(f"const VB0={{w:{2 * extent},h:{2 * extent},cx:{focus[0]:.0f},cy:{focus[1]:.0f}}};")
+    # On a phone the board opens zoomed in, so centre it on the part of the
+    # tree that actually has something in it rather than on dead space.
+    earned = [pos[n["id"]] for n in tree["nodes"] if n.get("xp", 0) > 0 and n["id"] in pos]
+    fx = sum(px for px, _ in earned) / len(earned) if earned else 0.0
+    fy = sum(py for _, py in earned) / len(earned) if earned else 0.0
+    w(f"const VB0={{w:{box[0]:.0f},h:{box[1]:.0f},cx:{fx:.0f},cy:{fy:.0f}}};")
     w(TREE_JS)
     w("</script>")
 
