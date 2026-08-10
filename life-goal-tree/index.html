@@ -102,6 +102,8 @@ button{font-family:inherit}
 #viewport{
   position:fixed;inset:0;z-index:10;overflow:auto;
   padding:132px 24px 60px;-webkit-overflow-scrolling:touch;
+  /* Allows one-finger scrolling but reserves two-finger pinch for us. */
+  touch-action:pan-x pan-y;
 }
 #wrap{margin:0 auto;position:relative}
 #stage{position:absolute;top:0;left:0;transform-origin:top left}
@@ -217,6 +219,29 @@ button{font-family:inherit}
   75%{transform:translate(calc(-50% + 7px),-50%)}
 }
 
+/* ---------- zoom controls ---------- */
+#zoomctl{
+  position:fixed;right:18px;bottom:18px;z-index:45;
+  display:flex;flex-direction:column;gap:1px;background:#23273a;
+  border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.55);
+}
+#zoomctl button{
+  width:44px;height:44px;border:0;background:#12141d;color:var(--muted);
+  font-size:19px;line-height:1;cursor:pointer;transition:all .3s ease;
+  display:flex;align-items:center;justify-content:center;
+}
+#zoomctl button:hover{background:#1b1f2c;color:var(--ink)}
+#zoomctl button:active{background:#252a3a}
+#zoomctl .lvl{
+  font-size:10px;letter-spacing:.06em;color:var(--dim);height:26px;
+  background:#0e1017;cursor:default;font-variant-numeric:tabular-nums;
+}
+#zoomctl .lvl:hover{background:#0e1017;color:var(--dim)}
+@media (max-width:760px){
+  #zoomctl{right:12px;bottom:12px}
+  #zoomctl button{width:48px;height:48px}
+}
+
 /* ---------- spark particles ---------- */
 .spark{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:60}
 
@@ -313,6 +338,13 @@ button{font-family:inherit}
       <div id="nodes"></div>
     </div>
   </div>
+</div>
+
+<div id="zoomctl">
+  <button id="zIn"  title="Zoom in (+)"  aria-label="Zoom in">+</button>
+  <button class="lvl" id="zLvl" tabindex="-1" aria-live="polite">100%</button>
+  <button id="zOut" title="Zoom out (−)" aria-label="Zoom out">−</button>
+  <button id="zFit" title="Fit to width (0)" aria-label="Fit to width">⤢</button>
 </div>
 
 <div id="tip" role="tooltip"></div>
@@ -678,24 +710,112 @@ seed();
 if(REDUCED){ ctx.clearRect(0,0,innerWidth,innerHeight); for(const d of dots){ ctx.beginPath(); ctx.fillStyle=`rgba(${d.c},${d.a})`; ctx.arc(d.x,d.y,d.r,0,6.284); ctx.fill(); } }
 else drift();
 
-/* ---- scale to fit ---- */
-function layout(){
-  const vp = document.getElementById("viewport");
-  const availW = vp.clientWidth - 48;
-  // Fit the width and let the board scroll upward. Trying to fit the height too
-  // shrinks a ten-row tree to nothing, and climbing toward the apex is the
-  // point of a bottom-to-top tree anyway.
-  let s = Math.min(1, availW/BW);
-  if(innerWidth < 760) s = Math.max(s, 0.55);
-  stage.style.transform = `scale(${s})`;
-  wrap.style.width = (BW*s)+"px";
-  wrap.style.height = (BH*s)+"px";
-}
 function toBottom(){
-  const vp = document.getElementById("viewport");
-  vp.scrollTop = vp.scrollHeight;          // start where the open moves are
-  vp.scrollLeft = (vp.scrollWidth - vp.clientWidth)/2;
+  const v = document.getElementById("viewport");
+  v.scrollTop = v.scrollHeight;            // start where the open moves are
+  v.scrollLeft = (v.scrollWidth - v.clientWidth)/2;
 }
+
+/* ---- scale, zoom and pinch ---- */
+const vp = document.getElementById("viewport");
+const zLvl = document.getElementById("zLvl");
+let scale = 1, fitScale = 1;
+const MAX_S = 2.6;
+const minScale = ()=>Math.min(fitScale*0.55,0.34);
+
+function paint(){
+  stage.style.transform = `scale(${scale})`;
+  wrap.style.width  = (BW*scale)+"px";
+  wrap.style.height = (BH*scale)+"px";
+  zLvl.textContent = Math.round(scale/fitScale*100)+"%";
+}
+
+/* Zoom about a fixed screen point. Measuring the wrapper before and after
+   means centring, padding and scrollbars are all accounted for, instead of
+   being re-derived and got subtly wrong. */
+function zoomTo(next,fx,fy){
+  next = Math.max(minScale(),Math.min(MAX_S,next));
+  if(Math.abs(next-scale) < 0.0005) return;
+  const before = wrap.getBoundingClientRect();
+  const bx = (fx-before.left)/scale, by = (fy-before.top)/scale;
+  scale = next;
+  paint();
+  const after = wrap.getBoundingClientRect();
+  vp.scrollLeft += (after.left + bx*scale) - fx;
+  vp.scrollTop  += (after.top  + by*scale) - fy;
+}
+const centreOfView = ()=>{
+  const r = vp.getBoundingClientRect();
+  return [r.left+r.width/2, r.top+r.height/2];
+};
+const nudge = f => zoomTo(scale*f,...centreOfView());
+
+function fit(keepZoom){
+  const ratio = keepZoom ? scale/fitScale : 1;
+  const availW = vp.clientWidth - 48;
+  fitScale = Math.min(1,availW/BW);
+  if(innerWidth < 760) fitScale = Math.max(fitScale,0.55);
+  scale = fitScale*ratio;
+  paint();
+}
+
+document.getElementById("zIn").addEventListener("click",()=>nudge(1.28));
+document.getElementById("zOut").addEventListener("click",()=>nudge(1/1.28));
+document.getElementById("zFit").addEventListener("click",()=>{ fit(false); toBottom(); });
+
+/* Trackpad pinch and ctrl+wheel zoom; a plain wheel keeps scrolling, because
+   climbing the tree is the main way you move around it. */
+vp.addEventListener("wheel",e=>{
+  if(!(e.ctrlKey || e.metaKey)) return;
+  e.preventDefault();
+  zoomTo(scale*(e.deltaY>0 ? 0.90 : 1.11), e.clientX, e.clientY);
+},{passive:false});
+
+/* Two-finger pinch. */
+let pinch = null;
+const gap = t => Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY);
+const mid = t => [(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2];
+vp.addEventListener("touchstart",e=>{
+  if(e.touches.length===2){
+    const t=[e.touches[0],e.touches[1]];
+    pinch={d:gap(t),s:scale};
+    tip.classList.remove("on");
+  }
+},{passive:true});
+vp.addEventListener("touchmove",e=>{
+  if(e.touches.length===2 && pinch){
+    e.preventDefault();
+    const t=[e.touches[0],e.touches[1]];
+    const d=gap(t);
+    if(d>8) zoomTo(pinch.s*(d/pinch.d), ...mid(t));
+  }
+},{passive:false});
+const endPinch = e =>{ if(!e.touches || e.touches.length<2) pinch=null; };
+vp.addEventListener("touchend",endPinch);
+vp.addEventListener("touchcancel",endPinch);
+
+/* Double-tap the background to zoom in — never a node, since a double tap
+   there would complete and immediately un-complete it. */
+let lastTap = 0, lastX = 0, lastY = 0;
+vp.addEventListener("touchend",e=>{
+  if(e.touches.length || e.changedTouches.length!==1) return;
+  const t = e.changedTouches[0];
+  if(t.target.closest && t.target.closest(".node")){ lastTap=0; return; }
+  const now = Date.now();
+  if(now-lastTap < 300 && Math.hypot(t.clientX-lastX,t.clientY-lastY) < 34){
+    zoomTo(scale > fitScale*1.4 ? fitScale : scale*1.7, t.clientX, t.clientY);
+    lastTap = 0;
+  } else { lastTap=now; lastX=t.clientX; lastY=t.clientY; }
+},{passive:true});
+
+addEventListener("keydown",e=>{
+  if(e.target.matches("input,textarea")) return;
+  if(e.key==="+"||e.key==="="){ e.preventDefault(); nudge(1.28); }
+  else if(e.key==="-"||e.key==="_"){ e.preventDefault(); nudge(1/1.28); }
+  else if(e.key==="0"){ e.preventDefault(); fit(false); toBottom(); }
+});
+
+function layout(){ fit(true); }
 addEventListener("resize",()=>{ seed(); layout(); });
 layout();
 render();
