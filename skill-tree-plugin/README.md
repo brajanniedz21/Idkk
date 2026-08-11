@@ -114,35 +114,21 @@ What the calibration found, without being told to look for it:
 `build` is set at medium confidence with the mismatch recorded in a note. That
 field is meant to be set rarely and deliberately, not refreshed after a good week.
 
-## The daily routine
+## Updating the tree
 
-A cloud Routine (`trig_01KNCmk7HmekKmoGXce2CWmJ`, "Daily Personal Skill Tree
-update") fires daily at 19:00 UTC — 20:00 UK in summer, 19:00 in winter — into a
-fresh session on this repo, with a push notification.
+There is no scheduled job. Updates happen when you ask for one — `/skill-tree
+update` in Claude Code, or `python3 scripts/skilltree.py apply <file>` directly.
 
-**It cannot see your conversations.** A scheduled cloud session gets the repo
-and nothing else: no chat history, no memory, no activity feed. That is not a
-scheduling problem, and no cron fixes it. So the routine is built around what it
-can honestly do:
+A daily Routine used to run this at 19:00 UTC. It was removed on 2026-08-11.
+Worth recording why, in case it looks like an omission later: a scheduled cloud
+session gets the repo and nothing else — no chat history, no memory, no activity
+feed. It could not see what you had done, so it could only ever prompt you and
+wait. The evidence has to come from you either way, which makes the schedule the
+least useful part of the loop.
 
-1. **Recompute decay.** Rust is pure elapsed time, so this is real daily work
-   needing no input, and it is why the routine earns its place.
-2. **Ask you what you actually did**, pushing for the distinction the tree runs
-   on — read it, practised it, built it, shipped it, or got a result from it.
-3. **Process your reply** into a dated update file, apply it, regenerate, commit
-   and push. The container is destroyed after each run, so unpushed work is lost.
-4. **Say nothing happened, when nothing happened.**
-
-The prompt forbids inventing evidence in the strongest terms available, because
-a scheduled job has a standing incentive to justify its own existence, and every
-event it writes is permanent and dated. The honest failure mode of this routine
-is a week of "nothing recorded" — not a week of invented progress.
-
-In practice you supply the evidence and the routine keeps the books. It is a
-daily prompt with a scorekeeper attached, not an observer.
-
-To change the time, disable it, or turn off the notification, ask — or edit the
-Routine directly.
+Decay is the one thing that genuinely changed on its own, and it is recomputed
+on every `render` and `dashboard` run, so nothing is lost by running those when
+you actually have something to record.
 
 ## Dashboard
 
