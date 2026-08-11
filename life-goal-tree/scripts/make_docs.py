@@ -234,6 +234,137 @@ DETAIL = {
     "unreachable unless thirty-five other things are true first.",
     "Keys in your hand.",
     "Getting here by any route that skips a node. The prerequisites are the point."),
+
+# ---- the plan nodes: the work that sits between the outcomes ----
+39:("One page that answers three questions without hedging: who it is for, what "
+    "they get, and what it costs. Everything downstream — the list, the message, "
+    "the call — is unanswerable until this exists.",
+    "One page written, with a specific buyer, a specific deliverable and a number.",
+    "Writing 'anyone who needs growth'. If the buyer is everyone, the message is "
+    "for nobody."),
+40:("One artefact you can send that proves you can do the work — a teardown, a "
+    "sample build, a before-and-after. Without it every message is a claim.",
+    "One asset finished and sendable, not a plan for one.",
+    "Polishing it indefinitely. It has to be good enough to send, not perfect."),
+41:("A hundred named businesses with a person attached, not a niche description. "
+    "This is dull, mechanical and the single highest-leverage hour in the tree.",
+    "100 rows: business, person, contact, and one specific observation each.",
+    "Scraping 1,000 unqualified names. A hundred you have actually looked at beats "
+    "a thousand you have not."),
+42:("The machinery around the sending: a tracker with statuses, message templates, "
+    "and a follow-up sequence with dates. You already build this kind of thing "
+    "well — the risk is building it instead of sending.",
+    "Tracker live, templates written, follow-up cadence defined.",
+    "This is the most comfortable node in the tree. Timebox it to a day."),
+43:("A repeatable audit video: same structure every time, twenty minutes, sent with "
+    "the fix already visible. This is the build-first pitch, made repeatable.",
+    "One template recorded end to end, timed, and reusable.",
+    "Bespoke every time. If it takes two hours you will stop doing it."),
+44:("A hundred real sends, logged, with the reply rate known afterwards. Not a "
+    "campaign — the first honest measurement of your own numbers.",
+    "100 contacted, logged, with a reply rate you can state.",
+    "Stopping at 40 because none replied. The number is the point."),
+45:("Someone replied and it became a real back-and-forth. The first evidence that "
+    "the message lands on a human rather than a list.",
+    "One genuine two-way conversation with a prospect.",
+    "Counting an auto-reply or a no. A no is data, not a conversation."),
+46:("A real call, in the calendar, with a real business. The point at which "
+    "outreach stops being theoretical.",
+    "One discovery call held.",
+    "Treating it as a pitch. The first one is for finding out what is broken."),
+47:("The action already agreed and not yet done: pick one specific coach, audit "
+    "their funnel for real, build the actual fix, and pitch with the work in hand. "
+    "It is the hinge of the whole tree — everything above it waits on this.",
+    "One named coach, a real audit, a delivered build, and a pitch actually sent.",
+    "Choosing a safer prospect, or building something generic. One real one beats "
+    "five hypotheticals."),
+48:("Someone paid you. Not a promise, not a trial — money received for work you "
+    "own. Every node beneath this exists to produce it.",
+    "Cleared payment from a client who is not a friend.",
+    "Discounting to get there. A £200 client at 80% off teaches the wrong lesson."),
+49:("What happens in the first week, written before you need it: what you ask for, "
+    "what you send, what they see and when.",
+    "An onboarding sequence written down and used once.",
+    "Improvising it every time and calling that flexibility."),
+50:("The delivery process written so somebody else could run it. This is the node "
+    "that makes hiring possible later — you cannot delegate what only exists in "
+    "your head.",
+    "A written process another person could follow without asking you.",
+    "Documenting what you wish you did rather than what you actually do."),
+51:("A pipeline that lives somewhere other than your memory, with stages and next "
+    "actions. You already have a tracker; this is making it the real system.",
+    "Every live prospect in one system, with a stage and a next action.",
+    "Two systems. One imperfect source of truth beats two tidy ones."),
+52:("A real result written up with the numbers in it — what was broken, what you "
+    "did, what changed. It is the asset that makes the next sale easier.",
+    "One case study from actual client work, with real figures.",
+    "Writing it from a mock. This node specifically requires a paying client."),
+53:("You charged more than last time and they still said yes. The fastest revenue "
+    "increase available, and the one most people never test.",
+    "One client won at a higher price than your previous rate.",
+    "Raising it only for new leads while carrying old prices forever."),
+54:("A client sent you someone else, unprompted. The first sign delivery is good "
+    "enough to be recommended.",
+    "One referral received from a paying client.",
+    "Asking so hard it becomes a favour. A real referral is voluntary."),
+55:("One hour a week, same slot, looking at the actual numbers: sends, replies, "
+    "calls, revenue. The habit that stops months disappearing.",
+    "Eight consecutive weekly reviews, written down.",
+    "Reviewing only when things are going well."),
+56:("The programme written before the first session — sets, reps, progression, "
+    "which days. Deciding in the gym is how blocks fall apart.",
+    "A written programme covering a full training block.",
+    "Rewriting it every fortnight. The programme works because you stop changing it."),
+57:("The sessions exist in the calendar as appointments, not intentions. It takes "
+    "ten minutes and it is the difference between a plan and a wish.",
+    "A full training block blocked out in the calendar.",
+    "Booking them and then treating them as the first thing to cancel."),
+58:("Food handled in advance so eating well is not a decision you make while "
+    "hungry. Diet is your named weak point; this is the node that addresses it "
+    "structurally rather than by willpower.",
+    "A prep routine running for four consecutive weeks.",
+    "A perfect plan you abandon in week two. Make it boring and repeatable."),
+59:("Same day, same conditions, recorded. Without measurement the body track runs "
+    "on how you feel, which is the least reliable signal available.",
+    "Eight consecutive weeks of weigh-ins and photos, logged.",
+    "Weighing daily and reacting to noise. Weekly, same conditions."),
+60:("Every pound in and out, tracked for a full month. Not budgeting — measuring. "
+    "You cannot plan a payoff or a buffer against numbers you are guessing at.",
+    "One full month tracked, income and outgoings, to the pound.",
+    "Estimating. The gap between what you think you spend and what you spend is "
+    "the entire point."),
+61:("Every debt listed with its rate, ordered, and a date it ends. The plan itself, "
+    "before any of it is paid.",
+    "Every debt listed with balance, rate and a target clear date.",
+    "Leaving one off because it is embarrassing. The list has to be complete."),
+62:("One hour every week reviewing the last one: what happened, what did not, what "
+    "changes. This is the node that turns journaling from a record into a "
+    "correction mechanism.",
+    "Eight consecutive weekly reviews.",
+    "Writing a summary instead of making a decision."),
+63:("Three months of costs, in cash, that you do not touch. It is what lets you "
+    "hold a price and refuse bad work, which is why it sits under the savings "
+    "branch rather than beside it.",
+    "Three months of outgoings held in cash, untouched for 90 days.",
+    "Investing it. This money's job is to be boring and available."),
+64:("Date booked, deposit paid, car chosen. A track day you have not booked is a "
+    "daydream; this node converts it into a commitment with a date.",
+    "Booked and paid, with a date in the calendar.",
+    "Waiting for a better time. There is not one."),
+65:("One number, updated monthly, so the trend is visible rather than imagined. "
+    "Everything in the run-up is measured against this.",
+    "Six consecutive monthly net worth entries.",
+    "Only updating it when it went up."),
+66:("What it actually costs to own one, written down: insurance at your age and "
+    "postcode, servicing intervals, tyres, depreciation, storage. Most people "
+    "research the price and not the ownership.",
+    "A written annual cost estimate with real quotes, not guesses.",
+    "Using someone else's numbers. Insurance in particular is intensely personal."),
+67:("Sit in one. Drive one. Find out whether you still want it after the noise and "
+    "the seating position and the ride are real rather than imagined. Cheap "
+    "compared to discovering it after purchase.",
+    "One test drive completed.",
+    "Skipping it because you are certain. Certainty is exactly what it tests."),
 }
 
 
