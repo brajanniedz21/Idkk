@@ -133,8 +133,9 @@ you actually have something to record.
 ## Dashboard
 
 Live at **https://claude.ai/code/artifact/e5f9054b-fa47-4787-acaf-a31c8a355d77**
-(private to your account). The daily Routine republishes to that same URL, so
-the link stays stable — bookmark it.
+(private to your account). Republishing always targets that same URL, so the
+link stays stable — bookmark it. It refreshes when the tree is updated, not on
+a schedule.
 
 It is the tree and nothing else: ten branch cards, each stacking its skills from
 foundations at the top down to specialisations at the bottom. Drag to pan,
