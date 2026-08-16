@@ -103,18 +103,45 @@ def pull_comments_for_video(youtube, video_id, channel_id):
 def main():
     creds = load_comment_credentials()
     now = datetime.now(timezone.utc).isoformat()
+    out_path = os.path.join(STATE, "video_comments.json")
     if creds is None:
-        out = {
-            "_comment": "Real comment TEXT (not just counts) for published videos, via youtube_auth.load_comment_credentials() — see scripts/pull_video_comments.py.",
-            "pulled_at": now,
-            "has_comment_scope": False,
-            "note": "youtube.force-ssl credentials unavailable this run — same graceful-degradation contract as post_pinned_comment.py. Not a failure.",
-            "videos": {},
-        }
-        with open(os.path.join(STATE, "video_comments.json"), "w") as f:
+        # Never clobber a real prior snapshot with an empty one just because
+        # this run's credentials failed — real incident 2026-08-14: this branch
+        # overwrote a 78-video real comment pull (has_comment_scope=true) with
+        # an empty has_comment_scope=false file, destroying data a fresh pull
+        # would have taken days to rebuild. Preserve the last real snapshot and
+        # only annotate that this run couldn't refresh it.
+        previous = {}
+        if os.path.exists(out_path):
+            try:
+                with open(out_path) as f:
+                    previous = json.load(f)
+            except (json.JSONDecodeError, OSError):
+                previous = {}
+        if previous.get("has_comment_scope") and previous.get("videos"):
+            out = dict(previous)
+            out["last_refresh_attempt_failed_at"] = now
+            out["last_refresh_attempt_note"] = (
+                "youtube.force-ssl credentials unavailable this run — kept the last real "
+                f"snapshot (pulled_at={previous.get('pulled_at')}) instead of overwriting it "
+                "with an empty result."
+            )
+            print(
+                f"credentials unavailable — preserved prior snapshot from {previous.get('pulled_at')} "
+                f"({len(previous.get('videos', {}))} videos) instead of overwriting with empty data"
+            )
+        else:
+            out = {
+                "_comment": "Real comment TEXT (not just counts) for published videos, via youtube_auth.load_comment_credentials() — see scripts/pull_video_comments.py.",
+                "pulled_at": now,
+                "has_comment_scope": False,
+                "note": "youtube.force-ssl credentials unavailable this run — same graceful-degradation contract as post_pinned_comment.py. Not a failure.",
+                "videos": {},
+            }
+            print("wrote state/video_comments.json (has_comment_scope=False)")
+        with open(out_path, "w") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
             f.write("\n")
-        print("wrote state/video_comments.json (has_comment_scope=False)")
         return
 
     youtube = build("youtube", "v3", credentials=creds)
