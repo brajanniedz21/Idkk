@@ -1264,6 +1264,88 @@
         "contradictions": []
       },
       "summary": "Analytics scope live (has_analytics_scope=true). Real subscriber count: 33 (lifetime views 20562, 51 videos). Trajectory status RED with moderate data_confidence (7 real days of subscriber-series data, ~3.29 subs/day pace vs. ~387.5/day required to the 100k target). Dominant constraint diagnosed this cycle: the Shorts->long-form pinned-comment funnel (the pipeline's only lever connecting Shorts' strong reach to long-form's near-zero reach) had a real 0/12 success rate since 2026-08-04 because it was attempting comments on still-private scheduled videos -- fixed and verified this cycle (1 real successful retry, more pending as scheduled videos go public). The underlying Shorts-vs-long-form reach gap itself (repeated_pattern, now measured correctly excluding not-yet-public backlog videos) remains real and large, but is not actionable via reallocation this cycle per direct owner instruction. Legacy/sacrifice/earned-over-time angle family reproduced the prior cycle's recommendation (2.03x baseline) but is now flagged fatigue_detected -- downgraded to repeat_and_validate with mandatory diversification. CTA experiment still gathering data (1 organic comment channel-wide). New early cadence signal (evening Shorts underperform morning/afternoon) recorded for a future controlled test, not acted on this cycle to avoid stacking two medium-risk changes in one sitting. CTR/impressions/retention/traffic-source remain unavailable via the API regardless of scope status."
+    },
+    {
+      "run_id": "analytics-2026-08-14-0713",
+      "run_date": "2026-08-14",
+      "analytics_scope": {
+        "status": "blocked",
+        "detail": "load_credentials()/pull_channel_stats.py/pull_video_analytics.py all raised invalid_grant: Token has been expired or revoked on secrets/youtube_token.json (the only token file present -- upload/analytics/comment paths all fall back to it). Last confirmed has_analytics_scope=true was 2026-08-05T07:12:33Z; cannot verify current status. Root cause and fix steps recorded in state/weekly_batch_progress.json.current_batch.credential_blocker_note (OAuth consent screen still in Testing status -> 7-day refresh-token lifetime -> requires owner browser re-auth per setup/OAUTH_PRODUCTION_MIGRATION.md; not fixable from an unattended session)."
+      },
+      "data_quality": {
+        "source": "none obtainable this run",
+        "window": "n/a -- no fresh pull possible",
+        "window_type": "blocked",
+        "available_metrics": [],
+        "unavailable_metrics": [
+          "views",
+          "likes",
+          "comments",
+          "subscribers",
+          "watch_time",
+          "retention",
+          "ctr",
+          "impressions",
+          "traffic_sources"
+        ],
+        "missing_attributes_note": "not evaluated this run -- no fresh video list to join",
+        "freshest_real_data_on_disk": {
+          "channel_stats.json": "2026-08-05T07:12:57.866453+00:00",
+          "video_analytics.json": "2026-08-05T07:12:33.932010+00:00",
+          "video_comments.json": "2026-08-14T07:12:42Z (has_comment_scope=false -- pull itself ran and degraded gracefully, returned zero real comment data, not a genuine zero-comments finding)"
+        },
+        "limitation": "9 days stale (last real pull 2026-08-05). No new videos have published since 2026-08-08 either (content-batch firing has been blocked by the same dead credential since 2026-08-09), so there is also no new content to evaluate even if a fresh pull had succeeded. This entry intentionally does not restate or re-derive the 2026-08-05 cycle (analytics-2026-08-05-0731) findings as if they were new analysis."
+      },
+      "format_baselines": "unchanged from analytics-2026-08-05-0731 -- not recomputed, no new inputs since that run",
+      "top_performers": "unchanged from analytics-2026-08-05-0731",
+      "underperformers": "unchanged from analytics-2026-08-05-0731",
+      "attribute_findings": [],
+      "previous_recommendations_evaluated": "not evaluated this run -- no new published videos exist since 2026-08-08 to test any prior recommendation against",
+      "repeat": [],
+      "repeat_and_validate": [],
+      "deliberately_vary": [],
+      "reduce": [],
+      "retire_temporarily": [],
+      "explore": [],
+      "experiments": [],
+      "trajectory": {
+        "current_subscribers": 33,
+        "target_subscribers": 100000,
+        "target_date": "2027-04-21",
+        "remaining_subscribers": 99967,
+        "remaining_days": 249,
+        "required_daily_pace": 401.4738955823293,
+        "required_weekly_pace": 2810.317269076305,
+        "pace_7day_subscribers_per_day": 3.2857142857142856,
+        "pace_7day_days_of_data": 7,
+        "pace_28day_subscribers_per_day": 3.2857142857142856,
+        "pace_28day_days_of_data": 7,
+        "data_confidence": "moderate",
+        "projected_subscribers_at_target_date_7day_pace": 851.1428571428571,
+        "projected_subscribers_at_target_date_28day_pace": 851.1428571428571,
+        "percent_of_target_complete": 0.033,
+        "next_checkpoint": {
+          "date": "2026-08-31",
+          "subscribers": 250
+        },
+        "trajectory_status": "RED",
+        "note": "A stretch objective, not a guaranteed forecast. Pace/projection figures are arithmetic on real subscribers_daily_series data only (state/video_analytics.json, via the YouTube Analytics API's dimensions=day query) \u2014 never estimated. On a very new channel, data_confidence will genuinely be very_low/no_data for some time; treat any status derived from it as low-confidence, not a verdict.",
+        "caveat": "Computed mechanically on the same stale 2026-08-05 subscriber_count (33) and 7-day daily_series -- NOT a confirmed current trajectory. The function has no staleness check, so data_confidence=\"moderate\" here is mechanically correct but substantively misleading: real confidence for a TODAY reading is effectively no_data, since nothing fresher could be pulled. Treat RED as \"was RED as of 2026-08-05\", not a fresh diagnosis."
+      },
+      "dominant_constraint_this_run": "Not a content/growth-strategy constraint -- the entire pipeline (publishing AND all analytics pulls) has been blocked since ~2026-08-09 by one dead OAuth token (Testing-status 7-day refresh-token expiry). This is an operational/credential constraint, not a scouting/format/cadence/fatigue finding, and no amount of content-side change addresses it. See state/weekly_batch_progress.json.current_batch.credential_blocker_note for the fix path (requires owner browser action; cannot be resolved from this session).",
+      "audience_fatigue": "not evaluated this run -- no new data",
+      "cadence_analysis": "not evaluated this run -- no new data",
+      "cta_analysis": "not evaluated this run -- no new data",
+      "channel_playbook_update": {
+        "updated": false,
+        "reason": "no new evidence this run to distill"
+      },
+      "instructions_for_next_scouting_run": "No new scouting guidance this run -- carry forward analytics-2026-08-05-0731's instructions unchanged. Before doing anything else, verify secrets/youtube_token.json is alive again (python3 -c \"from scripts.youtube_auth import load_credentials; load_credentials()\" with .venv active); if still dead, do not re-diagnose from scratch, this entry and the weekly_batch_progress.json note already have root cause.",
+      "automation_change_this_run": {
+        "change_made": false,
+        "reason": "No fresh evidence obtainable this run (all analytics/channel-stats pulls blocked). Per agents/0_orchestrator.md's evidence-level table, even a low-risk change needs early_signal (n=2) evidence; there is zero new evidence this run, let alone medium/high-risk grounds to touch the 5+2/day allocation (which is a direct owner instruction, not up for system-diagnosed revision on ordinary evidence regardless). \"Insufficient evidence, retain current configuration\" -- explicitly deferred, not skipped."
+      },
+      "summary": "BLOCKED CYCLE. All YouTube API credential paths (upload/analytics/channel-stats) failed with invalid_grant on the sole token file present; comment pull degraded gracefully to zero real data. No fresh analytics data obtainable; no new videos published since 2026-08-08 to evaluate regardless. Trajectory recomputed on stale (9-day-old) data only -- mechanically RED, but not a fresh finding, do not act on it as one. Dominant constraint this run is the credential outage itself, not a content/growth pattern -- fix path requires owner browser re-auth, documented in state/weekly_batch_progress.json. No automation change made: no evidence to justify one at any risk tier."
     }
   ],
   "experiment_ledger": [
