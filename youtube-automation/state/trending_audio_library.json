@@ -1,0 +1,132 @@
+{
+  "_comment": "Real trending/commercial songs for short-form use, per the channel owner's explicit 2026-07-27 decision to lift the CC0-only audio requirement for short-form (see config/gates.json short_form_gates.audio_license_gate for the full rationale/risk acceptance). These are NOT copyright-free — Content ID will likely mute/claim revenue on these, and repeated strikes risk channel termination. This file exists so every track used has documented provenance (source video, real identification) rather than an unverified guess. Agent 3.1 pulls from here or state/cc0_audio_library.json.",
+  "risk_acceptance": {
+    "decided_at": "2026-07-27T16:30:00Z",
+    "decided_by": "channel owner, explicit choice after being presented three options (use real songs / stay CC0 / CC0-styled middle ground)",
+    "risk_disclosed": "Content ID near-certain match on these (unlike the obscure/unidentifiable video clips), possible mute/claim, and repeated copyright strikes can lead to channel termination (YouTube's 3-strike policy)."
+  },
+  "owner_provided_sounds_drive_folder": {
+    "url": "https://drive.google.com/drive/folders/1zmIRCIK9s_8886iRwhTBOabGDtS7CwIK?usp=drive_link",
+    "folder_id": "1zmIRCIK9s_8886iRwhTBOabGDtS7CwIK",
+    "note_added_at": "2026-07-27T17:25:00Z",
+    "purpose": "Channel owner's shared Drive folder for dropping in audio files they find themselves, for Agent 3.1/4.2 to pull into this library. Check this folder each cycle (or when the owner mentions adding something) for new files: search Drive with `parentId = '1zmIRCIK9s_8886iRwhTBOabGDtS7CwIK'`. As of the note above, the folder only contained unrelated screen-recording .mp4 files ('Recording <timestamp>.mp4'), no audio yet — re-check for actual audio files before assuming there's nothing new. When a real audio file does show up, verify it the same way as any other track here (confirm it's a real playable audio file via ffprobe, get whatever title/artist info the owner provides or is embedded in the file's metadata, download it into assets/audio/trending/ or assets/audio/ as appropriate, and add a proper entry to this file or state/cc0_audio_library.json depending on its license)."
+  },
+  "tracks": [
+    {
+      "title": "VEKI VEKI (Slowed)",
+      "credited_artists": ["DJZRX", "motty", "rodricci", "launch13"],
+      "genre": "Brazilian phonk/slowed funk",
+      "source": "Pulled from @millionaire_mentality_7's TikTok — this exact sound is used on their video https://www.tiktok.com/@millionaire_mentality_7/video/7666965376726502663 (confirmed via yt-dlp's `track`/`artists` metadata fields, not guessed)",
+      "identification_confidence": "Genuinely identified — named track/artists, not a generic 'original sound' repost label",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above (TikTok media download works from this environment; YouTube's is blocked)",
+      "native_duration_seconds": 17.48,
+      "note": "Only ~17.5s available (this is just the video's excerpt length, not the full song) — scripts/short_form_transform.py loops this via -stream_loop and tiles the detected beat pattern to fill a full short's duration.",
+      "local_path": "assets/audio/trending/veki_veki_slowed.mp3",
+      "added_at": "2026-07-27T16:00:00Z"
+    },
+    {
+      "title": "Montagem Celestial Esperanza",
+      "credited_artists": ["DJZRX", "motty", "rodricci", "MC Novin"],
+      "genre": "Brazilian funk/phonk 'montagem'",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7650372144983051527 (confirmed via yt-dlp track/artists metadata)",
+      "identification_confidence": "Genuinely identified — named track/artists",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 20.09,
+      "note": "Same production circle (DJZRX/motty/rodricci) as VEKI VEKI (Slowed) — this niche appears to favor this specific Brazilian phonk/montagem production style. Also short (~20s), same looping approach applies.",
+      "local_path": "assets/audio/trending/montagem_celestial_esperanza.mp3",
+      "added_at": "2026-07-27T16:00:00Z"
+    },
+    {
+      "title": "ion care cuz he did it first",
+      "credited_artists": ["Ice Spice"],
+      "genre": "Hip-hop/drill-adjacent sound bite",
+      "mood": "Confident/defiant flex energy — real tempo ~77 BPM (measured via librosa beat detection)",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7663599901153971463",
+      "identification_confidence": "Genuinely identified — named artist (Ice Spice), a real recognizable sound bite",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 14.42,
+      "local_path": "assets/audio/trending/ice_spice_sound.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "Love Nwantiti (Acoustic Ver.)",
+      "credited_artists": ["CKay"],
+      "genre": "Afrobeats/acoustic",
+      "mood": "Softer, smoother, romantic/warm — real tempo ~91 BPM but gentle instrumentation, not aggressive. Better suited to a warmer/aspirational angle than a hard-grind one.",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7658502602010758418",
+      "identification_confidence": "Genuinely identified — well-known real song by CKay, acoustic edit",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 10.79,
+      "local_path": "assets/audio/trending/love_nwantiti_acoustic.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "Tourner Dans Le Vide",
+      "credited_artists": ["Indila"],
+      "genre": "French pop/cinematic",
+      "mood": "Emotional, cinematic, builds intensity — real tempo ~120 BPM (fastest of this batch, measured via librosa), good fit for a more dramatic/emotional angle rather than pure aggression.",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7643135162686999826",
+      "identification_confidence": "Genuinely identified — well-known real song by Indila",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 12.56,
+      "local_path": "assets/audio/trending/tourner_dans_le_vide.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "Gata Only NJ",
+      "credited_artists": ["Derick (edit of FloyyMenor & Cris MJ's 'Gata Only')"],
+      "genre": "Reggaeton/Latin",
+      "mood": "Confident, viral 2024/2025 hit energy — real tempo ~81 BPM (measured via librosa)",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7620236571626753287",
+      "identification_confidence": "Genuinely identified — derivative edit of the real viral hit 'Gata Only'",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 23.09,
+      "note": "Longest native clip in this batch (~23s) — needs minimal looping for a typical ~26-27s short.",
+      "local_path": "assets/audio/trending/gata_only_nj.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "gata only remix",
+      "credited_artists": ["ⱼᵤₙy (remix edit of 'Gata Only')"],
+      "genre": "Reggaeton/Latin remix",
+      "mood": "Faster remix energy — real tempo ~99 BPM (measured via librosa), the fastest/most energetic of the two Gata Only edits.",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7619541091901082898",
+      "identification_confidence": "Genuinely identified — derivative remix edit of the real viral hit 'Gata Only'",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 9.12,
+      "local_path": "assets/audio/trending/gata_only_remix.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    },
+    {
+      "title": "Danza Kuduro 2025",
+      "credited_artists": ["A-Clark (2025 edit of the well-known 'Danza Kuduro')"],
+      "genre": "Reggaeton/dance",
+      "mood": "Upbeat, celebratory dance energy — real tempo ~83 BPM (measured via librosa)",
+      "source": "Pulled from @millionaire_mentality_7's TikTok video https://www.tiktok.com/@millionaire_mentality_7/video/7627403796670549255",
+      "identification_confidence": "Genuinely identified — edit of the globally well-known 'Danza Kuduro'",
+      "downloaded_via": "yt-dlp audio extraction from the TikTok video above",
+      "native_duration_seconds": 11.44,
+      "local_path": "assets/audio/trending/danza_kuduro_2025.mp3",
+      "added_at": "2026-07-27T16:15:00Z"
+    }
+  ],
+  "unidentified_owner_provided_tracks": {
+    "_comment": "10 audio tracks extracted 2026-07-27 from screen-recording videos the owner uploaded to the Drive folder above (files named 'Recording <timestamp>.mp4'). IMPORTANT DIFFERENCE from the tracks[] entries above: those were identified via yt-dlp's real track/artist metadata from a specific TikTok post. These have NO such metadata — they're raw screen recordings of some app playing car/lifestyle B-roll with background audio, and no on-screen UI in any of the 10 videos showed a song/sound name to identify against. Per direct instruction, only the audio was extracted/used — the video content itself was not used as source footage and was discarded (not added to assets/short-form-clips/raw/). Title/artist are genuinely unknown for all 10 — do not guess or invent one. Treat these as carrying at least as much Content-ID risk as the identified trending tracks above (arguably more, since there's no way to check ahead of time what they'll match against), under the same owner risk-acceptance in config/gates.json short_form_gates.audio_license_gate.",
+    "extracted_at": "2026-07-27T17:30:00Z",
+    "source": "https://drive.google.com/drive/folders/1zmIRCIK9s_8886iRwhTBOabGDtS7CwIK?usp=drive_link",
+    "tracks": [
+      {"id": "owner_provided_181240", "local_path": "assets/audio/trending/owner_provided_181240.mp3", "native_duration_seconds": 25.24, "tempo_bpm": 181.5, "title": "unidentified"},
+      {"id": "owner_provided_181336", "local_path": "assets/audio/trending/owner_provided_181336.mp3", "native_duration_seconds": 9.77, "tempo_bpm": 130.8, "title": "unidentified"},
+      {"id": "owner_provided_181430", "local_path": "assets/audio/trending/owner_provided_181430.mp3", "native_duration_seconds": 8.0, "tempo_bpm": 79.2, "title": "unidentified"},
+      {"id": "owner_provided_181608", "local_path": "assets/audio/trending/owner_provided_181608.mp3", "native_duration_seconds": 10.35, "tempo_bpm": 93.8, "title": "unidentified"},
+      {"id": "owner_provided_181653", "local_path": "assets/audio/trending/owner_provided_181653.mp3", "native_duration_seconds": 23.81, "tempo_bpm": 67.0, "title": "unidentified"},
+      {"id": "owner_provided_181726", "local_path": "assets/audio/trending/owner_provided_181726.mp3", "native_duration_seconds": 12.03, "tempo_bpm": 90.7, "title": "unidentified"},
+      {"id": "owner_provided_181757", "local_path": "assets/audio/trending/owner_provided_181757.mp3", "native_duration_seconds": 7.79, "tempo_bpm": 181.5, "title": "unidentified"},
+      {"id": "owner_provided_181830", "local_path": "assets/audio/trending/owner_provided_181830.mp3", "native_duration_seconds": 11.69, "tempo_bpm": 122.3, "title": "unidentified"},
+      {"id": "owner_provided_181931", "local_path": "assets/audio/trending/owner_provided_181931.mp3", "native_duration_seconds": 9.96, "tempo_bpm": 117.2, "title": "unidentified"},
+      {"id": "owner_provided_182026", "local_path": "assets/audio/trending/owner_provided_182026.mp3", "native_duration_seconds": 17.34, "tempo_bpm": 104.2, "title": "unidentified"}
+    ],
+    "usage_guidance": "Tempo values are real (librosa beat detection), so these can still be picked by energy/pace for a candidate even without knowing the song. All are short native clips (8-25s) — scripts/short_form_transform.py loops/beat-tiles them the same as any other track, no special handling needed."
+  },
+  "rotation_guidance": "8 identified tracks + 10 unidentified owner-provided tracks as of 2026-07-27. Check state/posted_history.json / recent state/short_form_queue.json entries before picking one — don't reuse the same track for consecutive shorts (same rule as state/cc0_audio_library.json). Match mood to angle: VEKI VEKI/Montagem/Ice Spice/Danza Kuduro/Gata Only variants for aggressive-energy angles (grind, hustle, proof-of-work); Love Nwantiti (Acoustic) or Tourner Dans Le Vide for warmer/more emotional or dramatic angles where pure aggression doesn't fit the theme; the unidentified owner-provided tracks can be picked by their measured tempo_bpm when nothing else fits. All native clips are short (7-25s) — scripts/short_form_transform.py loops and beat-tiles them automatically for any target duration, no manual handling needed."
+}

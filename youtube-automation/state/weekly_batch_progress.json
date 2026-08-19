@@ -1,0 +1,928 @@
+{
+  "_comment": "Filename/schema kept for continuity with scripts/generate_dashboard.py, but the operating model changed 2026-08-02 (owner direction): items are no longer pre-produced a week ahead. Each day's own firing creates, produces, and publishes ONLY that day's items (shorts_per_day + long_form_per_day), same-day \u2014 see agents/0_orchestrator.md's 'Daily production cycle' section. current_batch.items may still hold a lightweight week-of day-slot skeleton for dashboard/reporting continuity, but content for a given day is only actually scouted/scripted/produced/gated when that day itself arrives, never in advance. Written/read by whichever session is running today's firing so an interrupted run can resume from the last incomplete item today instead of restarting or double-producing. Completed weeks move into 'history' for audit.",
+  "current_batch": {
+    "batch_started_at": "2026-07-27T20:43:00Z",
+    "week_range_note": "Monday 2026-08-03 (test batch + real batch, 6 shorts + 2 long-form total) through Sunday 2026-08-09. Tuesday 2026-08-04 topped up from 3+1 to 5+2 (owner direction 2026-08-03). Wednesday-Sunday at the new 5 shorts + 2 long-form/day cadence (config/growth_strategy.json Model F).",
+    "items": [
+      {
+        "index": 1,
+        "format": "short",
+        "day": "2026-07-28",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-28T08:00:00Z",
+        "candidate_id": "sf_013"
+      },
+      {
+        "index": 2,
+        "format": "short",
+        "day": "2026-07-28",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-28T13:00:00Z",
+        "candidate_id": "sf_014"
+      },
+      {
+        "index": 3,
+        "format": "short",
+        "day": "2026-07-28",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-28T18:00:00Z",
+        "candidate_id": "sf_015"
+      },
+      {
+        "index": 4,
+        "format": "long",
+        "day": "2026-07-28",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-28T19:00:00Z",
+        "candidate_id": "lf_003"
+      },
+      {
+        "index": 5,
+        "format": "short",
+        "day": "2026-07-29",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-29T08:00:00Z",
+        "candidate_id": "sf_016"
+      },
+      {
+        "index": 6,
+        "format": "short",
+        "day": "2026-07-29",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-29T13:00:00Z",
+        "candidate_id": "sf_017"
+      },
+      {
+        "index": 7,
+        "format": "short",
+        "day": "2026-07-29",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-29T18:00:00Z",
+        "candidate_id": "sf_018"
+      },
+      {
+        "index": 8,
+        "format": "long",
+        "day": "2026-07-29",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-29T19:00:00Z",
+        "candidate_id": "lf_004"
+      },
+      {
+        "index": 9,
+        "format": "short",
+        "day": "2026-07-30",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-30T08:00:00Z",
+        "candidate_id": "sf_019"
+      },
+      {
+        "index": 10,
+        "format": "short",
+        "day": "2026-07-30",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-30T13:00:00Z",
+        "candidate_id": "sf_020"
+      },
+      {
+        "index": 11,
+        "format": "short",
+        "day": "2026-07-30",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-30T18:00:00Z",
+        "candidate_id": "sf_021"
+      },
+      {
+        "index": 12,
+        "format": "long",
+        "day": "2026-07-30",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-30T19:00:00Z",
+        "candidate_id": "lf_005"
+      },
+      {
+        "index": 13,
+        "format": "short",
+        "day": "2026-07-31",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-31T08:00:00Z",
+        "candidate_id": "sf_022"
+      },
+      {
+        "index": 14,
+        "format": "short",
+        "day": "2026-07-31",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-31T13:00:00Z",
+        "candidate_id": "sf_023"
+      },
+      {
+        "index": 15,
+        "format": "short",
+        "day": "2026-07-31",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-31T18:00:00Z",
+        "candidate_id": "sf_024"
+      },
+      {
+        "index": 16,
+        "format": "long",
+        "day": "2026-07-31",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-07-31T19:00:00Z",
+        "candidate_id": "lf_006"
+      },
+      {
+        "index": 17,
+        "format": "short",
+        "day": "2026-08-01",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-01T08:00:00Z",
+        "candidate_id": "sf_025"
+      },
+      {
+        "index": 18,
+        "format": "short",
+        "day": "2026-08-01",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-01T13:00:00Z",
+        "candidate_id": "sf_026"
+      },
+      {
+        "index": 19,
+        "format": "short",
+        "day": "2026-08-01",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-01T18:00:00Z",
+        "candidate_id": "sf_027"
+      },
+      {
+        "index": 20,
+        "format": "long",
+        "day": "2026-08-01",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-01T19:00:00Z",
+        "candidate_id": "lf_007"
+      },
+      {
+        "index": 21,
+        "format": "short",
+        "day": "2026-08-02",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-02T08:00:00Z",
+        "candidate_id": "sf_028"
+      },
+      {
+        "index": 22,
+        "format": "short",
+        "day": "2026-08-02",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-02T13:00:00Z",
+        "candidate_id": "sf_029"
+      },
+      {
+        "index": 23,
+        "format": "short",
+        "day": "2026-08-02",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-02T18:00:00Z",
+        "candidate_id": "sf_030"
+      },
+      {
+        "index": 24,
+        "format": "long",
+        "day": "2026-08-02",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-02T19:00:00Z",
+        "candidate_id": "lf_008"
+      },
+      {
+        "index": 25,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-03T08:00:00Z",
+        "candidate_id": "sf_031"
+      },
+      {
+        "index": 26,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-03T13:00:00Z",
+        "candidate_id": "sf_032"
+      },
+      {
+        "index": 27,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-03T18:00:00Z",
+        "candidate_id": "sf_033"
+      },
+      {
+        "index": 28,
+        "format": "long",
+        "day": "2026-08-03",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-03T19:00:00Z",
+        "candidate_id": "lf_009"
+      },
+      {
+        "index": 29,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-03T08:00:00Z",
+        "candidate_id": "sf_034",
+        "note": "Real Monday 2026-08-03 daily production (owner direction: yesterday's indices 25-28 were an authorized one-time TEST run using Monday's slot numbers preemptively on 2026-08-02 to validate session changes \u2014 they do not substitute for todays real production, which this item is.)"
+      },
+      {
+        "index": 30,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-03T13:00:00Z",
+        "candidate_id": "sf_035",
+        "note": "Real Monday 2026-08-03 daily production (owner direction: yesterday's indices 25-28 were an authorized one-time TEST run using Monday's slot numbers preemptively on 2026-08-02 to validate session changes \u2014 they do not substitute for todays real production, which this item is.)"
+      },
+      {
+        "index": 31,
+        "format": "short",
+        "day": "2026-08-03",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-03T18:00:00Z",
+        "candidate_id": "sf_036",
+        "note": "Real Monday 2026-08-03 daily production (owner direction: yesterday's indices 25-28 were an authorized one-time TEST run using Monday's slot numbers preemptively on 2026-08-02 to validate session changes \u2014 they do not substitute for todays real production, which this item is.)"
+      },
+      {
+        "index": 32,
+        "format": "long",
+        "day": "2026-08-03",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-03T19:00:00Z",
+        "candidate_id": "lf_011",
+        "note": "Real Monday 2026-08-03 daily production (owner direction: yesterday's indices 25-28 were an authorized one-time TEST run using Monday's slot numbers preemptively on 2026-08-02 to validate session changes \u2014 they do not substitute for todays real production, which this item is.)"
+      },
+      {
+        "index": 33,
+        "format": "short",
+        "day": "2026-08-04",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-04T11:30:00Z",
+        "candidate_id": "sf_037"
+      },
+      {
+        "index": 34,
+        "format": "short",
+        "day": "2026-08-04",
+        "local_slot": "14:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-04T13:00:00Z",
+        "candidate_id": "sf_038"
+      },
+      {
+        "index": 35,
+        "format": "short",
+        "day": "2026-08-04",
+        "local_slot": "19:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-04T18:00:00Z",
+        "candidate_id": "sf_039"
+      },
+      {
+        "index": 36,
+        "format": "long",
+        "day": "2026-08-04",
+        "local_slot": "20:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-04T19:00:00Z",
+        "candidate_id": "lf_012"
+      },
+      {
+        "index": 37,
+        "format": "short",
+        "day": "2026-08-04",
+        "local_slot": "12:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-04T11:45:00Z",
+        "candidate_id": "sf_040"
+      },
+      {
+        "index": 38,
+        "format": "short",
+        "day": "2026-08-04",
+        "local_slot": "21:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-04T20:00:00Z",
+        "candidate_id": "sf_041"
+      },
+      {
+        "index": 39,
+        "format": "long",
+        "day": "2026-08-04",
+        "local_slot": "13:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-04T12:30:00Z",
+        "candidate_id": "lf_013"
+      },
+      {
+        "index": 40,
+        "format": "short",
+        "day": "2026-08-05",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-04T16:25:53Z",
+        "candidate_id": "sf_058"
+      },
+      {
+        "index": 41,
+        "format": "short",
+        "day": "2026-08-05",
+        "local_slot": "12:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-05T11:00:00Z",
+        "candidate_id": "sf_043"
+      },
+      {
+        "index": 42,
+        "format": "short",
+        "day": "2026-08-05",
+        "local_slot": "15:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-05T14:00:00Z",
+        "candidate_id": "sf_044"
+      },
+      {
+        "index": 43,
+        "format": "short",
+        "day": "2026-08-05",
+        "local_slot": "18:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-05T17:00:00Z",
+        "candidate_id": "sf_045"
+      },
+      {
+        "index": 44,
+        "format": "short",
+        "day": "2026-08-05",
+        "local_slot": "21:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-05T20:00:00Z",
+        "candidate_id": "sf_050"
+      },
+      {
+        "index": 45,
+        "format": "long",
+        "day": "2026-08-05",
+        "local_slot": "13:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-05T12:30:00Z",
+        "candidate_id": "lf_014"
+      },
+      {
+        "index": 46,
+        "format": "long",
+        "day": "2026-08-05",
+        "local_slot": "20:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-05T19:30:00Z",
+        "candidate_id": "lf_015"
+      },
+      {
+        "index": 47,
+        "format": "short",
+        "day": "2026-08-06",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-06T08:00:00Z",
+        "candidate_id": "sf_047"
+      },
+      {
+        "index": 48,
+        "format": "short",
+        "day": "2026-08-06",
+        "local_slot": "12:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-06T11:00:00Z",
+        "candidate_id": "sf_046"
+      },
+      {
+        "index": 49,
+        "format": "short",
+        "day": "2026-08-06",
+        "local_slot": "15:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-06T14:00:00Z",
+        "candidate_id": "sf_048"
+      },
+      {
+        "index": 50,
+        "format": "short",
+        "day": "2026-08-06",
+        "local_slot": "18:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-06T17:00:00Z",
+        "candidate_id": "sf_049"
+      },
+      {
+        "index": 51,
+        "format": "short",
+        "day": "2026-08-06",
+        "local_slot": "21:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-06T20:00:00Z",
+        "candidate_id": "sf_051"
+      },
+      {
+        "index": 52,
+        "format": "long",
+        "day": "2026-08-06",
+        "local_slot": "13:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-06T12:30:00Z",
+        "candidate_id": "lf_016"
+      },
+      {
+        "index": 53,
+        "format": "long",
+        "day": "2026-08-06",
+        "local_slot": "20:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-06T19:30:00Z",
+        "candidate_id": "lf_017"
+      },
+      {
+        "index": 54,
+        "format": "short",
+        "day": "2026-08-07",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-07T08:00:00Z",
+        "candidate_id": "sf_054"
+      },
+      {
+        "index": 55,
+        "format": "short",
+        "day": "2026-08-07",
+        "local_slot": "12:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-07T11:00:00Z",
+        "candidate_id": "sf_057"
+      },
+      {
+        "index": 56,
+        "format": "short",
+        "day": "2026-08-07",
+        "local_slot": "15:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-07T14:00:00Z",
+        "candidate_id": "sf_053"
+      },
+      {
+        "index": 57,
+        "format": "short",
+        "day": "2026-08-07",
+        "local_slot": "18:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-07T17:00:00Z",
+        "candidate_id": "sf_059"
+      },
+      {
+        "index": 58,
+        "format": "short",
+        "day": "2026-08-07",
+        "local_slot": "21:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-07T20:00:00Z",
+        "candidate_id": "sf_060"
+      },
+      {
+        "index": 59,
+        "format": "long",
+        "day": "2026-08-07",
+        "local_slot": "13:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-07T12:30:00Z",
+        "candidate_id": "lf_018"
+      },
+      {
+        "index": 60,
+        "format": "long",
+        "day": "2026-08-07",
+        "local_slot": "20:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-07T19:30:00Z",
+        "candidate_id": "lf_019"
+      },
+      {
+        "index": 61,
+        "format": "short",
+        "day": "2026-08-08",
+        "local_slot": "09:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-08T08:00:00Z",
+        "candidate_id": "sf_062"
+      },
+      {
+        "index": 62,
+        "format": "short",
+        "day": "2026-08-08",
+        "local_slot": "12:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-08T11:00:00Z",
+        "candidate_id": "sf_061"
+      },
+      {
+        "index": 63,
+        "format": "short",
+        "day": "2026-08-08",
+        "local_slot": "15:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-08T14:00:00Z",
+        "candidate_id": "sf_065"
+      },
+      {
+        "index": 64,
+        "format": "short",
+        "day": "2026-08-08",
+        "local_slot": "18:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-08T17:00:00Z",
+        "candidate_id": "sf_064"
+      },
+      {
+        "index": 65,
+        "format": "short",
+        "day": "2026-08-08",
+        "local_slot": "21:00",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-08T20:00:00Z",
+        "candidate_id": "sf_063"
+      },
+      {
+        "index": 66,
+        "format": "long",
+        "day": "2026-08-08",
+        "local_slot": "13:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-08T12:30:00Z",
+        "candidate_id": "lf_020"
+      },
+      {
+        "index": 67,
+        "format": "long",
+        "day": "2026-08-08",
+        "local_slot": "20:30",
+        "status": "done",
+        "scheduled_publish_at": "2026-08-08T19:30:00Z",
+        "candidate_id": "lf_021"
+      },
+      {
+        "index": 68,
+        "format": "short",
+        "day": "2026-08-09",
+        "local_slot": "09:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-09T08:00:00Z",
+        "candidate_id": "sf_066",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap hit 2026-08-05T00:10:00Z. Video fully produced/gate-checked/thumbnailed, just needs the upload retried once quota resets."
+      },
+      {
+        "index": 69,
+        "format": "short",
+        "day": "2026-08-09",
+        "local_slot": "12:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-09T11:00:00Z",
+        "candidate_id": "sf_067",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap still in effect. Video fully produced/gate-checked/thumbnailed, needs upload retried once quota resets."
+      },
+      {
+        "index": 70,
+        "format": "short",
+        "day": "2026-08-09",
+        "local_slot": "15:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-09T14:00:00Z",
+        "candidate_id": "sf_068",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap still in effect. Video fully produced/gate-checked/thumbnailed, needs upload retried once quota resets."
+      },
+      {
+        "index": 71,
+        "format": "short",
+        "day": "2026-08-09",
+        "local_slot": "18:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-09T17:00:00Z",
+        "candidate_id": "sf_069",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap still in effect. Video fully produced/gate-checked/thumbnailed, needs upload retried once quota resets."
+      },
+      {
+        "index": 72,
+        "format": "short",
+        "day": "2026-08-09",
+        "local_slot": "21:00",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-09T20:00:00Z",
+        "candidate_id": "sf_070",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap still in effect. Video fully produced/gate-checked/thumbnailed, needs upload retried once quota resets."
+      },
+      {
+        "index": 73,
+        "format": "long",
+        "day": "2026-08-09",
+        "local_slot": "13:30",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-09T12:30:00Z",
+        "candidate_id": "lf_022",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap still in effect. Video fully produced/gate-checked/thumbnailed, needs upload retried once quota resets."
+      },
+      {
+        "index": 74,
+        "format": "long",
+        "day": "2026-08-09",
+        "local_slot": "20:30",
+        "status": "pending",
+        "scheduled_publish_at": "2026-08-09T19:30:00Z",
+        "candidate_id": "lf_023",
+        "publish_blocker": "uploadLimitExceeded -- daily YouTube upload cap still in effect. Video fully produced/gate-checked/thumbnailed, needs upload retried once quota resets."
+      }
+    ],
+    "upload_quota_blocker_note": "2026-07-27T23:55Z: YouTube returned uploadLimitExceeded on sf_019's publish attempt (and would affect any subsequent publish this same period \u2014 this is a per-channel daily cap, not per-video). 9 shorts and 2 long-form videos were already successfully published/scheduled today before this hit (sf_012-sf_018 published earlier in the session, sf_013-018+lf_002 reupload+lf_003 in this batch run = roughly 11 uploads today total). sf_019/sf_020/sf_021 are fully produced and gate-passed but blocked on this quota \u2014 see their publish_blocker notes in state/short_form_queue.json. Do not keep retrying the same upload in a tight loop; wait for the quota window to reset (next UTC day is the safest assumption) before attempting more publishes. Continuing to SCOUT/SCRIPT/PRODUCE further items is still fine and useful (keeps work ready to publish immediately once quota resets) but PUBLISHING is paused.",
+    "publishing_model_note": "2026-07-27T21:35Z: Restructured to a two-phase model after hitting YouTube's daily upload quota (uploaded ~11 videos within about an hour of wall-clock time, even though publishAt spread them across the week). PRODUCTION (script/produce/gate) has no per-day cap -> items land at 'ready_to_publish'. PUBLISHING is capped to ~4 uploads (3 shorts + 1 long-form) per real 24h period, matching the daily trigger's new cadence. sf_019/sf_020/sf_021 were fully produced/gated today but hadn't actually reached their scheduled day yet (2026-07-30) when the quota hit -- moved to 'ready_to_publish' to reflect that they were never actually supposed to upload today under the corrected model, not just quota-blocked.",
+    "upload_quota_reset_timing_note": "2026-07-28T06:33Z: retried lf_004 publish again (~23min after the 06:10Z retry). Still uploadLimitExceeded. Two consecutive retries ~23min apart both failed identically, confirming this is a sustained block, not transient. Combined with the 06:10Z data point (~9-10h after original block, still failing), the reset window is confirmed to be long (>10h) and not tied to a short interval. Will not retry again for at least several hours to avoid wasting upload attempts against what may itself count toward some quota; next retry should wait until a later firing (evening UTC or next UTC day) rather than the next ~20min safety-net tick.",
+    "clip_pool_provenance_note": "2026-07-28T06:45Z: while spot-checking clip content for sf_022-024, discovered that the entire original raw clip pool (assets/short-form-clips/raw/1.mp4-60.mp4, used in every short published so far, sf_002 through sf_021) is sourced from a 'Download link in description' split-screen repost/scrape-compilation format \u2014 every source file is 1920x1080 landscape with a white sidebar and that text baked in. This was not previously caught because scripts/short_form_transform.py's center crop (crop='min(iw,ih*9/16)':'min(ih,iw*16/9)') happens to land almost exactly on the visible video content and excludes the white sidebars entirely \u2014 verified by cropping a sample frame: the watermark is fully removed in every published output, confirmed nothing has ever gone out visibly watermarked. This does NOT change technical viability of the existing pipeline, but it does mean the source footage itself is repost/scrape-provenance content (same category of copyright risk as the already-accepted 'unmitigated third-party clip reuse' risk in config/gates.json copyright_gate, just now known to apply to the whole 60-clip pool rather than assumed to be cleaner raw footage). The second-batch clips (61.mp4-70.mp4, Drive folder 19ZYbWZlya3_s_W4TpTbXHs1unUHW2wp7) are genuinely clean \u2014 already-vertical 720x1280, no watermark, no sidebar. Flagged to the channel owner directly; no change made to the existing accepted-risk framework since it's a discovery within an already-accepted risk category, not a new one.",
+    "credential_blocker_note": "2026-08-14T00:00Z (discovered at start of this firing, no successful publish since sf_065/lf_021 on 2026-08-08): load_credentials() (scripts/youtube_auth.py) fails on every call with 'invalid_grant: Token has been expired or revoked.' from secrets/youtube_token.json (the only token file that exists -- youtube_upload_token.json/youtube_analytics_token.json/youtube_comment_token.json were never split out, so all three credential paths fall back to this same dead legacy file and are ALL blocked, not just uploads). Root cause per setup/OAUTH_PRODUCTION_MIGRATION.md: the OAuth consent screen is still in Testing status, whose refresh tokens expire after 7 days; the last token was minted 2026-07-29T22:14Z, so it died right around the 08-05/08-06 window, consistent with 08-09 through 08-13 having zero publishes and the 08-09 slots (items 68-74) still sitting untouched at \"pending\". This is NOT fixable by an unattended agent session -- it requires an owner with browser access to (1) move the OAuth consent screen from Testing to Production in Google Cloud Console (brand verification may be required) per OAUTH_PRODUCTION_MIGRATION.md Step 2-3, then (2) delete secrets/youtube_token.json and re-run the auth flow (setup/YOUTUBE_API_SETUP.md) to mint a new long-lived token. Per agents/0_orchestrator.md's \"Real failure modes\" section (environment/credential gaps vs. content failures) and the Daily content cycle model (never let production run ahead of publishing), this firing did NOT scout/script/produce any new content for 2026-08-14 or finish the 08-09 backlog, since nothing produced could actually be published -- that would recreate exactly the ready_to_publish backlog problem the daily model exists to prevent. Both daily Routines (\"Daily YouTube content batch\" 06:00 UTC and \"makeitmanifest-daily-analytics\" 07:00 UTC) have been firing into this same dead credential every day since -- flagged to the owner to pause them until re-auth is done. NEXT FIRING: check whether secrets/youtube_token.json has been replaced/works again before doing anything else; if still dead, do not re-diagnose from scratch, this note has the full root cause."
+  },
+  "history": [],
+  "_pending_thumbnail_retries": [
+    {
+      "video_id": "3xWHo2V-Y-U",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_045_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "ye0LHnyU65U",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_050_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "x3tzghwp_aA",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_047_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "4kC9w6KDc4E",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_046_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "bG4_apNGhxM",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_048_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "yBEg6ICBhs4",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_049_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "TDWXpNz4PvQ",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_051_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "zsStjvwJeBY",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_054_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "LDlwn8yYzcA",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_057_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "Hf0LopC3Nzs",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_053_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "lYwYeuMy-_g",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_052_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "RjBy7L2lyCo",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_056_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "Db-nx85nK0c",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_015_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "ttedgtMmUoM",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_016_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "GoWydrsRf8w",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_017_thumb.jpg",
+      "noted_at": "2026-08-04T12:35:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "video_id": "rcGnQBMUfA4",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_059_thumb.jpg",
+      "noted_at": "2026-08-04T18:05:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429)"
+    },
+    {
+      "video_id": "fWu32uo6vC4",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_060_thumb.jpg",
+      "noted_at": "2026-08-04T18:05:00Z",
+      "reason": "youtube.thumbnail forbidden (403) -- retry, likely same underlying rate limit"
+    },
+    {
+      "video_id": "-4A4dL0F8Do",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_061_thumb.jpg",
+      "noted_at": "2026-08-04T18:15:00Z",
+      "reason": "youtube.thumbnail uploadRateLimitExceeded (429) -- video is live/scheduled with YouTube's default thumbnail, retry thumbnails().set once this quota resets"
+    },
+    {
+      "candidate_id": "sf_065",
+      "video_id": "ROIR8mGVM3c",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_065_thumb.jpg",
+      "failed_at": "2026-08-04T21:30:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
+    },
+    {
+      "candidate_id": "sf_063",
+      "video_id": "Djmk71SoLO0",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_063_thumb.jpg",
+      "failed_at": "2026-08-04T21:45:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
+    },
+    {
+      "candidate_id": "sf_064",
+      "video_id": "9OvHBWZQpGQ",
+      "thumbnail_path": "assets/short-form-clips/processed/sf_064_thumb.jpg",
+      "failed_at": "2026-08-04T21:46:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
+    },
+    {
+      "candidate_id": "lf_020",
+      "video_id": "JaZ7b_svlts",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_020_thumb.jpg",
+      "failed_at": "2026-08-04T23:10:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
+    },
+    {
+      "candidate_id": "lf_021",
+      "video_id": "jzrMAYLP1Uw",
+      "thumbnail_path": "assets/long-form/thumbnails/lf_021_thumb.jpg",
+      "failed_at": "2026-08-04T23:45:00Z",
+      "reason": "uploadRateLimitExceeded (429)"
+    }
+  ],
+  "2026-08-08": {
+    "date": "2026-08-08",
+    "items": [
+      {
+        "index": 0,
+        "format": "short",
+        "local_slot": "09:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 1,
+        "format": "short",
+        "local_slot": "12:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 2,
+        "format": "short",
+        "local_slot": "15:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 3,
+        "format": "short",
+        "local_slot": "18:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 4,
+        "format": "short",
+        "local_slot": "21:00",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 5,
+        "format": "long",
+        "local_slot": "13:30",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      },
+      {
+        "index": 6,
+        "format": "long",
+        "local_slot": "20:30",
+        "scheduled_publish_at": null,
+        "status": "pending",
+        "candidate_id": null,
+        "video_id": null,
+        "published_at": null,
+        "gate_failures": [],
+        "error_note": null
+      }
+    ],
+    "completed_count": 0,
+    "failed_count": 0
+  }
+}

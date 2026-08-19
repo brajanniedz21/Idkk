@@ -1,0 +1,79 @@
+{
+  "_comment": "Adaptive growth-strategy configuration (owner direction, 2026-08-02). Mutable operating policy toward the 100k-subscriber objective — separate from config/channel.json (static brand/style identity) and config/gates.json (safety/quality gates, which this file must never duplicate or override). Agent 0 may edit this file's mutable fields when evidence supports it, following the Controlled Self-Modification Loop in agents/0_orchestrator.md's Growth Strategy section. Every edit here should be paired with an experiment_ledger entry in state/performance_notes.json explaining why.",
+  "objective": {
+    "target_subscribers": 100000,
+    "target_date": "2027-04-21",
+    "timezone": "Europe/London",
+    "note": "A stretch objective, not a guaranteed forecast (owner direction, 2026-08-02). Pacing math is descriptive, never a promise."
+  },
+  "checkpoints": [
+    {"date": "2026-08-31", "subscribers": 250},
+    {"date": "2026-09-30", "subscribers": 1000},
+    {"date": "2026-10-31", "subscribers": 3500},
+    {"date": "2026-11-30", "subscribers": 10000},
+    {"date": "2026-12-31", "subscribers": 22000},
+    {"date": "2027-01-31", "subscribers": 40000},
+    {"date": "2027-02-28", "subscribers": 60000},
+    {"date": "2027-03-31", "subscribers": 82000},
+    {"date": "2027-04-21", "subscribers": 100000}
+  ],
+  "trajectory_status_thresholds": {
+    "green_min_pct_of_required_pace": 90,
+    "amber_min_pct_of_required_pace": 70,
+    "note": "GREEN >=90% of required pace to the next checkpoint, AMBER 70-89%, RED <70%. A RED classification must trigger a system-level diagnosis in the next analytics cycle, never an automatic volume increase (agents/0_orchestrator.md Growth Strategy section)."
+  },
+  "current_production_allocation": {
+    "model": "F",
+    "shorts_per_day": 5,
+    "long_form_per_day": 2,
+    "set_at": "2026-08-03T00:00:00Z",
+    "reason": "Direct owner instruction, 2026-08-03 — not a system-diagnosed self-modification, so the evidence-level gating below does not apply to this specific change (it applies to changes Agent 0 initiates on its own from analytics; a direct owner instruction is always authoritative). Cadence allocation (5 shorts + 2 long-form/day) is unchanged, but the PRODUCTION SCHEDULE was corrected 2026-08-04: owner reported the 'produce the whole week on Monday' batch model was 'messing with the system' (real concurrent-agent id/title collisions, and — the more serious problem — content sat gated in ready_to_publish without ever actually being published for days). Each day's 5 shorts + 2 long-form are now produced AND published/scheduled on that same day, not ahead of time — see config/channel.json.publishing_schedule.daily_production_mode and agents/0_orchestrator.md's 'Daily content cycle' section (renamed from 'Weekly batch cycle')."
+  },
+  "previous_production_allocation": {"model": "A", "shorts_per_day": 3, "long_form_per_day": 1, "retired_at": "2026-08-03T00:00:00Z"},
+  "allowed_production_models": {
+    "A": {"shorts_per_day": 3, "long_form_per_day": 1, "description": "Original starting baseline. Retired 2026-08-03 in favor of F."},
+    "B": {"shorts_per_day": 4, "long_form_per_day": 0, "description": "Shorts-only on selected days, long-form on selected days only — requires repeated_pattern evidence that Shorts materially outperform long-form on subscriber/engagement value."},
+    "C": {"shorts_per_day": 2, "long_form_per_day": 1, "description": "One slot reserved for stronger experimentation or no publish — requires evidence that a lower-volume, higher-bar approach improves quality/conversion."},
+    "D": {"shorts_per_day": "variable", "long_form_per_day": "variable", "description": "Weekday-dependent allocation based on verified cadence performance — requires repeated_pattern cadence evidence."},
+    "E": {"shorts_per_day": ">4", "long_form_per_day": "variable", "description": "Controlled expansion above 4 total daily uploads — requires verified quota headroom (real test, not assumption), strong_channel_pattern evidence of demand, and zero quality/fatigue degradation. Historical precedent: ~11 uploads in an hour triggered uploadLimitExceeded once — never assume >4/day works without a real, minimal, reversible test.", "superseded_by": "F"},
+    "F": {"shorts_per_day": 5, "long_form_per_day": 2, "description": "Current allocation (owner direction, 2026-08-03). All 7 total uploads/day still fall within the verified-safe ~4-11/day range only if the PUBLISHING phase stays throttled and spread across the day/week per publishAt scheduling — the per-upload uploadLimitExceeded check is unchanged and non-negotiable regardless of this allocation."}
+  },
+  "evidence_requirements": {
+    "low_risk_change": "early_signal (n=2) sufficient",
+    "medium_risk_change": "repeated_pattern (n=3+) normally required",
+    "high_risk_change": "strong_channel_pattern or a clearly exceptional single event (breakout, policy risk, quota failure, credential failure, corrupted state) required",
+    "note": "See agents/0_orchestrator.md's Analytics Intelligence protocol for the full evidence-level definitions (observation/early_signal/repeated_pattern/strong_channel_pattern) — this section only maps evidence levels to the change-risk levels below, it doesn't redefine them."
+  },
+  "change_risk_examples": {
+    "low_risk": ["title-generation rule tweak", "content-pillar weight adjustment", "CTA rotation change", "competitor-scan keyword change", "experiment threshold change", "upload spacing within existing slot count", "dashboard reporting improvement", "concept-scoring adjustment", "repeat/vary/explore ratio adjustment"],
+    "medium_risk": ["swapping one daily format slot for another", "reducing weekly long-form frequency", "increasing Shorts allocation", "video-length range change", "material production-logic change", "pinned-comment funnel change", "Routine prompt change", "upload-time change across the week", "state schema change", "cross-agent handoff change"],
+    "high_risk": ["exceeding historical upload volume (>~4/24h)", "changing several production stages at once", "replacing the dominant content strategy", "changing channel identity", "new source/licensing model", "anything touching publishing credentials", "daily production architecture change"]
+  },
+  "breakout_thresholds": {
+    "strong_ratio_vs_same_format_median": 1.5,
+    "breakout_ratio_vs_same_format_median": 3.0,
+    "major_breakout_ratio_vs_same_format_median": 5.0,
+    "exceptional_ratio_vs_same_format_median": 10.0,
+    "note": "Ratios of a video's age-normalized views to its same-format median (analytics_intelligence.format_baseline()). Never compare Shorts to long-form directly. Agent 0 may adjust these as the channel matures and sample sizes grow — record any change in the experiment ledger."
+  },
+  "fatigue_thresholds": {
+    "note": "Unchanged from the existing system — see analytics_intelligence.FATIGUE_SHARE_THRESHOLD (0.30) and FATIGUE_CONSECUTIVE_THRESHOLD (3). Referenced here, not duplicated, so there is one source of truth."
+  },
+  "quota_aware_limits": {
+    "account_verification_status": "Owner-confirmed 2026-08-04: the channel's YouTube account is verified with advanced features. YouTube's public daily upload limits are roughly 10-15 videos/day for new/unverified accounts vs. 50-100/day for verified accounts with advanced features — this account sits in the higher tier.",
+    "verified_safe_daily_uploads": 7,
+    "real_world_confirmation": "2026-08-04: uploaded all 7 of a day's items (5 shorts + 2 long-form) back-to-back in one sitting with zero uploadLimitExceeded errors — confirms 7/day is comfortably within this account's real quota, not an untested middle zone.",
+    "verified_failure_point": "~11 uploads within about an hour of wall-clock time triggered HTTP 400 uploadLimitExceeded on 2026-07-27, before the account's verified status/tier was confirmed — publishAt scheduling does not protect against this, only the upload call's own timing matters. Left here as reference, not as an active ceiling.",
+    "note": "Owner direction 2026-08-04: this is informational context, not an enforced pre-emptive cap — don't artificially slice/defer uploads to stay under an old assumed number (the previous 4/day framing predated confirming the account is verified and predates the successful 7-in-one-sitting real-world result above). The per-upload uploadLimitExceeded check in the PUBLISHING/Daily content cycle step remains active as a cheap real-time safety net regardless — it reacts to what the API actually says rather than a guessed number, so keep it; just don't treat any specific daily count as a wall to preemptively stop at."
+  },
+  "rollback_policy": {
+    "note": "Every medium/high-risk change must define its own rollback condition at implementation time (agents/0_orchestrator.md's Controlled Self-Modification Loop). This file's current_production_allocation.previous_production_allocation field is the mechanical rollback target for allocation changes specifically — set it to the outgoing allocation whenever current_production_allocation changes, never leave it stale.",
+    "rollback_trigger_examples": ["subscriber growth materially declines vs. the pre-change baseline", "same-format performance materially declines", "upload failures increase", "quarantine rate increases", "content quality falls (gate failures, owner feedback)", "audience fatigue increases", "quota errors occur", "the change produces no benefit after its evaluation window"]
+  },
+  "content_portfolio_default": {
+    "repeat_pct": 70,
+    "deliberately_vary_pct": 20,
+    "explore_pct": 10,
+    "note": "Default mix — Agent 0 may adjust temporarily per situation (e.g. 50/30/20 with no winners yet, 70/25/5 validating a clear winner, 50/40/10 under fatigue, 75/20/5 in stable strong growth). Record any deviation and its reason in the relevant cycles[] entry."
+  }
+}

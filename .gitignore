@@ -1,0 +1,9 @@
+youtube-automation/secrets/
+youtube-automation/**/*.token.json
+youtube-automation/**/client_secret*.json
+__pycache__/
+*.pyc
+youtube-automation/.venv/
+youtube-automation/assets/long-form/output/*_final.mp4
+youtube-automation/assets/long-form/final/*_final.mp4
+.claude/worktrees/

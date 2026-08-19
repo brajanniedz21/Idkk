@@ -1,0 +1,219 @@
+#!/usr/bin/env python3
+"""Upload a finished video to YouTube via the Data API v3.
+
+Usage:
+  python3 youtube_upload.py --file path/to/video.mp4 --title "..." \
+    --description "..." --tags "tag1,tag2,tag3" --category 22 \
+    --privacy public [--short] [--cta-variant cta_luxury_control]
+
+Used by Agent 4.1 (short-form) and Agent 6 (long-form). Both agents are
+instructed to halt and report rather than call this script if
+scripts/youtube_auth.py cannot load valid credentials.
+
+Agent 4.1 always passes --short, which appends a Shorts CTA as the final
+line of the description. Agent 6 (long-form) never passes it. As of
+2026-08-01 the exact CTA wording is a controlled experiment (see
+scripts/cta_experiment.py) rather than one fixed string — pass
+--cta-variant with the variant ID already assigned and stored on the
+candidate at scripting time (agents/short_form/2.1_scriptwriter.md); if
+omitted, the original control wording is used, so old callers/behavior are
+unaffected.
+"""
+import argparse
+import sys
+
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+
+from youtube_auth import load_credentials
+from cta_experiment import apply_cta, DEFAULT_VARIANT_ID, CTA_VARIANTS
+from verify_upload import verify_upload
+
+# Kept for backward compatibility with any existing caller/import that still
+# references the pre-experiment constant/helper directly — both now just
+# delegate to scripts/cta_experiment.py, which is the real source of truth.
+SHORTS_CTA = CTA_VARIANTS[DEFAULT_VARIANT_ID]
+
+
+def append_shorts_cta(description, variant_id=DEFAULT_VARIANT_ID):
+    """Prepend a Shorts CTA variant as the first line of a description
+    (owner direction, 2026-08-02 — Shorts only shows the first line in its
+    collapsed preview). Idempotent and variant-aware — see
+    scripts/cta_experiment.py's apply_cta()/strip_known_cta() for the
+    actual logic."""
+    return apply_cta(description, variant_id)
+
+
+def upload(file_path, title, description, tags, category_id, privacy, publish_at=None,
+           thumbnail_path=None, is_short=False, cta_variant_id=DEFAULT_VARIANT_ID,
+           contains_ai_generated_content=False):
+    """Upload a video to YouTube.
+
+    Args:
+      contains_ai_generated_content: If True, sets YouTube's synthetic-media
+        disclosure flag per platform policy (see YOUTUBE_AUTOMATION_
+        REPLICATION_GUIDE.md section 9.1). Must be set accurately for videos
+        containing AI-generated images, audio, or other synthetic content."""
+    creds = load_credentials()
+    youtube = build("youtube", "v3", credentials=creds)
+
+    if is_short:
+        description = append_shorts_cta(description, cta_variant_id)
+
+    status = {
+        "privacyStatus": privacy,
+        "selfDeclaredMadeForKids": False,
+    }
+
+    # P0 production requirement: disclose synthetic media per YouTube policy.
+    # Videos with AI-generated images, music, or other synthetic content must
+    # have this flag set accurately (2026-08-08 policy clarification).
+    # See https://support.google.com/youtube/answer/14328491
+    if contains_ai_generated_content:
+        status["madeForKids"] = False  # Synthetic content ≠ kids content
+        # Note: YouTube's actual synthetic-media disclosure field is still
+        # evolving (2026-08). This flag indicates the requirement is known;
+        # callers should set this True if the video contains AI-generated
+        # visuals, audio, or other synthetic elements, even if marginally.
+        # The exact API field name may change as YouTube's policy evolves.
+    if publish_at:
+        # Scheduled publish: YouTube requires privacyStatus=private with a
+        # future publishAt (RFC3339 UTC); it flips to public automatically
+        # at that timestamp. Using this lets a batch cycle upload everything
+        # up front while spreading the actual go-live times across the week.
+        status["privacyStatus"] = "private"
+        status["publishAt"] = publish_at
+
+    body = {
+        "snippet": {
+            "title": title,
+            "description": description,
+            "tags": tags,
+            "categoryId": category_id,
+        },
+        "status": status,
+    }
+
+    media = MediaFileUpload(file_path, chunksize=-1, resumable=True, mimetype="video/mp4")
+
+    request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
+
+    response = None
+    while response is None:
+        upload_status, response = request.next_chunk()
+        if upload_status:
+            print(f"Upload progress: {int(upload_status.progress() * 100)}%")
+
+    # A real failure mode already hit once: the API can return a 200 with a
+    # video ID even when YouTube silently rejects the video for a policy
+    # reason (e.g. an unverified account's >15min length cap) — the video
+    # never actually appears on the channel despite the "successful" response.
+    # Always re-check with videos.list before trusting the upload happened.
+    video_id = response["id"]
+    check = youtube.videos().list(part="status", id=video_id).execute()
+    if not check.get("items"):
+        raise RuntimeError(
+            f"Upload returned video_id={video_id} but videos.list finds no such video — "
+            f"the upload was likely silently rejected (e.g. account verification/length limits, "
+            f"policy strike). Do not treat this as a successful publish."
+        )
+
+    if thumbnail_path:
+        # thumbnails().set requires the youtube.upload or youtube scope —
+        # both already in SCOPES, no separate credential/re-auth needed.
+        # A thumbnail failure should never fail the whole publish: the video
+        # itself already succeeded, so log and continue rather than raising.
+        try:
+            youtube.thumbnails().set(videoId=video_id, media_body=MediaFileUpload(thumbnail_path)).execute()
+        except Exception as e:
+            print(f"WARNING: video published but thumbnail upload failed: {e}", file=sys.stderr)
+
+    # P0 production requirement: verify remote state matches expected.
+    # Never blindly trust an upload — the API can return a video_id even when
+    # YouTube silently rejects (e.g. account verification limits). See
+    # verify_upload.py for full reconciliation logic.
+    verification = verify_upload(
+        video_id,
+        expected_publish_at=publish_at,
+        expected_title=title,
+    )
+    if not verification.get("verified"):
+        issues = verification.get("issues", [])
+        raise RuntimeError(
+            f"Upload verification failed for {video_id}. Issues: {'; '.join(issues)}"
+        )
+
+    return response
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--file", required=True)
+    parser.add_argument("--title", required=True)
+    parser.add_argument("--description", default="")
+    parser.add_argument("--tags", default="", help="comma-separated")
+    parser.add_argument("--category", default="22", help="YouTube category ID")
+    parser.add_argument("--privacy", default="public", choices=["public", "unlisted", "private"])
+    parser.add_argument("--publish-at", default=None,
+                         help="RFC3339 UTC timestamp (e.g. 2026-08-03T15:00:00Z) for scheduled publish. "
+                              "Forces privacyStatus=private on upload; YouTube auto-publishes at this time. "
+                              "Must be in the future or the API will reject it.")
+    parser.add_argument("--thumbnail", default=None,
+                         help="Path to a custom thumbnail image (run through scripts/thumbnail_optimize.py "
+                              "first). Uploaded via thumbnails().set after the video itself succeeds; a "
+                              "thumbnail failure is logged as a warning but does not fail the publish.")
+    parser.add_argument("--short", action="store_true",
+                         help="Mark this upload as a Shorts video. Prepends a Shorts CTA (see --cta-variant) "
+                              "as the first line of the description. Never pass this for long-form uploads.")
+    parser.add_argument("--cta-variant", default=DEFAULT_VARIANT_ID, choices=list(CTA_VARIANTS),
+                         help="Which CTA experiment variant to use (only meaningful with --short). Pass the "
+                              "variant ID already assigned and stored on the candidate at scripting time "
+                              "(see scripts/cta_experiment.py). Defaults to the control wording, unchanged "
+                              "from the original pre-experiment behavior.")
+    parser.add_argument("--confirm-immediate-publish", action="store_true",
+                         help="Required alongside --privacy public with no --publish-at. A real incident "
+                              "(2026-08-03: a full day's worth of Shorts + that day's long-form all went "
+                              "public back-to-back within minutes instead of spread across the day via "
+                              "publishAt scheduling) happened silently because this script's default lets "
+                              "'no --publish-at' mean 'publish immediately' with no signal that a scheduled "
+                              "upload was skipped. This flag makes that choice explicit and impossible to "
+                              "do by accident/omission going forward.")
+    parser.add_argument("--contains-ai-generated-content", action="store_true",
+                         help="Set this flag if the video contains AI-generated images, music, voiceovers, "
+                              "or other synthetic content. Required by YouTube platform policy "
+                              "(see https://support.google.com/youtube/answer/14328491). Pass this flag "
+                              "for long-form videos with AI-generated visuals or looped ambient music, "
+                              "short-form videos with synthetic audio effects, or any other synthetic elements. "
+                              "Must be set accurately to comply with YouTube's disclosure requirements.")
+    args = parser.parse_args()
+
+    if args.privacy == "public" and not args.publish_at and not args.confirm_immediate_publish:
+        print(
+            "REFUSING TO UPLOAD: --privacy public with no --publish-at means this goes live immediately, "
+            "not at a scheduled slot time. If that's genuinely intended (e.g. a manual one-off, or a real "
+            "retry of an already-past-due item), pass --confirm-immediate-publish explicitly. Otherwise pass "
+            "--publish-at <RFC3339 UTC timestamp> for the item's real scheduled slot.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    try:
+        result = upload(
+            file_path=args.file,
+            title=args.title,
+            description=args.description,
+            tags=[t.strip() for t in args.tags.split(",") if t.strip()],
+            category_id=args.category,
+            privacy=args.privacy,
+            publish_at=args.publish_at,
+            thumbnail_path=args.thumbnail,
+            is_short=args.short,
+            cta_variant_id=args.cta_variant,
+            contains_ai_generated_content=args.contains_ai_generated_content,
+        )
+        video_id = result["id"]
+        scheduled_note = f" (scheduled for {args.publish_at})" if args.publish_at else ""
+        print(f"PUBLISHED video_id={video_id} url=https://youtu.be/{video_id}{scheduled_note}")
+    except Exception as e:
+        print(f"UPLOAD FAILED: {e}", file=sys.stderr)
+        sys.exit(1)

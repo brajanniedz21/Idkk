@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Run Manifest",
+  "description": "Immutable record of one production or analytics run. Created at start, updated atomically at each stage, finalized at completion. Enables resumption after interruption.",
+  "type": "object",
+  "required": ["run_id", "run_type", "status", "run_date", "timezone", "started_at"],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "description": "Unique run ID: YYYYMMDD-<content|analytics>-<HHmm>-<short_random_suffix>"
+    },
+    "run_type": {
+      "type": "string",
+      "enum": ["content", "analytics"],
+      "description": "Pipeline type"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "created",
+        "preflight_passed",
+        "running",
+        "finalising",
+        "completed",
+        "blocked",
+        "failed"
+      ],
+      "description": "Overall run lifecycle"
+    },
+    "run_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Calendar date in run timezone (YYYY-MM-DD)"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Timezone used for all datetime conversions (Europe/London)"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 start timestamp (UTC)"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 completion timestamp (UTC)"
+    },
+    "pipeline_version": {
+      "type": "string",
+      "description": "Version of the pipeline (e.g., '1.0.0')"
+    },
+    "git_commit": {
+      "type": "string",
+      "description": "Git SHA at run time"
+    },
+    "spec_manifest_hash": {
+      "type": "string",
+      "description": "SHA256 hash of config + agent files manifest"
+    },
+    "preflight": {
+      "type": "object",
+      "properties": {
+        "status": { "enum": ["passed", "failed", "warning"] },
+        "checks": {
+          "type": "object",
+          "properties": {
+            "repo_clean": { "type": "boolean" },
+            "credentials_valid": { "type": "boolean" },
+            "tools_available": { "type": "boolean" },
+            "disk_available": { "type": "boolean" },
+            "api_quota_ok": { "type": "boolean" },
+            "circuit_breaker_inactive": { "type": "boolean" }
+          }
+        },
+        "blockers": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "slots_requested": {
+      "type": "integer",
+      "description": "Number of content slots requested (usually 7: 5 shorts + 2 long)"
+    },
+    "slots_completed": {
+      "type": "object",
+      "properties": {
+        "published": { "type": "integer" },
+        "scheduled": { "type": "integer" },
+        "quarantined": { "type": "integer" },
+        "blocked": { "type": "integer" }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "slot_id": { "type": "string" },
+          "status": { "type": "string" },
+          "youtube_video_id": { "type": "string" },
+          "scheduled_at": { "type": "string", "format": "date-time" }
+        }
+      },
+      "description": "All candidate IDs and their final statuses in this run"
+    },
+    "current_stage": {
+      "type": "string",
+      "enum": [
+        "preflight",
+        "scouting",
+        "scripting",
+        "production",
+        "gating",
+        "uploading",
+        "publishing",
+        "verification",
+        "finalising"
+      ],
+      "description": "Current execution stage (for resumption)"
+    },
+    "current_slot_index": {
+      "type": "integer",
+      "description": "Which slot is currently being processed (for resumption)"
+    },
+    "analytics_scope": {
+      "type": "object",
+      "properties": {
+        "data_freshness": { "enum": ["current", "stale", "unavailable"] },
+        "collection_time": { "type": "string", "format": "date-time" },
+        "videos_with_data": { "type": "integer" },
+        "compliance_mode_active": { "type": "boolean" }
+      },
+      "description": "[Analytics runs only] data quality summary"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": { "type": "string" },
+          "summary": { "type": "string" },
+          "evidence": { "type": "string" }
+        }
+      },
+      "description": "[Analytics runs only] structured findings from the run"
+    },
+    "token_usage": {
+      "type": "object",
+      "properties": {
+        "input_tokens": { "type": "integer" },
+        "output_tokens": { "type": "integer" },
+        "model": { "type": "string" }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text summary of the run"
+    },
+    "errors": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Any errors or warnings encountered"
+    }
+  }
+}

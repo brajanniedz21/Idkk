@@ -1,0 +1,4 @@
+# Runtime artifacts (not tracked, generated during pipeline execution)
+.locks/
+runs/
+*.tmp

@@ -1,0 +1,11 @@
+{
+  "_comment": "Records the published Artifact dashboard's URL so future sessions/firings can redeploy the SAME URL (via Artifact tool's `url` param) instead of minting a new one each time. See scripts/generate_dashboard.py and agents/0_orchestrator.md's 'Dashboard refresh' step.",
+  "url": "https://claude.ai/code/artifact/a7fafc6f-2fab-495b-8a1e-6954ca63f71c",
+  "file_path": "dashboard/index.html",
+  "title": "@makeitmanifest — Pipeline Dashboard",
+  "description": "Daily-updated status dashboard for the YouTube automation content pipeline.",
+  "favicon": "🎛️",
+  "created_at": "2026-07-28T07:35:00Z",
+  "hosting_decision": "2026-07-28: owner considered GitHub Pages (needs repo made public) and a Netlify git-integration deploy (works with a private repo, auto-updates on push) as ways to get a fully installable PWA on Android, but decided to just keep this as a Claude Artifact. Known limitation: on Android/Chrome this installs as a shortcut (opens in a browser tab), not a standalone-launching app, since an Artifact can't serve the separate manifest/service-worker files Chrome requires for a true install. iOS Safari's 'Add to Home Screen' behaves closer to a real app. Not something to keep re-investigating unless the owner asks again.",
+  "refresh_policy": "Regenerated and republished exactly once per daily trigger firing (end of cycle), never per-item, to keep maintenance cost near-zero. See agents/0_orchestrator.md 'Dashboard refresh' step."
+}

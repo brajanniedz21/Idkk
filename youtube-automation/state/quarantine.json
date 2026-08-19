@@ -1,0 +1,55 @@
+{
+  "_comment": "Every item that fails any gate lands here with the reason, timestamp, and which gate failed. Never silently discarded or forced through. Reviewed periodically to spot systemic issues (e.g. a gate that's too strict, or a recurring source problem).",
+  "short_form": [
+    {
+      "id": "sf_001",
+      "quarantined_at": "2026-07-27T08:20:00Z",
+      "gate": "basic_qa (quality risk, Agent 0 judgement call \u2014 no literal gates.json rule directly covers this case)",
+      "reason": "Produced file (assets/short-form-clips/processed/sf_001.mp4, 1080x1920, 29s, verified via ffprobe) correctly applied the short_form_gates.copyright_gate mitigation checklist in full (vertical reframe, 0.90x speed change + color grade, 5 burned-in on-screen-text beats, original audio fully replaced with a verified CC0 track). However, the script's voiceover_script (full narrated spoken-word lines that are the core creative device of this candidate's angle) was never added \u2014 no TTS engine is available in this environment, so Agent 3.1's own mandatory checklist step 6 (voiceover) was left incomplete by necessity, not oversight. Publishing a spoken-word-monologue concept with zero spoken words as the channel's first-ever video is a quality/creative-intent mismatch significant enough to withhold rather than auto-publish under a gate that doesn't explicitly anticipate this case. Holding for a human decision: accept text-only shorts as the format going forward, or add a TTS step to the pipeline before this candidate (or others like it) can publish.",
+      "additional_note": "Visual clip selection (56.mp4, 50.mp4, 39.mp4, looped ABCABC to reach 29s) was also only a weak heuristic (file size as a low-motion proxy) since no video-viewing capability exists to genuinely match visual_direction; flagged for awareness, not treated as a separate gate failure.",
+      "cc0_track_used": "Phonk ish by HoliznaCC0 (CC0 1.0, verified) \u2014 this part of the pipeline worked correctly and the track is retained in state/cc0_audio_library.json for reuse."
+    },
+    {
+      "id": "sf_003",
+      "quarantined_at": "2026-07-27T15:10:00Z",
+      "gate": "short_form_gates.copyright_gate visual-match spirit / basic_qa (quality risk, Agent 0 judgement call \u2014 no literal gates.json rule directly covers this case)",
+      "reason": "Script and audio were fine (produced, 1080x1920, 26s, 13 shots at exactly 2.00s each, verified via ffprobe and a full-decode null pass \u2014 meets the new hard 2s-per-shot cap correctly). But the visual content is a real mismatch: Agent 3.1's file-size heuristic picked clips 28/35/27/45/16/19/47/2, which turned out to be mountain biking, a red Lamborghini, a floating luxury breakfast tray, and a cruise ship \u2014 nothing resembling the script's 'dark academia library/candlelit desk/reading alone' concept. Agent 0 visually inspected the produced video's frames directly (real image review, not just trusting the transform_log) and confirmed the mismatch is severe, not a minor approximation.",
+      "root_cause": "Agent 0 then reviewed a contact sheet of all 49 available raw clips directly: the entire raw clip pool (assets/short-form-clips/raw/, sourced from a 'luxury lifestyle' Pinterest collection per its README) contains ZERO literal library/book/candlelight/academic footage \u2014 only supercars, yachts, jetskis, money, hot air balloons, and travel/skyline shots. This isn't a clip-selection bug to fix with a better heuristic; the source material genuinely cannot represent this angle's visual concept. File-size (or any other blind heuristic over this pool) will keep picking mismatched luxury/car content for any non-luxury-lifestyle angle.",
+      "recommendation": "Two options: (1) source new raw footage that actually matches 'dark academia' visual angles (library interiors, candlelight, rain-on-window, turning book pages) before scripting this angle again, or (2) have Agent 1.1 (Trend Scout) weight future short-form angles toward concepts the existing luxury-lifestyle clip pool can actually support (wealth/cars/travel/luxury-adjacent mindset angles), reserving 'reading/library/academic' angles until matching footage exists. Did not delete or force-publish sf_003 \u2014 kept produced file and full script/transform_log in state/short_form_queue.json for reuse if footage is sourced later.",
+      "cc0_track_used": "Phonk ish by HoliznaCC0 (CC0 1.0, verified, reused correctly) \u2014 audio sourcing/pacing/text-sizing all worked correctly this cycle; only the visual content selection failed."
+    },
+    {
+      "id": "sf_004",
+      "quarantined_at": "2026-07-27T16:35:00Z",
+      "gate": "short_form_gates.copyright_gate visual-match spirit (same root cause as sf_001/sf_003, pre-emptive quarantine before production)",
+      "reason": "Angle is 'Built different' gym-mindset progress narrative \u2014 quick-cut visual of grinding through a hard set. Per assets/short-form-clips/raw/README.md's Content scope note, the raw clip pool is 100% luxury-lifestyle (cars, yachts, jets, cash, travel, skylines) with zero gym/workout footage, the same root cause that got sf_001 quarantined. Quarantining pre-emptively rather than repeating the sf_001/sf_003 pattern of producing first and discovering the mismatch after.",
+      "recommendation": "Same as sf_003: either source real gym/workout footage before scripting this angle again, or let it stay quarantined until Agent 1.1 scouts a fitting replacement (as it did for sf_003 -> sf_005, sf_006, sf_007)."
+    },
+    {
+      "id": "sf_042",
+      "reason": "produced_file_path assets/short-form-clips/processed/sf_042.mp4 does not exist on disk and has no git history at all -- despite the candidate being marked ready_to_publish with a full gate_check_note. File was almost certainly lost during a worktree cleanup before the merge fully copied it in, or a session-limit interruption. Discovered 2026-08-04 while clearing the pre-daily-model publish backlog. Re-scout/re-produce this weekly_batch slot (index 40, 2026-08-05 09:00) from scratch.",
+      "detected_at": "2026-08-04T12:05:00Z",
+      "resolved_at": "2026-08-04T16:26:00Z",
+      "resolution": "Slot (weekly_batch index 40) re-scouted/re-scripted/re-produced from scratch as sf_058, published lGlEoZ7fKJ4. sf_042 itself stays quarantined/unused."
+    }
+  ],
+  "long_form": [
+    {
+      "id": "lf_001",
+      "quarantined_at": "2026-07-27T09:56:00Z",
+      "gate": "long_form_gates.image_copyright_gate (environment/credentials blocker, not a content failure)",
+      "reason": "Stage 2.2 (Image Sourcer) could not run: the `banana` skill requires a Google AI (Gemini) API key, and none is configured anywhere in this environment (no GOOGLE_AI_API_KEY/GOOGLE_API_KEY env var, no MCP server registration, no ~/.banana config, no gcloud application-default credentials). Independently re-verified by Agent 0 via scripts/validate_setup.py and an env/config scan before quarantining, to rule out a subagent false negative. No image was generated, and per the hard image_copyright_gate requirement (generated only, never scraped/substituted), no placeholder or non-AI-generated image was used as a workaround. Stage 3.2 (Animator) and Stage 5 (Assembler) were consequently not attempted since they depend on the image.",
+      "brief_status": "The scouted brief (title, visual_theme, mood, SEO, target_length_minutes=60) is sound and screened clean against content_exclusions \u2014 retained in state/long_form_queue.json for reuse once image generation is unblocked, rather than discarded.",
+      "audio_status": "A verified CC0 ambient track was already sourced for this candidate's mood ('Rain _ Sleep _ Meditation' by HoliznaCC0, CC0 1.0, verified) and is in state/cc0_audio_library.json, ready to use once the pipeline can proceed.",
+      "unblock_action_needed": "A Google AI Studio API key (free tier available at https://aistudio.google.com/apikey) needs to be added to this environment before the banana skill / long-form image generation can run. This is a one-time setup step, not something Agent 0 can resolve autonomously."
+    },
+    {
+      "id": "lf_010",
+      "quarantined_at": "2026-08-03T20:00:00Z",
+      "gate": "long_form_gates.image_copyright_gate (environment/quota blocker on Path A, plus no genuine match on Path C/Path B, not a content failure)",
+      "reason": "Stage 2.2 (Image Sourcer) checked all three sources in priority order: Path C (state/animated_clip_pool.json unused_pool) has no glass-walled-interior/fireplace/leather-chair clip -- closest is an exterior countryside-fog shot, and everything else is the car/mansion/marina family this candidate was deliberately scouted away from, so nothing was force-matched. Path B (state/image_pool.json unused_owner_ai_generated_pool, active folder 1ZdzOguJXaP4zxDSPVpuOTXhWGfTBOy09 only -- legacy folder correctly excluded per absolute owner direction) has 2 vetted entries, both Dubai car/skyline scenes, and the remaining pending entries have only opaque ChatGPT-export filenames with no available content description or Drive-viewing capability in this run to confirm a match, so none could be safely selected over a guess. Path A (banana generation) then failed: `validate_setup.py` passed 9/9 (a real key IS configured, unlike lf_001), but both the MCP tool (not present in this session's tool list) and the documented direct-API fallback (scripts/generate.py) returned HTTP 429 RESOURCE_EXHAUSTED with `generate_content_free_tier_requests, limit: 0`. Independently re-confirmed project-wide (not image-model-specific) via a plain-text curl generateContent call against gemini-2.0-flash with the same key -- also limit: 0. This matches the spec's documented lf_001-style failure mode exactly (hard zero quota, not a rate limit or prompt problem), just recurring on a since-configured key/project. No placeholder or mismatched-existing-asset was substituted.",
+      "brief_status": "The scouted brief (title 'This Is Your Quiet Now', visual_theme, mood, SEO, tags, target_length_minutes=90) is sound and screens clean against content_exclusions -- retained in state/long_form_queue.json for reuse once unblocked.",
+      "unblock_action_needed": "Either (a) the owner supplies a Path B/C mountain-lodge-interior asset for this theme family, or (b) the Google Cloud project behind the configured GOOGLE_AI_API_KEY gets free-tier quota or billing enabled (currently generate_content_free_tier_requests limit: 0) -- see https://aistudio.google.com/apikey / Cloud Console billing."
+    }
+  ]
+}

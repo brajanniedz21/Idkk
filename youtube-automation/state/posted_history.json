@@ -1,0 +1,628 @@
+{
+  "_comment": "Append-only log of published videos, written by Agent 4.1 (shorts) and Agent 6 (long-form). Read by Agent 1.1/1.2 for trend-repetition avoidance and by the weekly analytics routine.",
+  "short_form": [
+    {
+      "video_id": "qYTu_SqyCSw",
+      "url": "https://youtu.be/qYTu_SqyCSw",
+      "title": "Rebuild Yourself In Silence",
+      "published_at": "2026-07-27T13:20:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "Bz7e8FgzL3A",
+      "url": "https://youtu.be/Bz7e8FgzL3A",
+      "title": "Rebuild Yourself In Silence",
+      "published_at": "2026-07-27T14:35:00Z",
+      "format": "short",
+      "note": "sf_002_v2 \u2014 fast-cut/dark-grade/upbeat-audio reproduction of sf_002's angle, made after owner feedback on the original. Both videos are live; this is not a replacement."
+    },
+    {
+      "video_id": "Y120Tlxpu9U",
+      "url": "https://youtu.be/Y120Tlxpu9U",
+      "title": "You're Not Behind. You're Becoming.",
+      "published_at": "2026-07-27T14:56:43Z",
+      "format": "short"
+    },
+    {
+      "video_id": "O3YSNtfh9rs",
+      "url": "https://youtu.be/O3YSNtfh9rs",
+      "title": "They See The Car. Not The Work.",
+      "published_at": "2026-07-27T16:05:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "p3cLXwMS-d4",
+      "url": "https://youtu.be/p3cLXwMS-d4",
+      "title": "This Is Your Future. Rehearse It.",
+      "published_at": "2026-07-27T15:44:29Z",
+      "format": "short"
+    },
+    {
+      "video_id": "oE4J7Q6RkcE",
+      "url": "https://youtu.be/oE4J7Q6RkcE",
+      "title": "No Days Off. No Excuses.",
+      "published_at": "2026-07-27T16:08:18Z",
+      "format": "short"
+    },
+    {
+      "video_id": "6EW_tfba9bo",
+      "url": "https://youtu.be/6EW_tfba9bo",
+      "title": "Just Another Tuesday.",
+      "published_at": "2026-07-27T19:05:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "2A-1RDsOQ6w",
+      "url": "https://youtu.be/2A-1RDsOQ6w",
+      "title": "Built For This. Not Everyone Is.",
+      "published_at": "2026-07-27T16:47:11Z",
+      "format": "short"
+    },
+    {
+      "video_id": "5pv__ZadiaI",
+      "url": "https://youtu.be/5pv__ZadiaI",
+      "title": "Nobody Clocks Me In Anymore.",
+      "published_at": "2026-07-27T17:06:31Z",
+      "format": "short"
+    },
+    {
+      "video_id": "UXnA8OJeZjI",
+      "url": "https://youtu.be/UXnA8OJeZjI",
+      "title": "They Said I Wouldn't Make It. I Did.",
+      "published_at": "2026-07-27T20:50:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "jPadbAWbYsU",
+      "url": "https://youtu.be/jPadbAWbYsU",
+      "title": "I'm The First. Not The Last.",
+      "published_at": "2026-07-28T08:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
+    },
+    {
+      "video_id": "QA8WndS3tZM",
+      "url": "https://youtu.be/QA8WndS3tZM",
+      "title": "Everyone's On A Different Clock.",
+      "published_at": "2026-07-28T13:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
+    },
+    {
+      "video_id": "LE_thiHiqHM",
+      "url": "https://youtu.be/LE_thiHiqHM",
+      "title": "Nobody Talks About What I Gave Up.",
+      "published_at": "2026-07-28T18:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
+    },
+    {
+      "video_id": "-61RQDvyQtM",
+      "url": "https://youtu.be/-61RQDvyQtM",
+      "title": "You Become The Room You're In.",
+      "published_at": "2026-07-29T08:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
+    },
+    {
+      "video_id": "Ia2jWCbXAIs",
+      "url": "https://youtu.be/Ia2jWCbXAIs",
+      "title": "This Took Years. It Looks Like Luck.",
+      "published_at": "2026-07-29T13:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
+    },
+    {
+      "video_id": "tvr7Pe99b2o",
+      "url": "https://youtu.be/tvr7Pe99b2o",
+      "title": "The Old Me Wouldn't Recognize This.",
+      "published_at": "2026-07-29T18:00:00Z",
+      "format": "short",
+      "note": "Weekly batch item; uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt."
+    },
+    {
+      "video_id": "akiZmSPevaw",
+      "url": "https://youtu.be/akiZmSPevaw",
+      "title": "I Stopped Explaining My Boundaries.",
+      "published_at": "2026-07-30T08:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "rcT5fayYojc",
+      "url": "https://youtu.be/rcT5fayYojc",
+      "title": "I Don't Spend It. I Reinvest It.",
+      "published_at": "2026-07-30T13:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "5NMLdRmIbaY",
+      "url": "https://youtu.be/5NMLdRmIbaY",
+      "title": "Nobody Gave Me Permission. I Took It.",
+      "published_at": "2026-07-30T18:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "ROZobyfbqBk",
+      "url": "https://youtu.be/ROZobyfbqBk",
+      "title": "I Chose Uncertain Over Comfortable.",
+      "published_at": "2026-07-31T08:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "_JoMdED8iWQ",
+      "url": "https://youtu.be/_JoMdED8iWQ",
+      "title": "Luck Is Just Timing You Prepared For.",
+      "published_at": "2026-07-31T13:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "0glcqjWLhBU",
+      "url": "https://youtu.be/0glcqjWLhBU",
+      "title": "I Was Never Built For Normal.",
+      "published_at": "2026-07-31T18:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "ANBhb7OgxcM",
+      "url": "https://youtu.be/ANBhb7OgxcM",
+      "title": "My Attention Is Not For Sale.",
+      "published_at": "2026-08-01T08:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "H7xpqKYn-Hk",
+      "url": "https://youtu.be/H7xpqKYn-Hk",
+      "title": "I Trust My Instincts Over Their Opinions.",
+      "published_at": "2026-08-01T13:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "C36aOyXkBFs",
+      "url": "https://youtu.be/C36aOyXkBFs",
+      "title": "I Saw This Before It Existed.",
+      "published_at": "2026-08-01T18:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "hyVZAT6aB58",
+      "url": "https://youtu.be/hyVZAT6aB58",
+      "title": "I Raised My Standards. Not My Voice.",
+      "published_at": "2026-08-02T08:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "WmQr6bAwfpM",
+      "url": "https://youtu.be/WmQr6bAwfpM",
+      "title": "Discipline Doesn't Ask How I Feel.",
+      "published_at": "2026-08-02T13:00:00Z",
+      "format": "short"
+    },
+    {
+      "video_id": "qOWTFoI6YZA",
+      "url": "https://youtu.be/qOWTFoI6YZA",
+      "title": "Their Timeline Was Never Mine.",
+      "published_at": "2026-08-02T18:00:00Z",
+      "format": "short"
+    },
+    {
+      "candidate_id": "sf_031",
+      "video_id": "lwp4uCkom6g",
+      "url": "https://youtu.be/lwp4uCkom6g",
+      "title": "Nobody Saw The Years It Took.",
+      "published_at": "2026-08-02T05:45:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_control",
+        "cta_text": "Manifest it. Comment \"Luxury\" below."
+      }
+    },
+    {
+      "video_id": "jpbqavO91xo",
+      "url": "https://youtu.be/jpbqavO91xo",
+      "title": "It Was Never Luck. It Was Decided.",
+      "published_at": "2026-08-02T00:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "candidate_id": "sf_032"
+    },
+    {
+      "video_id": "GrTxN_pY4CM",
+      "url": "https://youtu.be/GrTxN_pY4CM",
+      "title": "This Is What Arrival Feels Like.",
+      "published_at": "2026-08-02T00:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      },
+      "candidate_id": "sf_033"
+    },
+    {
+      "video_id": "qdXepayAqc8",
+      "url": "https://youtu.be/qdXepayAqc8",
+      "title": "I Paid For This Before You Saw It.",
+      "published_at": "2026-08-03T08:32:43Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_begin",
+        "cta_text": "Your future starts here. Comment \"Luxury\"."
+      },
+      "candidate_id": "sf_034"
+    },
+    {
+      "video_id": "x-0ODBpOcgM",
+      "url": "https://youtu.be/x-0ODBpOcgM",
+      "title": "You're Not Manifesting This. You're Remembering It.",
+      "published_at": "2026-08-03T08:55:04Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_control",
+        "cta_text": "Manifest it. Comment \"Luxury\" below."
+      },
+      "candidate_id": "sf_035"
+    },
+    {
+      "video_id": "43DA6Uy08wI",
+      "url": "https://youtu.be/43DA6Uy08wI",
+      "title": "I Stopped Waiting For Applause.",
+      "published_at": "2026-08-03T09:10:03Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "candidate_id": "sf_036"
+    },
+    {
+      "candidate_id": "sf_037",
+      "video_id": "osnAIJ4m9nA",
+      "published_at": "2026-08-04T11:30:00Z",
+      "title": "This Is For Someone Who Isn't Born Yet."
+    },
+    {
+      "candidate_id": "sf_040",
+      "video_id": "Wa3Xr6iQCk8",
+      "published_at": "2026-08-04T11:45:00Z",
+      "title": "I Almost Talked Myself Out Of This."
+    },
+    {
+      "candidate_id": "sf_038",
+      "video_id": "_a_wvOSQuG0",
+      "published_at": "2026-08-04T13:00:00Z",
+      "title": "It Was Never About The Money."
+    },
+    {
+      "candidate_id": "sf_039",
+      "video_id": "JPdKU336Et8",
+      "published_at": "2026-08-04T18:00:00Z",
+      "title": "I Built This In Rooms No One Walked Into."
+    },
+    {
+      "candidate_id": "sf_041",
+      "video_id": "vfITiOJDfZs",
+      "published_at": "2026-08-04T20:00:00Z",
+      "title": "Some People Peak. I Keep Climbing."
+    },
+    {
+      "candidate_id": "sf_043",
+      "video_id": "8OEytPaZ_Vs",
+      "published_at": "2026-08-05T11:00:00Z",
+      "title": "No One's Checking. I Show Up Anyway."
+    },
+    {
+      "candidate_id": "sf_044",
+      "video_id": "UcnSLCbPKpg",
+      "published_at": "2026-08-05T14:00:00Z",
+      "title": "It Wasn't One Big Moment. It Was A Thousand Quiet Ones."
+    },
+    {
+      "candidate_id": "sf_045",
+      "video_id": "3xWHo2V-Y-U",
+      "published_at": "2026-08-05T17:00:00Z",
+      "title": "The Only Person I'm Trying To Beat Is Who I Used To Be."
+    },
+    {
+      "candidate_id": "sf_050",
+      "video_id": "ye0LHnyU65U",
+      "published_at": "2026-08-05T20:00:00Z",
+      "title": "There Was No Plan B. On Purpose."
+    },
+    {
+      "candidate_id": "sf_047",
+      "video_id": "x3tzghwp_aA",
+      "published_at": "2026-08-06T08:00:00Z",
+      "title": "I Never Told You The Deadline. I Just Beat It."
+    },
+    {
+      "candidate_id": "sf_046",
+      "video_id": "4kC9w6KDc4E",
+      "published_at": "2026-08-06T11:00:00Z",
+      "title": "I Never Rushed Any Of This."
+    },
+    {
+      "candidate_id": "sf_048",
+      "video_id": "bG4_apNGhxM",
+      "published_at": "2026-08-06T14:00:00Z",
+      "title": "I Said No So Many Times."
+    },
+    {
+      "candidate_id": "sf_049",
+      "video_id": "yBEg6ICBhs4",
+      "published_at": "2026-08-06T17:00:00Z",
+      "title": "You're Only Seeing This Because I Let You."
+    },
+    {
+      "candidate_id": "sf_051",
+      "video_id": "TDWXpNz4PvQ",
+      "published_at": "2026-08-06T20:00:00Z",
+      "title": "I Had No One To Copy."
+    },
+    {
+      "candidate_id": "sf_054",
+      "video_id": "zsStjvwJeBY",
+      "published_at": "2026-08-07T08:00:00Z",
+      "title": "I Stopped Calling It Sacrifice."
+    },
+    {
+      "candidate_id": "sf_057",
+      "video_id": "LDlwn8yYzcA",
+      "published_at": "2026-08-07T11:00:00Z",
+      "title": "I Failed First. You Never Saw That Part."
+    },
+    {
+      "candidate_id": "sf_053",
+      "video_id": "Hf0LopC3Nzs",
+      "published_at": "2026-08-07T14:00:00Z",
+      "title": "I Lost It Once. I Built It Back Colder."
+    },
+    {
+      "candidate_id": "sf_058",
+      "video_id": "lGlEoZ7fKJ4",
+      "url": "https://youtu.be/lGlEoZ7fKJ4",
+      "title": "I Could Have Had This Five Years Ago. I Chose To Wait.",
+      "published_at": "2026-08-04T16:25:53Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      }
+    },
+    {
+      "candidate_id": "sf_059",
+      "video_id": "rcGnQBMUfA4",
+      "published_at": "2026-08-07T17:00:00Z",
+      "title": "I Didn't Plan This Escape. I Earned It."
+    },
+    {
+      "candidate_id": "sf_060",
+      "video_id": "fWu32uo6vC4",
+      "published_at": "2026-08-07T20:00:00Z",
+      "title": "Monaco Doesn't Ask Twice."
+    },
+    {
+      "video_id": "-4A4dL0F8Do",
+      "url": "https://youtu.be/-4A4dL0F8Do",
+      "title": "I Stopped Explaining Myself.",
+      "published_at": "2026-08-08T11:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      },
+      "candidate_id": "sf_061"
+    },
+    {
+      "candidate_id": "sf_063",
+      "video_id": "Djmk71SoLO0",
+      "url": "https://youtu.be/Djmk71SoLO0",
+      "title": "I Kept Saying No To Easy.",
+      "published_at": "2026-08-08T20:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Comment \"Claim\" to lock this in."
+      }
+    },
+    {
+      "candidate_id": "sf_062",
+      "video_id": "H39DTyq4suU",
+      "url": "https://youtu.be/H39DTyq4suU",
+      "title": "I Never Doubted This. Not Once.",
+      "published_at": "2026-08-08T08:00:00Z",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_claim",
+        "cta_text": "Type \"Luxury\" to claim it."
+      }
+    },
+    {
+      "candidate_id": "sf_064",
+      "video_id": "9OvHBWZQpGQ",
+      "published_at": "2026-08-08T17:00:00Z",
+      "title": "This Was Never Staged For You.",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_future",
+        "cta_text": "Comment \"Luxury\" if this is your future."
+      }
+    },
+    {
+      "candidate_id": "sf_065",
+      "video_id": "ROIR8mGVM3c",
+      "published_at": "2026-08-08T14:00:00Z",
+      "title": "Nobody Announced This. It Just Arrived.",
+      "format": "short",
+      "cta_assignment": {
+        "cta_experiment_id": "cta-luxury-001",
+        "cta_variant_id": "cta_luxury_control",
+        "cta_text": "Follow for more."
+      }
+    }
+  ],
+  "long_form": [
+    {
+      "video_id": "J5o72mPmCzs",
+      "url": "https://youtu.be/J5o72mPmCzs",
+      "title": "1 Hour of Luxury | Quiet Night at the Villa - Ambience for Focus & Manifestation",
+      "published_at": "2026-07-27T21:10:00Z",
+      "format": "long",
+      "duration_minutes": 60,
+      "note": "lf_002 \u2014 first long-form video published. Background image is owner-supplied (image_copyright_gate path B, unverified provenance, explicit owner risk acceptance: 'just try to make one video, if it gets copyrighted ill change the plan'). Audio is verified CC0 (Rain _ Sleep _ Meditation, HoliznaCC0). If a Content ID claim or strike lands on this video, stop using new images from the owner's Drive folder and revisit per the owner's own stated condition. CORRECTION: the original upload (o1FUnaP8gWE) never actually went live \u2014 the YouTube account wasn't yet verified for uploads over 15 minutes, so that upload was silently rejected despite the upload script reporting a video_id. Confirmed via the Data API (videos.list returned zero results for that ID). Account is now verified; re-uploaded successfully as J5o72mPmCzs."
+    },
+    {
+      "video_id": "3Uat_ycZ4k8",
+      "url": "https://youtu.be/3Uat_ycZ4k8",
+      "title": "1.5 Hours of Ambition | Marina Skyline at Night - Ambience for Focus & Manifestation",
+      "published_at": "2026-07-28T19:00:00Z",
+      "format": "long",
+      "duration_minutes": 90,
+      "note": "Weekly batch item (lf_003); uploaded 2026-07-27, scheduled to go public at published_at via YouTube publishAt. Image is owner-supplied (image_copyright_gate path B)."
+    },
+    {
+      "video_id": "LZU2LFX2d7c",
+      "url": "https://youtu.be/LZU2LFX2d7c",
+      "title": "This Is What Stillness Feels Like",
+      "published_at": "2026-07-29T19:00:00Z",
+      "format": "long"
+    },
+    {
+      "video_id": "2BSTpvwWQcU",
+      "url": "https://youtu.be/2BSTpvwWQcU",
+      "title": "Discipline Doesn't Need An Audience",
+      "published_at": "2026-07-30T19:00:00Z",
+      "format": "long"
+    },
+    {
+      "video_id": "uZ4s9P3zJ3U",
+      "url": "https://youtu.be/uZ4s9P3zJ3U",
+      "title": "You Build In The Quiet",
+      "published_at": "2026-07-31T19:00:00Z",
+      "format": "long"
+    },
+    {
+      "video_id": "e1XaX_meQlU",
+      "url": "https://youtu.be/e1XaX_meQlU",
+      "title": "Some Nights You Just Sit With It",
+      "published_at": "2026-08-02T19:00:00Z",
+      "format": "long"
+    },
+    {
+      "video_id": "R-yKGY6c1y0",
+      "url": "https://youtu.be/R-yKGY6c1y0",
+      "title": "Nobody Sees The Nights Like This",
+      "published_at": "2026-08-01T19:00:00Z",
+      "format": "long"
+    },
+    {
+      "video_id": "5WQYs1Sd_fA",
+      "url": "https://youtu.be/5WQYs1Sd_fA",
+      "title": "Slow Down. You've Already Made It.",
+      "published_at": "2026-08-02T06:45:39Z",
+      "format": "long",
+      "duration_minutes": 70,
+      "note": "lf_009 -- daily production cycle test item (index 28, weekly_batch_progress.json, day 2026-08-03 long-form slot). Monaco harbor sunset scene (Porsche 911 GT3 + superyacht), Path C animated_clip_pool source (owner_ai_generated_clip), reverse ping-pong loop (initial crossfade attempt failed empirical mid-blend ghosting check, switched per agents/long_form/3.2_animator.md's verification step -- see state/long_form_queue.json's lf_009 motion_decision/animation_note for the full account). Audio: Peaceful Drift (HoliznaCC0, CC0 1.0), first long-form use of this track, diversifying away from the Rain/Sleep/Meditation + Fire Place rotation used across all of lf_002-lf_008. No Shorts CTA / pinned comment funnel applied (long-form is exempt, per agents/0_orchestrator.md). All gates passed; content_quality_gate self-scored 9/9/9/9/9/9 (threshold 8). Publish independently re-verified via a live videos.list call: public, uploaded."
+    },
+    {
+      "video_id": "IFbviopMBLU",
+      "url": "https://youtu.be/IFbviopMBLU",
+      "title": "Even the City Holds Its Breath",
+      "published_at": "2026-08-03T19:00:00Z",
+      "format": "long",
+      "duration_minutes": 80
+    },
+    {
+      "candidate_id": "lf_013",
+      "video_id": "6PR4jRyLJUU",
+      "published_at": "2026-08-04T12:30:00Z",
+      "title": "The Quiet Kept Falling With The Snow",
+      "format": "long",
+      "duration_minutes": 110
+    },
+    {
+      "candidate_id": "lf_012",
+      "video_id": "3o07Y6m66Oc",
+      "published_at": "2026-08-04T19:00:00Z",
+      "title": "Some Mornings Ask For Nothing But Stillness",
+      "format": "long",
+      "duration_minutes": 90
+    },
+    {
+      "candidate_id": "lf_014",
+      "video_id": "_2kMSKmuJSs",
+      "published_at": "2026-08-05T12:30:00Z",
+      "title": "Where Success Comes to Rest",
+      "format": "long",
+      "duration_minutes": 150.0
+    },
+    {
+      "candidate_id": "lf_015",
+      "video_id": "Db-nx85nK0c",
+      "published_at": "2026-08-05T19:30:00Z",
+      "title": "Everything You Wanted Is Already Yours",
+      "format": "long",
+      "duration_minutes": 100
+    },
+    {
+      "candidate_id": "lf_016",
+      "video_id": "ttedgtMmUoM",
+      "published_at": "2026-08-06T12:30:00Z",
+      "title": "This Is What Arrival Feels Like",
+      "format": "long",
+      "duration_minutes": 85.0
+    },
+    {
+      "candidate_id": "lf_017",
+      "video_id": "GoWydrsRf8w",
+      "published_at": "2026-08-06T19:30:00Z",
+      "title": "The Life I Was Building Toward",
+      "format": "long",
+      "duration_minutes": 95
+    },
+    {
+      "candidate_id": "lf_019",
+      "video_id": "mCmyY3Atfho",
+      "published_at": "2026-08-07T19:30:00Z",
+      "title": "You Stopped Needing Permission",
+      "format": "long",
+      "duration_minutes": 65
+    },
+    {
+      "candidate_id": "lf_018",
+      "video_id": "1E0C-Vt00U0",
+      "published_at": "2026-08-07T12:30:00Z",
+      "title": "The Stillness You've Earned",
+      "format": "long",
+      "duration_minutes": 130
+    },
+    {
+      "candidate_id": "lf_020",
+      "video_id": "JaZ7b_svlts",
+      "url": "https://youtu.be/JaZ7b_svlts",
+      "title": "The Quiet Doesn't Hurry",
+      "published_at": "2026-08-08T12:30:00Z",
+      "format": "long"
+    },
+    {
+      "candidate_id": "lf_021",
+      "video_id": "jzrMAYLP1Uw",
+      "url": "https://youtu.be/jzrMAYLP1Uw",
+      "title": "Power Doesn't Need to Move",
+      "published_at": "2026-08-08T19:30:00Z",
+      "format": "long"
+    }
+  ]
+}
